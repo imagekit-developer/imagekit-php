@@ -1,5 +1,5 @@
 {
-    "name": "imagekit-php",
+    "name": "imagekit/imagekit",
     "type": "library",
     "description": "PHP library for Imagekit",
     "keywords": [

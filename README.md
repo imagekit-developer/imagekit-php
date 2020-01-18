@@ -1,6 +1,9 @@
 
 # PHP SDK for ImageKit
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Twitter Follow](https://img.shields.io/twitter/follow/imagekitio?label=Follow&style=social)](https://twitter.com/ImagekitIo)
+
 PHP SDK for [ImageKit](https://imagekit.io/) that implements the new APIs and interface for performing different file
 operations.
 

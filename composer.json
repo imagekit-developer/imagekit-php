@@ -3,8 +3,18 @@
     "type": "library",
     "description": "PHP library for Imagekit",
     "keywords": [
-        "library"
+        "library",
+        "imagekit",
+        "image management"
     ],
+    "homepage": "https://github.com/imagekit-developer/imagekit-php",
+    "support": {
+        "email": "support@imagekit.io"
+    },
+    "authors": [{
+        "name": "Imagekit",
+        "homepage": "https://github.com/imagekit-developer/imagekit-php/graphs/contributors"
+    }],
     "license": "MIT",
     "require": {
         "fzaninotto/faker": "^1.9",

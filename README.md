@@ -27,15 +27,8 @@ Table of contents -
  ## Installation
  Go to your terminal and type the following command
 
-```txt
-$ composer install
-$ cp phpunit.xml.dist phpunit.xml
-
-# Run Tests
-$ ./vendor/bin/phpunit
-
-# Run Tests with coverage
-$ ./vendor/bin/phpunit  --coverage-text 
+```sh
+composer require imagekit/imagekit
 ```
  
 

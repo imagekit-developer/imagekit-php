@@ -177,12 +177,6 @@ final class FileTest extends TestCase
     // Get MetaData
     public function testGetMetaDataDetailsWithEmptyFileId()
     {
-        $defaultOptions = array(
-            'publicKey' => "public_Mo3UCmhjJ2iq89n2xQ5va1jgrds=",
-            'privateKey' => "private_2yk2tYC0bcPiNHVG3s4Dpa6Wfzo=",
-            'urlEndpoint' => "https://ik.imagekit.io/ot2cky3ujwa/",
-            'transformationPosition' => getDefault(),
-        );
         $faker = Faker\Factory::create();
         $the_file_id = "";
 
@@ -369,12 +363,6 @@ final class FileTest extends TestCase
 
     public function testBulkFileDeleteWhenSuccessful()
     {
-        $defaultOptions = array(
-            'publicKey' => "public_Mo3UCmhjJ2iq89n2xQ5va1jgrds=",
-            'privateKey' => "private_2yk2tYC0bcPiNHVG3s4Dpa6Wfzo=",
-            'urlEndpoint' => "https://ik.imagekit.io/ot2cky3ujwa/",
-            'transformationPosition' => getDefault(),
-        );
         $faker = Faker\Factory::create();
 
         $fileIds = [$faker->ean13, $faker->ean13];
@@ -390,10 +378,10 @@ final class FileTest extends TestCase
 
         $stub = $this->createMock(GuzzleHttpWrapper::class);
         $stub->method('setDatas');
-        $stub->method('post')->willReturn(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+        $stub->method('rawPost')->willReturn(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
-        $purgeCacheApi = new File();
-        $response = $purgeCacheApi->bulkDeleteByFileIds($options, $stub);
+        $fileInstance = new File();
+        $response = $fileInstance->bulkDeleteByFileIds($options, $stub);
 
         $el = get_object_vars($response->success[0]);
         $this->assertEquals($fileIds[0], $el['successfullyDeletedFileIds'][0]);
@@ -584,12 +572,6 @@ final class FileTest extends TestCase
     // Purge  Details
     public function testPurgeCacheApiWithoutUrlPatrameter()
     {
-        $defaultOptions = array(
-            'publicKey' => "public_Mo3UCmhjJ2iq89n2xQ5va1jgrds=",
-            'privateKey' => "private_2yk2tYC0bcPiNHVG3s4Dpa6Wfzo=",
-            'urlEndpoint' => "https://ik.imagekit.io/ot2cky3ujwa/",
-            'transformationPosition' => getDefault(),
-        );
         $faker = Faker\Factory::create();
 
         $urlParam = "";
@@ -614,12 +596,6 @@ final class FileTest extends TestCase
 
     public function testPurgeCacheApi()
     {
-        $defaultOptions = array(
-            'publicKey' => "public_Mo3UCmhjJ2iq89n2xQ5va1jgrds=",
-            'privateKey' => "private_2yk2tYC0bcPiNHVG3s4Dpa6Wfzo=",
-            'urlEndpoint' => "https://ik.imagekit.io/ot2cky3ujwa/",
-            'transformationPosition' => getDefault(),
-        );
         $faker = Faker\Factory::create();
 
         $urlParam = array(
@@ -646,12 +622,6 @@ final class FileTest extends TestCase
     // Purge  Cache API  Details
     public function testPurgeCacheApiStatusWithoutRequestId()
     {
-        $defaultOptions = array(
-            'publicKey' => "public_Mo3UCmhjJ2iq89n2xQ5va1jgrds=",
-            'privateKey' => "private_2yk2tYC0bcPiNHVG3s4Dpa6Wfzo=",
-            'urlEndpoint' => "https://ik.imagekit.io/ot2cky3ujwa/",
-            'transformationPosition' => getDefault(),
-        );
         $faker = Faker\Factory::create();
         $requestId = "";
 
@@ -674,12 +644,6 @@ final class FileTest extends TestCase
 
     public function testPurgeCacheApiStatus()
     {
-        $defaultOptions = array(
-            'publicKey' => "public_Mo3UCmhjJ2iq89n2xQ5va1jgrds=",
-            'privateKey' => "private_2yk2tYC0bcPiNHVG3s4Dpa6Wfzo=",
-            'urlEndpoint' => "https://ik.imagekit.io/ot2cky3ujwa/",
-            'transformationPosition' => getDefault(),
-        );
         $faker = Faker\Factory::create();
         $requestId = "598821f949c0a938d57563bd";
 

@@ -29,6 +29,11 @@ function getDeleteFilesEndpoint($the_file_id)
     return (API_BASE_ENDPOINT."/files/".$the_file_id);
 }
 
+function getDeleteByFileIdsEndpoint()
+{
+    return (API_BASE_ENDPOINT."/files/batch/deleteByFileIds");
+}
+
 function getPurgeCacheEndpoint()
 {
     return (API_BASE_ENDPOINT."/files/purge");

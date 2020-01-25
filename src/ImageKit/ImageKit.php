@@ -185,6 +185,19 @@ class ImageKit
         return $deleteFileInstance->deleteFile($the_file_id, $resource);
     }
 
+    public function bulkFileDeleteByIds($options)
+    {
+        $defaultOptions = $this->getDefaultOption();
+
+        $client = new Client(addAuthorization([], $defaultOptions));
+
+        $resource = new GuzzleHttpWrapper($client);
+        $resource->setUri(getDeleteByFileIdsEndpoint());
+
+        $deleteFileInstance = new File();
+        return $deleteFileInstance->bulkDeleteByFileIds($options, $resource);
+    }
+
     public function purgeCacheApi($options)
     {
         $defaultOptions = $this->getDefaultOption();

@@ -103,6 +103,23 @@ class GuzzleHttpWrapper implements HttpRequest
         }
     }
 
+    public function rawPost() {
+        try {
+            $options = [
+                'body' => json_encode($this->datas),
+                'headers' => ['Content-Type' => 'application/json']
+            ];
+
+            return $this->client->request('POST', $this->getUri(), $options);
+        }
+        catch (RequestException $e) {
+            return $this->handleRequestException($e);
+        }
+        catch (Exception $e) {
+            return $this->handleException($e);
+        }
+    }
+
     public function patch() {
         try {
             $options = [

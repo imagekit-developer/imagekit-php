@@ -85,6 +85,25 @@ class File
 
     }
 
+    // Delete Bulk Files by File ID API
+    public function bulkDeleteByFileIds($options, $resource)
+    {
+        if (empty($options)) {
+            return respond(true, ((object) unserialize(FILE_IDS_MISSING)));
+        }
+
+        $resource->setDatas($options);
+        $res = $resource->rawPost();
+        $stream = $res->getBody();
+        $content = $stream->getContents();
+
+        if ($res->getStatusCode() && !(200 >= $res->getStatusCode() || $res->getStatusCode() <= 300)) {
+            return respond(true, json_decode($content));
+        }
+
+        return respond(false, json_decode($content));
+    }
+
     // Update File Details
     public function updateDetails($the_file_id, $updateData, $resource)
     {
@@ -98,7 +117,7 @@ class File
 
         $obj = (object) $updateData;
 
-//        if (!isset($obj->tags) && ($obj->tags !== null) && !empty($obj->tags) && (is_array($obj->tags)) ) {
+        // if (!isset($obj->tags) && ($obj->tags !== null) && !empty($obj->tags) && (is_array($obj->tags)) ) {
         if (($obj->tags !== null) && ($obj->tags !== "undefined") && !is_array($obj->tags)) {
             return respond(true, ((object) unserialize(UPDATE_DATA_TAGS_INVALID)));
         }

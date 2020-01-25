@@ -347,6 +347,58 @@ final class FileTest extends TestCase
         $this->assertNull($response->err);
     }
 
+    // Bulk File Delete
+    public function testBulkFileDeleteWhenMissingFileIdsParameter()
+    {
+        $faker = Faker\Factory::create();
+
+        $options = "";
+
+        $mockBodyResponse = Stream::factory("");
+
+        $stub = $this->createMock(GuzzleHttpWrapper::class);
+        $stub->method('setDatas');
+        $stub->method('DELETE')->willReturn(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $deleteFile = new File();
+        $response = $deleteFile->bulkDeleteByFileIds($options, $stub);
+
+        $this->assertNull($response->success);
+        $this->assertEquals("FileIds parameter is missing.", $response->err->message);
+    }
+
+    public function testBulkFileDeleteWhenSuccessful()
+    {
+        $defaultOptions = array(
+            'publicKey' => "public_Mo3UCmhjJ2iq89n2xQ5va1jgrds=",
+            'privateKey' => "private_2yk2tYC0bcPiNHVG3s4Dpa6Wfzo=",
+            'urlEndpoint' => "https://ik.imagekit.io/ot2cky3ujwa/",
+            'transformationPosition' => getDefault(),
+        );
+        $faker = Faker\Factory::create();
+
+        $fileIds = [$faker->ean13, $faker->ean13];
+        $options = array(
+            "fileIds" => $fileIds
+        );
+
+        $mockBodyResponse = Stream::factory(json_encode(array(
+            array(
+                "successfullyDeletedFileIds"=> $fileIds,
+            ),
+        )));
+
+        $stub = $this->createMock(GuzzleHttpWrapper::class);
+        $stub->method('setDatas');
+        $stub->method('post')->willReturn(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $purgeCacheApi = new File();
+        $response = $purgeCacheApi->bulkDeleteByFileIds($options, $stub);
+
+        $el = get_object_vars($response->success[0]);
+        $this->assertEquals($fileIds[0], $el['successfullyDeletedFileIds'][0]);
+    }
+
     // Update details
     public function testUpdateDetailsWhenFileIDTagsAndCustomParameterIsPassed()
     {

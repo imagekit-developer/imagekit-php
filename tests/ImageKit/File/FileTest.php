@@ -700,4 +700,40 @@ final class FileTest extends TestCase
         $this->assertEquals("Pending", $el['status']);
     }
 
+    public function testGetFileMetadataFromRemoteURLApiWhenURLParamIsMissing()
+    {
+        $url = "";
+
+        $mockBodyResponse = Stream::factory(json_encode(array(
+            array("pHash" => "f06830ca9f1e3e90"),
+        )));
+
+        $stub = $this->createMock(GuzzleHttpWrapper::class);
+        $stub->method('get')->willReturn(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $fileInstance = new File();
+        $response = $fileInstance->getFileMetadataFromRemoteURL($url, $stub);
+
+        $this->assertNull($response->success);
+        $this->assertEquals("Your request is missing the url query paramater.", $response->err->message);
+    }
+
+    public function testGetFileMetadataFromRemoteURLApiWhenSuccessful(){
+        $faker = Faker\Factory::create();
+        $url = $faker->url;
+        $phash = $faker->ean13;
+
+        $mockBodyResponse = Stream::factory(json_encode(array(
+            array("pHash" => $phash),
+        )));
+
+        $stub = $this->createMock(GuzzleHttpWrapper::class);
+        $stub->method('get')->willReturn(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $fileInstance = new File();
+        $response = $fileInstance->getFileMetadataFromRemoteURL($url, $stub);
+
+        $el = get_object_vars($response->success[0]);
+        $this->assertEquals($phash, $el['pHash']);
+    }
 }

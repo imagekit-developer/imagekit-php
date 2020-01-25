@@ -20,3 +20,4 @@ define("INVALID_PHASH_VALUE", serialize(array("message"=> "Invalid pHash value",
 define("MISSING_PHASH_VALUE", serialize(array("message"=> "Missing pHash value", "help"=> "Please pass two pHash values")));
 define("UNEQUAL_STRING_LENGTH", serialize(array("message"=> "Unequal pHash string length", "help"=> "For distance calucation, the two pHash strings must have equal length")));
 define("FILE_IDS_MISSING", serialize(array("message"=> "FileIds parameter is missing.","help"=> "For support kindly contact us at support@imagekit.io .")));
+define("MISSING_URL_PARAMETER", serialize(array("message"=> "Your request is missing the url query paramater.","help"=> "For support kindly contact us at support@imagekit.io .")));

@@ -165,15 +165,36 @@ class File
             return respond(true, ((object) unserialize(CACHE_PURGE_STATUS_ID_MISSING)));
         }
 
-            $res = $resource->get();
+        $res = $resource->get();
 
-            $stream = $res->getBody();
-            $content = $stream->getContents();
+        $stream = $res->getBody();
+        $content = $stream->getContents();
 
-            if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
-                return respond(true, json_decode($content));
-            };
+        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
+            return respond(true, json_decode($content));
+        };
 
-            return respond(false, json_decode($content));
+        return respond(false, json_decode($content));
+    }
+
+    // Get file metadata from remote URL
+    public function getFileMetadataFromRemoteURL($url, $resource)
+    {
+        if (empty($url)) {
+            return respond(true, ((object) unserialize(MISSING_URL_PARAMETER)));
+        }
+
+        $resource->setDatas(array(
+            "url" => $url
+        ));
+        $res = $resource->get();
+        $stream = $res->getBody();
+        $content = $stream->getContents();
+
+        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
+            return respond(true, json_decode($content));
+        };
+
+        return respond(false, json_decode($content));
     }
 }

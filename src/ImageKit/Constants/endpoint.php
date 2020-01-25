@@ -48,3 +48,8 @@ function getUploadFileEndpoint()
 {
     return (UPLOAD_BASE_ENDPOINT."/files/upload");
 }
+
+function getFileMetadataFromRemoteURLEndpoint()
+{
+    return (API_BASE_ENDPOINT."/metadata");
+}

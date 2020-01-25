@@ -213,15 +213,15 @@ class ImageKit
 
     public function purgeCacheApiStatus($requestId)
     {
-            $defaultOptions = $this->getDefaultOption();
+        $defaultOptions = $this->getDefaultOption();
 
-            $client = new Client(addAuthorization([], $defaultOptions));
+        $client = new Client(addAuthorization([], $defaultOptions));
 
-            $resource = new GuzzleHttpWrapper($client);
-            $resource->setUri(getPurgeCacheApiStatusEndpoint($requestId));
+        $resource = new GuzzleHttpWrapper($client);
+        $resource->setUri(getPurgeCacheApiStatusEndpoint($requestId));
 
-            $purgeCacheApiStatusInstance = new File();
-            return $purgeCacheApiStatusInstance->purgeCacheApiStatus($requestId, $resource);
+        $purgeCacheApiStatusInstance = new File();
+        return $purgeCacheApiStatusInstance->purgeCacheApiStatus($requestId, $resource);
     }
 
     public function getAuthenticationParameters($token = "", $expire = 0)
@@ -236,6 +236,19 @@ class ImageKit
     {
         $pHashInstance = new Phash();
         return $pHashInstance->pHashDistance($firstPHash, $secondPHash);
+    }
+
+    public function getFileMetadataFromRemoteURL($url)
+    {
+        $defaultOptions = $this->getDefaultOption();
+
+        $client = new Client(addAuthorization([], $defaultOptions));
+
+        $resource = new GuzzleHttpWrapper($client);
+        $resource->setUri(getFileMetadataFromRemoteURLEndpoint());
+
+        $fileInstance = new File();
+        return $fileInstance->getFileMetadataFromRemoteURL($url, $resource);
     }
 
     private function removeTrailingSlash($str)

@@ -1,45 +1,45 @@
 <?php
 
-define("BASE_ENDPOINT", "https://api.imagekit.io/v1");
+define("API_BASE_ENDPOINT", "https://api.imagekit.io/v1");
+define("UPLOAD_BASE_ENDPOINT", "https://upload.imagekit.io/api/v1");
 
 
 function getListFilesEndpoint()
 {
-    return (BASE_ENDPOINT.'/files');
+    return (API_BASE_ENDPOINT.'/files');
 }
 
 function getDetailsEndpoint($the_file_id)
 {
-    return (BASE_ENDPOINT."/files/".$the_file_id."/details");
+    return (API_BASE_ENDPOINT."/files/".$the_file_id."/details");
 }
 
 function getListMetaDataFilesEndpoint($the_file_id)
 {
-    return (BASE_ENDPOINT."/files/".$the_file_id."/metadata");
+    return (API_BASE_ENDPOINT."/files/".$the_file_id."/metadata");
 }
 
 function getUpdateFileDetailsEndpoint($the_file_id)
 {
-    return (BASE_ENDPOINT."/files/".$the_file_id."/details");
+    return (API_BASE_ENDPOINT."/files/".$the_file_id."/details");
 }
 
 function getDeleteFilesEndpoint($the_file_id)
 {
-    return (BASE_ENDPOINT."/files/".$the_file_id);
+    return (API_BASE_ENDPOINT."/files/".$the_file_id);
 }
 
 function getPurgeCacheEndpoint()
 {
-    return (BASE_ENDPOINT."/files/purge");
+    return (API_BASE_ENDPOINT."/files/purge");
 }
 
 function getPurgeCacheApiStatusEndpoint($requestId)
 {
-    return (BASE_ENDPOINT."/files/purge/".$requestId);
+    return (API_BASE_ENDPOINT."/files/purge/".$requestId);
 }
 
 function getUploadFileEndpoint()
 {
-    return (BASE_ENDPOINT."/files/upload");
+    return (UPLOAD_BASE_ENDPOINT."/files/upload");
 }
-

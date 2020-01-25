@@ -85,6 +85,25 @@ class File
 
     }
 
+    // Delete Bulk Files by File ID API
+    public function bulkDeleteByFileIds($options, $resource)
+    {
+        if (empty($options)) {
+            return respond(true, ((object) unserialize(FILE_IDS_MISSING)));
+        }
+
+        $resource->setDatas((array) $options);
+        $res = $resource->post();
+        $stream = $res->getBody();
+        $content = $stream->getContents();
+
+        if ($res->getStatusCode() && !(200 >= $res->getStatusCode() || $res->getStatusCode() <= 300)) {
+            return respond(true, json_decode($content));
+        }
+
+        return respond(false, json_decode($content));
+    }
+
     // Update File Details
     public function updateDetails($the_file_id, $updateData, $resource)
     {

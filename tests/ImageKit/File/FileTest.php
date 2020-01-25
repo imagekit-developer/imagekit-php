@@ -377,7 +377,7 @@ final class FileTest extends TestCase
         );
         $faker = Faker\Factory::create();
 
-        $fileIds = array($faker->ean13, $faker->ean13);
+        $fileIds = [$faker->ean13, $faker->ean13];
         $options = array(
             "fileIds" => $fileIds
         );

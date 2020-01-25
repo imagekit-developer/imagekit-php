@@ -92,8 +92,8 @@ class File
             return respond(true, ((object) unserialize(FILE_IDS_MISSING)));
         }
 
-        $resource->setDatas((array) $options);
-        $res = $resource->post();
+        $resource->setDatas($options);
+        $res = $resource->rawPost();
         $stream = $res->getBody();
         $content = $stream->getContents();
 
@@ -117,7 +117,7 @@ class File
 
         $obj = (object) $updateData;
 
-//        if (!isset($obj->tags) && ($obj->tags !== null) && !empty($obj->tags) && (is_array($obj->tags)) ) {
+        // if (!isset($obj->tags) && ($obj->tags !== null) && !empty($obj->tags) && (is_array($obj->tags)) ) {
         if (($obj->tags !== null) && ($obj->tags !== "undefined") && !is_array($obj->tags)) {
             return respond(true, ((object) unserialize(UPDATE_DATA_TAGS_INVALID)));
         }

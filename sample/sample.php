@@ -125,6 +125,8 @@ $uploadFile = $imageKit->upload(array(
     "customCoordinates" => implode(",", array("10", "10", "100", "100"))
 ));
 
+$response = json_decode(json_encode($uploadFile), true);
+$binaryFileUploadID = $response["success"]["fileId"];
  echo ("Upload binary file : " . json_encode($uploadFile));
 
 //  7. Upload Image  - URL
@@ -181,7 +183,15 @@ $deleteFile = $imageKit->deleteFile($fileId);
 
 echo("Delete file : " . json_encode($deleteFile));
 
-// 13. Purge cache
+// 13. Delete bulk files by Ids
+echo "\n\n-------------------------------------------------------------------\n\n";
+$bulkFileDelete = $imageKit->bulkFileDeleteByIds(array(
+    "fileIds" => [$binaryFileUploadID]
+));
+
+echo("Delete bulk files by ID : " . json_encode($bulkFileDelete));
+
+// 14. Purge cache
 echo "\n\n-------------------------------------------------------------------\n\n";
 $purgeCache = $imageKit->purgeCacheApi(array(
     "url" => $uploadedImageURL
@@ -190,22 +200,21 @@ $response = json_decode(json_encode($purgeCache), true);
 $requestId = $response["success"]["requestId"];
 echo("Purge cache : " . json_encode($purgeCache));
 
-
-// 14. Purge cache status
+// 15. Purge cache status
 echo "\n\n-------------------------------------------------------------------\n\n";
 
 $purgeCacheStatus = $imageKit->purgeCacheApiStatus($requestId);
 
 echo("Purge cache status : " . json_encode($purgeCacheStatus));
 
-// 15. Auth params
+// 16. Auth params
 echo "\n\n-------------------------------------------------------------------\n\n";
 
 $authenticationParameters = $imageKit->getAuthenticationParameters();
 
 echo("Auth params : " . json_encode($authenticationParameters));
 
-// 16. Phash distance
+// 17. Phash distance
 echo "\n\n-------------------------------------------------------------------\n\n";
 
 $distance = $imageKit->pHashDistance("f06830ca9f1e3e90", "f06830ca9f1e3e90");

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ac48ca7b26e59d10ed58bdbe62127fc7",
+    "content-hash": "00eff6913a04e83f0dd6d617be455208",
     "packages": [
         {
             "name": "fzaninotto/faker",
@@ -1863,8 +1863,7 @@
     "prefer-lowest": false,
     "platform": {
         "ext-curl": "*",
-        "ext-json": "*",
-        "ext-gmp": "*"
+        "ext-json": "*"
     },
     "platform-dev": {
         "ext-json": "*"

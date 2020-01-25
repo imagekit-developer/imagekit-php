@@ -3,11 +3,13 @@ namespace ImageKit\Tests\ImageKit\Url;
 
 use ImageKit\Url\Url;
 use PHPUnit\Framework\TestCase;
+use Faker;
 
 final class UrlTest extends TestCase
 {
     public function testUrlGenerationIfTransformationPositionIsPath()
     {
+        $faker = Faker\Factory::create();
         $parameter = array(
             'urlEndpoint' => "https://ik.imagekit.io/demo/pattern",
             'path' => "path/to/my/image.jpg",
@@ -20,10 +22,10 @@ final class UrlTest extends TestCase
         );
 
         $defaultOptions = array(
-            'publicKey' => "public_Mo3UCmhjJ2iq89n2xQ5va1jgrds=",
-            'privateKey' => "private_2yk2tYC0bcPiNHVG3s4Dpa6Wfzo=",
-            'urlEndpoint' => "https://ik.imagekit.io/ot2cky3ujwa/",
-            'transformationPosition' => "path"
+            'publicKey' =>  $faker->uuid,
+            'privateKey' =>  $faker->uuid,
+            'urlEndpoint' =>  $faker->url,
+            'transformationPosition' => $faker->word
         );
         $opts = array_merge($parameter, $defaultOptions);
 
@@ -34,11 +36,12 @@ final class UrlTest extends TestCase
 
     public function testUrlGenerationIfTransformationPositionIsQuery()
     {
+        $faker = Faker\Factory::create();
         $parameter = array(
-            'urlEndpoint' => "https://ik.imagekit.io/demo/pattern",
+            'urlEndpoint' => $faker->url,
             'path' => null,
             'transformation' => (['width' => '200', 'height' => '300']),
-            'src' => "https://ik.imagekit.io/demo/pattern/path/to/my/image.jpg",
+            'src' => $faker->url,
             'queryParameters' => array('v' => '123123'),
             'signed' => true,
             'expireSeconds' => 300,
@@ -51,6 +54,7 @@ final class UrlTest extends TestCase
 
     public function testUrlGenerationIfPathAndSrcEmpty()
     {
+        $faker = Faker\Factory::create();
         $parameter = array(
             'urlEndpoint' => "https://ik.imagekit.io/demo/pattern",
             'path' => "",
@@ -63,10 +67,10 @@ final class UrlTest extends TestCase
         );
 
         $defaultOptions = array(
-            'publicKey' => "public_Mo3UCmhjJ2iq89n2xQ5va1jgrds=",
-            'privateKey' => "private_2yk2tYC0bcPiNHVG3s4Dpa6Wfzo=",
-            'urlEndpoint' => "https://ik.imagekit.io/ot2cky3ujwa/",
-            'transformationPosition' => "path"
+            'publicKey' =>  $faker->uuid,
+            'privateKey' =>  $faker->uuid,
+            'urlEndpoint' =>  $faker->url,
+            'transformationPosition' => $faker->word
         );
         $opts = array_merge($parameter, $defaultOptions);
 
@@ -77,6 +81,7 @@ final class UrlTest extends TestCase
 
     public function testUrlGenerationUsingFullImageUrl()
     {
+        $faker = Faker\Factory::create();
         $parameter = array(
             // 'urlEndpoint' => "",
             // 'path' => "",
@@ -89,16 +94,16 @@ final class UrlTest extends TestCase
         );
 
         $defaultOptions = array(
-            'publicKey' => "public_Mo3UCmhjJ2iq89n2xQ5va1jgrds=",
-            'privateKey' => "private_2yk2tYC0bcPiNHVG3s4Dpa6Wfzo=",
-            'urlEndpoint' => "https://ik.imagekit.io/ot2cky3ujwa/",
+            'publicKey' => $faker->uuid,
+            'privateKey' => $faker->uuid,
+            'urlEndpoint' => $faker->url,
             'transformationPosition' => "path"
         );
         $opts = array_merge($parameter, $defaultOptions);
 
         $urlInstance = new Url();
         $url = $urlInstance->buildURL($opts);
-        $this->assertEquals("https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg?tr=w-200%2Ch-300%3Art-90", $url);
+        $this->assertEquals("https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg?tr=w-200%2Ch-300%3Art-90&sdk-version=php-1.0.0", $url);
     }
 
 

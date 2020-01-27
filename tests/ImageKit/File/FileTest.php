@@ -177,12 +177,6 @@ final class FileTest extends TestCase
     // Get MetaData
     public function testGetMetaDataDetailsWithEmptyFileId()
     {
-        $defaultOptions = array(
-            'publicKey' => "public_Mo3UCmhjJ2iq89n2xQ5va1jgrds=",
-            'privateKey' => "private_2yk2tYC0bcPiNHVG3s4Dpa6Wfzo=",
-            'urlEndpoint' => "https://ik.imagekit.io/ot2cky3ujwa/",
-            'transformationPosition' => getDefault(),
-        );
         $faker = Faker\Factory::create();
         $the_file_id = "";
 
@@ -345,6 +339,52 @@ final class FileTest extends TestCase
         $response = $deleteFile->deleteFile($the_file_id, $stub);
 
         $this->assertNull($response->err);
+    }
+
+    // Bulk File Delete
+    public function testBulkFileDeleteWhenMissingFileIdsParameter()
+    {
+        $faker = Faker\Factory::create();
+
+        $options = "";
+
+        $mockBodyResponse = Stream::factory("");
+
+        $stub = $this->createMock(GuzzleHttpWrapper::class);
+        $stub->method('setDatas');
+        $stub->method('DELETE')->willReturn(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $deleteFile = new File();
+        $response = $deleteFile->bulkDeleteByFileIds($options, $stub);
+
+        $this->assertNull($response->success);
+        $this->assertEquals("FileIds parameter is missing.", $response->err->message);
+    }
+
+    public function testBulkFileDeleteWhenSuccessful()
+    {
+        $faker = Faker\Factory::create();
+
+        $fileIds = [$faker->ean13, $faker->ean13];
+        $options = array(
+            "fileIds" => $fileIds
+        );
+
+        $mockBodyResponse = Stream::factory(json_encode(array(
+            array(
+                "successfullyDeletedFileIds"=> $fileIds,
+            ),
+        )));
+
+        $stub = $this->createMock(GuzzleHttpWrapper::class);
+        $stub->method('setDatas');
+        $stub->method('rawPost')->willReturn(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $fileInstance = new File();
+        $response = $fileInstance->bulkDeleteByFileIds($options, $stub);
+
+        $el = get_object_vars($response->success[0]);
+        $this->assertEquals($fileIds[0], $el['successfullyDeletedFileIds'][0]);
     }
 
     // Update details
@@ -532,12 +572,6 @@ final class FileTest extends TestCase
     // Purge  Details
     public function testPurgeCacheApiWithoutUrlPatrameter()
     {
-        $defaultOptions = array(
-            'publicKey' => "public_Mo3UCmhjJ2iq89n2xQ5va1jgrds=",
-            'privateKey' => "private_2yk2tYC0bcPiNHVG3s4Dpa6Wfzo=",
-            'urlEndpoint' => "https://ik.imagekit.io/ot2cky3ujwa/",
-            'transformationPosition' => getDefault(),
-        );
         $faker = Faker\Factory::create();
 
         $urlParam = "";
@@ -562,12 +596,6 @@ final class FileTest extends TestCase
 
     public function testPurgeCacheApi()
     {
-        $defaultOptions = array(
-            'publicKey' => "public_Mo3UCmhjJ2iq89n2xQ5va1jgrds=",
-            'privateKey' => "private_2yk2tYC0bcPiNHVG3s4Dpa6Wfzo=",
-            'urlEndpoint' => "https://ik.imagekit.io/ot2cky3ujwa/",
-            'transformationPosition' => getDefault(),
-        );
         $faker = Faker\Factory::create();
 
         $urlParam = array(
@@ -594,12 +622,6 @@ final class FileTest extends TestCase
     // Purge  Cache API  Details
     public function testPurgeCacheApiStatusWithoutRequestId()
     {
-        $defaultOptions = array(
-            'publicKey' => "public_Mo3UCmhjJ2iq89n2xQ5va1jgrds=",
-            'privateKey' => "private_2yk2tYC0bcPiNHVG3s4Dpa6Wfzo=",
-            'urlEndpoint' => "https://ik.imagekit.io/ot2cky3ujwa/",
-            'transformationPosition' => getDefault(),
-        );
         $faker = Faker\Factory::create();
         $requestId = "";
 
@@ -622,12 +644,6 @@ final class FileTest extends TestCase
 
     public function testPurgeCacheApiStatus()
     {
-        $defaultOptions = array(
-            'publicKey' => "public_Mo3UCmhjJ2iq89n2xQ5va1jgrds=",
-            'privateKey' => "private_2yk2tYC0bcPiNHVG3s4Dpa6Wfzo=",
-            'urlEndpoint' => "https://ik.imagekit.io/ot2cky3ujwa/",
-            'transformationPosition' => getDefault(),
-        );
         $faker = Faker\Factory::create();
         $requestId = "598821f949c0a938d57563bd";
 
@@ -648,4 +664,40 @@ final class FileTest extends TestCase
         $this->assertEquals("Pending", $el['status']);
     }
 
+    public function testGetFileMetadataFromRemoteURLApiWhenURLParamIsMissing()
+    {
+        $url = "";
+
+        $mockBodyResponse = Stream::factory(json_encode(array(
+            array("pHash" => "f06830ca9f1e3e90"),
+        )));
+
+        $stub = $this->createMock(GuzzleHttpWrapper::class);
+        $stub->method('get')->willReturn(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $fileInstance = new File();
+        $response = $fileInstance->getFileMetadataFromRemoteURL($url, $stub);
+
+        $this->assertNull($response->success);
+        $this->assertEquals("Your request is missing the url query paramater.", $response->err->message);
+    }
+
+    public function testGetFileMetadataFromRemoteURLApiWhenSuccessful(){
+        $faker = Faker\Factory::create();
+        $url = $faker->url;
+        $phash = $faker->ean13;
+
+        $mockBodyResponse = Stream::factory(json_encode(array(
+            array("pHash" => $phash),
+        )));
+
+        $stub = $this->createMock(GuzzleHttpWrapper::class);
+        $stub->method('get')->willReturn(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $fileInstance = new File();
+        $response = $fileInstance->getFileMetadataFromRemoteURL($url, $stub);
+
+        $el = get_object_vars($response->success[0]);
+        $this->assertEquals($phash, $el['pHash']);
+    }
 }

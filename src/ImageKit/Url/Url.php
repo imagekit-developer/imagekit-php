@@ -3,7 +3,12 @@
 namespace ImageKit\Url;
 
 include_once __DIR__ . "/../Utils/transformation.php";
+$composer = json_decode(
+    file_get_contents(__DIR__ . "/../../../composer.json"),
+    true
+);
 
+define("SDK_VERSION", $composer["version"]);
 define("TRANSFORMATION_PARAMETER", "tr");
 define("SIGNATURE_PARAMETER", "ik-s");
 define("TIMESTAMP_PARAMETER", "ik-t");
@@ -170,10 +175,11 @@ class Url
         $search = $get('search');
 
         $url =
-            (strlen($scheme) ? "$scheme:" : '') .
-            (strlen($host) ? "//$host" : '') .
-            (strlen($pathname) ? "$pathname" : '') .
-            (strlen($search) ? "?$search" : '');
+            (strlen($scheme) > 0 ? "$scheme:" : '') .
+            (strlen($host) > 0 ? "//$host" : '') .
+            (strlen($pathname) > 0 ? "$pathname" : '') .
+            (strlen($search) > 0 ? "?$search" : '') .
+            (strlen($search) > 0 ? "&sdk-version=php-".SDK_VERSION : "?sdk-version=php-".SDK_VERSION);
 
         return $url;
     }

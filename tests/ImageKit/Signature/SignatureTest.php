@@ -3,28 +3,30 @@ namespace ImageKit\Tests\ImageKit\Signature;
 
 use ImageKit\Signature\Signature;
 use PHPUnit\Framework\TestCase;
+use Faker;
 
 class SignatureTest  extends TestCase
 {
 
     public function testGetAuthenticationParameters()
     {
-        $token = "kishan";
-        $expire = "100";
+        $faker = Faker\Factory::create();
+        $token = "token";
+        $expire = "10000";
 
         $defaultOptions = array(
-            'publicKey' => "public_Mo3UCmhjJ2iq89n2xQ5va1jgrds=",
-            'privateKey' => "private_2yk2tYC0bcPiNHVG3s4Dpa6Wfzo=",
-            'urlEndpoint' => "https://ik.imagekit.io/ot2cky3ujwa/",
+            'publicKey' => 'publicKey',
+            'privateKey' => 'privateKey',
+            'urlEndpoint' => 'urlEndpoint',
             'transformationPosition' => "path"
         );
 
         $signature = new Signature();
         $response = $signature->getAuthenticationParameters($token, $expire, $defaultOptions );
-        $this->assertEquals( array(
-            "token" => "kishan",
-            "expire" => 100,
-            "signature" =>"6a5d436b803e74593ffbf78bf52e55a2417db910",
+        $this->assertEquals(array(
+            "token" => $token,
+            "expire" => $expire,
+            "signature" =>"03d6a477325b8eef7bbefa1fdcf42e311a354b27",
         ), $response);
 
 

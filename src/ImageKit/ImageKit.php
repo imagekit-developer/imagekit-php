@@ -185,6 +185,19 @@ class ImageKit
         return $deleteFileInstance->deleteFile($the_file_id, $resource);
     }
 
+    public function bulkFileDeleteByIds($options)
+    {
+        $defaultOptions = $this->getDefaultOption();
+
+        $client = new Client(addAuthorization([], $defaultOptions));
+
+        $resource = new GuzzleHttpWrapper($client);
+        $resource->setUri(getDeleteByFileIdsEndpoint());
+
+        $deleteFileInstance = new File();
+        return $deleteFileInstance->bulkDeleteByFileIds($options, $resource);
+    }
+
     public function purgeCacheApi($options)
     {
         $defaultOptions = $this->getDefaultOption();
@@ -200,15 +213,15 @@ class ImageKit
 
     public function purgeCacheApiStatus($requestId)
     {
-            $defaultOptions = $this->getDefaultOption();
+        $defaultOptions = $this->getDefaultOption();
 
-            $client = new Client(addAuthorization([], $defaultOptions));
+        $client = new Client(addAuthorization([], $defaultOptions));
 
-            $resource = new GuzzleHttpWrapper($client);
-            $resource->setUri(getPurgeCacheApiStatusEndpoint($requestId));
+        $resource = new GuzzleHttpWrapper($client);
+        $resource->setUri(getPurgeCacheApiStatusEndpoint($requestId));
 
-            $purgeCacheApiStatusInstance = new File();
-            return $purgeCacheApiStatusInstance->purgeCacheApiStatus($requestId, $resource);
+        $purgeCacheApiStatusInstance = new File();
+        return $purgeCacheApiStatusInstance->purgeCacheApiStatus($requestId, $resource);
     }
 
     public function getAuthenticationParameters($token = "", $expire = 0)
@@ -223,6 +236,19 @@ class ImageKit
     {
         $pHashInstance = new Phash();
         return $pHashInstance->pHashDistance($firstPHash, $secondPHash);
+    }
+
+    public function getFileMetadataFromRemoteURL($url)
+    {
+        $defaultOptions = $this->getDefaultOption();
+
+        $client = new Client(addAuthorization([], $defaultOptions));
+
+        $resource = new GuzzleHttpWrapper($client);
+        $resource->setUri(getFileMetadataFromRemoteURLEndpoint());
+
+        $fileInstance = new File();
+        return $fileInstance->getFileMetadataFromRemoteURL($url, $resource);
     }
 
     private function removeTrailingSlash($str)

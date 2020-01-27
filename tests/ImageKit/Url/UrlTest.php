@@ -5,6 +5,13 @@ use ImageKit\Url\Url;
 use PHPUnit\Framework\TestCase;
 use Faker;
 
+$composer = json_decode(
+    file_get_contents(__DIR__ . "/../../../composer.json"),
+    true
+);
+
+define("CURRENT_SDK_VERSION", $composer["version"]);
+
 final class UrlTest extends TestCase
 {
     public function testUrlGenerationIfTransformationPositionIsPath()
@@ -103,7 +110,7 @@ final class UrlTest extends TestCase
 
         $urlInstance = new Url();
         $url = $urlInstance->buildURL($opts);
-        $this->assertEquals("https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg?tr=w-200%2Ch-300%3Art-90&sdk-version=php-1.0.0", $url);
+        $this->assertEquals("https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg?tr=w-200%2Ch-300%3Art-90&sdk-version=php-".CURRENT_SDK_VERSION, $url);
     }
 
 

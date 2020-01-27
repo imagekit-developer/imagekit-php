@@ -115,7 +115,24 @@ $imageURL = $imageKit->url(array(
 
 echo ("Signed url : " . $imageURL);
 
-// 6. Upload Image - Binary
+// 6. Upload Image - Base64
+echo "\n\n-------------------------------------------------------------------\n\n";
+
+$img = file_get_contents(__DIR__."/sample_image.jpg");
+
+// Encode the image string data into base64
+$encodedImageData = base64_encode($img);
+$uploadFile = $imageKit->upload(array(
+    'file' => $encodedImageData,
+    'fileName' => "sample",
+    "tags" => implode(",", array("abd", "def")),
+    "customCoordinates" => implode(",", array("10", "10", "100", "100"))
+));
+
+$response = json_decode(json_encode($uploadFile), true);
+echo ("Upload base64 encoded file : " . json_encode($uploadFile));
+
+// 7. Upload Image - Binary
 echo "\n\n-------------------------------------------------------------------\n\n";
 
 $uploadFile = $imageKit->upload(array(
@@ -130,7 +147,7 @@ $binaryFileUploadID = $response["success"]["fileId"];
 $binaryFileUploadURL = $response["success"]["url"];
 echo ("Upload binary file : " . json_encode($uploadFile));
 
-//  7. Upload Image  - URL
+//  8. Upload Image  - URL
 echo "\n\n-------------------------------------------------------------------\n\n";
 
 $uploadFile = $imageKit->upload(array(
@@ -145,7 +162,7 @@ $uploadedImageURL = $response["success"]["url"];
 $fileId = $response["success"]["fileId"];
 echo ("Upload with url : " . json_encode($uploadFile));
 
-// 8. List Files
+// 9. List Files
 echo "\n\n-------------------------------------------------------------------\n\n";
 
 $listFiles = $imageKit->listFiles(array(
@@ -155,28 +172,28 @@ $listFiles = $imageKit->listFiles(array(
 
 echo ("List files : " . json_encode($listFiles));
 
-// 9. Update details
+// 10. Update details
 echo "\n\n-------------------------------------------------------------------\n\n";
 
 $updateFileDetails = $imageKit->updateFileDetails($fileId, array("tags" => ['image_tag'], "customCoordinates" => "10,10,100,100"));
 
 echo("Updated detail : " . json_encode($updateFileDetails));
 
-// 10. get file details
+// 11. get file details
 echo "\n\n-------------------------------------------------------------------\n\n";
 
 $getFileDetails = $imageKit->getDetails($fileId);
 
 echo("File details : " . json_encode($getFileDetails));
 
-// 11. get file meta data
+// 12. get file meta data
 echo "\n\n-------------------------------------------------------------------\n\n";
 
 $getFileDetails = $imageKit->getMetaData($fileId);
 
 echo("File metadata : " . json_encode($getFileDetails));
 
-// 12. Delete file
+// 13. Delete file
 echo "\n\n-------------------------------------------------------------------\n\n";
 
 $deleteFile = $imageKit->deleteFile($fileId);
@@ -184,7 +201,7 @@ $deleteFile = $imageKit->deleteFile($fileId);
 
 echo("Delete file : " . json_encode($deleteFile));
 
-// 13. Get file metadata from remote url
+// 14. Get file metadata from remote url
 echo "\n\n-------------------------------------------------------------------\n\n";
 
 $fileMetadataFromRemoteURL = $imageKit->getFileMetadataFromRemoteURL($binaryFileUploadURL);
@@ -193,7 +210,7 @@ $fileMetadataFromRemoteURL = $imageKit->getFileMetadataFromRemoteURL($binaryFile
 echo("Get file metadata from remote url : " . json_encode($fileMetadataFromRemoteURL));
 
 
-// 14. Delete bulk files by Ids
+// 15. Delete bulk files by Ids
 echo "\n\n-------------------------------------------------------------------\n\n";
 $bulkFileDelete = $imageKit->bulkFileDeleteByIds(array(
     "fileIds" => [$binaryFileUploadID]
@@ -201,7 +218,7 @@ $bulkFileDelete = $imageKit->bulkFileDeleteByIds(array(
 
 echo("Delete bulk files by ID : " . json_encode($bulkFileDelete));
 
-// 15. Purge cache
+// 16. Purge cache
 echo "\n\n-------------------------------------------------------------------\n\n";
 $purgeCache = $imageKit->purgeCacheApi(array(
     "url" => $uploadedImageURL
@@ -210,21 +227,21 @@ $response = json_decode(json_encode($purgeCache), true);
 $requestId = $response["success"]["requestId"];
 echo("Purge cache : " . json_encode($purgeCache));
 
-// 16. Purge cache status
+// 17. Purge cache status
 echo "\n\n-------------------------------------------------------------------\n\n";
 
 $purgeCacheStatus = $imageKit->purgeCacheApiStatus($requestId);
 
 echo("Purge cache status : " . json_encode($purgeCacheStatus));
 
-// 17. Auth params
+// 18. Auth params
 echo "\n\n-------------------------------------------------------------------\n\n";
 
 $authenticationParameters = $imageKit->getAuthenticationParameters();
 
 echo("Auth params : " . json_encode($authenticationParameters));
 
-// 18. Phash distance
+// 19. Phash distance
 echo "\n\n-------------------------------------------------------------------\n\n";
 
 $distance = $imageKit->pHashDistance("f06830ca9f1e3e90", "f06830ca9f1e3e90");

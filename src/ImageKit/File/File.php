@@ -31,6 +31,13 @@ class File
     // Get Details Of file
     public function getDetails($the_file_id, $resource)
     {
+        return getFileDetails($the_file_id, $resource);
+    }
+
+
+    // Get Details Of file
+    public function getFileDetails($the_file_id, $resource)
+    {
         if (empty($the_file_id)) {
             return respond(true, ((object) unserialize(FILE_ID_MISSING)));
         }
@@ -49,6 +56,11 @@ class File
 
     // Get Details Of file
     public function getMetaData($the_file_id, $resource)
+    {
+        return getFileMetaData($the_file_id, $resource);
+    }
+
+    public function getFileMetaData($the_file_id, $resource)
     {
         if (empty($the_file_id)) {
             return respond(true, ((object) unserialize(FILE_ID_MISSING)));
@@ -107,6 +119,12 @@ class File
     // Update File Details
     public function updateDetails($the_file_id, $updateData, $resource)
     {
+        return updateFileDetails($the_file_id, $updateData, $resource);
+    }
+
+    // Update File Details
+    public function updateFileDetails($the_file_id, $updateData, $resource)
+    {
         if (empty($the_file_id)) {
             return respond(true, ((object) unserialize(FILE_ID_MISSING)));
         }
@@ -142,6 +160,12 @@ class File
     // purgeCache File API
     public function purgeCacheApi($urlParam, $resource)
     {
+        return purgeFileCacheApi($urlParam, $resource);
+    }
+
+    // purgeCache File API
+    public function purgeFileCacheApi($urlParam, $resource)
+    {
         if (empty($urlParam)) {
             return respond(true, ((object) unserialize(CACHE_PURGE_URL_MISSING)));
         }
@@ -160,6 +184,12 @@ class File
 
     // purgeCache File API
     public function purgeCacheApiStatus($requestId, GuzzleHttpWrapper $resource)
+    {
+        return purgeFileCacheApiStatus($requestId,  $resource);
+    }
+
+    // purgeCache File API
+    public function purgeFileCacheApiStatus($requestId, GuzzleHttpWrapper $resource)
     {
         if (empty($requestId)) {
             return respond(true, ((object) unserialize(CACHE_PURGE_STATUS_ID_MISSING)));

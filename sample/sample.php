@@ -15,6 +15,8 @@ $public_key = "your_public_key";
 $your_private_key = "your_private_key";
 $url_end_point = "https://ik.imagekit.io/your_imagekit_id";
 
+
+
 $sample_file_url = "https://picsum.photos/id/237/200/300.jpg";
 $sample_file_path = "/sample.jpg";
 $sample_file_image_kit_url = $url_end_point."/sample.jpg";
@@ -66,7 +68,8 @@ $imageURL = $imageKit->url(array(
             "width" => "400",
         ),
         array(
-            "rotation" => "90"
+            "rotation" => "90",
+            "lossless" => false
         )
     ),
     "transformationPostion" => "query",

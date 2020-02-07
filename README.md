@@ -127,7 +127,7 @@ $imageURL = $imageKit->url(array(
             "width" => "400",
         ),
         array(
-            "rotation": 90
+            "rotation" => 90
         ),
     ),
     transformationPosition => "query"

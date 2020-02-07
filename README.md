@@ -1,7 +1,7 @@
 
 # PHP SDK for ImageKit
 
-[![PHP CI](https://github.com/imagekit-developer/imagekit-php/workflows/PHP%20CI/badge.svg)](https://github.com/imagekit-developer/imagekit-php/) [![Packagist](https://img.shields.io/packagist/v/imagekit/imagekit.svg)](<>) [![Packagist](https://img.shields.io/packagist/dt/imagekit/imagekit.svg)](<>) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![PHP CI](https://github.com/imagekit-developer/imagekit-php/workflows/PHP%20CI/badge.svg)](https://github.com/imagekit-developer/imagekit-php/) [![Packagist](https://img.shields.io/packagist/v/imagekit/imagekit.svg)](https://packagist.org/packages/imagekit/imagekit) [![Packagist](https://img.shields.io/packagist/dt/imagekit/imagekit.svg)](https://packagist.org/packages/imagekit/imagekit) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Twitter Follow](https://img.shields.io/twitter/follow/imagekitio?label=Follow&style=social)](https://twitter.com/ImagekitIo)
 
 PHP SDK for [ImageKit](https://imagekit.io/) that implements the new APIs and interface for performing different file

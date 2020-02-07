@@ -66,7 +66,10 @@ $imageURL = $imageKit->url(array(
             "width" => "400",
         ),
         array(
-            "rotation" => "90"
+            "rotation" => "90",
+            "lossless" => false,
+            "progressive" => true,
+            "trim" => "5",
         )
     ),
     "transformationPostion" => "query",
@@ -122,7 +125,7 @@ $img = file_get_contents(__DIR__."/sample_image.jpg");
 
 // Encode the image string data into base64
 $encodedImageData = base64_encode($img);
-$uploadFile = $imageKit->upload(array(
+$uploadFile = $imageKit->uploadFiles(array(
     'file' => $encodedImageData,
     'fileName' => "sample",
     "tags" => implode(",", array("abd", "def")),
@@ -135,7 +138,7 @@ echo ("Upload base64 encoded file : " . json_encode($uploadFile));
 // 7. Upload Image - Binary
 echo "\n\n-------------------------------------------------------------------\n\n";
 
-$uploadFile = $imageKit->upload(array(
+$uploadFile = $imageKit->uploadFiles(array(
     'file' => fopen(__DIR__."/sample_image.jpg", "r"),
     'fileName' => "sample",
     "tags" => implode(",", array("abd", "def")),
@@ -150,7 +153,7 @@ echo ("Upload binary file : " . json_encode($uploadFile));
 //  8. Upload Image  - URL
 echo "\n\n-------------------------------------------------------------------\n\n";
 
-$uploadFile = $imageKit->upload(array(
+$uploadFile = $imageKit->uploadFiles(array(
     'file' => $sample_file_url,
     'fileName' => "testing",
     "responseFields" => implode(",", array("isPrivateFile", "customCoordinates")),
@@ -182,14 +185,14 @@ echo("Updated detail : " . json_encode($updateFileDetails));
 // 11. get file details
 echo "\n\n-------------------------------------------------------------------\n\n";
 
-$getFileDetails = $imageKit->getDetails($fileId);
+$getFileDetails = $imageKit->getFileDetails($fileId);
 
 echo("File details : " . json_encode($getFileDetails));
 
 // 12. get file meta data
 echo "\n\n-------------------------------------------------------------------\n\n";
 
-$getFileDetails = $imageKit->getMetaData($fileId);
+$getFileDetails = $imageKit->getFileMetaData($fileId);
 
 echo("File metadata : " . json_encode($getFileDetails));
 
@@ -220,7 +223,7 @@ echo("Delete bulk files by ID : " . json_encode($bulkFileDelete));
 
 // 16. Purge cache
 echo "\n\n-------------------------------------------------------------------\n\n";
-$purgeCache = $imageKit->purgeCacheApi(array(
+$purgeCache = $imageKit->purgeFileCacheApi(array(
     "url" => $uploadedImageURL
 ));
 $response = json_decode(json_encode($purgeCache), true);
@@ -230,7 +233,7 @@ echo("Purge cache : " . json_encode($purgeCache));
 // 17. Purge cache status
 echo "\n\n-------------------------------------------------------------------\n\n";
 
-$purgeCacheStatus = $imageKit->purgeCacheApiStatus($requestId);
+$purgeCacheStatus = $imageKit->purgeFileCacheApiStatus($requestId);
 
 echo("Purge cache status : " . json_encode($purgeCacheStatus));
 

@@ -137,13 +137,13 @@ final class FileTest extends TestCase
         $stub->method('get')->willReturn(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
         $getDetails = new File();
-        $response = $getDetails->getDetails($the_file_id, $stub);
+        $response = $getDetails->getFileDetails($the_file_id, $stub);
 
         $this->assertNull($response->success);
         $this->assertEquals("Missing File ID parameter for this request", $response->err->message);
     }
 
-    public function testGetDetailsWithValidFileId()
+    public function testGetFileDetailsWithValidFileId()
     {
         $faker = Faker\Factory::create();
         $the_file_id = "5df36759adf3f523d81dd94f";
@@ -168,14 +168,15 @@ final class FileTest extends TestCase
         $stub->method('get')->willReturn(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
         $getDetails = new File();
-        $response = $getDetails->getDetails($the_file_id, $stub);
+        $response = $getDetails->getFileDetails($the_file_id, $stub);
 
         $el = get_object_vars($response->success[0]);
         $this->assertEquals("5df36759adf3f523d81dd94f", $el['fileId']);
     }
 
+
     // Get MetaData
-    public function testGetMetaDataDetailsWithEmptyFileId()
+    public function testGetFileMetaDataDetailsWithEmptyFileId()
     {
         $faker = Faker\Factory::create();
         $the_file_id = "";
@@ -234,13 +235,13 @@ final class FileTest extends TestCase
 
         $getMetaData = new File();
 
-        $response = $getMetaData->getMetaData($the_file_id, $stub);
+        $response = $getMetaData->getFileMetaData($the_file_id, $stub);
 
         $this->assertNull($response->success);
         $this->assertEquals("Missing File ID parameter for this request", $response->err->message);
     }
 
-    public function testGetMetaDataDetails()
+    public function testGetFileMetaDataDetails()
     {
         $faker = Faker\Factory::create();
         $the_file_id = "5df36759adf3f523d81dd94f";
@@ -297,7 +298,7 @@ final class FileTest extends TestCase
         $stub->method('get')->willReturn(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
         $getMetaData = new File();
-        $response = $getMetaData->getMetaData($the_file_id, $stub);
+        $response = $getMetaData->getFileMetaData($the_file_id, $stub);
 
         $el = get_object_vars($response->success[0]);
         $this->assertNull($response->err);
@@ -388,7 +389,7 @@ final class FileTest extends TestCase
     }
 
     // Update details
-    public function testUpdateDetailsWhenFileIDTagsAndCustomParameterIsPassed()
+    public function testUpdateFileDetailsWhenFileIDTagsAndCustomParameterIsPassed()
     {
         $faker = Faker\Factory::create();
 
@@ -417,13 +418,13 @@ final class FileTest extends TestCase
         $stub->method('patch')->willReturn(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
         $updateDetails = new File();
-        $response = $updateDetails->updateDetails($the_file_id, $updateData, $stub);
+        $response = $updateDetails->updateFileDetails($the_file_id, $updateData, $stub);
 
         $this->assertNull($response->err);
         $this->assertEquals("file1.jpg", $response->success->name);
     }
 
-    public function testUpdateDetailsWhenFileIDParameterIsNotPassed()
+    public function testUpdateFileDetailsWhenFileIDParameterIsNotPassed()
     {
         $faker = Faker\Factory::create();
 
@@ -454,14 +455,14 @@ final class FileTest extends TestCase
         $stub->method('patch')->willReturn(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
         $updateDetails = new File();
-        $response = $updateDetails->updateDetails($the_file_id, $updateData, $stub);
+        $response = $updateDetails->updateFileDetails($the_file_id, $updateData, $stub);
 
         $this->assertNull($response->success);
         $this->assertEquals("Missing File ID parameter for this request", $response->err->message);
 
     }
 
-    public function testUpdateDetailsWhenUpdateDataIsNotAnArray()
+    public function testUpdateFileDetailsWhenUpdateDataIsNotAnArray()
     {
 
         $faker = Faker\Factory::create();
@@ -490,13 +491,13 @@ final class FileTest extends TestCase
         $stub->method('patch')->willReturn(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
         $updateDetails = new File();
-        $response = $updateDetails->updateDetails($the_file_id, $updateData, $stub);
+        $response = $updateDetails->updateFileDetails($the_file_id, $updateData, $stub);
 
         $this->assertNull($response->success);
         $this->assertEquals("Missing file update data for this request", $response->err->message);
     }
 
-    public function testUpdateDetailsWhenUpdateDataTagIsInvalid()
+    public function testUpdateFileDetailsWhenUpdateDataTagIsInvalid()
     {
         $faker = Faker\Factory::create();
 
@@ -527,13 +528,13 @@ final class FileTest extends TestCase
         $stub->method('patch')->willReturn(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
         $updateDetails = new File();
-        $response = $updateDetails->updateDetails($the_file_id, $updateData, $stub);
+        $response = $updateDetails->updateFileDetails($the_file_id, $updateData, $stub);
 
         $this->assertNull($response->success);
         $this->assertEquals("Invalid tags parameter for this request", $response->err->message);
     }
 
-    public function testUpdateDetailsWhenUpdateCustomCoordinatesAreInvalid()
+    public function testUpdateFileDetailsWhenUpdateCustomCoordinatesAreInvalid()
     {
         $faker = Faker\Factory::create();
 
@@ -563,14 +564,14 @@ final class FileTest extends TestCase
         $stub->method('patch')->willReturn(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
         $updateDetails = new File();
-        $response = $updateDetails->updateDetails($the_file_id, $updateData, $stub);
+        $response = $updateDetails->updateFileDetails($the_file_id, $updateData, $stub);
 
         $this->assertNull($response->success);
         $this->assertEquals("Invalid customCoordinates parameter for this request", $response->err->message);
     }
 
     // Purge  Details
-    public function testPurgeCacheApiWithoutUrlPatrameter()
+    public function testPurgeFileCacheApiWithoutUrlPatrameter()
     {
         $faker = Faker\Factory::create();
 
@@ -587,7 +588,7 @@ final class FileTest extends TestCase
         $stub->method('post')->willReturn(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
         $purgeCacheApi = new File();
-        $response = $purgeCacheApi->purgeCacheApi($urlParam, $stub);
+        $response = $purgeCacheApi->purgeFileCacheApi($urlParam, $stub);
 
         $this->assertNull($response->success);
         $this->assertEquals("Missing URL parameter for this request", $response->err->message);
@@ -613,14 +614,14 @@ final class FileTest extends TestCase
         $stub->method('post')->willReturn(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
         $purgeCacheApi = new File();
-        $response = $purgeCacheApi->purgeCacheApi($urlParam, $stub);
+        $response = $purgeCacheApi->purgeFileCacheApi($urlParam, $stub);
 
         $el = get_object_vars($response->success[0]);
         $this->assertEquals("598821f949c0a938d57563bd", $el['requestId']);
     }
 
     // Purge  Cache API  Details
-    public function testPurgeCacheApiStatusWithoutRequestId()
+    public function testPurgeFileCacheApiStatusWithoutRequestId()
     {
         $faker = Faker\Factory::create();
         $requestId = "";
@@ -636,13 +637,13 @@ final class FileTest extends TestCase
         $stub->method('get')->willReturn(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
         $purgeCacheApiStatus = new File();
-        $response = $purgeCacheApiStatus->purgeCacheApiStatus($requestId, $stub);
+        $response = $purgeCacheApiStatus->purgeFileCacheApiStatus($requestId, $stub);
 
         $this->assertNull($response->success);
         $this->assertEquals("Missing Request ID parameter for this request", $response->err->message);
     }
 
-    public function testPurgeCacheApiStatus()
+    public function testPurgeFileCacheApiStatus()
     {
         $faker = Faker\Factory::create();
         $requestId = "598821f949c0a938d57563bd";
@@ -658,7 +659,7 @@ final class FileTest extends TestCase
         $stub->method('get')->willReturn(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
         $purgeCacheApiStatus = new File();
-        $response = $purgeCacheApiStatus->purgeCacheApiStatus($requestId, $stub);
+        $response = $purgeCacheApiStatus->purgeFileCacheApiStatus($requestId, $stub);
 
         $el = get_object_vars($response->success[0]);
         $this->assertEquals("Pending", $el['status']);

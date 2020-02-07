@@ -196,18 +196,23 @@ class Url
             $parsedTransformStep = array();
             foreach ($transformation[$i] as $key => $value) {
                 $transformKey = getTransformKey($key);
-
+              if( $key === "lossless" || $key === "progressive" || $key === "trim"){
+                    if ($value === false) {
+                        $value = "false";
+                    } else if ($value === true) {
+                        $value = "true";
+                    }
+                }
                 if (empty($transformKey)) {
                     $transformKey = $key;
                 }
                 if ($transformation[$i][$key] === "-") {
                     array_push($parsedTransformStep, $transformKey);
                 } else {
-
                     $transformationUtils = getTransformKeyValueDelimiter();
                     $finalres = $transformKey;
                     $finalres .= $transformationUtils;
-                    $finalres .= $transformation[$i][$key];
+                    $finalres .= $value;
                     array_push($parsedTransformStep, $finalres);
                 }
             }

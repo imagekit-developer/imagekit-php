@@ -239,7 +239,7 @@ The `upload()` method requires at least the `file` and the `fileName` parameter 
 
 Sample usage
 ```
-$imageKit->upload(array(
+$imageKit->uploadFiles(array(
     'file' => "your_file",
     'fileName' => "your_file_name.jpg",
 ));
@@ -433,7 +433,7 @@ Accepts an object specifying the parameters to be used to list and search files.
 ```
 $imageKit->listFiles(
     array(
-        "skip":10",
+        "skip":10,
         "limit":10
     )
 );
@@ -444,7 +444,7 @@ $imageKit->listFiles(
 Accepts the file ID and fetches the details as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/get-file-details).
 
 ```
-$imageKit->getDetails("file_id");
+$imageKit->getFileDetails("file_id");
 ```
 
 **3. Get File Metadata**
@@ -452,7 +452,7 @@ $imageKit->getDetails("file_id");
 Accepts the file ID and fetches the metadata as per the [API documentation here](https://docs.imagekit.io/api-reference/metadata-api/get-image-metadata-for-uploaded-media-files).
 
 ```
- $imageKit->getMetaData("file_id");
+ $imageKit->getFileMetaData("file_id");
 ```
 
 **4. Get File Metadata from remote URL**
@@ -494,7 +494,7 @@ $imageKit->bulkFileDeleteByIds(array(
 Programmatically issue a cache clear request as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/purge-cache). Accepts the full URL of the file for which the cache has to be cleared.
 
 ```
-$imageKit->purgeCacheApi("full_url");
+$imageKit->purgeFileCacheApi("full_url");
 ```
 
 **9. Purge Cache Status**
@@ -502,7 +502,7 @@ $imageKit->purgeCacheApi("full_url");
 Get the purge cache request status using the request ID returned when a purge cache request gets submitted as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/purge-cache-status)
 
 ```
-$imageKit->purgeCacheApiStatus("cache_request_id");
+$imageKit->purgeFileCacheApiStatus("cache_request_id");
 ```
 
 ## Utility functions

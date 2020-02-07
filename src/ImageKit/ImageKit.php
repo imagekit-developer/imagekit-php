@@ -106,6 +106,11 @@ class ImageKit
 
     public function upload($options)
     {
+        return uploadFiles($options);
+    }
+
+    public function uploadFiles($options)
+    {
         $defaultOptions = $this->getDefaultOption();
 
         $client = new Client(addAuthorization([], $defaultOptions));
@@ -133,6 +138,11 @@ class ImageKit
 
     public function getDetails($the_file_id)
     {
+        return getFileDetails($the_file_id);
+    }
+
+    public function getFileDetails($the_file_id)
+    {
         $defaultOptions = $this->getDefaultOption();
 
         $client = new Client(addAuthorization([], $defaultOptions));
@@ -141,11 +151,16 @@ class ImageKit
         $resource->setUri(getDetailsEndpoint($the_file_id));
 
         $getDetailsInstance = new File();
-        return $getDetailsInstance->getDetails($the_file_id, $resource);
+        return $getDetailsInstance->getFileDetails($the_file_id, $resource);
     }
 
 
     public function getMetaData($the_file_id)
+    {
+        return  getFileMetaData($the_file_id);
+    }
+
+    public function getFileMetaData($the_file_id)
     {
         $defaultOptions = $this->getDefaultOption();
 
@@ -155,7 +170,13 @@ class ImageKit
         $resource->setUri(getListMetaDataFilesEndpoint($the_file_id));
 
         $getFileMetadataInstance = new File();
-        return $getFileMetadataInstance->getMetaData($the_file_id, $resource);
+        return $getFileMetadataInstance->getFileMetaData($the_file_id, $resource);
+    }
+
+    public function updateDetails($the_file_id, $updateData)
+    {
+
+        return updateFileDetails($the_file_id, $updateData);
     }
 
     public function updateFileDetails($the_file_id, $updateData)
@@ -168,8 +189,9 @@ class ImageKit
         $resource->setUri(getUpdateFileDetailsEndpoint($the_file_id));
 
         $updateDetailsInstance = new File();
-        return $updateDetailsInstance->updateDetails($the_file_id, $updateData, $resource);
+        return $updateDetailsInstance->updateFileDetails($the_file_id, $updateData, $resource);
     }
+
 
 
     public function deleteFile($the_file_id)
@@ -200,6 +222,11 @@ class ImageKit
 
     public function purgeCacheApi($options)
     {
+        return purgeFileCacheApi($options);
+    }
+
+    public function purgeFileCacheApi($options)
+    {
         $defaultOptions = $this->getDefaultOption();
 
         $client = new Client(addAuthorization([], $defaultOptions));
@@ -208,10 +235,15 @@ class ImageKit
         $resource->setUri(getPurgeCacheEndpoint());
 
         $purgeCacheApiInstance = new File();
-        return $purgeCacheApiInstance->purgeCacheApi($options, $resource);
+        return $purgeCacheApiInstance->purgeFileCacheApi($options, $resource);
     }
 
     public function purgeCacheApiStatus($requestId)
+    {
+        return  purgeFileCacheApiStatus($requestId);
+    }
+
+    public function purgeFileCacheApiStatus($requestId)
     {
         $defaultOptions = $this->getDefaultOption();
 
@@ -221,7 +253,7 @@ class ImageKit
         $resource->setUri(getPurgeCacheApiStatusEndpoint($requestId));
 
         $purgeCacheApiStatusInstance = new File();
-        return $purgeCacheApiStatusInstance->purgeCacheApiStatus($requestId, $resource);
+        return $purgeCacheApiStatusInstance->purgeFileCacheApiStatus($requestId, $resource);
     }
 
     public function getAuthenticationParameters($token = "", $expire = 0)

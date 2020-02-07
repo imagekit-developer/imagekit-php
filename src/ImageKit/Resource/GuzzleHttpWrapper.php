@@ -31,7 +31,7 @@ class GuzzleHttpWrapper implements HttpRequest
         $this->serviceId  = $this->gen_uuid();
     }
 
-    public function setDatas($datas)
+    public function setDatas(array $datas)
     {
         $this->datas = $datas;
     }

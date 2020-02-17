@@ -215,7 +215,13 @@ class Url
                     $transformationUtils = getTransformKeyValueDelimiter();
                     $finalres = $transformKey;
                     $finalres .= $transformationUtils;
-                    $finalres .= $value;
+
+                    if (strpos($value, '/') !== false) {
+                        $finalres .= str_replace('/', '@@', $value);
+                    } else {
+                        $finalres .= $value;
+                    }
+
                     array_push($parsedTransformStep, $finalres);
                 }
             }

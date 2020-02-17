@@ -1,4 +1,5 @@
 <?php
+
 namespace ImageKit\File;
 
 use ImageKit\Resource\GuzzleHttpWrapper;
@@ -31,7 +32,7 @@ class File
     // Get Details Of file
     public function getDetails($the_file_id, $resource)
     {
-        return getFileDetails($the_file_id, $resource);
+        return $this->getFileDetails($the_file_id, $resource);
     }
 
 
@@ -51,13 +52,12 @@ class File
         };
 
         return respond(false, json_decode($content));
-
     }
 
     // Get Details Of file
     public function getMetaData($the_file_id, $resource)
     {
-        return getFileMetaData($the_file_id, $resource);
+        return $this->getFileMetaData($the_file_id, $resource);
     }
 
     public function getFileMetaData($the_file_id, $resource)
@@ -94,7 +94,6 @@ class File
         };
 
         return respond(false, json_decode($content));
-
     }
 
     // Delete Bulk Files by File ID API
@@ -119,7 +118,7 @@ class File
     // Update File Details
     public function updateDetails($the_file_id, $updateData, $resource)
     {
-        return updateFileDetails($the_file_id, $updateData, $resource);
+        return $this->updateFileDetails($the_file_id, $updateData, $resource);
     }
 
     // Update File Details
@@ -135,12 +134,11 @@ class File
 
         $obj = (object) $updateData;
 
-        // if (!isset($obj->tags) && ($obj->tags !== null) && !empty($obj->tags) && (is_array($obj->tags)) ) {
-        if (($obj->tags !== null) && ($obj->tags !== "undefined") && !is_array($obj->tags)) {
+        if (isset($obj->tags) && ($obj->tags !== null) && ($obj->tags !== "undefined") && !is_array($obj->tags)) {
             return respond(true, ((object) unserialize(UPDATE_DATA_TAGS_INVALID)));
         }
 
-        if( ($obj->customCoordinates !== null) && ($obj->customCoordinates !== "undefined") && is_array($obj->customCoordinates)){
+        if (isset($obj->customCoordinates) && ($obj->customCoordinates !== null) && ($obj->customCoordinates !== "undefined") && is_array($obj->customCoordinates)) {
             return respond(true, ((object) unserialize(UPDATE_DATA_COORDS_INVALID)));
         }
 
@@ -160,7 +158,7 @@ class File
     // purgeCache File API
     public function purgeCacheApi($urlParam, $resource)
     {
-        return purgeFileCacheApi($urlParam, $resource);
+        return $this->purgeFileCacheApi($urlParam, $resource);
     }
 
     // purgeCache File API
@@ -185,7 +183,7 @@ class File
     // purgeCache File API
     public function purgeCacheApiStatus($requestId, GuzzleHttpWrapper $resource)
     {
-        return purgeFileCacheApiStatus($requestId,  $resource);
+        return $this->purgeFileCacheApiStatus($requestId,  $resource);
     }
 
     // purgeCache File API

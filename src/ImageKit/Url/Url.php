@@ -25,7 +25,7 @@ class Url
         $queryParam = array();
         $src = null;
         $urlEndpoint = $obj->urlEndpoint;
-        $transformation = $obj->transformation;
+        $transformation = null;
         $signed = false;
         $expireSeconds = null;
 
@@ -49,14 +49,18 @@ class Url
             $src = $obj->src;
         }
 
+        if (isset($obj->transformation)) {
+            $transformation = $obj->transformation;
+        }
+
         if ($path == null && $src == null) {
             return "";
         }
 
         // Create Correct query parameter
-        $parsedURL ="";
-        $isSrcParameterUsedForURL="";
-        $parsedHost="";
+        $parsedURL = "";
+        $isSrcParameterUsedForURL = "";
+        $parsedHost = "";
 
         if (!empty($path)) {
             $parsedURL = array(parse_url($path));
@@ -107,12 +111,11 @@ class Url
                 $urlObject->pathname = $originalPath;
                 $urlObject->pathname .= "/";
                 $urlObject->pathname .= $transformationQuery;
-
-                $urlObject->pathname .= $this->addLeadingSlash($path);
             };
         }
+        $urlObject->pathname .= $this->addLeadingSlash($path);
 
-        $urlObject->host =$this->removeTrailingSlash($urlObject->host);
+        $urlObject->host = $this->removeTrailingSlash($urlObject->host);
         $urlObject->pathname = $this->addLeadingSlash($urlObject->pathname);
         $urlObject->search = $queryParameters;
 
@@ -122,12 +125,11 @@ class Url
         // because we need to know the endpoint to be able to remove it from the URL to create a signature
         // for the remaining. With the src parameter, we would not know the "pattern" in the URL
 
-        $expiryTimestamp ="";
+        $expiryTimestamp = "";
         if ($signed === true and !$isSrcParameterUsedForURL) {
             if (!empty($expireSeconds)) {
                 $expiryTimestamp = $this->getSignatureTimestamp($expireSeconds);
-            }
-            else {
+            } else {
                 $expiryTimestamp = DEFAULT_TIMESTAMP;
             }
 
@@ -135,27 +137,27 @@ class Url
             $intermediateURL = $this->unparsed_url($myArray);
 
             $urlSignatureArray = array(
-                'privateKey'=>$urlOptions['privateKey'],
-                'url'=>$intermediateURL,
-                'urlEndpoint'=>$urlOptions['urlEndpoint'],
-                'expiryTimestamp'=>$expiryTimestamp,
+                'privateKey' => $urlOptions['privateKey'],
+                'url' => $intermediateURL,
+                'urlEndpoint' => $urlOptions['urlEndpoint'],
+                'expiryTimestamp' => $expiryTimestamp,
             );
 
             $urlSignature = $this->getSignature($urlSignatureArray);
 
-            if($expiryTimestamp && $expiryTimestamp!=DEFAULT_TIMESTAMP){
+            if ($expiryTimestamp && $expiryTimestamp != DEFAULT_TIMESTAMP) {
                 $timestampParameter = array(
                     TIMESTAMP_PARAMETER => $expiryTimestamp
                 );
                 $timestampParameterString = http_build_query($timestampParameter);
-                $urlObject->search .= "&".$timestampParameterString;
+                $urlObject->search .= "&" . $timestampParameterString;
             }
 
             $signatureParameter = array(
                 SIGNATURE_PARAMETER => $urlSignature
             );
             $signatureParameterString = http_build_query($signatureParameter);
-            $urlObject->search .= "&".$signatureParameterString;
+            $urlObject->search .= "&" . $signatureParameterString;
         }
 
         $urlObjectArray = json_decode(json_encode($urlObject), true);
@@ -163,7 +165,8 @@ class Url
     }
 
 
-    function unparsed_url(array $parsed) {
+    function unparsed_url(array $parsed)
+    {
         $get = function ($key) use ($parsed) {
             return isset($parsed[$key]) ? $parsed[$key] : null;
         };
@@ -179,7 +182,7 @@ class Url
             (strlen($host) > 0 ? "//$host" : '') .
             (strlen($pathname) > 0 ? "$pathname" : '') .
             (strlen($search) > 0 ? "?$search" : '') .
-            (strlen($search) > 0 ? "&sdk-version=php-".SDK_VERSION : "?sdk-version=php-".SDK_VERSION);
+            (strlen($search) > 0 ? "&sdk-version=php-" . SDK_VERSION : "?sdk-version=php-" . SDK_VERSION);
 
         return $url;
     }
@@ -196,7 +199,7 @@ class Url
             $parsedTransformStep = array();
             foreach ($transformation[$i] as $key => $value) {
                 $transformKey = getTransformKey($key);
-              if( $key === "lossless" || $key === "progressive" || $key === "trim"){
+                if ($key === "lossless" || $key === "progressive" || $key === "trim") {
                     if ($value === false) {
                         $value = "false";
                     } else if ($value === true) {
@@ -229,7 +232,7 @@ class Url
     private function addLeadingSlash($str)
     {
         if (is_string($str) and strlen($str) > 0 and $str[0] != "/") {
-            $str = "/".$str;
+            $str = "/" . $str;
         }
         return $str;
     }
@@ -240,7 +243,6 @@ class Url
             $str = substr($str, 0, -1);
         }
         return $str;
-
     }
 
     private function getSignatureTimestamp($expireSeconds)
@@ -257,8 +259,9 @@ class Url
         return $currentTimestamp + $sec;
     }
 
-    private function getSignature($options){
-        if(empty($options['privateKey']) or empty($options['url']) or empty($options['urlEndpoint']) ){
+    private function getSignature($options)
+    {
+        if (empty($options['privateKey']) or empty($options['url']) or empty($options['urlEndpoint'])) {
             return "";
         } else {
             $data = str_replace($options['urlEndpoint'], '', $options['url']) . $options['expiryTimestamp'];
@@ -268,7 +271,7 @@ class Url
 
     // Function to check string starting
     // with given substring
-    private function startsWith ($string, $startString)
+    private function startsWith($string, $startString)
     {
         $len = strlen($startString);
         return (substr($string, 0, $len) === $startString);
@@ -285,6 +288,3 @@ class Url
         return (substr($string, -$len) === $endString);
     }
 }
-
-
-

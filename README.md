@@ -432,8 +432,8 @@ Accepts an object specifying the parameters to be used to list and search files.
 ```
 $imageKit->listFiles(
     array(
-        "skip":10,
-        "limit":10
+        "skip" => 10,
+        "limit" => 10
     )
 );
 ```
@@ -493,7 +493,7 @@ $imageKit->bulkFileDeleteByIds(array(
 Programmatically issue a cache clear request as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/purge-cache). Accepts the full URL of the file for which the cache has to be cleared.
 
 ```
-$imageKit->purgeFileCacheApi("full_url");
+$imageKit->purgeFileCacheApi(array("url" => "full_url"));
 ```
 
 **9. Purge Cache Status**

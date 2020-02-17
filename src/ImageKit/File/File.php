@@ -164,7 +164,7 @@ class File
     // purgeCache File API
     public function purgeFileCacheApi($urlParam, $resource)
     {
-        if (empty($urlParam)) {
+        if (!is_array($urlParam) || empty($urlParam)) {
             return respond(true, ((object) unserialize(CACHE_PURGE_URL_MISSING)));
         }
 

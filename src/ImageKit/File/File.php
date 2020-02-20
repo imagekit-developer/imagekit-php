@@ -138,7 +138,7 @@ class File
             return respond(true, ((object) unserialize(UPDATE_DATA_TAGS_INVALID)));
         }
 
-        if (isset($obj->customCoordinates) && ($obj->customCoordinates !== null) && ($obj->customCoordinates !== "undefined") && is_array($obj->customCoordinates)) {
+        if (isset($obj->customCoordinates) && ($obj->customCoordinates !== null) && ($obj->customCoordinates !== "undefined") && is_array($obj->customCoordinates) || ($obj->customCoordinates === "")) {
             return respond(true, ((object) unserialize(UPDATE_DATA_COORDS_INVALID)));
         }
 

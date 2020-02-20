@@ -24,7 +24,7 @@ class Url
         $path = null;
         $queryParam = array();
         $src = null;
-        $urlEndpoint = $obj->urlEndpoint;
+        $urlEndpoint = $this->removeTrailingSlash($obj->urlEndpoint);
         $transformation = null;
         $signed = false;
         $expireSeconds = null;

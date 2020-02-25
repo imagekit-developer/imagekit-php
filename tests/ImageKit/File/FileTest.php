@@ -599,9 +599,7 @@ final class FileTest extends TestCase
     {
         $faker = Faker\Factory::create();
 
-        $urlParam = array(
-            "url" => "https://ik.imagekit.io/ot2cky3ujwa/default-image.jpg",
-        );
+        $urlParam = "https://ik.imagekit.io/ot2cky3ujwa/default-image.jpg";
 
         $mockBodyResponse = Stream::factory(json_encode(array(
             array(

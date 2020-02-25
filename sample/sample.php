@@ -15,8 +15,9 @@ $public_key = "your_public_key";
 $your_private_key = "your_private_key";
 $url_end_point = "https://ik.imagekit.io/your_imagekit_id";
 
+
 $sample_file_url = "https://cdn.pixabay.com/photo/2020/02/04/22/29/owl-4819550_960_720.jpg";
-$sample_file_path = "/sample.jpg";
+$sample_file_path = "/sample_image.jpg";
 $sample_file_image_kit_url = $url_end_point . "/sample.jpg";
 
 $imageKit = new ImageKit(
@@ -50,6 +51,11 @@ $imageURL = $imageKit->url(array(
             "height" => "300",
             "width" => "400",
         ),
+    ),
+    "transformationPosition" => "path",
+    "queryParameters" => array (
+        "random-param" => rand(10, 1000),
+
     ),
 ));
 
@@ -89,7 +95,7 @@ $imageURL = $imageKit->url(array(
     "transformation" => array(
         array(
             "format" => "jpg",
-            "progressive" => "true",
+            "progressive" =>true,
             "effectSharpen" => "-",
             "effectContrast" => "1",
         ),
@@ -157,7 +163,7 @@ $uploadFile = $imageKit->uploadFiles(array(
     "file" => $sample_file_url,
     "fileName" => "testing",
     "responseFields" => implode(",", array("isPrivateFile", "customCoordinates")),
-    "isPrivateFile" => "true",
+    "isPrivateFile" =>true,
 ));
 
 $response = json_decode(json_encode($uploadFile), true);
@@ -171,10 +177,10 @@ echo "\n\n-------------------------------------------------------------------\n\
 $uploadFile = $imageKit->uploadFiles(array(
     "file" => $sample_file_url,
     "fileName" => "testing",
-    "useUniqueFileName" => "true",
+    "useUniqueFileName" => false,
     "tags" => implode(",", array("tag1", "tag2")),
     "folder" => "sample",
-    "isPrivateFile" => "true",
+    "isPrivateFile" => false,
     "customCoordinates" => implode(",", array("15", "15", "100", "100")),
     "responseFields" => implode(",", array("isPrivateFile", "customCoordinates")),
 ));
@@ -194,7 +200,7 @@ echo ("List files : " . json_encode($listFiles));
 // 11. Update details
 echo "\n\n-------------------------------------------------------------------\n\n";
 
-$updateFileDetails = $imageKit->updateFileDetails($fileId, array("tags" => ['image_tag'], "customCoordinates" => ""));
+$updateFileDetails = $imageKit->updateFileDetails($fileId, array( "tags" => ['image_tag'], "customCoordinates" => '100,100,100,100'));
 
 echo ("Updated detail : " . json_encode($updateFileDetails));
 
@@ -239,9 +245,7 @@ echo ("Delete bulk files by ID : " . json_encode($bulkFileDelete));
 
 // 17. Purge cache
 echo "\n\n-------------------------------------------------------------------\n\n";
-$purgeCache = $imageKit->purgeFileCacheApi(array(
-    "url" => $uploadedImageURL
-));
+$purgeCache = $imageKit->purgeFileCacheApi($uploadedImageURL);
 $response = json_decode(json_encode($purgeCache), true);
 $requestId = $response["success"]["requestId"];
 echo ("Purge cache : " . json_encode($purgeCache));

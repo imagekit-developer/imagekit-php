@@ -12,7 +12,7 @@ class SignatureTest  extends TestCase
     {
         $faker = Faker\Factory::create();
         $token = "token";
-        $expire = "10000";
+        $expire = "1582269249";
 
         $defaultOptions = array(
             'publicKey' => 'publicKey',
@@ -26,7 +26,7 @@ class SignatureTest  extends TestCase
         $this->assertEquals(array(
             "token" => $token,
             "expire" => $expire,
-            "signature" =>"03d6a477325b8eef7bbefa1fdcf42e311a354b27",
+            "signature" =>"e71bcd6031016b060d349d212e23e85c791decdd",
         ), $response);
 
 

@@ -67,7 +67,7 @@ class ImageKit
         $this->_publicKey = $publicKey;
 
         if ($privateKey == null) {
-            $msg = 'Missing privateKe$privateKey during ImageKit initialization';
+            $msg = 'Missing privateKey during ImageKit initialization';
             throw new InvalidArgumentException($msg);
         }
         $this->_privateKey = $privateKey;

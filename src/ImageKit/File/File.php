@@ -164,11 +164,12 @@ class File
     // purgeCache File API
     public function purgeFileCacheApi($urlParam, $resource)
     {
-        if (!is_array($urlParam) || empty($urlParam)) {
-            return respond(true, ((object) unserialize(CACHE_PURGE_URL_MISSING)));
-        }
 
-        $resource->setDatas((array) $urlParam);
+       $urlParamArray=  array(
+            "url" => $urlParam
+       );
+
+        $resource->setDatas((array) $urlParamArray);
         $res = $resource->post();
         $stream = $res->getBody();
         $content = $stream->getContents();

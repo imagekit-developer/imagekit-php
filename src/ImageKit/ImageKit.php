@@ -1,4 +1,5 @@
 <?php
+
 namespace ImageKit;
 
 use ImageKit\File\File;
@@ -56,7 +57,8 @@ class ImageKit
         $publicKey = null,
         $privateKey = null,
         $urlEndpoint = null,
-        $transformationPosition = null) {
+        $transformationPosition = null
+    ) {
 
         if ($publicKey == null) {
             $msg = 'Missing publicKey during ImageKit initialization';
@@ -83,7 +85,6 @@ class ImageKit
             throw new InvalidArgumentException($msg);
         }
         $this->_transformationPosition = $transformationPosition;
-
     }
 
     public function getDefaultOption()
@@ -101,12 +102,12 @@ class ImageKit
         $defaultOptions = $this->getDefaultOption();
 
         $urlInstance = new Url();
-        return $urlInstance->buildURL(array_merge($options, $defaultOptions));
+        return $urlInstance->buildURL(array_merge($defaultOptions, $options));
     }
 
     public function upload($options)
     {
-        return uploadFiles($options);
+        return $this->uploadFiles($options);
     }
 
     public function uploadFiles($options)
@@ -138,7 +139,7 @@ class ImageKit
 
     public function getDetails($the_file_id)
     {
-        return getFileDetails($the_file_id);
+        return $this->getFileDetails($the_file_id);
     }
 
     public function getFileDetails($the_file_id)
@@ -157,7 +158,7 @@ class ImageKit
 
     public function getMetaData($the_file_id)
     {
-        return  getFileMetaData($the_file_id);
+        return  $this->getFileMetaData($the_file_id);
     }
 
     public function getFileMetaData($the_file_id)
@@ -176,13 +177,12 @@ class ImageKit
     public function updateDetails($the_file_id, $updateData)
     {
 
-        return updateFileDetails($the_file_id, $updateData);
+        return $this->updateFileDetails($the_file_id, $updateData);
     }
 
     public function updateFileDetails($the_file_id, $updateData)
     {
         $defaultOptions = $this->getDefaultOption();
-        // $opts = array_merge($option, $defaultOptions);
         $client = new Client(addAuthorization([], $defaultOptions));
 
         $resource = new GuzzleHttpWrapper($client);
@@ -222,7 +222,7 @@ class ImageKit
 
     public function purgeCacheApi($options)
     {
-        return purgeFileCacheApi($options);
+        return $this->purgeFileCacheApi($options);
     }
 
     public function purgeFileCacheApi($options)
@@ -240,7 +240,7 @@ class ImageKit
 
     public function purgeCacheApiStatus($requestId)
     {
-        return  purgeFileCacheApiStatus($requestId);
+        return  $this->purgeFileCacheApiStatus($requestId);
     }
 
     public function purgeFileCacheApiStatus($requestId)
@@ -264,7 +264,7 @@ class ImageKit
         return $getAuthenticationParametersInstance->getAuthenticationParameters($token, $expire, $defaultOptions);
     }
 
-    public function pHashDistance($firstPHash ,$secondPHash)
+    public function pHashDistance($firstPHash, $secondPHash)
     {
         $pHashInstance = new Phash();
         return $pHashInstance->pHashDistance($firstPHash, $secondPHash);
@@ -289,6 +289,5 @@ class ImageKit
             $str = substr($str, 0, -1);
         }
         return $str;
-
     }
 }

@@ -212,6 +212,20 @@ class GuzzleHttpWrapper implements HttpRequest
     {
         $multipartData = [];
 
+        if(!empty($data["useUniqueFileName"])===false ||  !empty($data["useUniqueFileName"])==="false"){
+            $data["useUniqueFileName"]="false";
+        }
+         else{
+            $data["useUniqueFileName"]="true";
+        }
+
+         if(!empty($data["isPrivateFile"])===false ||  !empty($data["isPrivateFile"])==="false"){
+            $data["isPrivateFile"]="false";
+        }
+         else{
+            $data["isPrivateFile"]="true";
+        }
+
         foreach($data as $key => $value){
             if(!is_array($value)){
                 $multipartData[] = ['name' => $key, 'contents' => $value];

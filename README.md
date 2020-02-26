@@ -408,7 +408,7 @@ $imageKit->uploadFiles(array(
 
 <td data-table="cell" class="tableCell-150ac604" data-key="12022" style="text-align: left;">
 
-<span class="text-4505230f--TextH400-3033861f--textContentFamily-49a318e1"><span data-key="12003"><span data-offset-key="12003:0">Comma-separated values of the fields that you want ImageKit.io to return in response. For example, set the value of this field to</span> <span data-offset-key="12003:1">`tags,custom_coordinates,is_privateFile,metadata`</span> <span data-offset-key="12003:2">to get value of</span> <span data-offset-key="12003:3">`tags`</span><span data-offset-key="12003:4">,</span> <span data-offset-key="12003:5">`custom_coordinates`</span><span data-offset-key="12003:6">,</span> <span data-offset-key="12003:7">`is_privateFile`</span> <span data-offset-key="12003:8">, and</span> <span data-offset-key="12003:9">`metadata`</span> <span data-offset-key="12003:10">in the response.</span></span></span>
+<span class="text-4505230f--TextH400-3033861f--textContentFamily-49a318e1"><span data-key="12003"><span data-offset-key="12003:0">Comma-separated values of the fields that you want ImageKit.io to return in response. For example, set the value of this field to</span> <span data-offset-key="12003:1">`tags,customCoordinates,isPrivateFile,metadata`</span> <span data-offset-key="12003:2">to get value of</span> <span data-offset-key="12003:3">`tags`</span><span data-offset-key="12003:4">,</span> <span data-offset-key="12003:5">`customCoordinates`</span><span data-offset-key="12003:6">,</span> <span data-offset-key="12003:7">`isPrivateFile`</span> <span data-offset-key="12003:8">, and</span> <span data-offset-key="12003:9">`metadata`</span> <span data-offset-key="12003:10">in the response.</span></span></span>
 
 </td>
 
@@ -551,6 +551,14 @@ $imageKit->pHashDistance('2d5ad3936d2e015b', '2d6ed293db36a4fb');
 
 $imageKit->pHashDistance('a4a65595ac94518b', '7838873e791f8400');
 // output: 37 (dissimilar images)
+```
+
+## Sample Code Instruction
+
+To run sample code go to sample directory and run
+
+```
+php sample.php
 ```
 
 ## Support

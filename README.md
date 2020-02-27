@@ -19,6 +19,7 @@ Table of contents -
 -   [File Upload](#File-upload)
 -   [File Management](#File-management)
 -   [Utility Functions](#Utility-functions)
+-   [Sample Code Instruction](#Sample-Code-Instruction)
 -   [Support](#Support)
 -   [Links](#Links)
 
@@ -241,8 +242,14 @@ Sample usage
 
 ```
 $imageKit->uploadFiles(array(
-    'file' => "your_file",
-    'fileName' => "your_file_name.jpg",
+    "file" => "your_file",
+    "fileName" => "your_file_name.jpg",
+    "useUniqueFileName" => false,
+    "tags" => ["tag1","tag2"],
+    "folder" => "images/folder/",
+    "isPrivateFile" => false,
+    "customCoordinates" => "10,10,100,100",
+    "responseFields" => "tags,customCoordinates"
 ));
 ```
 
@@ -420,6 +427,8 @@ $imageKit->uploadFiles(array(
 
 If the upload succeed, `error` will be `null` and the `result` will be the same as what is received from ImageKit's servers.
 If the upload fails, `error` will be the same as what is received from ImageKit's servers and the `result` will be null.
+
+
 
 ## File Management
 

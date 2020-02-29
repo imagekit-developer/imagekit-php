@@ -53,7 +53,7 @@ $imageURL = $imageKit->url(array(
         ),
     ),
     "transformationPosition" => "path",
-    "queryParameters" => array (
+    "queryParameters" => array(
         "random-param" => rand(10, 1000),
 
     ),
@@ -95,7 +95,7 @@ $imageURL = $imageKit->url(array(
     "transformation" => array(
         array(
             "format" => "jpg",
-            "progressive" =>true,
+            "progressive" => true,
             "effectSharpen" => "-",
             "effectContrast" => "1",
         ),
@@ -134,7 +134,7 @@ $encodedImageData = base64_encode($img);
 $uploadFile = $imageKit->uploadFiles(array(
     "file" => $encodedImageData,
     "fileName" => "sample",
-    "tags" => implode(",", array("abd", "def")),
+    "tags" => array("abd", "def"),
     "customCoordinates" => implode(",", array("10", "10", "100", "100"))
 ));
 
@@ -147,7 +147,7 @@ echo "\n\n-------------------------------------------------------------------\n\
 $uploadFile = $imageKit->uploadFiles(array(
     "file" => fopen(__DIR__ . "/sample_image.jpg", "r"),
     "fileName" => "sample",
-    "tags" => implode(",", array("abd", "def")),
+    "tags" => array("tag1", "tag2"),
     "customCoordinates" => implode(",", array("10", "10", "100", "100"))
 ));
 
@@ -163,7 +163,7 @@ $uploadFile = $imageKit->uploadFiles(array(
     "file" => $sample_file_url,
     "fileName" => "testing",
     "responseFields" => implode(",", array("isPrivateFile", "customCoordinates")),
-    "isPrivateFile" =>true,
+    "isPrivateFile" => true,
 ));
 
 $response = json_decode(json_encode($uploadFile), true);
@@ -178,7 +178,7 @@ $uploadFile = $imageKit->uploadFiles(array(
     "file" => $sample_file_url,
     "fileName" => "testing",
     "useUniqueFileName" => false,
-    "tags" => implode(",", array("tag1", "tag2")),
+    "tags" => array("tag1", "tag2"),
     "folder" => "sample",
     "isPrivateFile" => false,
     "customCoordinates" => implode(",", array("15", "15", "100", "100")),
@@ -200,7 +200,7 @@ echo ("List files : " . json_encode($listFiles));
 // 11. Update details
 echo "\n\n-------------------------------------------------------------------\n\n";
 
-$updateFileDetails = $imageKit->updateFileDetails($fileId, array( "tags" => ['image_tag'], "customCoordinates" => '100,100,100,100'));
+$updateFileDetails = $imageKit->updateFileDetails($fileId, array("tags" => ['image_tag'], "customCoordinates" => '100,100,100,100'));
 
 echo ("Updated detail : " . json_encode($updateFileDetails));
 

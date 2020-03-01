@@ -17,6 +17,14 @@ class File
             return respond(true, ((object) unserialize(INVALID_LIST_FILES_OPTIONS)));
         }
 
+        if (isset($parameters['tags']) && is_array($parameters['tags'])) {
+            $parameters['tags'] = implode(",", $parameters['tags']);
+        }
+
+        if (isset($parameters['includeFolder']) && is_bool($parameters['includeFolder'])) {
+            $parameters['includeFolder'] = json_encode($parameters['includeFolder']);
+        }
+
         $resource->setDatas((array) $parameters);
         $res = $resource->get();
         $stream = $res->getBody();
@@ -168,8 +176,8 @@ class File
             return respond(true, ((object) unserialize(CACHE_PURGE_URL_MISSING)));
         }
 
-        $urlParamArray=  array(
-                "url" => $urlParam
+        $urlParamArray =  array(
+            "url" => $urlParam
         );
 
         $resource->setDatas((array) $urlParamArray);

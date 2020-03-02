@@ -12,15 +12,14 @@ class SignatureTest  extends TestCase
     public function testGetAuthenticationParameters()
     {
         $defaultOptions = array(
-            'publicKey' => 'publicKey',
-            'privateKey' => 'privateKey',
-            'urlEndpoint' => 'urlEndpoint',
-            'transformationPosition' => "path"
+            "publicKey" => "public_key_test",
+            "privateKey" => "private_key_test",
+            "urlEndpoint" => "https://test-domain.com/test-endpoint"
         );
 
-        $token = "token";
+        $token = "your_token";
         $expire = "1582269249";
-        $signature =   hash_hmac('sha1', $token . $expire, $defaultOptions['privateKey']);
+        $signature = 'e71bcd6031016b060d349d212e23e85c791decdd';
 
         $signatureInstance = new Signature();
         $response = $signatureInstance->getAuthenticationParameters($token, $expire, $defaultOptions);

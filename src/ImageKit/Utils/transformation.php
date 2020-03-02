@@ -26,30 +26,30 @@ function getTransformKey($transformation)
 
     $res = $supportedTransforms->$transformation;
     return $res;
-
 }
 
 function getTransformKeyValueDelimiter()
 {
     return TRANSFORM_KEY_VALUE_DELIMITER;
-
 }
 
 function getTransformDelimiter()
 {
     return TRANSFORM_DELIMITER;
-
 }
 
 function getChainTransformDelimiter()
 {
     return CHAIN_TRANSFORM_DELIMITER;
-
 }
 
 function addAsQueryParameter($options)
 {
     // return options.transformationPosition === QUERY_TRANSFORMATION_POSITION;
     $optionsObject = (object) ($options);
-    return $optionsObject->transformationPosition === QUERY_TRANSFORMATION_POSITION;
+    if (isset($optionsObject->transformationPosition)) {
+        return $optionsObject->transformationPosition === QUERY_TRANSFORMATION_POSITION;
+    }
+
+    return false;
 }

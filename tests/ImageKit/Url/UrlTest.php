@@ -1,4 +1,5 @@
 <?php
+
 namespace ImageKit\Tests\ImageKit\Url;
 
 use ImageKit\Url\Url;
@@ -34,11 +35,11 @@ final class UrlTest extends TestCase
             'urlEndpoint' =>  $faker->url,
             'transformationPosition' => $faker->word
         );
-        $opts = array_merge($parameter, $defaultOptions);
+        $opts = array_merge($defaultOptions, $parameter);
 
         $urlInstance = new Url();
-        $urlInstance->buildURL($opts);
-        $this->assertInstanceOf('\ImageKit\Url\Url', $urlInstance);
+        $url = $urlInstance->buildURL($opts);
+        $this->assertNotEmpty($url);
     }
 
     public function testUrlGenerationIfTransformationPositionIsQuery()
@@ -46,17 +47,29 @@ final class UrlTest extends TestCase
         $faker = Faker\Factory::create();
         $parameter = array(
             'urlEndpoint' => $faker->url,
-            'path' => null,
-            'transformation' => (['width' => '200', 'height' => '300']),
+            'transformation' => array(array('width' => '200', 'height' => '300')),
             'src' => $faker->url,
             'queryParameters' => array('v' => '123123'),
             'signed' => true,
             'expireSeconds' => 300,
         );
 
-        $urlOptions = new Url();
 
-        $this->assertInstanceOf('\ImageKit\Url\Url', $urlOptions);
+        $defaultOptions = array(
+            'publicKey' => $faker->uuid,
+            'privateKey' => $faker->uuid,
+            'urlEndpoint' => $faker->url,
+        );
+        $opts = array_merge($parameter, $defaultOptions);
+
+        $urlInstance = new Url();
+        $url = $urlInstance->buildURL($opts);
+
+        $url_components = parse_url($url);
+        parse_str($url_components['query'], $params);
+
+        $this->assertNotEmpty($params['tr']);
+        $this->assertEquals('w-200,h-300', $params['tr']);
     }
 
     public function testUrlGenerationIfPathAndSrcEmpty()
@@ -82,16 +95,14 @@ final class UrlTest extends TestCase
         $opts = array_merge($parameter, $defaultOptions);
 
         $urlInstance = new Url();
-        $urlInstance->buildURL($opts);
-        $this->assertInstanceOf('\ImageKit\Url\Url', $urlInstance);
+        $url = $urlInstance->buildURL($opts);
+        $this->assertEquals('', $url);
     }
 
     public function testUrlGenerationUsingFullImageUrl()
     {
         $faker = Faker\Factory::create();
         $parameter = array(
-            // 'urlEndpoint' => "",
-            // 'path' => "",
             'transformation' => array(array('width' => '200', 'height' => '300'), array('rotation' => '90')),
             'src' => "https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg",
             'transformationPosition' => "path",
@@ -104,31 +115,44 @@ final class UrlTest extends TestCase
             'publicKey' => $faker->uuid,
             'privateKey' => $faker->uuid,
             'urlEndpoint' => $faker->url,
-            'transformationPosition' => "path"
         );
         $opts = array_merge($parameter, $defaultOptions);
 
         $urlInstance = new Url();
         $url = $urlInstance->buildURL($opts);
-        $this->assertEquals("https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg?tr=w-200%2Ch-300%3Art-90&sdk-version=php-".CURRENT_SDK_VERSION, $url);
+        $this->assertEquals(
+            'https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg?tr=w-200%2Ch-300%3Art-90&v=123123&sdk-version=php-' . CURRENT_SDK_VERSION,
+            $url
+        );
     }
 
 
     public function testSignedUrlGeneration()
     {
+        $faker = Faker\Factory::create();
         $parameter = array(
             'urlEndpoint' => "https://ik.imagekit.io/demo/pattern",
             'path' => "path/to/my/image.jpg",
             'transformation' => array(array('width' => '200', 'height' => '300'), array('rotation' => '90')),
-            'src' => "https://ik.imagekit.io/demo/pattern/path/to/my/image.jpg",
             'transformationPosition' => "path",
             'queryParameters' => array('v' => '123123'),
             'signed' => true,
             'expireSeconds' => 300,
         );
-        $urlOptions = new Url();
-        $this->assertInstanceOf('\ImageKit\Url\Url', $urlOptions);
+
+        $defaultOptions = array(
+            'publicKey' => $faker->uuid,
+            'privateKey' => $faker->uuid,
+            'urlEndpoint' => $faker->url,
+        );
+        $opts = array_merge($parameter, $defaultOptions);
+
+        $urlInstance = new Url();
+        $url = $urlInstance->buildURL($opts);
+
+        $url_components = parse_url($url);
+        parse_str($url_components['query'], $params);
+
+        $this->assertNotEmpty($params['ik-s']);
     }
-
-
 }

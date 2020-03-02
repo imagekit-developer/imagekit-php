@@ -1,4 +1,5 @@
 <?php
+
 namespace ImageKit\Tests\ImageKit\Signature;
 
 use ImageKit\Signature\Signature;
@@ -10,10 +11,6 @@ class SignatureTest  extends TestCase
 
     public function testGetAuthenticationParameters()
     {
-        $faker = Faker\Factory::create();
-        $token = "token";
-        $expire = "1582269249";
-
         $defaultOptions = array(
             'publicKey' => 'publicKey',
             'privateKey' => 'privateKey',
@@ -21,14 +18,16 @@ class SignatureTest  extends TestCase
             'transformationPosition' => "path"
         );
 
-        $signature = new Signature();
-        $response = $signature->getAuthenticationParameters($token, $expire, $defaultOptions );
+        $token = "token";
+        $expire = "1582269249";
+        $signature =   hash_hmac('sha1', $token . $expire, $defaultOptions['privateKey']);
+
+        $signatureInstance = new Signature();
+        $response = $signatureInstance->getAuthenticationParameters($token, $expire, $defaultOptions);
         $this->assertEquals(array(
             "token" => $token,
             "expire" => $expire,
-            "signature" =>"e71bcd6031016b060d349d212e23e85c791decdd",
+            "signature" => $signature,
         ), $response);
-
-
     }
 }

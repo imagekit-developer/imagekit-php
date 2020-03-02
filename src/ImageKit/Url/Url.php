@@ -1,5 +1,7 @@
 <?php
+
 namespace ImageKit\Url;
+
 include_once __DIR__ . "/../Utils/transformation.php";
 $composer = json_decode(
     file_get_contents(__DIR__ . "/../../../composer.json"),
@@ -211,6 +213,13 @@ class Url
         }
         return $str;
     }
+    private function removeLeadingSlash($str)
+    {
+        if (is_string($str) and strlen($str) > 0 and $str[0] == "/") {
+            $str = substr($str, 1, -1);
+        }
+        return $str;
+    }
     private function getSignatureTimestamp($expireSeconds)
     {
         if (empty($expireSeconds)) {
@@ -228,7 +237,7 @@ class Url
         if (empty($options['privateKey']) or empty($options['url']) or empty($options['urlEndpoint'])) {
             return "";
         } else {
-            $data = str_replace($options['urlEndpoint'], '', $options['url']) . $options['expiryTimestamp'];
+            $data = $this->removeLeadingSlash(str_replace($options['urlEndpoint'], '', $options['url']) . $options['expiryTimestamp']);
             return hash_hmac('sha1', $data, $options['privateKey']);
         }
     }

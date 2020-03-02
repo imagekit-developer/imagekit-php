@@ -428,8 +428,6 @@ $imageKit->uploadFiles(array(
 If the upload succeed, `error` will be `null` and the `result` will be the same as what is received from ImageKit's servers.
 If the upload fails, `error` will be the same as what is received from ImageKit's servers and the `result` will be null.
 
-
-
 ## File Management
 
 The SDK provides a simple interface for all the [media APIs mentioned here](https://docs.imagekit.io/api-reference/media-api) to manage your files. You can use a callback function with all API interfaces. The first argument of the callback function is the error and the second is the result of the API call. Error will be `null` if the API succeeds.
@@ -578,6 +576,14 @@ For any feedback or to report any issues or general implementation support pleas
 
 -   [Documentation](https://docs.imagekit.io)
 -   [Main website](https://imagekit.io)
+
+## Development
+
+To run test cases
+
+```
+vendor/bin/phpunit
+```
 
 ## License
 

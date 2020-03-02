@@ -129,13 +129,21 @@ class Url
                     TIMESTAMP_PARAMETER => $expiryTimestamp
                 );
                 $timestampParameterString = http_build_query($timestampParameter);
-                $urlObject->search .= "&" . $timestampParameterString;
+                if ($urlObject->search === '') {
+                    $urlObject->search .= $timestampParameterString;
+                } else {
+                    $urlObject->search .= "&" . $timestampParameterString;
+                }
             }
             $signatureParameter = array(
                 SIGNATURE_PARAMETER => $urlSignature
             );
             $signatureParameterString = http_build_query($signatureParameter);
-            $urlObject->search .= "&" . $signatureParameterString;
+            if ($urlObject->search === '') {
+                $urlObject->search .= $signatureParameterString;
+            } else {
+                $urlObject->search .= "&" . $signatureParameterString;
+            }
         }
         $urlObjectArray = json_decode(json_encode($urlObject), true);
         return $this->unparsed_url($urlObjectArray);
@@ -154,7 +162,7 @@ class Url
             (strlen($host) > 0 ? "//$host" : '') .
             (strlen($pathname) > 0 ? "$pathname" : '') .
             (strlen($search) > 0 ? "?$search" : '') .
-            (strlen($search) > 0 ? "&sdk-version=php-" . SDK_VERSION : "?sdk-version=php-" . SDK_VERSION);
+            (strlen($search) > 0 ? "&ik-sdk-version=php-" . SDK_VERSION : "?ik-sdk-version=php-" . SDK_VERSION);
         return $url;
     }
     private function constructTransformationString($transformation)

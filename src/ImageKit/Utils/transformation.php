@@ -24,7 +24,13 @@ function getTransformKey($transformation)
 
     $supportedTransforms = getSupportedTransformations();
 
-    $res = $supportedTransforms->$transformation;
+    $res = "";
+    if (isset($supportedTransforms->$transformation)) {
+        $res = $supportedTransforms->$transformation;
+    } else {
+        $res = $transformation;
+    }
+
     return $res;
 }
 

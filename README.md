@@ -137,7 +137,7 @@ $imageURL = $imageKit->url(array(
 https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg?tr=h-300%2Cw-400%3Art-90
 ```
 
-**2. Sharpening and contrast transforms and a progressive JPG image**
+**2. Sharpening and contrast transforms with a progressive JPG image**
 
 There are some transforms like [Sharpening](https://docs.imagekit.io/features/image-transformations/image-enhancement-and-color-manipulation) that can be added to the URL with or without any other value. To use such transforms without specifying a value, specify the value as "-" in the transformation object, otherwise, specify the value that you want to be added to this transformation.
 
@@ -147,7 +147,7 @@ $imageURL = $imageKit->url(array(
     "transformation" => array(
         array(
             "format" => "jpg",
-            "progressive" => "true",
+            "progressive" => true,
             "effectSharpen" => "-",
             "effectContrast" => "1"
         )
@@ -245,7 +245,7 @@ $imageKit->uploadFiles(array(
     "file" => "your_file",
     "fileName" => "your_file_name.jpg",
     "useUniqueFileName" => false,
-    "tags" => ["tag1","tag2"],
+    "tags" => array("tag1","tag2"),
     "folder" => "images/folder/",
     "isPrivateFile" => false,
     "customCoordinates" => "10,10,100,100",
@@ -474,7 +474,7 @@ $imageKit->getFileMetadataFromRemoteURL("imagekit_remote_url")
 Update parameters associated with the file as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/update-file-details). The first argument to the `updateFileDetails` method is the file ID and the second argument is an object with the parameters to be updated.
 
 ```
-$imageKit->updateFileDetails("file_id", array("tags" => ['image_tag']));
+$imageKit->updateFileDetails("file_id", array("tags" => array("image_tag")));
 ```
 
 **6. Delete File**
@@ -491,7 +491,7 @@ Deletes multiple files and all their transformations as per the [API documentati
 
 ```
 $imageKit->bulkFileDeleteByIds(array(
-    "fileIds" => ["file_id_1", "file_id_2", ...]
+    "fileIds" => array("file_id_1", "file_id_2", ...)
 ));
 ```
 
@@ -580,10 +580,6 @@ For any feedback or to report any issues or general implementation support pleas
 ## Development
 
 To run test cases
-
-```
-vendor/bin/phpunit
-```
 
 ## License
 

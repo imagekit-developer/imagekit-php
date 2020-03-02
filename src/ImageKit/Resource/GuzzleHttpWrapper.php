@@ -36,6 +36,11 @@ class GuzzleHttpWrapper implements HttpRequest
         $this->datas = array_filter($datas);
     }
 
+    public function getDatas()
+    {
+        return $this->datas;
+    }
+
     public function setHeaders(array $headers)
     {
         $this->headers = $headers;

@@ -1,4 +1,5 @@
 <?php
+
 namespace ImageKit\Tests\ImageKit\File;
 
 include_once __DIR__ . '/../../../src/ImageKit/Utils/transformation.php';
@@ -75,14 +76,24 @@ final class FileTest extends TestCase
         $response = $listFiles->listFiles($parameters, $stub);
 
         $el = get_object_vars($response->success[0]);
-        $this->assertEquals("5de4fb65c851e55df73abe8d", $el['fileId']);
+        $this->assertEquals(array(
+            'type' => 'file',
+            'name' => 'default-image.jpg',
+            'fileId' => '5de4fb65c851e55df73abe8d',
+            'tags' => null,
+            'customCoordinates' => null,
+            'isPrivateFile' => false,
+            'url' => 'https://ik.imagekit.io/ot2cky3ujwa/default-image.jpg',
+            'thumbnail' => 'https://ik.imagekit.io/ot2cky3ujwa/tr:n-media_library_thumbnail/default-image.jpg',
+            'fileType' => 'image',
+            'filePath' => '/default-image.jpg',
+        ), $el);
     }
 
     public function testListFilesWithValidParameters()
     {
         $parameters = array(
-            "tags" => array(),
-            "sa",
+            "tags" => array()
         );
 
         $mockBodyResponse = Stream::factory(json_encode(array(
@@ -108,13 +119,23 @@ final class FileTest extends TestCase
         $response = $listFiles->listFiles($parameters, $stub);
 
         $el = get_object_vars($response->success[0]);
-        $this->assertEquals("5de4fb65c851e55df73abe8d", $el['fileId']);
+        $this->assertEquals(array(
+            'type' => 'file',
+            'name' => 'default-image.jpg',
+            'fileId' => '5de4fb65c851e55df73abe8d',
+            'tags' => null,
+            'customCoordinates' => null,
+            'isPrivateFile' => false,
+            'url' => 'https://ik.imagekit.io/ot2cky3ujwa/default-image.jpg',
+            'thumbnail' => 'https://ik.imagekit.io/ot2cky3ujwa/tr:n-media_library_thumbnail/default-image.jpg',
+            'fileType' => 'image',
+            'filePath' => '/default-image.jpg',
+        ), $el);
     }
 
     // Get details
     public function testGetDetailsWithEmptyFileId()
     {
-        $faker = Faker\Factory::create();
         $the_file_id = "";
 
         $mockBodyResponse = Stream::factory(json_encode(array(
@@ -171,14 +192,24 @@ final class FileTest extends TestCase
         $response = $getDetails->getFileDetails($the_file_id, $stub);
 
         $el = get_object_vars($response->success[0]);
-        $this->assertEquals("5df36759adf3f523d81dd94f", $el['fileId']);
+        $this->assertEquals(array(
+            "type" => "file",
+            "name" => "Kishan_2ZgC5VGZI",
+            "fileId" => "5df36759adf3f523d81dd94f",
+            "tags" => null,
+            "customCoordinates" => null,
+            "isPrivateFile" => false,
+            "url" => "https://ik.imagekit.io/ot2cky3ujwa/Kishan_2ZgC5VGZI",
+            "thumbnail" => "https://ik.imagekit.io/ot2cky3ujwa/tr:n-media_library_thumbnail/Kishan_2ZgC5VGZI",
+            "fileType" => "image",
+            "filePath" => "/Kishan_2ZgC5VGZI",
+        ), $el);
     }
 
 
     // Get MetaData
     public function testGetFileMetaDataDetailsWithEmptyFileId()
     {
-        $faker = Faker\Factory::create();
         $the_file_id = "";
 
         //5df36759adf3f523d81dd94f
@@ -208,7 +239,8 @@ final class FileTest extends TestCase
                         "ModifyDate" => "2019=>05=>25 10=>16=>49",
                         "Artist" => "busbus",
                         "Copyright" => "Rawpixel Ltd.",
-                        "ExifOffset" => 356),
+                        "ExifOffset" => 356
+                    ),
                     "thumbnail" => array(
                         "Compression" => 6,
                         "XResolution" => 72,
@@ -221,7 +253,8 @@ final class FileTest extends TestCase
                         "ExifVersion" => "0221",
                         "ColorSpace" => 65535,
                         "ExifImageWidth" => 3948,
-                        "ExifImageHeight" => 3214),
+                        "ExifImageHeight" => 3214
+                    ),
                     "gps" => array(),
                     "interoperability" => array(),
                     "makernote" => array(),
@@ -243,7 +276,6 @@ final class FileTest extends TestCase
 
     public function testGetFileMetaDataDetails()
     {
-        $faker = Faker\Factory::create();
         $the_file_id = "5df36759adf3f523d81dd94f";
 
         $mockBodyResponse = Stream::factory(json_encode(array(
@@ -272,7 +304,8 @@ final class FileTest extends TestCase
                         "ModifyDate" => "2019=>05=>25 10=>16=>49",
                         "Artist" => "busbus",
                         "Copyright" => "Rawpixel Ltd.",
-                        "ExifOffset" => 356),
+                        "ExifOffset" => 356
+                    ),
                     "thumbnail" => array(
                         "Compression" => 6,
                         "XResolution" => 72,
@@ -285,7 +318,8 @@ final class FileTest extends TestCase
                         "ExifVersion" => "0221",
                         "ColorSpace" => 65535,
                         "ExifImageWidth" => 3948,
-                        "ExifImageHeight" => 3214),
+                        "ExifImageHeight" => 3214
+                    ),
                     "gps" => array(),
                     "interoperability" => array(),
                     "makernote" => array(),
@@ -302,7 +336,7 @@ final class FileTest extends TestCase
 
         $el = get_object_vars($response->success[0]);
         $this->assertNull($response->err);
-        assert:$this->assertEquals(207097, $el['size']);
+        assert: $this->assertEquals(207097, $el['size']);
     }
 
     // Delete Files
@@ -373,7 +407,7 @@ final class FileTest extends TestCase
 
         $mockBodyResponse = Stream::factory(json_encode(array(
             array(
-                "successfullyDeletedFileIds"=> $fileIds,
+                "successfullyDeletedFileIds" => $fileIds,
             ),
         )));
 
@@ -396,21 +430,21 @@ final class FileTest extends TestCase
         $the_file_id = "5df36759adf3f523d81dd94f";
 
         $updateData = array(
-            "customCoordinates"=>"10,10,100,100",
-            "tags"=>array("tag1","tag2")
+            "customCoordinates" => "10,10,100,100",
+            "tags" => array("tag1", "tag2")
         );
 
         $mockBodyResponse = Stream::factory(json_encode(array(
-                "fileId" => "598821f949c0a938d57563bd",
-                "type"=> "file",
-                "name"=> "file1.jpg",
-                "filePath"=> "/images/products/file1.jpg",
-                "tags"=> ["t-shirt","round-neck","sale2019"],
-                "isPrivateFile" => false,
-                "customCoordinates" => null,
-                "url"=> "https://ik.imagekit.io/your_imagekit_id/images/products/file1.jpg",
-                "thumbnail"=> "https://ik.imagekit.io/your_imagekit_id/tr:n-media_library_thumbnail/images/products/file1.jpg",
-                "fileType"=> "image"
+            "fileId" => "598821f949c0a938d57563bd",
+            "type" => "file",
+            "name" => "file1.jpg",
+            "filePath" => "/images/products/file1.jpg",
+            "tags" => ["t-shirt", "round-neck", "sale2019"],
+            "isPrivateFile" => false,
+            "customCoordinates" => null,
+            "url" => "https://ik.imagekit.io/your_imagekit_id/images/products/file1.jpg",
+            "thumbnail" => "https://ik.imagekit.io/your_imagekit_id/tr:n-media_library_thumbnail/images/products/file1.jpg",
+            "fileType" => "image"
         )));
 
         $stub = $this->createMock(GuzzleHttpWrapper::class);
@@ -420,33 +454,43 @@ final class FileTest extends TestCase
         $updateDetails = new File();
         $response = $updateDetails->updateFileDetails($the_file_id, $updateData, $stub);
 
+        $el = get_object_vars($response->success);
         $this->assertNull($response->err);
-        $this->assertEquals("file1.jpg", $response->success->name);
+        $this->assertEquals(array(
+            "fileId" => "598821f949c0a938d57563bd",
+            "type" => "file",
+            "name" => "file1.jpg",
+            "filePath" => "/images/products/file1.jpg",
+            "tags" => ["t-shirt", "round-neck", "sale2019"],
+            "isPrivateFile" => false,
+            "customCoordinates" => null,
+            "url" => "https://ik.imagekit.io/your_imagekit_id/images/products/file1.jpg",
+            "thumbnail" => "https://ik.imagekit.io/your_imagekit_id/tr:n-media_library_thumbnail/images/products/file1.jpg",
+            "fileType" => "image"
+        ), $el);
     }
 
     public function testUpdateFileDetailsWhenFileIDParameterIsNotPassed()
     {
-        $faker = Faker\Factory::create();
-
         $the_file_id = "";
 
         $updateData = array(
-            "customCoordinates"=>"10,10,100,100",
-            "tags"=>array("tag1","tag2")
+            "customCoordinates" => "10,10,100,100",
+            "tags" => array("tag1", "tag2")
         );
 
         $mockBodyResponse = Stream::factory(json_encode(array(
             array(
                 "fileId" => "598821f949c0a938d57563bd",
-                "type"=> "file",
-                "name"=> "file1.jpg",
-                "filePath"=> "/images/products/file1.jpg",
-                "tags"=> ["t-shirt","round-neck","sale2019"],
+                "type" => "file",
+                "name" => "file1.jpg",
+                "filePath" => "/images/products/file1.jpg",
+                "tags" => ["t-shirt", "round-neck", "sale2019"],
                 "isPrivateFile" => false,
                 "customCoordinates" => null,
-                "url"=> "https://ik.imagekit.io/your_imagekit_id/images/products/file1.jpg",
-                "thumbnail"=> "https://ik.imagekit.io/your_imagekit_id/tr:n-media_library_thumbnail/images/products/file1.jpg",
-                "fileType"=> "image"
+                "url" => "https://ik.imagekit.io/your_imagekit_id/images/products/file1.jpg",
+                "thumbnail" => "https://ik.imagekit.io/your_imagekit_id/tr:n-media_library_thumbnail/images/products/file1.jpg",
+                "fileType" => "image"
             ),
         )));
 
@@ -459,7 +503,6 @@ final class FileTest extends TestCase
 
         $this->assertNull($response->success);
         $this->assertEquals("Missing File ID parameter for this request", $response->err->message);
-
     }
 
     public function testUpdateFileDetailsWhenUpdateDataIsNotAnArray()
@@ -474,15 +517,15 @@ final class FileTest extends TestCase
         $mockBodyResponse = Stream::factory(json_encode(array(
             array(
                 "fileId" => "598821f949c0a938d57563bd",
-                "type"=> "file",
-                "name"=> "file1.jpg",
-                "filePath"=> "/images/products/file1.jpg",
-                "tags"=> ["t-shirt","round-neck","sale2019"],
+                "type" => "file",
+                "name" => "file1.jpg",
+                "filePath" => "/images/products/file1.jpg",
+                "tags" => ["t-shirt", "round-neck", "sale2019"],
                 "isPrivateFile" => false,
                 "customCoordinates" => null,
-                "url"=> "https://ik.imagekit.io/your_imagekit_id/images/products/file1.jpg",
-                "thumbnail"=> "https://ik.imagekit.io/your_imagekit_id/tr:n-media_library_thumbnail/images/products/file1.jpg",
-                "fileType"=> "image"
+                "url" => "https://ik.imagekit.io/your_imagekit_id/images/products/file1.jpg",
+                "thumbnail" => "https://ik.imagekit.io/your_imagekit_id/tr:n-media_library_thumbnail/images/products/file1.jpg",
+                "fileType" => "image"
             ),
         )));
 
@@ -504,22 +547,22 @@ final class FileTest extends TestCase
         $the_file_id = "5df36759adf3f523d81dd94f";
 
         $updateData = array(
-            "customCoordinates"=>"10,10,100,100",
-            "tags"=>""
+            "customCoordinates" => "10,10,100,100",
+            "tags" => ""
         );
 
         $mockBodyResponse = Stream::factory(json_encode(array(
             array(
                 "fileId" => "598821f949c0a938d57563bd",
-                "type"=> "file",
-                "name"=> "file1.jpg",
-                "filePath"=> "/images/products/file1.jpg",
-                "tags"=> null,
+                "type" => "file",
+                "name" => "file1.jpg",
+                "filePath" => "/images/products/file1.jpg",
+                "tags" => null,
                 "isPrivateFile" => false,
                 "customCoordinates" => null,
-                "url"=> "https://ik.imagekit.io/your_imagekit_id/images/products/file1.jpg",
-                "thumbnail"=> "https://ik.imagekit.io/your_imagekit_id/tr:n-media_library_thumbnail/images/products/file1.jpg",
-                "fileType"=> "image"
+                "url" => "https://ik.imagekit.io/your_imagekit_id/images/products/file1.jpg",
+                "thumbnail" => "https://ik.imagekit.io/your_imagekit_id/tr:n-media_library_thumbnail/images/products/file1.jpg",
+                "fileType" => "image"
             ),
         )));
 
@@ -541,21 +584,22 @@ final class FileTest extends TestCase
         $the_file_id = "5df36759adf3f523d81dd94f";
 
         $updateData = array(
-            "customCoordinates"=>[],
-            "tags"=>array("tag1","tag2")
+            "customCoordinates" => [],
+            "tags" => array("tag1", "tag2")
         );
 
-        $mockBodyResponse = Stream::factory(json_encode(array(
+        $mockBodyResponse = Stream::factory(
+            json_encode(array(
                 "fileId" => "598821f949c0a938d57563bd",
-                "type"=> "file",
-                "name"=> "file1.jpg",
-                "filePath"=> "/images/products/file1.jpg",
-                "tags"=> null,
+                "type" => "file",
+                "name" => "file1.jpg",
+                "filePath" => "/images/products/file1.jpg",
+                "tags" => null,
                 "isPrivateFile" => false,
                 "customCoordinates" => null,
-                "url"=> "https://ik.imagekit.io/your_imagekit_id/images/products/file1.jpg",
-                "thumbnail"=> "https://ik.imagekit.io/your_imagekit_id/tr:n-media_library_thumbnail/images/products/file1.jpg",
-                "fileType"=> "image"
+                "url" => "https://ik.imagekit.io/your_imagekit_id/images/products/file1.jpg",
+                "thumbnail" => "https://ik.imagekit.io/your_imagekit_id/tr:n-media_library_thumbnail/images/products/file1.jpg",
+                "fileType" => "image"
             ))
         );
 
@@ -592,7 +636,6 @@ final class FileTest extends TestCase
 
         $this->assertNull($response->success);
         $this->assertEquals("Missing URL parameter for this request", $response->err->message);
-
     }
 
     public function testPurgeCacheApi()
@@ -626,7 +669,7 @@ final class FileTest extends TestCase
 
         $mockBodyResponse = Stream::factory(json_encode(array(
             array(
-                    "status" => "Pending"
+                "status" => "Pending"
             ),
         )));
 
@@ -643,12 +686,11 @@ final class FileTest extends TestCase
 
     public function testPurgeFileCacheApiStatus()
     {
-        $faker = Faker\Factory::create();
         $requestId = "598821f949c0a938d57563bd";
 
         $mockBodyResponse = Stream::factory(json_encode(array(
             array(
-                    "status" => "Pending"
+                "status" => "Pending"
             ),
         )));
 
@@ -681,7 +723,8 @@ final class FileTest extends TestCase
         $this->assertEquals("Your request is missing the url query paramater.", $response->err->message);
     }
 
-    public function testGetFileMetadataFromRemoteURLApiWhenSuccessful(){
+    public function testGetFileMetadataFromRemoteURLApiWhenSuccessful()
+    {
         $faker = Faker\Factory::create();
         $url = $faker->url;
         $phash = $faker->ean13;

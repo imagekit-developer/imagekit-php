@@ -240,12 +240,12 @@ class Url
         $currentTimestamp = time();
         return $currentTimestamp + $sec;
     }
-    private function getSignature($options)
+    public function getSignature($options)
     {
         if (empty($options['privateKey']) or empty($options['url']) or empty($options['urlEndpoint'])) {
             return "";
         } else {
-            $data = $this->removeLeadingSlash(str_replace($options['urlEndpoint'], '', $options['url']) . $options['expiryTimestamp']);
+            $data = (str_replace($options['urlEndpoint'], '', $options['url']) . $options['expiryTimestamp']);
             return hash_hmac('sha1', $data, $options['privateKey']);
         }
     }

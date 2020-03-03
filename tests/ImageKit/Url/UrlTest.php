@@ -195,7 +195,7 @@ final class UrlTest extends TestCase
             'privateKey' => $faker->uuid,
             'urlEndpoint' => $faker->url,
         );
-        $opts = array_merge($parameter, $defaultOptions);
+        $opts = array_merge($defaultOptions, $parameter);
 
         $urlInstance = new Url();
         $url = $urlInstance->buildURL($opts);
@@ -531,5 +531,20 @@ final class UrlTest extends TestCase
 
         $this->assertNotContains('?&', $url);
         $this->assertNotEmpty($params['ik-t']);
+    }
+
+    public function testGeneratedSignature()
+    {
+        $opts = array(
+            'privateKey' => 'private_key_test',
+            'url' => 'https://test-domain.com/test-endpoint/tr:w-100/test-signed-url.png',
+            'urlEndpoint' => 'https://test-domain.com/test-endpoint',
+            'expiryTimestamp' => '9999999999'
+        );
+
+        $urlInstance = new Url();
+        $signature = $urlInstance->getSignature($opts);
+
+        $this->assertEquals('eaf466ccbf4d2573c71bca2ab7c4c2f2f47ddc1f', $signature);
     }
 }

@@ -9,7 +9,7 @@ use ImageKit\Upload\Upload;
 use PHPUnit\Framework\TestCase;
 use ImageKit\Resource\GuzzleHttpWrapper;
 use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\Stream\Stream;
+use GuzzleHttp\Psr7;
 use Faker;
 
 final class UploadTest extends TestCase
@@ -22,8 +22,7 @@ final class UploadTest extends TestCase
             'file' => $faker->imageUrl($width = 640, $height = 480),
         );
 
-
-        $mockBodyResponse = Stream::factory(\json_encode(array(
+        $mockBodyResponse = Psr7\stream_for(\json_encode(array(
             "width" => 1000
         )));
 
@@ -47,7 +46,7 @@ final class UploadTest extends TestCase
         );
 
 
-        $mockBodyResponse = Stream::factory(\json_encode(array(
+        $mockBodyResponse = Psr7\stream_for(\json_encode(array(
             "width" => 1000
         )));
 
@@ -68,7 +67,7 @@ final class UploadTest extends TestCase
 
         $uploadOptions =  [];
 
-        $mockBodyResponse = Stream::factory(\json_encode(array(
+        $mockBodyResponse = Psr7\stream_for(\json_encode(array(
             "width" => 1000
         )));
 
@@ -100,7 +99,7 @@ final class UploadTest extends TestCase
             'transformationPosition' => $faker->word
         );
 
-        $mockBodyResponse = Stream::factory(\json_encode(array(
+        $mockBodyResponse = Psr7\stream_for(\json_encode(array(
             "width" => 1000
         )));
 
@@ -147,7 +146,7 @@ final class UploadTest extends TestCase
             'transformationPosition' => $faker->word
         );
 
-        $mockBodyResponse = Stream::factory(\json_encode(array(
+        $mockBodyResponse = Psr7\stream_for(\json_encode(array(
             "name" => $fileName,
             "tags" => $tags,
             "customCoordinates" => $customCoordinates,

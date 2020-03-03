@@ -7,7 +7,7 @@ include_once __DIR__ . '/../../../src/ImageKit/Utils/authorization.php';
 
 use Faker;
 use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\Stream\Stream;
+use GuzzleHttp\Psr7;
 
 use ImageKit\File\File;
 use ImageKit\Resource\GuzzleHttpWrapper;
@@ -22,7 +22,7 @@ final class FileTest extends TestCase
     {
         $parameters = "";
 
-        $mockBodyResponse = Stream::factory(json_encode(array(
+        $mockBodyResponse = Psr7\stream_for(json_encode(array(
             array(
                 'type' => 'file',
                 'name' => 'default-image.jpg',
@@ -53,7 +53,7 @@ final class FileTest extends TestCase
 
         $parameters = array();
 
-        $mockBodyResponse = Stream::factory(json_encode(array(
+        $mockBodyResponse = Psr7\stream_for(json_encode(array(
             array(
                 'type' => 'file',
                 'name' => 'default-image.jpg',
@@ -96,7 +96,7 @@ final class FileTest extends TestCase
             "tags" => array()
         );
 
-        $mockBodyResponse = Stream::factory(json_encode(array(
+        $mockBodyResponse = Psr7\stream_for(json_encode(array(
             array(
                 'type' => 'file',
                 'name' => 'default-image.jpg',
@@ -138,7 +138,7 @@ final class FileTest extends TestCase
     {
         $the_file_id = "";
 
-        $mockBodyResponse = Stream::factory(json_encode(array(
+        $mockBodyResponse = Psr7\stream_for(json_encode(array(
             array(
                 "type" => "file",
                 "name" => "Kishan_2ZgC5VGZI",
@@ -169,7 +169,7 @@ final class FileTest extends TestCase
         $faker = Faker\Factory::create();
         $the_file_id = "5df36759adf3f523d81dd94f";
 
-        $mockBodyResponse = Stream::factory(json_encode(array(
+        $mockBodyResponse = Psr7\stream_for(json_encode(array(
             array(
                 "type" => "file",
                 "name" => "Kishan_2ZgC5VGZI",
@@ -213,7 +213,7 @@ final class FileTest extends TestCase
         $the_file_id = "";
 
         //5df36759adf3f523d81dd94f
-        $mockBodyResponse = Stream::factory(json_encode(array(
+        $mockBodyResponse = Psr7\stream_for(json_encode(array(
             array(
                 "height" => 3214,
                 "width" => 3948,
@@ -278,7 +278,7 @@ final class FileTest extends TestCase
     {
         $the_file_id = "5df36759adf3f523d81dd94f";
 
-        $mockBodyResponse = Stream::factory(json_encode(array(
+        $mockBodyResponse = Psr7\stream_for(json_encode(array(
             array(
                 "height" => 3214,
                 "width" => 3948,
@@ -346,7 +346,7 @@ final class FileTest extends TestCase
 
         $the_file_id = "";
 
-        $mockBodyResponse = Stream::factory("");
+        $mockBodyResponse = Psr7\stream_for("");
 
         $stub = $this->createMock(GuzzleHttpWrapper::class);
         $stub->method('setDatas');
@@ -364,7 +364,7 @@ final class FileTest extends TestCase
         $faker = Faker\Factory::create();
         $the_file_id = "5df36759adf3f523d81dd94f";
 
-        $mockBodyResponse = Stream::factory();
+        $mockBodyResponse = Psr7\stream_for();
 
         $stub = $this->createMock(GuzzleHttpWrapper::class);
         $stub->method('setDatas');
@@ -383,7 +383,7 @@ final class FileTest extends TestCase
 
         $options = "";
 
-        $mockBodyResponse = Stream::factory("");
+        $mockBodyResponse = Psr7\stream_for("");
 
         $stub = $this->createMock(GuzzleHttpWrapper::class);
         $stub->method('setDatas');
@@ -405,7 +405,7 @@ final class FileTest extends TestCase
             "fileIds" => $fileIds
         );
 
-        $mockBodyResponse = Stream::factory(json_encode(array(
+        $mockBodyResponse = Psr7\stream_for(json_encode(array(
             array(
                 "successfullyDeletedFileIds" => $fileIds,
             ),
@@ -434,7 +434,7 @@ final class FileTest extends TestCase
             "tags" => array("tag1", "tag2")
         );
 
-        $mockBodyResponse = Stream::factory(json_encode(array(
+        $mockBodyResponse = Psr7\stream_for(json_encode(array(
             "fileId" => "598821f949c0a938d57563bd",
             "type" => "file",
             "name" => "file1.jpg",
@@ -479,7 +479,7 @@ final class FileTest extends TestCase
             "tags" => array("tag1", "tag2")
         );
 
-        $mockBodyResponse = Stream::factory(json_encode(array(
+        $mockBodyResponse = Psr7\stream_for(json_encode(array(
             array(
                 "fileId" => "598821f949c0a938d57563bd",
                 "type" => "file",
@@ -514,7 +514,7 @@ final class FileTest extends TestCase
 
         $updateData = $faker->streetName;
 
-        $mockBodyResponse = Stream::factory(json_encode(array(
+        $mockBodyResponse = Psr7\stream_for(json_encode(array(
             array(
                 "fileId" => "598821f949c0a938d57563bd",
                 "type" => "file",
@@ -551,7 +551,7 @@ final class FileTest extends TestCase
             "tags" => ""
         );
 
-        $mockBodyResponse = Stream::factory(json_encode(array(
+        $mockBodyResponse = Psr7\stream_for(json_encode(array(
             array(
                 "fileId" => "598821f949c0a938d57563bd",
                 "type" => "file",
@@ -588,7 +588,7 @@ final class FileTest extends TestCase
             "tags" => array("tag1", "tag2")
         );
 
-        $mockBodyResponse = Stream::factory(
+        $mockBodyResponse = Psr7\stream_for(
             json_encode(array(
                 "fileId" => "598821f949c0a938d57563bd",
                 "type" => "file",
@@ -621,7 +621,7 @@ final class FileTest extends TestCase
 
         $urlParam = "";
 
-        $mockBodyResponse = Stream::factory(json_encode(array(
+        $mockBodyResponse = Psr7\stream_for(json_encode(array(
             array(
                 "requestId" => "598821f949c0a938d57563bd",
             ),
@@ -644,7 +644,7 @@ final class FileTest extends TestCase
 
         $urlParam = "https://ik.imagekit.io/ot2cky3ujwa/default-image.jpg";
 
-        $mockBodyResponse = Stream::factory(json_encode(array(
+        $mockBodyResponse = Psr7\stream_for(json_encode(array(
             array(
                 "requestId" => "598821f949c0a938d57563bd",
             ),
@@ -667,7 +667,7 @@ final class FileTest extends TestCase
         $faker = Faker\Factory::create();
         $requestId = "";
 
-        $mockBodyResponse = Stream::factory(json_encode(array(
+        $mockBodyResponse = Psr7\stream_for(json_encode(array(
             array(
                 "status" => "Pending"
             ),
@@ -688,7 +688,7 @@ final class FileTest extends TestCase
     {
         $requestId = "598821f949c0a938d57563bd";
 
-        $mockBodyResponse = Stream::factory(json_encode(array(
+        $mockBodyResponse = Psr7\stream_for(json_encode(array(
             array(
                 "status" => "Pending"
             ),
@@ -709,7 +709,7 @@ final class FileTest extends TestCase
     {
         $url = "";
 
-        $mockBodyResponse = Stream::factory(json_encode(array(
+        $mockBodyResponse = Psr7\stream_for(json_encode(array(
             array("pHash" => "f06830ca9f1e3e90"),
         )));
 
@@ -729,7 +729,7 @@ final class FileTest extends TestCase
         $url = $faker->url;
         $phash = $faker->ean13;
 
-        $mockBodyResponse = Stream::factory(json_encode(array(
+        $mockBodyResponse = Psr7\stream_for(json_encode(array(
             array("pHash" => $phash),
         )));
 

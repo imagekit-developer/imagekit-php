@@ -214,6 +214,13 @@ class Url
         }
         return $str;
     }
+    private function addTrailingSlash($str)
+    {
+        if (is_string($str) and strlen($str) > 0 and substr($str, -1) != "/") {
+            $str = $str . "/";
+        }
+        return $str;
+    }
     private function removeTrailingSlash($str)
     {
         if (is_string($str) and strlen($str) > 0 and substr($str, -1) == "/") {
@@ -245,7 +252,7 @@ class Url
         if (empty($options['privateKey']) or empty($options['url']) or empty($options['urlEndpoint'])) {
             return "";
         } else {
-            $data = (str_replace($options['urlEndpoint'], '', $options['url']) . $options['expiryTimestamp']);
+            $data = (str_replace($this->addTrailingSlash($options['urlEndpoint']), '', $options['url']) . $options['expiryTimestamp']);
             return hash_hmac('sha1', $data, $options['privateKey']);
         }
     }

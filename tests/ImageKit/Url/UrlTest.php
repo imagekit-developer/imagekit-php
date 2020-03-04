@@ -545,6 +545,6 @@ final class UrlTest extends TestCase
         $urlInstance = new Url();
         $signature = $urlInstance->getSignature($opts);
 
-        $this->assertEquals('eaf466ccbf4d2573c71bca2ab7c4c2f2f47ddc1f', $signature);
+        $this->assertEquals('41b3075c40bc84147eb71b8b49ae7fbf349d0f00', $signature);
     }
 }

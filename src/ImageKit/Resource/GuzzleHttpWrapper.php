@@ -33,7 +33,13 @@ class GuzzleHttpWrapper implements HttpRequest
 
     public function setDatas(array $datas)
     {
-        $this->datas = array_filter($datas);
+        $this->datas = array_filter($datas, function ($var) {
+            if ($var === "" || $var === null || is_array($var) && count($var) === 0) {
+                return false;
+            }
+
+            return true;
+        });
     }
 
     public function getDatas()

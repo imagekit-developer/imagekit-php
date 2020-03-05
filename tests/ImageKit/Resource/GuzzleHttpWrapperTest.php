@@ -15,7 +15,10 @@ final class GuzzleHttpWrapperTest extends TestCase
       "param2" => "",
       "param3" => null,
       "param4" => [],
-      "param5" => array()
+      "param5" => array(),
+      "param6" => true,
+      "param7" => false,
+      "param8" => 0
     );
 
     $stub = $this->createMock(Client::class);
@@ -23,6 +26,6 @@ final class GuzzleHttpWrapperTest extends TestCase
     $resource = new GuzzleHttpWrapper($stub);
     $resource->setDatas($data);
 
-    $this->assertEquals(array("param1" => "Test"), $resource->getDatas());
+    $this->assertEquals(array("param1" => "Test",  "param6" => true, "param7" => false,  "param8" => 0), $resource->getDatas());
   }
 }

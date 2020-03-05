@@ -135,6 +135,7 @@ $uploadFile = $imageKit->uploadFiles(array(
     "file" => $encodedImageData,
     "fileName" => "sample",
     "tags" => array("abd", "def"),
+    "useUniqueFileName" => false,
     "customCoordinates" => implode(",", array("10", "10", "100", "100"))
 ));
 
@@ -148,6 +149,7 @@ $uploadFile = $imageKit->uploadFiles(array(
     "file" => fopen(__DIR__ . "/sample_image.jpg", "r"),
     "fileName" => "sample",
     "tags" => array("tag1", "tag2"),
+    "useUniqueFileName" => true,
     "customCoordinates" => implode(",", array("10", "10", "100", "100"))
 ));
 

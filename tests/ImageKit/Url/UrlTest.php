@@ -204,6 +204,7 @@ final class UrlTest extends TestCase
         parse_str($url_components['query'], $params);
 
         $this->assertNotEmpty($params['ik-s']);
+        $this->assertNotEmpty($params['ik-t']);
     }
 
     public function testUrlGenerationIfInitializationUrlEndpointIsOverriddenByNewUrlEndpoint()

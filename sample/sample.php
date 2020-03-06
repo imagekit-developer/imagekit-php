@@ -179,11 +179,11 @@ echo "\n\n-------------------------------------------------------------------\n\
 $uploadFile = $imageKit->uploadFiles(array(
     "file" => $sample_file_url,
     "fileName" => "testing",
-    "useUniqueFileName" => false,
+    "useUniqueFileName" => true,
     "tags" => array("tag1", "tag2"),
     "folder" => "sample",
     "isPrivateFile" => false,
-    "customCoordinates" => implode(",", array("15", "15", "100", "100")),
+    "customCoordinates" => "10,15,100,100",
     "responseFields" => implode(",", array("isPrivateFile", "customCoordinates")),
 ));
 

@@ -7,7 +7,7 @@ PHP SDK for [ImageKit](https://imagekit.io/) that implements the new APIs and in
 operations.
 
 ImageKit is a complete image optimization and transformation solution that comes with an
-[image CDN](https://imagekit.io/features/imagekit-infrastructure) and media storage. It can be integrated with your existing infrastructure - storage like AWS s3, web servers, your CDN, and custom domain names, allowing you to deliver optimize images in minutes with minimal code changes.
+[image CDN](https://imagekit.io/features/imagekit-infrastructure) and media storage. It can be integrated with your existing infrastructure - storage like AWS S3, web servers, your CDN, and custom domain names, allowing you to deliver optimize images in minutes with minimal code changes.
 
 Table of contents -
 

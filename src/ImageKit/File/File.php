@@ -17,6 +17,14 @@ class File
             return respond(true, ((object) unserialize(INVALID_LIST_FILES_OPTIONS)));
         }
 
+        if (isset($parameters['tags']) && is_array($parameters['tags'])) {
+            $parameters['tags'] = implode(",", $parameters['tags']);
+        }
+
+        if (isset($parameters['includeFolder']) && is_bool($parameters['includeFolder'])) {
+            $parameters['includeFolder'] = json_encode($parameters['includeFolder']);
+        }
+
         $resource->setDatas((array) $parameters);
         $res = $resource->get();
         $stream = $res->getBody();
@@ -138,7 +146,7 @@ class File
             return respond(true, ((object) unserialize(UPDATE_DATA_TAGS_INVALID)));
         }
 
-        if (isset($obj->customCoordinates) && ($obj->customCoordinates !== null) && ($obj->customCoordinates !== "undefined") && is_array($obj->customCoordinates) || ($obj->customCoordinates === "")) {
+        if (isset($obj->customCoordinates) && ($obj->customCoordinates !== null) && ($obj->customCoordinates !== "undefined") && is_array($obj->customCoordinates)) {
             return respond(true, ((object) unserialize(UPDATE_DATA_COORDS_INVALID)));
         }
 
@@ -164,11 +172,15 @@ class File
     // purgeCache File API
     public function purgeFileCacheApi($urlParam, $resource)
     {
-        if (!is_array($urlParam) || empty($urlParam)) {
+        if (empty($urlParam)) {
             return respond(true, ((object) unserialize(CACHE_PURGE_URL_MISSING)));
         }
 
-        $resource->setDatas((array) $urlParam);
+        $urlParamArray =  array(
+            "url" => $urlParam
+        );
+
+        $resource->setDatas((array) $urlParamArray);
         $res = $resource->post();
         $stream = $res->getBody();
         $content = $stream->getContents();

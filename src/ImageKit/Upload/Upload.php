@@ -23,6 +23,10 @@ class Upload
             return respond(true, ((object) unserialize(MISSING_UPLOAD_FILENAME_PARAMETER)));
         }
 
+        if (isset($opts->tags) && is_array($opts->tags)) {
+            $opts->tags = implode(",", $opts->tags);
+        }
+
         $resource->setDatas((array) $opts);
         $res = $resource->postMultipart();
 

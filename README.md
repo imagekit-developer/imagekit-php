@@ -6,10 +6,8 @@
 PHP SDK for [ImageKit](https://imagekit.io/) that implements the new APIs and interface for performing different file
 operations.
 
-ImageKit is a complete image optimization and transformation solution that comes with and
-[image CDN](https://imagekit.io/features/imagekit-infrastructure) and media storage. It can be integrated with your
-existing infrastructure - storages like AWS s3, web servers, your CDN and custom domain names, allowing you to deliver
-optimize images in minutes with minimal code changes.
+ImageKit is a complete image optimization and transformation solution that comes with an
+[image CDN](https://imagekit.io/features/imagekit-infrastructure) and media storage. It can be integrated with your existing infrastructure - storage like AWS S3, web servers, your CDN, and custom domain names, allowing you to deliver optimize images in minutes with minimal code changes.
 
 Table of contents -
 
@@ -19,6 +17,7 @@ Table of contents -
 -   [File Upload](#File-upload)
 -   [File Management](#File-management)
 -   [Utility Functions](#Utility-functions)
+-   [Sample Code Instruction](#Sample-Code-Instruction)
 -   [Support](#Support)
 -   [Links](#Links)
 
@@ -44,8 +43,7 @@ $imageKit = new ImageKit(
 
 ## Usage
 
-You can use this PHP SDK for 3 different kinds of methods - URL generation, file upload and file management.
-The usage of the SDK has been explained below
+You can use this PHP SDK for 3 different kinds of methods - URL generation, file upload, and file management. The usage of the SDK has been explained below
 
 ## URL generation
 
@@ -103,12 +101,12 @@ The `$imageKit->url()` method accepts the following parameters
 | Option                | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | :-------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | urlEndpoint           | Optional. The base URL to be appended before the path of the image. If not specified, the URL Endpoint specified at the time of SDK initialization is used. For example, https://ik.imagekit.io/your_imagekit_id/endpoint/                                                                                                                                                                                                                                                                                                                                                               |
-| path                  | Conditional. This is the path at which the image exists. For example, `/path/to/image.jpg`. Either the `path` or `src` parameter need to be specified for URL generation.                                                                                                                                                                                                                                                                                                                                                                                                                |
-| src                   | Conditional. This is the complete URL of an image already mapped to ImageKit. For example, `https://ik.imagekit.io/your_imagekit_id/endpoint/path/to/image.jpg`. Either the `path` or `src` parameter need to be specified for URL generation.                                                                                                                                                                                                                                                                                                                                           |
+| path                  | Conditional. This is the path at which the image exists. For example, `/path/to/image.jpg`. Either the `path` or `src` parameter needs to be specified for URL generation.                                                                                                                                                                                                                                                                                                                                                                                                                |
+| src                   | Conditional. This is the complete URL of an image already mapped to ImageKit. For example, `https://ik.imagekit.io/your_imagekit_id/endpoint/path/to/image.jpg`. Either the `path` or `src` parameter needs to be specified for URL generation.                                                                                                                                                                                                                                                                                                                                           |
 | transformation        | Optional. An array of objects specifying the transformation to be applied in the URL. The transformation name and the value should be specified as a key-value pair in the object. Different steps of a [chained transformation](https://docs.imagekit.io/features/image-transformations/chained-transformations) can be specified as different objects of the array. The complete list of supported transformations in the SDK and some examples of using them are given later. If you use a transformation name that is not specified in the SDK, it gets applied as it is in the URL. |
-| transformationPostion | Optional. Default value is `path` that places the transformation string as a path parameter in the URL. Can also be specified as `query` which adds the transformation string as the query parameter `tr` in the URL. If you use `src` parameter to create the URL, then the transformation string is always added as a query parameter.                                                                                                                                                                                                                                                 |
-| queryParameters       | Optional. These are the other query parameters that you want to add to the final URL. These can be any query parameters and not necessarily related to ImageKit. Especially useful, if you want to add some versioning parameter to your URLs.                                                                                                                                                                                                                                                                                                                                           |
-| signed                | Optional. Boolean. Default is `false`. If set to `true`, the SDK generates a signed image URL adding the image signature to the image URL. This can only be used if you are creating the URL with the `urlEndpoint` and `path` parameters, and not with the `src` parameter.                                                                                                                                                                                                                                                                                                             |
+| transformationPosition | Optional. The default value is `path` that places the transformation string as a path parameter in the URL. It can also be specified as `query` which adds the transformation string as the query parameter `tr` in the URL. If you use `src` parameter to create the URL, then the transformation string is always added as a query parameter.                                                                                                                                                                                                                                                 |
+| queryParameters       | Optional. These are the other query parameters that you want to add to the final URL. These can be any query parameters and not necessarily related to ImageKit. Especially useful if you want to add some versioning parameter to your URLs.                                                                                                                                                                                                                                                                                                                                           |
+| signed                | Optional. Boolean. The default value is `false`. If set to `true`, the SDK generates a signed image URL adding the image signature to the image URL. This can only be used if you are creating the URL with the `urlEndpoint` and `path` parameters, and not with the `src` parameter.                                                                                                                                                                                                                                                                                                             |
 | expireSeconds         | Optional. Integer. Meant to be used along with the `signed` parameter to specify the time in seconds from now when the URL should expire. If specified, the URL contains the expiry timestamp in the URL and the image signature is modified accordingly.                                                                                                                                                                                                                                                                                                                                |
 
 #### Examples of generating URLs
@@ -136,7 +134,7 @@ $imageURL = $imageKit->url(array(
 https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg?tr=h-300%2Cw-400%3Art-90
 ```
 
-**2. Sharpening and contrast transforms and a progressive JPG image**
+**2. Sharpening and contrast transforms with a progressive JPG image**
 
 There are some transforms like [Sharpening](https://docs.imagekit.io/features/image-transformations/image-enhancement-and-color-manipulation) that can be added to the URL with or without any other value. To use such transforms without specifying a value, specify the value as "-" in the transformation object, otherwise, specify the value that you want to be added to this transformation.
 
@@ -146,7 +144,7 @@ $imageURL = $imageKit->url(array(
     "transformation" => array(
         array(
             "format" => "jpg",
-            "progressive" => "true",
+            "progressive" => true,
             "effectSharpen" => "-",
             "effectContrast" => "1"
         )
@@ -241,8 +239,14 @@ Sample usage
 
 ```
 $imageKit->uploadFiles(array(
-    'file' => "your_file",
-    'fileName' => "your_file_name.jpg",
+    "file" => "your_file", // required
+    "fileName" => "your_file_name.jpg", // required
+    "useUniqueFileName" => false, // optional
+    "tags" => array("tag1","tag2"), // optional
+    "folder" => "images/folder/", // optional
+    "isPrivateFile" => false, // optional
+    "customCoordinates" => "10,10,100,100", // optional
+    "responseFields" => "tags,customCoordinates" // optional
 ));
 ```
 
@@ -251,7 +255,7 @@ If the upload fails, `error` will be the same as what is received from ImageKit'
 
 ## File Management
 
-The SDK provides a simple interface for all the [media APIs mentioned here](https://docs.imagekit.io/api-reference/media-api) to manage your files. You can use a callback function with all API interfaces. The first argument of the callback function is the error and the second is the result of the API call. Error will be `null` if the API succeeds.
+The SDK provides a simple interface for all the [media APIs mentioned here](https://docs.imagekit.io/api-reference/media-api) to manage your files. You can use a callback function with all API interfaces. The first argument of the callback function is the error and the second is the result of the API call. The error will be `null` if the API succeeds.
 
 **1. List & Search Files**
 
@@ -295,7 +299,7 @@ $imageKit->getFileMetadataFromRemoteURL("imagekit_remote_url")
 Update parameters associated with the file as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/update-file-details). The first argument to the `updateFileDetails` method is the file ID and the second argument is an object with the parameters to be updated.
 
 ```
-$imageKit->updateFileDetails("file_id", array("tags" => ['image_tag']));
+$imageKit->updateFileDetails("file_id", array("tags" => array("image_tag")));
 ```
 
 **6. Delete File**
@@ -312,7 +316,7 @@ Deletes multiple files and all their transformations as per the [API documentati
 
 ```
 $imageKit->bulkFileDeleteByIds(array(
-    "fileIds" => ["file_id_1", "file_id_2", ...]
+    "fileIds" => array("file_id_1", "file_id_2", ...)
 ));
 ```
 
@@ -321,7 +325,7 @@ $imageKit->bulkFileDeleteByIds(array(
 Programmatically issue a cache clear request as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/purge-cache). Accepts the full URL of the file for which the cache has to be cleared.
 
 ```
-$imageKit->purgeFileCacheApi(array("url" => "full_url"));
+$imageKit->purgeFileCacheApi("file_url");
 ```
 
 **9. Purge Cache Status**
@@ -334,11 +338,11 @@ $imageKit->purgeFileCacheApiStatus("cache_request_id");
 
 ## Utility functions
 
-We have included following commonly used utility functions in this package.
+We have included following commonly used utility functions in this SDK.
 
 ### Authentication parameter generation
 
-In case you are looking to implement client-side file upload, you are going to need a token, expiry timestamp and a valid signature for that upload. The SDK provides a simple method that you can use in your code to generate these authentication parameters for you.
+In case you are looking to implement client-side file upload, you are going to need a `token`, `expiry` timestamp and a valid `signature` for that upload. The SDK provides a simple method that you can use in your code to generate these authentication parameters for you.
 
 _Note: The Private API Key should never be exposed in any client-side code. You must always generate these authentication parameters on the server-side_
 
@@ -356,13 +360,13 @@ array(
 );
 ```
 
-Both the `token` and `expire` parameters are optional. If not specified the SDK uses the [uuid](https://www.npmjs.com/package/uuid) package to generate a random token and also generates a valid expiry timestamp internally. The value of the `token` and `expire` used to generate the signature are always returned in the response, no matter if they are provided as an input to this method or not.
+Both the `token` and `expire` parameters are optional. If not specified, the SDK generates a random token and also generates a valid expiry timestamp internally. The value of the `token` and `expire` used to generate the signature are always returned in the response, no matter if they are provided as an input to this method or not.
 
 ### Distance calculation between two pHash values
 
-Perceptual hashing allows you to constructing a hash value that uniquely identifies an input image based on the contents of an image. [ImageKit.io metadata API](https://docs.imagekit.io/api-reference/metadata-api) returns the pHash value of an image in the response. You can use this value to find a duplicate (or similar) image by calculating distance between pHash value of two images.
+Perceptual hashing allows you to construct a hash value that uniquely identifies an input image based on the contents of an image. [ImageKit.io metadata API](https://docs.imagekit.io/api-reference/metadata-api) returns the pHash value of an image in the response. You can use this value to find a duplicate (or similar) image by calculating the distance between pHash value of two images.
 
-This SDK exposes `pHashDistance` function to calcualte distance between two pHash values. It accepts two pHash hexadecimal strings and returns a numeric value indicative of the level of difference between the two images.
+This SDK exposes `pHashDistance` function to calculate the distance between two pHash values. It accepts two pHash hexadecimal strings and returns a numeric value indicative of the level of difference between the two images.
 
 ```
   $imageKit->pHashDistance($firstHash ,$secondHash);
@@ -381,9 +385,17 @@ $imageKit->pHashDistance('a4a65595ac94518b', '7838873e791f8400');
 // output: 37 (dissimilar images)
 ```
 
+## Sample Code Instruction
+
+To run sample code go to the sample directory and run
+
+```
+php sample.php
+```
+
 ## Support
 
-For any feedback or to report any issues or general implementation support please reach out to [support@imagekit.io](mailto:support@imagekit.io)
+For any feedback or to report any issues or general implementation support, please reach out to [support@imagekit.io](mailto:support@imagekit.io)
 
 ## Links
 

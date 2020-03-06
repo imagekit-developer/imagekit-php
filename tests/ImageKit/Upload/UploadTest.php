@@ -1,4 +1,5 @@
 <?php
+
 namespace ImageKit\Tests\ImageKit\Upload;
 
 include_once __DIR__ . '/../../../src/ImageKit/Utils/transformation.php';
@@ -8,7 +9,7 @@ use ImageKit\Upload\Upload;
 use PHPUnit\Framework\TestCase;
 use ImageKit\Resource\GuzzleHttpWrapper;
 use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\Stream\Stream;
+use GuzzleHttp\Psr7;
 use Faker;
 
 final class UploadTest extends TestCase
@@ -19,17 +20,15 @@ final class UploadTest extends TestCase
 
         $uploadOptions = array(
             'file' => $faker->imageUrl($width = 640, $height = 480),
-//            'fileName' => $faker->uuid,
         );
 
-
-        $mockBodyResponse = Stream::factory(\json_encode(array (
+        $mockBodyResponse = Psr7\stream_for(\json_encode(array(
             "width" => 1000
         )));
 
         $stub = $this->createMock(GuzzleHttpWrapper::class);
         $stub->method('setDatas');
-        $stub->method('postMultipart')->willReturn(new Response(200,['X-Foo' => 'Bar'],$mockBodyResponse));
+        $stub->method('postMultipart')->willReturn(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
         $uploadInstance = new Upload();
         $response = $uploadInstance->uploadFileRequest($uploadOptions, $stub);
@@ -43,18 +42,17 @@ final class UploadTest extends TestCase
         $faker = Faker\Factory::create();
 
         $uploadOptions = array(
-//            'file' => $faker->imageUrl($width = 640, $height = 480),
             'fileName' => $faker->uuid,
         );
 
 
-        $mockBodyResponse = Stream::factory(\json_encode(array (
+        $mockBodyResponse = Psr7\stream_for(\json_encode(array(
             "width" => 1000
         )));
 
         $stub = $this->createMock(GuzzleHttpWrapper::class);
         $stub->method('setDatas');
-        $stub->method('postMultipart')->willReturn(new Response(200,['X-Foo' => 'Bar'],$mockBodyResponse));
+        $stub->method('postMultipart')->willReturn(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
         $uploadInstance = new Upload();
         $response = $uploadInstance->uploadFileRequest($uploadOptions, $stub);
@@ -69,13 +67,13 @@ final class UploadTest extends TestCase
 
         $uploadOptions =  [];
 
-        $mockBodyResponse = Stream::factory(\json_encode(array (
+        $mockBodyResponse = Psr7\stream_for(\json_encode(array(
             "width" => 1000
         )));
 
         $stub = $this->createMock(GuzzleHttpWrapper::class);
         $stub->method('setDatas');
-        $stub->method('postMultipart')->willReturn(new Response(200,['X-Foo' => 'Bar'],$mockBodyResponse));
+        $stub->method('postMultipart')->willReturn(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
         $uploadInstance = new Upload();
         $res = $uploadInstance->uploadFileRequest($uploadOptions, $stub);
@@ -101,19 +99,21 @@ final class UploadTest extends TestCase
             'transformationPosition' => $faker->word
         );
 
-        $mockBodyResponse = Stream::factory(\json_encode(array (
+        $mockBodyResponse = Psr7\stream_for(\json_encode(array(
             "width" => 1000
         )));
 
         $stub = $this->createMock(GuzzleHttpWrapper::class);
         $stub->method('setDatas');
-        $stub->method('postMultipart')->willReturn(new Response(200,['X-Foo' => 'Bar'],$mockBodyResponse));
+        $stub->method('postMultipart')->willReturn(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
         $uploadInstance = new Upload();
         $res = $uploadInstance->uploadFileRequest($uploadOptions, $stub);
         $response = json_decode(json_encode($res), true);
 
-        $this->assertEquals(1000, $response['success']['width']);
+        $this->assertEquals(array(
+            "width" => 1000
+        ), $response['success']);
     }
 
     public function testFileUploadIfSuccessfulWithAllParameters()
@@ -129,6 +129,7 @@ final class UploadTest extends TestCase
         $isPrivateFile = $faker->boolean($chanceOfGettingTrue = 50);
         $customCoordinates = "10,10,100,100";
         $responseFields = "name,tags,customCoordinates,isPrivateFile,metadata";
+        $metadata = $faker->uuid;
 
         $uploadOptions = array(
             'file' => $file,
@@ -145,22 +146,28 @@ final class UploadTest extends TestCase
             'transformationPosition' => $faker->word
         );
 
-        $mockBodyResponse = Stream::factory(\json_encode(array (
+        $mockBodyResponse = Psr7\stream_for(\json_encode(array(
             "name" => $fileName,
             "tags" => $tags,
             "customCoordinates" => $customCoordinates,
             "isPrivateFile" => $isPrivateFile,
-            "metadata" => $faker->uuid
+            "metadata" =>  $metadata
         )));
 
         $stub = $this->createMock(GuzzleHttpWrapper::class);
         $stub->method('setDatas');
-        $stub->method('postMultipart')->willReturn(new Response(200,['X-Foo' => 'Bar'],$mockBodyResponse));
+        $stub->method('postMultipart')->willReturn(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
         $uploadInstance = new Upload();
         $res = $uploadInstance->uploadFileRequest($uploadOptions, $stub);
         $response = json_decode(json_encode($res), true);
 
-        $this->assertEquals($fileName, $response['success']['name']);
+        $this->assertEquals(array(
+            "name" => $fileName,
+            "tags" => $tags,
+            "customCoordinates" => $customCoordinates,
+            "isPrivateFile" => $isPrivateFile,
+            "metadata" => $metadata
+        ),  $response['success']);
     }
 }

@@ -4,7 +4,7 @@ namespace ImageKit\Tests\ImageKit\Signature;
 
 use ImageKit\Signature\Signature;
 use PHPUnit\Framework\TestCase;
-use Faker;
+
 
 class SignatureTest  extends TestCase
 {

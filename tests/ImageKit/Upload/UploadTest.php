@@ -10,16 +10,15 @@ use PHPUnit\Framework\TestCase;
 use ImageKit\Resource\GuzzleHttpWrapper;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7;
-use Faker;
+
 
 final class UploadTest extends TestCase
 {
     public function testFileUploadIfMissingDataUpload()
     {
-        $faker = Faker\Factory::create();
-
+        
         $uploadOptions = array(
-            'file' => $faker->imageUrl($width = 640, $height = 480),
+            'file' => "http://lorempixel.com/640/480/",
         );
 
         $mockBodyResponse = Psr7\stream_for(\json_encode(array(
@@ -39,10 +38,10 @@ final class UploadTest extends TestCase
 
     public function testFileUploadIfMissingFileParameter()
     {
-        $faker = Faker\Factory::create();
+        
 
         $uploadOptions = array(
-            'fileName' => $faker->uuid,
+            'fileName' => "7e57d004-2b97-0e7a-b45f-5387367791cd",
         );
 
 
@@ -63,7 +62,7 @@ final class UploadTest extends TestCase
 
     public function testFileUploadIfMissingDataForUpload()
     {
-        $faker = Faker\Factory::create();
+        
 
         $uploadOptions =  [];
 
@@ -85,18 +84,18 @@ final class UploadTest extends TestCase
 
     public function testFileUploadIfSuccessful()
     {
-        $faker = Faker\Factory::create();
+        
 
         $uploadOptions = array(
-            'file' => $faker->imageUrl($width = 640, $height = 480),
-            'fileName' => $faker->uuid,
+            'file' => "http://lorempixel.com/640/480/",
+            'fileName' => "7e57d004-2b97-0e7a-b45f-5387367791cd",
         );
 
         $defaultOptions = array(
-            'publicKey' =>  $faker->uuid,
-            'privateKey' =>  $faker->uuid,
-            'urlEndpoint' =>  $faker->url,
-            'transformationPosition' => $faker->word
+            'publicKey' =>  "dummy_public_key",
+            'privateKey' =>  "dummy_private_key",
+            'urlEndpoint' =>  "https://dummy.example.com",
+            'transformationPosition' => "path"
         );
 
         $mockBodyResponse = Psr7\stream_for(\json_encode(array(
@@ -117,19 +116,18 @@ final class UploadTest extends TestCase
     }
 
     public function testFileUploadIfSuccessfulWithAllParameters()
-    {
-        $faker = Faker\Factory::create();
+    {        
 
         // parameters
-        $file = $faker->imageUrl($width = 640, $height = 480);
-        $fileName = $faker->uuid;
-        $useUniqueFileName = $faker->boolean($chanceOfGettingTrue = 50);
-        $tags = $faker->words($nb = 3, $asText = false);
-        $folder = $faker->word;
-        $isPrivateFile = $faker->boolean($chanceOfGettingTrue = 50);
+        $file = "http://lorempixel.com/640/480/";
+        $fileName = "7e57d004-2b97-0e7a-b45f-5387367791cd";
+        $useUniqueFileName = rand(0,1) == 1;
+        $tags = array('porro', 'sed', 'magni');
+        $folder = 'aut';
+        $isPrivateFile = rand(0,1) == 1;
         $customCoordinates = "10,10,100,100";
         $responseFields = "name,tags,customCoordinates,isPrivateFile,metadata";
-        $metadata = $faker->uuid;
+        $metadata = "7e57d004-2b97-0e7a-b45f-5387367791cd";
 
         $uploadOptions = array(
             'file' => $file,
@@ -140,10 +138,10 @@ final class UploadTest extends TestCase
         );
 
         $defaultOptions = array(
-            'publicKey' =>  $faker->uuid,
-            'privateKey' =>  $faker->uuid,
-            'urlEndpoint' =>  $faker->url,
-            'transformationPosition' => $faker->word
+            'publicKey' =>  "dummy_public_key",
+            'privateKey' =>  "dummy_private_key",
+            'urlEndpoint' =>  "https://dummy.example.com",
+            'transformationPosition' => "path"
         );
 
         $mockBodyResponse = Psr7\stream_for(\json_encode(array(

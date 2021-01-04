@@ -20,6 +20,7 @@
     ],
     "license": "MIT",
     "require": {
+        "php":"^5.3.3 || ^7.0",
         "fzaninotto/faker": "^1.9",
         "ext-curl": "*",
         "guzzlehttp/guzzle": "~6.0",

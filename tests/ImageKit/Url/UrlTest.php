@@ -43,6 +43,34 @@ final class UrlTest extends TestCase
         );
     }
 
+    public function testUrlGenerationCustomDomain()
+    {
+        $faker = Faker\Factory::create();
+        $parameter = array(
+            'urlEndpoint' => "https://images.example.com",
+            'path' => "path/to/my/image.jpg",
+            'transformation' => array(array('width' => '200', 'height' => '300'), array('rotation' => '90')),
+            'transformationPosition' => "path",
+            'queryParameters' => array('v' => '123123'),
+            'expireSeconds' => 300,
+        );
+
+        $defaultOptions = array(
+            'publicKey' =>  $faker->uuid,
+            'privateKey' =>  $faker->uuid,
+            'urlEndpoint' =>  $faker->url,
+            'transformationPosition' => $faker->word
+        );
+        $opts = array_merge($defaultOptions, $parameter);
+
+        $urlInstance = new Url();
+        $url = $urlInstance->buildURL($opts);
+        $this->assertEquals(
+            'https://images.example.com/tr:w-200,h-300:rt-90/path/to/my/image.jpg?v=123123&ik-sdk-version=php-' . CURRENT_SDK_VERSION,
+            $url
+        );
+    }
+
     public function testUrlGenerationIfTransformationPositionIsQuery()
     {
         $faker = Faker\Factory::create();

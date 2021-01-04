@@ -1,7 +1,7 @@
 {
     "name": "imagekit/imagekit",
     "type": "library",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "description": "PHP library for Imagekit",
     "keywords": [
         "library",

@@ -65,7 +65,10 @@ class Url
         if (!empty($path)) {
             $urlObject->scheme = $parsedHost[0]['scheme'];
             $urlObject->host = $parsedHost[0]['host'];
-            $urlObject->pathname = $parsedHost[0]['path'];
+            if(isset( $parsedHost[0]['path'])) {
+                $urlObject->pathname = $parsedHost[0]['path'];
+            }
+            
         } else {
             $urlObject->scheme = $parsedURL[0]['scheme'];
             $urlObject->host = $parsedURL[0]['host'];

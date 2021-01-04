@@ -8,6 +8,8 @@ jobs:
 
         steps:
             - uses: actions/checkout@v1
+              with:
+                php_version: 7.4
 
             - name: Validate composer.json and composer.lock
               run: composer validate

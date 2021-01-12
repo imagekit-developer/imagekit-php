@@ -5,7 +5,7 @@ namespace ImageKit\Tests\ImageKit\File;
 include_once __DIR__ . '/../../../src/ImageKit/Utils/transformation.php';
 include_once __DIR__ . '/../../../src/ImageKit/Utils/authorization.php';
 
-use Faker;
+
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7;
 
@@ -166,7 +166,6 @@ final class FileTest extends TestCase
 
     public function testGetFileDetailsWithValidFileId()
     {
-        $faker = Faker\Factory::create();
         $the_file_id = "5df36759adf3f523d81dd94f";
 
         $mockBodyResponse = Psr7\stream_for(json_encode(array(
@@ -342,7 +341,6 @@ final class FileTest extends TestCase
     // Delete Files
     public function testWhileDeletingMissingFileIdParameter()
     {
-        $faker = Faker\Factory::create();
 
         $the_file_id = "";
 
@@ -361,7 +359,6 @@ final class FileTest extends TestCase
 
     public function testDeleteFileWhenSuccessful()
     {
-        $faker = Faker\Factory::create();
         $the_file_id = "5df36759adf3f523d81dd94f";
 
         $mockBodyResponse = Psr7\stream_for();
@@ -379,7 +376,6 @@ final class FileTest extends TestCase
     // Bulk File Delete
     public function testBulkFileDeleteWhenMissingFileIdsParameter()
     {
-        $faker = Faker\Factory::create();
 
         $options = "";
 
@@ -398,9 +394,8 @@ final class FileTest extends TestCase
 
     public function testBulkFileDeleteWhenSuccessful()
     {
-        $faker = Faker\Factory::create();
 
-        $fileIds = [$faker->ean13, $faker->ean13];
+        $fileIds = ["6604876475937", "8242194892418"];
         $options = array(
             "fileIds" => $fileIds
         );
@@ -425,7 +420,6 @@ final class FileTest extends TestCase
     // Update details
     public function testUpdateFileDetailsWhenFileIDTagsAndCustomParameterIsPassed()
     {
-        $faker = Faker\Factory::create();
 
         $the_file_id = "5df36759adf3f523d81dd94f";
 
@@ -508,11 +502,10 @@ final class FileTest extends TestCase
     public function testUpdateFileDetailsWhenUpdateDataIsNotAnArray()
     {
 
-        $faker = Faker\Factory::create();
 
         $the_file_id = "5df36759adf3f523d81dd94f";
 
-        $updateData = $faker->streetName;
+        $updateData = "Keegan Trail";
 
         $mockBodyResponse = Psr7\stream_for(json_encode(array(
             array(
@@ -542,7 +535,6 @@ final class FileTest extends TestCase
 
     public function testUpdateFileDetailsWhenUpdateDataTagIsInvalid()
     {
-        $faker = Faker\Factory::create();
 
         $the_file_id = "5df36759adf3f523d81dd94f";
 
@@ -579,7 +571,6 @@ final class FileTest extends TestCase
 
     public function testUpdateFileDetailsWhenUpdateCustomCoordinatesAreInvalid()
     {
-        $faker = Faker\Factory::create();
 
         $the_file_id = "5df36759adf3f523d81dd94f";
 
@@ -617,7 +608,6 @@ final class FileTest extends TestCase
     // Purge  Details
     public function testPurgeFileCacheApiWithoutUrlPatrameter()
     {
-        $faker = Faker\Factory::create();
 
         $urlParam = "";
 
@@ -640,7 +630,6 @@ final class FileTest extends TestCase
 
     public function testPurgeCacheApi()
     {
-        $faker = Faker\Factory::create();
 
         $urlParam = "https://ik.imagekit.io/ot2cky3ujwa/default-image.jpg";
 
@@ -664,7 +653,6 @@ final class FileTest extends TestCase
     // Purge  Cache API  Details
     public function testPurgeFileCacheApiStatusWithoutRequestId()
     {
-        $faker = Faker\Factory::create();
         $requestId = "";
 
         $mockBodyResponse = Psr7\stream_for(json_encode(array(
@@ -725,9 +713,8 @@ final class FileTest extends TestCase
 
     public function testGetFileMetadataFromRemoteURLApiWhenSuccessful()
     {
-        $faker = Faker\Factory::create();
-        $url = $faker->url;
-        $phash = $faker->ean13;
+        $url = "https://dummy.example.com/";
+        $phash = "1578156593879";
 
         $mockBodyResponse = Psr7\stream_for(json_encode(array(
             array("pHash" => $phash),

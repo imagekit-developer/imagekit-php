@@ -35,3 +35,4 @@ vendor
 composer.phar
 phpunit.xml
 .vscode
+.phpunit*

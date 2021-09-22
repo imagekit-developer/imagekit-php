@@ -1,26 +1,26 @@
 name: PHP CI
 
-on: [push]
+on: [ push ]
 
 jobs:
     build:
         runs-on: ubuntu-latest
 
         steps:
-            - uses: actions/checkout@v1
-            - name: Setup PHP
-              uses: shivammathur/setup-php@v2
-              with:
-                php-version: '8.0'
+            -   uses: actions/checkout@v1
+            -   name: Setup PHP
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: '8.0'
 
-            - name: Validate composer.json and composer.lock
-              run: composer validate
+            -   name: Validate composer.json and composer.lock
+                run: composer validate
 
-            - name: Install dependencies
-              run: composer install --prefer-dist --no-progress --no-suggest
+            -   name: Install dependencies
+                run: composer install --prefer-dist --no-progress --no-suggest
 
             # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
             # Docs: https://getcomposer.org/doc/articles/scripts.md
 
-            - name: Run test suite
-              run: ./vendor/bin/phpunit
+            -   name: Run test suite
+                run: ./vendor/bin/phpunit

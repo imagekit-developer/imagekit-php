@@ -2,41 +2,50 @@
 
 namespace ImageKit\Upload;
 
-include_once __DIR__ . "/../Constants/errorMessages.php";
-include_once __DIR__ . "/../Utils/respond.php";
+use ImageKit\Constants\ErrorMessages;
+use ImageKit\Resource\GuzzleHttpWrapper;
+use ImageKit\Utils\Response;
 
+/**
+ *
+ */
 class Upload
 {
-
-    public function uploadFileRequest(array $uploadOptions,  $resource)
+    /**
+     * @param array $uploadOptions
+     * @param GuzzleHttpWrapper $resource
+     * @return object
+     */
+    public static function uploadFileRequest(array $uploadOptions, GuzzleHttpWrapper $resource)
     {
-        $opts = (object) $uploadOptions;
+        $opts = (object)$uploadOptions;
+
         if (!is_object($opts)) {
-            return respond(true, ((object) unserialize(MISSING_UPLOAD_DATA)));
+            return Response::respond(true, ((object)ErrorMessages::$MISSING_UPLOAD_DATA));
         }
 
         if (empty($opts->file)) {
-            return respond(true, ((object) unserialize(MISSING_UPLOAD_FILE_PARAMETER)));
+            return Response::respond(true, ((object)ErrorMessages::$MISSING_UPLOAD_FILE_PARAMETER));
         }
 
         if (empty($opts->fileName)) {
-            return respond(true, ((object) unserialize(MISSING_UPLOAD_FILENAME_PARAMETER)));
+            return Response::respond(true, ((object)ErrorMessages::$MISSING_UPLOAD_FILENAME_PARAMETER));
         }
 
         if (isset($opts->tags) && is_array($opts->tags)) {
-            $opts->tags = implode(",", $opts->tags);
+            $opts->tags = implode(',', $opts->tags);
         }
 
-        $resource->setDatas((array) $opts);
+        $resource->setDatas((array)$opts);
         $res = $resource->postMultipart();
 
         $stream = $res->getBody();
         $content = $stream->getContents();
 
         if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
-            return respond(true, json_decode($content));
-        };
+            return Response::respond(true, json_decode($content));
+        }
 
-        return respond(false, json_decode($content));
+        return Response::respond(false, json_decode($content));
     }
 }

@@ -5,34 +5,51 @@ namespace ImageKit\Tests\ImageKit\Phash;
 use ImageKit\Phash\Phash;
 use PHPUnit\Framework\TestCase;
 
-final class PHashTest extends TestCase
+/**
+ *
+ */
+
+/**
+ *
+ */
+final class PhashTest extends TestCase
 {
+    /**
+     *
+     */
     public function testPHashDistanceForSameImage()
     {
-        $firstHash = "33699c96619cc69e";
-        $secondHash = "33699c96619cc69e";
+        $firstHash = '33699c96619cc69e';
+        $secondHash = '33699c96619cc69e';
 
         $pHash = new Phash();
         $response = $pHash->pHashDistance($firstHash, $secondHash);
-        $this->assertEquals(0, $response);
+        PhashTest::assertEquals(0, $response);
     }
 
+    /**
+     *
+     */
     public function testPHashDistanceForSimilarImages()
     {
-        $firstHash = "2d5ad3936d2e015b";
-        $secondHash = "2d6ed293db36a4fb";
+        $firstHash = '2d5ad3936d2e015b';
+        $secondHash = '2d6ed293db36a4fb';
 
         $pHash = new Phash();
         $response = $pHash->pHashDistance($firstHash, $secondHash);
-        $this->assertEquals(17, $response);
+        PhashTest::assertEquals(17, $response);
     }
+
+    /**
+     *
+     */
     public function testPHashDistanceForDissimilarImages()
     {
-        $firstHash = "33699c96619cc69e";
-        $secondHash = "968e978414fe04ea";
+        $firstHash = '33699c96619cc69e';
+        $secondHash = '968e978414fe04ea';
 
         $pHash = new Phash();
         $response = $pHash->pHashDistance($firstHash, $secondHash);
-        $this->assertEquals(30, $response);
+        PhashTest::assertEquals(30, $response);
     }
 }

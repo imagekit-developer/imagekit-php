@@ -2,290 +2,497 @@
 
 namespace ImageKit;
 
-use ImageKit\File\File;
+use GuzzleHttp\Client;
+use ImageKit\Configuration\Configuration;
+use ImageKit\Constants\Endpoints;
 use ImageKit\Phash\Phash;
+use ImageKit\Resource\GuzzleHttpWrapper;
+use ImageKit\Signature\Signature;
 use ImageKit\Upload\Upload;
 use ImageKit\Url\Url;
-use ImageKit\Signature\Signature;
-use ImageKit\Resource\GuzzleHttpWrapper;
-use GuzzleHttp\Client;
+use ImageKit\Utils\Authorization;
+use ImageKit\Utils\Transformation;
 use InvalidArgumentException;
 
-include_once __DIR__ . "/Constants/endpoint.php";
-include_once __DIR__ . '/Utils/transformation.php';
-include_once __DIR__ . '/Utils/authorization.php';
-
 /**
- * Class Imagekit
- *
- * The main class for the SDK consumption
+ * Imagekit Class
  *
  * @package Imagekit
+ *
+ * @link https://docs.imagekit.io/ Imagekit Documentation
  */
-
 class ImageKit
 {
-    /**
-     * @var string the public key
-     */
-    private $_publicKey = null;
-    /**
-     * @var string the private key
-     */
-    private $_privateKey = null;
-    /**
-     * @var string the URL endpoint
-     */
-    private $_urlEndpoint = null;
-    /**
-     * @var string transformation position. Default will be 'path'.
-     */
-    private $_transformationPosition = null;
+    const SDK_VERSION = '2.0.0';
 
     /**
-     * @param string|null $publicKey The Public Key as obtained from the imagekit developer dashboard
+     * @var Configuration
+     */
+    private $configuration;
+
+    /**
+     * @var GuzzleHttpWrapper
+     */
+    private $httpClient;
+
+    /**
+     * @param string $publicKey The Public Key as obtained from the imagekit developer dashboard
      *
-     * @param string|null $privateKey The Private Key as obtained from the imagekit developer dashboard
+     * @param string $privateKey The Private Key as obtained from the imagekit developer dashboard
      *
-     * @param string|null $urlEndpoint The URL Endpoint as obtained from the imagekit developer dashboard
+     * @param string $urlEndpoint The URL Endpoint as obtained from the imagekit developer dashboard
      *
-     * @param string|null $transformationPosition Default value is path that places the transformation string as a path parameter in the URL. Can also be specified as query which adds the transformation string as the query parameter tr in the URL. If you use src parameter to create the URL, then the transformation string is always added as a query parameter.
+     * @param string $transformationPosition Default value is path that places the transformation string as a path parameter in the URL. Can also be specified as query which adds the transformation string as the query parameter tr in the URL. If you use src parameter to create the URL, then the transformation string is always added as a query parameter.
      *
      */
-
-    public function __construct(
-        $publicKey = null,
-        $privateKey = null,
-        $urlEndpoint = null,
-        $transformationPosition = null
-    ) {
-
-        if ($publicKey == null) {
+    public function __construct($publicKey, $privateKey, $urlEndpoint, $transformationPosition = Transformation::DEFAULT_TRANSFORMATION_POSITION)
+    {
+        $this->configuration = new Configuration();
+        if ($publicKey == null || empty($publicKey)) {
             $msg = 'Missing publicKey during ImageKit initialization';
             throw new InvalidArgumentException($msg);
         }
-        $this->_publicKey = $publicKey;
+        $this->configuration->publicKey = $publicKey;
 
-        if ($privateKey == null) {
+        if ($privateKey == null || empty($privateKey)) {
             $msg = 'Missing privateKey during ImageKit initialization';
             throw new InvalidArgumentException($msg);
         }
-        $this->_privateKey = $privateKey;
+        $this->configuration->privateKey = $privateKey;
 
-        if ($urlEndpoint == null) {
+        if ($urlEndpoint == null || empty($urlEndpoint)) {
             $msg = 'Missing urlEndpoint during ImageKit initialization';
             throw new InvalidArgumentException($msg);
         }
-        $this->_urlEndpoint = $this->removeTrailingSlash($urlEndpoint);
 
-        if ($transformationPosition === null) {
-            $transformationPosition = getDefault();
-        } else if ($transformationPosition !== 'path' && $transformationPosition !== 'query') {
+        if (!filter_var($urlEndpoint, FILTER_VALIDATE_URL)) {
+            throw new InvalidArgumentException('urlEndpoint should be a valid URL');
+        }
+        $this->configuration->urlEndpoint = $urlEndpoint;
+
+        if ($transformationPosition !== 'path' && $transformationPosition !== 'query') {
             $msg = 'Invalid transformationPosition during ImageKit initialization. Can be one of path or query';
             throw new InvalidArgumentException($msg);
         }
-        $this->_transformationPosition = $transformationPosition;
+        $this->configuration->transformationPosition = $transformationPosition;
+
+
+
+        $client = new Client(Authorization::addAuthorization($this->configuration));
+        $this->httpClient = new GuzzleHttpWrapper($client);
     }
 
-    public function getDefaultOption()
+    /**
+     * You can add multiple origins in the same ImageKit.io account.
+     * URL endpoints allow you to configure which origins are accessible through your account and set their preference order as well.
+     *
+     * @link https://docs.imagekit.io/integration/url-endpoints Url Endpoint Documentation
+     * @link https://github.com/imagekit-developer/imagekit-php#url-generation Url Generation Documentation
+     *
+     * @param array $options
+     * @return string
+     */
+    public function url(array $options)
     {
-        return array(
-            'publicKey' => $this->_publicKey,
-            'privateKey' => $this->_privateKey,
-            'urlEndpoint' => $this->_urlEndpoint,
-            'transformationPosition' => $this->_transformationPosition,
-        );
-    }
-
-    public function url($options)
-    {
-        $defaultOptions = $this->getDefaultOption();
-
         $urlInstance = new Url();
-        return $urlInstance->buildURL(array_merge($defaultOptions, $options));
+        return $urlInstance->buildURL(array_merge((array)$this->configuration, $options));
     }
 
-    public function upload($options)
+    /**
+     * You can upload files to ImageKit.io media library from your server-side using private API key authentication.
+     *
+     * File size limit
+     * The maximum upload file size is limited to 25MB.
+     *
+     * @link https://docs.imagekit.io/api-reference/upload-file-api/server-side-file-upload API Reference
+     *
+     * @param array $options
+     * @return object
+     *
+     */
+    public function upload(array $options)
     {
-        return $this->uploadFiles($options);
+        return $this->uploadFile($options);
     }
 
-    public function uploadFiles($options)
+    /**
+     * You can upload files to ImageKit.io media library from your server-side using private API key authentication.
+     *
+     * File size limit
+     * The maximum upload file size is limited to 25MB.
+     *
+     * @link https://docs.imagekit.io/api-reference/upload-file-api/server-side-file-upload API Reference
+     *
+     * @param array $options
+     * @return object
+     */
+    public function uploadFile($options)
     {
-        $defaultOptions = $this->getDefaultOption();
-
-        $client = new Client(addAuthorization([], $defaultOptions));
-
-        $resource = new GuzzleHttpWrapper($client);
-        $resource->setUri(getUploadFileEndpoint());
-
-        $uploadInstance = new Upload();
-        return $uploadInstance->uploadFileRequest($options, $resource);
+        $this->httpClient->setUri(Endpoints::getUploadFileEndpoint());
+        return Upload::uploadFileRequest($options, $this->httpClient);
     }
 
-
-    public function listFiles(array $parameters)
+    /**
+     * You can upload files to ImageKit.io media library from your server-side using private API key authentication.
+     *
+     * File size limit
+     * The maximum upload file size is limited to 25MB.
+     *
+     * @link https://docs.imagekit.io/api-reference/upload-file-api/server-side-file-upload API Reference
+     *
+     * @param array $options
+     * @return object
+     *
+     * @deprecated since 2.0.0, use <code>uploadFile</code>; uploadFiles was misleading as it supports only singular file upload
+     */
+    public function uploadFiles(array $options)
     {
-        $defaultOptions = $this->getDefaultOption();
-
-        $client = new Client(addAuthorization([], $defaultOptions));
-
-        $resource = new GuzzleHttpWrapper($client);
-        $resource->setUri(getListFilesEndpoint());
-
-        $listFilesInstance = new File();
-        return $listFilesInstance->listFiles($parameters, $resource);
+        return $this->uploadFile($options);
     }
 
-    public function getDetails($the_file_id)
+    /**
+     * This API can list all the uploaded files in your ImageKit.io media library.
+     * For searching and filtering, you can use query parameters as described below.
+     *
+     * @link https://docs.imagekit.io/api-reference/media-api/list-and-search-files API Reference
+     *
+     * @param array $parameters
+     * @return object
+     */
+    public function listFiles(array $parameters = [])
     {
-        return $this->getFileDetails($the_file_id);
+        $this->httpClient->setUri(Endpoints::getListFilesEndpoint());
+        return Manage\File::listFiles($parameters, $this->httpClient);
     }
 
-    public function getFileDetails($the_file_id)
+    /**
+     * Get the file details such as tags, customCoordinates, and isPrivate properties using get file detail API.
+     *
+     * @link https://docs.imagekit.io/api-reference/media-api/get-file-details API Reference
+     *
+     * @param string $fileId
+     *
+     * @deprecated since 2.0.0, use <code>getFileDetails</code>
+     */
+    public function getDetails($fileId)
     {
-        $defaultOptions = $this->getDefaultOption();
-
-        $client = new Client(addAuthorization([], $defaultOptions));
-
-        $resource = new GuzzleHttpWrapper($client);
-        $resource->setUri(getDetailsEndpoint($the_file_id));
-
-        $getDetailsInstance = new File();
-        return $getDetailsInstance->getFileDetails($the_file_id, $resource);
+        return $this->getFileDetails($fileId);
     }
 
-
-    public function getMetaData($the_file_id)
+    /**
+     * Get the file details such as tags, customCoordinates, and isPrivate properties using get file detail API.
+     *
+     * @link https://docs.imagekit.io/api-reference/media-api/get-file-details API Reference
+     *
+     * @param string $fileId
+     * @return object
+     */
+    public function getFileDetails($fileId)
     {
-        return  $this->getFileMetaData($the_file_id);
+        $this->httpClient->setUri(Endpoints::getDetailsEndpoint($fileId));
+        return Manage\File::getFileDetails($fileId, $this->httpClient);
     }
 
-    public function getFileMetaData($the_file_id)
+    /**
+     * Get image exif, pHash and other metadata for uploaded files in ImageKit.io media library using this API.
+     *
+     * @link https://docs.imagekit.io/api-reference/metadata-api/get-image-metadata-for-uploaded-media-files
+     *
+     * @param string $fileId The unique fileId of the uploaded file. fileId is returned in list files API and upload API.
+     *
+     * @return object
+     * @deprecated since 2.0.0, use <code>getFileMetaData</code>
+     */
+    public function getMetaData($fileId)
     {
-        $defaultOptions = $this->getDefaultOption();
-
-        $client = new Client(addAuthorization([], $defaultOptions));
-
-        $resource = new GuzzleHttpWrapper($client);
-        $resource->setUri(getListMetaDataFilesEndpoint($the_file_id));
-
-        $getFileMetadataInstance = new File();
-        return $getFileMetadataInstance->getFileMetaData($the_file_id, $resource);
+        return $this->getFileMetaData($fileId);
     }
 
-    public function updateDetails($the_file_id, $updateData)
+    /**
+     * Get image exif, pHash and other metadata for uploaded files in ImageKit.io media library using this API.
+     *
+     * @link https://docs.imagekit.io/api-reference/metadata-api/get-image-metadata-for-uploaded-media-files
+     *
+     * @param string $fileId The unique fileId of the uploaded file. fileId is returned in list files API and upload API.
+     *
+     * @return object
+     */
+    public function getFileMetaData($fileId)
+    {
+        $this->httpClient->setUri(Endpoints::getListMetaDataFilesEndpoint($fileId));
+
+        return Manage\File\Metadata::getFileMetaData($fileId, $this->httpClient);
+    }
+
+    /**
+     * Update file details such as tags and customCoordinates attribute using update file detail API.
+     *
+     * @link https://docs.imagekit.io/api-reference/media-api/update-file-details
+     *
+     * @param string $fileId The unique fileId of the uploaded file. fileId is returned in list files API and upload API.
+     * @param array $updateData
+     *
+     * @return object
+     * @deprecated since 2.0.0, use <code>updateFileDetails</code>
+     */
+    public function updateDetails($fileId, $updateData)
+    {
+        return $this->updateFileDetails($fileId, $updateData);
+    }
+
+    /**
+     * Update file details such as tags and customCoordinates attribute using update file detail API.
+     *
+     * @link https://docs.imagekit.io/api-reference/media-api/update-file-details
+     *
+     * @param string $fileId The unique fileId of the uploaded file. fileId is returned in list files API and upload API.
+     * @param array $updateData
+     * @return object
+     */
+    public function updateFileDetails($fileId, $updateData)
+    {
+        $this->httpClient->setUri(Endpoints::getUpdateFileDetailsEndpoint($fileId));
+        return Manage\File::updateFileDetails($fileId, $updateData, $this->httpClient);
+    }
+
+    // @TODO
+
+    /**
+     * @param array $fileIds
+     * @param array $tags
+     */
+    public function bulkAddTags(array $fileIds, array $tags)
     {
 
-        return $this->updateFileDetails($the_file_id, $updateData);
     }
 
-    public function updateFileDetails($the_file_id, $updateData)
+    // @TODO
+
+    /**
+     * @param array $fileIds
+     * @param array $tags
+     */
+    public function bulkRemoveTags(array $fileIds, array $tags)
     {
-        $defaultOptions = $this->getDefaultOption();
-        $client = new Client(addAuthorization([], $defaultOptions));
 
-        $resource = new GuzzleHttpWrapper($client);
-        $resource->setUri(getUpdateFileDetailsEndpoint($the_file_id));
-
-        $updateDetailsInstance = new File();
-        return $updateDetailsInstance->updateFileDetails($the_file_id, $updateData, $resource);
     }
 
-
-
-    public function deleteFile($the_file_id)
+    /**
+     * @param $fileId
+     * @return object
+     */
+    /**
+     * @param $fileId
+     * @return object
+     */
+    public function deleteFile($fileId)
     {
-        $defaultOptions = $this->getDefaultOption();
-
-        $client = new Client(addAuthorization([], $defaultOptions));
-
-        $resource = new GuzzleHttpWrapper($client);
-        $resource->setUri(getDeleteFilesEndpoint($the_file_id));
-
-        $deleteFileInstance = new File();
-        return $deleteFileInstance->deleteFile($the_file_id, $resource);
+        $this->httpClient->setUri(Endpoints::getDeleteFilesEndpoint($fileId));
+        return Manage\File::deleteFile($fileId, $this->httpClient);
     }
 
-    public function bulkFileDeleteByIds($options)
-    {
-        $defaultOptions = $this->getDefaultOption();
-
-        $client = new Client(addAuthorization([], $defaultOptions));
-
-        $resource = new GuzzleHttpWrapper($client);
-        $resource->setUri(getDeleteByFileIdsEndpoint());
-
-        $deleteFileInstance = new File();
-        return $deleteFileInstance->bulkDeleteByFileIds($options, $resource);
-    }
-
+    /**
+     * @deprecated use purgeCache
+     */
     public function purgeCacheApi($options)
     {
-        return $this->purgeFileCacheApi($options);
+        return $this->purgeCache($options);
     }
 
-    public function purgeFileCacheApi($options)
+    /**
+     * @param $options
+     * @return object
+     */
+    public function purgeCache($options)
     {
-        $defaultOptions = $this->getDefaultOption();
 
-        $client = new Client(addAuthorization([], $defaultOptions));
-
-        $resource = new GuzzleHttpWrapper($client);
-        $resource->setUri(getPurgeCacheEndpoint());
+        $this->httpClient->setUri(Endpoints::getPurgeCacheEndpoint());
 
         $purgeCacheApiInstance = new File();
-        return $purgeCacheApiInstance->purgeFileCacheApi($options, $resource);
+        return $purgeCacheApiInstance->purgeFileCacheApi($options, $this->httpClient);
     }
 
+    /**
+     * @param $options
+     * @return object
+     */
+
+    /**
+     * @deprecated use purgeCache
+     */
+    public function purgeFileCacheApi($options)
+    {
+        return $this->purgeCache($options);
+    }
+
+    /**
+     * @deprecated use getPurgeCacheStatus
+     */
     public function purgeCacheApiStatus($requestId)
     {
-        return  $this->purgeFileCacheApiStatus($requestId);
+        return $this->getPurgeCacheStatus($requestId);
     }
 
-    public function purgeFileCacheApiStatus($requestId)
+    /**
+     * @param $requestId
+     * @return object
+     */
+    public function getPurgeCacheStatus($requestId)
     {
-        $defaultOptions = $this->getDefaultOption();
 
-        $client = new Client(addAuthorization([], $defaultOptions));
-
-        $resource = new GuzzleHttpWrapper($client);
-        $resource->setUri(getPurgeCacheApiStatusEndpoint($requestId));
+        $this->httpClient->setUri(Endpoints::getPurgeCacheApiStatusEndpoint($requestId));
 
         $purgeCacheApiStatusInstance = new File();
-        return $purgeCacheApiStatusInstance->purgeFileCacheApiStatus($requestId, $resource);
+        return $purgeCacheApiStatusInstance->purgeFileCacheApiStatus($requestId, $this->httpClient);
     }
 
-    public function getAuthenticationParameters($token = "", $expire = 0)
+    /**
+     * @param $requestId
+     * @return object
+     */
+
+    /**
+     * @deprecated use getPurgeCacheStatus
+     */
+    public function purgeFileCacheApiStatus($requestId)
     {
-        $defaultOptions = $this->getDefaultOption();
-
-        $getAuthenticationParametersInstance = new Signature();
-        return $getAuthenticationParametersInstance->getAuthenticationParameters($token, $expire, $defaultOptions);
+        return $this->getPurgeCacheStatus($requestId);
     }
 
+    /**
+     * @deprecated use bulkDeleteFiles
+     */
+    public function bulkFileDeleteByIds($options)
+    {
+        return $this->bulkDeleteFiles($options);
+    }
+
+
+    /**
+     * @param $options
+     * @return object
+     */
+    /**
+     * @param $options
+     * @return object
+     */
+    public function bulkDeleteFiles($options)
+    {
+        $this->httpClient->setUri(Endpoints::getDeleteByFileIdsEndpoint());
+
+        return Manage\File::bulkDeleteByFileIds($options, $this->httpClient);
+    }
+
+
+    // @TODO
+    /**
+     * @param $sourceFilePath
+     * @param $destinationPath
+     */
+    public function copyFile($sourceFilePath, $destinationPath)
+    {
+
+    }
+
+    // @TODO
+    /**
+     * @param $sourceFilePath
+     * @param $destinationPath
+     */
+    public function moveFile($sourceFilePath, $destinationPath)
+    {
+
+    }
+
+    // @TODO
+    /**
+     * @param $folderName
+     * @param $parentFolderPath
+     */
+    public function createFolder($folderName, $parentFolderPath)
+    {
+
+    }
+
+    // @TODO
+    /**
+     * @param $folderPath
+     */
+    public function deleteFolder($folderPath)
+    {
+
+    }
+
+    // @TODO
+
+    /**
+     * @param $sourceFolderPath
+     * @param $destinationPath
+     */
+    public function copyFolder($sourceFolderPath, $destinationPath)
+    {
+
+    }
+
+    /**
+     * @param $sourceFolderPath
+     * @param $destinationPath
+     */
+    public function moveFolder($sourceFolderPath, $destinationPath)
+    {
+
+    }
+
+    /**
+     * @param string $token
+     * @param int $expire
+     * @return array
+     */
+    public function getAuthenticationParameters($token = '', $expire = 0)
+    {
+        return Signature::getAuthenticationParameters($token, $expire, $this->configuration);
+    }
+
+    // @TODO
+    /**
+     * @param $jobId
+     */
+    public function getBulkJobStatus($jobId)
+    {
+
+    }
+
+    /**
+     * @param $firstPHash
+     * @param $secondPHash
+     * @return int
+     */
     public function pHashDistance($firstPHash, $secondPHash)
     {
         $pHashInstance = new Phash();
         return $pHashInstance->pHashDistance($firstPHash, $secondPHash);
     }
 
+    /**
+     * @param $url
+     * @return object
+     */
     public function getFileMetadataFromRemoteURL($url)
     {
-        $defaultOptions = $this->getDefaultOption();
 
-        $client = new Client(addAuthorization([], $defaultOptions));
-
-        $resource = new GuzzleHttpWrapper($client);
-        $resource->setUri(getFileMetadataFromRemoteURLEndpoint());
+        $this->httpClient->setUri(Endpoints::getFileMetadataFromRemoteURLEndpoint());
 
         $fileInstance = new File();
-        return $fileInstance->getFileMetadataFromRemoteURL($url, $resource);
+        return $fileInstance->getFileMetadataFromRemoteURL($url, $this->httpClient);
     }
 
+    /**
+     * @param $str
+     * @return false|mixed|string
+     */
     private function removeTrailingSlash($str)
     {
-        if (is_string($str) and strlen($str) > 0  and substr($str, -1) == "/") {
+        if (is_string($str) and strlen($str) > 0 and substr($str, -1) == '/') {
             $str = substr($str, 0, -1);
         }
         return $str;

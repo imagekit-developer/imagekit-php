@@ -6,189 +6,39 @@ use Exception;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Response;
 
-interface HttpRequest
-{
-    public function get();
-    public function post();
-    public function setUri($uri);
-    public function setDatas(array $datas);
-    public function setHeaders(array $headers);
-}
 
+/**
+ *
+ */
+
+/**
+ *
+ */
 class GuzzleHttpWrapper implements HttpRequest
 {
+    const DEFAULT_ERROR_CODE = 500;
     protected $client;
     protected $datas = [];
     protected $headers = [];
     protected $uri;
     protected $serviceId;
 
-    const DEFAULT_ERROR_CODE = 500;
+    /**
+     * @param $client
+     */
 
+    /**
+     * @param $client
+     */
     public function __construct($client)
     {
-        $this->client     = $client;
-        $this->serviceId  = $this->gen_uuid();
+        $this->client = $client;
+        $this->serviceId = $this->gen_uuid();
     }
 
-    public function setDatas(array $datas)
-    {
-        $this->datas = array_filter($datas, function ($var) {
-            if ($var === "" || $var === null || is_array($var) && count($var) === 0) {
-                return false;
-            }
-
-            return true;
-        });
-    }
-
-    public function getDatas()
-    {
-        return $this->datas;
-    }
-
-    public function setHeaders(array $headers)
-    {
-        $this->headers = $headers;
-    }
-
-    public function get()
-    {
-        try {
-            $response = $this->client->request('GET', $this->getUri(), $this->getOptions('query'));
-            return $response;
-        } catch (RequestException $e) {
-            return $this->handleRequestException($e);
-        } catch (Exception $e) {
-            return $this->handleException($e);
-        }
-    }
-
-    public function delete()
-    {
-        try {
-            $response = $this->client->request('DELETE', $this->getUri(), $this->getOptions('query'));
-            return $response;
-        } catch (RequestException $e) {
-            return $this->handleRequestException($e);
-        } catch (Exception $e) {
-            return $this->handleException($e);
-        }
-    }
-
-    public function postMultipart()
-    {
-        try {
-            $options = [
-                'headers' => $this->headers,
-                'multipart' => self::getMultipartData($this->datas)
-            ];
-
-            return $this->client->request('POST', $this->getUri(), $options);
-        } catch (RequestException $e) {
-            return $this->handleRequestException($e);
-        } catch (Exception $e) {
-            return $this->handleException($e);
-        }
-    }
-
-    public function post()
-    {
-        try {
-            $options = [
-                'headers' => $this->headers,
-                'form_params' => $this->datas
-            ];
-
-            return $this->client->request('POST', $this->getUri(), $options);
-        } catch (RequestException $e) {
-            return $this->handleRequestException($e);
-        } catch (Exception $e) {
-            return $this->handleException($e);
-        }
-    }
-
-    public function rawPost()
-    {
-        try {
-            $options = [
-                'body' => json_encode($this->datas),
-                'headers' => ['Content-Type' => 'application/json']
-            ];
-
-            return $this->client->request('POST', $this->getUri(), $options);
-        } catch (RequestException $e) {
-            return $this->handleRequestException($e);
-        } catch (Exception $e) {
-            return $this->handleException($e);
-        }
-    }
-
-    public function patch()
-    {
-        try {
-            $options = [
-                'headers' => $this->headers,
-                'json' => $this->datas
-            ];
-            return $this->client->request('PATCH', $this->getUri(), $options);
-        } catch (RequestException $e) {
-            return $this->handleRequestException($e);
-        } catch (Exception $e) {
-            return $this->handleException($e);
-        }
-    }
-
-    protected function checkUri()
-    {
-        if (is_null($this->getUri())) {
-            throw new UriNotSetException('Uri should be set.', self::DEFAULT_ERROR_CODE);
-        }
-    }
-
-    protected function getUri()
-    {
-        return $this->uri;
-    }
-
-    public function setUri($uri)
-    {
-        $this->uri = $uri;
-    }
-
-    protected function getOptions($dataType)
-    {
-        $params =
-            [
-                $dataType => $this->datas,
-                'headers' => $this->headers,
-            ];
-        return $params;
-    }
-
-    protected function handleRequestException(RequestException $e)
-    {
-        $status = $e->getCode();
-        $headers = [];
-        $body = "";
-        if ($e->hasResponse()) {
-            $body = (string) $e->getResponse()->getBody();
-        }
-
-        $response = new Response($status, $headers, $body);
-        return $response;
-    }
-
-    protected function handleException(Exception $e)
-    {
-        $status = $e->getCode();
-        $headers = [];
-        $body = $e->getMessage();
-
-        $response = new Response($status, $headers, $body);
-        return $response;
-    }
-
+    /**
+     * @return string
+     */
     function gen_uuid()
     {
         return sprintf(
@@ -216,6 +66,189 @@ class GuzzleHttpWrapper implements HttpRequest
         );
     }
 
+    /**
+     * @return array
+     */
+
+    /**
+     * @return array
+     */
+    public function getDatas()
+    {
+        return $this->datas;
+    }
+
+    /**
+     * @param array $datas
+     * @return mixed|void
+     */
+    public function setDatas(array $datas)
+    {
+        $this->datas = array_filter($datas, function ($var) {
+            if ($var === '' || $var === null || is_array($var) && count($var) === 0) {
+                return false;
+            }
+
+            return true;
+        });
+    }
+
+    /**
+     * @return Response|mixed
+     */
+
+    /**
+     * @param array $headers
+     * @return mixed|void
+     */
+    public function setHeaders(array $headers)
+    {
+        $this->headers = $headers;
+    }
+
+    /**
+     * @return Response
+     */
+
+    /**
+     * @return Response
+     */
+    public function get()
+    {
+        try {
+            return $this->client->request('GET', $this->getUri(), $this->getOptions('query'));
+        } catch (RequestException $e) {
+            return $this->handleRequestException($e);
+        } catch (Exception $e) {
+            return $this->handleException($e);
+        }
+    }
+
+    /**
+     * @return Response
+     */
+
+    /**
+     * @return mixed
+     */
+    protected function getUri()
+    {
+        return $this->uri;
+    }
+
+    /**
+     * @return Response|mixed
+     */
+
+    /**
+     * @param $uri
+     */
+    public function setUri($uri)
+    {
+        $this->uri = $uri;
+    }
+
+    /**
+     * @return Response
+     */
+
+    /**
+     * @param $dataType
+     * @return array
+     */
+    protected function getOptions($dataType)
+    {
+        return [
+            $dataType => $this->datas,
+            'headers' => $this->headers,
+        ];
+    }
+
+    /**
+     * @return Response
+     */
+
+    /**
+     * @param RequestException $e
+     * @return Response
+     */
+    protected function handleRequestException(RequestException $e)
+    {
+        $status = $e->getCode();
+        $headers = [];
+        $body = '';
+        if ($e->hasResponse()) {
+            $body = (string)$e->getResponse()->getBody();
+        }
+
+        return new Response($status, $headers, $body);
+    }
+
+    /**
+     * @param Exception $e
+     * @return Response
+     */
+    protected function handleException(Exception $e)
+    {
+        $status = $e->getCode();
+        $headers = [];
+        $body = $e->getMessage();
+
+        return new Response($status, $headers, $body);
+    }
+
+    /**
+     * @return mixed
+     */
+
+    /**
+     * @return Response
+     */
+    public function delete()
+    {
+        try {
+            return $this->client->request('DELETE', $this->getUri(), $this->getOptions('query'));
+        } catch (RequestException $e) {
+            return $this->handleRequestException($e);
+        } catch (Exception $e) {
+            return $this->handleException($e);
+        }
+    }
+
+    /**
+     * @param $uri
+     * @return mixed|void
+     */
+
+    /**
+     * @return Response
+     */
+    public function postMultipart()
+    {
+        try {
+            $options = [
+                'headers' => $this->headers,
+                'multipart' => self::getMultipartData($this->datas)
+            ];
+
+            return $this->client->request('POST', $this->getUri(), $options);
+        } catch (RequestException $e) {
+            return $this->handleRequestException($e);
+        } catch (Exception $e) {
+            return $this->handleException($e);
+        }
+    }
+
+    /**
+     * @param $dataType
+     * @return array
+     */
+
+    /**
+     * @param $data
+     * @param false $files
+     * @return array
+     */
     public static function getMultipartData($data, $files = false)
     {
         $multipartData = [];
@@ -239,5 +272,91 @@ class GuzzleHttpWrapper implements HttpRequest
         }
 
         return $multipartData;
+    }
+
+    /**
+     * @param RequestException $e
+     * @return Response
+     */
+
+    /**
+     * @return Response
+     */
+    public function post()
+    {
+        try {
+            $options = [
+                'headers' => $this->headers,
+                'form_params' => $this->datas
+            ];
+
+            return $this->client->request('POST', $this->getUri(), $options);
+        } catch (RequestException $e) {
+            return $this->handleRequestException($e);
+        } catch (Exception $e) {
+            return $this->handleException($e);
+        }
+    }
+
+    /**
+     * @param Exception $e
+     * @return Response
+     */
+
+    /**
+     * @return Response
+     */
+    public function rawPost()
+    {
+        try {
+            $options = [
+                'body' => json_encode($this->datas),
+                'headers' => ['Content-Type' => 'application/json']
+            ];
+
+            return $this->client->request('POST', $this->getUri(), $options);
+        } catch (RequestException $e) {
+            return $this->handleRequestException($e);
+        } catch (Exception $e) {
+            return $this->handleException($e);
+        }
+    }
+
+    /**
+     * @return string
+     */
+
+    /**
+     * @return Response
+     */
+    public function patch()
+    {
+        try {
+            $options = [
+                'headers' => $this->headers,
+                'json' => $this->datas
+            ];
+            return $this->client->request('PATCH', $this->getUri(), $options);
+        } catch (RequestException $e) {
+            return $this->handleRequestException($e);
+        } catch (Exception $e) {
+            return $this->handleException($e);
+        }
+    }
+
+    /**
+     * @param $data
+     * @param false $files
+     * @return array
+     */
+
+    /**
+     * @throws UriNotSetException
+     */
+    protected function checkUri()
+    {
+        if (is_null($this->getUri())) {
+            throw new UriNotSetException('Uri should be set.', self::DEFAULT_ERROR_CODE);
+        }
     }
 }

@@ -1,61 +1,95 @@
 <?php
 
-const DEFAULT_TRANSFORMATION_POSITION = "path";
-const QUERY_TRANSFORMATION_POSITION = "query";
-const VALID_TRANSFORMATION_POSITIONS = [DEFAULT_TRANSFORMATION_POSITION, QUERY_TRANSFORMATION_POSITION];
+namespace ImageKit\Utils;
 
-// const supportedTransforms = require("../Constants/supportedTransforms");
-const CHAIN_TRANSFORM_DELIMITER = ":";
-const TRANSFORM_DELIMITER = ",";
-const TRANSFORM_KEY_VALUE_DELIMITER = "-";
+use ImageKit\Constants\SupportedTransforms;
 
-include_once __DIR__ . '/../Constants/supportedTransforms.php';
+/**
+ *
+ */
 
-function getDefault()
+/**
+ *
+ */
+class Transformation
 {
-    return DEFAULT_TRANSFORMATION_POSITION;
-}
+    const DEFAULT_TRANSFORMATION_POSITION = 'path';
+    const QUERY_TRANSFORMATION_POSITION = 'query';
 
-function getTransformKey($transformation)
-{
-    if (empty($transformation)) {
-        return "";
+    const CHAIN_TRANSFORM_DELIMITER = ':';
+    const TRANSFORM_DELIMITER = ',';
+    const TRANSFORM_KEY_VALUE_DELIMITER = '-';
+
+    /**
+     * @param $transformation
+     * @return mixed
+     */
+    /**
+     * @param $transformation
+     * @return mixed
+     */
+    public static function getTransformKey($transformation)
+    {
+
+        $supportedTransforms = SupportedTransforms::get();
+
+        if (isset($supportedTransforms->$transformation)) {
+            return $supportedTransforms->$transformation;
+        }
+
+        return $transformation;
     }
 
-    $supportedTransforms = getSupportedTransformations();
-
-    $res = "";
-    if (isset($supportedTransforms->$transformation)) {
-        $res = $supportedTransforms->$transformation;
-    } else {
-        $res = $transformation;
+    /**
+     * @return string
+     */
+    /**
+     * @return string
+     */
+    public static function getTransformKeyValueDelimiter()
+    {
+        return self::TRANSFORM_KEY_VALUE_DELIMITER;
     }
 
-    return $res;
-}
-
-function getTransformKeyValueDelimiter()
-{
-    return TRANSFORM_KEY_VALUE_DELIMITER;
-}
-
-function getTransformDelimiter()
-{
-    return TRANSFORM_DELIMITER;
-}
-
-function getChainTransformDelimiter()
-{
-    return CHAIN_TRANSFORM_DELIMITER;
-}
-
-function addAsQueryParameter($options)
-{
-    // return options.transformationPosition === QUERY_TRANSFORMATION_POSITION;
-    $optionsObject = (object) ($options);
-    if (isset($optionsObject->transformationPosition)) {
-        return $optionsObject->transformationPosition === QUERY_TRANSFORMATION_POSITION;
+    /**
+     * @return string
+     */
+    /**
+     * @return string
+     */
+    public static function getTransformDelimiter()
+    {
+        return self::TRANSFORM_DELIMITER;
     }
 
-    return false;
+    /**
+     * @return string
+     */
+    /**
+     * @return string
+     */
+    public static function getChainTransformDelimiter()
+    {
+        return self::CHAIN_TRANSFORM_DELIMITER;
+    }
+
+    /**
+     * @param $options
+     * @return bool
+     */
+    /**
+     * @param $options
+     * @return bool
+     */
+    public static function addAsQueryParameter($options)
+    {
+        // return options.transformationPosition === QUERY_TRANSFORMATION_POSITION;
+        $optionsObject = (object)($options);
+        if (isset($optionsObject->transformationPosition)) {
+            return $optionsObject->transformationPosition === self::QUERY_TRANSFORMATION_POSITION;
+        }
+
+        return false;
+    }
+
 }

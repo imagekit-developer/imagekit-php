@@ -1,14 +1,33 @@
 <?php
 
-function addAuthorization(array $opts, array $defaultOptions)
-{
-    $defaultOptionsObj = (object) $defaultOptions;
-    $privateKey = $defaultOptionsObj->privateKey;
-    $authorization = array(
-        "auth" => array(
-            $privateKey, ""
-        )
-    );
+namespace ImageKit\Utils;
 
-    return array_merge($opts, $authorization);
+use ImageKit\Configuration\Configuration;
+
+/**
+ *
+ */
+
+/**
+ *
+ */
+class Authorization
+{
+    /**
+     * @param Configuration $configuration
+     * @return array[]
+     */
+    /**
+     * @param Configuration $configuration
+     * @return array[]
+     */
+    public static function addAuthorization(Configuration $configuration)
+    {
+        return [
+            'auth' => [
+                $configuration->privateKey, ''
+            ]
+        ];
+    }
 }
+

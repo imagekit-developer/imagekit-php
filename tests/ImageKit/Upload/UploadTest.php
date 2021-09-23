@@ -10,6 +10,7 @@ use GuzzleHttp\Psr7\Utils;
 use ImageKit\ImageKit;
 use ImageKit\Resource\GuzzleHttpWrapper;
 use PHPUnit\Framework\TestCase;
+use function json_encode;
 
 /**
  *
@@ -25,13 +26,25 @@ final class UploadTest extends TestCase
      */
     private $client;
 
-    protected function setUp(): void
+    /**
+     *
+     */
+    public function testFileUploadIfMissingDataUpload()
     {
-        $this->client = new ImageKit(
-            'Testing_Public_Key',
-            'Testing_Private_Key',
-            'https://ik.imagekit.io/demo'
-        );
+
+        $mockBodyResponse = Utils::streamFor(json_encode([
+            'width' => 1000
+        ]));
+
+        $this->stubHttpClient(new Response(200, ['X-Foo' => 'Bar', 'TEST' => 'TEST'],
+            $mockBodyResponse));
+
+        $response = $this->client->upload([
+            'file' => 'http://lorempixel.com/640/480/',
+        ]);
+
+        UploadTest::assertNull($response->success);
+        UploadTest::assertEquals('Missing fileName parameter for upload', $response->err->message);
     }
 
     private function stubHttpClient($response)
@@ -47,38 +60,12 @@ final class UploadTest extends TestCase
         $doClosure();
     }
 
-    protected function tearDown(): void
-    {
-        $this->client = null;
-    }
-
-    /**
-     *
-     */
-    public function testFileUploadIfMissingDataUpload()
-    {
-
-        $mockBodyResponse = Utils::streamFor(\json_encode([
-            'width' => 1000
-        ]));
-
-        $this->stubHttpClient(new Response(200, ['X-Foo' => 'Bar', 'TEST'=> 'TEST'],
-            $mockBodyResponse));
-
-        $response = $this->client->upload([
-            'file' => 'http://lorempixel.com/640/480/',
-        ]);
-
-        UploadTest::assertNull($response->success);
-        UploadTest::assertEquals('Missing fileName parameter for upload', $response->err->message);
-    }
-
     /**
      *
      */
     public function testFileUploadIfMissingFileParameter()
     {
-        $mockBodyResponse = Utils::streamFor(\json_encode([
+        $mockBodyResponse = Utils::streamFor(json_encode([
             'width' => 1000
         ]));
 
@@ -98,7 +85,7 @@ final class UploadTest extends TestCase
     {
 
 
-        $mockBodyResponse = Utils::streamFor(\json_encode([
+        $mockBodyResponse = Utils::streamFor(json_encode([
             'width' => 1000
         ]));
 
@@ -117,7 +104,7 @@ final class UploadTest extends TestCase
      */
     public function testFileUploadIfSuccessful()
     {
-        $mockBodyResponse = Utils::streamFor(\json_encode([
+        $mockBodyResponse = Utils::streamFor(json_encode([
             'width' => 1000
         ]));
 
@@ -153,7 +140,7 @@ final class UploadTest extends TestCase
         $metadata = '7e57d004-2b97-0e7a-b45f-5387367791cd';
 
 
-        $mockBodyResponse = Utils::streamFor(\json_encode([
+        $mockBodyResponse = Utils::streamFor(json_encode([
             'name' => $fileName,
             'tags' => $tags,
             'customCoordinates' => $customCoordinates,
@@ -178,5 +165,19 @@ final class UploadTest extends TestCase
             'isPrivateFile' => $isPrivateFile,
             'metadata' => $metadata
         ], $response['success']);
+    }
+
+    protected function setUp(): void
+    {
+        $this->client = new ImageKit(
+            'Testing_Public_Key',
+            'Testing_Private_Key',
+            'https://ik.imagekit.io/demo'
+        );
+    }
+
+    protected function tearDown(): void
+    {
+        $this->client = null;
     }
 }

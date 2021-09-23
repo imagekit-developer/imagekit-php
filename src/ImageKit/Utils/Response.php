@@ -5,35 +5,36 @@ namespace ImageKit\Utils;
 /**
  *
  */
-
-/**
- *
- */
 class Response
 {
-    // callback function
     /**
-     * @param $isError
-     * @param $response
-     * @return object
+     * Error Object
+     *
+     * @var object|null
      */
+    public $err = null;
+
+    /**
+     * Success Response Object
+     *
+     * @var object|null
+     */
+    public $success = null;
+
     /**
      * @param $isError
      * @param $response
-     * @return object
+     * @return Response
      */
     public static function respond($isError, $response)
     {
+        $responseObject = new Response();
         if ($isError) {
-            return (object)[
-                'err' => $response,
-                'success' => null
-            ];
+            $responseObject->err = $response;
         } else {
-            return (object)[
-                'err' => null,
-                'success' => $response
-            ];
+            $responseObject->success = $response;
         }
+
+        return $responseObject;
     }
 }

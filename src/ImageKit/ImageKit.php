@@ -5,12 +5,14 @@ namespace ImageKit;
 use GuzzleHttp\Client;
 use ImageKit\Configuration\Configuration;
 use ImageKit\Constants\Endpoints;
+use ImageKit\Constants\ErrorMessages;
 use ImageKit\Phash\Phash;
 use ImageKit\Resource\GuzzleHttpWrapper;
 use ImageKit\Signature\Signature;
 use ImageKit\Upload\Upload;
 use ImageKit\Url\Url;
 use ImageKit\Utils\Authorization;
+use ImageKit\Utils\Response;
 use ImageKit\Utils\Transformation;
 use InvalidArgumentException;
 
@@ -23,6 +25,11 @@ use InvalidArgumentException;
  */
 class ImageKit
 {
+    /**
+     * ImageKit SDK VERSION
+     *
+     * @var string
+     */
     const SDK_VERSION = '2.0.0';
 
     /**
@@ -36,16 +43,23 @@ class ImageKit
     private $httpClient;
 
     /**
+     * ImageKit Client Constructor
+     *
      * @param string $publicKey The Public Key as obtained from the imagekit developer dashboard
      *
      * @param string $privateKey The Private Key as obtained from the imagekit developer dashboard
      *
      * @param string $urlEndpoint The URL Endpoint as obtained from the imagekit developer dashboard
      *
-     * @param string $transformationPosition Default value is path that places the transformation string as a path parameter in the URL. Can also be specified as query which adds the transformation string as the query parameter tr in the URL. If you use src parameter to create the URL, then the transformation string is always added as a query parameter.
+     * @param string $transformationPosition Default value is path that places the transformation string as a path
+     * parameter in the URL. Can also be specified as query which adds the transformation string as the query parameter
+     * tr in the URL. If you use src parameter to create the URL, then the transformation string is always added as
+     * a query parameter.
      *
+     * @return void
      */
-    public function __construct($publicKey, $privateKey, $urlEndpoint, $transformationPosition = Transformation::DEFAULT_TRANSFORMATION_POSITION)
+    public function __construct($publicKey, $privateKey, $urlEndpoint, $transformationPosition =
+    Transformation::DEFAULT_TRANSFORMATION_POSITION)
     {
         $this->configuration = new Configuration();
         if ($publicKey == null || empty($publicKey)) {
@@ -77,14 +91,14 @@ class ImageKit
         $this->configuration->transformationPosition = $transformationPosition;
 
 
-
         $client = new Client(Authorization::addAuthorization($this->configuration));
         $this->httpClient = new GuzzleHttpWrapper($client);
     }
 
     /**
      * You can add multiple origins in the same ImageKit.io account.
-     * URL endpoints allow you to configure which origins are accessible through your account and set their preference order as well.
+     * URL endpoints allow you to configure which origins are accessible through your account and set their preference
+     * order as well.
      *
      * @link https://docs.imagekit.io/integration/url-endpoints Url Endpoint Documentation
      * @link https://github.com/imagekit-developer/imagekit-php#url-generation Url Generation Documentation
@@ -124,12 +138,12 @@ class ImageKit
      * @link https://docs.imagekit.io/api-reference/upload-file-api/server-side-file-upload API Reference
      *
      * @param array $options
-     * @return object
+     * @return Response
      */
     public function uploadFile($options)
     {
         $this->httpClient->setUri(Endpoints::getUploadFileEndpoint());
-        return Upload::uploadFileRequest($options, $this->httpClient);
+        return Upload::upload($options, $this->httpClient);
     }
 
     /**
@@ -141,9 +155,10 @@ class ImageKit
      * @link https://docs.imagekit.io/api-reference/upload-file-api/server-side-file-upload API Reference
      *
      * @param array $options
-     * @return object
+     * @return Response
      *
-     * @deprecated since 2.0.0, use <code>uploadFile</code>; uploadFiles was misleading as it supports only singular file upload
+     * @deprecated since 2.0.0, use <code>uploadFile</code>; uploadFiles was misleading as it supports only singular
+     * file upload
      */
     public function uploadFiles(array $options)
     {
@@ -157,12 +172,12 @@ class ImageKit
      * @link https://docs.imagekit.io/api-reference/media-api/list-and-search-files API Reference
      *
      * @param array $parameters
-     * @return object
+     * @return Response
      */
     public function listFiles(array $parameters = [])
     {
         $this->httpClient->setUri(Endpoints::getListFilesEndpoint());
-        return Manage\File::listFiles($parameters, $this->httpClient);
+        return Manage\File::list($parameters, $this->httpClient);
     }
 
     /**
@@ -171,6 +186,8 @@ class ImageKit
      * @link https://docs.imagekit.io/api-reference/media-api/get-file-details API Reference
      *
      * @param string $fileId
+     *
+     * @return Response
      *
      * @deprecated since 2.0.0, use <code>getFileDetails</code>
      */
@@ -185,12 +202,13 @@ class ImageKit
      * @link https://docs.imagekit.io/api-reference/media-api/get-file-details API Reference
      *
      * @param string $fileId
-     * @return object
+     * @return Response
+     *
      */
     public function getFileDetails($fileId)
     {
         $this->httpClient->setUri(Endpoints::getDetailsEndpoint($fileId));
-        return Manage\File::getFileDetails($fileId, $this->httpClient);
+        return Manage\File::getDetails($fileId, $this->httpClient);
     }
 
     /**
@@ -198,9 +216,9 @@ class ImageKit
      *
      * @link https://docs.imagekit.io/api-reference/metadata-api/get-image-metadata-for-uploaded-media-files
      *
-     * @param string $fileId The unique fileId of the uploaded file. fileId is returned in list files API and upload API.
+     * @param string $fileId The unique fileId of the uploaded file. fileId is returned in list files API and upload API
      *
-     * @return object
+     * @return Response
      * @deprecated since 2.0.0, use <code>getFileMetaData</code>
      */
     public function getMetaData($fileId)
@@ -213,15 +231,14 @@ class ImageKit
      *
      * @link https://docs.imagekit.io/api-reference/metadata-api/get-image-metadata-for-uploaded-media-files
      *
-     * @param string $fileId The unique fileId of the uploaded file. fileId is returned in list files API and upload API.
+     * @param string $fileId The unique fileId of the uploaded file. fileId is returned in list files API and upload API
      *
-     * @return object
+     * @return Response
      */
     public function getFileMetaData($fileId)
     {
         $this->httpClient->setUri(Endpoints::getListMetaDataFilesEndpoint($fileId));
-
-        return Manage\File\Metadata::getFileMetaData($fileId, $this->httpClient);
+        return Manage\File\Metadata::get($fileId, $this->httpClient);
     }
 
     /**
@@ -229,10 +246,10 @@ class ImageKit
      *
      * @link https://docs.imagekit.io/api-reference/media-api/update-file-details
      *
-     * @param string $fileId The unique fileId of the uploaded file. fileId is returned in list files API and upload API.
+     * @param string $fileId The unique fileId of the uploaded file. fileId is returned in list files API and upload API
      * @param array $updateData
      *
-     * @return object
+     * @return Response
      * @deprecated since 2.0.0, use <code>updateFileDetails</code>
      */
     public function updateDetails($fileId, $updateData)
@@ -245,80 +262,74 @@ class ImageKit
      *
      * @link https://docs.imagekit.io/api-reference/media-api/update-file-details
      *
-     * @param string $fileId The unique fileId of the uploaded file. fileId is returned in list files API and upload API.
+     * @param string $fileId The unique fileId of the uploaded file. fileId is returned in list files API and upload API
      * @param array $updateData
-     * @return object
+     * @return Response
      */
     public function updateFileDetails($fileId, $updateData)
     {
         $this->httpClient->setUri(Endpoints::getUpdateFileDetailsEndpoint($fileId));
-        return Manage\File::updateFileDetails($fileId, $updateData, $this->httpClient);
+        return Manage\File::updateDetails($fileId, $updateData, $this->httpClient);
     }
 
-    // @TODO
-
     /**
-     * @param array $fileIds
-     * @param array $tags
+     * Add tags to multiple files in a single request. The method accepts an array of fileIDs of the files and an
+     * array of tags that have to be added to those files.
+     *
+     * @link https://docs.imagekit.io/api-reference/media-api/add-tags-bulk
+     *
+     * @param array<int, string> $fileIds
+     * @param array<int, string> $tags
+     *
+     * @return Response
      */
     public function bulkAddTags(array $fileIds, array $tags)
     {
-
+        $this->httpClient->setUri(Endpoints::getBulkAddTagsEndpoint());
+        return Manage\File::bulkAddTags($fileIds, $tags, $this->httpClient);
     }
 
-    // @TODO
-
     /**
-     * @param array $fileIds
-     * @param array $tags
+     * Remove tags to multiple files in a single request. The method accepts an array of fileIDs of the files and an
+     * array of tags that have to be removed to those files.
+     *
+     * @link https://docs.imagekit.io/api-reference/media-api/remove-tags-bulk
+     *
+     * @param array<int, string> $fileIds
+     * @param array<int, string> $tags
+     *
+     * @return Response
      */
     public function bulkRemoveTags(array $fileIds, array $tags)
     {
-
+        $this->httpClient->setUri(Endpoints::getBulkRemoveTagsEndpoint());
+        return Manage\File::bulkRemoveTags($fileIds, $tags, $this->httpClient);
     }
 
     /**
+     * You can programmatically delete uploaded files in media library using delete file API.
+     *
+     * @link https://docs.imagekit.io/api-reference/media-api/delete-file
+     *
      * @param $fileId
-     * @return object
-     */
-    /**
-     * @param $fileId
-     * @return object
+     * @return Response
+     *
      */
     public function deleteFile($fileId)
     {
         $this->httpClient->setUri(Endpoints::getDeleteFilesEndpoint($fileId));
-        return Manage\File::deleteFile($fileId, $this->httpClient);
+        return Manage\File::delete($fileId, $this->httpClient);
     }
 
     /**
-     * @deprecated use purgeCache
-     */
-    public function purgeCacheApi($options)
-    {
-        return $this->purgeCache($options);
-    }
-
-    /**
+     * This will purge CDN and ImageKit.io internal cache.
+     *
+     * @link https://docs.imagekit.io/api-reference/media-api/purge-cache
+     *
      * @param $options
-     * @return object
-     */
-    public function purgeCache($options)
-    {
-
-        $this->httpClient->setUri(Endpoints::getPurgeCacheEndpoint());
-
-        $purgeCacheApiInstance = new File();
-        return $purgeCacheApiInstance->purgeFileCacheApi($options, $this->httpClient);
-    }
-
-    /**
-     * @param $options
-     * @return object
-     */
-
-    /**
-     * @deprecated use purgeCache
+     * @return Response
+     *
+     * @deprecated since 2.0.0, use <code>purgeCache</code>
      */
     public function purgeFileCacheApi($options)
     {
@@ -326,7 +337,43 @@ class ImageKit
     }
 
     /**
-     * @deprecated use getPurgeCacheStatus
+     * This will purge CDN and ImageKit.io internal cache.
+     *
+     * @link https://docs.imagekit.io/api-reference/media-api/purge-cache
+     *
+     * @param $options
+     * @return Response
+     */
+    public function purgeCache($options)
+    {
+        $this->httpClient->setUri(Endpoints::getPurgeCacheEndpoint());
+        return Manage\Cache::purgeFileCache($options, $this->httpClient);
+    }
+
+    /**
+     * This will purge CDN and ImageKit.io internal cache.
+     *
+     * @link https://docs.imagekit.io/api-reference/media-api/purge-cache
+     *
+     * @param $options
+     * @return Response
+     *
+     * @deprecated since 2.0.0, use <code>purgeCache</code>
+     */
+    public function purgeCacheApi($options)
+    {
+        return $this->purgeCache($options);
+    }
+
+    /**
+     * Get the status of submitted purge request.
+     *
+     * @link https://docs.imagekit.io/api-reference/media-api/purge-cache-status
+     *
+     * @param $requestId
+     * @return Response
+     *
+     * @deprecated since 2.0.0, use <code>getPurgeCacheStatus</code>
      */
     public function purgeCacheApiStatus($requestId)
     {
@@ -334,25 +381,28 @@ class ImageKit
     }
 
     /**
+     * Get the status of submitted purge request.
+     *
+     * @link https://docs.imagekit.io/api-reference/media-api/purge-cache-status
+     *
      * @param $requestId
-     * @return object
+     * @return Response
      */
     public function getPurgeCacheStatus($requestId)
     {
-
         $this->httpClient->setUri(Endpoints::getPurgeCacheApiStatusEndpoint($requestId));
-
-        $purgeCacheApiStatusInstance = new File();
-        return $purgeCacheApiStatusInstance->purgeFileCacheApiStatus($requestId, $this->httpClient);
+        return Manage\Cache::purgeFileCacheStatus($requestId, $this->httpClient);
     }
 
     /**
+     * Get the status of submitted purge request.
+     *
+     * @link https://docs.imagekit.io/api-reference/media-api/purge-cache-status
+     *
      * @param $requestId
-     * @return object
-     */
-
-    /**
-     * @deprecated use getPurgeCacheStatus
+     * @return Response
+     *
+     * @deprecated since 2.0.0, use <code>getPurgeCacheStatus</code>
      */
     public function purgeFileCacheApiStatus($requestId)
     {
@@ -360,141 +410,227 @@ class ImageKit
     }
 
     /**
-     * @deprecated use bulkDeleteFiles
+     * Delete multiple files. The method accepts an array of file IDs of the files that have to be deleted.
+     *
+     * @link https://docs.imagekit.io/api-reference/media-api/delete-files-bulk
+     *
+     * @param $options
+     * @return Response
+     *
+     * @deprecated since 2.0.0, use <code>bulkDeleteFiles</code>
      */
     public function bulkFileDeleteByIds($options)
     {
-        return $this->bulkDeleteFiles($options);
+        if (!isset($options['fileIds'])) {
+            return Response::respond(true, ((object)ErrorMessages::$fileIdS_MISSING));
+        }
+
+        return $this->bulkDeleteFiles($options['fileIds']);
     }
 
-
     /**
-     * @param $options
-     * @return object
+     * Delete multiple files. The method accepts an array of file IDs of the files that have to be deleted.
+     *
+     * @link https://docs.imagekit.io/api-reference/media-api/delete-files-bulk
+     *
+     * @param $fileIds
+     * @return Response
+     *
      */
-    /**
-     * @param $options
-     * @return object
-     */
-    public function bulkDeleteFiles($options)
+    public function bulkDeleteFiles($fileIds)
     {
         $this->httpClient->setUri(Endpoints::getDeleteByFileIdsEndpoint());
-
-        return Manage\File::bulkDeleteByFileIds($options, $this->httpClient);
+        return Manage\File::bulkDeleteByFileIds($fileIds, $this->httpClient);
     }
 
-
-    // @TODO
     /**
+     * This will copy a file from one location to another. This method accepts the source file's path and destination
+     * folder path.
+     *
+     * @link https://docs.imagekit.io/api-reference/media-api/copy-file
+     *
      * @param $sourceFilePath
      * @param $destinationPath
+     * @return Response
      */
     public function copyFile($sourceFilePath, $destinationPath)
     {
-
+        $this->httpClient->setUri(Endpoints::getCopyFileEndpoint());
+        return Manage\File::copy($sourceFilePath, $destinationPath, $this->httpClient);
     }
 
-    // @TODO
     /**
+     * This will move a file from one location to another. This method accepts the source file's path and destination
+     * folder path.
+     *
+     * @link https://docs.imagekit.io/api-reference/media-api/move-file
+     *
      * @param $sourceFilePath
      * @param $destinationPath
+     * @return Response
      */
     public function moveFile($sourceFilePath, $destinationPath)
     {
-
+        $this->httpClient->setUri(Endpoints::getMoveFileEndpoint());
+        return Manage\File::move($sourceFilePath, $destinationPath, $this->httpClient);
     }
 
-    // @TODO
     /**
+     * This will create a new folder. This method accepts folder name and parent folder path.
+     *
+     * @link https://docs.imagekit.io/api-reference/media-api/create-folder
+     *
      * @param $folderName
      * @param $parentFolderPath
+     *
+     * @return Response
      */
-    public function createFolder($folderName, $parentFolderPath)
+    public function createFolder($folderName, $parentFolderPath = '/')
     {
-
+        $this->httpClient->setUri(Endpoints::getCreateFolderEndpoint());
+        return Manage\Folder::create($folderName, $parentFolderPath, $this->httpClient);
     }
 
-    // @TODO
     /**
+     * This will delete the specified folder and all nested files & folders.
+     * This method accepts the full path of the folder that is to be deleted.
+     *
+     * @link https://docs.imagekit.io/api-reference/media-api/delete-folder
+     *
      * @param $folderPath
+     *
+     * @return Response
      */
     public function deleteFolder($folderPath)
     {
-
+        $this->httpClient->setUri(Endpoints::getDeleteFolderEndpoint());
+        return Manage\Folder::delete($folderPath, $this->httpClient);
     }
 
-    // @TODO
-
     /**
+     * This will copy a folder from one location to another. This method accepts the source folder's path
+     * and destination folder path.
+     *
+     * @link https://docs.imagekit.io/api-reference/media-api/copy-folder
+     *
      * @param $sourceFolderPath
      * @param $destinationPath
+     *
+     * @return Response
      */
     public function copyFolder($sourceFolderPath, $destinationPath)
     {
-
+        $this->httpClient->setUri(Endpoints::getCopyFolderEndpoint());
+        return Manage\Folder::copy($sourceFolderPath, $destinationPath, $this->httpClient);
     }
 
     /**
+     * This will move a folder from one location to another. This method accepts the source folder's path
+     * and destination folder path.
+     *
+     * @link https://docs.imagekit.io/api-reference/media-api/move-folder
+     *
      * @param $sourceFolderPath
      * @param $destinationPath
+     *
+     * @return Response
      */
     public function moveFolder($sourceFolderPath, $destinationPath)
     {
-
+        $this->httpClient->setUri(Endpoints::getMoveFolderEndpoint());
+        return Manage\Folder::move($sourceFolderPath, $destinationPath, $this->httpClient);
     }
 
     /**
      * @param string $token
      * @param int $expire
-     * @return array
+     * @return object { token: string, expire: int, signature: string}
      */
     public function getAuthenticationParameters($token = '', $expire = 0)
     {
         return Signature::getAuthenticationParameters($token, $expire, $this->configuration);
     }
 
-    // @TODO
     /**
+     * This endpoint allows you to get the status of a bulk operation e.g. copy or move folder API.
+     *
+     * @link https://docs.imagekit.io/api-reference/media-api/copy-move-folder-status
+     *
      * @param $jobId
+     * @return Response
      */
     public function getBulkJobStatus($jobId)
     {
+        $this->httpClient->setUri(Endpoints::getBulkJobStatusEndpoint($jobId));
 
+        if (empty($jobId)) {
+            return Response::respond(true, ((object)ErrorMessages::$JOBID_MISSING));
+        }
+
+        $res = $this->httpClient->get();
+        $stream = $res->getBody();
+        $content = $stream->getContents();
+
+        if ($res->getStatusCode() && !(200 >= $res->getStatusCode() || $res->getStatusCode() <= 300)) {
+            return Response::respond(true, json_decode($content));
+        }
+
+        return Response::respond(false, json_decode($content));
     }
 
     /**
-     * @param $firstPHash
-     * @param $secondPHash
+     * Get image exif, pHash and other metadata for uploaded files in ImageKit.io powered remote URL using this API.
+     *
+     * @link https://docs.imagekit.io/api-reference/metadata-api/get-image-metadata-from-remote-url
+     *
+     * @param $url
+     * @return Response
+     */
+    public function getFileMetadataFromRemoteURL($url)
+    {
+        $this->httpClient->setUri(Endpoints::getFileMetadataFromRemoteURLEndpoint());
+        return Manage\File\Metadata::getFileMetadataFromRemoteURL($url, $this->httpClient);
+    }
+
+    /**
+     * Using pHash to find similar or duplicate images
+     * The hamming distance between two pHash values determines how similar or different the images are.
+     *
+     * The pHash value returned by ImageKit.io metadata API is a hexadecimal string of 64bit pHash. The distance
+     * between two hash can be between 0 and 64. A lower distance means similar images. If the distance is 0,
+     * that means two images are identical.
+     *
+     * @param string $firstPHash
+     * @param string $secondPHash
+     * @return object { distance: int, similarityScore: float, firstPHash: string, secondPHash: string}
+     */
+    public function evaluateSimilarity($firstPHash, $secondPHash)
+    {
+        $distance = self::pHashDistance($firstPHash, $secondPHash);
+
+        return (object)[
+            'firstPHash' => $firstPHash,
+            'secondPHash' => $secondPHash,
+            'distance' => $distance,
+            'similarityScore' => Phash::similarityScore($distance)
+        ];
+    }
+
+    /**
+     * Using pHash to find similar or duplicate images
+     * The hamming distance between two pHash values determines how similar or different the images are.
+     *
+     * The pHash value returned by ImageKit.io metadata API is a hexadecimal string of 64bit pHash. The distance
+     * between two hash can be between 0 and 64. A lower distance means similar images. If the distance is 0,
+     * that means two images are identical.
+     *
+     * @param string $firstPHash
+     * @param string $secondPHash
      * @return int
      */
     public function pHashDistance($firstPHash, $secondPHash)
     {
-        $pHashInstance = new Phash();
-        return $pHashInstance->pHashDistance($firstPHash, $secondPHash);
+        return Phash::pHashDistance($firstPHash, $secondPHash);
     }
 
-    /**
-     * @param $url
-     * @return object
-     */
-    public function getFileMetadataFromRemoteURL($url)
-    {
-
-        $this->httpClient->setUri(Endpoints::getFileMetadataFromRemoteURLEndpoint());
-
-        $fileInstance = new File();
-        return $fileInstance->getFileMetadataFromRemoteURL($url, $this->httpClient);
-    }
-
-    /**
-     * @param $str
-     * @return false|mixed|string
-     */
-    private function removeTrailingSlash($str)
-    {
-        if (is_string($str) and strlen($str) > 0 and substr($str, -1) == '/') {
-            $str = substr($str, 0, -1);
-        }
-        return $str;
-    }
 }

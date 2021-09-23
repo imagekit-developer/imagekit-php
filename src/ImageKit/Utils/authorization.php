@@ -7,16 +7,8 @@ use ImageKit\Configuration\Configuration;
 /**
  *
  */
-
-/**
- *
- */
 class Authorization
 {
-    /**
-     * @param Configuration $configuration
-     * @return array[]
-     */
     /**
      * @param Configuration $configuration
      * @return array[]

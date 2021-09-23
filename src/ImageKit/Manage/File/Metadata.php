@@ -14,9 +14,9 @@ class Metadata
     /**
      * @param $fileId
      * @param $resource
-     * @return object
+     * @return Response
      */
-    public static function getFileMetaData($fileId, $resource)
+    public static function get($fileId, $resource)
     {
         if (empty($fileId)) {
             return Response::respond(true, ((object)ErrorMessages::$fileId_MISSING));
@@ -39,7 +39,7 @@ class Metadata
      *
      * @param $url
      * @param $resource
-     * @return object
+     * @return Response
      */
     public static function getFileMetadataFromRemoteURL($url, $resource)
     {

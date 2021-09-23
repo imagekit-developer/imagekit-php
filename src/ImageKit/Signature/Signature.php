@@ -17,7 +17,7 @@ class Signature
      * @param $token
      * @param $expire
      * @param Configuration $configuration
-     * @return array
+     * @return object { token: string, expire: int, signature: string}
      */
     public static function getAuthenticationParameters($token, $expire, Configuration $configuration)
     {
@@ -44,7 +44,7 @@ class Signature
             $authParameters['signature'] = $signature;
 
         }
-        return $authParameters;
+        return (object) $authParameters;
     }
 
     /**

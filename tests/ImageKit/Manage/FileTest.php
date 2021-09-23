@@ -6,7 +6,6 @@ namespace ImageKit\Tests\ImageKit\Manage;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Utils;
 use ImageKit\ImageKit;
-use ImageKit\Manage\File;
 use ImageKit\Resource\GuzzleHttpWrapper;
 use PHPUnit\Framework\TestCase;
 
@@ -19,33 +18,6 @@ final class FileTest extends TestCase
      * @var ImageKit
      */
     private $client;
-
-    protected function setUp(): void
-    {
-        $this->client = new ImageKit(
-            'Testing_Public_Key',
-            'Testing_Private_Key',
-            'https://ik.imagekit.io/demo'
-        );
-    }
-
-    private function stubHttpClient($methodName, $response)
-    {
-        $stub = $this->createMock(GuzzleHttpWrapper::class);
-        $stub->method('setDatas');
-        $stub->method($methodName)->willReturn($response);
-
-        $closure = function () use ($stub) {
-            $this->httpClient = $stub;
-        };
-        $doClosure = $closure->bindTo($this->client, ImageKit::class);
-        $doClosure();
-    }
-
-    protected function tearDown(): void
-    {
-        $this->client = null;
-    }
 
     /**
      *
@@ -84,6 +56,19 @@ final class FileTest extends TestCase
             'fileType' => 'image',
             'filePath' => '/default-image.jpg',
         ], $el);
+    }
+
+    private function stubHttpClient($methodName, $response)
+    {
+        $stub = $this->createMock(GuzzleHttpWrapper::class);
+        $stub->method('setDatas');
+        $stub->method($methodName)->willReturn($response);
+
+        $closure = function () use ($stub) {
+            $this->httpClient = $stub;
+        };
+        $doClosure = $closure->bindTo($this->client, ImageKit::class);
+        $doClosure();
     }
 
     /**
@@ -128,8 +113,6 @@ final class FileTest extends TestCase
             'filePath' => '/default-image.jpg',
         ], $el);
     }
-
-    // Get details
 
     /**
      *
@@ -202,8 +185,7 @@ final class FileTest extends TestCase
         ], $el);
     }
 
-
-    // Get MetaData
+    // Get details
 
     /**
      *
@@ -338,7 +320,8 @@ final class FileTest extends TestCase
         FileTest::assertEquals(207097, $el['size']);
     }
 
-    // Delete Files
+
+    // Get MetaData
 
     /**
      *
@@ -350,12 +333,9 @@ final class FileTest extends TestCase
 
         $mockBodyResponse = Utils::streamFor();
 
-        $stub = $this->createMock(GuzzleHttpWrapper::class);
-        $stub->method('setDatas');
-        $stub->method('DELETE')->willReturn(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+        $this->stubHttpClient('delete', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
-        $deleteFile = new File();
-        $response = $deleteFile->deleteFile($fileId, $stub);
+        $response = $this->client->deleteFile($fileId);
 
         FileTest::assertNull($response->success);
         FileTest::assertEquals('Missing File ID parameter for this request', $response->err->message);
@@ -370,17 +350,14 @@ final class FileTest extends TestCase
 
         $mockBodyResponse = Utils::streamFor();
 
-        $stub = $this->createMock(GuzzleHttpWrapper::class);
-        $stub->method('setDatas');
-        $stub->method('DELETE')->willReturn(new Response(204, ['X-Foo' => 'Bar'], $mockBodyResponse));
+        $this->stubHttpClient('delete', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
-        $deleteFile = new File();
-        $response = $deleteFile->deleteFile($fileId, $stub);
+        $response = $this->client->deleteFile($fileId);
 
         FileTest::assertNull($response->err);
     }
 
-    // Bulk File Delete
+    // Delete Files
 
     /**
      *
@@ -388,16 +365,13 @@ final class FileTest extends TestCase
     public function testBulkFileDeleteWhenMissingFileIdsParameter()
     {
 
-        $options = '';
+        $fileIds = [];
 
         $mockBodyResponse = Utils::streamFor();
 
-        $stub = $this->createMock(GuzzleHttpWrapper::class);
-        $stub->method('setDatas');
-        $stub->method('DELETE')->willReturn(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+        $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
-        $deleteFile = new File();
-        $response = $deleteFile->bulkDeleteByFileIds($options, $stub);
+        $response = $this->client->bulkDeleteFiles($fileIds);
 
         FileTest::assertNull($response->success);
         FileTest::assertEquals('FileIds parameter is missing.', $response->err->message);
@@ -410,9 +384,6 @@ final class FileTest extends TestCase
     {
 
         $fileIds = ['6604876475937', '8242194892418'];
-        $options = [
-            'fileIds' => $fileIds
-        ];
 
         $mockBodyResponse = Utils::streamFor(json_encode([
             [
@@ -420,18 +391,132 @@ final class FileTest extends TestCase
             ],
         ]));
 
-        $stub = $this->createMock(GuzzleHttpWrapper::class);
-        $stub->method('setDatas');
-        $stub->method('rawPost')->willReturn(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+        $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
-        $fileInstance = new File();
-        $response = $fileInstance->bulkDeleteByFileIds($options, $stub);
+        $response = $this->client->bulkDeleteFiles($fileIds);
 
         $el = get_object_vars($response->success[0]);
         FileTest::assertEquals($fileIds[0], $el['successfullyDeletedFileIds'][0]);
     }
 
-    // Update details
+    // Bulk File Delete
+
+    /**
+     *
+     */
+    public function testCopyFileWhenSourceIsEmpty()
+    {
+        $source = '';
+        $destination = '/destination';
+
+        $mockBodyResponse = Utils::streamFor();
+
+        $this->stubHttpClient('post', new Response(204, ['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $response = $this->client->copyFile($source, $destination);
+
+        FileTest::assertNull($response->success);
+        FileTest::assertNotNull($response->err);
+        FileTest::assertEquals('Missing sourceFilePath and/or destinationPath for copy file.', $response->err->message);
+    }
+
+    /**
+     *
+     */
+    public function testCopyFileWhenDestinationIsEmpty()
+    {
+        $source = '/source';
+        $destination = '';
+
+        $mockBodyResponse = Utils::streamFor();
+
+        $this->stubHttpClient('post', new Response(204, ['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $response = $this->client->copyFile($source, $destination);
+
+        FileTest::assertNull($response->success);
+        FileTest::assertNotNull($response->err);
+        FileTest::assertEquals('Missing sourceFilePath and/or destinationPath for copy file.', $response->err->message);
+    }
+
+    // Copy File
+
+    /**
+     *
+     */
+    public function testCopyFileSuccessful()
+    {
+        $source = '/source';
+        $destination = '/destination';
+
+        $mockBodyResponse = Utils::streamFor();
+
+        $this->stubHttpClient('post', new Response(204, ['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $response = $this->client->copyFile($source, $destination);
+
+        FileTest::assertNull($response->success);
+        FileTest::assertNull($response->err);
+    }
+
+    /**
+     *
+     */
+    public function testMoveFileWhenSourceIsEmpty()
+    {
+        $source = '';
+        $destination = '/destination';
+
+        $mockBodyResponse = Utils::streamFor();
+
+        $this->stubHttpClient('post', new Response(204, ['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $response = $this->client->moveFile($source, $destination);
+
+        FileTest::assertNull($response->success);
+        FileTest::assertNotNull($response->err);
+        FileTest::assertEquals('Missing sourceFilePath and/or destinationPath for copy file.', $response->err->message);
+    }
+
+    /**
+     *
+     */
+    public function testMoveFileWhenDestinationIsEmpty()
+    {
+        $source = '/source';
+        $destination = '';
+
+        $mockBodyResponse = Utils::streamFor();
+
+        $this->stubHttpClient('post', new Response(204, ['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $response = $this->client->moveFile($source, $destination);
+
+        FileTest::assertNull($response->success);
+        FileTest::assertNotNull($response->err);
+        FileTest::assertEquals('Missing sourceFilePath and/or destinationPath for copy file.', $response->err->message);
+    }
+
+    // Move File
+
+    /**
+     *
+     */
+    public function testMoveFileSuccessful()
+    {
+        $source = '/source';
+        $destination = '/destination';
+
+        $mockBodyResponse = Utils::streamFor();
+
+        $this->stubHttpClient('post', new Response(204, ['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $response = $this->client->moveFile($source, $destination);
+
+        FileTest::assertNull($response->success);
+        FileTest::assertNull($response->err);
+    }
+
     /**
      *
      */
@@ -512,6 +597,9 @@ final class FileTest extends TestCase
         FileTest::assertNull($response->success);
         FileTest::assertEquals('Missing File ID parameter for this request', $response->err->message);
     }
+
+
+    // Update details
 
     /**
      *
@@ -619,12 +707,129 @@ final class FileTest extends TestCase
         FileTest::assertEquals('Invalid customCoordinates parameter for this request', $response->err->message);
     }
 
-    // Purge  Details
+    public function testBulkAddTagsWhenFileIdsAreEmpty()
+    {
+        $fileIds = [];
+        $tags = ['testing_tag1'];
+
+        $mockBodyResponse = Utils::streamFor(
+            json_encode([
+                'successfullyUpdatedFileIds' => $fileIds
+            ])
+        );
+
+        $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $response = $this->client->bulkAddTags($fileIds, $tags);
+
+        FileTest::assertNull($response->success);
+        FileTest::assertEquals('Missing bulk tag update data for this request', $response->err->message);
+    }
+
+    public function testBulkAddTagsWhenTagsAreEmpty()
+    {
+        $fileIds = ['5df36759adf3f523d81dd94f'];
+        $tags = [];
+
+        $mockBodyResponse = Utils::streamFor(
+            json_encode([
+                'successfullyUpdatedFileIds' => $fileIds
+            ])
+        );
+
+        $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $response = $this->client->bulkAddTags($fileIds, $tags);
+
+        FileTest::assertNull($response->success);
+        FileTest::assertEquals('Missing bulk tag update data for this request', $response->err->message);
+    }
+
+    // Bulk Add Tags
+
+    public function testBulkAddTagsSuccessful()
+    {
+        $fileIds = ['5df36759adf3f523d81dd94f'];
+        $tags = ['testing_tags_!'];
+
+        $mockBodyResponse = Utils::streamFor(
+            json_encode([
+                'successfullyUpdatedFileIds' => $fileIds
+            ])
+        );
+
+        $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $response = $this->client->bulkAddTags($fileIds, $tags);
+
+        $obj = get_object_vars($response->success);
+        FileTest::assertEquals(['successfullyUpdatedFileIds' => ['5df36759adf3f523d81dd94f']], $obj);
+    }
+
+    public function testBulkRemoveTagsWhenFileIdsAreEmpty()
+    {
+        $fileIds = [];
+        $tags = ['testing_tag1'];
+
+        $mockBodyResponse = Utils::streamFor(
+            json_encode([
+                'successfullyUpdatedFileIds' => $fileIds
+            ])
+        );
+
+        $this->stubHttpClient('delete', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $response = $this->client->bulkRemoveTags($fileIds, $tags);
+
+        FileTest::assertNull($response->success);
+        FileTest::assertEquals('Missing bulk tag update data for this request', $response->err->message);
+    }
+
+    public function testBulkRemoveTagsWhenTagsAreEmpty()
+    {
+        $fileIds = ['5df36759adf3f523d81dd94f'];
+        $tags = [];
+
+        $mockBodyResponse = Utils::streamFor(
+            json_encode([
+                'successfullyUpdatedFileIds' => $fileIds
+            ])
+        );
+
+        $this->stubHttpClient('delete', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $response = $this->client->bulkRemoveTags($fileIds, $tags);
+
+        FileTest::assertNull($response->success);
+        FileTest::assertEquals('Missing bulk tag update data for this request', $response->err->message);
+    }
+
+
+    // Bulk Remove Tags
+
+    public function testBulkRemoveTagsSuccessful()
+    {
+        $fileIds = ['5df36759adf3f523d81dd94f'];
+        $tags = ['testing_tags_!'];
+
+        $mockBodyResponse = Utils::streamFor(
+            json_encode([
+                'successfullyUpdatedFileIds' => $fileIds
+            ])
+        );
+
+        $this->stubHttpClient('delete', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $response = $this->client->bulkRemoveTags($fileIds, $tags);
+
+        $obj = get_object_vars($response->success);
+        FileTest::assertEquals(['successfullyUpdatedFileIds' => ['5df36759adf3f523d81dd94f']], $obj);
+    }
 
     /**
      *
      */
-    public function testPurgeFileCacheApiWithoutUrlPatrameter()
+    public function testPurgeFileCacheWithoutUrlPatrameter()
     {
 
         $urlParam = '';
@@ -635,12 +840,8 @@ final class FileTest extends TestCase
             ],
         ]));
 
-        $stub = $this->createMock(GuzzleHttpWrapper::class);
-        $stub->method('setDatas');
-        $stub->method('post')->willReturn(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $purgeCacheApi = new File();
-        $response = $purgeCacheApi->purgeFileCacheApi($urlParam, $stub);
+        $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+        $response = $this->client->purgeCache($urlParam);
 
         FileTest::assertNull($response->success);
         FileTest::assertEquals('Missing URL parameter for this request', $response->err->message);
@@ -649,7 +850,7 @@ final class FileTest extends TestCase
     /**
      *
      */
-    public function testPurgeCacheApi()
+    public function testPurgeCache()
     {
 
         $urlParam = 'https://ik.imagekit.io/ot2cky3ujwa/default-image.jpg';
@@ -660,23 +861,19 @@ final class FileTest extends TestCase
             ],
         ]));
 
-        $stub = $this->createMock(GuzzleHttpWrapper::class);
-        $stub->method('setDatas');
-        $stub->method('post')->willReturn(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $purgeCacheApi = new File();
-        $response = $purgeCacheApi->purgeFileCacheApi($urlParam, $stub);
+        $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+        $response = $this->client->purgeCache($urlParam);
 
         $el = get_object_vars($response->success[0]);
         FileTest::assertEquals('598821f949c0a938d57563bd', $el['requestId']);
     }
 
-    // Purge  Cache API  Details
+    // Purge  Details
 
     /**
      *
      */
-    public function testPurgeFileCacheApiStatusWithoutRequestId()
+    public function testPurgeFileCacheStatusWithoutRequestId()
     {
         $requestId = '';
 
@@ -686,12 +883,8 @@ final class FileTest extends TestCase
             ],
         ]));
 
-        $stub = $this->createMock(GuzzleHttpWrapper::class);
-        $stub->method('setDatas');
-        $stub->method('get')->willReturn(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $purgeCacheApiStatus = new File();
-        $response = $purgeCacheApiStatus->purgeFileCacheApiStatus($requestId, $stub);
+        $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+        $response = $this->client->getPurgeCacheStatus($requestId);
 
         FileTest::assertNull($response->success);
         FileTest::assertEquals('Missing Request ID parameter for this request', $response->err->message);
@@ -700,7 +893,7 @@ final class FileTest extends TestCase
     /**
      *
      */
-    public function testPurgeFileCacheApiStatus()
+    public function testPurgeFileCacheStatus()
     {
         $requestId = '598821f949c0a938d57563bd';
 
@@ -710,21 +903,19 @@ final class FileTest extends TestCase
             ],
         ]));
 
-        $stub = $this->createMock(GuzzleHttpWrapper::class);
-        $stub->method('setDatas');
-        $stub->method('get')->willReturn(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $purgeCacheApiStatus = new File();
-        $response = $purgeCacheApiStatus->purgeFileCacheApiStatus($requestId, $stub);
+        $this->stubHttpClient('get', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+        $response = $this->client->getPurgeCacheStatus($requestId);
 
         $el = get_object_vars($response->success[0]);
         FileTest::assertEquals('Pending', $el['status']);
     }
 
+    // Purge Cache Status API
+
     /**
      *
      */
-    public function testGetFileMetadataFromRemoteURLApiWhenURLParamIsMissing()
+    public function testGetFileMetadataFromRemoteURLWhenURLParamIsMissing()
     {
         $url = '';
 
@@ -732,11 +923,9 @@ final class FileTest extends TestCase
             ['pHash' => 'f06830ca9f1e3e90'],
         ]));
 
-        $stub = $this->createMock(GuzzleHttpWrapper::class);
-        $stub->method('get')->willReturn(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+        $this->stubHttpClient('get', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
-        $fileInstance = new File();
-        $response = $fileInstance->getFileMetadataFromRemoteURL($url, $stub);
+        $response = $this->client->getFileMetadataFromRemoteURL($url);
 
         FileTest::assertNull($response->success);
         FileTest::assertEquals('Your request is missing the url query paramater.', $response->err->message);
@@ -745,7 +934,7 @@ final class FileTest extends TestCase
     /**
      *
      */
-    public function testGetFileMetadataFromRemoteURLApiWhenSuccessful()
+    public function testGetFileMetadataFromRemoteURLWhenSuccessful()
     {
         $url = 'https://dummy.example.com/';
         $phash = '1578156593879';
@@ -754,13 +943,25 @@ final class FileTest extends TestCase
             ['pHash' => $phash],
         ]));
 
-        $stub = $this->createMock(GuzzleHttpWrapper::class);
-        $stub->method('get')->willReturn(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+        $this->stubHttpClient('get', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
-        $fileInstance = new File();
-        $response = $fileInstance->getFileMetadataFromRemoteURL($url, $stub);
+        $response = $this->client->getFileMetadataFromRemoteURL($url);
 
         $el = get_object_vars($response->success[0]);
         FileTest::assertEquals($phash, $el['pHash']);
+    }
+
+    protected function setUp(): void
+    {
+        $this->client = new ImageKit(
+            'Testing_Public_Key',
+            'Testing_Private_Key',
+            'https://ik.imagekit.io/demo'
+        );
+    }
+
+    protected function tearDown(): void
+    {
+        $this->client = null;
     }
 }

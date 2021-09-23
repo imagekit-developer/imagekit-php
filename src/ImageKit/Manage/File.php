@@ -3,7 +3,6 @@
 namespace ImageKit\Manage;
 
 use ImageKit\Constants\ErrorMessages;
-use ImageKit\Manage\File\Metadata;
 use ImageKit\Resource\GuzzleHttpWrapper;
 use ImageKit\Utils\Response;
 
@@ -13,31 +12,15 @@ use ImageKit\Utils\Response;
  */
 class File
 {
-
-    /** @var Metadata */
-    private $metadata;
-    /** @var Cache */
-    private $cache;
-
-    /**
-     * @param $parameters
-     * @param $resource
-     * @return object
-     */
-    public function __construct()
-    {
-        $this->metadata = new Metadata();
-        $this->cache = new Cache();
-    }
-
     /**
      * List File API
      *
      * @param array $parameters
      * @param GuzzleHttpWrapper $resource
-     * @return object
+     *
+     * @return Response
      */
-    public static function listFiles(array $parameters, GuzzleHttpWrapper $resource)
+    public static function list(array $parameters, GuzzleHttpWrapper $resource)
     {
         if (isset($parameters['tags']) && is_array($parameters['tags'])) {
             $parameters['tags'] = implode(',', $parameters['tags']);
@@ -64,9 +47,10 @@ class File
      *
      * @param string $fileId
      * @param GuzzleHttpWrapper $resource
-     * @return object
+     *
+     * @return Response
      */
-    public static function getFileDetails($fileId, GuzzleHttpWrapper $resource)
+    public static function getDetails($fileId, GuzzleHttpWrapper $resource)
     {
         if (empty($fileId)) {
             return Response::respond(true, ((object)ErrorMessages::$fileId_MISSING));
@@ -87,10 +71,11 @@ class File
      * Delete File API
      *
      * @param $fileId
-     * @param $resource
-     * @return object
+     * @param GuzzleHttpWrapper $resource
+     *
+     * @return Response
      */
-    public static function deleteFile($fileId, $resource)
+    public static function delete($fileId, GuzzleHttpWrapper $resource)
     {
         if (empty($fileId)) {
             return Response::respond(true, ((object)ErrorMessages::$fileId_MISSING));
@@ -111,18 +96,47 @@ class File
     /**
      * Delete Bulk Files by File ID API
      *
-     * @param $options
-     * @param $resource
-     * @return object
+     * @param $fileIds
+     * @param GuzzleHttpWrapper $resource
+     *
+     * @return Response
      */
-    public static function bulkDeleteByFileIds($options, $resource)
+    public static function bulkDeleteByFileIds($fileIds, GuzzleHttpWrapper $resource)
     {
-        if (empty($options)) {
+        if (empty($fileIds)) {
             return Response::respond(true, ((object)ErrorMessages::$fileIdS_MISSING));
         }
 
-        $resource->setDatas($options);
-        $res = $resource->rawPost();
+        $resource->setDatas(['fileIds' => $fileIds]);
+        $res = $resource->post();
+        $stream = $res->getBody();
+        $content = $stream->getContents();
+
+        if ($res->getStatusCode() && !(200 >= $res->getStatusCode() || $res->getStatusCode() <= 300)) {
+            return Response::respond(true, json_decode($content));
+        }
+
+        return Response::respond(false, json_decode($content));
+    }
+
+
+    /**
+     * Copy File API
+     *
+     * @param $sourceFilePath
+     * @param $destinationPath
+     * @param GuzzleHttpWrapper $resource
+     *
+     * @return Response
+     */
+    public static function copy($sourceFilePath, $destinationPath, GuzzleHttpWrapper $resource)
+    {
+        if (empty($sourceFilePath) || empty($destinationPath)) {
+            return Response::respond(true, ((object)ErrorMessages::$COPY_FILE_DATA_INVALID));
+        }
+
+        $resource->setDatas(['sourceFilePath' => $sourceFilePath, 'destinationPath' => $destinationPath]);
+        $res = $resource->post();
         $stream = $res->getBody();
         $content = $stream->getContents();
 
@@ -134,16 +148,86 @@ class File
     }
 
     /**
-     * Update File Details
+     * Move File API
      *
-     * @param $fileId
-     * @param $updateData
-     * @param $resource
-     * @return object
+     * @param $sourceFilePath
+     * @param $destinationPath
+     * @param GuzzleHttpWrapper $resource
+     *
+     * @return Response
      */
-    public function updateDetails($fileId, $updateData, $resource)
+    public static function move($sourceFilePath, $destinationPath, GuzzleHttpWrapper $resource)
     {
-        return $this->updateFileDetails($fileId, $updateData, $resource);
+        if (empty($sourceFilePath) || empty($destinationPath)) {
+            return Response::respond(true, ((object)ErrorMessages::$COPY_FILE_DATA_INVALID));
+        }
+
+        $resource->setDatas(['sourceFilePath' => $sourceFilePath, 'destinationPath' => $destinationPath]);
+        $res = $resource->post();
+        $stream = $res->getBody();
+        $content = $stream->getContents();
+
+        if ($res->getStatusCode() && !(200 >= $res->getStatusCode() || $res->getStatusCode() <= 300)) {
+            return Response::respond(true, json_decode($content));
+        }
+
+        return Response::respond(false, json_decode($content));
+    }
+
+    /**
+     * Bulk Add Tags
+     *
+     * @param array $fileIds
+     * @param array $tags
+     * @param GuzzleHttpWrapper $resource
+     *
+     * @return Response
+     */
+    public static function bulkAddTags(array $fileIds, array $tags, GuzzleHttpWrapper $resource)
+    {
+
+        if (!is_array($fileIds) || empty($fileIds) || !is_array($tags) || empty($tags)) {
+            return Response::respond(true, ((object)ErrorMessages::$BULK_TAGS_DATA_MISSING));
+        }
+
+        $resource->setDatas(['fileIds' => $fileIds, 'tags' => $tags]);
+        $res = $resource->post();
+        $stream = $res->getBody();
+        $content = $stream->getContents();
+
+        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
+            return Response::respond(true, json_decode($content));
+        }
+
+        return Response::respond(false, json_decode($content));
+    }
+
+    /**
+     * Bulk Remove Tags
+     *
+     * @param array $fileIds
+     * @param array $tags
+     * @param GuzzleHttpWrapper $resource
+     *
+     * @return Response
+     */
+    public static function bulkRemoveTags(array $fileIds, array $tags, GuzzleHttpWrapper $resource)
+    {
+
+        if (!is_array($fileIds) || empty($fileIds) || !is_array($tags) || empty($tags)) {
+            return Response::respond(true, ((object)ErrorMessages::$BULK_TAGS_DATA_MISSING));
+        }
+
+        $resource->setDatas(['fileIds' => $fileIds, 'tags' => $tags]);
+        $res = $resource->delete();
+        $stream = $res->getBody();
+        $content = $stream->getContents();
+
+        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
+            return Response::respond(true, json_decode($content));
+        }
+
+        return Response::respond(false, json_decode($content));
     }
 
     /**
@@ -151,10 +235,11 @@ class File
      *
      * @param $fileId
      * @param $updateData
-     * @param $resource
-     * @return object
+     * @param GuzzleHttpWrapper $resource
+     *
+     * @return Response
      */
-    public static function updateFileDetails($fileId, $updateData, $resource)
+    public static function updateDetails($fileId, $updateData, GuzzleHttpWrapper $resource)
     {
         if (empty($fileId)) {
             return Response::respond(true, ((object)ErrorMessages::$fileId_MISSING));

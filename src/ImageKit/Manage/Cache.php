@@ -10,11 +10,13 @@ class Cache
 {
 
     /**
+     * purgeCache File API
+     *
      * @param $urlParam
      * @param $resource
-     * @return object
+     * @return Response
      */
-    public function purgeFileCacheApi($urlParam, $resource)
+    public static function purgeFileCache($urlParam, $resource)
     {
         if (empty($urlParam)) {
             return Response::respond(true, ((object)ErrorMessages::$CACHE_PURGE_URL_MISSING));
@@ -37,13 +39,13 @@ class Cache
     }
 
     /**
-     * purgeCache File API
+     * purgeCacheStatus File API
      *
      * @param $requestId
      * @param GuzzleHttpWrapper $resource
-     * @return object
+     * @return Response
      */
-    public function purgeFileCacheApiStatus($requestId, GuzzleHttpWrapper $resource)
+    public static function purgeFileCacheStatus($requestId, GuzzleHttpWrapper $resource)
     {
         if (empty($requestId)) {
             return Response::respond(true, ((object)ErrorMessages::$CACHE_PURGE_STATUS_ID_MISSING));

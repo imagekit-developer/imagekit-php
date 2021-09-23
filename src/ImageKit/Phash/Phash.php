@@ -4,6 +4,7 @@ namespace ImageKit\Phash;
 
 
 use ImageKit\Constants\ErrorMessages;
+use InvalidArgumentException;
 
 /**
  *
@@ -15,27 +16,26 @@ use ImageKit\Constants\ErrorMessages;
 class Phash
 {
     /**
+     * Use pHash to find similar or duplicate images
+     *
+     * @link https://docs.imagekit.io/api-reference/metadata-api#calculate-phash-distance
+     *
      * @param $firstHash
      * @param $secondHash
      * @return int
      */
-    /**
-     * @param $firstHash
-     * @param $secondHash
-     * @return int
-     */
-    public function pHashDistance($firstHash, $secondHash)
+    public static function pHashDistance($firstHash, $secondHash)
     {
         if (empty($firstHash) or empty($secondHash)) {
-            return respond(true, ErrorMessages::$MISSING_PHASH_VALUE);
+            throw new InvalidArgumentException(ErrorMessages::$MISSING_PHASH_VALUE);
         }
 
         if (!ctype_xdigit($firstHash) || !ctype_xdigit($firstHash)) {
-            return respond(true, ErrorMessages::$MISSING_PHASH_VALUE);
+            throw new InvalidArgumentException(ErrorMessages::$MISSING_PHASH_VALUE);
         }
 
         if (strlen((string)$firstHash) != strlen((string)$secondHash)) {
-            return respond(true, ErrorMessages::$UNEQUAL_STRING_LENGTH);
+            throw new InvalidArgumentException(ErrorMessages::$MISSING_PHASH_VALUE);
         }
 
         $counts = [0, 1, 1, 2, 1, 2, 2, 3, 1, 2, 2, 3, 2, 3, 3, 4];
@@ -46,6 +46,19 @@ class Phash
             }
         }
         return $res;
-
     }
+
+    /**
+     * Similarity Score
+     *
+     * @param $hammingDistance
+     *
+     * @return float
+     *
+     */
+    public static function similarityScore($hammingDistance)
+    {
+        return 1 - ($hammingDistance / 64.0);
+    }
+
 }

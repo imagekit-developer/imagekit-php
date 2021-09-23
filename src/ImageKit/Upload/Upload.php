@@ -14,9 +14,9 @@ class Upload
     /**
      * @param array $uploadOptions
      * @param GuzzleHttpWrapper $resource
-     * @return object
+     * @return Response
      */
-    public static function uploadFileRequest(array $uploadOptions, GuzzleHttpWrapper $resource)
+    public static function upload(array $uploadOptions, GuzzleHttpWrapper $resource)
     {
         $opts = (object)$uploadOptions;
 

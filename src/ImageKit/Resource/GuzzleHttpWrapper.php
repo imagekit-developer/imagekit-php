@@ -39,7 +39,7 @@ class GuzzleHttpWrapper implements HttpRequest
     /**
      * @return string
      */
-    function gen_uuid()
+    public function gen_uuid()
     {
         return sprintf(
             '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',

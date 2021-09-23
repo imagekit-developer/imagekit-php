@@ -692,7 +692,7 @@ final class UrlTest extends TestCase
             'expireSeconds' => 300,
         ]);
 
-        UrlTest::assertEquals('', $url );
+        UrlTest::assertEquals('', $url);
 
     }
 
@@ -1007,7 +1007,7 @@ final class UrlTest extends TestCase
         UrlTest::assertNotEmpty($params['ik-t']);
     }
 
-        /**
+    /**
      *
      */
     public function testTransformationWithoutValueShouldNotHaveHypen()

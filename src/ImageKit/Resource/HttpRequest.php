@@ -5,10 +5,6 @@ namespace ImageKit\Resource;
 /**
  *
  */
-
-/**
- *
- */
 interface HttpRequest
 {
     /**

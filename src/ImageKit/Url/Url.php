@@ -255,14 +255,14 @@ class Url
             return self::DEFAULT_TIMESTAMP;
         }
         $currentTimestamp = time();
-        return (string) ($currentTimestamp + $sec);
+        return (string)($currentTimestamp + $sec);
     }
 
     /**
      * @param array $parsed
      * @return string
      */
-    function unparsed_url(array $parsed)
+    public function unparsed_url(array $parsed)
     {
         $get = function ($key) use ($parsed) {
             return isset($parsed[$key]) ? $parsed[$key] : null;

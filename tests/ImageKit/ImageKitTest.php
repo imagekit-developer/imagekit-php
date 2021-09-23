@@ -2,9 +2,11 @@
 
 namespace ImageKit\Tests\ImageKit;
 
+use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Psr7\Utils;
 use ImageKit\Configuration\Configuration;
 use ImageKit\ImageKit;
-use ImageKit\Signature\Signature;
+use ImageKit\Resource\GuzzleHttpWrapper;
 use InvalidArgumentException;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
@@ -128,11 +130,121 @@ class ImageKitTest extends TestCase
         $imagekit = new ImageKit('Testing_Public_Key', 'Testing_Private_Key', 'https://ik.imagekit.io/testing');
         $response = $imagekit->getAuthenticationParameters('your_token', '1582269249');
 
+        $el = get_object_vars($response);
+
         Assert::assertEquals([
             'token' => $token,
             'expire' => $expire,
             'signature' => $signature,
-        ], $response);
+        ], $el);
+    }
+
+    /**
+     * Test Phash Distance
+     */
+    public function testPHashDistance()
+    {
+        $imagekit = new ImageKit(
+            'Testing_Public_Key',
+            'Testing_Private_Key',
+            'https://ik.imagekit.io/demo'
+        );
+
+        $phash1 = '63433b3ccf8e1ebe';
+        $phash2 = 'f5d2226cd9d32b16';
+
+        $distance = $imagekit->pHashDistance($phash1, $phash2);
+
+        Assert::assertEquals(27, $distance);
+    }
+
+    /**
+     * Test Similarity
+     */
+    public function testEvaluateSimilarity()
+    {
+        $imagekit = new ImageKit(
+            'Testing_Public_Key',
+            'Testing_Private_Key',
+            'https://ik.imagekit.io/demo'
+        );
+
+        $phash1 = '63433b3ccf8e1ebe';
+        $phash2 = 'f5d2226cd9d32b16';
+
+        $similarity = $imagekit->evaluateSimilarity($phash1, $phash2);
+
+        Assert::assertEquals(27, $similarity->distance);
+        Assert::assertEquals(0.578125, $similarity->similarityScore);
+    }
+
+    /**
+     *
+     */
+    public function testBulkJobStatusInValidJobId()
+    {
+        $imagekit = new ImageKit(
+            'Testing_Public_Key',
+            'Testing_Private_Key',
+            'https://ik.imagekit.io/demo'
+        );
+
+        $mockResponse = Utils::streamFor(json_encode([
+            'jobId' => '598821f949c0a938d57563bd',
+            'type' => 'COPY_FOLDER',
+            'status' => 'Completed'
+        ]));
+
+        $stub = $this->createMock(GuzzleHttpWrapper::class);
+        $stub->method('setDatas');
+        $stub->method('get')->willReturn(new Response(200, ['X-Foo' => 'Bar'], $mockResponse));
+
+        $closure = function () use ($stub) {
+            $this->httpClient = $stub;
+        };
+        $doClosure = $closure->bindTo($imagekit, ImageKit::class);
+        $doClosure();
+
+        $response = $imagekit->getBulkJobStatus('');
+        Assert::assertEquals('Missing Job ID parameter for this request', $response->err->message);
+    }
+
+    /**
+     *
+     */
+    public function testBulkJobStatusSuccess()
+    {
+        $imagekit = new ImageKit(
+            'Testing_Public_Key',
+            'Testing_Private_Key',
+            'https://ik.imagekit.io/demo'
+        );
+
+        $mockResponse = Utils::streamFor(json_encode([
+            'jobId' => '598821f949c0a938d57563bd',
+            'type' => 'COPY_FOLDER',
+            'status' => 'Completed'
+        ]));
+
+        $stub = $this->createMock(GuzzleHttpWrapper::class);
+        $stub->method('setDatas');
+        $stub->method('get')->willReturn(new Response(200, ['X-Foo' => 'Bar'], $mockResponse));
+
+        $closure = function () use ($stub) {
+            $this->httpClient = $stub;
+        };
+        $doClosure = $closure->bindTo($imagekit, ImageKit::class);
+        $doClosure();
+
+        $response = $imagekit->getBulkJobStatus('598821f949c0a938d57563bd');
+
+        $el = get_object_vars($response->success);
+
+        Assert::assertEquals([
+            'jobId' => '598821f949c0a938d57563bd',
+            'type' => 'COPY_FOLDER',
+            'status' => 'Completed'
+        ], $el);
     }
 
 }

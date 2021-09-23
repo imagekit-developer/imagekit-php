@@ -96,6 +96,80 @@ class Endpoints
         return (self::API_BASE_ENDPOINT . '/metadata');
     }
 
+    /**
+     * @return string
+     */
+    public static function getBulkAddTagsEndpoint()
+    {
+        return (self::API_BASE_ENDPOINT . '/files/addTags');
+    }
+
+    /**
+     * @return string
+     */
+    public static function getBulkRemoveTagsEndpoint()
+    {
+        return (self::API_BASE_ENDPOINT . '/files/removeTags');
+    }
+
+    /**
+     * @return string
+     */
+    public static function getCopyFileEndpoint()
+    {
+        return (self::API_BASE_ENDPOINT . '/files/copy');
+    }
+
+    /**
+     * @return string
+     */
+    public static function getMoveFileEndpoint()
+    {
+        return (self::API_BASE_ENDPOINT . '/files/move');
+    }
+
+    /**
+     * @return string
+     * @var $jobId
+     *
+     */
+    public static function getBulkJobStatusEndpoint($jobId)
+    {
+        return (self::API_BASE_ENDPOINT . '/bulkJobs/' . $jobId);
+    }
+
+    /**
+     * @return string
+     */
+    public static function getCreateFolderEndpoint()
+    {
+        return (self::API_BASE_ENDPOINT . '/folder/');
+    }
+
+    /**
+     * @return string
+     */
+    public static function getDeleteFolderEndpoint()
+    {
+        return (self::API_BASE_ENDPOINT . '/folder/');
+    }
+
+    /**
+     * @return string
+     */
+    public static function getCopyFolderEndpoint()
+    {
+        return (self::API_BASE_ENDPOINT . '/bulkJobs/copyFolder');
+    }
+
+    /**
+     * @return string
+     */
+    public static function getMoveFolderEndpoint()
+    {
+        return (self::API_BASE_ENDPOINT . '/bulkJobs/moveFolder');
+    }
+
 }
 
 

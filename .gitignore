@@ -38,3 +38,5 @@ phpunit.xml
 .phpunit*
 sample/vendor
 sample/composer.lock
+
+*.phar

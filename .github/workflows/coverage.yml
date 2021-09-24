@@ -1,4 +1,4 @@
-name: PHP Test CI
+name: PHP Coverage CI
 
 on: [ push ]
 

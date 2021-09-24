@@ -17,6 +17,6 @@ jobs:
                     wiki_github_update_token: ${{ secrets.WIKI_GITHUB_UPDATE_TOKEN }}
                     wiki_github_update_user: ${{ secrets.WIKI_GITHUB_UPDATE_USER }}
                     engine: clean/phpdoc-md
-                    class_root_namespace: My Project
+                    class_root_namespace: ImageKit
                     include: |
-                        MyProject\**
+                        ImageKit\**

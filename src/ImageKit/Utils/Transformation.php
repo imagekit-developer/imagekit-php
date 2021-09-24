@@ -63,12 +63,10 @@ class Transformation
      */
     public static function addAsQueryParameter($options)
     {
-        // return options.transformationPosition === QUERY_TRANSFORMATION_POSITION;
         $optionsObject = (object)($options);
         if (isset($optionsObject->transformationPosition)) {
             return $optionsObject->transformationPosition === self::QUERY_TRANSFORMATION_POSITION;
         }
-
         return false;
     }
 

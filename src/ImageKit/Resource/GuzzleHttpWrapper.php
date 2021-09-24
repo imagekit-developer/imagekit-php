@@ -29,13 +29,13 @@ class GuzzleHttpWrapper implements HttpRequest
     public function __construct($client)
     {
         $this->client = $client;
-        $this->serviceId = $this->gen_uuid();
+        $this->serviceId = self::gen_uuid();
     }
 
     /**
      * @return string
      */
-    public function gen_uuid()
+    public static function gen_uuid()
     {
         return sprintf(
             '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',

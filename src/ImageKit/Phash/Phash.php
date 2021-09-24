@@ -2,9 +2,8 @@
 
 namespace ImageKit\Phash;
 
-
+use Exception;
 use ImageKit\Constants\ErrorMessages;
-use InvalidArgumentException;
 
 /**
  *
@@ -23,19 +22,21 @@ class Phash
      * @param $firstHash
      * @param $secondHash
      * @return int
+     *
+     * @throws Exception
      */
     public static function pHashDistance($firstHash, $secondHash)
     {
         if (empty($firstHash) or empty($secondHash)) {
-            throw new InvalidArgumentException(ErrorMessages::$MISSING_PHASH_VALUE);
+            throw new Exception(ErrorMessages::$MISSING_PHASH_VALUE['message']);
         }
 
         if (!ctype_xdigit($firstHash) || !ctype_xdigit($firstHash)) {
-            throw new InvalidArgumentException(ErrorMessages::$INVALID_PHASH_VALUE);
+            throw new Exception(ErrorMessages::$INVALID_PHASH_VALUE['message']);
         }
 
         if (strlen((string)$firstHash) != strlen((string)$secondHash)) {
-            throw new InvalidArgumentException(ErrorMessages::$INVALID_PHASH_VALUE);
+            throw new Exception(ErrorMessages::$INVALID_PHASH_VALUE['message']);
         }
 
         $counts = [0, 1, 1, 2, 1, 2, 2, 3, 1, 2, 2, 3, 2, 3, 3, 4];

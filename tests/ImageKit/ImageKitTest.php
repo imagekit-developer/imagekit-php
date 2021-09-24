@@ -2,6 +2,7 @@
 
 namespace ImageKit\Tests\ImageKit;
 
+use Exception;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Utils;
 use ImageKit\Configuration\Configuration;
@@ -167,6 +168,106 @@ class ImageKitTest extends TestCase
         $distance = $imagekit->pHashDistance($phash1, $phash2);
 
         Assert::assertEquals(27, $distance);
+    }
+
+    /**
+     * Test Phash Distance
+     */
+    public function testPHashDistanceEmptyPhash1()
+    {
+        $imagekit = new ImageKit(
+            'Testing_Public_Key',
+            'Testing_Private_Key',
+            'https://ik.imagekit.io/demo'
+        );
+
+        $phash1 = '';
+        $phash2 = 'f5d2226cd9d32b16';
+
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage('Missing pHash value');
+
+        $imagekit->pHashDistance($phash1, $phash2);
+    }
+
+    /**
+     * Test Phash Distance
+     */
+    public function testPHashDistanceEmptyPhash2()
+    {
+        $imagekit = new ImageKit(
+            'Testing_Public_Key',
+            'Testing_Private_Key',
+            'https://ik.imagekit.io/demo'
+        );
+
+        $phash1 = 'f5d2226cd9d32b16';
+        $phash2 = '';
+
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage('Missing pHash value');
+
+        $imagekit->pHashDistance($phash1, $phash2);
+    }
+
+    /**
+     * Test Phash Distance
+     */
+    public function testPHashDistanceInvalidPhash1()
+    {
+        $imagekit = new ImageKit(
+            'Testing_Public_Key',
+            'Testing_Private_Key',
+            'https://ik.imagekit.io/demo'
+        );
+
+        $phash1 = 'asdadasda';
+        $phash2 = 'f5d2226cd9d32b16';
+
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage('Invalid pHash value');
+
+        $imagekit->pHashDistance($phash1, $phash2);
+    }
+
+    /**
+     * Test Phash Distance
+     */
+    public function testPHashDistanceInvalidPhash2()
+    {
+        $imagekit = new ImageKit(
+            'Testing_Public_Key',
+            'Testing_Private_Key',
+            'https://ik.imagekit.io/demo'
+        );
+
+        $phash1 = 'f5d2226cd9d32b16';
+        $phash2 = 'asjdkajlkda';
+
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage('Invalid pHash value');
+
+        $imagekit->pHashDistance($phash1, $phash2);
+    }
+
+    /**
+     * Test Phash Distance
+     */
+    public function testPHashDistancePhashesLengthNotEqual()
+    {
+        $imagekit = new ImageKit(
+            'Testing_Public_Key',
+            'Testing_Private_Key',
+            'https://ik.imagekit.io/demo'
+        );
+
+        $phash1 = 'f5d2226cd9d32b16';
+        $phash2 = 'f5d2226cd9d32b16f5d2226cd9d32b16';
+
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage('Invalid pHash value');
+
+        $imagekit->pHashDistance($phash1, $phash2);
     }
 
     /**

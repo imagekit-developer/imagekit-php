@@ -343,11 +343,12 @@ class ImageKit
      *
      * @param $options
      * @return Response
+     *
+     * @deprecated since 2.0.0, use <code>purgeCache</code>
      */
-    public function purgeCache($options)
+    public function purgeCacheApi($options)
     {
-        $this->httpClient->setUri(Endpoints::getPurgeCacheEndpoint());
-        return Manage\Cache::purgeFileCache($options, $this->httpClient);
+        return $this->purgeCache($options);
     }
 
     /**
@@ -357,12 +358,11 @@ class ImageKit
      *
      * @param $options
      * @return Response
-     *
-     * @deprecated since 2.0.0, use <code>purgeCache</code>
      */
-    public function purgeCacheApi($options)
+    public function purgeCache($options)
     {
-        return $this->purgeCache($options);
+        $this->httpClient->setUri(Endpoints::getPurgeCacheEndpoint());
+        return Manage\Cache::purgeFileCache($options, $this->httpClient);
     }
 
     /**
@@ -387,11 +387,12 @@ class ImageKit
      *
      * @param $requestId
      * @return Response
+     *
+     * @deprecated since 2.0.0, use <code>getPurgeCacheStatus</code>
      */
-    public function getPurgeCacheStatus($requestId)
+    public function purgeFileCacheApiStatus($requestId)
     {
-        $this->httpClient->setUri(Endpoints::getPurgeCacheApiStatusEndpoint($requestId));
-        return Manage\Cache::purgeFileCacheStatus($requestId, $this->httpClient);
+        return $this->getPurgeCacheStatus($requestId);
     }
 
     /**
@@ -401,12 +402,11 @@ class ImageKit
      *
      * @param $requestId
      * @return Response
-     *
-     * @deprecated since 2.0.0, use <code>getPurgeCacheStatus</code>
      */
-    public function purgeFileCacheApiStatus($requestId)
+    public function getPurgeCacheStatus($requestId)
     {
-        return $this->getPurgeCacheStatus($requestId);
+        $this->httpClient->setUri(Endpoints::getPurgeCacheApiStatusEndpoint($requestId));
+        return Manage\Cache::purgeFileCacheStatus($requestId, $this->httpClient);
     }
 
     /**

@@ -122,6 +122,30 @@ final class UploadTest extends TestCase
         ], $response['success']);
     }
 
+
+    /**
+     * @deprecated
+     */
+    public function testDeprecatedFileUploadIfSuccessful()
+    {
+        $mockBodyResponse = Utils::streamFor(json_encode([
+            'width' => 1000
+        ]));
+
+        $this->stubHttpClient(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $res = $this->client->uploadFiles([
+            'file' => 'http://lorempixel.com/640/480/',
+            'fileName' => '7e57d004-2b97-0e7a-b45f-5387367791cd',
+        ]);
+
+        $response = json_decode(json_encode($res), true);
+
+        UploadTest::assertEquals([
+            'width' => 1000
+        ], $response['success']);
+    }
+
     /**
      *
      */

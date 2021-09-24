@@ -118,6 +118,17 @@ class ImageKitTest extends TestCase
         new ImageKit('Testing_Public_Key', 'Testing_Private_Key', 'https://ik.imagekit.io/testing', 'testing');
     }
 
+
+    /**
+     * Failed initialization Invalid URL Endpoint
+     */
+    public function test__constructFailedInvalidURLEndpoint()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('urlEndpoint should be a valid URL');
+        new ImageKit('Testing_Public_Key', 'Testing_Private_Key', 'wrong_url', 'path');
+    }
+
     /**
      * Generate Authentication Parameters With Token
      */

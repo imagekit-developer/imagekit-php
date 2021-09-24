@@ -185,6 +185,47 @@ final class FileTest extends TestCase
         ], $el);
     }
 
+    /**
+     * @deprecated
+     */
+    public function testDeprecatedGetFileDetailsWithValidFileId()
+    {
+        $fileId = '5df36759adf3f523d81dd94f';
+
+        $mockBodyResponse = Utils::streamFor(json_encode([
+            [
+                'type' => 'file',
+                'name' => 'Kishan_2ZgC5VGZI',
+                'fileId' => '5df36759adf3f523d81dd94f',
+                'tags' => null,
+                'customCoordinates' => null,
+                'isPrivateFile' => false,
+                'url' => 'https://ik.imagekit.io/ot2cky3ujwa/Kishan_2ZgC5VGZI',
+                'thumbnail' => 'https://ik.imagekit.io/ot2cky3ujwa/tr:n-media_library_thumbnail/Kishan_2ZgC5VGZI',
+                'fileType' => 'image',
+                'filePath' => '/Kishan_2ZgC5VGZI',
+            ],
+        ]));
+
+        $this->stubHttpClient('get', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $response = $this->client->getDetails($fileId);
+
+        $el = get_object_vars($response->success[0]);
+        FileTest::assertEquals([
+            'type' => 'file',
+            'name' => 'Kishan_2ZgC5VGZI',
+            'fileId' => '5df36759adf3f523d81dd94f',
+            'tags' => null,
+            'customCoordinates' => null,
+            'isPrivateFile' => false,
+            'url' => 'https://ik.imagekit.io/ot2cky3ujwa/Kishan_2ZgC5VGZI',
+            'thumbnail' => 'https://ik.imagekit.io/ot2cky3ujwa/tr:n-media_library_thumbnail/Kishan_2ZgC5VGZI',
+            'fileType' => 'image',
+            'filePath' => '/Kishan_2ZgC5VGZI',
+        ], $el);
+    }
+
     // Get details
 
     /**
@@ -320,6 +361,73 @@ final class FileTest extends TestCase
         FileTest::assertEquals(207097, $el['size']);
     }
 
+    /**
+     * @deprecated
+     */
+    public function testDeprecatedGetFileMetaDataDetails()
+    {
+        $fileId = '5df36759adf3f523d81dd94f';
+
+        $mockBodyResponse = Utils::streamFor(json_encode([
+            [
+                'height' => 3214,
+                'width' => 3948,
+                'size' => 207097,
+                'format' => 'jpg',
+                'hasColorProfile' => true,
+                'quality' => 90,
+                'density' => 300,
+                'hasTransparency' => false,
+                'exif' => [
+                    'image' => [
+                        'ImageWidth' => 4584,
+                        'ImageHeight' => 3334,
+                        'BitsPerSample' => [8, 8, 8],
+                        'PhotometricInterpretation' => 2,
+                        'ImageDescription' => 'Character illustration of people holding creative ideas icons',
+                        'Orientation' => 1,
+                        'SamplesPerPixel' => 3,
+                        'XResolution' => 300,
+                        'YResolution' => 300,
+                        'ResolutionUnit' => 2,
+                        'Software' => 'Adobe Photoshop CC 2019 (Windows)',
+                        'ModifyDate' => '2019=>05=>25 10=>16=>49',
+                        'Artist' => 'busbus',
+                        'Copyright' => 'Rawpixel Ltd.',
+                        'ExifOffset' => 356
+                    ],
+                    'thumbnail' => [
+                        'Compression' => 6,
+                        'XResolution' => 72,
+                        'YResolution' => 72,
+                        'ResolutionUnit' => 2,
+                        'ThumbnailOffset' => 506,
+                        'ThumbnailLength' => 6230,
+                    ],
+                    'exif' => [
+                        'ExifVersion' => '0221',
+                        'ColorSpace' => 65535,
+                        'ExifImageWidth' => 3948,
+                        'ExifImageHeight' => 3214
+                    ],
+                    'gps' => [],
+                    'interoperability' => [],
+                    'makernote' => [],
+                ],
+                'pHash' => 'd1813e2fc22c7b2f',
+            ],
+        ]));
+
+        $this->stubHttpClient('get', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $response = $this->client->getMetaData($fileId);
+
+        $el = get_object_vars($response->success[0]);
+
+        FileTest::assertNull($response->err);
+        FileTest::assertEquals(207097, $el['size']);
+    }
+
 
     // Get MetaData
 
@@ -394,6 +502,29 @@ final class FileTest extends TestCase
         $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
         $response = $this->client->bulkDeleteFiles($fileIds);
+
+        $el = get_object_vars($response->success[0]);
+        FileTest::assertEquals($fileIds[0], $el['successfullyDeletedFileIds'][0]);
+    }
+
+
+    /**
+     * @deprecated
+     */
+    public function testDeprecatedBulkFileDeleteByIdsWhenSuccessful()
+    {
+
+        $fileIds = ['6604876475937', '8242194892418'];
+
+        $mockBodyResponse = Utils::streamFor(json_encode([
+            [
+                'successfullyDeletedFileIds' => $fileIds,
+            ],
+        ]));
+
+        $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $response = $this->client->bulkFileDeleteByIds(['fileIds' => $fileIds]);
 
         $el = get_object_vars($response->success[0]);
         FileTest::assertEquals($fileIds[0], $el['successfullyDeletedFileIds'][0]);
@@ -546,6 +677,52 @@ final class FileTest extends TestCase
         $this->stubHttpClient('patch', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
         $response = $this->client->updateFileDetails($fileId, $updateData);
+
+        $el = get_object_vars($response->success);
+        FileTest::assertNull($response->err);
+        FileTest::assertEquals([
+            'fileId' => '598821f949c0a938d57563bd',
+            'type' => 'file',
+            'name' => 'file1.jpg',
+            'filePath' => '/images/products/file1.jpg',
+            'tags' => ['t-shirt', 'round-neck', 'sale2019'],
+            'isPrivateFile' => false,
+            'customCoordinates' => null,
+            'url' => 'https://ik.imagekit.io/your_imagekit_id/images/products/file1.jpg',
+            'thumbnail' => 'https://ik.imagekit.io/your_imagekit_id/tr:n-media_library_thumbnail/images/products/file1.jpg',
+            'fileType' => 'image'
+        ], $el);
+    }
+
+    /**
+     * @deprecated
+     */
+    public function testDeprecatedUpdateFileDetailsWhenFileIDTagsAndCustomParameterIsPassed()
+    {
+
+        $fileId = '5df36759adf3f523d81dd94f';
+
+        $updateData = [
+            'customCoordinates' => '10,10,100,100',
+            'tags' => ['tag1', 'tag2']
+        ];
+
+        $mockBodyResponse = Utils::streamFor(json_encode([
+            'fileId' => '598821f949c0a938d57563bd',
+            'type' => 'file',
+            'name' => 'file1.jpg',
+            'filePath' => '/images/products/file1.jpg',
+            'tags' => ['t-shirt', 'round-neck', 'sale2019'],
+            'isPrivateFile' => false,
+            'customCoordinates' => null,
+            'url' => 'https://ik.imagekit.io/your_imagekit_id/images/products/file1.jpg',
+            'thumbnail' => 'https://ik.imagekit.io/your_imagekit_id/tr:n-media_library_thumbnail/images/products/file1.jpg',
+            'fileType' => 'image'
+        ]));
+
+        $this->stubHttpClient('patch', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $response = $this->client->updateDetails($fileId, $updateData);
 
         $el = get_object_vars($response->success);
         FileTest::assertNull($response->err);
@@ -826,6 +1003,8 @@ final class FileTest extends TestCase
         FileTest::assertEquals(['successfullyUpdatedFileIds' => ['5df36759adf3f523d81dd94f']], $obj);
     }
 
+    // Purge  Details
+
     /**
      *
      */
@@ -868,7 +1047,50 @@ final class FileTest extends TestCase
         FileTest::assertEquals('598821f949c0a938d57563bd', $el['requestId']);
     }
 
-    // Purge  Details
+
+    /**
+     * @deprecated
+     */
+    public function testDeprecatedPurgeFileCacheApi()
+    {
+
+        $urlParam = 'https://ik.imagekit.io/ot2cky3ujwa/default-image.jpg';
+
+        $mockBodyResponse = Utils::streamFor(json_encode([
+            [
+                'requestId' => '598821f949c0a938d57563bd',
+            ],
+        ]));
+
+        $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+        $response = $this->client->purgeFileCacheApi($urlParam);
+
+        $el = get_object_vars($response->success[0]);
+        FileTest::assertEquals('598821f949c0a938d57563bd', $el['requestId']);
+    }
+
+    /**
+     * @deprecated
+     */
+    public function testDeprecatedPurgeCacheApi()
+    {
+
+        $urlParam = 'https://ik.imagekit.io/ot2cky3ujwa/default-image.jpg';
+
+        $mockBodyResponse = Utils::streamFor(json_encode([
+            [
+                'requestId' => '598821f949c0a938d57563bd',
+            ],
+        ]));
+
+        $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+        $response = $this->client->purgeCacheApi($urlParam);
+
+        $el = get_object_vars($response->success[0]);
+        FileTest::assertEquals('598821f949c0a938d57563bd', $el['requestId']);
+    }
+
+    // Purge Cache Status API
 
     /**
      *
@@ -910,7 +1132,47 @@ final class FileTest extends TestCase
         FileTest::assertEquals('Pending', $el['status']);
     }
 
-    // Purge Cache Status API
+    /**
+     * @deprecated
+     */
+    public function testDeprecatedPurgeCacheApiStatusStatus()
+    {
+        $requestId = '598821f949c0a938d57563bd';
+
+        $mockBodyResponse = Utils::streamFor(json_encode([
+            [
+                'status' => 'Pending'
+            ],
+        ]));
+
+        $this->stubHttpClient('get', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+        $response = $this->client->purgeCacheApiStatus($requestId);
+
+        $el = get_object_vars($response->success[0]);
+        FileTest::assertEquals('Pending', $el['status']);
+    }
+
+    /**
+     *
+     */
+    public function testDeprecatedPurgeFileCacheApiStatusStatus()
+    {
+        $requestId = '598821f949c0a938d57563bd';
+
+        $mockBodyResponse = Utils::streamFor(json_encode([
+            [
+                'status' => 'Pending'
+            ],
+        ]));
+
+        $this->stubHttpClient('get', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+        $response = $this->client->purgeFileCacheApiStatus($requestId);
+
+        $el = get_object_vars($response->success[0]);
+        FileTest::assertEquals('Pending', $el['status']);
+    }
+
+    // Remote URL Metadata
 
     /**
      *

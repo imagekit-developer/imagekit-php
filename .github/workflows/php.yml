@@ -1,4 +1,4 @@
-name: PHP CI
+name: PHP Tests
 
 on: [ push ]
 
@@ -10,10 +10,6 @@ jobs:
                 operating-system: [ 'ubuntu-latest', 'windows-latest', 'macos-latest' ]
                 php-versions: [ '5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0' ]
                 phpunit-versions: [ 'latest' ]
-                include:
-                    -   operating-system: 'ubuntu-latest'
-                        php-versions: '7.2'
-                        phpunit-versions: '8.5.19'
         steps:
             -   uses: actions/checkout@v1
             -   name: Setup PHP

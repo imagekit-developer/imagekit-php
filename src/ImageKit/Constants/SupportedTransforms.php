@@ -5,10 +5,6 @@ namespace ImageKit\Constants;
 /**
  *
  */
-
-/**
- *
- */
 class SupportedTransforms
 {
     private static $transforms = [
@@ -24,7 +20,7 @@ class SupportedTransforms
         'format' => 'f',
         'radius' => 'r',
         'background' => 'bg',
-        'border' => 'bo',
+        'border' => 'b',
         'rotation' => 'rt',
         'blur' => 'bl',
         'named' => 'n',
@@ -54,8 +50,6 @@ class SupportedTransforms
         'effectContrast' => 'e-contrast',
         'effectGray' => 'e-grayscale',
         'original' => 'orig',
-        'height' => 'h',
-        'border' => 'b',
         'rotate' => 'rt',
         'overlayImageAspectRatio' => 'oiar',
         'overlayImageBackground' => 'oibg',
@@ -74,13 +68,10 @@ class SupportedTransforms
     ];
 
     /**
-     * @return object
-     */
-    /**
-     * @return object
+     * @return array<string, string>
      */
     public static function get()
     {
-        return (object)self::$transforms;
+        return self::$transforms;
     }
 }

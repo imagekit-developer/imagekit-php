@@ -5,8 +5,6 @@ namespace ImageKit\Signature;
 
 use ImageKit\Configuration\Configuration;
 
-define('DEFAULT_TIME_DIFF', 1800);
-
 
 /**
  *
@@ -44,7 +42,7 @@ class Signature
             $authParameters['signature'] = $signature;
 
         }
-        return (object) $authParameters;
+        return (object)$authParameters;
     }
 
     /**

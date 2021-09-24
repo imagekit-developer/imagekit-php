@@ -177,7 +177,7 @@ class ImageKit
     public function listFiles(array $parameters = [])
     {
         $this->httpClient->setUri(Endpoints::getListFilesEndpoint());
-        return Manage\File::list($parameters, $this->httpClient);
+        return Manage\File::listFile($parameters, $this->httpClient);
     }
 
     /**

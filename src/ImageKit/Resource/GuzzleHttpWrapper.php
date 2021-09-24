@@ -10,10 +10,6 @@ use GuzzleHttp\Psr7\Response;
 /**
  *
  */
-
-/**
- *
- */
 class GuzzleHttpWrapper implements HttpRequest
 {
     const DEFAULT_ERROR_CODE = 500;
@@ -69,10 +65,6 @@ class GuzzleHttpWrapper implements HttpRequest
     /**
      * @return array
      */
-
-    /**
-     * @return array
-     */
     public function getDatas()
     {
         return $this->datas;
@@ -80,7 +72,7 @@ class GuzzleHttpWrapper implements HttpRequest
 
     /**
      * @param array $datas
-     * @return mixed|void
+     * @return void
      */
     public function setDatas(array $datas)
     {
@@ -92,24 +84,14 @@ class GuzzleHttpWrapper implements HttpRequest
             return true;
         });
     }
-
-    /**
-     * @return Response|mixed
-     */
-
     /**
      * @param array $headers
-     * @return mixed|void
+     * @return void
      */
     public function setHeaders(array $headers)
     {
         $this->headers = $headers;
     }
-
-    /**
-     * @return Response
-     */
-
     /**
      * @return Response
      */
@@ -125,10 +107,6 @@ class GuzzleHttpWrapper implements HttpRequest
     }
 
     /**
-     * @return Response
-     */
-
-    /**
      * @return mixed
      */
     protected function getUri()
@@ -136,9 +114,6 @@ class GuzzleHttpWrapper implements HttpRequest
         return $this->uri;
     }
 
-    /**
-     * @return Response|mixed
-     */
 
     /**
      * @param $uri
@@ -147,10 +122,6 @@ class GuzzleHttpWrapper implements HttpRequest
     {
         $this->uri = $uri;
     }
-
-    /**
-     * @return Response
-     */
 
     /**
      * @param $dataType
@@ -163,10 +134,6 @@ class GuzzleHttpWrapper implements HttpRequest
             'headers' => $this->headers,
         ];
     }
-
-    /**
-     * @return Response
-     */
 
     /**
      * @param RequestException $e
@@ -198,10 +165,6 @@ class GuzzleHttpWrapper implements HttpRequest
     }
 
     /**
-     * @return mixed
-     */
-
-    /**
      * @return Response
      */
     public function delete()
@@ -214,11 +177,6 @@ class GuzzleHttpWrapper implements HttpRequest
             return $this->handleException($e);
         }
     }
-
-    /**
-     * @param $uri
-     * @return mixed|void
-     */
 
     /**
      * @return Response
@@ -239,17 +197,12 @@ class GuzzleHttpWrapper implements HttpRequest
         }
     }
 
-    /**
-     * @param $dataType
-     * @return array
-     */
 
     /**
      * @param $data
-     * @param false $files
      * @return array
      */
-    public static function getMultipartData($data, $files = false)
+    public static function getMultipartData($data)
     {
         $multipartData = [];
 
@@ -275,11 +228,6 @@ class GuzzleHttpWrapper implements HttpRequest
     }
 
     /**
-     * @param RequestException $e
-     * @return Response
-     */
-
-    /**
      * @return Response
      */
     public function post()
@@ -297,11 +245,6 @@ class GuzzleHttpWrapper implements HttpRequest
             return $this->handleException($e);
         }
     }
-
-    /**
-     * @param Exception $e
-     * @return Response
-     */
 
     /**
      * @return Response
@@ -323,10 +266,6 @@ class GuzzleHttpWrapper implements HttpRequest
     }
 
     /**
-     * @return string
-     */
-
-    /**
      * @return Response
      */
     public function patch()
@@ -344,19 +283,4 @@ class GuzzleHttpWrapper implements HttpRequest
         }
     }
 
-    /**
-     * @param $data
-     * @param false $files
-     * @return array
-     */
-
-    /**
-     * @throws UriNotSetException
-     */
-    protected function checkUri()
-    {
-        if (is_null($this->getUri())) {
-            throw new UriNotSetException('Uri should be set.', self::DEFAULT_ERROR_CODE);
-        }
-    }
 }

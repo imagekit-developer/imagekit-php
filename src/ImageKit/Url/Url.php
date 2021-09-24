@@ -80,16 +80,13 @@ class Url
             if (isset($parsedHost[0]['path'])) {
                 $urlObject->pathname = $parsedHost[0]['path'];
             }
-            if (isset($parsedURL[0]['query'])) {
-                parse_str($parsedURL[0]['query'], $urlObject->search);
-            }
         } else {
             $urlObject->scheme = $parsedURL[0]['scheme'];
             $urlObject->host = $parsedURL[0]['host'];
             $urlObject->pathname = $parsedURL[0]['path'];
-            if (isset($parsedURL[0]['query'])) {
-                parse_str($parsedURL[0]['query'], $urlObject->search);
-            }
+        }
+        if (isset($parsedURL[0]['query'])) {
+            parse_str($parsedURL[0]['query'], $urlObject->search);
         }
         if (isset($obj->queryParameters)) {
             $urlObject->search = array_merge($urlObject->search, $obj->queryParameters);
@@ -108,7 +105,7 @@ class Url
                 $transformationQuery = self::TRANSFORMATION_PARAMETER;
                 $transformationQuery .= Transformation::getChainTransformDelimiter();
                 $transformationQuery .= $transformationString;
-                if (!$this->startsWith($originalPath, '/')) {
+                if (!$this->startsWithSlash($originalPath)) {
                     $urlObject->pathname .= '/';
                 }
                 $urlObject->pathname = $originalPath;
@@ -232,13 +229,12 @@ class Url
 
     /**
      * @param $string
-     * @param $startString
      * @return bool
      */
-    private function startsWith($string, $startString)
+    private function startsWithSlash($string)
     {
-        $len = strlen($startString);
-        return (substr($string, 0, $len) === $startString);
+        $len = strlen('/');
+        return (substr($string, 0, $len) === '/');
     }
 
     /**
@@ -250,7 +246,7 @@ class Url
         if (empty($expireSeconds)) {
             return self::DEFAULT_TIMESTAMP;
         }
-        $sec = intVal($expireSeconds, 10);
+        $sec = intval($expireSeconds);
         if (empty($sec)) {
             return self::DEFAULT_TIMESTAMP;
         }

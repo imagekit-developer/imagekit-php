@@ -6,6 +6,9 @@ use ImageKit\Constants\ErrorMessages;
 use ImageKit\Resource\GuzzleHttpWrapper;
 use ImageKit\Utils\Response;
 
+/**
+ *
+ */
 class Folder
 {
     /**

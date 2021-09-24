@@ -4,9 +4,6 @@ namespace ImageKit\Utils;
 
 use ImageKit\Constants\SupportedTransforms;
 
-/**
- *
- */
 
 /**
  *
@@ -24,25 +21,18 @@ class Transformation
      * @param $transformation
      * @return mixed
      */
-    /**
-     * @param $transformation
-     * @return mixed
-     */
     public static function getTransformKey($transformation)
     {
 
         $supportedTransforms = SupportedTransforms::get();
 
-        if (isset($supportedTransforms->$transformation)) {
-            return $supportedTransforms->$transformation;
+        if (isset($supportedTransforms[$transformation])) {
+            return $supportedTransforms[$transformation];
         }
 
         return $transformation;
     }
 
-    /**
-     * @return string
-     */
     /**
      * @return string
      */
@@ -54,9 +44,6 @@ class Transformation
     /**
      * @return string
      */
-    /**
-     * @return string
-     */
     public static function getTransformDelimiter()
     {
         return self::TRANSFORM_DELIMITER;
@@ -65,18 +52,11 @@ class Transformation
     /**
      * @return string
      */
-    /**
-     * @return string
-     */
     public static function getChainTransformDelimiter()
     {
         return self::CHAIN_TRANSFORM_DELIMITER;
     }
 
-    /**
-     * @param $options
-     * @return bool
-     */
     /**
      * @param $options
      * @return bool

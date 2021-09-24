@@ -26,7 +26,7 @@ class ErrorMessages
     public static $MISSING_UPLOAD_FILE_PARAMETER = ['message' => 'Missing file parameter for upload', 'help' => ''];
     public static $MISSING_UPLOAD_FILENAME_PARAMETER = ['message' => 'Missing fileName parameter for upload', 'help' => ''];
     public static $INVALID_PHASH_VALUE = ['message' => 'Invalid pHash value', 'help' => 'Both pHash strings must be valid hexadecimal numbers'];
-    public static $MISSING_PHASH_VALUE = ['message' => 'Missing pHash value', 'help' => 'Please pass two pHash values'];
+    public static $MISSING_PHASH_VALUE = ['message' => 'Missing pHash value', 'help' => 'Both pHash strings must be valid hexadecimal numbers'];
     public static $UNEQUAL_STRING_LENGTH = ['message' => 'Unequal pHash string length', 'help' => 'For distance calucation, the two pHash strings must have equal length'];
     public static $fileIdS_MISSING = ['message' => 'FileIds parameter is missing.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $MISSING_URL_PARAMETER = ['message' => 'Your request is missing the url query paramater.', 'help' => 'For support kindly contact us at support@imagekit.io .'];

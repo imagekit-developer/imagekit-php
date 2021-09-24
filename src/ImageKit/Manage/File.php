@@ -20,7 +20,7 @@ class File
      *
      * @return Response
      */
-    public static function list(array $parameters, GuzzleHttpWrapper $resource)
+    public static function listFile(array $parameters, GuzzleHttpWrapper $resource)
     {
         if (isset($parameters['tags']) && is_array($parameters['tags'])) {
             $parameters['tags'] = implode(',', $parameters['tags']);
@@ -30,7 +30,7 @@ class File
             $parameters['includeFolder'] = json_encode($parameters['includeFolder']);
         }
 
-        $resource->setDatas((array)$parameters);
+        $resource->setDatas($parameters);
         $res = $resource->get();
         $stream = $res->getBody();
         $content = $stream->getContents();

@@ -31,11 +31,11 @@ class Phash
         }
 
         if (!ctype_xdigit($firstHash) || !ctype_xdigit($firstHash)) {
-            throw new InvalidArgumentException(ErrorMessages::$MISSING_PHASH_VALUE);
+            throw new InvalidArgumentException(ErrorMessages::$INVALID_PHASH_VALUE);
         }
 
         if (strlen((string)$firstHash) != strlen((string)$secondHash)) {
-            throw new InvalidArgumentException(ErrorMessages::$MISSING_PHASH_VALUE);
+            throw new InvalidArgumentException(ErrorMessages::$INVALID_PHASH_VALUE);
         }
 
         $counts = [0, 1, 1, 2, 1, 2, 2, 3, 1, 2, 2, 3, 2, 3, 3, 4];

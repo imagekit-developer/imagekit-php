@@ -6,6 +6,9 @@ use ImageKit\Constants\ErrorMessages;
 use ImageKit\Resource\GuzzleHttpWrapper;
 use ImageKit\Utils\Response;
 
+/**
+ *
+ */
 class Cache
 {
 
@@ -26,7 +29,7 @@ class Cache
             'url' => $urlParam
         ];
 
-        $resource->setDatas((array)$urlParamArray);
+        $resource->setDatas($urlParamArray);
         $res = $resource->post();
         $stream = $res->getBody();
         $content = $stream->getContents();

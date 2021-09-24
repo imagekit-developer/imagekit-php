@@ -1,0 +1,13 @@
+{
+    "name": "imagekit/sample-app",
+    "description": "Imagekit Sample App",
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../"
+        }
+    ],
+    "require": {
+        "imagekit/imagekit" : "*"
+    }
+}

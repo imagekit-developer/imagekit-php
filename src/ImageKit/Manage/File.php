@@ -174,6 +174,36 @@ class File
         return Response::respond(false, json_decode($content));
     }
 
+
+    /**
+     * Rename File API
+     *
+     * @param $filePath
+     * @param $newFileName
+     * @param $purgeCache
+     * @param GuzzleHttpWrapper $resource
+     *
+     * @return Response
+     */
+    public static function rename($filePath, $newFileName, $purgeCache, GuzzleHttpWrapper $resource)
+    {
+        if (empty($filePath) || empty($newFileName)) {
+            return Response::respond(true, ((object)ErrorMessages::$RENAME_FILE_DATA_INVALID));
+        }
+
+        $resource->setDatas(['filePath' => $filePath, 'newFileName' => $newFileName, 'purgeCache' => $purgeCache]);
+        $res = $resource->put();
+        $stream = $res->getBody();
+        $content = $stream->getContents();
+
+        if ($res->getStatusCode() && !(200 >= $res->getStatusCode() || $res->getStatusCode() <= 300)) {
+            return Response::respond(true, json_decode($content));
+        }
+
+        return Response::respond(false, json_decode($content));
+    }
+
+
     /**
      * Bulk Add Tags
      *

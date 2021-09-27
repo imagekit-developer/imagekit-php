@@ -530,7 +530,7 @@ final class FileTest extends TestCase
         FileTest::assertEquals($fileIds[0], $el['successfullyDeletedFileIds'][0]);
     }
 
-    // Bulk File Delete
+
 
     /**
      *
@@ -569,8 +569,6 @@ final class FileTest extends TestCase
         FileTest::assertNotNull($response->err);
         FileTest::assertEquals('Missing sourceFilePath and/or destinationPath for copy file.', $response->err->message);
     }
-
-    // Copy File
 
     /**
      *
@@ -628,8 +626,6 @@ final class FileTest extends TestCase
         FileTest::assertEquals('Missing sourceFilePath and/or destinationPath for copy file.', $response->err->message);
     }
 
-    // Move File
-
     /**
      *
      */
@@ -646,6 +642,122 @@ final class FileTest extends TestCase
 
         FileTest::assertNull($response->success);
         FileTest::assertNull($response->err);
+    }
+
+    /**
+     *
+     */
+    public function testRenameFileEmptyFilePath()
+    {
+        $filePath = '';
+        $newFileName = 'new-name';
+
+        $mockBodyResponse = Utils::streamFor(json_encode([]));
+
+        $this->stubHttpClient('put', new Response(204, ['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $response = $this->client->renameFile($filePath, $newFileName);
+
+        FileTest::assertNotNull($response->err);
+        FileTest::assertEquals('Rename File Parameters are invalid.', $response->err->message);
+    }
+
+    /**
+     *
+     */
+    public function testRenameFileEmptyNewFileName()
+    {
+        $filePath = '/filePath';
+        $newFileName = '';
+
+        $mockBodyResponse = Utils::streamFor(json_encode([]));
+
+        $this->stubHttpClient('put', new Response(204, ['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $response = $this->client->renameFile($filePath, $newFileName);
+
+        FileTest::assertNotNull($response->err);
+        FileTest::assertEquals('Rename File Parameters are invalid.', $response->err->message);
+    }
+
+    /**
+     *
+     */
+    public function testRenameFileSuccess()
+    {
+        $filePath = '/filePath';
+        $newFileName = 'new-file';
+
+        $mockBodyResponse = Utils::streamFor(json_encode([]));
+
+        $this->stubHttpClient('put', new Response(204, ['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $response = $this->client->renameFile($filePath, $newFileName);
+
+        FileTest::assertNotNull($response->success);
+        FileTest::assertNull($response->err);
+    }
+
+    /**
+     *
+     */
+    public function testRenameFilePurgeCacheFalse()
+    {
+        $filePath = '/filePath';
+        $newFileName = 'new-file';
+
+        $mockBodyResponse = Utils::streamFor(json_encode([]));
+
+        $this->stubHttpClient('put', new Response(204, ['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $response = $this->client->renameFile($filePath, $newFileName, false);
+
+        FileTest::assertNotNull($response->success);
+        FileTest::assertNull($response->err);
+    }
+
+    /**
+     *
+     */
+    public function testRenameFilePurgeCache()
+    {
+        $filePath = '/filePath';
+        $newFileName = 'new-file';
+
+        $mockBodyResponse = Utils::streamFor(json_encode([ 'purgeCacheId' => '598821f949c0a938d57563bd']));
+
+        $this->stubHttpClient('put', new Response(204, ['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $response = $this->client->renameFile($filePath, $newFileName, true);
+
+        FileTest::assertNotNull($response->success);
+        FileTest::assertNull($response->err);
+        FileTest::assertEquals('598821f949c0a938d57563bd', $response->success->purgeCacheId);
+    }
+
+    /**
+     *
+     */
+    public function testRenameFilePurgeCacheFailed()
+    {
+        $filePath = '/filePath';
+        $newFileName = 'new-file';
+
+        $mockBodyResponse = Utils::streamFor(json_encode([
+            'message' => 'File renamed successfully but we could not purge the CDN cache for old URL because of rate limits on purge API.',
+            'help' => 'For support kindly contact us at support@imagekit.io .',
+            'reason' => 'PURGE_FAILED'
+        ]));
+
+        $this->stubHttpClient('put', new Response(207, ['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $response = $this->client->renameFile($filePath, $newFileName, true);
+
+        FileTest::assertNotNull($response->success);
+        FileTest::assertNull($response->err);
+        FileTest::assertEquals('File renamed successfully but we could not purge the CDN cache for old URL because of rate limits on purge API.', $response->success->message);
+        FileTest::assertEquals('For support kindly contact us at support@imagekit.io .', $response->success->help);
+        FileTest::assertEquals('PURGE_FAILED', $response->success->reason);
     }
 
     /**

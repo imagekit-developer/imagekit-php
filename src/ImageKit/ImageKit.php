@@ -476,6 +476,24 @@ class ImageKit
     }
 
     /**
+     * This will rename a file. This method accepts the source file's path, new file name and an optional parameter
+     * boolean to purge cache
+     *
+     *
+     * @link https://docs.imagekit.io/api-reference/media-api/rename-file
+     *
+     * @param $filePath
+     * @param $newFileName
+     * @param $purgeCache
+     * @return Response
+     */
+    public function renameFile($filePath, $newFileName, $purgeCache = false)
+    {
+        $this->httpClient->setUri(Endpoints::getRenameFileEndpoint());
+        return Manage\File::rename($filePath, $newFileName, $purgeCache, $this->httpClient);
+    }
+
+    /**
      * This will create a new folder. This method accepts folder name and parent folder path.
      *
      * @link https://docs.imagekit.io/api-reference/media-api/create-folder

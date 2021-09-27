@@ -283,4 +283,22 @@ class GuzzleHttpWrapper implements HttpRequest
         }
     }
 
+    /**
+     * @return Response
+     */
+    public function put()
+    {
+        try {
+            $options = [
+                'headers' => $this->headers,
+                'json' => $this->datas
+            ];
+            return $this->client->request('PUT', $this->getUri(), $options);
+        } catch (RequestException $e) {
+            return $this->handleRequestException($e);
+        } catch (Exception $e) {
+            return $this->handleException($e);
+        }
+    }
+
 }

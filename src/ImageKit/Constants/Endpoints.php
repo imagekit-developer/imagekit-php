@@ -130,6 +130,14 @@ class Endpoints
 
     /**
      * @return string
+     */
+    public static function getRenameFileEndpoint()
+    {
+        return (self::API_BASE_ENDPOINT . '/files/rename');
+    }
+
+    /**
+     * @return string
      * @var $jobId
      *
      */

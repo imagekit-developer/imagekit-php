@@ -32,6 +32,9 @@ class ErrorMessages
     public static $MISSING_URL_PARAMETER = ['message' => 'Your request is missing the url query paramater.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $COPY_FILE_DATA_INVALID = ['message' => 'Missing sourceFilePath and/or destinationPath for copy file.', 'help' =>
         'For support kindly contact us at support@imagekit.io .'];
+    public static $RENAME_FILE_DATA_INVALID = ['message' => 'Rename File Parameters are invalid.',
+        'help' =>
+        'For support kindly contact us at support@imagekit.io .'];
     public static $MISSING_CREATE_FOLDER_OPTIONS = ['message' => 'Missing data for creation of folder', 'help' => ''];
     public static $MISSING_DELETE_FOLDER_OPTIONS = ['message' => 'Missing data for deletion of folder', 'help' => ''];
     public static $MISSING_COPY_FOLDER_OPTIONS = ['message' => 'Missing data for copying folder', 'help' => ''];

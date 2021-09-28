@@ -172,7 +172,7 @@ $uploadFile = $imageKit->upload([
     'customCoordinates' => implode(',', ['10', '10', '100', '100'])
 ]);
 
-echo('Upload base64 encoded file : ' . json_encode($uploadFile, JSON_PRETTY_PRINT));
+echo('Upload base64 encoded file : ' . print_r($uploadFile, true));
 
 echo "\n\n-------------------------------------------------------------------\n\n";
 
@@ -187,7 +187,7 @@ $uploadFile = $imageKit->upload([
     'customCoordinates' => implode(',', ['10', '10', '100', '100'])
 ]);
 
-echo('Upload binary file : ' . json_encode($uploadFile, JSON_PRETTY_PRINT));
+echo('Upload binary file : ' . print_r($uploadFile, true));
 
 echo "\n\n-------------------------------------------------------------------\n\n";
 
@@ -201,7 +201,7 @@ $uploadFile = $imageKit->upload([
     'useUniqueFileName' => false,
 ]);
 
-echo('Upload with url : ' . json_encode($uploadFile, JSON_PRETTY_PRINT));
+echo('Upload with url : ' . print_r($uploadFile, true));
 
 echo "\n\n-------------------------------------------------------------------\n\n";
 
@@ -211,7 +211,7 @@ $listFiles = $imageKit->listFiles([
     'path' => '/php-sample',
 ]);
 
-echo('List files : ' . json_encode($listFiles, JSON_PRETTY_PRINT));
+echo('List files : ' . print_r($listFiles, true));
 
 $files = $listFiles->success;
 
@@ -222,14 +222,14 @@ $fileId = $randomFile->fileId;
 
 // Get file details
 $getFileDetails = $imageKit->getFileDetails($fileId);
-echo('File details : ' . json_encode($getFileDetails, JSON_PRETTY_PRINT));
+echo('File details : ' . print_r($getFileDetails, true));
 
 echo "\n\n-------------------------------------------------------------------\n\n";
 
 // Update details
 
 $updateFileDetails = $imageKit->updateFileDetails($fileId, ['tags' => ['image_tag'], 'customCoordinates' => '100,100,100,100']);
-echo('Updated detail : ' . json_encode($updateFileDetails, JSON_PRETTY_PRINT));
+echo('Updated detail : ' . print_r($updateFileDetails, true));
 
 echo "\n\n-------------------------------------------------------------------\n\n";
 
@@ -239,13 +239,13 @@ $tags = ['image_tag_1', 'image_tag_2'];
 // Bulk Add Tags
 
 $bulkAddTags = $imageKit->bulkAddTags($fileIds, $tags);
-echo('Bulk Add Tags Response : ' . json_encode($bulkAddTags, JSON_PRETTY_PRINT));
+echo('Bulk Add Tags Response : ' . print_r($bulkAddTags, true));
 
 // Bulk Remove Tags
 echo "\n\n-------------------------------------------------------------------\n\n";
 
 $bulkAddTags = $imageKit->bulkRemoveTags($fileIds, $tags);
-echo('Bulk Remove Tags Response : ' . json_encode($getFileDetails, JSON_PRETTY_PRINT));
+echo('Bulk Remove Tags Response : ' . print_r($getFileDetails, true));
 
 // ---- Fixture for copy
 
@@ -266,7 +266,7 @@ echo "\n\n-------------------------------------------------------------------\n\
 
 $copyFile = $imageKit->copyFile($fixtureForCopy->filePath, '/php-sample/folder1');
 
-echo('Copy file : ' . json_encode($copyFile, JSON_PRETTY_PRINT));
+echo('Copy file : ' . print_r($copyFile, true));
 
 // ---- Fixture for move
 
@@ -287,7 +287,7 @@ echo "\n\n-------------------------------------------------------------------\n\
 
 $moveFile = $imageKit->moveFile($fixtureForMove->filePath, '/php-sample/folder2');
 
-echo('Move file : ' . json_encode($moveFile, JSON_PRETTY_PRINT));
+echo('Move file : ' . print_r($moveFile, true));
 
 
 // ---- Fixture for rename
@@ -309,19 +309,19 @@ echo "\n\n-------------------------------------------------------------------\n\
 
 $renameFile = $imageKit->renameFile($fixtureForRename->filePath, 'sample-renamed');
 
-echo('Rename file : ' . json_encode($renameFile, JSON_PRETTY_PRINT));
+echo('Rename file : ' . print_r($renameFile, true));
 
 // Create Folder
 echo "\n\n-------------------------------------------------------------------\n\n";
 
 $createFolder = $imageKit->createFolder('new-folder', '/php-sample');
-echo('Create folder : ' . json_encode($createFolder, JSON_PRETTY_PRINT));
+echo('Create folder : ' . print_r($createFolder, true));
 
 // Delete Folder
 echo "\n\n-------------------------------------------------------------------\n\n";
 
 $deleteFolder = $imageKit->deleteFolder('php-sample/new-folder');
-echo('Delete folder : ' . json_encode($deleteFolder, JSON_PRETTY_PRINT));
+echo('Delete folder : ' . print_r($deleteFolder, true));
 
 // --- Fixture for Copy Folder
 $imageKit->createFolder('folder-for-copy-and-move', '/php-sample');
@@ -333,33 +333,33 @@ $imageKit->createFolder('folder-to-move-to', '/php-sample');
 echo "\n\n-------------------------------------------------------------------\n\n";
 
 $copyFolder = $imageKit->copyFolder('/php-sample/folder-for-copy-and-move', '/php-sample/folder-to-copy-to');
-echo('Copy folder : ' . json_encode($copyFolder, JSON_PRETTY_PRINT));
+echo('Copy folder : ' . print_r($copyFolder, true));
 
 // Move Folder
 echo "\n\n-------------------------------------------------------------------\n\n";
 
 $moveFolder = $imageKit->moveFolder('/php-sample/folder-for-copy-and-move', '/php-sample/folder-to-copy-to');
-echo('Move folder : ' . json_encode($copyFolder, JSON_PRETTY_PRINT));
+echo('Move folder : ' . print_r($copyFolder, true));
 
 // Get Copy Folder Job Status
 echo "\n\n-------------------------------------------------------------------\n\n";
 
 $bulkJob = $imageKit->getBulkJobStatus($copyFolder->success->jobId);
-echo('Copy Folder Job Status : ' . json_encode($bulkJob, JSON_PRETTY_PRINT));
+echo('Copy Folder Job Status : ' . print_r($bulkJob, true));
 
 
 // Get Move Folder Job Status
 echo "\n\n-------------------------------------------------------------------\n\n";
 
 $bulkJob = $imageKit->getBulkJobStatus($moveFolder->success->jobId);
-echo('Move Folder Job Status : ' . json_encode($bulkJob, JSON_PRETTY_PRINT));
+echo('Move Folder Job Status : ' . print_r($bulkJob, true));
 
 // Auth params
 echo "\n\n-------------------------------------------------------------------\n\n";
 
 $authenticationParameters = $imageKit->getAuthenticationParameters();
 
-echo('Auth params : ' . json_encode($authenticationParameters, JSON_PRETTY_PRINT));
+echo('Auth params : ' . print_r($authenticationParameters, true));
 
 //  Phash distance
 echo "\n\n-------------------------------------------------------------------\n\n";

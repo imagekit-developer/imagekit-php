@@ -1,24 +1,20 @@
 <?php
 
-echo __DIR__;
-
-if (is_file(__DIR__ . '/../vendor/autoload.php') && is_readable(__DIR__ . '/../vendor/autoload.php')) {
-    require_once __DIR__ . '/../vendor/autoload.php';
-} else {
-    // Fallback to legacy autoloader
-    require_once __DIR__ . '/../autoload.php';
-}
+require_once __DIR__ . '/../vendor/autoload.php';
 
 use ImageKit\ImageKit;
 
-$public_key = "your_public_key";
-$your_private_key = "your_private_key";
-$url_end_point = "https://ik.imagekit.io/your_imagekit_id";
+if (php_sapi_name() !== 'cli') {
+    exit;
+}
 
+$public_key = 'your_public_key';
+$your_private_key = 'your_private_key';
+$url_end_point = 'https://ik.imagekit.io/demo';
 
-$sample_file_url = "https://cdn.pixabay.com/photo/2020/02/04/22/29/owl-4819550_960_720.jpg";
-$sample_file_path = "/sample_image.jpg";
-$sample_file_image_kit_url = $url_end_point . "/sample.jpg";
+$sample_file_url = 'https://cdn.pixabay.com/photo/2020/02/04/22/29/owl-4819550_960_720.jpg';
+$sample_file_path = '/sample_image.jpg';
+$sample_file_image_kit_url = $url_end_point . '/sample.jpg';
 
 $imageKit = new ImageKit(
     $public_key,
@@ -26,249 +22,363 @@ $imageKit = new ImageKit(
     $url_end_point
 );
 
-// 1 URL generation using image path and image hostname
 echo "\n\n-------------------------------------------------------------------\n\n";
 
-$imageURL = $imageKit->url(array(
-    "path" => $sample_file_path,
-    "transformation" => array(
-        array(
-            "height" => "300",
-            "width" => "400",
-        ),
-    ),
-));
+// URL for Image with relative path
 
-echo ("Url : " . $imageURL);
+$imageURL = $imageKit->url(['path' => '/default-image.jpg']);
 
-// 2 Using full image URL
+echo('URL for Image with relative path : ' . $imageURL);
+
 echo "\n\n-------------------------------------------------------------------\n\n";
 
-$imageURL = $imageKit->url(array(
-    "src" => $sample_file_image_kit_url,
-    "transformation" => array(
-        array(
-            "height" => "300",
-            "width" => "400",
-        ),
-    ),
-    "transformationPosition" => "path",
-    "queryParameters" => array(
-        "random-param" => rand(10, 1000),
+// URL for Image with relative path and custom URL Endpoint
 
-    ),
-));
+$imageURL = $imageKit->url([
+    'urlEndpoint' => 'https://ik.imagekit.io/test',
+    'path' => '/default-image.jpg',
+]);
 
-echo ("Url using full image url : " . $imageURL);
+echo('URL for Image with relative path and custom URL Endpoint : ' . $imageURL);
 
-// 3 chained Transformations as a query parameter
 echo "\n\n-------------------------------------------------------------------\n\n";
 
-$imageURL = $imageKit->url(array(
-    "path" => $sample_file_path,
-    "transformation" => array(
-        array(
-            "height" => "300",
-            "width" => "400",
-        ),
-        array(
-            "rotation" => "90",
-            "lossless" => false,
-            "progressive" => true,
-            "trim" => "5",
-        )
-    ),
-    "transformationPostion" => "query",
-));
+//  URL for Image with absolute url
 
-echo ("chained transformation : " . $imageURL);
+$imageURL = $imageKit->url([
+    'src' => 'https://ik.imagekit.io/test/default-image.jpg'
+]);
 
-// 4. Sharpening and contrast transforms and a progressive JPG image
+echo('URL for Image with absolute url : ' . $imageURL);
+
 echo "\n\n-------------------------------------------------------------------\n\n";
 
-$imageURL = $imageKit->url(array(
-    "src" => $sample_file_image_kit_url,
-    "queryParameters" => array(
-        "v" => "1",
-        "q" => "something",
-    ),
-    "transformation" => array(
-        array(
-            "format" => "jpg",
-            "progressive" => true,
-            "effectSharpen" => "-",
-            "effectContrast" => "1",
-        ),
-    ),
-));
+// Resizing Images
 
-echo ("Sharpening and contrast transforms : " . $imageURL);
+$imageURL = $imageKit->url([
+    'path' => '/default-image.jpg',
+    'transformation' => [
+        [
+            'height' => '300',
+            'width' => '400',
+        ],
+    ],
+]);
 
-// 5. Signed url
+echo('Resized Image Url : ' . $imageURL);
 echo "\n\n-------------------------------------------------------------------\n\n";
 
-$imageURL = $imageKit->url(array(
-    "path" => $sample_file_path,
-    "queryParameters" => array(
-        "v" => "123",
-    ),
-    "transformation" => array(
-        array(
-            "height" => "300",
-            "width" => "400",
-        ),
-    ),
-    "signed" => true,
-    "expireSeconds" => 300,
-));
+// Quality manipulation
 
-echo ("Signed url : " . $imageURL);
+$imageURL = $imageKit->url([
+    'path' => '/default-image.jpg',
+    'transformation' => [
+        [
+            'quality' => '40',
+        ],
+    ],
+]);
 
-// 6. Upload Image - Base64
+echo('Quality Manipulated Image Url : ' . $imageURL);
 echo "\n\n-------------------------------------------------------------------\n\n";
 
-$img = file_get_contents(__DIR__ . "/sample_image.jpg");
+// Chained transformation
+
+$imageURL = $imageKit->url([
+    'path' => '/default-image.jpg',
+    'transformation' => [
+        [
+            'height' => '300',
+            'width' => '400',
+        ],
+        [
+            'rotation' => '90'
+        ]
+    ],
+]);
+
+echo('Chained transformation Image Url : ' . $imageURL);
+echo "\n\n-------------------------------------------------------------------\n\n";
+
+// Adding overlays to images in PHP
+
+
+$imageURL = $imageKit->url([
+    'path' => '/default-image.jpg',
+    'urlEndpoint' => 'https://ik.imagekit.io/pshbwfiho',
+
+    // It means first resize the image to 400x300 and then rotate 90 degree
+    'transformation' => [
+        [
+            'height' => '300',
+            'width' => '300',
+            'overlayImage' => 'default-image.jpg',
+            'overlayWidth' => '100',
+            'overlayX' => '0',
+            'overlayImageBorder' => '10_CDDC39' // 10px border of color CDDC39
+        ]
+    ],
+]);
+
+echo('Overlay Image Url : ' . $imageURL);
+echo "\n\n-------------------------------------------------------------------\n\n";
+
+// Sharpening and contrast transforms and a progressive JPG image
+
+$imageURL = $imageKit->url([
+    'path' => '/sample_image.jpg',
+    'transformation' => [
+        [
+            'format' => 'jpg',
+            'progressive' => true,
+            'effectSharpen' => '-',
+            'effectContrast' => '1',
+        ],
+    ],
+]);
+
+echo('Sharpening and contrast transforms : ' . $imageURL);
+echo "\n\n-------------------------------------------------------------------\n\n";
+
+// Signed url
+$imageURL = $imageKit->url([
+    'path' => '/default-image.jpg',
+    'transformation' => [
+        [
+            'height' => '300',
+            'width' => '400',
+        ],
+    ],
+    'signed' => true,
+    'expireSeconds' => 300,
+]);
+
+echo('Signed url : ' . $imageURL);
+
+echo "\n\n-------------------------------------------------------------------\n\n";
+
+// Upload Image - Base64
+
+$img = file_get_contents(__DIR__ . '/sample_image.jpeg');
 
 // Encode the image string data into base64
 $encodedImageData = base64_encode($img);
-$uploadFile = $imageKit->uploadFiles(array(
-    "file" => $encodedImageData,
-    "fileName" => "sample",
-    "tags" => array("abd", "def"),
-    "useUniqueFileName" => false,
-    "customCoordinates" => implode(",", array("10", "10", "100", "100"))
-));
+$uploadFile = $imageKit->upload([
+    'file' => $encodedImageData,
+    'fileName' => 'sample-base64-upload',
+    'folder' => '/php-sample',
+    'tags' => ['abd', 'def'],
+    'useUniqueFileName' => false,
+    'customCoordinates' => implode(',', ['10', '10', '100', '100'])
+]);
 
-$response = json_decode(json_encode($uploadFile), true);
-echo ("Upload base64 encoded file : " . json_encode($uploadFile));
+echo('Upload base64 encoded file : ' . print_r($uploadFile, true));
 
-// 7. Upload Image - Binary
 echo "\n\n-------------------------------------------------------------------\n\n";
 
-$uploadFile = $imageKit->uploadFiles(array(
-    "file" => fopen(__DIR__ . "/sample_image.jpg", "r"),
-    "fileName" => "sample",
-    "tags" => array("tag1", "tag2"),
-    "useUniqueFileName" => true,
-    "customCoordinates" => implode(",", array("10", "10", "100", "100"))
-));
+// Upload Image - Binary
 
-$response = json_decode(json_encode($uploadFile), true);
-$binaryFileUploadID = $response["success"]["fileId"];
-$binaryFileUploadURL = $response["success"]["url"];
-echo ("Upload binary file : " . json_encode($uploadFile));
+$uploadFile = $imageKit->upload([
+    'file' => fopen(__DIR__ . '/sample_image.jpeg', 'r'),
+    'fileName' => 'sample-binary',
+    'folder' => '/php-sample',
+    'tags' => ['tag1', 'tag2'],
+    'useUniqueFileName' => false,
+    'customCoordinates' => implode(',', ['10', '10', '100', '100'])
+]);
 
-//  8. Upload Image  - URL
+echo('Upload binary file : ' . print_r($uploadFile, true));
+
 echo "\n\n-------------------------------------------------------------------\n\n";
 
-$uploadFile = $imageKit->uploadFiles(array(
-    "file" => $sample_file_url,
-    "fileName" => "testing",
-    "responseFields" => implode(",", array("isPrivateFile", "customCoordinates")),
-    "isPrivateFile" => true,
-));
+// Upload Image - URL
 
-$response = json_decode(json_encode($uploadFile), true);
-$uploadedImageURL = $response["success"]["url"];
-$fileId = $response["success"]["fileId"];
-echo ("Upload with url : " . json_encode($uploadFile));
+$uploadFile = $imageKit->upload([
+    'file' => $sample_file_url,
+    'fileName' => 'sample-url',
+    'folder' => '/php-sample',
+    'responseFields' => implode(',', ['isPrivateFile', 'customCoordinates']),
+    'useUniqueFileName' => false,
+]);
 
-//  9. Upload Image  - with all parameters
+echo('Upload with url : ' . print_r($uploadFile, true));
+
 echo "\n\n-------------------------------------------------------------------\n\n";
 
-$uploadFile = $imageKit->uploadFiles(array(
-    "file" => $sample_file_url,
-    "fileName" => "testing",
-    "useUniqueFileName" => true,
-    "tags" => array("tag1", "tag2"),
-    "folder" => "sample",
-    "isPrivateFile" => false,
-    "customCoordinates" => "10,15,100,100",
-    "responseFields" => implode(",", array("isPrivateFile", "customCoordinates")),
-));
+// List Files
 
-echo ("Upload with url with all parameters: " . json_encode($uploadFile));
+$listFiles = $imageKit->listFiles([
+    'path' => '/php-sample',
+]);
 
-// 10. List Files
+echo('List files : ' . print_r($listFiles, true));
+
+$files = $listFiles->success;
+
 echo "\n\n-------------------------------------------------------------------\n\n";
 
-$listFiles = $imageKit->listFiles(array(
-    "skip" => 0,
-    "limit" => 1,
-));
+$randomFile = $files[array_rand((array)$files)];
+$fileId = $randomFile->fileId;
 
-echo ("List files : " . json_encode($listFiles));
-
-// 11. Update details
-echo "\n\n-------------------------------------------------------------------\n\n";
-
-$updateFileDetails = $imageKit->updateFileDetails($fileId, array("tags" => ['image_tag'], "customCoordinates" => '100,100,100,100'));
-
-echo ("Updated detail : " . json_encode($updateFileDetails));
-
-// 12. get file details
-echo "\n\n-------------------------------------------------------------------\n\n";
-
+// Get file details
 $getFileDetails = $imageKit->getFileDetails($fileId);
+echo('File details : ' . print_r($getFileDetails, true));
 
-echo ("File details : " . json_encode($getFileDetails));
-
-// 13. get file meta data
 echo "\n\n-------------------------------------------------------------------\n\n";
 
-$getFileDetails = $imageKit->getFileMetaData($fileId);
+// Update details
 
-echo ("File metadata : " . json_encode($getFileDetails));
+$updateFileDetails = $imageKit->updateFileDetails($fileId, ['tags' => ['image_tag'], 'customCoordinates' => '100,100,100,100']);
+echo('Updated detail : ' . print_r($updateFileDetails, true));
 
-// 14. Delete file
 echo "\n\n-------------------------------------------------------------------\n\n";
 
-$deleteFile = $imageKit->deleteFile($fileId);
+$fileIds = array_map(function ($f) { return $f->fileId; }, $files);
+$tags = ['image_tag_1', 'image_tag_2'];
 
+// Bulk Add Tags
 
-echo ("Delete file : " . json_encode($deleteFile));
+$bulkAddTags = $imageKit->bulkAddTags($fileIds, $tags);
+echo('Bulk Add Tags Response : ' . print_r($bulkAddTags, true));
 
-// 15. Get file metadata from remote url
+// Bulk Remove Tags
 echo "\n\n-------------------------------------------------------------------\n\n";
 
-$fileMetadataFromRemoteURL = $imageKit->getFileMetadataFromRemoteURL($binaryFileUploadURL);
+$bulkAddTags = $imageKit->bulkRemoveTags($fileIds, $tags);
+echo('Bulk Remove Tags Response : ' . print_r($getFileDetails, true));
 
+// ---- Fixture for copy
 
-echo ("Get file metadata from remote url : " . json_encode($fileMetadataFromRemoteURL));
+$fixtureForCopy = $imageKit->upload([
+    'file' => $sample_file_url,
+    'fileName' => 'sample-copy',
+    'folder' => '/php-sample',
+    'responseFields' => implode(',', ['isPrivateFile', 'customCoordinates']),
+    'useUniqueFileName' => false,
+]);
 
+$fixtureForCopy = $fixtureForCopy->success;
 
-// 16. Delete bulk files by Ids
-echo "\n\n-------------------------------------------------------------------\n\n";
-$bulkFileDelete = $imageKit->bulkFileDeleteByIds(array(
-    "fileIds" => [$binaryFileUploadID]
-));
+// -----
 
-echo ("Delete bulk files by ID : " . json_encode($bulkFileDelete));
-
-// 17. Purge cache
-echo "\n\n-------------------------------------------------------------------\n\n";
-$purgeCache = $imageKit->purgeFileCacheApi($uploadedImageURL);
-$response = json_decode(json_encode($purgeCache), true);
-$requestId = $response["success"]["requestId"];
-echo ("Purge cache : " . json_encode($purgeCache));
-
-// 18. Purge cache status
+// Copy file
 echo "\n\n-------------------------------------------------------------------\n\n";
 
-$purgeCacheStatus = $imageKit->purgeFileCacheApiStatus($requestId);
+$copyFile = $imageKit->copyFile($fixtureForCopy->filePath, '/php-sample/folder1');
 
-echo ("Purge cache status : " . json_encode($purgeCacheStatus));
+echo('Copy file : ' . print_r($copyFile, true));
 
-// 19. Auth params
+// ---- Fixture for move
+
+$fixtureForMove = $imageKit->upload([
+    'file' => $sample_file_url,
+    'fileName' => 'sample-move',
+    'folder' => '/php-sample',
+    'responseFields' => implode(',', ['isPrivateFile', 'customCoordinates']),
+    'useUniqueFileName' => false,
+]);
+
+$fixtureForMove = $fixtureForMove->success;
+
+// -----
+
+// Move file
+echo "\n\n-------------------------------------------------------------------\n\n";
+
+$moveFile = $imageKit->moveFile($fixtureForMove->filePath, '/php-sample/folder2');
+
+echo('Move file : ' . print_r($moveFile, true));
+
+
+// ---- Fixture for rename
+
+$fixtureForRename = $imageKit->upload([
+    'file' => $sample_file_url,
+    'fileName' => 'sample-rename',
+    'folder' => '/php-sample',
+    'responseFields' => implode(',', ['isPrivateFile', 'customCoordinates']),
+    'useUniqueFileName' => true,
+]);
+
+$fixtureForRename = $fixtureForRename->success;
+
+// -----
+
+// Rename file
+echo "\n\n-------------------------------------------------------------------\n\n";
+
+$renameFile = $imageKit->renameFile($fixtureForRename->filePath, 'sample-renamed');
+
+echo('Rename file : ' . print_r($renameFile, true));
+
+// Create Folder
+echo "\n\n-------------------------------------------------------------------\n\n";
+
+$createFolder = $imageKit->createFolder('new-folder', '/php-sample');
+echo('Create folder : ' . print_r($createFolder, true));
+
+// Delete Folder
+echo "\n\n-------------------------------------------------------------------\n\n";
+
+$deleteFolder = $imageKit->deleteFolder('php-sample/new-folder');
+echo('Delete folder : ' . print_r($deleteFolder, true));
+
+// --- Fixture for Copy Folder
+$imageKit->createFolder('folder-for-copy-and-move', '/php-sample');
+$imageKit->createFolder('folder-to-copy-to', '/php-sample');
+$imageKit->createFolder('folder-to-move-to', '/php-sample');
+// ---
+
+// Copy Folder
+echo "\n\n-------------------------------------------------------------------\n\n";
+
+$copyFolder = $imageKit->copyFolder('/php-sample/folder-for-copy-and-move', '/php-sample/folder-to-copy-to');
+echo('Copy folder : ' . print_r($copyFolder, true));
+
+// Move Folder
+echo "\n\n-------------------------------------------------------------------\n\n";
+
+$moveFolder = $imageKit->moveFolder('/php-sample/folder-for-copy-and-move', '/php-sample/folder-to-copy-to');
+echo('Move folder : ' . print_r($copyFolder, true));
+
+// Get Copy Folder Job Status
+echo "\n\n-------------------------------------------------------------------\n\n";
+
+$bulkJob = $imageKit->getBulkJobStatus($copyFolder->success->jobId);
+echo('Copy Folder Job Status : ' . print_r($bulkJob, true));
+
+
+// Get Move Folder Job Status
+echo "\n\n-------------------------------------------------------------------\n\n";
+
+$bulkJob = $imageKit->getBulkJobStatus($moveFolder->success->jobId);
+echo('Move Folder Job Status : ' . print_r($bulkJob, true));
+
+
+// Purge Cache
+echo "\n\n-------------------------------------------------------------------\n\n";
+
+$purgeCache = $imageKit->purgeCache($randomFile->url);
+echo('Purge Cache : ' . print_r($purgeCache, true));
+
+// Purge Cache Status
+echo "\n\n-------------------------------------------------------------------\n\n";
+
+$purgeCacheStatus = $imageKit->getPurgeCacheStatus($purgeCache->success->requestId);
+echo('Purge Cache Status : ' . print_r($purgeCacheStatus, true));
+
+
+
+// Auth params
 echo "\n\n-------------------------------------------------------------------\n\n";
 
 $authenticationParameters = $imageKit->getAuthenticationParameters();
 
-echo ("Auth params : " . json_encode($authenticationParameters));
+echo('Auth params : ' . print_r($authenticationParameters, true));
 
-// 20. Phash distance
+//  Phash distance
 echo "\n\n-------------------------------------------------------------------\n\n";
 
-$distance = $imageKit->pHashDistance("f06830ca9f1e3e90", "f06830ca9f1e3e90");
-echo ("Phash Distance : " . $distance);
-echo ("\n");
+$distance = $imageKit->pHashDistance('2d5ad3936d2e015b', '2d6ed293db36a4fb');;
+echo('Phash Distance : ' . $distance);
+echo("\n");

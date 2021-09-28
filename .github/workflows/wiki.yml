@@ -1,0 +1,24 @@
+name: Automatic update project documentation
+
+on:
+    push:
+        branches:
+            - master
+        tags:
+            - '*'
+
+jobs:
+    update_wiki:
+        runs-on: ubuntu-latest
+        steps:
+            -   name: Checkouting project code...
+                uses: actions/checkout@v2
+            -   name: Updating wiki...
+                uses: impresscms-dev/phpdocs-wiki-update-action@v1.0.0
+                with:
+                    wiki_github_update_token: ${{ secrets.WIKI_GITHUB_UPDATE_TOKEN }}
+                    wiki_github_update_user: ${{ secrets.WIKI_GITHUB_UPDATE_USER }}
+                    engine: clean/phpdoc-md
+                    class_root_namespace: ImageKit
+                    include: |
+                        ImageKit\**

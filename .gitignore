@@ -35,3 +35,8 @@ vendor
 composer.phar
 phpunit.xml
 .vscode
+.phpunit*
+sample/vendor
+sample/composer.lock
+
+*.phar

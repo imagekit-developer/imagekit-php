@@ -100,7 +100,7 @@ final class UrlTest extends TestCase
             'signed' => true
         ]);
         UrlTest::assertEquals(
-            'https://ik.imagekit.io/demo/default-image.jpg?ik-s=f2e41285adccc8b8601eb6d0974c65af0f4f6247&ik-sdk-version=php-' . ImageKit::SDK_VERSION,
+            'https://ik.imagekit.io/demo/default-image.jpg?ik-s=16f944062d8d1ab884bac6cce37b77c6b0aff8ee&ik-sdk-version=php-' . ImageKit::SDK_VERSION,
             $url
         );
     }
@@ -116,7 +116,7 @@ final class UrlTest extends TestCase
             'expireSeconds' => ''
         ]);
         UrlTest::assertEquals(
-            'https://ik.imagekit.io/demo/default-image.jpg?ik-s=f2e41285adccc8b8601eb6d0974c65af0f4f6247&ik-sdk-version=php-' . ImageKit::SDK_VERSION,
+            'https://ik.imagekit.io/demo/default-image.jpg?ik-s=16f944062d8d1ab884bac6cce37b77c6b0aff8ee&ik-sdk-version=php-' . ImageKit::SDK_VERSION,
             $url
         );
     }
@@ -126,15 +126,13 @@ final class UrlTest extends TestCase
      */
     public function testUrlSignedUrlWithInvalidExpiryString()
     {
-        $url = $this->client->url([
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('expireSeconds should be numeric');
+        $this->client->url([
             'path' => '/default-image.jpg',
             'signed' => true,
             'expireSeconds' => 'asdad'
         ]);
-        UrlTest::assertEquals(
-            'https://ik.imagekit.io/demo/default-image.jpg?ik-s=f2e41285adccc8b8601eb6d0974c65af0f4f6247&ik-sdk-version=php-' . ImageKit::SDK_VERSION,
-            $url
-        );
     }
 
     /**
@@ -1072,25 +1070,5 @@ final class UrlTest extends TestCase
 
         UrlTest::assertEquals('41b3075c40bc84147eb71b8b49ae7fbf349d0f00', $signature);
     }
-
-
-    /**
-     *
-     */
-    public function testUnitTestGeneratedSignatureEmptyPrivateKey()
-    {
-        $opts = [
-            'privateKey' => '',
-            'url' => 'https://test-domain.com/test-endpoint/tr:w-100/test-signed-url.png',
-            'urlEndpoint' => 'https://test-domain.com/test-endpoint',
-            'expiryTimestamp' => '9999999999'
-        ];
-
-        $urlInstance = new Url();
-        $signature = $urlInstance->getSignature($opts);
-
-        UrlTest::assertEquals('', $signature);
-    }
-
 
 }

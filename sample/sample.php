@@ -354,6 +354,21 @@ echo "\n\n-------------------------------------------------------------------\n\
 $bulkJob = $imageKit->getBulkJobStatus($moveFolder->success->jobId);
 echo('Move Folder Job Status : ' . print_r($bulkJob, true));
 
+
+// Purge Cache
+echo "\n\n-------------------------------------------------------------------\n\n";
+
+$purgeCache = $imageKit->purgeCache($randomFile->url);
+echo('Purge Cache : ' . print_r($purgeCache, true));
+
+// Purge Cache Status
+echo "\n\n-------------------------------------------------------------------\n\n";
+
+$purgeCacheStatus = $imageKit->getPurgeCacheStatus($purgeCache->success->requestId);
+echo('Purge Cache Status : ' . print_r($purgeCacheStatus, true));
+
+
+
 // Auth params
 echo "\n\n-------------------------------------------------------------------\n\n";
 

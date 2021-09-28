@@ -36,6 +36,10 @@ class Url
 
         if (isset($obj->expireSeconds)) {
             $expireSeconds = $obj->expireSeconds;
+
+            if ($signed === true && $expireSeconds !== '' && !is_numeric($expireSeconds)) {
+                throw new \InvalidArgumentException('expireSeconds should be numeric');
+            }
         }
 
         if (isset($obj->path)) {

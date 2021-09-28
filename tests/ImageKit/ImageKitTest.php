@@ -136,11 +136,11 @@ class ImageKitTest extends TestCase
     public function testGetAuthenticationParametersWithToken()
     {
         $token = 'your_token';
-        $expire = '1582269249';
-        $signature = 'ec74886ec07c66be637fcf1c46b69b4e9627ea53';
+        $expire = 1582269249;
+        $signature = 'e71bcd6031016b060d349d212e23e85c791decdd';
 
-        $imagekit = new ImageKit('Testing_Public_Key', 'Testing_Private_Key', 'https://ik.imagekit.io/testing');
-        $response = $imagekit->getAuthenticationParameters('your_token', '1582269249');
+        $imagekit = new ImageKit('public_key_test', 'private_key_test', 'https://ik.imagekit.io/testing');
+        $response = $imagekit->getAuthenticationParameters('your_token', 1582269249);
 
         $el = get_object_vars($response);
 
@@ -268,26 +268,6 @@ class ImageKitTest extends TestCase
         $this->expectExceptionMessage('Invalid pHash value');
 
         $imagekit->pHashDistance($phash1, $phash2);
-    }
-
-    /**
-     * Test Similarity
-     */
-    public function testEvaluateSimilarity()
-    {
-        $imagekit = new ImageKit(
-            'Testing_Public_Key',
-            'Testing_Private_Key',
-            'https://ik.imagekit.io/demo'
-        );
-
-        $phash1 = '63433b3ccf8e1ebe';
-        $phash2 = 'f5d2226cd9d32b16';
-
-        $similarity = $imagekit->evaluateSimilarity($phash1, $phash2);
-
-        Assert::assertEquals(27, $similarity->distance);
-        Assert::assertEquals(0.578125, $similarity->similarityScore);
     }
 
     /**

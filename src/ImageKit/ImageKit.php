@@ -609,31 +609,6 @@ class ImageKit
         $this->httpClient->setUri(Endpoints::getFileMetadataFromRemoteURLEndpoint());
         return Manage\File\Metadata::getFileMetadataFromRemoteURL($url, $this->httpClient);
     }
-
-    /**
-     * Using pHash to find similar or duplicate images
-     * The hamming distance between two pHash values determines how similar or different the images are.
-     *
-     * The pHash value returned by ImageKit.io metadata API is a hexadecimal string of 64bit pHash. The distance
-     * between two hash can be between 0 and 64. A lower distance means similar images. If the distance is 0,
-     * that means two images are identical.
-     *
-     * @param string $firstPHash
-     * @param string $secondPHash
-     * @return object { distance: int, similarityScore: float, firstPHash: string, secondPHash: string}
-     */
-    public function evaluateSimilarity($firstPHash, $secondPHash)
-    {
-        $distance = self::pHashDistance($firstPHash, $secondPHash);
-
-        return (object)[
-            'firstPHash' => $firstPHash,
-            'secondPHash' => $secondPHash,
-            'distance' => $distance,
-            'similarityScore' => Phash::similarityScore($distance)
-        ];
-    }
-
     /**
      * Using pHash to find similar or duplicate images
      * The hamming distance between two pHash values determines how similar or different the images are.

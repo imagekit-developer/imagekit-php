@@ -49,17 +49,4 @@ class Phash
         return $res;
     }
 
-    /**
-     * Similarity Score
-     *
-     * @param $hammingDistance
-     *
-     * @return float
-     *
-     */
-    public static function similarityScore($hammingDistance)
-    {
-        return 1 - ($hammingDistance / 64.0);
-    }
-
 }

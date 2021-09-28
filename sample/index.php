@@ -366,10 +366,4 @@ echo "\n\n-------------------------------------------------------------------\n\
 
 $distance = $imageKit->pHashDistance('2d5ad3936d2e015b', '2d6ed293db36a4fb');;
 echo('Phash Distance : ' . $distance);
-
-//  Similarity
-echo "\n\n-------------------------------------------------------------------\n\n";
-
-$similarity = $imageKit->evaluateSimilarity('2d5ad3936d2e015b', '2d6ed293db36a4fb');;
-echo('Similarity : ' . json_encode($similarity, JSON_PRETTY_PRINT));
 echo("\n");

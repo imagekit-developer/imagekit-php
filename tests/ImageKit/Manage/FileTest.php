@@ -1328,8 +1328,8 @@ final class FileTest extends TestCase
     protected function setUp(): void
     {
         $this->client = new ImageKit(
-            'Testing_Public_Key',
-            'Testing_Private_Key',
+            'testing_public_key',
+            'testing_private_key',
             'https://ik.imagekit.io/demo'
         );
     }

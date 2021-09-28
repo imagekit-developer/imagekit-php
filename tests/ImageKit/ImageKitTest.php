@@ -23,11 +23,11 @@ class ImageKitTest extends TestCase
      */
     public function test__constructSuccessful()
     {
-        $imagekit = new ImageKit('Testing_Public_Key', 'Testing_Private_Key', 'https://ik.imagekit.io/testing');
+        $imagekit = new ImageKit('testing_public_key', 'testing_private_key', 'https://ik.imagekit.io/testing');
         $assertionClosure = function () {
             Assert::assertInstanceOf(Configuration::class, $this->configuration, "\$configuration should be an instance of Configuration");
-            Assert::assertEquals('Testing_Public_Key', $this->configuration->publicKey, 'Public Key should be equal to Testing_Public_Key');
-            Assert::assertEquals('Testing_Private_Key', $this->configuration->privateKey, 'Private Key should be equal to Testing_Private_Key');
+            Assert::assertEquals('testing_public_key', $this->configuration->publicKey, 'Public Key should be equal to testing_public_key');
+            Assert::assertEquals('testing_private_key', $this->configuration->privateKey, 'Private Key should be equal to testing_private_key');
             Assert::assertEquals('https://ik.imagekit.io/testing', $this->configuration->urlEndpoint, 'Url Endpoint should be equal to https://ik.imagekit.io/testing');
             Assert::assertEquals('path', $this->configuration->transformationPosition, 'Transformation Position should be equal to path');
         };
@@ -40,11 +40,11 @@ class ImageKitTest extends TestCase
      */
     public function test__constructSuccessfulWithTransformationPositionPath()
     {
-        $imagekit = new ImageKit('Testing_Public_Key', 'Testing_Private_Key', 'https://ik.imagekit.io/testing', 'path');
+        $imagekit = new ImageKit('testing_public_key', 'testing_private_key', 'https://ik.imagekit.io/testing', 'path');
         $assertionClosure = function () {
             Assert::assertInstanceOf(Configuration::class, $this->configuration, "\$configuration should be an instance of Configuration");
-            Assert::assertEquals('Testing_Public_Key', $this->configuration->publicKey, 'Public Key should be equal to Testing_Public_Key');
-            Assert::assertEquals('Testing_Private_Key', $this->configuration->privateKey, 'Private Key should be equal to Testing_Private_Key');
+            Assert::assertEquals('testing_public_key', $this->configuration->publicKey, 'Public Key should be equal to testing_public_key');
+            Assert::assertEquals('testing_private_key', $this->configuration->privateKey, 'Private Key should be equal to testing_private_key');
             Assert::assertEquals('https://ik.imagekit.io/testing', $this->configuration->urlEndpoint, 'Url Endpoint should be equal to https://ik.imagekit.io/testing');
             Assert::assertEquals('path', $this->configuration->transformationPosition, 'Transformation Position should be equal to path');
         };
@@ -57,11 +57,11 @@ class ImageKitTest extends TestCase
      */
     public function test__constructSuccessfulWithTransformationPositionQuery()
     {
-        $imagekit = new ImageKit('Testing_Public_Key', 'Testing_Private_Key', 'https://ik.imagekit.io/testing', 'query');
+        $imagekit = new ImageKit('testing_public_key', 'testing_private_key', 'https://ik.imagekit.io/testing', 'query');
         $assertionClosure = function () {
             Assert::assertInstanceOf(Configuration::class, $this->configuration, "\$configuration should be an instance of Configuration");
-            Assert::assertEquals('Testing_Public_Key', $this->configuration->publicKey, 'Public Key should be equal to Testing_Public_Key');
-            Assert::assertEquals('Testing_Private_Key', $this->configuration->privateKey, 'Private Key should be equal to Testing_Private_Key');
+            Assert::assertEquals('testing_public_key', $this->configuration->publicKey, 'Public Key should be equal to testing_public_key');
+            Assert::assertEquals('testing_private_key', $this->configuration->privateKey, 'Private Key should be equal to testing_private_key');
             Assert::assertEquals('https://ik.imagekit.io/testing', $this->configuration->urlEndpoint, 'Url Endpoint should be equal to https://ik.imagekit.io/testing');
             Assert::assertEquals('query', $this->configuration->transformationPosition, 'Transformation Position should be equal to path');
         };
@@ -86,7 +86,7 @@ class ImageKitTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Missing privateKey during ImageKit initialization');
-        new ImageKit('Testing_Public_Key', '', '', '');
+        new ImageKit('testing_public_key', '', '', '');
     }
 
     /**
@@ -96,7 +96,7 @@ class ImageKitTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Missing urlEndpoint during ImageKit initialization');
-        new ImageKit('Testing_Public_Key', 'Testing_Private_Key', '', '');
+        new ImageKit('testing_public_key', 'testing_private_key', '', '');
     }
 
     /**
@@ -106,7 +106,7 @@ class ImageKitTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Invalid transformationPosition during ImageKit initialization. Can be one of path or query');
-        new ImageKit('Testing_Public_Key', 'Testing_Private_Key', 'https://ik.imagekit.io/testing', '');
+        new ImageKit('testing_public_key', 'testing_private_key', 'https://ik.imagekit.io/testing', '');
     }
 
     /**
@@ -116,7 +116,7 @@ class ImageKitTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Invalid transformationPosition during ImageKit initialization. Can be one of path or query');
-        new ImageKit('Testing_Public_Key', 'Testing_Private_Key', 'https://ik.imagekit.io/testing', 'testing');
+        new ImageKit('testing_public_key', 'testing_private_key', 'https://ik.imagekit.io/testing', 'testing');
     }
 
 
@@ -127,7 +127,7 @@ class ImageKitTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('urlEndpoint should be a valid URL');
-        new ImageKit('Testing_Public_Key', 'Testing_Private_Key', 'wrong_url', 'path');
+        new ImageKit('testing_public_key', 'testing_private_key', 'wrong_url', 'path');
     }
 
     /**
@@ -157,8 +157,8 @@ class ImageKitTest extends TestCase
     public function testPHashDistance()
     {
         $imagekit = new ImageKit(
-            'Testing_Public_Key',
-            'Testing_Private_Key',
+            'testing_public_key',
+            'testing_private_key',
             'https://ik.imagekit.io/demo'
         );
 
@@ -176,8 +176,8 @@ class ImageKitTest extends TestCase
     public function testPHashDistanceEmptyPhash1()
     {
         $imagekit = new ImageKit(
-            'Testing_Public_Key',
-            'Testing_Private_Key',
+            'testing_public_key',
+            'testing_private_key',
             'https://ik.imagekit.io/demo'
         );
 
@@ -196,8 +196,8 @@ class ImageKitTest extends TestCase
     public function testPHashDistanceEmptyPhash2()
     {
         $imagekit = new ImageKit(
-            'Testing_Public_Key',
-            'Testing_Private_Key',
+            'testing_public_key',
+            'testing_private_key',
             'https://ik.imagekit.io/demo'
         );
 
@@ -216,8 +216,8 @@ class ImageKitTest extends TestCase
     public function testPHashDistanceInvalidPhash1()
     {
         $imagekit = new ImageKit(
-            'Testing_Public_Key',
-            'Testing_Private_Key',
+            'testing_public_key',
+            'testing_private_key',
             'https://ik.imagekit.io/demo'
         );
 
@@ -236,8 +236,8 @@ class ImageKitTest extends TestCase
     public function testPHashDistanceInvalidPhash2()
     {
         $imagekit = new ImageKit(
-            'Testing_Public_Key',
-            'Testing_Private_Key',
+            'testing_public_key',
+            'testing_private_key',
             'https://ik.imagekit.io/demo'
         );
 
@@ -256,8 +256,8 @@ class ImageKitTest extends TestCase
     public function testPHashDistancePhashesLengthNotEqual()
     {
         $imagekit = new ImageKit(
-            'Testing_Public_Key',
-            'Testing_Private_Key',
+            'testing_public_key',
+            'testing_private_key',
             'https://ik.imagekit.io/demo'
         );
 
@@ -276,8 +276,8 @@ class ImageKitTest extends TestCase
     public function testBulkJobStatusInValidJobId()
     {
         $imagekit = new ImageKit(
-            'Testing_Public_Key',
-            'Testing_Private_Key',
+            'testing_public_key',
+            'testing_private_key',
             'https://ik.imagekit.io/demo'
         );
 
@@ -307,8 +307,8 @@ class ImageKitTest extends TestCase
     public function testBulkJobStatusSuccess()
     {
         $imagekit = new ImageKit(
-            'Testing_Public_Key',
-            'Testing_Private_Key',
+            'testing_public_key',
+            'testing_private_key',
             'https://ik.imagekit.io/demo'
         );
 

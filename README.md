@@ -30,7 +30,7 @@ composer require imagekit/imagekit
 
 ## Initialization
 
-```
+```php
 use ImageKit\ImageKit;
 
 $imageKit = new ImageKit(
@@ -52,7 +52,7 @@ This method allows you to create a URL using the image's path and the ImageKit U
 
 ImageKit provides inbuild media storage and integration with external origins. Refer to the [documentation (https://docs.imagekit.io/integration/url-endpoints) to learn more about URL endpoints and external [image origins](https://docs.imagekit.io/integration/configure-origin) supported by ImageKit.
 
-```
+```php
 $imageURL = $imageKit->url(array(
     "path" => "/default-image.jpg",
     "transformation" => array(
@@ -73,7 +73,7 @@ https://ik.imagekit.io/your_imagekit_id/endpoint/tr:h-300,w-400/default-image.jp
 **2.Using full image URL**
 This method allows you to add transformation parameters to an absolute ImageKit powered URL. This method should be used if you have the absolute URL stored in your database.
 
-```
+```php
 $imageURL = $imageKit->url(array(
     "src" => "https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg",
     "transformation" => array(
@@ -83,7 +83,6 @@ $imageURL = $imageKit->url(array(
         )
     )
 ));
-
 ```
 
 This results in a URL like
@@ -109,7 +108,7 @@ The `$imageKit->url()` method accepts the following parameters
 
 **1. Chained Transformations as a query parameter**
 
-```
+```php
 $imageURL = $imageKit->url(array(
     "path" => "/default-image.jpg",
     "url_endpoint" => "https://ik.imagekit.io/your_imagekit_id/endpoint/",
@@ -134,7 +133,7 @@ https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg?tr=h-300%2Cw-
 
 Some transformations like [Sharpening (https://docs.imagekit.io/features/image-transformations/image-enhancement-and-color-manipulation) can be added to the URL with or without any other value. To use such transforms without specifying a value, specify the value as "-" in the transformation object. Otherwise, specify the value that you want to be added to this transformation.
 
-```
+```php
 $imageURL = $imageKit->url(array(
     "src" => "https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg",
     "transformation" => array(
@@ -155,7 +154,7 @@ https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg?tr=f-jpg%2Cpr
 
 **3. Signed URL that expires in 300 seconds with the default URL endpoint and other query parameters**
 
-```
+```php
  $imageURL = $imageKit->url(array(
     "path" => "/default-image.jpg",
     "queryParameters" => array(
@@ -233,7 +232,7 @@ The `uploadFiles()` method requires at least the `file` and the `fileName` param
 
 Sample usage
 
-```
+```php
 $imageKit->uploadFiles(array(
     "file" => "your_file", // required
     "fileName" => "your_file_name.jpg", // required
@@ -257,7 +256,7 @@ The SDK provides a simple interface for all the [media APIs mentioned here](http
 
 Accepts an object specifying the parameters to be used to list and search files. All parameters specified in the [documentation here (https://docs.imagekit.io/api-reference/media-api/list-and-search-files) can be passed as it is with the correct values to get the results.
 
-```
+```php
 $imageKit->listFiles(
     array(
         "skip" => 10,
@@ -270,7 +269,7 @@ $imageKit->listFiles(
 
 Accepts the file ID and fetches the details as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/get-file-details).
 
-```
+```php
 $imageKit->getFileDetails("file_id");
 ```
 
@@ -278,7 +277,7 @@ $imageKit->getFileDetails("file_id");
 
 Accepts the file ID and fetches the metadata as per the [API documentation here](https://docs.imagekit.io/api-reference/metadata-api/get-image-metadata-for-uploaded-media-files).
 
-```
+```php
  $imageKit->getFileMetaData("file_id");
 ```
 
@@ -286,7 +285,7 @@ Accepts the file ID and fetches the metadata as per the [API documentation here]
 
 Accepts the file ID and fetches image exif, pHash, and other metadata from ImageKit.io powered remote URL as per the [API documentation here](https://docs.imagekit.io/api-reference/metadata-api/get-image-metadata-from-remote-url).
 
-```
+```php
 $imageKit->getFileMetadataFromRemoteURL("imagekit_remote_url")
 ```
 
@@ -294,7 +293,7 @@ $imageKit->getFileMetadataFromRemoteURL("imagekit_remote_url")
 
 Update parameters associated with the file as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/update-file-details). The first argument to the `updateFileDetails` method is the file ID, and second argument is an object with the parameters to be updated.
 
-```
+```php
 $imageKit->updateFileDetails("file_id", array("tags" => array("image_tag")));
 ```
 
@@ -302,7 +301,7 @@ $imageKit->updateFileDetails("file_id", array("tags" => array("image_tag")));
 
 Delete a file as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/delete-file). The method accepts the file ID of the file that has to be deleted.
 
-```
+```php
 $imageKit->deleteFile("file_id");
 ```
 
@@ -310,7 +309,7 @@ $imageKit->deleteFile("file_id");
 
 Delete multiple files as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/delete-files-bulk). The method accepts the array of file IDs that have to be deleted.
 
-```
+```php
 $imageKit->bulkFileDeleteByIds(array(
     "fileIds" => array("file_id_1", "file_id_2", ...)
 ));
@@ -320,7 +319,7 @@ $imageKit->bulkFileDeleteByIds(array(
 
 Programmatically issue a clear cache request as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/purge-cache). Accepts the full URL of the file for which the cache has to be cleared.
 
-```
+```php
 $imageKit->purgeFileCacheApi("file_url");
 ```
 
@@ -328,7 +327,7 @@ $imageKit->purgeFileCacheApi("file_url");
 
 Get the purge cache request status using the request ID returned when a purge cache request gets submitted as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/purge-cache-status)
 
-```
+```php
 $imageKit->purgeFileCacheApiStatus("cache_request_id");
 ```
 
@@ -342,13 +341,13 @@ If you are looking to implement client-side file upload, you will need a `token`
 
 _Note: The Private API Key should never be exposed in any client-side code. You must always generate these authentication parameters on the server-side_
 
-```
+```php
 $imageKit->getAuthenticationParameters($token = "", $expire = 0);
 ```
 
 Returns
 
-```
+```php
 array(
     "token" => "unique_token",
     "expire" => "valid_expiry_timestamp",
@@ -364,13 +363,13 @@ Perceptual hashing allows you to construct a hash value that uniquely identifies
 
 This SDK exposes `pHashDistance` function to calculate the distance between two pHash values. It accepts two pHash hexadecimal strings and returns a numeric value indicative of the level of difference between the two images.
 
-```
+```php
   $imageKit->pHashDistance($firstHash ,$secondHash);
 ```
 
 #### Distance calculation examples
 
-```
+```php
 $imageKit->pHashDistance('f06830ca9f1e3e90', 'f06830ca9f1e3e90');
 // output: 0 (same image)
 
@@ -385,7 +384,7 @@ $imageKit->pHashDistance('a4a65595ac94518b', '7838873e791f8400');
 
 To run sample code, go to the sample directory and run.
 
-```
+```sh
 php sample.php
 ```
 

@@ -233,6 +233,17 @@ $imageKit->listFiles(
  array( "skip" => 10, "limit" => 10 ));  
 ```  
 
+Advanced search queries - You can search assets by file name, tag or other parameters as explained in [API here](https://docs.imagekit.io/api-reference/media-api/list-and-search-files#advanced-search-queries).
+
+```php  
+$imageKit->listFiles(  
+ array(
+	 "skip" => 10,
+	 "limit" => 10,
+	 "searchQuery" => 'createdAt >= "7d" AND size > "2mb"',
+	));  
+```  
+
 **2. Update file details**
 
 Accepts the file ID and fetches the metadata as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/get-file-details).

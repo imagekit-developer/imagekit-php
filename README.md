@@ -1,12 +1,7 @@
 
 # PHP SDK for ImageKit
 
-[![PHP CI](https://github.com/imagekit-developer/imagekit-php/workflows/PHP%20CI/badge.svg)](https://github.com/imagekit-developer/imagekit-php/)   
-[![Packagist](https://img.shields.io/packagist/v/imagekit/imagekit.svg)](https://packagist.org/packages/imagekit/imagekit)   
-[![Packagist](https://img.shields.io/packagist/dt/imagekit/imagekit.svg)](https://packagist.org/packages/imagekit/imagekit)   
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)  
-[![codecov](https://codecov.io/gh/imagekit-developer/imagekit-php/branch/master/graph/badge.svg)](https://codecov.io/gh/imagekit-developer/imagekit-php)  
-[![Twitter Follow](https://img.shields.io/twitter/follow/imagekitio?label=Follow&style=social)](https://twitter.com/ImagekitIo)
+[![PHP CI](https://github.com/imagekit-developer/imagekit-php/workflows/PHP%20CI/badge.svg)](https://github.com/imagekit-developer/imagekit-php/) [![Packagist](https://img.shields.io/packagist/v/imagekit/imagekit.svg)](https://packagist.org/packages/imagekit/imagekit)  [![Packagist](https://img.shields.io/packagist/dt/imagekit/imagekit.svg)](https://packagist.org/packages/imagekit/imagekit)  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![codecov](https://codecov.io/gh/imagekit-developer/imagekit-php/branch/master/graph/badge.svg)](https://codecov.io/gh/imagekit-developer/imagekit-php) [![Twitter Follow](https://img.shields.io/twitter/follow/imagekitio?label=Follow&style=social)](https://twitter.com/ImagekitIo)
 
 PHP SDK for [ImageKit](https://imagekit.io/) implements the new APIs and interface for different file operations.
 
@@ -29,7 +24,8 @@ Table of contents -
 Go to your terminal and type the following command.
 
 ```sh  
-composer require imagekit/imagekit```  
+composer require imagekit/imagekit
+```  
   
 ## Initialization  
   
@@ -50,7 +46,8 @@ You can use this PHP SDK for 3 different kinds of methods - URL generation, file
 * You can also run the demo application in the [sample](/sample) folder in this repository. Inside the sample folder run,
 
 ```sh  
-php index.php```  
+php sample.php
+```  
   
 ## URL generation  
   
@@ -61,8 +58,17 @@ This method allows you to create a URL using the image's path and the ImageKit U
 ImageKit provides inbuild media storage and integration with external origins. Refer to the [documentation (https://docs.imagekit.io/integration/url-endpoints) to learn more about URL endpoints and external [image origins](https://docs.imagekit.io/integration/configure-origin) supported by ImageKit.  
   
 ```php  
-$imageURL = $imageKit->url(array(  
- "path" => "/default-image.jpg", "transformation" => array( array( "height" => "300", "width" => "400", ) )));  
+$imageURL = $imageKit->url(
+    [
+        'path' => '/default-image.jpg', 
+        'transformation' => [
+            [
+                'height' => '300', 
+                'width' => '400'
+            ]
+        ]
+    ]
+);
 ```  
 
 The result in a URL like
@@ -75,8 +81,10 @@ https://ik.imagekit.io/your_imagekit_id/endpoint/tr:h-300,w-400/default-image.jp
 This method allows you to add transformation parameters to an absolute ImageKit powered URL. This method should be used if you have the absolute URL stored in your database.
 
 ```php  
-$imageURL = $imageKit->url(array(  
- "src" => "https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg", "transformation" => array( array( "height" => "300", "width" => "400", ) )));  
+$imageURL = $imageKit->url([
+    'src' => 'https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg',
+    'transformation' => [['height' => '300', 'width' => '400',]]
+]);
 ```  
 
 This results in a URL like
@@ -103,8 +111,12 @@ The `$imageKit->url()` method accepts the following parameters
 **1. Chained Transformations as a query parameter**
 
 ```php  
-$imageURL = $imageKit->url(array(  
- "path" => "/default-image.jpg", "url_endpoint" => "https://ik.imagekit.io/your_imagekit_id/endpoint/", "transformation" => array( array( "height" => "300", "width" => "400", ), array( "rotation" => 90 ), ), "transformationPosition" => "query"));  
+$imageURL = $imageKit->url([
+    'path' => '/default-image.jpg',
+    'url_endpoint' => 'https://ik.imagekit.io/your_imagekit_id/endpoint/', 
+    'transformation' => [['height' => '300', 'width' => '400',], ['rotation' => 90],], 
+    'transformationPosition' => 'query'
+]);
 ```  
 
 ```  
@@ -116,8 +128,10 @@ https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg?tr=h-300%2Cw-
 Some transformations like [Sharpening (https://docs.imagekit.io/features/image-transformations/image-enhancement-and-color-manipulation) can be added to the URL with or without any other value. To use such transforms without specifying a value, specify the value as "-" in the transformation object. Otherwise, specify the value that you want to be added to this transformation.
 
 ```php  
-$imageURL = $imageKit->url(array(  
- "src" => "https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg", "transformation" => array( array( "format" => "jpg", "progressive" => true, "effectSharpen" => "-", "effectContrast" => "1" ) )));  
+$imageURL = $imageKit->url([
+    'src' => 'https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg', 
+    'transformation' => [['format' => 'jpg', 'progressive' => true, 'effectSharpen' => '-', 'effectContrast' => '1']]
+]);
 ```  
 
 ```  
@@ -128,7 +142,13 @@ https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg?tr=f-jpg%2Cpr
 **3. Signed URL that expires in 300 seconds with the default URL endpoint and other query parameters**
 
 ```php  
- $imageURL = $imageKit->url(array( "path" => "/default-image.jpg", "queryParameters" => array( "v" => "123", ), "transformation" => array( array( "height" => "300", "width" => "400" ), ), "signed" => true, "expireSeconds" => 300,));  
+$imageURL = $imageKit->url([
+    "path" => "/default-image.jpg",
+    "queryParameters" => ["v" => "123",],
+    "transformation" => [["height" => "300", "width" => "400"],],
+    "signed" => true,
+    "expireSeconds" => 300,
+]);
 ```  
 
 ```  
@@ -212,8 +232,18 @@ or server response. You can pass other parameters supported by the ImageKit uplo
 Sample usage
 
 ```php  
-$imageKit->uploadFile(array(  
- "file" => "your_file", // required "fileName" => "your_file_name.jpg", // required "useUniqueFileName" => false, // optional "tags" => array("tag1","tag2"), // optional "folder" => "images/folder/", // optional "isPrivateFile" => false, // optional "customCoordinates" => "10,10,100,100", // optional "responseFields" => "tags,customCoordinates" // optional));  
+$imageKit->uploadFile(
+    [
+        'file' => 'your_file', // required 
+        'fileName' => 'your_file_name.jpg', // required 
+        'useUniqueFileName' => false, // optional 
+        'tags' => ['tag1', 'tag2'], // optional 
+        'folder' => 'images/folder/', // optional 
+        'isPrivateFile' => false, // optional 
+        'customCoordinates' => '10,10,100,100', // optional 
+        'responseFields' => 'tags,customCoordinates' // optional
+    ]
+);
 ```  
 
 If the upload succeeds, `error` will be `null`, and the `result` will be the same as what is received from ImageKit's servers.  
@@ -229,19 +259,21 @@ Accepts an object specifying the parameters to be used to list and search files.
 [documentation here](https://docs.imagekit.io/api-reference/media-api/list-and-search-files) can be passed as it is with the correct values to get the results.
 
 ```php  
-$imageKit->listFiles(  
- array( "skip" => 10, "limit" => 10 ));  
+$imageKit->listFiles(
+    array("skip" => 10, "limit" => 10)
+);
 ```  
 
 Advanced search queries - You can search assets by file name, tag or other parameters as explained in [API here](https://docs.imagekit.io/api-reference/media-api/list-and-search-files#advanced-search-queries).
 
 ```php  
-$imageKit->listFiles(  
- array(
-	 "skip" => 10,
-	 "limit" => 10,
-	 "searchQuery" => 'createdAt >= "7d" AND size > "2mb"',
-	));  
+$imageKit->listFiles(
+    array(
+        "skip" => 10,
+        "limit" => 10,
+        "searchQuery" => 'createdAt >= "7d" AND size > "2mb"',
+    )
+);
 ```  
 
 **2. Update file details**
@@ -249,15 +281,20 @@ $imageKit->listFiles(
 Accepts the file ID and fetches the metadata as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/get-file-details).
 
 ```php  
-$updateFileDetails = $imageKit->updateFileDetails('file_id',  
- array( 'tags' => ['image_tag'], 'customCoordinates' => '100,100,100,100' ));  
+$updateFileDetails = $imageKit->updateFileDetails(
+    'file_id',
+    array('tags' => ['image_tag'], 'customCoordinates' => '100,100,100,100')
+);
 ```  
 
 **3. Update file details**
 
 Accepts the file ID and fetches the metadata as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/update-file-details).
-```php $updateFileDetails = $imageKit->updateFileDetails('file_id',  
- array( 'tags' => ['image_tag'], 'customCoordinates' => '100,100,100,100' ));  
+```php 
+$updateFileDetails = $imageKit->updateFileDetails(
+    'file_id',
+    array('tags' => ['image_tag'], 'customCoordinates' => '100,100,100,100')
+);
 ```  
 
 **4. Add bulk tags**
@@ -416,8 +453,11 @@ $imageKit->getAuthenticationParameters($token = "", $expire = 0);
 Returns
 
 ```php  
-array(  
- "token" => "unique_token", "expire" => "valid_expiry_timestamp", "signature" => "generated_signature",);  
+array(
+    "token" => "unique_token",
+    "expire" => "valid_expiry_timestamp",
+    "signature" => "generated_signature",
+);
 ```  
 
 Both the `token` and `expire` parameters are optional. If not specified, the SDK generates a random token and also generates a valid expiry timestamp internally. The value of the `token` and `expire` used to create the signature is always returned in the response, whether they are provided in input or not.

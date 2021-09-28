@@ -10,15 +10,15 @@ ImageKit is a complete image optimization and transformation solution that comes
 
 Table of contents -
 
--   [Installation](#Installation)
--   [Initialization](#Initialization)
--   [URL Generation](#URL-generation)
--   [File Upload](#File-upload)
--   [Media Management](#File-management)
--   [Utility Functions](#Utility-functions)
--   [Sample Code Instruction](#Sample-Code-Instruction)
--   [Support](#Support)
--   [Links](#Links)
+- [Installation](#Installation)
+- [Initialization](#Initialization)
+- [Demo application](#demo-application)
+- [URL Generation](#URL-generation)
+- [File Upload](#File-upload)
+- [Media Management](#File-management)
+- [Utility Functions](#Utility-functions)
+- [Support](#Support)
+- [Links](#Links)
 
 ## Installation
 
@@ -43,6 +43,15 @@ $imageKit = new ImageKit(
 ## Usage
 
 You can use this PHP SDK for 3 different kinds of methods - URL generation, file upload, and file management. The usage of the SDK has been explained below.
+
+## Demo application
+
+* The official step by step PHP quick start guide - https://docs.imagekit.io/getting-started/quickstart-guides/php
+* You can also run the demo application in the [sample](/sample) folder in this repository. Inside the sample folder run,
+
+```sh
+php sample.php
+```
 
 ## URL generation
 
@@ -378,14 +387,6 @@ $imageKit->pHashDistance('2d5ad3936d2e015b', '2d6ed293db36a4fb');
 
 $imageKit->pHashDistance('a4a65595ac94518b', '7838873e791f8400');
 // output: 37 (dissimilar images)
-```
-
-## Sample Code Instruction
-
-To run sample code, go to the sample directory and run.
-
-```sh
-php sample.php
 ```
 
 ## Support

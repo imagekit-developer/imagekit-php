@@ -32,8 +32,11 @@ composer require imagekit/imagekit
 ```php  
 use ImageKit\ImageKit;  
   
-$imageKit = new ImageKit(  
- "your_public_key", "your_private_key", "your_url_endpoint");  
+$imageKit = new ImageKit(
+    "your_public_key",
+    "your_private_key",
+    "your_url_endpoint"
+);
 ```  
 
 ## Usage

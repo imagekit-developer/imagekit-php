@@ -201,11 +201,12 @@ class Url
                     $value = $value ? 'true' : 'false';
                 }
                 $value = (string)$value;
+
                 $transformKey = Transformation::getTransformKey($key);
                 if (empty($transformKey)) {
                     continue;
                 }
-                if (empty($value) || $value === '-') {
+                if ((empty($value) && $value !== '0') || $value === '-') {
                     array_push($parsedTransformStep, $transformKey);
                 } else {
                     $transformationUtils = Transformation::getTransformKeyValueDelimiter();

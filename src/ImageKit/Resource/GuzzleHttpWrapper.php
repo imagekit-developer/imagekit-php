@@ -170,7 +170,7 @@ class GuzzleHttpWrapper implements HttpRequest
     public function delete()
     {
         try {
-            return $this->client->request('DELETE', $this->getUri(), $this->getOptions('query'));
+            return $this->client->request('DELETE', $this->getUri(), $this->getOptions('json'));
         } catch (RequestException $e) {
             return $this->handleRequestException($e);
         } catch (Exception $e) {
@@ -235,7 +235,7 @@ class GuzzleHttpWrapper implements HttpRequest
         try {
             $options = [
                 'headers' => $this->headers,
-                'form_params' => $this->datas
+                'json' => $this->datas
             ];
 
             return $this->client->request('POST', $this->getUri(), $options);

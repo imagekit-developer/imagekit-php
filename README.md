@@ -1,7 +1,9 @@
 
 # PHP SDK for ImageKit
 
-[![PHP CI](https://github.com/imagekit-developer/imagekit-php/workflows/PHP%20CI/badge.svg)](https://github.com/imagekit-developer/imagekit-php/) [![Packagist](https://img.shields.io/packagist/v/imagekit/imagekit.svg)](https://packagist.org/packages/imagekit/imagekit)  [![Packagist](https://img.shields.io/packagist/dt/imagekit/imagekit.svg)](https://packagist.org/packages/imagekit/imagekit)  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![codecov](https://codecov.io/gh/imagekit-developer/imagekit-php/branch/master/graph/badge.svg)](https://codecov.io/gh/imagekit-developer/imagekit-php) [![Twitter Follow](https://img.shields.io/twitter/follow/imagekitio?label=Follow&style=social)](https://twitter.com/ImagekitIo)
+[![Packagist](https://img.shields.io/packagist/v/imagekit/imagekit.svg)](https://packagist.org/packages/imagekit/imagekit)  [![Packagist](https://img.shields.io/packagist/dt/imagekit/imagekit.svg)](https://packagist.org/packages/imagekit/imagekit)  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![codecov](https://codecov.io/gh/imagekit-developer/imagekit-php/branch/master/graph/badge.svg)](https://codecov.io/gh/imagekit-developer/imagekit-php) [![Twitter Follow](https://img.shields.io/twitter/follow/imagekitio?label=Follow&style=social)](https://twitter.com/ImagekitIo)
+
+[![PHP Test CI](https://github.com/imagekit-developer/imagekit-php/actions/workflows/test.yml/badge.svg)](https://github.com/imagekit-developer/imagekit-php/actions/workflows/test.yml) [![PHP Coverage CI](https://github.com/imagekit-developer/imagekit-php/actions/workflows/coverage.yml/badge.svg)](https://github.com/imagekit-developer/imagekit-php/actions/workflows/coverage.yml) [![Wiki Documentation](https://img.shields.io/badge/wiki-documentation-forestgreen)](https://github.com/imagekit-developer/imagekit-php/wiki)
 
 PHP SDK for [ImageKit](https://imagekit.io/) implements the new APIs and interface for different file operations.
 

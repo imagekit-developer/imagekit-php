@@ -158,6 +158,44 @@ final class UrlTest extends TestCase
     /**
      *
      */
+    public function testUrlSignedUrlWithSeoFriendlyName()
+    {
+        $url = $this->client->url([
+            'path' => '/default-image/seo-friendly-name.jpg',
+            'signed' => true,
+            'seoFriendly' => true
+        ]);
+        UrlTest::assertEquals(
+            'https://ik.imagekit.io/demo/ik-seo/default-image/seo-friendly-name.jpg?ik-s=9f3b611af8aef45ffcc12d550537577dbca79993&ik-sdk-version=php-' . ImageKit::SDK_VERSION,
+            $url
+        );
+    }
+
+    /**
+     *
+     */
+    public function testUrlSignedUrlWithSeoFriendlyNameAndTransformations()
+    {
+        $url = $this->client->url([
+            'path' => '/default-image/seo-friendly-name.jpg',
+            'transformation' => [
+                [
+                    'height' => 300,
+                    'width' => 400
+                ]
+            ],
+            'signed' => true,
+            'seoFriendly' => true
+        ]);
+        UrlTest::assertEquals(
+            'https://ik.imagekit.io/demo/ik-seo/tr:h-300,w-400/default-image/seo-friendly-name.jpg?ik-s=a41023c8d724c62007411d7702eb4caf9c35e829&ik-sdk-version=php-' . ImageKit::SDK_VERSION,
+            $url
+        );
+    }
+
+    /**
+     *
+     */
     public function testUrlURLWithPath()
     {
         $url = $this->client->url([

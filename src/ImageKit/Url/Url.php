@@ -28,10 +28,15 @@ class Url
         $urlEndpoint = $this->removeTrailingSlash($obj->urlEndpoint);
         $transformation = null;
         $signed = false;
+        $seoFriendly = false;
         $expireSeconds = null;
 
         if (isset($obj->signed)) {
             $signed = $obj->signed;
+        }
+
+        if (isset($obj->seoFriendly)) {
+            $seoFriendly = $obj->seoFriendly;
         }
 
         if (isset($obj->expireSeconds)) {
@@ -88,6 +93,9 @@ class Url
             $urlObject->scheme = $parsedURL[0]['scheme'];
             $urlObject->host = $parsedURL[0]['host'];
             $urlObject->pathname = $parsedURL[0]['path'];
+        }
+        if ($seoFriendly) {
+            $urlObject->pathname .= '/ik-seo';
         }
         if (isset($parsedURL[0]['query'])) {
             parse_str($parsedURL[0]['query'], $urlObject->search);

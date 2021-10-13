@@ -157,6 +157,24 @@ echo('Signed url : ' . $imageURL);
 
 echo "\n\n-------------------------------------------------------------------\n\n";
 
+// Signed url with seo friendly name
+$imageURL = $imageKit->url([
+    'path' => '/default-image/seo-friendly-name.jpg',
+    'transformation' => [
+        [
+            'height' => '300',
+            'width' => '400',
+        ],
+    ],
+    'signed' => true,
+    'expireSeconds' => 300,
+    'seoFriendly' => true
+]);
+
+echo('Signed url with seo friendly name : ' . $imageURL);
+
+echo "\n\n-------------------------------------------------------------------\n\n";
+
 // Upload Image - Base64
 
 $img = file_get_contents(__DIR__ . '/sample_image.jpeg');

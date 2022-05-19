@@ -223,7 +223,7 @@ The complete list of transformations supported and their usage in ImageKit can b
 | overlayRadius                 | or                      |  
 | overlayImageFocus             | oifo                    |  
 
-### Server-side File Upload
+## Server-side File Upload
 
 The SDK provides a simple interface using the `$imageKit->upload()` or `$imageKit->uploadFile()` method to upload files to the [ImageKit Media Library](https://imagekit.io/dashboard/media-library). 
 

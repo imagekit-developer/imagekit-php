@@ -32,11 +32,24 @@ class Upload
             return Response::respond(true, ((object)ErrorMessages::$MISSING_UPLOAD_FILENAME_PARAMETER));
         }
 
-        if (isset($opts->tags) && is_array($opts->tags)) {
-            $opts->tags = implode(',', $opts->tags);
-        }
+        $file = $opts->file;
+        $fileName = $opts->fileName;
 
-        $resource->setDatas((array)$opts);
+        // die($fileName);
+
+        $payload = [];
+        if (isset($opts->options) && is_array($opts->options)) {
+            $payload = $opts->options;        
+        }
+        $payload['file'] = $file;
+        $payload['fileName'] = $fileName;
+
+        // die(json_encode($payload));
+        // if (isset($opts->tags) && is_array($opts->tags)) {
+        //     $opts->tags = implode(',', $opts->tags);
+        // }
+
+        $resource->setDatas((array)$payload);
         $res = $resource->postMultipart();
 
         $stream = $res->getBody();

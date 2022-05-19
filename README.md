@@ -235,19 +235,42 @@ or server response. You can pass other parameters supported by the ImageKit uplo
 
 Sample usage
 
-```php  
-$imageKit->uploadFile(
-    [
-        'file' => 'your_file', // required 
-        'fileName' => 'your_file_name.jpg', // required 
-        'useUniqueFileName' => false, // optional 
-        'tags' => ['tag1', 'tag2'], // optional 
-        'folder' => 'images/folder/', // optional 
-        'isPrivateFile' => false, // optional 
-        'customCoordinates' => '10,10,100,100', // optional 
-        'responseFields' => 'tags,customCoordinates' // optional
-    ]
-);
+```php
+
+// Set of optional parameters
+$uploadOptions = [
+    "useUniqueFileName" => true,                                        // true|false
+    "tags" => implode(",",["abd", "def"]),                              // Comma Separated, Max length: 500 chars
+    "folder" => "/shery-test-folder2",                                          // Using multiple forward slash (/) creates a nested folder
+    "isPrivateFile" => false,                                           // true|false
+    "customCoordinates" => implode(",", ["10", "10", "100", "100"]),    // Comma Separated, Max length: 500 chars
+    "responseFields" => implode(",", ["tags", "customMetadata"]),       // Comma Separated, check docs for more responseFields
+    "extensions" => json_encode([                                       // Stringified JSON object with an array of extensions, for more extensions refer to docs
+        [
+            "name" => "remove-bg",
+            "options" => [  // all parameters inside this object are sent directly to the third-party service
+                "add_shadow" => true
+            ]
+        ]
+    ]),
+    "webhookUrl" => "https://example.com/webhook",                      // Notification URL to receive the final status of pending extensions
+    "overwriteFile" => true,                                            // true|false, in case of false useUniqueFileName should be true
+    "overwriteAITags" => true,                                          // true|false, set to false in order to preserve overwriteAITags
+    "overwriteTags" => true,                                            // true|false
+    "overwriteCustomMetadata" => true,                                  // true|false
+    "customMetadata" => json_encode([                                   // Stringified JSON object with an array of created custom fields, for more details refer to docs
+            "SKU" => "VS882HJ2JD",
+            "price" => 599.99,
+    ])
+];
+
+// Attempt File Uplaod
+$uploadFile = $imageKit->upload([
+    'file' => 'your_file',                  //  required, "binary" or "base64" or "file url"
+    'fileName' => 'your_file_name.jpg',     //  required
+    'options' => $uploadOptions             // optional
+]);
+
 ```  
 
 If the upload succeeds, `error` will be `null`, and the `result` will be the same as what is received from ImageKit's servers.  

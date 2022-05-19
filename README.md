@@ -231,7 +231,7 @@ The SDK provides a simple interface using the `$imageKit->upload()` or `$imageKi
 - [Check all the supported file types and extensions](https://docs.imagekit.io/api-reference/upload-file-api#allowed-file-types-for-uploading).
 - [Check all the supported parameters and details](https://docs.imagekit.io/api-reference/upload-file-api/server-side-file-upload).
 
-#### Usage
+### Usage
 ```php
 // Set of optional parameters
 $uploadOptions = [
@@ -244,7 +244,7 @@ $uploadOptions = [
     "extensions" => json_encode([       
         [
             "name" => "remove-bg",
-            "options" => [  // all parameters inside this object are sent directly to the third-party service
+            "options" => [  // refer https://docs.imagekit.io/extensions/overview
                 "add_shadow" => true
             ]
         ]
@@ -267,8 +267,8 @@ $uploadFile = $imageKit->upload([
     'options' => $uploadOptions             // optional
 ]);
 ```  
-#### Response
-```javascript
+### Response
+```json
 {
     "err": null,
     "success": {
@@ -292,7 +292,7 @@ $uploadFile = $imageKit->upload([
         "AITags": null,
         "customMetadata": { },
         "extensionStatus": {
-            "remove-bg": "failed"   // if the third party is not connected, it will fail to apply the extension
+            "remove-bg": "failed"   // failed in case of third party connection failure
         }
     }
 }

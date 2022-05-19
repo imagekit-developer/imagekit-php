@@ -236,12 +236,12 @@ The SDK provides a simple interface using the `$imageKit->upload()` or `$imageKi
 // Set of optional parameters
 $uploadOptions = [
     "useUniqueFileName" => true,            // true|false
-    "tags" => implode(",",["abd", "def"]),  // Comma Separated, Max length: 500 chars
-    "folder" => "/sample-folder",           // Using multiple forward slash (/) creates a nested folder
+    "tags" => implode(",",["abd", "def"]),  // max: 500 chars
+    "folder" => "/sample-folder",           
     "isPrivateFile" => false,               // true|false
-    "customCoordinates" => implode(",", ["10", "10", "100", "100"]),    // Comma Separated, Max length: 500 chars
-    "responseFields" => implode(",", ["tags", "customMetadata"]),       // Comma Separated, check docs for more responseFields
-    "extensions" => json_encode([       // Stringified JSON object with an array of extensions, for more extensions refer to docs
+    "customCoordinates" => implode(",", ["10", "10", "100", "100"]),    // max: 500 chars
+    "responseFields" => implode(",", ["tags", "customMetadata"]),
+    "extensions" => json_encode([       
         [
             "name" => "remove-bg",
             "options" => [  // all parameters inside this object are sent directly to the third-party service
@@ -249,12 +249,12 @@ $uploadOptions = [
             ]
         ]
     ]),
-    "webhookUrl" => "https://example.com/webhook",      // Notification URL to receive the final status of pending extensions
-    "overwriteFile" => true,        // true|false, in case of false useUniqueFileName should be true
-    "overwriteAITags" => true,      // true|false, set to false in order to preserve overwriteAITags
-    "overwriteTags" => true,        // true|false
-    "overwriteCustomMetadata" => true,      // true|false
-    // "customMetadata" => json_encode([    // Stringified JSON object with an array of created custom fields, for more details refer to docs
+    "webhookUrl" => "https://example.com/webhook",
+    "overwriteFile" => true,        // in case of false useUniqueFileName should be true
+    "overwriteAITags" => true,      // set to false in order to preserve overwriteAITags
+    "overwriteTags" => true,
+    "overwriteCustomMetadata" => true,
+    // "customMetadata" => json_encode([
     //         "SKU" => "VS882HJ2JD",
     //         "price" => 599.99,
     // ])

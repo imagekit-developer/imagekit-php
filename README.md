@@ -473,6 +473,57 @@ $getFileVersionDetails = $imageKit->getFileVersionDetails('file_id','version_id'
 }
 ```
 
+### 4. Get File Versions
+
+This API can get you all the versions of the file.
+
+#### Basic Usage
+```php
+$getFileVersions = $imageKit->getFileVersions('file_id');
+```
+#### Response
+```json
+[
+    {
+        "fileId": "598821f949c0a938d57563bd",
+        "type": "file-version",
+        "name": "file1.jpg",
+        "filePath": "/images/products/file1.jpg",
+        "tags": ["t-shirt", "round-neck", "sale2019"],
+        "AITags": [
+            {
+                "name": "Shirt",
+                "confidence": 90.12,
+                "source": "google-auto-tagging"
+            },
+            /* ... more googleVision tags ... */
+        ],
+        "versionInfo": {
+                "id": "697821f849c0a938d57563ce",
+                "name": "Version 2"
+        },
+        "isPrivateFile": false,
+        "customCoordinates": null,
+        "url": "https://ik.imagekit.io/your_imagekit_id/images/products/file1.jpg?ik-obj-version=bREnN9Z5VQQ5OOZCSvaXcO9SW.su4QLu",
+        "thumbnail": "https://ik.imagekit.io/your_imagekit_id/tr:n-media_library_thumbnail/images/products/file1.jpg?ik-obj-version=bREnN9Z5VQQ5OOZCSvaXcO9SW.su4QLu",
+        "fileType": "image",
+        "mime": "image/jpeg",
+        "width": 100,
+        "height": 100,
+        "size": 100,
+        "hasAlpha": false,
+        "customMetadata": {
+            "brand": "Nike",
+            "color": "red"
+        },
+        "createdAt": "2019-08-24T06:14:41.313Z",
+        "updatedAt": "2019-09-24T06:14:41.313Z"
+    },
+    ...more items
+]
+```
+
+
 **2. Update file details**
 
 Accepts the file ID and fetches the metadata as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/get-file-details).

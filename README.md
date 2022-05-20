@@ -344,8 +344,8 @@ $listFiles = $imageKit->listFiles();
         "size": 100,
         "hasAlpha": false,
         "customMetadata": {
-            brand: "Nike",
-            color: "red"
+            "brand": "Nike",
+            "color": "red"
         },
         "createdAt": "2019-08-24T06:14:41.313Z",
         "updatedAt": "2019-08-24T06:14:41.313Z"

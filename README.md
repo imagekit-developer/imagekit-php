@@ -231,7 +231,39 @@ The SDK provides a simple interface using the `$imageKit->upload()` or `$imageKi
 - [Check all the supported file types and extensions](https://docs.imagekit.io/api-reference/upload-file-api#allowed-file-types-for-uploading).
 - [Check all the supported parameters and details](https://docs.imagekit.io/api-reference/upload-file-api/server-side-file-upload).
 
-#### Usage
+#### Basic Usage
+```php
+$uploadFile = $imageKit->upload([
+    'file' => 'your_file',              //  required, "binary","base64" or "file url"
+    'fileName' => 'your_file_name.jpg', //  required
+]);
+```
+#### Response
+```json
+{
+    "err": null,
+    "success": {
+        "fileId": "6286329dfef1b033aee60211",
+        "name": "your_file_name_S-PgGysnR.jpg",
+        "size": 94466,
+        "versionInfo": {
+            "id": "6286329dfef1b033aee60211",
+            "name": "Version 1"
+        },
+        "filePath": "/your_file_name_S-PgGysnR.jpg",
+        "url": "https://ik.imagekit.io/demo/your_file_name_S-PgGysnR.jpg",
+        "fileType": "image",
+        "height": 640,
+        "width": 960,
+        "thumbnailUrl": "https://ik.imagekit.io/demo/tr:n-ik_ml_thumbnail/your_file_name_S-PgGysnR.jpg",
+        "tags": [],
+        "AITags": null,
+        "customMetadata": { },
+        "extensionStatus": {}
+    }
+}
+```
+#### Optional Parameters
 ```php
 // Set of optional parameters
 $uploadOptions = [
@@ -267,37 +299,6 @@ $uploadFile = $imageKit->upload([
     'options' => $uploadOptions             // optional
 ]);
 ```  
-#### Response
-```json
-{
-    "err": null,
-    "success": {
-        "fileId": "6286329dfef1b033aee60211",
-        "name": "your_file_name_S-PgGysnR.jpg",
-        "size": 94466,
-        "versionInfo": {
-            "id": "6286329dfef1b033aee60211",
-            "name": "Version 1"
-        },
-        "filePath": "/sample-folder/your_file_name_S-PgGysnR.jpg",
-        "url": "https://ik.imagekit.io/demo/sample-folder/your_file_name_S-PgGysnR.jpg",
-        "fileType": "image",
-        "height": 640,
-        "width": 960,
-        "thumbnailUrl": "https://ik.imagekit.io/demo/tr:n-ik_ml_thumbnail/sample-folder/your_file_name_S-PgGysnR.jpg",
-        "tags": [
-            "abd",
-            "def"
-        ],
-        "AITags": null,
-        "customMetadata": { },
-        "extensionStatus": {
-            "remove-bg": "failed"   // failed in case of third party connection failure
-        }
-    }
-}
-```
-
 
 ## File Management
 
@@ -350,7 +351,7 @@ $listFiles = $imageKit->listFiles();
         "updatedAt": "2019-08-24T06:14:41.313Z"
     },
     ...more items
-  ];
+]
 ```
 #### Applying Filters
 Filter out the files with an object specifying the parameters. 
@@ -375,23 +376,6 @@ $listFiles = $imageKit->listFiles([
 ```
 Detailed documentaion can be found here for [Advance Search Queries](https://docs.imagekit.io/api-reference/media-api/list-and-search-files#advanced-search-queries).
 
-```php  
-$imageKit->listFiles(
-    array("skip" => 10, "limit" => 10)
-);
-```  
-
-Advanced search queries - You can search assets by file name, tag or other parameters as explained in [API here](https://docs.imagekit.io/api-reference/media-api/list-and-search-files#advanced-search-queries).
-
-```php  
-$imageKit->listFiles(
-    array(
-        "skip" => 10,
-        "limit" => 10,
-        "searchQuery" => 'createdAt >= "7d" AND size > "2mb"',
-    )
-);
-```  
 
 **2. Update file details**
 

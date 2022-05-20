@@ -376,7 +376,52 @@ $listFiles = $imageKit->listFiles([
 ```
 Detailed documentaion can be found here for [Advance Search Queries](https://docs.imagekit.io/api-reference/media-api/list-and-search-files#advanced-search-queries).
 
+### 2. Get File Details
 
+This API can get you all the details and attributes of the current version of the file.
+
+#### Basic Usage
+```php
+$getFileDetails = $imageKit->getFileDetails('file_id');
+```
+#### Response
+```json
+{
+    "fileId": "598821f949c0a938d57563bd",
+    "type": "file",
+    "name": "file1.jpg",
+    "filePath": "/images/products/file1.jpg",
+    "tags": ["t-shirt", "round-neck", "sale2019"],
+    "AITags": [
+        {
+            "name": "Shirt",
+            "confidence": 90.12,
+            "source": "google-auto-tagging"
+        },
+        /* ... more googleVision tags ... */
+    ],
+    "versionInfo": {
+            "id": "598821f949c0a938d57563bd",
+            "name": "Version 1"
+    },
+    "isPrivateFile": false,
+    "customCoordinates": null,
+    "url": "https://ik.imagekit.io/your_imagekit_id/images/products/file1.jpg",
+    "thumbnail": "https://ik.imagekit.io/your_imagekit_id/tr:n-media_library_thumbnail/images/products/file1.jpg",
+    "fileType": "image",
+    "mime": "image/jpeg",
+    "width": 100,
+    "height": 100,
+    "size": 100,
+    "hasAlpha": false,
+    "customMetadata": {
+        "brand": "Nike",
+        "color": "red"
+    },
+    "createdAt": "2019-08-24T06:14:41.313Z",
+    "updatedAt": "2019-08-24T06:14:41.313Z"
+}
+```
 **2. Update file details**
 
 Accepts the file ID and fetches the metadata as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/get-file-details).

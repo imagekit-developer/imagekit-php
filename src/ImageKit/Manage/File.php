@@ -68,6 +68,42 @@ class File
     }
 
     /**
+     * Get Version Details Of file
+     *
+     * @param string $fileId
+     * @param string $versionId
+     * @param GuzzleHttpWrapper $resource
+     *
+     * @return Response
+     */
+    public static function getVersionDetails($fileId, $versionId, GuzzleHttpWrapper $resource)
+    {
+        $errors = [];
+        if (empty($fileId)) {
+            $errors[] = ((object)ErrorMessages::$fileId_MISSING);
+        }
+        
+        if (empty($versionId)) {
+            $errors[] = ((object)ErrorMessages::$versionId_MISSING);
+        }
+        
+        if(!empty($errors)){
+            return Response::respond(true, $errors);
+        }
+
+        $res = $resource->get();
+        $stream = $res->getBody();
+        $content = $stream->getContents();
+
+        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
+            return Response::respond(true, json_decode($content));
+        }
+
+        return Response::respond(false, json_decode($content));
+    }
+
+
+    /**
      * Delete File API
      *
      * @param $fileId

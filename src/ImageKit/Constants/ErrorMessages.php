@@ -16,6 +16,7 @@ class ErrorMessages
     public static $CACHE_PURGE_URL_MISSING = ['message' => 'Missing URL parameter for this request', 'help' => ''];
     public static $CACHE_PURGE_STATUS_ID_MISSING = ['message' => 'Missing Request ID parameter for this request', 'help' => ''];
     public static $fileId_MISSING = ['message' => 'Missing File ID parameter for this request', 'help' => ''];
+    public static $versionId_MISSING = ['message' => 'Missing Version ID parameter for this request', 'help' => ''];
     public static $JOBID_MISSING = ['message' => 'Missing Job ID parameter for this request', 'help' => ''];
     public static $UPDATE_DATA_MISSING = ['message' => 'Missing file update data for this request', 'help' => ''];
     public static $BULK_TAGS_DATA_MISSING = ['message' => 'Missing bulk tag update data for this request', 'help' => ''];

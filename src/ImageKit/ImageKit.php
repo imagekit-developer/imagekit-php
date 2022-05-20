@@ -212,6 +212,22 @@ class ImageKit
     }
 
     /**
+     * Get the file version details such as tags, customCoordinates, and isPrivate properties using get file version details API.
+     *
+     * @link https://docs.imagekit.io/api-reference/media-api/get-file-version-details API Reference
+     *
+     * @param string $fileId
+     * @param string $versionId
+     * @return Response
+     *
+     */
+    public function getFileVersionDetails($fileId=null, $versionId=null)
+    {
+        $this->httpClient->setUri(Endpoints::getVersionDetailsEndpoint($fileId, $versionId));
+        return Manage\File::getVersionDetails($fileId, $versionId, $this->httpClient);
+    }
+
+    /**
      * Get image exif, pHash and other metadata for uploaded files in ImageKit.io media library using this API.
      *
      * @link https://docs.imagekit.io/api-reference/metadata-api/get-image-metadata-for-uploaded-media-files

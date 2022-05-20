@@ -30,6 +30,16 @@ class Endpoints
 
     /**
      * @param $fileId
+     * @param $versionId
+     * @return string
+     */
+    public static function getVersionDetailsEndpoint($fileId,$versionId)
+    {
+        return (self::API_BASE_ENDPOINT . '/files/' . $fileId . '/versions/' . $versionId);
+    }
+
+    /**
+     * @param $fileId
      * @return string
      */
     public static function getListMetaDataFilesEndpoint($fileId)

@@ -231,7 +231,7 @@ The SDK provides a simple interface using the `$imageKit->upload()` or `$imageKi
 - [Check all the supported file types and extensions](https://docs.imagekit.io/api-reference/upload-file-api#allowed-file-types-for-uploading).
 - [Check all the supported parameters and details](https://docs.imagekit.io/api-reference/upload-file-api/server-side-file-upload).
 
-### Usage
+#### Usage
 ```php
 // Set of optional parameters
 $uploadOptions = [
@@ -262,12 +262,12 @@ $uploadOptions = [
 
 // Attempt File Uplaod
 $uploadFile = $imageKit->upload([
-    'file' => 'your_file',                  //  required, "binary" or "base64" or "file url"
+    'file' => 'your_file',                  //  required, "binary","base64" or "file url"
     'fileName' => 'your_file_name.jpg',     //  required
     'options' => $uploadOptions             // optional
 ]);
 ```  
-### Response
+#### Response
 ```json
 {
     "err": null,
@@ -301,12 +301,79 @@ $uploadFile = $imageKit->upload([
 
 ## File Management
 
-The SDK provides a simple interface for all the [media APIs mentioned here](https://docs.imagekit.io/api-reference/media-api) to manage your files.
+The SDK provides a simple interface for all the following [Media APIs](https://docs.imagekit.io/api-reference/media-api) to manage your files.
 
-**1. List & Search Files**
+### 1. List & Search Files
 
-Accepts an object specifying the parameters to be used to list and search files. All parameters specified in the   
-[documentation here](https://docs.imagekit.io/api-reference/media-api/list-and-search-files) can be passed as it is with the correct values to get the results.
+This API can list all the uploaded files and folders in your [ImageKit.io](https://docs.imagekit.io/api-reference/media-api) media library.
+
+#### Basic Usage
+```php
+$listFiles = $imageKit->listFiles();
+```
+#### Response
+```json
+[
+    {
+        "fileId": "598821f949c0a938d57563bd",
+        "type": "file",
+        "name": "file1.jpg",
+        "filePath": "/images/products/file1.jpg",
+        "tags": ["t-shirt", "round-neck", "sale2019"],
+        "AITags": [
+            {
+                "name": "Shirt",
+                "confidence": 90.12,
+                "source": "google-auto-tagging"
+            },
+            /* ... more googleVision tags ... */
+        ],
+        "versionInfo": {
+            "id": "598821f949c0a938d57563bd",
+            "name": "Version 1"
+        },
+        "isPrivateFile": false,
+        "customCoordinates": null,
+        "url": "https://ik.imagekit.io/your_imagekit_id/images/products/file1.jpg",
+        "thumbnail": "https://ik.imagekit.io/your_imagekit_id/tr:n-media_library_thumbnail/images/products/file1.jpg",
+        "fileType": "image",
+        "mime": "image/jpeg",
+        "width": 100,
+        "height": 100,
+        "size": 100,
+        "hasAlpha": false,
+        "customMetadata": {
+            brand: "Nike",
+            color: "red"
+        },
+        "createdAt": "2019-08-24T06:14:41.313Z",
+        "updatedAt": "2019-08-24T06:14:41.313Z"
+    },
+    ...more items
+  ];
+```
+#### Applying Filters
+Filter out the files with an object specifying the parameters. 
+```php
+$listFiles = $imageKit->listFiles([
+    "type" => "file",           // file, file-version or folder
+    "sort" => "ASC_CREATED",    
+    "path" => "/",              // folder path
+    "fileType" => "all",        // all, image, non-image
+    "limit" => 10,              // min:1, max:1000
+    "skip" => 0,                // min:0
+    "searchQuery" => 'size < "20kb"',
+]);
+```
+
+#### Advance Search
+In addition, you can fine-tune your query by specifying various filters by generating a query string in a Lucene-like syntax and provide this generated string as the value of the `searchQuery`.
+```php
+$listFiles = $imageKit->listFiles([
+    "searchQuery" => '(size < "1mb" AND width > 500) OR (tags IN ["summer-sale","banner"])',
+]);
+```
+Detailed documentaion can be found here for [Advance Search Queries](https://docs.imagekit.io/api-reference/media-api/list-and-search-files#advanced-search-queries).
 
 ```php  
 $imageKit->listFiles(

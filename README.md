@@ -583,8 +583,8 @@ $updateFileDetails = $imageKit->updateFileDetails(
     "size": 100,
     "hasAlpha": false,
     "customMetadata": {
-        brand: "Nike",
-        color: "red"
+        "brand": "Nike",
+        "color": "red"
     },
     "extensionStatus": {
         "remove-bg": "pending",

@@ -228,6 +228,21 @@ class ImageKit
     }
 
     /**
+     * Get all the versions of a file using get file versions API.
+     *
+     * @link https://docs.imagekit.io/api-reference/media-api/get-file-versions API Reference
+     *
+     * @param string $fileId
+     * @return Response
+     * 
+     */
+    public function getFileVersions($fileId=null)
+    {
+        $this->httpClient->setUri(Endpoints::getFileVersionsEndpoint($fileId));
+        return Manage\File::getFileVersions($fileId, $this->httpClient);
+    }
+
+    /**
      * Get image exif, pHash and other metadata for uploaded files in ImageKit.io media library using this API.
      *
      * @link https://docs.imagekit.io/api-reference/metadata-api/get-image-metadata-for-uploaded-media-files

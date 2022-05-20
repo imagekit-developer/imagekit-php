@@ -42,6 +42,15 @@ class Endpoints
      * @param $fileId
      * @return string
      */
+    public static function getFileVersionsEndpoint($fileId)
+    {
+        return (self::API_BASE_ENDPOINT . '/files/' . $fileId . '/versions');
+    }
+
+    /**
+     * @param $fileId
+     * @return string
+     */
     public static function getListMetaDataFilesEndpoint($fileId)
     {
         return (self::API_BASE_ENDPOINT . '/files/' . $fileId . '/metadata');

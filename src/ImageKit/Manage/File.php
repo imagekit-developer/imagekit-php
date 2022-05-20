@@ -102,6 +102,36 @@ class File
         return Response::respond(false, json_decode($content));
     }
 
+    /**
+     * Get All Versions Of file
+     *
+     * @param string $fileId
+     * @param GuzzleHttpWrapper $resource
+     *
+     * @return Response
+     */
+    public static function getFileVersions($fileId, GuzzleHttpWrapper $resource)
+    {
+        $errors = [];
+        if (empty($fileId)) {
+            $errors[] = ((object)ErrorMessages::$fileId_MISSING);
+        }
+        
+        if(!empty($errors)){
+            return Response::respond(true, $errors);
+        }
+
+        $res = $resource->get();
+        $stream = $res->getBody();
+        $content = $stream->getContents();
+
+        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
+            return Response::respond(true, json_decode($content));
+        }
+
+        return Response::respond(false, json_decode($content));
+    }
+
 
     /**
      * Delete File API

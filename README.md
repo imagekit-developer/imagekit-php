@@ -523,6 +523,78 @@ $getFileVersions = $imageKit->getFileVersions('file_id');
 ]
 ```
 
+### 5. Update File Details
+
+Update file details such as tags, customCoordinates attributes, remove existing AITags and apply [extensions](https://docs.imagekit.io/extensions/overview) using Update File Details API. This operation can only be performed on the current version of the file.
+
+#### Basic Usage
+```php
+// Update parameters
+$updateData = [
+        "removeAITags" => "all",    // "all" or ["tag1","tag2"]
+        "webhookUrl" => "https://example.com/webhook",
+        "extensions" => [       
+            [
+                "name" => "remove-bg",
+                "options" => [  // refer https://docs.imagekit.io/extensions/overview
+                    "add_shadow" => true
+                ]
+            ],
+            [
+                "name" => "google-auto-tagging",
+            ]
+        ],
+        "tags" => ["tag1", "tag2"],
+        "customCoordinates" => "10,10,100,100",
+        // "customMetadata" => [
+        //     "SKU" => "VS882HJ2JD",
+        //     "price" => 599.99,
+        // ]
+];
+
+// Attempt Update
+$updateFileDetails = $imageKit->updateFileDetails(
+    'file_id',
+    $updateData
+);
+```
+#### Response
+```json
+// This example response is after extensions are applied in the update API.
+{
+    "fileId" : "598821f949c0a938d57563bd",
+    "type": "file",
+    "name": "file1.jpg",
+    "filePath": "/images/products/file1.jpg",
+    "tags": ["t-shirt","round-neck","sale2019"],
+    "AITags": [],
+    "versionInfo": {
+            "id": "598821f949c0a938d57563bd",
+            "name": "Version 1"
+    },
+    "isPrivateFile" : false,
+    "customCoordinates" : null,
+    "url": "https://ik.imagekit.io/your_imagekit_id/images/products/file1.jpg",
+    "thumbnail": "https://ik.imagekit.io/your_imagekit_id/tr:n-media_library_thumbnail/images/products/file1.jpg",
+    "fileType": "image",
+    "mime": "image/jpeg",
+    "width": 100,
+    "height": 100,
+    "size": 100,
+    "hasAlpha": false,
+    "customMetadata": {
+        brand: "Nike",
+        color: "red"
+    },
+    "extensionStatus": {
+        "remove-bg": "pending",
+        "google-auto-tagging": "success"
+    },
+    "createdAt": "2019-08-24T06:14:41.313Z",
+    "updatedAt": "2019-08-24T06:14:41.313Z"
+}
+```
+
 
 **2. Update file details**
 

@@ -643,6 +643,30 @@ $bulkRemoveTags = $imageKit->bulkRemoveTags($fileIds, $tags);
 }
 ```
 
+### 8. Remove AI Tags (Bulk) API
+
+Remove AI tags from multiple files in a single request. The method accepts an array of `fileIds` of the files and an array of `AITags` that have to be removed from those files.
+
+#### Basic Usage
+```php
+$fileIds = ['file_id1','file_id2'];
+$AITags = ['image_AITag_1', 'image_AITag_2'];
+
+$bulkRemoveTags = $imageKit->bulkRemoveTags($fileIds, $AITags);
+```
+#### Response
+```json
+{
+    "err": null,
+    "success": {
+        "successfullyUpdatedFileIds": [
+            "5e21880d5efe355febd4bccd",
+            "5e1c13c1c55ec3437c451403"
+        ]
+    }
+}
+```
+
 
 
 **2. Update file details**

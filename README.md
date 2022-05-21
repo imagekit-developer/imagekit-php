@@ -609,11 +609,11 @@ $bulkAddTags = $imageKit->bulkAddTags($fileIds, $tags);
 #### Response
 ```json
 {
-    err: null,
-    success: {
-        successfullyUpdatedFileIds: [
+    "err": null,
+    "success": {
+        "successfullyUpdatedFileIds": [
             "5e21880d5efe355febd4bccd",
-			"5e1c13c1c55ec3437c451403"
+            "5e1c13c1c55ec3437c451403"
         ]
     }
 }

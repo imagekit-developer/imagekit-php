@@ -368,6 +368,23 @@ class ImageKit
         return Manage\File::delete($fileId, $this->httpClient);
     }
 
+
+    /**
+     * You can programmatically delete uploaded file version in media library using delete file version API.
+     *
+     * @link https://docs.imagekit.io/api-reference/media-api/delete-file-version
+     *
+     * @param $fileId
+     * @param $versionId
+     * @return Response
+     *
+     */
+    public function deleteFileVersion($fileId=null, $versionId=null)
+    {
+        $this->httpClient->setUri(Endpoints::getDeleteFileVersionEndpoint($fileId,$versionId));
+        return Manage\File::deleteVersion($fileId, $versionId, $this->httpClient);
+    }
+
     /**
      * This will purge CDN and ImageKit.io internal cache.
      *

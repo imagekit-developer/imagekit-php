@@ -159,6 +159,43 @@ class File
         return Response::respond(false, json_decode($content));
     }
 
+
+    /**
+     * Delete File Version API
+     *
+     * @param $fileId
+     * @param $versionId
+     * @param GuzzleHttpWrapper $resource
+     *
+     * @return Response
+     */
+    public static function deleteVersion($fileId, $versionId, GuzzleHttpWrapper $resource)
+    {
+        $errors = [];
+        if (empty($fileId)) {
+            $errors[] = ((object)ErrorMessages::$fileId_MISSING);
+        }
+        
+        if (empty($versionId)) {
+            $errors[] = ((object)ErrorMessages::$versionId_MISSING);
+        }
+        
+        if(!empty($errors)){
+            return Response::respond(true, $errors);
+        }
+        
+        // $resource->setDatas($fileId);
+        $res = $resource->delete();
+        $stream = $res->getBody();
+        $content = $stream->getContents();
+
+        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
+            return Response::respond(true, json_decode($content));
+        }
+
+        return Response::respond(false, json_decode($content));
+    }
+
     /**
      * Delete Bulk Files by File ID API
      *

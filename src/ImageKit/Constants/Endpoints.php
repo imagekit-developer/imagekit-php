@@ -75,6 +75,16 @@ class Endpoints
     }
 
     /**
+     * @param $fileId
+     * @param $versionId
+     * @return string
+     */
+    public static function getDeleteFileVersionEndpoint($fileId,$versionId)
+    {
+        return (self::API_BASE_ENDPOINT . '/files/' . $fileId . '/versions/' . $versionId);
+    }
+
+    /**
      * @return string
      */
     public static function getDeleteByFileIdsEndpoint()

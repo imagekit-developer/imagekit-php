@@ -338,6 +338,22 @@ class ImageKit
     }
 
     /**
+     * Remove AI tags from multiple files in a single request. The method accepts an array of fileIDs of the files and an array of tags that have to be removed to those files.
+     *
+     * @link https://docs.imagekit.io/api-reference/media-api/remove-aitags-bulk
+     *
+     * @param array<int, string> $fileIds
+     * @param array<int, string> $AITags
+     *
+     * @return Response
+     */
+    public function bulkRemoveAITags(array $fileIds, array $AITags)
+    {
+        $this->httpClient->setUri(Endpoints::getBulkRemoveAITagsEndpoint());
+        return Manage\File::bulkRemoveAITags($fileIds, $AITags, $this->httpClient);
+    }
+
+    /**
      * You can programmatically delete uploaded files in media library using delete file API.
      *
      * @link https://docs.imagekit.io/api-reference/media-api/delete-file

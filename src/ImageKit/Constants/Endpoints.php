@@ -134,6 +134,14 @@ class Endpoints
     /**
      * @return string
      */
+    public static function getBulkRemoveAITagsEndpoint()
+    {
+        return (self::API_BASE_ENDPOINT . '/files/removeAITags');
+    }
+
+    /**
+     * @return string
+     */
     public static function getCopyFileEndpoint()
     {
         return (self::API_BASE_ENDPOINT . '/files/copy');

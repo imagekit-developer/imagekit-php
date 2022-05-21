@@ -327,6 +327,35 @@ class File
         return Response::respond(false, json_decode($content));
     }
 
+
+    /**
+     * Bulk Remove AI Tags
+     *
+     * @param array $fileIds
+     * @param array $AITags
+     * @param GuzzleHttpWrapper $resource
+     *
+     * @return Response
+     */
+    public static function bulkRemoveAITags(array $fileIds, array $AITags, GuzzleHttpWrapper $resource)
+    {
+        if (!is_array($fileIds) || empty($fileIds) || !is_array($AITags) || empty($AITags)) {
+            return Response::respond(true, ((object)ErrorMessages::$BULK_TAGS_DATA_MISSING));
+        }
+
+        $resource->setDatas(['fileIds' => $fileIds, 'AITags' => $AITags]);
+        $res = $resource->post();
+        $stream = $res->getBody();
+        $content = $stream->getContents();
+
+        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
+            return Response::respond(true, json_decode($content));
+        }
+
+        return Response::respond(false, json_decode($content));
+    }
+
+
     /**
      * Update File Details
      *

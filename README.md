@@ -667,7 +667,25 @@ $bulkRemoveTags = $imageKit->bulkRemoveTags($fileIds, $AITags);
 }
 ```
 
+### 9. Delete File API
 
+You can programmatically delete uploaded files in the media library using delete file API.
+
+> If a file or specific transformation has been requested in the past, then the response is cached. Deleting a file does not purge the cache. You can purge the cache using [Purge Cache API](#21-purge-cache-api).
+
+
+#### Basic Usage
+```php
+$fileId = 'file_id';
+$deleteFile = $imageKit->deleteFile($fileId);
+```
+#### Response
+```json
+{
+    "err": null,
+    "success": null
+}
+```
 
 **2. Update file details**
 

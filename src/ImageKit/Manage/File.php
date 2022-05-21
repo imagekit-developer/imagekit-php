@@ -310,12 +310,13 @@ class File
     public static function bulkRemoveTags(array $fileIds, array $tags, GuzzleHttpWrapper $resource)
     {
 
+
         if (!is_array($fileIds) || empty($fileIds) || !is_array($tags) || empty($tags)) {
             return Response::respond(true, ((object)ErrorMessages::$BULK_TAGS_DATA_MISSING));
         }
 
         $resource->setDatas(['fileIds' => $fileIds, 'tags' => $tags]);
-        $res = $resource->delete();
+        $res = $resource->post();
         $stream = $res->getBody();
         $content = $stream->getContents();
 
@@ -347,6 +348,7 @@ class File
 
         $obj = (object)$updateData;
 
+        
         if (isset($obj->tags) && ($obj->tags !== null) && ($obj->tags !== 'undefined') && !is_array($obj->tags)) {
             return Response::respond(true, ((object)ErrorMessages::$UPDATE_DATA_TAGS_INVALID));
         }

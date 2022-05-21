@@ -691,7 +691,7 @@ $deleteFile = $imageKit->deleteFile($fileId);
 
 You can programmatically delete uploaded file version in the media library using delete file version API.
 
-> You Delete only the non-current version of a file.
+> You can delete only the non-current version of a file.
 
 #### Basic Usage
 ```php

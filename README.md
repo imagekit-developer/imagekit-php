@@ -595,6 +595,30 @@ $updateFileDetails = $imageKit->updateFileDetails(
 }
 ```
 
+### 6. Add Tags (Bulk) API
+
+Add tags to multiple files in a single request. The method accepts an array of `fileIds` of the files and an array of `tags` that have to be added to those files.
+
+#### Basic Usage
+```php
+$fileIds = ['file_id1','file_id2'];
+$tags = ['image_tag_1', 'image_tag_2'];
+
+$bulkAddTags = $imageKit->bulkAddTags($fileIds, $tags);
+```
+#### Response
+```json
+{
+    err: null,
+    success: {
+        successfullyUpdatedFileIds: [
+            "5e21880d5efe355febd4bccd",
+			"5e1c13c1c55ec3437c451403"
+        ]
+    }
+}
+```
+
 
 **2. Update file details**
 

@@ -572,15 +572,15 @@ class ImageKit
      *
      * @link https://docs.imagekit.io/api-reference/media-api/rename-file
      *
-     * @param $filePath
-     * @param $newFileName
+     * @param $parameter[$filePath, $newFileName]
      * @param $purgeCache
      * @return Response
      */
-    public function renameFile($filePath, $newFileName, $purgeCache = false)
+    public function renameFile($parameter, $purgeCache = false)
     {
+
         $this->httpClient->setUri(Endpoints::getRenameFileEndpoint());
-        return Manage\File::rename($filePath, $newFileName, $purgeCache, $this->httpClient);
+        return Manage\File::rename($parameter['filePath'], $parameter['newFileName'], $purgeCache, $this->httpClient);
     }
 
     /**

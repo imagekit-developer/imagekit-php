@@ -209,6 +209,9 @@ class File
         if (empty($fileIds)) {
             return Response::respond(true, ((object)ErrorMessages::$fileIdS_MISSING));
         }
+        if (!is_array($fileIds)) {
+            return Response::respond(true, ((object)ErrorMessages::$fileIdS_NON_ARRAY));
+        }
 
         $resource->setDatas(['fileIds' => $fileIds]);
         $res = $resource->post();

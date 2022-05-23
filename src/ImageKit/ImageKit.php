@@ -483,13 +483,16 @@ class ImageKit
      *
      * @deprecated since 2.0.0, use <code>bulkDeleteFiles</code>
      */
-    public function bulkFileDeleteByIds($options)
+    public function bulkFileDeleteByIds($fileIds)
     {
-        if (!isset($options['fileIds'])) {
+        if (!isset($fileIds)) {
             return Response::respond(true, ((object)ErrorMessages::$fileIdS_MISSING));
         }
+        if (!is_array($fileIds)) {
+            return Response::respond(true, ((object)ErrorMessages::$fileIdS_NON_ARRAY));
+        }
 
-        return $this->bulkDeleteFiles($options['fileIds']);
+        return $this->bulkDeleteFiles($fileIds);
     }
 
     /**

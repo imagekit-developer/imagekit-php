@@ -731,6 +731,33 @@ $deleteFiles = $imageKit->bulkFileDeleteByIds($fileIds);
 }
 ```
 
+### 12. Copy File API
+
+This will copy a file from one folder to another.
+
+>  If any file at the destination has the same name as the source file, then the source file and its versions (if `includeVersions` is set to true) will be appended to the destination file version history.
+
+#### Basic Usage
+```php
+$sourceFilePath = '/sample-folder1/sample-file.jpg';
+$destinationPath = '/sample-folder2/';
+$includeVersions = false;
+
+$copyFile = $imageKit->copyFile([
+    'sourceFilePath' => $sourceFilePath,
+    'destinationPath' => $destinationPath,
+    'includeVersions' => $includeVersions
+]);
+```
+#### Response
+```json
+{
+    "err": null,
+    "success": null
+}
+```
+
+
 
 **2. Update file details**
 

@@ -758,6 +758,31 @@ $copyFile = $imageKit->copyFile([
 ```
 
 
+### 13. Move File API
+
+This will move a file and all its versions from one folder to another.
+
+>  If any file at the destination has the same name as the source file, then the source file and its versions will be appended to the destination file.
+
+#### Basic Usage
+```php
+$sourceFilePath = '/sample-file.jpg';
+$destinationPath = '/sample-folder/';
+
+$moveFile = $imageKit->moveFile([
+    'sourceFilePath' => $sourceFilePath,
+    'destinationPath' => $destinationPath
+]);
+```
+#### Response
+```json
+{
+    "err": null,
+    "success": null
+}
+```
+
+
 
 **2. Update file details**
 

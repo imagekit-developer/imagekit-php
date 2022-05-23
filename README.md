@@ -708,6 +708,30 @@ $deleteFile = $imageKit->deleteFileVersion($fileId, $versionId);
 ```
 
 
+
+### 11. Delete Files (Bulk) API
+
+Deletes multiple files and their versions from the media library.
+
+#### Basic Usage
+```php
+$fileIds = ["5e1c13d0c55ec3437c451406", ...];
+$deleteFiles = $imageKit->bulkFileDeleteByIds($fileIds);
+```
+#### Response
+```json
+{
+    "err": null,
+    "success": {
+        "successfullyDeletedFileIds": [
+            "5e1c13d0c55ec3437c451406",
+            ...
+        ]
+    }
+}
+```
+
+
 **2. Update file details**
 
 Accepts the file ID and fetches the metadata as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/get-file-details).

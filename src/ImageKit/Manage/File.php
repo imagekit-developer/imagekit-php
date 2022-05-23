@@ -231,17 +231,14 @@ class File
      *
      * @param $sourceFilePath
      * @param $destinationPath
+     * @param $includeVersions
      * @param GuzzleHttpWrapper $resource
      *
      * @return Response
      */
-    public static function copy($sourceFilePath, $destinationPath, GuzzleHttpWrapper $resource)
+    public static function copy($sourceFilePath, $destinationPath, $includeVersions, GuzzleHttpWrapper $resource)
     {
-        if (empty($sourceFilePath) || empty($destinationPath)) {
-            return Response::respond(true, ((object)ErrorMessages::$COPY_FILE_DATA_INVALID));
-        }
-
-        $resource->setDatas(['sourceFilePath' => $sourceFilePath, 'destinationPath' => $destinationPath]);
+        $resource->setDatas(['sourceFilePath' => $sourceFilePath, 'destinationPath' => $destinationPath, 'includeVersions' => $includeVersions]);
         $res = $resource->post();
         $stream = $res->getBody();
         $content = $stream->getContents();

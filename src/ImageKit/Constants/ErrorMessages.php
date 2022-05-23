@@ -32,7 +32,11 @@ class ErrorMessages
     public static $fileIdS_MISSING = ['message' => 'FileIds parameter is missing.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $fileIdS_NON_ARRAY = ['message' => 'File ids should be passed in an array.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $MISSING_URL_PARAMETER = ['message' => 'Your request is missing the url query paramater.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
-    public static $COPY_FILE_DATA_INVALID = ['message' => 'Missing sourceFilePath and/or destinationPath for copy file.', 'help' =>
+    public static $COPY_FILE_PARAMETER_MISSING = ['message' => 'Copy File API accepts an array, null passed.', 'help' =>
+        'For support kindly contact us at support@imagekit.io .'];
+    public static $COPY_FILE_PARAMETER_NON_ARRAY = ['message' => 'Copy File API accepts an array of parameters, non array value passed.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $COPY_FILE_PARAMETER_EMPTY_ARRAY = ['message' => 'Copy File API accepts an array of parameters, empty array passed.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $COPY_FILE_DATA_INVALID = ['message' => 'Missing parameter sourceFilePath and/or destinationPath and/or includeVersions for copy file.', 'help' =>
         'For support kindly contact us at support@imagekit.io .'];
     public static $RENAME_FILE_DATA_INVALID = ['message' => 'Rename File Parameters are invalid.',
         'help' =>

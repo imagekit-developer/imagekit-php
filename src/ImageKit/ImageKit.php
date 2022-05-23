@@ -511,19 +511,31 @@ class ImageKit
     }
 
     /**
-     * This will copy a file from one location to another. This method accepts the source file's path and destination
+     * This will copy a file from one location to another. This method accepts the source file's path and destination and boolean to include versions or not
      * folder path.
      *
      * @link https://docs.imagekit.io/api-reference/media-api/copy-file
      *
-     * @param $sourceFilePath
-     * @param $destinationPath
+     * @param $parameter['sourceFilePath','destinationPath','includeVersions]
      * @return Response
      */
-    public function copyFile($sourceFilePath, $destinationPath)
+    public function copyFile($parameter=null)
     {
+        if(!isset($parameter)){
+            return Response::respond(true, ((object)ErrorMessages::$COPY_FILE_PARAMETER_MISSING));
+        }
+        if(!is_array($parameter)){
+            return Response::respond(true, ((object)ErrorMessages::$COPY_FILE_PARAMETER_NON_ARRAY));
+        }
+        if(sizeof($parameter)==0){
+            return Response::respond(true, ((object)ErrorMessages::$COPY_FILE_PARAMETER_EMPTY_ARRAY));
+        }
+        if (empty($parameter['sourceFilePath']) || empty($parameter['destinationPath']) || !isset($parameter['includeVersions'])) {
+            return Response::respond(true, ((object)ErrorMessages::$COPY_FILE_DATA_INVALID));
+        }
+
         $this->httpClient->setUri(Endpoints::getCopyFileEndpoint());
-        return Manage\File::copy($sourceFilePath, $destinationPath, $this->httpClient);
+        return Manage\File::copy($parameter['sourceFilePath'], $parameter['destinationPath'], $parameter['includeVersions'], $this->httpClient);
     }
 
     /**

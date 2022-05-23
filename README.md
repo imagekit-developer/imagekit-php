@@ -783,6 +783,54 @@ $moveFile = $imageKit->moveFile([
 ```
 
 
+### 14. Rename File API
+
+You can programmatically rename an already existing file in the media library using Rename File API. This operation would rename all file versions of the file.
+
+>  The old URLs will stop working. The file/file version URLs cached on CDN will continue to work unless a purge is requested.
+
+#### Basic Usage
+```php
+// Purge Cache would default to false
+
+$filePath = '/sample-folder/sherytest2_sAvY_arze2.jpg';
+$newFileName = 'sherytest2_sAvY_arze3.jpg';
+$renameFile = $imageKit->renameFile([
+    'filePath' => $filePath,
+    'newFileName' => $newFileName,
+]);
+```
+#### Response
+```json
+{
+    "err": null,
+    "success": {}
+}
+```
+
+When `purgeCache` is set to `true`, response will return `purgeRequestId`. This `purgeRequestId` can be used to get the purge request status.
+
+#### Example
+
+```php
+$filePath = '/sample-folder/sherytest2_sAvY_arze2.jpg';
+$newFileName = 'sherytest2_sAvY_arze3.jpg';
+$renameFile = $imageKit->renameFile([
+    'filePath' => $filePath,
+    'newFileName' => $newFileName,
+],true);
+```
+#### Response
+```json
+{
+    "err": null,
+    "success": {
+        "purgeRequestId": "598821f949c0a938d57563bd"
+    }
+}
+```
+
+
 
 **2. Update file details**
 

@@ -511,12 +511,12 @@ class ImageKit
     }
 
     /**
-     * This will copy a file from one location to another. This method accepts the source file's path and destination and boolean to include versions or not
+     * This will copy a file from one location to another. This method accepts an array of source file's path, destination path and boolean to include versions or not
      * folder path.
      *
      * @link https://docs.imagekit.io/api-reference/media-api/copy-file
      *
-     * @param $parameter['sourceFilePath','destinationPath','includeVersions]
+     * @param $parameter['sourceFilePath','destinationPath','includeVersions']
      * @return Response
      */
     public function copyFile($parameter=null)
@@ -539,19 +539,30 @@ class ImageKit
     }
 
     /**
-     * This will move a file from one location to another. This method accepts the source file's path and destination
+     * This will move a file from one location to another. This method accepts an array containing source file's path and destination path
      * folder path.
      *
      * @link https://docs.imagekit.io/api-reference/media-api/move-file
      *
-     * @param $sourceFilePath
-     * @param $destinationPath
+     * @param $parameter['sourceFilePath','destinationPath']
      * @return Response
      */
-    public function moveFile($sourceFilePath, $destinationPath)
+    public function moveFile($parameter=null)
     {
+        if(!isset($parameter)){
+            return Response::respond(true, ((object)ErrorMessages::$MOVE_FILE_PARAMETER_MISSING));
+        }
+        if(!is_array($parameter)){
+            return Response::respond(true, ((object)ErrorMessages::$MOVE_FILE_PARAMETER_NON_ARRAY));
+        }
+        if(sizeof($parameter)==0){
+            return Response::respond(true, ((object)ErrorMessages::$MOVE_FILE_PARAMETER_EMPTY_ARRAY));
+        }
+        if (empty($parameter['sourceFilePath']) || empty($parameter['destinationPath'])) {
+            return Response::respond(true, ((object)ErrorMessages::$MOVE_FILE_DATA_INVALID));
+        }
         $this->httpClient->setUri(Endpoints::getMoveFileEndpoint());
-        return Manage\File::move($sourceFilePath, $destinationPath, $this->httpClient);
+        return Manage\File::move($parameter['sourceFilePath'], $parameter['destinationPath'], $this->httpClient);
     }
 
     /**

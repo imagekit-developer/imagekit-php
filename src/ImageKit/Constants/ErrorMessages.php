@@ -38,9 +38,14 @@ class ErrorMessages
     public static $COPY_FILE_PARAMETER_EMPTY_ARRAY = ['message' => 'Copy File API accepts an array of parameters, empty array passed.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $COPY_FILE_DATA_INVALID = ['message' => 'Missing parameter sourceFilePath and/or destinationPath and/or includeVersions for copy file.', 'help' =>
         'For support kindly contact us at support@imagekit.io .'];
-    public static $RENAME_FILE_DATA_INVALID = ['message' => 'Rename File Parameters are invalid.',
-        'help' =>
+    public static $MOVE_FILE_PARAMETER_MISSING = ['message' => 'Move File API accepts an array, null passed.', 'help' =>
         'For support kindly contact us at support@imagekit.io .'];
+    public static $MOVE_FILE_PARAMETER_NON_ARRAY = ['message' => 'Move File API accepts an array of parameters, non array value passed.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $MOVE_FILE_PARAMETER_EMPTY_ARRAY = ['message' => 'Move File API accepts an array of parameters, empty array passed.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $MOVE_FILE_DATA_INVALID = ['message' => 'Missing parameter sourceFilePath and/or destinationPath for move file.', 'help' =>
+        'For support kindly contact us at support@imagekit.io .'];
+    
+    public static $RENAME_FILE_DATA_INVALID = ['message' => 'Rename File Parameters are invalid.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $MISSING_CREATE_FOLDER_OPTIONS = ['message' => 'Missing data for creation of folder', 'help' => ''];
     public static $MISSING_DELETE_FOLDER_OPTIONS = ['message' => 'Missing data for deletion of folder', 'help' => ''];
     public static $MISSING_COPY_FOLDER_OPTIONS = ['message' => 'Missing data for copying folder', 'help' => ''];

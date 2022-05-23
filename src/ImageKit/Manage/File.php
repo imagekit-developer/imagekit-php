@@ -261,10 +261,6 @@ class File
      */
     public static function move($sourceFilePath, $destinationPath, GuzzleHttpWrapper $resource)
     {
-        if (empty($sourceFilePath) || empty($destinationPath)) {
-            return Response::respond(true, ((object)ErrorMessages::$COPY_FILE_DATA_INVALID));
-        }
-
         $resource->setDatas(['sourceFilePath' => $sourceFilePath, 'destinationPath' => $destinationPath]);
         $res = $resource->post();
         $stream = $res->getBody();

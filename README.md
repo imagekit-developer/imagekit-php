@@ -853,6 +853,24 @@ $createFolder = $imageKit->createFolder([
 ```
 
 
+### 17. Delete Folder API
+
+This will delete the specified folder and all nested files, their versions & folders. This action cannot be undone.
+
+#### Basic Usage
+```php
+$folderPath = '/new-folder';
+$deleteFolder = $imageKit->deleteFolder($folderPath);
+```
+#### Response
+```json
+{
+    "err": null,
+    "success": null
+}
+```
+
+
 
 **2. Update file details**
 

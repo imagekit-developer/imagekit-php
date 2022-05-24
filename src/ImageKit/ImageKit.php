@@ -583,6 +583,35 @@ class ImageKit
         return Manage\File::rename($parameter['filePath'], $parameter['newFileName'], $purgeCache, $this->httpClient);
     }
 
+    
+    /**
+     * This will Restore file version to a different version of a file. This method accepts the fileId and versionId
+     *
+     *
+     * @link https://docs.imagekit.io/api-reference/media-api/restore-file-version
+     *
+     * @param $parameter[$fileId, $versionId]
+     * @return Response
+     */
+    public function restoreFileVersion($parameter)
+    {
+        if(!isset($parameter)){
+            return Response::respond(true, ((object)ErrorMessages::$RESTORE_FILE_VERSION_PARAMETER_MISSING));
+        }
+        if(!is_array($parameter)){
+            return Response::respond(true, ((object)ErrorMessages::$RESTORE_FILE_VERSION_PARAMETER_NON_ARRAY));
+        }
+        if(sizeof($parameter)==0){
+            return Response::respond(true, ((object)ErrorMessages::$RESTORE_FILE_VERSION_PARAMETER_EMPTY_ARRAY));
+        }
+        if (empty($parameter['fileId']) || empty($parameter['versionId'])) {
+            return Response::respond(true, ((object)ErrorMessages::$RESTORE_FILE_VERSION_DATA_INVALID));
+        }
+        $this->httpClient->setUri(Endpoints::getRestoreFileVersionEndpoint($parameter['fileId'], $parameter['versionId']));
+        return Manage\File::restoreVersion($this->httpClient);
+    }
+
+
     /**
      * This will create a new folder. This method accepts folder name and parent folder path.
      *

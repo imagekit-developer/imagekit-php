@@ -302,6 +302,27 @@ class File
         return Response::respond(false, json_decode($content));
     }
 
+    
+    /**
+     * Restore File Version API
+     *
+     * @param GuzzleHttpWrapper $resource
+     *
+     * @return Response
+     */
+    public static function restoreVersion(GuzzleHttpWrapper $resource)
+    {
+        $res = $resource->put();
+        $stream = $res->getBody();
+        $content = $stream->getContents();
+
+        if ($res->getStatusCode() && !(200 >= $res->getStatusCode() || $res->getStatusCode() <= 300)) {
+            return Response::respond(true, json_decode($content));
+        }
+
+        return Response::respond(false, json_decode($content));
+    }
+
 
     /**
      * Bulk Add Tags

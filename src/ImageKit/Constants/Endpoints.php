@@ -175,6 +175,17 @@ class Endpoints
 
     /**
      * @return string
+     * @var $fileId
+     * @var $versionId
+     * 
+     */
+    public static function getRestoreFileVersionEndpoint($fileId, $versionId)
+    {
+        return (self::API_BASE_ENDPOINT . '/files/' . $fileId . '/versions/' . $versionId . '/restore');
+    }
+
+    /**
+     * @return string
      * @var $jobId
      *
      */

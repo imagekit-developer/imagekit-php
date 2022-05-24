@@ -649,8 +649,11 @@ class ImageKit
      *
      * @return Response
      */
-    public function deleteFolder($folderPath)
+    public function deleteFolder($folderPath=null)
     {
+        if(!isset($folderPath) || empty($folderPath)){
+            return Response::respond(true, ((object)ErrorMessages::$DELETE_FOLDER_PARAMETER_MISSING));
+        }
         $this->httpClient->setUri(Endpoints::getDeleteFolderEndpoint());
         return Manage\Folder::delete($folderPath, $this->httpClient);
     }

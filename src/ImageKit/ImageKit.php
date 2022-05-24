@@ -688,19 +688,31 @@ class ImageKit
 
     /**
      * This will move a folder from one location to another. This method accepts the source folder's path
-     * and destination folder path.
+     * and destination folder path in an array.
      *
      * @link https://docs.imagekit.io/api-reference/media-api/move-folder
      *
-     * @param $sourceFolderPath
-     * @param $destinationPath
+     * @param $parameter[$sourceFolderPath, $destinationPath]
      *
      * @return Response
      */
-    public function moveFolder($sourceFolderPath, $destinationPath)
+    public function moveFolder($parameter=null)
     {
+        if(!isset($parameter)){
+            return Response::respond(true, ((object)ErrorMessages::$MOVE_FOLDER_PARAMETER_MISSING));
+        }
+        if(!is_array($parameter)){
+            return Response::respond(true, ((object)ErrorMessages::$MOVE_FOLDER_PARAMETER_NON_ARRAY));
+        }
+        if(sizeof($parameter)==0){
+            return Response::respond(true, ((object)ErrorMessages::$MOVE_FOLDER_PARAMETER_EMPTY_ARRAY));
+        }
+        if (empty($parameter['sourceFolderPath']) || empty($parameter['destinationPath'])) {
+            return Response::respond(true, ((object)ErrorMessages::$MOVE_FOLDER_DATA_INVALID));
+        }
+
         $this->httpClient->setUri(Endpoints::getMoveFolderEndpoint());
-        return Manage\Folder::move($sourceFolderPath, $destinationPath, $this->httpClient);
+        return Manage\Folder::move($parameter['sourceFolderPath'], $parameter['destinationPath'], $this->httpClient);
     }
 
     /**

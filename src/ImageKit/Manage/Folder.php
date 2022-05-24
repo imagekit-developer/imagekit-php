@@ -87,10 +87,6 @@ class Folder
      */
     public static function move($sourceFolderPath, $destinationPath, GuzzleHttpWrapper $httpClient)
     {
-        if (empty($sourceFolderPath) || empty($destinationPath)) {
-            return Response::respond(true, ((object)ErrorMessages::$MISSING_MOVE_FOLDER_OPTIONS));
-        }
-
         $httpClient->setDatas(['sourceFolderPath' => $sourceFolderPath, 'destinationPath' => $destinationPath]);
         $res = $httpClient->post();
         $stream = $res->getBody();

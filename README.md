@@ -897,6 +897,32 @@ $copyFolder = $imageKit->copyFolder([
 ```
 
 
+### 19. Move Folder API
+
+This will move one folder into another. The selected folder, its nested folders, files, and their versions are moved in this operation.
+
+> If any file at the destination has the same name as the source file, then the source file and its versions will be appended to the destination file version history.
+
+#### Basic Usage
+```php
+$sourceFolderPath = '/sample-folder/';
+$destinationPath = '/destination-folder/';
+$moveFolder = $imageKit->moveFolder([
+    'sourceFolderPath' => $sourceFolderPath,
+    'destinationPath' => $destinationPath
+]);
+```
+#### Response
+```json
+{
+    "err": null,
+    "success": {
+        "jobId": "598821f949c0a938d57563bd"
+    }
+}
+```
+
+
 
 **2. Update file details**
 

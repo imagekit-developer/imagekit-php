@@ -871,6 +871,32 @@ $deleteFolder = $imageKit->deleteFolder($folderPath);
 ```
 
 
+### 18. Copy Folder API
+
+This will copy one folder into another.
+
+#### Basic Usage
+```php
+$sourceFolderPath = '/source-folder/';
+$destinationPath = '/destination-folder/';
+$includeVersions = false;
+$copyFolder = $imageKit->copyFolder([
+    'sourceFolderPath' => $sourceFolderPath,
+    'destinationPath' => $destinationPath,
+    'includeVersions' => $includeVersions
+]);
+```
+#### Response
+```json
+{
+    "err": null,
+    "success": {
+        "jobId": "598821f949c0a938d57563bd"
+    }
+}
+```
+
+
 
 **2. Update file details**
 

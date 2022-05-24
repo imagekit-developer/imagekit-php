@@ -793,8 +793,8 @@ You can programmatically rename an already existing file in the media library us
 ```php
 // Purge Cache would default to false
 
-$filePath = '/sample-folder/sherytest2_sAvY_arze2.jpg';
-$newFileName = 'sherytest2_sAvY_arze3.jpg';
+$filePath = '/sample-folder/sample-file.jpg';
+$newFileName = 'sample-file2.jpg';
 $renameFile = $imageKit->renameFile([
     'filePath' => $filePath,
     'newFileName' => $newFileName,
@@ -813,8 +813,8 @@ When `purgeCache` is set to `true`, response will return `purgeRequestId`. This 
 #### Example
 
 ```php
-$filePath = '/sample-folder/sherytest2_sAvY_arze2.jpg';
-$newFileName = 'sherytest2_sAvY_arze3.jpg';
+$filePath = '/sample-folder/sample-file.jpg';
+$newFileName = 'sample-file2.jpg';
 $renameFile = $imageKit->renameFile([
     'filePath' => $filePath,
     'newFileName' => $newFileName,

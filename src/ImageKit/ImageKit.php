@@ -613,19 +613,30 @@ class ImageKit
 
 
     /**
-     * This will create a new folder. This method accepts folder name and parent folder path.
+     * This will create a new folder. This method accepts folder name and parent folder path in an array.
      *
      * @link https://docs.imagekit.io/api-reference/media-api/create-folder
      *
-     * @param $folderName
-     * @param $parentFolderPath
+     * @param $parameter[$folderName, $parentFolderPath]
      *
      * @return Response
      */
-    public function createFolder($folderName, $parentFolderPath = '/')
+    public function createFolder($parameter=null)
     {
+        if(!isset($parameter)){
+            return Response::respond(true, ((object)ErrorMessages::$CREATE_FOLDER_PARAMETER_MISSING));
+        }
+        if(!is_array($parameter)){
+            return Response::respond(true, ((object)ErrorMessages::$CREATE_FOLDER_PARAMETER_NON_ARRAY));
+        }
+        if(sizeof($parameter)==0){
+            return Response::respond(true, ((object)ErrorMessages::$CREATE_FOLDER_PARAMETER_EMPTY_ARRAY));
+        }
+        if (empty($parameter['folderName']) || empty($parameter['parentFolderPath'])) {
+            return Response::respond(true, ((object)ErrorMessages::$CREATE_FOLDER_DATA_INVALID));
+        }
         $this->httpClient->setUri(Endpoints::getCreateFolderEndpoint());
-        return Manage\Folder::create($folderName, $parentFolderPath, $this->httpClient);
+        return Manage\Folder::create($parameter['folderName'], $parameter['parentFolderPath'], $this->httpClient);
     }
 
     /**

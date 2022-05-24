@@ -20,10 +20,6 @@ class Folder
      */
     public static function create($folderName, $parentFolderPath, GuzzleHttpWrapper $httpClient)
     {
-        if (empty($folderName) || empty($parentFolderPath)) {
-            return Response::respond(true, ((object)ErrorMessages::$MISSING_CREATE_FOLDER_OPTIONS));
-        }
-
         $httpClient->setDatas(['parentFolderPath' => $parentFolderPath, 'folderName' => $folderName]);
         $res = $httpClient->post();
         $stream = $res->getBody();

@@ -52,6 +52,12 @@ class ErrorMessages
     public static $RESTORE_FILE_VERSION_PARAMETER_EMPTY_ARRAY = ['message' => 'Restore File Version API accepts an array of parameters, empty array passed.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $RESTORE_FILE_VERSION_DATA_INVALID = ['message' => 'Missing parameter fileId and/or versionId for Restore File Version API.', 'help' =>
         'For support kindly contact us at support@imagekit.io .'];
+    public static $CREATE_FOLDER_PARAMETER_MISSING = ['message' => 'Create Folder API accepts an array, null passed.', 'help' =>
+    'For support kindly contact us at support@imagekit.io .'];
+    public static $CREATE_FOLDER_PARAMETER_NON_ARRAY = ['message' => 'Create Folder API accepts an array of parameters, non array value passed.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $CREATE_FOLDER_PARAMETER_EMPTY_ARRAY = ['message' => 'Create Folder API accepts an array of parameters, empty array passed.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $CREATE_FOLDER_DATA_INVALID = ['message' => 'Missing parameter folderName and/or parentFolderPath for Create Folder API.', 'help' =>
+        'For support kindly contact us at support@imagekit.io .'];
     public static $MISSING_CREATE_FOLDER_OPTIONS = ['message' => 'Missing data for creation of folder', 'help' => ''];
     public static $MISSING_DELETE_FOLDER_OPTIONS = ['message' => 'Missing data for deletion of folder', 'help' => ''];
     public static $MISSING_COPY_FOLDER_OPTIONS = ['message' => 'Missing data for copying folder', 'help' => ''];

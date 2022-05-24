@@ -659,20 +659,31 @@ class ImageKit
     }
 
     /**
-     * This will copy a folder from one location to another. This method accepts the source folder's path
-     * and destination folder path.
+     * This will copy a folder from one location to another. This method accepts an array of source folder's path, destination path and boolean to include versions or not.
      *
      * @link https://docs.imagekit.io/api-reference/media-api/copy-folder
      *
-     * @param $sourceFolderPath
-     * @param $destinationPath
+     * @param $parameter[$sourceFolderPath, $destinationPath, includeVersions]
      *
      * @return Response
      */
-    public function copyFolder($sourceFolderPath, $destinationPath)
+    public function copyFolder($parameter=null)
     {
+        if(!isset($parameter)){
+            return Response::respond(true, ((object)ErrorMessages::$COPY_FOLDER_PARAMETER_MISSING));
+        }
+        if(!is_array($parameter)){
+            return Response::respond(true, ((object)ErrorMessages::$COPY_FOLDER_PARAMETER_NON_ARRAY));
+        }
+        if(sizeof($parameter)==0){
+            return Response::respond(true, ((object)ErrorMessages::$COPY_FOLDER_PARAMETER_EMPTY_ARRAY));
+        }
+        if (empty($parameter['sourceFolderPath']) || empty($parameter['destinationPath']) || !isset($parameter['includeVersions'])) {
+            return Response::respond(true, ((object)ErrorMessages::$COPY_FOLDER_DATA_INVALID));
+        }
+
         $this->httpClient->setUri(Endpoints::getCopyFolderEndpoint());
-        return Manage\Folder::copy($sourceFolderPath, $destinationPath, $this->httpClient);
+        return Manage\Folder::copy($parameter['sourceFolderPath'], $parameter['destinationPath'], $parameter['includeVersions'], $this->httpClient);
     }
 
     /**

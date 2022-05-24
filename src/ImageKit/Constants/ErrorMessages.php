@@ -60,6 +60,12 @@ class ErrorMessages
         'For support kindly contact us at support@imagekit.io .'];
     public static $DELETE_FOLDER_PARAMETER_MISSING = ['message' => 'Missing folderPath for Delete Folder API.', 'help' =>
         'For support kindly contact us at support@imagekit.io .'];
+    public static $COPY_FOLDER_PARAMETER_MISSING = ['message' => 'Copy Folder API accepts an array, null passed.', 'help' =>
+        'For support kindly contact us at support@imagekit.io .'];
+    public static $COPY_FOLDER_PARAMETER_NON_ARRAY = ['message' => 'Copy Folder API accepts an array of parameters, non array value passed.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $COPY_FOLDER_PARAMETER_EMPTY_ARRAY = ['message' => 'Copy Folder API accepts an array of parameters, empty array passed.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $COPY_FOLDER_DATA_INVALID = ['message' => 'Missing parameter sourceFolderPath and/or destinationPath and/or includeVersions for copy folder.', 'help' =>
+        'For support kindly contact us at support@imagekit.io .'];
     public static $MISSING_CREATE_FOLDER_OPTIONS = ['message' => 'Missing data for creation of folder', 'help' => ''];
     public static $MISSING_DELETE_FOLDER_OPTIONS = ['message' => 'Missing data for deletion of folder', 'help' => ''];
     public static $MISSING_COPY_FOLDER_OPTIONS = ['message' => 'Missing data for copying folder', 'help' => ''];

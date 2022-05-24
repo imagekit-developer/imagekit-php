@@ -59,17 +59,14 @@ class Folder
     /**
      * @param $sourceFolderPath
      * @param $destinationPath
+     * @param $includeVersions
      * @param GuzzleHttpWrapper $httpClient
      *
      * @return Response
      */
-    public static function copy($sourceFolderPath, $destinationPath, GuzzleHttpWrapper $httpClient)
+    public static function copy($sourceFolderPath, $destinationPath, $includeVersions, GuzzleHttpWrapper $httpClient)
     {
-        if (empty($sourceFolderPath) || empty($destinationPath)) {
-            return Response::respond(true, ((object)ErrorMessages::$MISSING_COPY_FOLDER_OPTIONS));
-        }
-
-        $httpClient->setDatas(['sourceFolderPath' => $sourceFolderPath, 'destinationPath' => $destinationPath]);
+        $httpClient->setDatas(['sourceFolderPath' => $sourceFolderPath, 'destinationPath' => $destinationPath, 'includeVersions' => $includeVersions]);
         $res = $httpClient->post();
         $stream = $res->getBody();
         $content = $stream->getContents();

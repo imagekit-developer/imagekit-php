@@ -923,6 +923,29 @@ $moveFolder = $imageKit->moveFolder([
 ```
 
 
+### 20. Bulk Job Status API
+
+This endpoint allows you to get the status of a bulk operation e.g. [Copy Folder API](#18-copy-folder-api) or [Move Folder API](#19-move-folder-api).
+
+
+#### Basic Usage
+```php
+$jobId = 'jobId';
+$bulkJobStatus = $imageKit->getBulkJobStatus($jobId);
+```
+#### Response
+```json
+{
+    "err": null,
+    "success": {
+      "jobId": "598821f949c0a938d57563bd",
+      "type": "COPY_FOLDER",
+      "status": "Completed" // or "Pending"
+    }
+}
+```
+
+
 
 **2. Update file details**
 

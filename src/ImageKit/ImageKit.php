@@ -733,14 +733,14 @@ class ImageKit
      * @param $jobId
      * @return Response
      */
-    public function getBulkJobStatus($jobId)
+    public function getBulkJobStatus($jobId=null)
     {
-        $this->httpClient->setUri(Endpoints::getBulkJobStatusEndpoint($jobId));
-
+        
         if (empty($jobId)) {
             return Response::respond(true, ((object)ErrorMessages::$JOBID_MISSING));
         }
-
+        $this->httpClient->setUri(Endpoints::getBulkJobStatusEndpoint($jobId));
+        
         $res = $this->httpClient->get();
         $stream = $res->getBody();
         $content = $stream->getContents();

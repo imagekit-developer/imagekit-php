@@ -593,7 +593,7 @@ class ImageKit
      * @param $parameter[$fileId, $versionId]
      * @return Response
      */
-    public function restoreFileVersion($parameter)
+    public function restoreFileVersion($parameter=null)
     {
         if(!isset($parameter)){
             return Response::respond(true, ((object)ErrorMessages::$RESTORE_FILE_VERSION_PARAMETER_MISSING));

@@ -830,6 +830,64 @@ $renameFile = $imageKit->renameFile([
 }
 ```
 
+
+### 15. Restore File Version API
+
+This will restore the provided file version to a different version of the file. The new restored version of the file will be returned in response.
+
+#### Basic Usage
+```php
+$fileId = 'fileId';
+$versionId = 'versionId';
+$restoreFileVersion = $imageKit->restoreFileVersion([
+    'fileId' => $fileId,
+    'versionId' => $versionId,
+]);
+```
+#### Response
+```json
+{
+    "err": null,
+    "success": {
+        "fileId": "598821f949c0a938d57563bd",
+        "type": "file",
+        "name": "file1.jpg",
+        "filePath": "/images/products/file1.jpg",
+        "tags": ["t-shirt", "round-neck", "sale2019"],
+        "AITags": [
+            {
+                "name": "Shirt",
+                "confidence": 90.12,
+                "source": "google-auto-tagging"
+            },
+            /* ... more googleVision tags ... */
+        ],
+        "versionInfo": {
+                "id": "697821f849c0a938d57563ce",
+                "name": "Version 2"
+        },
+        "isPrivateFile": false,
+        "customCoordinates": null,
+        "url": "https://ik.imagekit.io/your_imagekit_id/images/products/file1.jpg",
+        "thumbnail": "https://ik.imagekit.io/your_imagekit_id/tr:n-media_library_thumbnail/images/products/file1.jpg",
+        "fileType": "image",
+        "mime": "image/jpeg",
+        "width": 100,
+        "height": 100,
+        "size": 100,
+        "hasAlpha": false,
+        "customMetadata": {
+            brand: "Nike",
+            color: "red"
+        },
+        "createdAt": "2019-08-24T06:14:41.313Z",
+        "updatedAt": "2019-09-24T06:14:41.313Z"
+    }
+}
+```
+
+
+
 ### 16. Create Folder API
 
 This will create a new folder. You can specify the folder name and location of the parent folder where this new folder should be created.

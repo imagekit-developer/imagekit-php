@@ -1047,7 +1047,7 @@ $purgeCacheStatus = $imageKit->purgeCacheStatus($cacheRequestId);
 }
 ```
 
-### 23. Get Image Metadata API (From File ID)
+### 23. Get File Metadata API (From File ID)
 
 Get the image EXIF, pHash, and other metadata for uploaded files in ImageKit.io media library using this API.
 
@@ -1055,7 +1055,101 @@ Get the image EXIF, pHash, and other metadata for uploaded files in ImageKit.io 
 #### Basic Usage
 ```php
 $fileId = '598821f949c0a938d57563bd';
-$getMetadata = $imageKit->getMetaData($fileId);
+$getFileMetadata = $imageKit->getFileMetaData($fileId);
+```
+#### Response
+```json
+{
+    "err": null,
+    "success": {
+        "height": 68,
+        "width": 100,
+        "size": 7749,
+        "format": "jpg",
+        "hasColorProfile": true,
+        "quality": 0,
+        "density": 72,
+        "hasTransparency": false,
+        "pHash": "f06830ca9f1e3e90",
+        "exif": {
+            "image": {
+                "Make": "Canon",
+                "Model": "Canon EOS 40D",
+                "Orientation": 1,
+                "XResolution": 72,
+                "YResolution": 72,
+                "ResolutionUnit": 2,
+                "Software": "GIMP 2.4.5",
+                "ModifyDate": "2008:07:31 10:38:11",
+                "YCbCrPositioning": 2,
+                "ExifOffset": 214,
+                "GPSInfo": 978
+            },
+            "thumbnail": {
+                "Compression": 6,
+                "XResolution": 72,
+                "YResolution": 72,
+                "ResolutionUnit": 2,
+                "ThumbnailOffset": 1090,
+                "ThumbnailLength": 1378
+            },
+            "exif": {
+                "ExposureTime": 0.00625,
+                "FNumber": 7.1,
+                "ExposureProgram": 1,
+                "ISO": 100,
+                "ExifVersion": "0221",
+                "DateTimeOriginal": "2008:05:30 15:56:01",
+                "CreateDate": "2008:05:30 15:56:01",
+                "ShutterSpeedValue": 7.375,
+                "ApertureValue": 5.625,
+                "ExposureCompensation": 0,
+                "MeteringMode": 5,
+                "Flash": 9,
+                "FocalLength": 135,
+                "SubSecTime": "00",
+                "SubSecTimeOriginal": "00",
+                "SubSecTimeDigitized": "00",
+                "FlashpixVersion": "0100",
+                "ColorSpace": 1,
+                "ExifImageWidth": 100,
+                "ExifImageHeight": 68,
+                "InteropOffset": 948,
+                "FocalPlaneXResolution": 4438.356164383562,
+                "FocalPlaneYResolution": 4445.969125214408,
+                "FocalPlaneResolutionUnit": 2,
+                "CustomRendered": 0,
+                "ExposureMode": 1,
+                "WhiteBalance": 0,
+                "SceneCaptureType": 0
+            },
+            "gps": {
+                "GPSVersionID": [
+                    2,
+                    2,
+                    0,
+                    0
+                ]
+            },
+            "interoperability": {
+                "InteropIndex": "R98",
+                "InteropVersion": "0100"
+            },
+            "makernote": {}
+        }
+    }
+}
+```
+
+
+### 24. Get File Metadata API (From Remote URL)
+
+Get image EXIF, pHash, and other metadata from ImageKit.io powered remote URL using this API.
+
+#### Basic Usage
+```php
+$image_url = 'https://ik.imagekit.io/demo/sample-folder/sample-file.jpg';
+$getFileMetadataFromRemoteURL = $imageKit->getFileMetadataFromRemoteURL($image_url);
 ```
 #### Response
 ```json

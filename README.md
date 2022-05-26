@@ -1004,10 +1004,31 @@ $bulkJobStatus = $imageKit->getBulkJobStatus($jobId);
 ```
 
 
+### 21. Purge Cache API
+
+This will purge CDN and ImageKit.io's internal cache. In response `requestId` is returned which can be used to fetch the status of the submitted purge request with [Purge Cache Status API](#22-purge-cache-status-api).
+
+
+#### Basic Usage
+```php
+$image_url = 'https://ik.imagekit.io/demo/sample-folder/sample-file.jpg';
+$purgeCache = $imageKit->purgeCache($image_url);
+```
+#### Response
+```json
+{
+    "err": null,
+    "success": {
+        "requestId" : "598821f949c0a938d57563bd"
+    }
+}
+```
+You can purge the cache for multiple files. Check [Purge Cache Multiple Files](https://docs.imagekit.io/api-reference/media-api/purge-cache#purge-cache-for-multiple-files).
+
 
 **2. Update file details**
 
-Accepts the file ID and fetches the metadata as per the [API documentation here](https://docs.imagekit.io/api-reference/media-api/get-file-details).
+Accepts the file ID and fetches the metadata as per the [API documentation here][https://docs.imagekit.io/api-reference/media-api/get-file-details].
 
 ```php  
 $updateFileDetails = $imageKit->updateFileDetails(

@@ -60,4 +60,35 @@ class Metadata
 
         return Response::respond(false, json_decode($content));
     }
+
+    
+    /**
+     * Create custom metadata field 
+     *
+     * @param $name
+     * @param $label
+     * @param $schema
+     * @param $resource
+     * @return Response
+     */
+    public static function createCustomMetadataField($name, $label, $schema, $resource)
+    {
+        $resource->setDatas([
+            'name' => $name,
+            'label' => $label,
+            'schema' => $schema
+        ]);
+        $res = $resource->post();
+        $stream = $res->getBody();
+        $content = $stream->getContents();
+
+        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
+            return Response::respond(true, json_decode($content));
+        }
+
+        return Response::respond(false, json_decode($content));
+    }
+
+
+
 }

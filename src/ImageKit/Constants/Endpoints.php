@@ -226,6 +226,14 @@ class Endpoints
         return (self::API_BASE_ENDPOINT . '/bulkJobs/moveFolder');
     }
 
+    /**
+     * @return string
+     */
+    public static function createCustomMetadataField()
+    {
+        return (self::API_BASE_ENDPOINT . '/customMetadataFields');
+    }
+
 }
 
 

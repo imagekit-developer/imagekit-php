@@ -806,4 +806,35 @@ class ImageKit
         return Phash::pHashDistance($firstPHash, $secondPHash);
     }
 
+    
+    /**
+     * Create custom metadata field using this API.
+     *
+     * @link https://docs.imagekit.io/api-reference/custom-metadata-fields-api/create-custom-metadata-field
+     *
+     * @param $parameter[$name,$label,$schema]
+     * @return Response
+     */
+    public function createCustomMetadataField($parameter=null)
+    {
+        if(!isset($parameter)){
+            return Response::respond(true, ((object)ErrorMessages::$CREATE_CUSTOM_METADATA_PARAMETER_MISSING));
+        }
+        if(!is_array($parameter)){
+            return Response::respond(true, ((object)ErrorMessages::$CREATE_CUSTOM_METADATA_PARAMETER_NON_ARRAY));
+        }
+        if(sizeof($parameter)==0){
+            return Response::respond(true, ((object)ErrorMessages::$CREATE_CUSTOM_METADATA_PARAMETER_EMPTY_ARRAY));
+        }
+        if (empty($parameter['name']) || empty($parameter['label']) || !isset($parameter['schema'])) {
+            return Response::respond(true, ((object)ErrorMessages::$CREATE_CUSTOM_METADATA_DATA_INVALID));
+        }
+        if(!isset($parameter['schema']['type']) || empty($parameter['schema']['type'])){
+            return Response::respond(true, ((object)ErrorMessages::$CREATE_CUSTOM_METADATA_DATA_INVALID_SCHEMA_OBJECT));
+        }
+
+        $this->httpClient->setUri(Endpoints::createCustomMetadataField());
+        return Manage\File\Metadata::createCustomMetadataField($parameter['name'], $parameter['label'], $parameter['schema'], $this->httpClient);
+    }
+
 }

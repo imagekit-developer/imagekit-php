@@ -252,9 +252,13 @@ class ImageKit
      * @return Response
      * @deprecated since 2.0.0, use <code>getFileMetaData</code>
      */
-    public function getMetaData($fileId)
+    public function getMetaData($fileId=null)
     {
-        return $this->getFileMetaData($fileId);
+        if (empty($fileId)) {
+            return Response::respond(true, ((object)ErrorMessages::$fileId_MISSING));
+        }
+        $this->httpClient->setUri(Endpoints::getListMetaDataFilesEndpoint($fileId));
+        return Manage\File\Metadata::get($fileId, $this->httpClient);
     }
 
     /**
@@ -266,10 +270,9 @@ class ImageKit
      *
      * @return Response
      */
-    public function getFileMetaData($fileId)
+    public function getFileMetaData($fileId=null)
     {
-        $this->httpClient->setUri(Endpoints::getListMetaDataFilesEndpoint($fileId));
-        return Manage\File\Metadata::get($fileId, $this->httpClient);
+        return $this->getMetaData($fileId);
     }
 
     /**

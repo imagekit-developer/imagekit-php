@@ -1026,6 +1026,28 @@ $purgeCache = $imageKit->purgeCache($image_url);
 You can purge the cache for multiple files. Check [Purge Cache Multiple Files](https://docs.imagekit.io/api-reference/media-api/purge-cache#purge-cache-for-multiple-files).
 
 
+
+### 22. Purge Cache Status API
+
+Get the purge cache request status using the `requestId` returned when a purge cache request gets submitted with [Purge Cache API](#21-purge-cache-api)
+
+
+#### Basic Usage
+```php
+$cacheRequestId = '598821f949c0a938d57563bd';
+$purgeCacheStatus = $imageKit->purgeCacheStatus($cacheRequestId);
+```
+#### Response
+```json
+{
+    "err": null,
+    "success": {
+        "status" : "Pending" // or "Completed"
+    }
+}
+```
+
+
 **2. Update file details**
 
 Accepts the file ID and fetches the metadata as per the [API documentation here][https://docs.imagekit.io/api-reference/media-api/get-file-details].

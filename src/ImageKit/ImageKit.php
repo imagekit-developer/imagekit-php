@@ -447,8 +447,12 @@ class ImageKit
      *
      * @deprecated since 2.0.0, use <code>getPurgeCacheStatus</code>
      */
-    public function purgeCacheApiStatus($requestId)
+    public function purgeCacheApiStatus($requestId=null)
     {
+        if (empty($requestId)) {
+            return Response::respond(true, ((object)ErrorMessages::$CACHE_PURGE_STATUS_ID_MISSING));
+        }
+        
         return $this->getPurgeCacheStatus($requestId);
     }
 

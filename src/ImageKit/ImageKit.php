@@ -254,11 +254,7 @@ class ImageKit
      */
     public function getMetaData($fileId=null)
     {
-        if (empty($fileId)) {
-            return Response::respond(true, ((object)ErrorMessages::$fileId_MISSING));
-        }
-        $this->httpClient->setUri(Endpoints::getListMetaDataFilesEndpoint($fileId));
-        return Manage\File\Metadata::get($fileId, $this->httpClient);
+        return $this->getFileMetaData($fileId);
     }
 
     /**
@@ -272,7 +268,11 @@ class ImageKit
      */
     public function getFileMetaData($fileId=null)
     {
-        return $this->getMetaData($fileId);
+        if (empty($fileId)) {
+            return Response::respond(true, ((object)ErrorMessages::$CACHE_PURGE_STATUS_ID_MISSING));
+        }
+        $this->httpClient->setUri(Endpoints::getListMetaDataFilesEndpoint($fileId));
+        return Manage\File\Metadata::get($fileId, $this->httpClient);
     }
 
     /**
@@ -776,8 +776,16 @@ class ImageKit
      * @param $url
      * @return Response
      */
-    public function getFileMetadataFromRemoteURL($url)
+    public function getFileMetadataFromRemoteURL($url=null)
     {
+        if (empty($url)) {
+            return Response::respond(true, ((object)ErrorMessages::$MISSING_URL_PARAMETER));
+        }
+        
+        if (!filter_var($url, FILTER_VALIDATE_URL)) {
+            return Response::respond(true, ((object)ErrorMessages::$INVALID_URL_PARAMETER));
+        }
+
         $this->httpClient->setUri(Endpoints::getFileMetadataFromRemoteURLEndpoint());
         return Manage\File\Metadata::getFileMetadataFromRemoteURL($url, $this->httpClient);
     }

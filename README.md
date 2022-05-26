@@ -1236,6 +1236,32 @@ $getFileMetadataFromRemoteURL = $imageKit->getFileMetadataFromRemoteURL($image_u
 ```
 
 
+## Custom Metadata Fields API
+
+Imagekit.io allows you to define a `schema` for your metadata keys and the value filled against that key will have to adhere to those rules. You can [Create](#1-create-fields), [Read](#2-get-fields) and [Update](#3-update-fields) custom metadata rules and update your file with custom metadata value in [File update API](#5-update-file-details) or [File Upload API](#server-side-file-upload).
+
+For detailed explanation refer to the [Official Documentaion](https://docs.imagekit.io/api-reference/custom-metadata-fields-api).
+
+### 1. Create Fields
+
+Create a Custom Metadata Field with this API.
+
+```php
+$body = [
+    "name" => "price",              // required
+    "label" => "Unit Price",        // required
+    "schema" => [                   // required
+        "type" => 'Number',         // required
+        "minValue" => 1000,
+        "maxValue" => 5000,
+    ],
+];
+
+$createCustomMetadataField = $imageKit->createCustomMetadataField($body);
+```
+Check for the [Allowed Values In The Schema](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/create-custom-metadata-field#allowed-values-in-the-schema-object).
+
+
 **2. Update file details**
 
 Accepts the file ID and fetches the metadata as per the [API documentation here][https://docs.imagekit.io/api-reference/media-api/get-file-details].

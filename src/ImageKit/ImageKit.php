@@ -423,8 +423,16 @@ class ImageKit
      * @param $options
      * @return Response
      */
-    public function purgeCache($options)
+    public function purgeCache($options=null)
     {
+        if (empty($options)) {
+            return Response::respond(true, ((object)ErrorMessages::$CACHE_PURGE_URL_MISSING));
+        }
+        
+        if (!filter_var($options, FILTER_VALIDATE_URL)) {
+            return Response::respond(true, ((object)ErrorMessages::$CACHE_PURGE_URL_INVALID));
+        }
+
         $this->httpClient->setUri(Endpoints::getPurgeCacheEndpoint());
         return Manage\Cache::purgeFileCache($options, $this->httpClient);
     }

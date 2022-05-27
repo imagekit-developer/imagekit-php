@@ -1317,6 +1317,42 @@ $getCustomMetadataFields = $imageKit->getCustomMetadataFields($includeDeleted);
 }
 ```
 
+
+### 3. Update Fields
+
+Update the label or schema of an existing custom metadata field.
+
+#### Example
+```php
+$customMetadataFieldId = '598821f949c0a938d57563dd';
+$body = [
+    "label" => "Net Price",
+    "schema" => [
+        "type"=>'Number'
+    ],
+];
+
+$updateCustomMetadataField = $imageKit->updateCustomMetadataField($customMetadataFieldId, $body);
+```
+
+#### Response
+```json
+{
+    "err": null,
+    "success": [
+        {
+            "id": "598821f949c0a938d57563dd",
+            "name": "price",
+            "label": "Net Price",
+            "schema": {
+                "type": "Number"
+            }
+        }
+    ]
+}
+```
+Check for the [Allowed Values In The Schema](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/create-custom-metadata-field#allowed-values-in-the-schema-object).
+
 **2. Update file details**
 
 Accepts the file ID and fetches the metadata as per the [API documentation here][https://docs.imagekit.io/api-reference/media-api/get-file-details].

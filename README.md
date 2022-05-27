@@ -1286,7 +1286,7 @@ Get a list of all the custom metadata fields.
 #### Example
 ```php
 $includeDeleted = false;
-$getCustomMetadataField = $imageKit->getCustomMetadataField($includeDeleted);
+$getCustomMetadataFields = $imageKit->getCustomMetadataFields($includeDeleted);
 ```
 
 #### Response

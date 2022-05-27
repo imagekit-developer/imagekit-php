@@ -845,7 +845,7 @@ class ImageKit
      * @param $includeDeleted
      * @return Response
      */
-    public function getCustomMetadataField($includeDeleted=false)
+    public function getCustomMetadataFields($includeDeleted=false)
     {
         $this->httpClient->setUri(Endpoints::getCustomMetadataField());
         return Manage\File\Metadata::getCustomMetadataField($includeDeleted, $this->httpClient);

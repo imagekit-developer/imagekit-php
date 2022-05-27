@@ -1339,19 +1339,38 @@ $updateCustomMetadataField = $imageKit->updateCustomMetadataField($customMetadat
 ```json
 {
     "err": null,
-    "success": [
-        {
-            "id": "598821f949c0a938d57563dd",
-            "name": "price",
-            "label": "Net Price",
-            "schema": {
-                "type": "Number"
-            }
+    "success": {
+        "id": "598821f949c0a938d57563dd",
+        "name": "price",
+        "label": "Net Price",
+        "schema": {
+            "type": "Number"
         }
-    ]
+    }
 }
 ```
 Check for the [Allowed Values In The Schema](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/create-custom-metadata-field#allowed-values-in-the-schema-object).
+
+
+
+### 4. Delete Fields
+
+Delete a custom metadata field.
+
+#### Example
+```php
+$customMetadataFieldId = '598821f949c0a938d57563dd';
+
+$deleteCustomMetadataField = $imageKit->deleteCustomMetadataField($customMetadataFieldId);
+```
+
+#### Response
+```json
+{
+    "err": null,
+    "success": null
+}
+```
 
 **2. Update file details**
 

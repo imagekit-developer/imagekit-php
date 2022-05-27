@@ -1320,7 +1320,7 @@ $getCustomMetadataFields = $imageKit->getCustomMetadataFields($includeDeleted);
 
 ### 3. Update Fields
 
-Update the label or schema of an existing custom metadata field.
+Update the `label` or `schema` of an existing custom metadata field.
 
 #### Example
 ```php

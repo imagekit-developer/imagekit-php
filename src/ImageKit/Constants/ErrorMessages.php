@@ -95,5 +95,6 @@ class ErrorMessages
     public static $UPDATE_CUSTOM_METADATA_DATA_INVALID_SCHEMA_OBJECT = ['message' => 'Invalid parameter schema.', 'help' =>
         'For support kindly contact us at support@imagekit.io .'];
     public static $UPDATE_CUSTOM_METADATA_ID_MISSING = ['message' => 'Missing Custom Metadata Field ID parameter for this request', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $DELETE_CUSTOM_METADATA_ID_MISSING = ['message' => 'Missing Custom Metadata Field ID parameter for this request', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     
 }

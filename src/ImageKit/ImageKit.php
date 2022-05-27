@@ -856,7 +856,8 @@ class ImageKit
      *
      * @link https://docs.imagekit.io/api-reference/custom-metadata-fields-api/update-custom-metadata-field
      *
-     * @param $includeDeleted
+     * @param $id
+     * @param $parameter[$name,$label,$schema]
      * @return Response
      */
     public function updateCustomMetadataField($id=null,$parameter=null)
@@ -882,6 +883,24 @@ class ImageKit
 
         $this->httpClient->setUri(Endpoints::updateCustomMetadataField($id));
         return Manage\File\Metadata::updateCustomMetadataField($parameter['label'], $parameter['schema'], $this->httpClient);
+    }
+    
+    /**
+     * Delete custom metadata field using this API.
+     *
+     * @link https://docs.imagekit.io/api-reference/custom-metadata-fields-api/delete-custom-metadata-field
+     *
+     * @param $id
+     * @return Response
+     */
+    public function deleteCustomMetadataField($id=null)
+    {
+        if(!isset($id) || empty($id)){
+            return Response::respond(true, ((object)ErrorMessages::$DELETE_CUSTOM_METADATA_ID_MISSING));
+        }
+        
+        $this->httpClient->setUri(Endpoints::deleteCustomMetadataField($id));
+        return Manage\File\Metadata::deleteCustomMetadataField($this->httpClient);
     }
 
 }

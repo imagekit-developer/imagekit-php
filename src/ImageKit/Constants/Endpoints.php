@@ -250,6 +250,14 @@ class Endpoints
         return (self::API_BASE_ENDPOINT . '/customMetadataFields/' . $id);
     }
 
+    /**
+     * @return string
+     */
+    public static function deleteCustomMetadataField($id)
+    {
+        return (self::API_BASE_ENDPOINT . '/customMetadataFields/' . $id);
+    }
+
 }
 
 

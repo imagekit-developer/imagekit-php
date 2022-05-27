@@ -164,4 +164,29 @@ class Metadata
 
         return Response::respond(false, ($content));
     }
+
+     /**
+     * Update custom metadata field 
+     *
+     * @param $resource
+     * @return Response
+     */
+    public static function deleteCustomMetadataField($resource)
+    {
+        $res = $resource->delete();
+        $stream = $res->getBody();
+        $content = [];
+        $content['body'] = json_decode($stream->getContents());
+        if($resource->getResponseMetadata()){
+            $headers = $res->getHeaders();
+            $content['headers'] = $headers;
+        }
+
+        // return $res->getStatusCode();
+        if ($res->getStatusCode() && $res->getStatusCode() !== 204) {
+            return Response::respond(true, ($content));
+        }
+
+        return Response::respond(false, ($content));
+    }
 }

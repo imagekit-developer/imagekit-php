@@ -850,5 +850,38 @@ class ImageKit
         $this->httpClient->setUri(Endpoints::getCustomMetadataField());
         return Manage\File\Metadata::getCustomMetadataField($includeDeleted, $this->httpClient);
     }
+    
+    /**
+     * Update custom metadata field using this API.
+     *
+     * @link https://docs.imagekit.io/api-reference/custom-metadata-fields-api/update-custom-metadata-field
+     *
+     * @param $includeDeleted
+     * @return Response
+     */
+    public function updateCustomMetadataField($id=null,$parameter=null)
+    {
+        if(!isset($id) || empty($id)){
+            return Response::respond(true, ((object)ErrorMessages::$UPDATE_CUSTOM_METADATA_ID_MISSING));
+        }
+        if(!isset($parameter)){
+            return Response::respond(true, ((object)ErrorMessages::$UPDATE_CUSTOM_METADATA_PARAMETER_MISSING));
+        }
+        if(!is_array($parameter)){
+            return Response::respond(true, ((object)ErrorMessages::$UPDATE_CUSTOM_METADATA_PARAMETER_NON_ARRAY));
+        }
+        if(sizeof($parameter)==0){
+            return Response::respond(true, ((object)ErrorMessages::$UPDATE_CUSTOM_METADATA_PARAMETER_EMPTY_ARRAY));
+        }
+        if (empty($parameter['label']) || !isset($parameter['schema'])) {
+            return Response::respond(true, ((object)ErrorMessages::$UPDATE_CUSTOM_METADATA_DATA_INVALID));
+        }
+        if(!isset($parameter['schema']['type']) || empty($parameter['schema']['type'])){
+            return Response::respond(true, ((object)ErrorMessages::$UPDATE_CUSTOM_METADATA_DATA_INVALID_SCHEMA_OBJECT));
+        }
+
+        $this->httpClient->setUri(Endpoints::updateCustomMetadataField($id));
+        return Manage\File\Metadata::updateCustomMetadataField($parameter['label'], $parameter['schema'], $this->httpClient);
+    }
 
 }

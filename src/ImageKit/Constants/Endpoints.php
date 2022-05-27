@@ -242,6 +242,14 @@ class Endpoints
         return (self::API_BASE_ENDPOINT . '/customMetadataFields');
     }
 
+    /**
+     * @return string
+     */
+    public static function updateCustomMetadataField($id)
+    {
+        return (self::API_BASE_ENDPOINT . '/customMetadataFields/' . $id);
+    }
+
 }
 
 

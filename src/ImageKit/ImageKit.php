@@ -836,5 +836,19 @@ class ImageKit
         $this->httpClient->setUri(Endpoints::createCustomMetadataField());
         return Manage\File\Metadata::createCustomMetadataField($parameter['name'], $parameter['label'], $parameter['schema'], $this->httpClient);
     }
+    
+    /**
+     * Get custom metadata field using this API.
+     *
+     * @link https://docs.imagekit.io/api-reference/custom-metadata-fields-api/get-custom-metadata-field
+     *
+     * @param $includeDeleted
+     * @return Response
+     */
+    public function getCustomMetadataField($includeDeleted=false)
+    {
+        $this->httpClient->setUri(Endpoints::getCustomMetadataField());
+        return Manage\File\Metadata::getCustomMetadataField($includeDeleted, $this->httpClient);
+    }
 
 }

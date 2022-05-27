@@ -89,6 +89,30 @@ class Metadata
         return Response::respond(false, json_decode($content));
     }
 
+    /**
+     * Get custom metadata field 
+     *
+     * @param $includeDeleted
+     * @param $resource 
+     * @return Response
+     */
+    public static function getCustomMetadataField($includeDeleted, $resource)
+    {
+        $resource->setDatas([
+            'includeDeleted' => $includeDeleted
+        ]);
+       
+        $res = $resource->get();
+        $stream = $res->getBody();
+        $content = $stream->getContents();
+
+        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
+            return Response::respond(true, json_decode($content));
+        }
+
+        return Response::respond(false, json_decode($content));
+    }
+
 
 
 }

@@ -33,13 +33,18 @@ class File
         $resource->setDatas($parameters);
         $res = $resource->get();
         $stream = $res->getBody();
-        $content = $stream->getContents();
-
-        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
-            return Response::respond(true, json_decode($content));
+        $content = [];
+        $content['body'] = json_decode($stream->getContents());
+        if($resource->getResponseMetadata()){
+            $headers = $res->getHeaders();
+            $content['headers'] = $headers;
         }
 
-        return Response::respond(false, json_decode($content));
+        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
+            return Response::respond(true, ($content));
+        }
+
+        return Response::respond(false, ($content));
     }
 
     /**
@@ -58,13 +63,18 @@ class File
 
         $res = $resource->get();
         $stream = $res->getBody();
-        $content = $stream->getContents();
-
-        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
-            return Response::respond(true, json_decode($content));
+        $content = [];
+        $content['body'] = json_decode($stream->getContents());
+        if($resource->getResponseMetadata()){
+            $headers = $res->getHeaders();
+            $content['headers'] = $headers;
         }
 
-        return Response::respond(false, json_decode($content));
+        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
+            return Response::respond(true, ($content));
+        }
+
+        return Response::respond(false, ($content));
     }
 
     /**
@@ -93,13 +103,18 @@ class File
 
         $res = $resource->get();
         $stream = $res->getBody();
-        $content = $stream->getContents();
-
-        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
-            return Response::respond(true, json_decode($content));
+        $content = [];
+        $content['body'] = json_decode($stream->getContents());
+        if($resource->getResponseMetadata()){
+            $headers = $res->getHeaders();
+            $content['headers'] = $headers;
         }
 
-        return Response::respond(false, json_decode($content));
+        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
+            return Response::respond(true, ($content));
+        }
+
+        return Response::respond(false, ($content));
     }
 
     /**
@@ -123,13 +138,18 @@ class File
 
         $res = $resource->get();
         $stream = $res->getBody();
-        $content = $stream->getContents();
-
-        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
-            return Response::respond(true, json_decode($content));
+        $content = [];
+        $content['body'] = json_decode($stream->getContents());
+        if($resource->getResponseMetadata()){
+            $headers = $res->getHeaders();
+            $content['headers'] = $headers;
         }
 
-        return Response::respond(false, json_decode($content));
+        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
+            return Response::respond(true, ($content));
+        }
+
+        return Response::respond(false, ($content));
     }
 
 
@@ -150,13 +170,18 @@ class File
         $resource->setDatas((array)$fileId);
         $res = $resource->delete();
         $stream = $res->getBody();
-        $content = $stream->getContents();
-
-        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
-            return Response::respond(true, json_decode($content));
+        $content = [];
+        $content['body'] = json_decode($stream->getContents());
+        if($resource->getResponseMetadata()){
+            $headers = $res->getHeaders();
+            $content['headers'] = $headers;
         }
 
-        return Response::respond(false, json_decode($content));
+        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
+            return Response::respond(true, ($content));
+        }
+
+        return Response::respond(false, ($content));
     }
 
 
@@ -187,13 +212,18 @@ class File
         // $resource->setDatas($fileId);
         $res = $resource->delete();
         $stream = $res->getBody();
-        $content = $stream->getContents();
-
-        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
-            return Response::respond(true, json_decode($content));
+        $content = [];
+        $content['body'] = json_decode($stream->getContents());
+        if($resource->getResponseMetadata()){
+            $headers = $res->getHeaders();
+            $content['headers'] = $headers;
         }
 
-        return Response::respond(false, json_decode($content));
+        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
+            return Response::respond(true, ($content));
+        }
+
+        return Response::respond(false, ($content));
     }
 
     /**
@@ -216,13 +246,18 @@ class File
         $resource->setDatas(['fileIds' => $fileIds]);
         $res = $resource->post();
         $stream = $res->getBody();
-        $content = $stream->getContents();
-
-        if ($res->getStatusCode() && !(200 >= $res->getStatusCode() || $res->getStatusCode() <= 300)) {
-            return Response::respond(true, json_decode($content));
+        $content = [];
+        $content['body'] = json_decode($stream->getContents());
+        if($resource->getResponseMetadata()){
+            $headers = $res->getHeaders();
+            $content['headers'] = $headers;
         }
 
-        return Response::respond(false, json_decode($content));
+        if ($res->getStatusCode() && !(200 >= $res->getStatusCode() || $res->getStatusCode() <= 300)) {
+            return Response::respond(true, ($content));
+        }
+
+        return Response::respond(false, ($content));
     }
 
 
@@ -241,13 +276,18 @@ class File
         $resource->setDatas(['sourceFilePath' => $sourceFilePath, 'destinationPath' => $destinationPath, 'includeVersions' => $includeVersions]);
         $res = $resource->post();
         $stream = $res->getBody();
-        $content = $stream->getContents();
-
-        if ($res->getStatusCode() && !(200 >= $res->getStatusCode() || $res->getStatusCode() <= 300)) {
-            return Response::respond(true, json_decode($content));
+        $content = [];
+        $content['body'] = json_decode($stream->getContents());
+        if($resource->getResponseMetadata()){
+            $headers = $res->getHeaders();
+            $content['headers'] = $headers;
         }
 
-        return Response::respond(false, json_decode($content));
+        if ($res->getStatusCode() && !(200 >= $res->getStatusCode() || $res->getStatusCode() <= 300)) {
+            return Response::respond(true, ($content));
+        }
+
+        return Response::respond(false, ($content));
     }
 
     /**
@@ -264,13 +304,18 @@ class File
         $resource->setDatas(['sourceFilePath' => $sourceFilePath, 'destinationPath' => $destinationPath]);
         $res = $resource->post();
         $stream = $res->getBody();
-        $content = $stream->getContents();
-
-        if ($res->getStatusCode() && !(200 >= $res->getStatusCode() || $res->getStatusCode() <= 300)) {
-            return Response::respond(true, json_decode($content));
+        $content = [];
+        $content['body'] = json_decode($stream->getContents());
+        if($resource->getResponseMetadata()){
+            $headers = $res->getHeaders();
+            $content['headers'] = $headers;
         }
 
-        return Response::respond(false, json_decode($content));
+        if ($res->getStatusCode() && !(200 >= $res->getStatusCode() || $res->getStatusCode() <= 300)) {
+            return Response::respond(true, ($content));
+        }
+
+        return Response::respond(false, ($content));
     }
 
 
@@ -293,13 +338,18 @@ class File
         $resource->setDatas(['filePath' => $filePath, 'newFileName' => $newFileName, 'purgeCache' => $purgeCache]);
         $res = $resource->put();
         $stream = $res->getBody();
-        $content = $stream->getContents();
-
-        if ($res->getStatusCode() && !(200 >= $res->getStatusCode() || $res->getStatusCode() <= 300)) {
-            return Response::respond(true, json_decode($content));
+        $content = [];
+        $content['body'] = json_decode($stream->getContents());
+        if($resource->getResponseMetadata()){
+            $headers = $res->getHeaders();
+            $content['headers'] = $headers;
         }
 
-        return Response::respond(false, json_decode($content));
+        if ($res->getStatusCode() && !(200 >= $res->getStatusCode() || $res->getStatusCode() <= 300)) {
+            return Response::respond(true, ($content));
+        }
+
+        return Response::respond(false, ($content));
     }
 
     
@@ -314,13 +364,18 @@ class File
     {
         $res = $resource->put();
         $stream = $res->getBody();
-        $content = $stream->getContents();
-
-        if ($res->getStatusCode() && !(200 >= $res->getStatusCode() || $res->getStatusCode() <= 300)) {
-            return Response::respond(true, json_decode($content));
+        $content = [];
+        $content['body'] = json_decode($stream->getContents());
+        if($resource->getResponseMetadata()){
+            $headers = $res->getHeaders();
+            $content['headers'] = $headers;
         }
 
-        return Response::respond(false, json_decode($content));
+        if ($res->getStatusCode() && !(200 >= $res->getStatusCode() || $res->getStatusCode() <= 300)) {
+            return Response::respond(true, ($content));
+        }
+
+        return Response::respond(false, ($content));
     }
 
 
@@ -343,13 +398,18 @@ class File
         $resource->setDatas(['fileIds' => $fileIds, 'tags' => $tags]);
         $res = $resource->post();
         $stream = $res->getBody();
-        $content = $stream->getContents();
-
-        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
-            return Response::respond(true, json_decode($content));
+        $content = [];
+        $content['body'] = json_decode($stream->getContents());
+        if($resource->getResponseMetadata()){
+            $headers = $res->getHeaders();
+            $content['headers'] = $headers;
         }
 
-        return Response::respond(false, json_decode($content));
+        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
+            return Response::respond(true, ($content));
+        }
+
+        return Response::respond(false, ($content));
     }
 
     /**
@@ -372,13 +432,18 @@ class File
         $resource->setDatas(['fileIds' => $fileIds, 'tags' => $tags]);
         $res = $resource->post();
         $stream = $res->getBody();
-        $content = $stream->getContents();
-
-        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
-            return Response::respond(true, json_decode($content));
+        $content = [];
+        $content['body'] = json_decode($stream->getContents());
+        if($resource->getResponseMetadata()){
+            $headers = $res->getHeaders();
+            $content['headers'] = $headers;
         }
 
-        return Response::respond(false, json_decode($content));
+        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
+            return Response::respond(true, ($content));
+        }
+
+        return Response::respond(false, ($content));
     }
 
 
@@ -400,13 +465,18 @@ class File
         $resource->setDatas(['fileIds' => $fileIds, 'AITags' => $AITags]);
         $res = $resource->post();
         $stream = $res->getBody();
-        $content = $stream->getContents();
-
-        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
-            return Response::respond(true, json_decode($content));
+        $content = [];
+        $content['body'] = json_decode($stream->getContents());
+        if($resource->getResponseMetadata()){
+            $headers = $res->getHeaders();
+            $content['headers'] = $headers;
         }
 
-        return Response::respond(false, json_decode($content));
+        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
+            return Response::respond(true, ($content));
+        }
+
+        return Response::respond(false, ($content));
     }
 
 
@@ -443,12 +513,17 @@ class File
         $resource->setDatas($updateData);
         $res = $resource->patch();
         $stream = $res->getBody();
-        $content = $stream->getContents();
-
-        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
-            return Response::respond(true, json_decode($content));
+        $content = [];
+        $content['body'] = json_decode($stream->getContents());
+        if($resource->getResponseMetadata()){
+            $headers = $res->getHeaders();
+            $content['headers'] = $headers;
         }
 
-        return Response::respond(false, json_decode($content));
+        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
+            return Response::respond(true, ($content));
+        }
+
+        return Response::respond(false, ($content));
     }
 }

@@ -23,13 +23,18 @@ class Folder
         $httpClient->setDatas(['parentFolderPath' => $parentFolderPath, 'folderName' => $folderName]);
         $res = $httpClient->post();
         $stream = $res->getBody();
-        $content = $stream->getContents();
-
-        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
-            return Response::respond(true, json_decode($content));
+        $content = [];
+        $content['body'] = json_decode($stream->getContents());
+        if($resource->getResponseMetadata()){
+            $headers = $res->getHeaders();
+            $content['headers'] = $headers;
         }
 
-        return Response::respond(false, json_decode($content));
+        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
+            return Response::respond(true, ($content));
+        }
+
+        return Response::respond(false, ($content));
     }
 
     /**
@@ -47,13 +52,18 @@ class Folder
         $httpClient->setDatas(['folderPath' => $folderPath]);
         $res = $httpClient->delete();
         $stream = $res->getBody();
-        $content = $stream->getContents();
-
-        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
-            return Response::respond(true, json_decode($content));
+        $content = [];
+        $content['body'] = json_decode($stream->getContents());
+        if($resource->getResponseMetadata()){
+            $headers = $res->getHeaders();
+            $content['headers'] = $headers;
         }
 
-        return Response::respond(false, json_decode($content));
+        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
+            return Response::respond(true, ($content));
+        }
+
+        return Response::respond(false, ($content));
     }
 
     /**
@@ -69,13 +79,18 @@ class Folder
         $httpClient->setDatas(['sourceFolderPath' => $sourceFolderPath, 'destinationPath' => $destinationPath, 'includeVersions' => $includeVersions]);
         $res = $httpClient->post();
         $stream = $res->getBody();
-        $content = $stream->getContents();
-
-        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
-            return Response::respond(true, json_decode($content));
+        $content = [];
+        $content['body'] = json_decode($stream->getContents());
+        if($resource->getResponseMetadata()){
+            $headers = $res->getHeaders();
+            $content['headers'] = $headers;
         }
 
-        return Response::respond(false, json_decode($content));
+        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
+            return Response::respond(true, ($content));
+        }
+
+        return Response::respond(false, ($content));
     }
 
     /**
@@ -90,12 +105,17 @@ class Folder
         $httpClient->setDatas(['sourceFolderPath' => $sourceFolderPath, 'destinationPath' => $destinationPath]);
         $res = $httpClient->post();
         $stream = $res->getBody();
-        $content = $stream->getContents();
-
-        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
-            return Response::respond(true, json_decode($content));
+        $content = [];
+        $content['body'] = json_decode($stream->getContents());
+        if($resource->getResponseMetadata()){
+            $headers = $res->getHeaders();
+            $content['headers'] = $headers;
         }
 
-        return Response::respond(false, json_decode($content));
+        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
+            return Response::respond(true, ($content));
+        }
+
+        return Response::respond(false, ($content));
     }
 }

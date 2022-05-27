@@ -6,6 +6,8 @@ use Exception;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Response;
 
+use ImageKit\Constants\ErrorMessages;
+use ImageKit\Utils\Response as CustomResponse;
 
 /**
  *
@@ -14,6 +16,7 @@ class GuzzleHttpWrapper implements HttpRequest
 {
     const DEFAULT_ERROR_CODE = 500;
     protected $client;
+    protected $responseMetadata = false;
     protected $datas = [];
     protected $headers = [];
     protected $uri;
@@ -26,10 +29,19 @@ class GuzzleHttpWrapper implements HttpRequest
     /**
      * @param $client
      */
-    public function __construct($client)
+    public function __construct($client, $responseMetadata)
     {
         $this->client = $client;
+        $this->responseMetadata = $responseMetadata;
         $this->serviceId = self::gen_uuid();
+    }
+
+    /**
+     * @return string
+     */
+    public function getResponseMetadata()
+    {
+        return $this->responseMetadata;
     }
 
     /**
@@ -146,6 +158,7 @@ class GuzzleHttpWrapper implements HttpRequest
         $body = '';
         if ($e->hasResponse()) {
             $body = (string)$e->getResponse()->getBody();
+            $headers = $e->getResponse()->getHeaders();
         }
 
         return new Response($status, $headers, $body);
@@ -300,5 +313,6 @@ class GuzzleHttpWrapper implements HttpRequest
             return $this->handleException($e);
         }
     }
+
 
 }

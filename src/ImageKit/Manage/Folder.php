@@ -29,7 +29,7 @@ class Folder
         $content['headers'] = $headers;
         $content['statusCode'] = $res->getStatusCode();
 
-        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
+        if ($res->getStatusCode() && ($res->getStatusCode() < 200 || $res->getStatusCode() > 300)) {
             return Response::respond(true, ($content));
         }
 
@@ -57,7 +57,7 @@ class Folder
         $content['headers'] = $headers;
         $content['statusCode'] = $res->getStatusCode();
 
-        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
+        if ($res->getStatusCode() && ($res->getStatusCode() < 200 || $res->getStatusCode() > 300)) {
             return Response::respond(true, ($content));
         }
 
@@ -83,7 +83,7 @@ class Folder
         $content['headers'] = $headers;
         $content['statusCode'] = $res->getStatusCode();
 
-        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
+        if ($res->getStatusCode() && ($res->getStatusCode() < 200 || $res->getStatusCode() > 300)) {
             return Response::respond(true, ($content));
         }
 
@@ -108,7 +108,7 @@ class Folder
         $content['headers'] = $headers;
         $content['statusCode'] = $res->getStatusCode();
 
-        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
+        if ($res->getStatusCode() && ($res->getStatusCode() < 200 || $res->getStatusCode() > 300)) {
             return Response::respond(true, ($content));
         }
 

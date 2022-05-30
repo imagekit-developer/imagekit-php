@@ -31,10 +31,9 @@ class Cache
         $stream = $res->getBody();
         $content = [];
         $content['body'] = json_decode($stream->getContents());
-        if($resource->getResponseMetadata()){
-            $headers = $res->getHeaders();
-            $content['headers'] = $headers;
-        }
+        $headers = $res->getHeaders();
+        $content['headers'] = $headers;
+        $content['statusCode'] = $res->getStatusCode();
 
         if ($res->getStatusCode() && !(200 >= $res->getStatusCode() || $res->getStatusCode() <= 300)) {
             return Response::respond(true, ($content));
@@ -57,14 +56,12 @@ class Cache
         }
 
         $res = $resource->get();
-
         $stream = $res->getBody();
         $content = [];
         $content['body'] = json_decode($stream->getContents());
-        if($resource->getResponseMetadata()){
-            $headers = $res->getHeaders();
-            $content['headers'] = $headers;
-        }
+        $headers = $res->getHeaders();
+        $content['headers'] = $headers;
+        $content['statusCode'] = $res->getStatusCode();
 
         if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
             return Response::respond(true, ($content));

@@ -26,10 +26,9 @@ class Metadata
         $stream = $res->getBody();
         $content = [];
         $content['body'] = json_decode($stream->getContents());
-        if($resource->getResponseMetadata()){
-            $headers = $res->getHeaders();
-            $content['headers'] = $headers;
-        }
+        $headers = $res->getHeaders();
+        $content['headers'] = $headers;
+        $content['statusCode'] = $res->getStatusCode();
 
         if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
             return Response::respond(true, ($content));
@@ -59,10 +58,9 @@ class Metadata
         $stream = $res->getBody();
         $content = [];
         $content['body'] = json_decode($stream->getContents());
-        if($resource->getResponseMetadata()){
-            $headers = $res->getHeaders();
-            $content['headers'] = $headers;
-        }
+        $headers = $res->getHeaders();
+        $content['headers'] = $headers;
+        $content['statusCode'] = $res->getStatusCode();
 
         if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
             return Response::respond(true, ($content));
@@ -92,10 +90,9 @@ class Metadata
         $stream = $res->getBody();
         $content = [];
         $content['body'] = json_decode($stream->getContents());
-        if($resource->getResponseMetadata()){
-            $headers = $res->getHeaders();
-            $content['headers'] = $headers;
-        }
+        $headers = $res->getHeaders();
+        $content['headers'] = $headers;
+        $content['statusCode'] = $res->getStatusCode();
 
         // return $res->getStatusCode();
         if ($res->getStatusCode() && $res->getStatusCode() !== 201) {
@@ -122,10 +119,9 @@ class Metadata
         $stream = $res->getBody();
         $content = [];
         $content['body'] = json_decode($stream->getContents());
-        if($resource->getResponseMetadata()){
-            $headers = $res->getHeaders();
-            $content['headers'] = $headers;
-        }
+        $headers = $res->getHeaders();
+        $content['headers'] = $headers;
+        $content['statusCode'] = $res->getStatusCode();
 
         if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
             return Response::respond(true, $content);
@@ -152,10 +148,9 @@ class Metadata
         $stream = $res->getBody();
         $content = [];
         $content['body'] = json_decode($stream->getContents());
-        if($resource->getResponseMetadata()){
-            $headers = $res->getHeaders();
-            $content['headers'] = $headers;
-        }
+        $headers = $res->getHeaders();
+        $content['headers'] = $headers;
+        $content['statusCode'] = $res->getStatusCode();
 
         // return $res->getStatusCode();
         if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
@@ -177,10 +172,9 @@ class Metadata
         $stream = $res->getBody();
         $content = [];
         $content['body'] = json_decode($stream->getContents());
-        if($resource->getResponseMetadata()){
-            $headers = $res->getHeaders();
-            $content['headers'] = $headers;
-        }
+        $headers = $res->getHeaders();
+        $content['headers'] = $headers;
+        $content['statusCode'] = $res->getStatusCode();
 
         // return $res->getStatusCode();
         if ($res->getStatusCode() && $res->getStatusCode() !== 204) {

@@ -12,14 +12,25 @@ class Response
      *
      * @var object|null
      */
-    public $err = null;
+    public $error = null;
 
     /**
      * Success Response Object
      *
      * @var object|null
      */
-    public $success = null;
+    public $result = null;
+
+    /**
+     * Response Metadata Response Object
+     *
+     * @var object|null
+     */
+    public $responseMetadata = [
+        'headers'=>null,
+        'raw'=>null,
+        'statusCode'=>null
+    ];
 
     /**
      * @param $isError
@@ -29,18 +40,25 @@ class Response
     public static function respond($isError, $response)
     {
         $responseObject = new Response();
+        if($response['statusCode']==100){
+            $response['statusCode']=null;
+            $response['body'] = 'Network Failed';
+            $isError=true;
+        }
         if ($isError) {
-            $responseObject->err = $response['body'];
+            $responseObject->error = $response['body'];
         } else {
-            $responseObject->success = $response['body'];
+            $responseObject->result = $response['body'];
         }
-        if(isset($response['headers'])){
-            $headers = [];
-            foreach ($response['headers'] as $key => $value) {
-                $headers[$key] = implode(',',$value);
-            }
-            $responseObject->responseMetadata = $headers;
+        $headers = [];
+        foreach ($response['headers'] as $key => $value) {
+            $headers[$key] = implode(',',$value);
         }
+        
+        $responseObject->responseMetadata['headers'] = $headers;
+        $responseObject->responseMetadata['raw'] = $response['body'];
+        $responseObject->responseMetadata['statusCode'] = $response['statusCode'];
+        // $responseObject->responseMetadata->statusCode = json_encode($response);
 
         return $responseObject;
     }

@@ -7,7 +7,6 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Response;
 
 use ImageKit\Constants\ErrorMessages;
-use ImageKit\Utils\Response as CustomResponse;
 
 /**
  *
@@ -159,6 +158,7 @@ class GuzzleHttpWrapper implements HttpRequest
         if ($e->hasResponse()) {
             $body = (string)$e->getResponse()->getBody();
             $headers = $e->getResponse()->getHeaders();
+            $statusCode = $e->getResponse()->getStatusCode();
         }
 
         return new Response($status, $headers, $body);
@@ -173,6 +173,10 @@ class GuzzleHttpWrapper implements HttpRequest
         $status = $e->getCode();
         $headers = [];
         $body = $e->getMessage();
+
+        if($status==0){
+            $status=100;
+        }
 
         return new Response($status, $headers, $body);
     }

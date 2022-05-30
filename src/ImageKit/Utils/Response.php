@@ -40,10 +40,21 @@ class Response
     public static function respond($isError, $response)
     {
         $responseObject = new Response();
-        if($response['statusCode']==100){
-            $response['statusCode']=null;
-            $response['body'] = 'Network Failed';
-            $isError=true;
+        // echo json_encode($response);
+        // die();
+        if(is_array($response)){
+            if($response['statusCode']==100){
+                $response['statusCode']=null;
+                $response['body'] = 'Network Failed';
+                $isError=true;
+            }
+        }
+        else{
+            $response_obj = [];
+            $response_obj['body'] = $response;
+            $response_obj['statusCode']=null;
+            $response_obj['headers']=[];
+            $response = $response_obj;
         }
         if ($isError) {
             $responseObject->error = $response['body'];

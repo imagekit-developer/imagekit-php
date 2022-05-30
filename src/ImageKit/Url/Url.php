@@ -271,12 +271,16 @@ class Url
         $scheme = $get('scheme');
         $host = $get('host');
         $pathname = $get('pathname');
+        $last_slash_index = strripos($pathname,'/');
+        $file_name = substr($pathname,$last_slash_index+1);
+        $pathname = str_replace($file_name,'',$pathname);
         $search = $get('search');
         return (strlen($scheme) > 0 ? "$scheme:" : '') .
             (strlen($host) > 0 ? "//$host" : '') .
             (strlen($pathname) > 0 ? "$pathname" : '') .
-            (strlen($search) > 0 ? "?$search" : '') .
-            (strlen($search) > 0 ? '&ik-sdk-version=php-' . ImageKit::SDK_VERSION : '?ik-sdk-version=php-' . ImageKit::SDK_VERSION);
+            (strlen($search) > 0 ? str_replace('=',':',$search).'/' : '') .
+             $file_name .
+            (strlen($search) > 0 ? '?ik-sdk-version=php-' . ImageKit::SDK_VERSION : '?ik-sdk-version=php-' . ImageKit::SDK_VERSION);
     }
 
     /**

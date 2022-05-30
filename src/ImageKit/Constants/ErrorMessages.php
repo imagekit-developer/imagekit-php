@@ -34,6 +34,12 @@ class ErrorMessages
     public static $fileIdS_NON_ARRAY = ['message' => 'File ids should be passed in an array.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $MISSING_URL_PARAMETER = ['message' => 'Your request is missing the url query paramater.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $INVALID_URL_PARAMETER = ['message' => 'Invalid URL provided for this request', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $URL_GENERATION_PARAMETER_MISSING = ['message' => 'URL Generation API accepts an array, null passed.', 'help' =>
+        'For support kindly contact us at support@imagekit.io .'];
+    public static $URL_GENERATION_PARAMETER_NON_ARRAY = ['message' => 'URL Generation API accepts an array of parameters, non array value passed.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $URL_GENERATION_PARAMETER_EMPTY_ARRAY = ['message' => 'URL Generation API accepts an array of parameters, empty array passed.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $URL_GENERATION_URL_INVALID = ['message' => 'Invalid URL provided in the request.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $URL_GENERATION_TRANSFORMATION_PARAMETER_INVALID = ['message' => 'Transformation Parameter accepts an array, not array or null provided.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $COPY_FILE_PARAMETER_MISSING = ['message' => 'Copy File API accepts an array, null passed.', 'help' =>
         'For support kindly contact us at support@imagekit.io .'];
     public static $COPY_FILE_PARAMETER_NON_ARRAY = ['message' => 'Copy File API accepts an array of parameters, non array value passed.', 'help' => 'For support kindly contact us at support@imagekit.io .'];

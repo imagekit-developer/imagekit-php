@@ -106,8 +106,31 @@ class ImageKit
      * @param array $options
      * @return string
      */
-    public function url(array $options)
+    public function url($options=null)
     {
+        if(!isset($options)){
+            return json_encode(Response::respond(true, ((object)ErrorMessages::$URL_GENERATION_PARAMETER_MISSING)));
+        }
+        if(!is_array($options)){
+            return json_encode(Response::respond(true, ((object)ErrorMessages::$URL_GENERATION_PARAMETER_NON_ARRAY)));
+        }
+        if(sizeof($options)==0){
+            return json_encode(Response::respond(true, ((object)ErrorMessages::$URL_GENERATION_PARAMETER_EMPTY_ARRAY)));
+        }
+        if (isset($options['src']) && !filter_var($options['src'], FILTER_VALIDATE_URL)) {
+            return json_encode(Response::respond(true, ((object)ErrorMessages::$URL_GENERATION_URL_INVALID)));
+        }
+        if (isset($options['urlEndpoint']) && !filter_var($options['urlEndpoint'], FILTER_VALIDATE_URL)) {
+            return json_encode(Response::respond(true, ((object)ErrorMessages::$URL_GENERATION_URL_INVALID)));
+        }
+        
+        if (isset($options['transformation']) && !is_array($options['transformation'])) {
+            return json_encode(Response::respond(true, ((object)ErrorMessages::$URL_GENERATION_TRANSFORMATION_PARAMETER_INVALID)));
+        }
+        // if (isset($options['transformation'][0]) && !is_array($options['transformation'][0])) {
+        //     return json_encode(Response::respond(true, ((object)ErrorMessages::$URL_GENERATION_TRANSFORMATION_PARAMETER_INVALID)));
+        // }
+        
         $urlInstance = new Url();
         return $urlInstance->buildURL(array_merge((array)$this->configuration, $options));
     }

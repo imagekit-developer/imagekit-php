@@ -55,12 +55,13 @@ php sample.php
   
 ## URL generation  
   
-**1. Using Image path and image hostname or endpoint**  
+### Using Image path and image hostname or endpoint 
   
-This method allows you to create a URL using the image's path and the ImageKit URL endpoint (url_endpoint) you want to use to access the image.   
+This method allows you to create a URL using the image's path and the ImageKit URL endpoint (urlEndpoint) you want to use to access the image.   
   
-ImageKit provides inbuild media storage and integration with external origins. Refer to the [documentation (https://docs.imagekit.io/integration/url-endpoints) to learn more about URL endpoints and external [image origins](https://docs.imagekit.io/integration/configure-origin) supported by ImageKit.  
+ImageKit provides inbuild media storage and integration with external origins. Refer to the [documentation](https://docs.imagekit.io/integration/url-endpoints) to learn more about URL endpoints and external [image origins](https://docs.imagekit.io/integration/configure-origin) supported by ImageKit.  
   
+#### Example
 ```php  
 $imageURL = $imageKit->url(
     [
@@ -75,26 +76,31 @@ $imageURL = $imageKit->url(
 );
 ```  
 
-The result in a URL like
+#### Response
 
 ```  
-https://ik.imagekit.io/your_imagekit_id/endpoint/tr:h-300,w-400/default-image.jpg  
+https://ik.imagekit.io/your_imagekit_id/endpoint/tr:h-300,w-400/default-image.jpg 
 ```  
 
-**2.Using full image URL**  
+### Using full image URL
 This method allows you to add transformation parameters to an absolute ImageKit powered URL. This method should be used if you have the absolute URL stored in your database.
 
+#### Example
 ```php  
 $imageURL = $imageKit->url([
     'src' => 'https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg',
-    'transformation' => [['height' => '300', 'width' => '400',]]
+    'transformation' => [
+        [
+            'height' => '300',
+            'width' => '400'
+        ]
+    ]
 ]);
 ```  
 
-This results in a URL like
-
-```  
-https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg?tr=h-300%2Cw-400  
+#### Response
+```
+https://ik.imagekit.io/your_imagekit_id/endpoint/tr:h-300,w-400/default-image.jpg  
 ```  
 
 The `$imageKit->url()` method accepts the following parameters
@@ -110,54 +116,112 @@ The `$imageKit->url()` method accepts the following parameters
 | signed                | Optional. Boolean. The default value is `false`. If set to `true`, the SDK generates a signed image URL adding the image signature to the image URL. This can only be used if you are creating the URL with the `urlEndpoint` and `path` parameters and not with the `src` parameter.                                                                                                                                                                                                                                                                                                             |  
 | expireSeconds         | Optional. Integer. It is used along with the `signed` parameter. It specifies the time in seconds from now when the signed URL will expire. If specified, the URL contains the expiry timestamp in the URL, and the image signature is modified accordingly.                                                                                                                                                                                                                                                                                                                                |  
 
-#### Examples of generating URLs
+### Examples of generating URLs
 
-**1. Chained Transformations as a query parameter**
+### 1. Chained Transformations as a query parameter
 
+#### Example
 ```php  
 $imageURL = $imageKit->url([
     'path' => '/default-image.jpg',
-    'url_endpoint' => 'https://ik.imagekit.io/your_imagekit_id/endpoint/', 
-    'transformation' => [['height' => '300', 'width' => '400',], ['rotation' => 90],], 
+    'urlEndpoint' => 'https://ik.imagekit.io/your_imagekit_id/endpoint/', 
+    'transformation' => [
+        [
+            'height' => '300',
+            'width' => '400'
+        ],
+        [
+            'rotation' => 90
+        ],
+    ], 
     'transformationPosition' => 'query'
 ]);
 ```  
-
+#### Response
 ```  
-https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg?tr=h-300%2Cw-400%3Art-90  
+https://ik.imagekit.io/your_imagekit_id/endpoint/tr:h-300,w-400:rt-90/default-image.jpg
 ```  
 
-**2. Sharpening and contrast transforms with a progressive JPG image**
+### 2. Image enhancement & color manipulation
 
-Some transformations like [Sharpening (https://docs.imagekit.io/features/image-transformations/image-enhancement-and-color-manipulation) can be added to the URL with or without any other value. To use such transforms without specifying a value, specify the value as "-" in the transformation object. Otherwise, specify the value that you want to be added to this transformation.
+Some transformations like [Contrast stretch](https://docs.imagekit.io/features/image-transformations/image-enhancement-and-color-manipulation#contrast-stretch-e-contrast) , [Sharpen](https://docs.imagekit.io/features/image-transformations/image-enhancement-and-color-manipulation#sharpen-e-sharpen) and [Unsharp mask](https://docs.imagekit.io/features/image-transformations/image-enhancement-and-color-manipulation#unsharp-mask-e-usm) can be added to the URL with or without any other value. To use such transforms without specifying a value, specify the value as "-" in the transformation object. Otherwise, specify the value that you want to be added to this transformation.
 
+#### Example
 ```php  
 $imageURL = $imageKit->url([
     'src' => 'https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg', 
-    'transformation' => [['format' => 'jpg', 'progressive' => true, 'effectSharpen' => '-', 'effectContrast' => '1']]
+    'transformation' => 
+    [
+        [
+            'format' => 'jpg', 
+            'progressive' => true,
+            'effectSharpen' => '-', 
+            'effectContrast' => '1'
+        ]
+    ]
 ]);
 ```  
-
+#### Response
 ```  
-//Note that because `src` parameter was used, the transformation string gets added as a query parameter `tr`  
-https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg?tr=f-jpg%2Cpr-true%2Ce-sharpen%2Ce-contrast-1  
+https://ik.imagekit.io/0wbiqzorc/tr:f-jpg,pr-true,e-sharpen,e-contrast-1/default-image.jpg 
 ```  
 
-**3. Signed URL that expires in 300 seconds with the default URL endpoint and other query parameters**
+### 3. Signed URL
 
+Signed URL that expires in 300 seconds with the default URL endpoint and other query parameters.
+For detailed explanation on Signed URL refer to this [Official Doc](https://docs.imagekit.io/features/security/signed-urls).
+
+#### Example
 ```php  
 $imageURL = $imageKit->url([
     "path" => "/default-image.jpg",
-    "queryParameters" => ["v" => "123",],
-    "transformation" => [["height" => "300", "width" => "400"],],
+    "queryParameters" => 
+    [
+        "v" => "123"
+    ],
+    "transformation" => [
+        [
+            "height" => "300",
+            "width" => "400"
+        ]
+    ],
     "signed" => true,
     "expireSeconds" => 300,
 ]);
 ```  
-
+#### Response
 ```  
 https://ik.imagekit.io/your_imagekit_id/tr:h-300,w-400/default-image.jpg?v=123&ik-t=1567358667&ik-s=f2c7cdacbe7707b71a83d49cf1c6110e3d701054  
 ```  
+### 4. Conditional Transformation
+
+Transformations can be applied conditionally i.e. only if certain properties of the input asset satisfy a given condition.
+Please find the allowed operators list [here]().
+```php
+$imageURL = $imageKit->url([
+    'src' => 'https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg',
+    'transformation' => [
+        [
+            'if' => [
+                'condition' => [        // required
+                    'originalHeight' => '100',
+                    'operator' => '<'   // required
+                ],
+                'true' => [             // required
+                    'width' =>  '200',
+                ],
+                'false' => [
+                    'width' =>  '300',
+                ],
+            ],
+        ]
+    ],
+]);
+```
+#### Response
+```
+https://ik.imagekit.io/your_imagekit_id/endpoint/tr:if-ih_lt_100,w-200,if-else,w-300,if-end/default-image.jpg
+```
 
 #### List of supported transformations
 
@@ -222,6 +286,33 @@ The complete list of transformations supported and their usage in ImageKit can b
 | overlayTextInnerAlignment     | otia                    |  
 | overlayRadius                 | or                      |  
 | overlayImageFocus             | oifo                    |  
+
+
+#### List of Supported Properties For Condition Transformation
+
+For detailed explanation refer to [Supported Properties](https://docs.imagekit.io/features/image-transformations/conditional-transformations#supported-properties).
+|   Supported Property Name     | Translates to parameter |  
+| ----------------------------- | ----------------------- |  
+| height                        | h                       |  
+| width                         | w                       |  
+| aspectRatio                   | ar                      |  
+| originalHeight                | ih                      |  
+| originalWidth                 | iw                      |  
+| originalAspectRatio           | iar                     |  
+
+
+#### List of Supported Operators For Condition Transformation
+
+For detailed explanation refer to [Supported Operators](https://docs.imagekit.io/features/image-transformations/conditional-transformations#supported-operators).
+|   Supported Property Name     | Translates to parameter |  
+| ----------------------------- | ----------------------- |  
+| ==                            | eq                      |  
+| !=                            | w                       |  
+| >                             | gt                      |  
+| >=                            | gte                     |  
+| <                             | lt                      |  
+| <=                            | lte                     |  
+
 
 ## Server-side File Upload
 

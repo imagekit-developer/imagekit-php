@@ -67,11 +67,28 @@ class SupportedTransforms
         'overlayImageFocus' => 'oifo'
     ];
 
+    private static $ifTransforms = [
+        'height' => 'h',
+        'width' => 'w',
+        'aspectRatio' => 'ar',
+        'originalHeight' => 'ih',
+        'originalWidth' => 'iw',
+        'originalAspectRatio' => 'iar',
+    ];
+
     /**
      * @return array<string, string>
      */
     public static function get()
     {
         return self::$transforms;
+    }
+    
+    /**
+     * @return array<string, string>
+     */
+    public static function getIf()
+    {
+        return self::$ifTransforms;
     }
 }

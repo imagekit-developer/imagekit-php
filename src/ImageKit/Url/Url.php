@@ -5,6 +5,10 @@ namespace ImageKit\Url;
 use ImageKit\ImageKit;
 use ImageKit\Utils\Transformation;
 
+use ImageKit\Constants\ErrorMessages;
+use ImageKit\Resource\GuzzleHttpWrapper;
+use ImageKit\Utils\Response;
+
 /**
  *
  */
@@ -201,27 +205,84 @@ class Url
         for ($i = 0; $i < count($transformation); $i++) {
             $parsedTransformStep = [];
             foreach ($transformation[$i] as $key => $value) {
-                if (is_bool($value)) {
-                    $value = $value ? 'true' : 'false';
-                }
-                $value = (string)$value;
+                if($key=='if'){
+                    if(is_array($value)){
+                        
+                        // if condition
+                        $if_condition = 'if-';
+                        if(isset($value['condition'])){
+                            if(is_array($value['condition'])){
+                                
+                                if(sizeof($value['condition'])>0){
+                                    $if_condition_key = array_keys($value['condition'])[0];
+                                    $if_condition_value = array_values($value['condition'])[0];
+            
+                                    $if_condition_operand = array_values($value['condition'])[1];
+            
+                                    $if_condition_operand = Transformation::getTransformConditionOperand($if_condition_operand);
+                                    $if_condition_key = Transformation::getTransformKey($if_condition_key,true);
+            
+                                    $if_condition .= $if_condition_key.'_';
+                                    $if_condition .= $if_condition_operand.'_';
+                                    $if_condition .= $if_condition_value;
+            
+                                    array_push($parsedTransformStep, $if_condition);
+                                }
+                                else{
+                                    throw new \InvalidArgumentException(ErrorMessages::$URL_GENERATION_IF_CONDITION_EMPTY_ARRAY['message']);
+                                }
+                            }
+                            else{
+                                throw new \InvalidArgumentException(ErrorMessages::$URL_GENERATION_IF_CONDITION_NON_ARRAY['message']);
+                            }
+                        }
+                        else{
+                            throw new \InvalidArgumentException(ErrorMessages::$URL_GENERATION_IF_CONDITION_MISSING['message']);
+                        }
 
-                $transformKey = Transformation::getTransformKey($key);
-                if (empty($transformKey)) {
-                    continue;
-                }
-                if ((empty($value) && $value !== '0') || $value === '-') {
-                    array_push($parsedTransformStep, $transformKey);
-                } else {
-                    $transformationUtils = Transformation::getTransformKeyValueDelimiter();
-                    $finalTransformation = $transformKey . $transformationUtils;
-                    if (strpos($value, '/') !== false) {
-                        $finalTransformation .= str_replace('/', '@@', rtrim(ltrim($value, '/'), '/'));
-                    } else {
-                        $finalTransformation .= $value;
+                        // if true
+                        
+                        if(isset($value['true'])){
+                            $if_true = $value['true'];
+                            if(is_array($if_true)){
+                                if(sizeof($if_true)>0){
+                                    foreach ($if_true as $if_true_key => $if_true_value) {
+                                        $transform_block = $this->buildingTransformationBlocks($if_true_key,$if_true_value);
+                                        array_push($parsedTransformStep, $transform_block);
+                                    }
+                                }
+                                else{
+                                    throw new \InvalidArgumentException(ErrorMessages::$URL_GENERATION_IF_TRUE_EMPTY_ARRAY['message']);
+                                }
+                            }
+                            else{
+                                throw new \InvalidArgumentException(ErrorMessages::$URL_GENERATION_IF_TRUE_NON_ARRAY['message']);
+                            }
+                        }
+                        else{
+                            throw new \InvalidArgumentException(ErrorMessages::$URL_GENERATION_IF_TRUE_MISSING['message']);
+                        }
+
+
+                        // if false
+                        if(isset($value['false'])){
+                            array_push($parsedTransformStep, 'if-else');
+    
+                            $if_false = $value['false'];
+                            foreach ($if_false as $if_false_key => $if_false_value) {
+                                $transform_block = $this->buildingTransformationBlocks($if_false_key,$if_false_value);
+                                array_push($parsedTransformStep, $transform_block);
+                            }
+                        }
+                        array_push($parsedTransformStep, 'if-end');
+
                     }
-                    array_push($parsedTransformStep, $finalTransformation);
                 }
+                else{
+                    $transform_block = $this->buildingTransformationBlocks($key,$value);
+                    array_push($parsedTransformStep, $transform_block);
+                }
+                
             }
             $delimiter = Transformation::getTransformDelimiter();
             $List = implode($delimiter, $parsedTransformStep);
@@ -231,6 +292,34 @@ class Url
         return implode($setChainDelimiter, $parsedTransforms);
     }
 
+    /**
+     * @param $key
+     * @param $value
+     * @return array
+     */
+    private function buildingTransformationBlocks($key, $value){
+        if (is_bool($value)) {
+            $value = $value ? 'true' : 'false';
+        }
+
+        $value = (string)$value;
+        $transformKey = Transformation::getTransformKey($key);
+        if (empty($transformKey)) {
+            return [];
+        }
+        if ((empty($value) && $value !== '0') || $value === '-') {
+            return $transformKey;
+        } else {
+            $transformationUtils = Transformation::getTransformKeyValueDelimiter();
+            $finalTransformation = $transformKey . $transformationUtils;
+            if (strpos($value, '/') !== false) {
+                $finalTransformation .= str_replace('/', '@@', rtrim(ltrim($value, '/'), '/'));
+            } else {
+                $finalTransformation .= $value;
+            }
+            return $finalTransformation;
+        }
+    }
 
     /**
      * @param $string

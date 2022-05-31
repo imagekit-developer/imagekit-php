@@ -40,6 +40,14 @@ class ErrorMessages
     public static $URL_GENERATION_PARAMETER_EMPTY_ARRAY = ['message' => 'URL Generation API accepts an array of parameters, empty array passed.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $URL_GENERATION_URL_INVALID = ['message' => 'Invalid URL provided in the request.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $URL_GENERATION_TRANSFORMATION_PARAMETER_INVALID = ['message' => 'Transformation Parameter accepts an array, not array or null provided.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $URL_GENERATION_IF_CONDITION_MISSING = ['message' => 'Missing Parameter "condition" in if statement.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $URL_GENERATION_IF_CONDITION_NON_ARRAY = ['message' => 'Invalid Parameter. "condition" accepts an array of parameters, non array value passed.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $URL_GENERATION_IF_CONDITION_EMPTY_ARRAY = ['message' => '"condition" accepts an array of parameters, empty array passed.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $URL_GENERATION_IF_CONDITION_INVALID_PROPERTY = ['message' => 'Invalid property applied in the condition. Refer to SDK docs for allowed properties.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $URL_GENERATION_IF_CONDITION_INVALID_OPERAND = ['message' => 'Invalid operator applied. Allowed operators are "==","!=",">",">=","<","<="', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $URL_GENERATION_IF_TRUE_MISSING = ['message' => 'Missing Parameter "true" in if statement.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $URL_GENERATION_IF_TRUE_NON_ARRAY = ['message' => 'Invalid Parameter. "true" accepts an array of parameters, non array value passed.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $URL_GENERATION_IF_TRUE_EMPTY_ARRAY = ['message' => '"true" accepts an array of parameters, empty array passed.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $COPY_FILE_PARAMETER_MISSING = ['message' => 'Copy File API accepts an array, null passed.', 'help' =>
         'For support kindly contact us at support@imagekit.io .'];
     public static $COPY_FILE_PARAMETER_NON_ARRAY = ['message' => 'Copy File API accepts an array of parameters, non array value passed.', 'help' => 'For support kindly contact us at support@imagekit.io .'];

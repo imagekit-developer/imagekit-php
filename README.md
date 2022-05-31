@@ -196,7 +196,9 @@ https://ik.imagekit.io/your_imagekit_id/tr:h-300,w-400/default-image.jpg?v=123&i
 ### 4. Conditional Transformation
 
 Transformations can be applied conditionally i.e. only if certain properties of the input asset satisfy a given condition.
-Please find the allowed operators list [here]().
+- Please find the allowed [**Conditional Properties list**](#list-of-supported-properties-for-condition-transformation).
+- Please find the allowed [**Conditional Operators list**](#list-of-supported-operators-for-condition-transformation).
+
 ```php
 $imageURL = $imageKit->url([
     'src' => 'https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg',
@@ -223,7 +225,7 @@ $imageURL = $imageKit->url([
 https://ik.imagekit.io/your_imagekit_id/endpoint/tr:if-ih_lt_100,w-200,if-else,w-300,if-end/default-image.jpg
 ```
 
-#### List of supported transformations
+### List of supported transformations
 
 The complete list of transformations supported and their usage in ImageKit can be found [here](https://docs.imagekit.io/features/image-transformations). The SDK gives a name to each transformation parameter, making the code simpler and readable. If a transformation is supported in ImageKit, but a name for it cannot be found in the table below, use the transformation code from ImageKit docs as the name when using it in the `url` function.
 
@@ -288,7 +290,7 @@ The complete list of transformations supported and their usage in ImageKit can b
 | overlayImageFocus             | oifo                    |  
 
 
-#### List of Supported Properties For Condition Transformation
+### List of Supported Properties For Condition Transformation
 
 For detailed explanation refer to [Supported Properties](https://docs.imagekit.io/features/image-transformations/conditional-transformations#supported-properties).
 |   Supported Property Name     | Translates to parameter |  
@@ -301,7 +303,7 @@ For detailed explanation refer to [Supported Properties](https://docs.imagekit.i
 | originalAspectRatio           | iar                     |  
 
 
-#### List of Supported Operators For Condition Transformation
+### List of Supported Operators For Condition Transformation
 
 For detailed explanation refer to [Supported Operators](https://docs.imagekit.io/features/image-transformations/conditional-transformations#supported-operators).
 |   Supported Property Name     | Translates to parameter |  

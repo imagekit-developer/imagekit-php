@@ -824,8 +824,14 @@ class ImageKit
      * @param string $secondPHash
      * @return int
      */
-    public function pHashDistance($firstPHash, $secondPHash)
+    public function pHashDistance($firstPHash=null, $secondPHash=null)
     {
+        if(!isset($firstPHash) || empty($firstPHash)){
+            return Response::respond(true, ((object)ErrorMessages::$PHASH_DISTANCE_FIRST_PHASH_MISSING));
+        }
+        if(!isset($secondPHash) || empty($secondPHash)){
+            return Response::respond(true, ((object)ErrorMessages::$PHASH_DISTANCE_SECOND_PHASH_MISSING));
+        }
         return Phash::pHashDistance($firstPHash, $secondPHash);
     }
 

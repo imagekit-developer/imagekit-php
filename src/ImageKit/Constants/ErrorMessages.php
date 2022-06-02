@@ -111,5 +111,7 @@ class ErrorMessages
         'For support kindly contact us at support@imagekit.io .'];
     public static $UPDATE_CUSTOM_METADATA_ID_MISSING = ['message' => 'Missing Custom Metadata Field ID parameter for this request', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $DELETE_CUSTOM_METADATA_ID_MISSING = ['message' => 'Missing Custom Metadata Field ID parameter for this request', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $PHASH_DISTANCE_FIRST_PHASH_MISSING = ['message' => 'Missing First pHash parameter for this request', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $PHASH_DISTANCE_SECOND_PHASH_MISSING = ['message' => 'Missing Second pHash parameter for this request', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     
 }

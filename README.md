@@ -113,7 +113,7 @@ The `$imageKit->url()` method accepts the following parameters
 | transformation        | Optional. An array of objects specifying the transformation to be applied in the URL. The transformation name and the value should be specified as a key-value pair in the object. Different steps of a [chained transformation](https://docs.imagekit.io/features/image-transformations/chained-transformations) can be specified as different objects of the array. The complete list of supported transformations in the SDK and some examples of using them are given later. If you use a transformation name that is not specified in the SDK, it gets applied as it is in the URL. |  
 | transformationPosition | Optional. The default value is `path` that places the transformation string as a path parameter in the URL. It can also be specified as `query`, which adds the transformation string as the query parameter `tr` in the URL. If you use the `src` parameter to create the URL, the transformation string is always added as a query parameter.                                                                                                                                                                                                                                                 |  
 | queryParameters       | Optional. These are the other query parameters that you want to add to the final URL. These can be any query parameters and are not necessarily related to ImageKit. Especially useful if you want to add some versioning parameters to your URLs.                                                                                                                                                                                                                                                                                                                                           |  
-| signed                | Optional. Boolean. The default value is `false`. If set to `true`, the SDK generates a signed image URL adding the image signature to the image URL. This can only be used if you are creating the URL with the `urlEndpoint` and `path` parameters and not with the `src` parameter.                                                                                                                                                                                                                                                                                                             |  
+| signed                | Optional. Boolean. The default value is `false`. If set to `true`, the SDK generates a signed image URL adding the image signature to the image URL.                                                                                                                                                                                                                                                                                                              |  
 | expireSeconds         | Optional. Integer. It is used along with the `signed` parameter. It specifies the time in seconds from now when the signed URL will expire. If specified, the URL contains the expiry timestamp in the URL, and the image signature is modified accordingly.                                                                                                                                                                                                                                                                                                                                |  
 
 ### Examples of generating URLs
@@ -139,7 +139,7 @@ $imageURL = $imageKit->url([
 ```  
 #### Response
 ```  
-https://ik.imagekit.io/your_imagekit_id/endpoint/tr:h-300,w-400:rt-90/default-image.jpg
+https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg?tr=h-300,w-400:rt-90
 ```  
 
 ### 2. Image enhancement & color manipulation
@@ -191,7 +191,7 @@ $imageURL = $imageKit->url([
 ```  
 #### Response
 ```  
-https://ik.imagekit.io/your_imagekit_id/tr:h-300,w-400/default-image.jpg?v=123&ik-t=1567358667&ik-s=f2c7cdacbe7707b71a83d49cf1c6110e3d701054  
+https://ik.imagekit.io/your_imagekit_id/tr:h-300,w-400/default-image.jpg?v=123&ik-t=1654183277&ik-s=f98618f264a9ccb3c017e7b7441e86d1bc9a7ebb
 ```  
 ### 4. Conditional Transformation
 

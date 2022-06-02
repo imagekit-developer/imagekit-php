@@ -48,6 +48,7 @@ class ErrorMessages
     public static $URL_GENERATION_IF_TRUE_MISSING = ['message' => 'Missing Parameter "true" in if statement.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $URL_GENERATION_IF_TRUE_NON_ARRAY = ['message' => 'Invalid Parameter. "true" accepts an array of parameters, non array value passed.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $URL_GENERATION_IF_TRUE_EMPTY_ARRAY = ['message' => '"true" accepts an array of parameters, empty array passed.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $URL_GENERATION_TRANSFORMATION_QUERY_INVALID = ['message' => 'Invalid value provided for "transformationPosition". Supported values are "path" and "query"', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $COPY_FILE_PARAMETER_MISSING = ['message' => 'Copy File API accepts an array, null passed.', 'help' =>
         'For support kindly contact us at support@imagekit.io .'];
     public static $COPY_FILE_PARAMETER_NON_ARRAY = ['message' => 'Copy File API accepts an array of parameters, non array value passed.', 'help' => 'For support kindly contact us at support@imagekit.io .'];

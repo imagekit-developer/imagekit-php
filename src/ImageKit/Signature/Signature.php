@@ -4,7 +4,10 @@
 namespace ImageKit\Signature;
 
 use ImageKit\Configuration\Configuration;
+
+use ImageKit\Constants\ErrorMessages;
 use ImageKit\Resource\GuzzleHttpWrapper;
+use ImageKit\Utils\Response;
 
 /**
  *
@@ -42,7 +45,14 @@ class Signature
             $authParameters['signature'] = $signature;
 
         }
-        return (object)$authParameters;
+        
+        $content = [];
+        $content['body'] = (object)$authParameters;
+        $content['headers'] = [];
+        $content['statusCode'] = null;
+
+        return Response::respond(false, ($content));
+
     }
 
 }

@@ -54,12 +54,11 @@ php sample.php
 ```  
   
 ## URL generation  
-
 ImageKit provides inbuild media storage and integration with external origins. Refer to the [Documentation](https://docs.imagekit.io/integration/url-endpoints) to learn more about URL endpoints and external [Image Origins](https://docs.imagekit.io/integration/configure-origin) supported by ImageKit.  
 
 ### Using Image path and image hostname or endpoint 
-This method allows you to create a URL using the image's path and the ImageKit URL endpoint (urlEndpoint) you want to use to access the image.   
   
+This method allows you to create a URL using the image's path and the ImageKit URL endpoint (urlEndpoint) you want to use to access the image.   
   
 #### Example
 ```php  
@@ -103,7 +102,7 @@ $imageURL = $imageKit->url([
 https://ik.imagekit.io/your_imagekit_id/endpoint/tr:h-300,w-400/default-image.jpg  
 ```  
 
-The `$imageKit->url()` method accepts the following parameters
+The `$imageKit->url()` method accepts the following parameters.
 
 | Option                | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |  
 | :-------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |  
@@ -114,9 +113,24 @@ The `$imageKit->url()` method accepts the following parameters
 | transformationPosition | Optional. The default value is `path` that places the transformation string as a path parameter in the URL. It can also be specified as `query`, which adds the transformation string as the query parameter `tr` in the URL. If you use the `src` parameter to create the URL, the transformation string is always added as a query parameter.                                                                                                                                                                                                                                                 |  
 | queryParameters       | Optional. These are the other query parameters that you want to add to the final URL. These can be any query parameters and are not necessarily related to ImageKit. Especially useful if you want to add some versioning parameters to your URLs.                                                                                                                                                                                                                                                                                                                                           |  
 | signed                | Optional. Boolean. The default value is `false`. If set to `true`, the SDK generates a signed image URL adding the image signature to the image URL.                                                                                                                                                                                                                                                                                                              |  
-| expireSeconds         | Optional. Integer. It is used along with the `signed` parameter. It specifies the time in seconds from now when the signed URL will expire. If specified, the URL contains the expiry timestamp in the URL, and the image signature is modified accordingly.                                                                                                                                                                                                                                                                                                                                |  
+| expireSeconds         | Optional. Integer. It is used along with the `signed` parameter. It specifies the time in seconds from now when the signed URL will expire. If specified, the URL contains the expiry timestamp in the URL, and the image signature is modified accordingly.                                                                                                                                                
 
-### Examples of generating URLs
+### Applying Chained Transformations, Common Image Manipulations, Signed URL & Conditional Transformation
+
+This section covers the basics:
+
+* [Chained Transformations as a query parameter](#1-chained-transformations-as-a-query-parameter)
+* [Image Enhancement & Color Manipulation](#2-image-enhancement-and-color-manipulation)
+* [Resizing images](#3-resizing-images)
+* [Quality manipulation](#4-quality-manipulation)
+* [Adding overlays to images](#5-adding-overlays-to-images)
+* [Signed URL](#6-signed-url)
+* [Conditional Transformation](6#conditional-transformation)
+
+The PHP SDK gives a name to each transformation parameter e.g. `height` for `h` and `width` for `w` parameter. It makes your code more readable.  See the [Full list of supported transformations](#list-of-supported-transformations) in PHP SDK on Github.&#x20;
+
+👉 If the property does not match any of the available options, it is added as it is.\
+👉 Note that you can also use `h` and `w` parameter instead of `height` and `width`. 
 
 ### 1. Chained Transformations as a query parameter
 
@@ -142,7 +156,7 @@ $imageURL = $imageKit->url([
 https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg?tr=h-300,w-400:rt-90
 ```  
 
-### 2. Image enhancement & color manipulation
+### 2. Image enhancement and color manipulation
 
 Some transformations like [Contrast stretch](https://docs.imagekit.io/features/image-transformations/image-enhancement-and-color-manipulation#contrast-stretch-e-contrast) , [Sharpen](https://docs.imagekit.io/features/image-transformations/image-enhancement-and-color-manipulation#sharpen-e-sharpen) and [Unsharp mask](https://docs.imagekit.io/features/image-transformations/image-enhancement-and-color-manipulation#unsharp-mask-e-usm) can be added to the URL with or without any other value. To use such transforms without specifying a value, specify the value as "-" in the transformation object. Otherwise, specify the value that you want to be added to this transformation.
 
@@ -163,7 +177,7 @@ $imageURL = $imageKit->url([
 ```  
 #### Response
 ```  
-https://ik.imagekit.io/demo/tr:f-jpg,pr-true,e-sharpen,e-contrast-1/default-image.jpg 
+https://ik.imagekit.io/0wbiqzorc/tr:f-jpg,pr-true,e-sharpen,e-contrast-1/default-image.jpg 
 ```  
 
 ### 3. Resizing images
@@ -235,6 +249,7 @@ https://ik.imagekit.io/demo/tr:w-300,h-300,oi-default-image.jpg,ow-100,ox-0,oib-
 ```
 
 ### 6. Signed URL
+
 Signed URL that expires in 300 seconds with the default URL endpoint and other query parameters.
 For detailed explanation on Signed URL refer to this [Official Doc](https://docs.imagekit.io/features/security/signed-urls).
 
@@ -242,12 +257,11 @@ For detailed explanation on Signed URL refer to this [Official Doc](https://docs
 ```php  
 $imageURL = $imageKit->url([
     "path" => "/default-image.jpg",
-    "queryParameters" =>
+    "queryParameters" => 
     [
         "v" => "123"
     ],
-    "transformation" =>
-    [
+    "transformation" => [
         [
             "height" => "300",
             "width" => "400"
@@ -261,11 +275,15 @@ $imageURL = $imageKit->url([
 ```  
 https://ik.imagekit.io/your_imagekit_id/tr:h-300,w-400/default-image.jpg?v=123&ik-t=1654183277&ik-s=f98618f264a9ccb3c017e7b7441e86d1bc9a7ebb
 ```  
+
+You can manage [Security Settings](https://docs.imagekit.io/features/security#restricting-unsigned-urls) from the dashboard to prevent unsigned URLs usage. In that case, if the URL doesn't have signature `ik-s` parameter or the signature is invalid, ImageKit will return a forbidden error instead of an actual image.
+
+
 ### 7. Conditional Transformation
 
 Transformations can be applied conditionally i.e. only if certain properties of the input asset satisfy a given condition.
-- Please find the allowed [Conditional Properties list](#list-of-supported-properties-for-condition-transformation).
-- Please find the allowed [Conditional Operators list](#list-of-supported-operators-for-condition-transformation).
+- Please find the allowed [**Conditional Properties list**](#list-of-supported-properties-for-condition-transformation).
+- Please find the allowed [**Conditional Operators list**](#list-of-supported-operators-for-condition-transformation).
 
 ```php
 $imageURL = $imageKit->url([

@@ -1727,12 +1727,24 @@ $imageKit->getAuthenticationParameters($token = "", $expire = 0);
 
 Returns
 
-```php  
-array(
-    "token" => "unique_token",
-    "expire" => "valid_expiry_timestamp",
-    "signature" => "generated_signature",
-);
+```json
+{
+    "error": {
+        "token": "5d1c4a22-54f2-40bb-9e8c-99daaeeb7307",
+        "expire": 1654207193,
+        "signature": "a03a88b814570a3d92919c16a1b8bd4491f053c3"
+    },
+    "result": null,
+    "responseMetadata": {
+        "headers": [ ],
+        "raw": {
+            "token": "5d1c4a22-54f2-40bb-9e8c-99daaeeb7307",
+            "expire": 1654207193,
+            "signature": "a03a88b814570a3d92919c16a1b8bd4491f053c3"
+        },
+        "statusCode": null
+    }
+}
 ```  
 
 Both the `token` and `expire` parameters are optional. If not specified, the SDK generates a random token and also generates a valid expiry timestamp internally. The value of the `token` and `expire` used to create the signature is always returned in the response, whether they are provided in input or not.

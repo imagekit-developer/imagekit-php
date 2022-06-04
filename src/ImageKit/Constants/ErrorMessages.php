@@ -24,9 +24,13 @@ class ErrorMessages
     public static $UPDATE_DATA_TAGS_INVALID = ['message' => 'Invalid tags parameter for this request', 'help' => "tags should be passed as null or an array like ['tag1', 'tag2']"];
     public static $UPDATE_DATA_COORDS_INVALID = ['message' => 'Invalid customCoordinates parameter for this request', 'help' => "customCoordinates should be passed as null or a string like 'x,y,width,height'"];
     public static $LIST_FILES_INPUT_MISSING = ['message' => 'Missing options for list files', 'help' => 'if you do not want to pass any parameter for listing, pass an empty object'];
-    public static $MISSING_UPLOAD_DATA = ['message' => 'Missing data for upload', 'help' => ''];
-    public static $MISSING_UPLOAD_FILE_PARAMETER = ['message' => 'Missing file parameter for upload', 'help' => ''];
-    public static $MISSING_UPLOAD_FILENAME_PARAMETER = ['message' => 'Missing fileName parameter for upload', 'help' => ''];
+    public static $UPLOAD_FILE_PARAMETER_MISSING = ['message' => 'Upload API accepts an array of parameters, null passed', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $UPLOAD_FILE_PARAMETER_NON_ARRAY = ['message' => 'Upload API accepts an array of parameters, non array value passed', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $UPLOAD_FILE_PARAMETER_EMPTY_ARRAY = ['message' => 'Upload API accepts an array of parameters, empty array passed', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $UPLOAD_FILE_PARAMETER_OPTIONS_NON_ARRAY = ['message' => 'Upload API parameter "options" accepts an array of parameters, non array value passed', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $MISSING_UPLOAD_DATA = ['message' => 'Missing data for upload', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $MISSING_UPLOAD_FILE_PARAMETER = ['message' => 'Missing file parameter for upload', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $MISSING_UPLOAD_FILENAME_PARAMETER = ['message' => 'Missing fileName parameter for upload', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $INVALID_PHASH_VALUE = ['message' => 'Invalid pHash value', 'help' => 'Both pHash strings must be valid hexadecimal numbers'];
     public static $MISSING_PHASH_VALUE = ['message' => 'Missing pHash value', 'help' => 'Both pHash strings must be valid hexadecimal numbers'];
     public static $UNEQUAL_STRING_LENGTH = ['message' => 'Unequal pHash string length', 'help' => 'For distance calucation, the two pHash strings must have equal length'];

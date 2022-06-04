@@ -45,7 +45,7 @@ class Response
         if(is_array($response)){
             if($response['statusCode']==100){
                 $response['statusCode']=null;
-                $response['body'] = 'Network Failed';
+                $response['body'] = 'Network error occured';
                 $isError=true;
             }
         }

@@ -20,18 +20,7 @@ class Upload
     {
         $opts = (object)$uploadOptions;
 
-        if (!is_object($opts)) {
-            return Response::respond(true, ((object)ErrorMessages::$MISSING_UPLOAD_DATA));
-        }
-
-        if (empty($opts->file)) {
-            return Response::respond(true, ((object)ErrorMessages::$MISSING_UPLOAD_FILE_PARAMETER));
-        }
-
-        if (empty($opts->fileName)) {
-            return Response::respond(true, ((object)ErrorMessages::$MISSING_UPLOAD_FILENAME_PARAMETER));
-        }
-
+        
         $file = $opts->file;
         $fileName = $opts->fileName;
 
@@ -64,5 +53,6 @@ class Upload
         }
 
         return Response::respond(false, ($content));
+        
     }
 }

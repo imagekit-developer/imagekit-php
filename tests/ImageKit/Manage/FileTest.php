@@ -43,7 +43,7 @@ final class FileTest extends TestCase
 
         $response = $this->client->listFiles();
 
-        $el = get_object_vars($response->success[0]);
+        $el = get_object_vars($response->result[0]);
         FileTest::assertEquals([
             'type' => 'file',
             'name' => 'default-image.jpg',
@@ -99,7 +99,7 @@ final class FileTest extends TestCase
         $this->stubHttpClient('get', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
         $response = $this->client->listFiles($parameters);
 
-        $el = get_object_vars($response->success[0]);
+        $el = get_object_vars($response->result[0]);
         FileTest::assertEquals([
             'type' => 'file',
             'name' => 'default-image.jpg',
@@ -140,8 +140,8 @@ final class FileTest extends TestCase
 
         $response = $this->client->getFileDetails($fileId);
 
-        FileTest::assertNull($response->success);
-        FileTest::assertEquals('Missing File ID parameter for this request', $response->err->message);
+        FileTest::assertNull($response->result);
+        FileTest::assertEquals('Missing File ID parameter for this request', $response->error);
     }
 
     /**
@@ -170,7 +170,7 @@ final class FileTest extends TestCase
 
         $response = $this->client->getFileDetails($fileId);
 
-        $el = get_object_vars($response->success[0]);
+        $el = get_object_vars($response->result[0]);
         FileTest::assertEquals([
             'type' => 'file',
             'name' => 'Kishan_2ZgC5VGZI',
@@ -211,7 +211,7 @@ final class FileTest extends TestCase
 
         $response = $this->client->getDetails($fileId);
 
-        $el = get_object_vars($response->success[0]);
+        $el = get_object_vars($response->result[0]);
         FileTest::assertEquals([
             'type' => 'file',
             'name' => 'Kishan_2ZgC5VGZI',
@@ -290,8 +290,8 @@ final class FileTest extends TestCase
 
         $response = $this->client->getFileMetaData($fileId);
 
-        FileTest::assertNull($response->success);
-        FileTest::assertEquals('Missing File ID parameter for this request', $response->err->message);
+        FileTest::assertNull($response->result);
+        FileTest::assertEquals('Missing File ID parameter for this request', $response->error);
     }
 
     /**
@@ -355,9 +355,9 @@ final class FileTest extends TestCase
 
         $response = $this->client->getFileMetaData($fileId);
 
-        $el = get_object_vars($response->success[0]);
+        $el = get_object_vars($response->result[0]);
 
-        FileTest::assertNull($response->err);
+        FileTest::assertNull($response->error);
         FileTest::assertEquals(207097, $el['size']);
     }
 
@@ -422,9 +422,9 @@ final class FileTest extends TestCase
 
         $response = $this->client->getMetaData($fileId);
 
-        $el = get_object_vars($response->success[0]);
+        $el = get_object_vars($response->result[0]);
 
-        FileTest::assertNull($response->err);
+        FileTest::assertNull($response->error);
         FileTest::assertEquals(207097, $el['size']);
     }
 
@@ -445,8 +445,8 @@ final class FileTest extends TestCase
 
         $response = $this->client->deleteFile($fileId);
 
-        FileTest::assertNull($response->success);
-        FileTest::assertEquals('Missing File ID parameter for this request', $response->err->message);
+        FileTest::assertNull($response->result);
+        FileTest::assertEquals('Missing File ID parameter for this request', $response->error);
     }
 
     /**
@@ -462,7 +462,7 @@ final class FileTest extends TestCase
 
         $response = $this->client->deleteFile($fileId);
 
-        FileTest::assertNull($response->err);
+        FileTest::assertNull($response->error);
     }
 
     // Delete Files
@@ -481,8 +481,8 @@ final class FileTest extends TestCase
 
         $response = $this->client->bulkDeleteFiles($fileIds);
 
-        FileTest::assertNull($response->success);
-        FileTest::assertEquals('FileIds parameter is missing.', $response->err->message);
+        FileTest::assertNull($response->result);
+        FileTest::assertEquals('FileIds parameter is missing.', $response->error);
     }
 
     /**
@@ -503,7 +503,7 @@ final class FileTest extends TestCase
 
         $response = $this->client->bulkDeleteFiles($fileIds);
 
-        $el = get_object_vars($response->success[0]);
+        $el = get_object_vars($response->result[0]);
         FileTest::assertEquals($fileIds[0], $el['successfullyDeletedFileIds'][0]);
     }
 
@@ -526,7 +526,7 @@ final class FileTest extends TestCase
 
         $response = $this->client->bulkFileDeleteByIds(['fileIds' => $fileIds]);
 
-        $el = get_object_vars($response->success[0]);
+        $el = get_object_vars($response->result[0]);
         FileTest::assertEquals($fileIds[0], $el['successfullyDeletedFileIds'][0]);
     }
 
@@ -546,9 +546,9 @@ final class FileTest extends TestCase
 
         $response = $this->client->copyFile($source, $destination);
 
-        FileTest::assertNull($response->success);
-        FileTest::assertNotNull($response->err);
-        FileTest::assertEquals('Missing sourceFilePath and/or destinationPath for copy file.', $response->err->message);
+        FileTest::assertNull($response->result);
+        FileTest::assertNotNull($response->error);
+        FileTest::assertEquals('Missing sourceFilePath and/or destinationPath for copy file.', $response->error);
     }
 
     /**
@@ -565,9 +565,9 @@ final class FileTest extends TestCase
 
         $response = $this->client->copyFile($source, $destination);
 
-        FileTest::assertNull($response->success);
-        FileTest::assertNotNull($response->err);
-        FileTest::assertEquals('Missing sourceFilePath and/or destinationPath for copy file.', $response->err->message);
+        FileTest::assertNull($response->result);
+        FileTest::assertNotNull($response->error);
+        FileTest::assertEquals('Missing sourceFilePath and/or destinationPath for copy file.', $response->error);
     }
 
     /**
@@ -584,8 +584,8 @@ final class FileTest extends TestCase
 
         $response = $this->client->copyFile($source, $destination);
 
-        FileTest::assertNull($response->success);
-        FileTest::assertNull($response->err);
+        FileTest::assertNull($response->result);
+        FileTest::assertNull($response->error);
     }
 
     /**
@@ -602,9 +602,9 @@ final class FileTest extends TestCase
 
         $response = $this->client->moveFile($source, $destination);
 
-        FileTest::assertNull($response->success);
-        FileTest::assertNotNull($response->err);
-        FileTest::assertEquals('Missing sourceFilePath and/or destinationPath for copy file.', $response->err->message);
+        FileTest::assertNull($response->result);
+        FileTest::assertNotNull($response->error);
+        FileTest::assertEquals('Missing sourceFilePath and/or destinationPath for copy file.', $response->error);
     }
 
     /**
@@ -621,9 +621,9 @@ final class FileTest extends TestCase
 
         $response = $this->client->moveFile($source, $destination);
 
-        FileTest::assertNull($response->success);
-        FileTest::assertNotNull($response->err);
-        FileTest::assertEquals('Missing sourceFilePath and/or destinationPath for copy file.', $response->err->message);
+        FileTest::assertNull($response->result);
+        FileTest::assertNotNull($response->error);
+        FileTest::assertEquals('Missing sourceFilePath and/or destinationPath for copy file.', $response->error);
     }
 
     /**
@@ -640,8 +640,8 @@ final class FileTest extends TestCase
 
         $response = $this->client->moveFile($source, $destination);
 
-        FileTest::assertNull($response->success);
-        FileTest::assertNull($response->err);
+        FileTest::assertNull($response->result);
+        FileTest::assertNull($response->error);
     }
 
     /**
@@ -656,10 +656,13 @@ final class FileTest extends TestCase
 
         $this->stubHttpClient('put', new Response(204, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
-        $response = $this->client->renameFile($filePath, $newFileName);
+        $response = $this->client->renameFile([
+            'filePath' => $filePath, 
+            'newFileName' => $newFileName
+        ]);
 
-        FileTest::assertNotNull($response->err);
-        FileTest::assertEquals('Rename File Parameters are invalid.', $response->err->message);
+        FileTest::assertNotNull($response->error);
+        FileTest::assertEquals('Rename File Parameters are invalid.', $response->error);
     }
 
     /**
@@ -674,10 +677,13 @@ final class FileTest extends TestCase
 
         $this->stubHttpClient('put', new Response(204, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
-        $response = $this->client->renameFile($filePath, $newFileName);
+        $response = $this->client->renameFile([
+            'filePath' => $filePath, 
+            'newFileName' => $newFileName
+        ]);
 
-        FileTest::assertNotNull($response->err);
-        FileTest::assertEquals('Rename File Parameters are invalid.', $response->err->message);
+        FileTest::assertNotNull($response->error);
+        FileTest::assertEquals('Rename File Parameters are invalid.', $response->error);
     }
 
     /**
@@ -692,10 +698,13 @@ final class FileTest extends TestCase
 
         $this->stubHttpClient('put', new Response(204, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
-        $response = $this->client->renameFile($filePath, $newFileName);
+        $response = $this->client->renameFile([
+            'filePath' => $filePath, 
+            'newFileName' => $newFileName
+        ]);
 
-        FileTest::assertNotNull($response->success);
-        FileTest::assertNull($response->err);
+        FileTest::assertNotNull($response->result);
+        FileTest::assertNull($response->error);
     }
 
     /**
@@ -710,10 +719,13 @@ final class FileTest extends TestCase
 
         $this->stubHttpClient('put', new Response(204, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
-        $response = $this->client->renameFile($filePath, $newFileName, false);
+        $response = $this->client->renameFile([
+            'filePath' => $filePath, 
+            'newFileName' => $newFileName
+        ],false);
 
-        FileTest::assertNotNull($response->success);
-        FileTest::assertNull($response->err);
+        FileTest::assertNotNull($response->result);
+        FileTest::assertNull($response->error);
     }
 
     /**
@@ -728,11 +740,14 @@ final class FileTest extends TestCase
 
         $this->stubHttpClient('put', new Response(204, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
-        $response = $this->client->renameFile($filePath, $newFileName, true);
+        $response = $this->client->renameFile([
+            'filePath' => $filePath, 
+            'newFileName' => $newFileName
+        ],true);
 
-        FileTest::assertNotNull($response->success);
-        FileTest::assertNull($response->err);
-        FileTest::assertEquals('598821f949c0a938d57563bd', $response->success->purgeCacheId);
+        FileTest::assertNotNull($response->result);
+        FileTest::assertNull($response->error);
+        FileTest::assertEquals('598821f949c0a938d57563bd', $response->result->purgeCacheId);
     }
 
     /**
@@ -751,13 +766,16 @@ final class FileTest extends TestCase
 
         $this->stubHttpClient('put', new Response(207, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
-        $response = $this->client->renameFile($filePath, $newFileName, true);
+        $response = $this->client->renameFile([
+            'filePath' => $filePath, 
+            'newFileName' => $newFileName
+        ],true);
 
-        FileTest::assertNotNull($response->success);
-        FileTest::assertNull($response->err);
-        FileTest::assertEquals('File renamed successfully but we could not purge the CDN cache for old URL because of rate limits on purge API.', $response->success->message);
-        FileTest::assertEquals('For support kindly contact us at support@imagekit.io .', $response->success->help);
-        FileTest::assertEquals('PURGE_FAILED', $response->success->reason);
+        FileTest::assertNotNull($response->result);
+        FileTest::assertNull($response->error);
+        FileTest::assertEquals('File renamed successfully but we could not purge the CDN cache for old URL because of rate limits on purge API.', $response->result->message);
+        FileTest::assertEquals('For support kindly contact us at support@imagekit.io .', $response->result->help);
+        FileTest::assertEquals('PURGE_FAILED', $response->result->reason);
     }
 
     /**
@@ -790,8 +808,8 @@ final class FileTest extends TestCase
 
         $response = $this->client->updateFileDetails($fileId, $updateData);
 
-        $el = get_object_vars($response->success);
-        FileTest::assertNull($response->err);
+        $el = get_object_vars($response->result);
+        FileTest::assertNull($response->error);
         FileTest::assertEquals([
             'fileId' => '598821f949c0a938d57563bd',
             'type' => 'file',
@@ -836,8 +854,8 @@ final class FileTest extends TestCase
 
         $response = $this->client->updateDetails($fileId, $updateData);
 
-        $el = get_object_vars($response->success);
-        FileTest::assertNull($response->err);
+        $el = get_object_vars($response->result);
+        FileTest::assertNull($response->error);
         FileTest::assertEquals([
             'fileId' => '598821f949c0a938d57563bd',
             'type' => 'file',
@@ -883,8 +901,8 @@ final class FileTest extends TestCase
 
         $response = $this->client->updateFileDetails($fileId, $updateData);
 
-        FileTest::assertNull($response->success);
-        FileTest::assertEquals('Missing File ID parameter for this request', $response->err->message);
+        FileTest::assertNull($response->result);
+        FileTest::assertEquals('Missing File ID parameter for this request', $response->error);
     }
 
 
@@ -920,8 +938,8 @@ final class FileTest extends TestCase
 
         $response = $this->client->updateFileDetails($fileId, $updateData);
 
-        FileTest::assertNull($response->success);
-        FileTest::assertEquals('Missing file update data for this request', $response->err->message);
+        FileTest::assertNull($response->result);
+        FileTest::assertEquals('Missing file update data for this request', $response->error);
     }
 
     /**
@@ -956,8 +974,8 @@ final class FileTest extends TestCase
 
         $response = $this->client->updateFileDetails($fileId, $updateData);
 
-        FileTest::assertNull($response->success);
-        FileTest::assertEquals('Invalid tags parameter for this request', $response->err->message);
+        FileTest::assertNull($response->result);
+        FileTest::assertEquals('Invalid tags parameter for this request', $response->error);
     }
 
     /**
@@ -992,8 +1010,8 @@ final class FileTest extends TestCase
 
         $response = $this->client->updateFileDetails($fileId, $updateData);
 
-        FileTest::assertNull($response->success);
-        FileTest::assertEquals('Invalid customCoordinates parameter for this request', $response->err->message);
+        FileTest::assertNull($response->result);
+        FileTest::assertEquals('Invalid customCoordinates parameter for this request', $response->error);
     }
 
     public function testBulkAddTagsWhenFileIdsAreEmpty()
@@ -1011,8 +1029,8 @@ final class FileTest extends TestCase
 
         $response = $this->client->bulkAddTags($fileIds, $tags);
 
-        FileTest::assertNull($response->success);
-        FileTest::assertEquals('Missing bulk tag update data for this request', $response->err->message);
+        FileTest::assertNull($response->result);
+        FileTest::assertEquals('Missing bulk tag update data for this request', $response->error);
     }
 
     public function testBulkAddTagsWhenTagsAreEmpty()
@@ -1030,8 +1048,8 @@ final class FileTest extends TestCase
 
         $response = $this->client->bulkAddTags($fileIds, $tags);
 
-        FileTest::assertNull($response->success);
-        FileTest::assertEquals('Missing bulk tag update data for this request', $response->err->message);
+        FileTest::assertNull($response->result);
+        FileTest::assertEquals('Missing bulk tag update data for this request', $response->error);
     }
 
     // Bulk Add Tags
@@ -1051,7 +1069,7 @@ final class FileTest extends TestCase
 
         $response = $this->client->bulkAddTags($fileIds, $tags);
 
-        $obj = get_object_vars($response->success);
+        $obj = get_object_vars($response->result);
         FileTest::assertEquals(['successfullyUpdatedFileIds' => ['5df36759adf3f523d81dd94f']], $obj);
     }
 
@@ -1070,8 +1088,8 @@ final class FileTest extends TestCase
 
         $response = $this->client->bulkRemoveTags($fileIds, $tags);
 
-        FileTest::assertNull($response->success);
-        FileTest::assertEquals('Missing bulk tag update data for this request', $response->err->message);
+        FileTest::assertNull($response->result);
+        FileTest::assertEquals('Missing bulk tag update data for this request', $response->error);
     }
 
     public function testBulkRemoveTagsWhenTagsAreEmpty()
@@ -1089,8 +1107,8 @@ final class FileTest extends TestCase
 
         $response = $this->client->bulkRemoveTags($fileIds, $tags);
 
-        FileTest::assertNull($response->success);
-        FileTest::assertEquals('Missing bulk tag update data for this request', $response->err->message);
+        FileTest::assertNull($response->result);
+        FileTest::assertEquals('Missing bulk tag update data for this request', $response->error);
     }
 
 
@@ -1107,11 +1125,11 @@ final class FileTest extends TestCase
             ])
         );
 
-        $this->stubHttpClient('delete', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+        $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
         $response = $this->client->bulkRemoveTags($fileIds, $tags);
 
-        $obj = get_object_vars($response->success);
+        $obj = get_object_vars($response->result);
         FileTest::assertEquals(['successfullyUpdatedFileIds' => ['5df36759adf3f523d81dd94f']], $obj);
     }
 
@@ -1134,8 +1152,8 @@ final class FileTest extends TestCase
         $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
         $response = $this->client->purgeCache($urlParam);
 
-        FileTest::assertNull($response->success);
-        FileTest::assertEquals('Missing URL parameter for this request', $response->err->message);
+        FileTest::assertNull($response->result);
+        FileTest::assertEquals('Missing URL parameter for this request', $response->error);
     }
 
     /**
@@ -1155,7 +1173,7 @@ final class FileTest extends TestCase
         $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
         $response = $this->client->purgeCache($urlParam);
 
-        $el = get_object_vars($response->success[0]);
+        $el = get_object_vars($response->result[0]);
         FileTest::assertEquals('598821f949c0a938d57563bd', $el['requestId']);
     }
 
@@ -1177,7 +1195,7 @@ final class FileTest extends TestCase
         $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
         $response = $this->client->purgeFileCacheApi($urlParam);
 
-        $el = get_object_vars($response->success[0]);
+        $el = get_object_vars($response->result[0]);
         FileTest::assertEquals('598821f949c0a938d57563bd', $el['requestId']);
     }
 
@@ -1198,7 +1216,7 @@ final class FileTest extends TestCase
         $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
         $response = $this->client->purgeCacheApi($urlParam);
 
-        $el = get_object_vars($response->success[0]);
+        $el = get_object_vars($response->result[0]);
         FileTest::assertEquals('598821f949c0a938d57563bd', $el['requestId']);
     }
 
@@ -1220,8 +1238,8 @@ final class FileTest extends TestCase
         $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
         $response = $this->client->getPurgeCacheStatus($requestId);
 
-        FileTest::assertNull($response->success);
-        FileTest::assertEquals('Missing Request ID parameter for this request', $response->err->message);
+        FileTest::assertNull($response->result);
+        FileTest::assertEquals('Missing Request ID parameter for this request', $response->error);
     }
 
     /**
@@ -1240,7 +1258,7 @@ final class FileTest extends TestCase
         $this->stubHttpClient('get', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
         $response = $this->client->getPurgeCacheStatus($requestId);
 
-        $el = get_object_vars($response->success[0]);
+        $el = get_object_vars($response->result[0]);
         FileTest::assertEquals('Pending', $el['status']);
     }
 
@@ -1258,9 +1276,9 @@ final class FileTest extends TestCase
         ]));
 
         $this->stubHttpClient('get', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-        $response = $this->client->purgeCacheApiStatus($requestId);
+        $response = $this->client->purgeFileCacheApiStatus($requestId);
 
-        $el = get_object_vars($response->success[0]);
+        $el = get_object_vars($response->result[0]);
         FileTest::assertEquals('Pending', $el['status']);
     }
 
@@ -1280,7 +1298,7 @@ final class FileTest extends TestCase
         $this->stubHttpClient('get', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
         $response = $this->client->purgeFileCacheApiStatus($requestId);
 
-        $el = get_object_vars($response->success[0]);
+        $el = get_object_vars($response->result[0]);
         FileTest::assertEquals('Pending', $el['status']);
     }
 
@@ -1301,8 +1319,8 @@ final class FileTest extends TestCase
 
         $response = $this->client->getFileMetadataFromRemoteURL($url);
 
-        FileTest::assertNull($response->success);
-        FileTest::assertEquals('Your request is missing the url query paramater.', $response->err->message);
+        FileTest::assertNull($response->result);
+        FileTest::assertEquals('Your request is missing the url query paramater.', $response->error);
     }
 
     /**
@@ -1321,7 +1339,7 @@ final class FileTest extends TestCase
 
         $response = $this->client->getFileMetadataFromRemoteURL($url);
 
-        $el = get_object_vars($response->success[0]);
+        $el = get_object_vars($response->result[0]);
         FileTest::assertEquals($phash, $el['pHash']);
     }
 

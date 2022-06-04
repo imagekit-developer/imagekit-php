@@ -15,7 +15,6 @@ class GuzzleHttpWrapper implements HttpRequest
 {
     const DEFAULT_ERROR_CODE = 500;
     protected $client;
-    protected $responseMetadata = false;
     protected $datas = [];
     protected $headers = [];
     protected $uri;
@@ -28,20 +27,13 @@ class GuzzleHttpWrapper implements HttpRequest
     /**
      * @param $client
      */
-    public function __construct($client, $responseMetadata)
+    public function __construct($client)
     {
         $this->client = $client;
-        $this->responseMetadata = $responseMetadata;
         $this->serviceId = self::gen_uuid();
     }
 
-    /**
-     * @return string
-     */
-    public function getResponseMetadata()
-    {
-        return $this->responseMetadata;
-    }
+    
 
     /**
      * @return string

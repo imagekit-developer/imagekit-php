@@ -54,7 +54,7 @@ class FolderTest extends TestCase
 
         $response = $this->client->createFolder($folderName, $parentFolderPath);
 
-        FolderTest::assertEquals('Missing data for creation of folder', $response->err->message);
+        FolderTest::assertEquals('Missing data for creation of folder', $response->error);
     }
 
     public function testCreateInvalidParentFolderPath()
@@ -68,7 +68,7 @@ class FolderTest extends TestCase
 
         $response = $this->client->createFolder($folderName, $parentFolderPath);
 
-        FolderTest::assertEquals('Missing data for creation of folder', $response->err->message);
+        FolderTest::assertEquals('Missing data for creation of folder', $response->error);
     }
 
     public function testCreate()
@@ -82,8 +82,8 @@ class FolderTest extends TestCase
 
         $response = $this->client->createFolder($folderName, $parentFolderPath);
 
-        FolderTest::assertNull($response->success);
-        FolderTest::assertNull($response->err);
+        FolderTest::assertNull($response->result);
+        FolderTest::assertNull($response->error);
     }
 
     public function testDeleteEmptyFolderPath()
@@ -96,7 +96,7 @@ class FolderTest extends TestCase
 
         $response = $this->client->deleteFolder($folderPath);
 
-        FolderTest::assertEquals('Missing data for deletion of folder', $response->err->message);
+        FolderTest::assertEquals('Missing data for deletion of folder', $response->error);
     }
 
     public function testDelete()
@@ -109,8 +109,8 @@ class FolderTest extends TestCase
 
         $response = $this->client->deleteFolder($folderPath);
 
-        FolderTest::assertNull($response->success);
-        FolderTest::assertNull($response->err);
+        FolderTest::assertNull($response->result);
+        FolderTest::assertNull($response->error);
     }
 
     public function testCopyEmptySource()
@@ -124,7 +124,7 @@ class FolderTest extends TestCase
 
         $response = $this->client->copyFolder($sourceFolderPath, $destinationPath);
 
-        FolderTest::assertEquals('Missing data for copying folder', $response->err->message);
+        FolderTest::assertEquals('Missing data for copying folder', $response->error);
     }
 
     public function testCopyEmptyDestinationPath()
@@ -138,7 +138,7 @@ class FolderTest extends TestCase
 
         $response = $this->client->copyFolder($sourceFolderPath, $destinationPath);
 
-        FolderTest::assertEquals('Missing data for copying folder', $response->err->message);
+        FolderTest::assertEquals('Missing data for copying folder', $response->error);
     }
 
     public function testCopy()
@@ -150,9 +150,13 @@ class FolderTest extends TestCase
 
         $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
-        $response = $this->client->copyFolder($sourceFolderPath, $destinationPath);
+        $response = $this->client->copyFolder([
+            'sourceFolderPath' => $sourceFolderPath, 
+            'destinationPath'  => $destinationPath,
+            'includeVersions'  => false
+        ]);
 
-        $el = get_object_vars($response->success);
+        $el = get_object_vars($response->result);
         FolderTest::assertEquals('Testing_job_id', $el['jobId']);
     }
 
@@ -167,7 +171,7 @@ class FolderTest extends TestCase
 
         $response = $this->client->moveFolder($sourceFolderPath, $destinationPath);
 
-        FolderTest::assertEquals('Missing data for moving folder', $response->err->message);
+        FolderTest::assertEquals('Missing data for moving folder', $response->error);
     }
 
     public function testMoveEmptyDestinationPath()
@@ -181,7 +185,7 @@ class FolderTest extends TestCase
 
         $response = $this->client->moveFolder($sourceFolderPath, $destinationPath);
 
-        FolderTest::assertEquals('Missing data for moving folder', $response->err->message);
+        FolderTest::assertEquals('Missing data for moving folder', $response->error);
     }
 
     public function testMove()
@@ -193,9 +197,13 @@ class FolderTest extends TestCase
 
         $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
-        $response = $this->client->moveFolder($sourceFolderPath, $destinationPath);
+        $response = $this->client->moveFolder([
+            'sourceFolderPath' => $sourceFolderPath, 
+            'destinationPath' => $destinationPath,
+            'includeVersions' => true
+        ]);
 
-        $el = get_object_vars($response->success);
+        $el = get_object_vars($response->result);
         FolderTest::assertEquals('Testing_job_id', $el['jobId']);
     }
 }

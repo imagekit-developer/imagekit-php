@@ -58,7 +58,7 @@ class ImageKit
      *
      * @return void
      */
-    public function __construct($publicKey, $privateKey, $urlEndpoint, $responseMetadata, $transformationPosition =
+    public function __construct($publicKey, $privateKey, $urlEndpoint, $transformationPosition =
     Transformation::DEFAULT_TRANSFORMATION_POSITION)
     {
         $this->configuration = new Configuration();
@@ -92,7 +92,7 @@ class ImageKit
 
 
         $client = new Client(Authorization::addAuthorization($this->configuration));
-        $this->httpClient = new GuzzleHttpWrapper($client, $responseMetadata);
+        $this->httpClient = new GuzzleHttpWrapper($client);
     }
 
     /**
@@ -147,8 +147,29 @@ class ImageKit
      * @return object
      *
      */
-    public function upload(array $options)
+    public function upload($options=null)
     {
+
+        if(!isset($options)){
+            return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_MISSING));
+        }
+        if(!is_array($options)){
+            return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_NON_ARRAY));
+        }
+        if(sizeof($options)==0){
+            return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_EMPTY_ARRAY));
+        }
+        if (empty($options['file'])) {
+            return Response::respond(true, ((object)ErrorMessages::$MISSING_UPLOAD_FILE_PARAMETER));
+        }
+        if (empty($options['fileName'])) {
+            return Response::respond(true, ((object)ErrorMessages::$MISSING_UPLOAD_FILENAME_PARAMETER));
+        }
+        if(isset($options['options']) && !is_array($options['options'])){
+            return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_NON_ARRAY));
+        }
+
+
         return $this->uploadFile($options);
     }
 
@@ -472,7 +493,6 @@ class ImageKit
      * @return Response
      *
      * @deprecated since 2.0.0, use <code>getPurgeCacheStatus</code>
-     * @deprecated since 3.0.0, use <code>purgeCacheApiStatus</code>
      */
     public function purgeCacheStatus($requestId=null)
     {
@@ -493,8 +513,11 @@ class ImageKit
      *
      * @deprecated since 2.0.0, use <code>getPurgeCacheStatus</code>
      */
-    public function purgeFileCacheApiStatus($requestId)
+    public function purgeFileCacheApiStatus($requestId=null)
     {
+        if (empty($requestId)) {
+            return Response::respond(true, ((object)ErrorMessages::$CACHE_PURGE_STATUS_ID_MISSING));
+        }
         return $this->getPurgeCacheStatus($requestId);
     }
 
@@ -506,8 +529,11 @@ class ImageKit
      * @param $requestId
      * @return Response
      */
-    public function getPurgeCacheStatus($requestId)
+    public function getPurgeCacheStatus($requestId=null)
     {
+        if (empty($requestId)) {
+            return Response::respond(true, ((object)ErrorMessages::$CACHE_PURGE_STATUS_ID_MISSING));
+        }
         $this->httpClient->setUri(Endpoints::getPurgeCacheApiStatusEndpoint($requestId));
         return Manage\Cache::purgeFileCacheStatus($requestId, $this->httpClient);
     }

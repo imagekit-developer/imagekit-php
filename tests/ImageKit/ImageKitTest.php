@@ -298,7 +298,7 @@ class ImageKitTest extends TestCase
         $doClosure();
 
         $response = $imagekit->getBulkJobStatus('');
-        Assert::assertEquals('Missing Job ID parameter for this request', $response->err->message);
+        Assert::assertEquals('Missing Job ID parameter for this request', $response->error);
     }
 
     /**
@@ -330,7 +330,7 @@ class ImageKitTest extends TestCase
 
         $response = $imagekit->getBulkJobStatus('598821f949c0a938d57563bd');
 
-        $el = get_object_vars($response->success);
+        $el = get_object_vars($response->result);
 
         Assert::assertEquals([
             'jobId' => '598821f949c0a938d57563bd',

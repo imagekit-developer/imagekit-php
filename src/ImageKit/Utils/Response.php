@@ -63,7 +63,12 @@ class Response
         }
         $headers = [];
         foreach ($response['headers'] as $key => $value) {
-            $headers[$key] = implode(',',$value);
+            if(is_array($value)){
+                $headers[$key] = implode(',',$value);
+            }
+            else{
+                $headers[$key] = $value;
+            }
         }
         
         $responseObject->responseMetadata['headers'] = $headers;

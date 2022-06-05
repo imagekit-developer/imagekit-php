@@ -11,7 +11,6 @@ use ImageKit\ImageKit;
 use ImageKit\Resource\GuzzleHttpWrapper;
 use PHPUnit\Framework\TestCase;
 use function json_encode;
-use ImageKit\Utils\Response as UtilResponse;
 
 
 /**

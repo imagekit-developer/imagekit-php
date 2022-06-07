@@ -20,17 +20,11 @@ class File
      *
      * @return Response
      */
-    public static function listFile(array $parameters, GuzzleHttpWrapper $resource)
+    public static function listFile($parameters=null, GuzzleHttpWrapper $resource)
     {
-        if (isset($parameters['tags']) && is_array($parameters['tags'])) {
-            $parameters['tags'] = implode(',', $parameters['tags']);
+        if($parameters){
+            $resource->setDatas($parameters);
         }
-
-        if (isset($parameters['includeFolder']) && is_bool($parameters['includeFolder'])) {
-            $parameters['includeFolder'] = json_encode($parameters['includeFolder']);
-        }
-
-        $resource->setDatas($parameters);
         $res = $resource->get();
         $stream = $res->getBody();
         $content = [];
@@ -57,10 +51,6 @@ class File
      */
     public static function getDetails($fileId, GuzzleHttpWrapper $resource)
     {
-        if (empty($fileId)) {
-            return Response::respond(true, ((object)ErrorMessages::$fileId_MISSING));
-        }
-
         $res = $resource->get();
         $stream = $res->getBody();
         $content = [];
@@ -160,10 +150,7 @@ class File
      */
     public static function delete($fileId, GuzzleHttpWrapper $resource)
     {
-        if (empty($fileId)) {
-            return Response::respond(true, ((object)ErrorMessages::$fileId_MISSING));
-        }
-
+        
         $resource->setDatas((array)$fileId);
         $res = $resource->delete();
         $stream = $res->getBody();
@@ -378,12 +365,8 @@ class File
      *
      * @return Response
      */
-    public static function bulkAddTags(array $fileIds, array $tags, GuzzleHttpWrapper $resource)
+    public static function bulkAddTags($fileIds, $tags, GuzzleHttpWrapper $resource)
     {
-
-        if (!is_array($fileIds) || empty($fileIds) || !is_array($tags) || empty($tags)) {
-            return Response::respond(true, ((object)ErrorMessages::$BULK_TAGS_DATA_MISSING));
-        }
 
         $resource->setDatas(['fileIds' => $fileIds, 'tags' => $tags]);
         $res = $resource->post();
@@ -478,17 +461,8 @@ class File
      */
     public static function updateDetails($fileId, $updateData, GuzzleHttpWrapper $resource)
     {
-        if (empty($fileId)) {
-            return Response::respond(true, ((object)ErrorMessages::$fileId_MISSING));
-        }
-
-        if (!is_array($updateData)) {
-            return Response::respond(true, ((object)ErrorMessages::$UPDATE_DATA_MISSING));
-        }
-
         $obj = (object)$updateData;
 
-        
         if (isset($obj->tags) && ($obj->tags !== null) && ($obj->tags !== 'undefined') && !is_array($obj->tags)) {
             return Response::respond(true, ((object)ErrorMessages::$UPDATE_DATA_TAGS_INVALID));
         }

@@ -218,8 +218,22 @@ class ImageKit
      * @param array $parameters
      * @return Response
      */
-    public function listFiles(array $parameters = [])
+    public function listFiles($parameters = null)
     {
+        if($parameters){
+            if(!is_array($parameters)){
+                return Response::respond(true, ((object)ErrorMessages::$LIST_FILES_OPTIONS_NON_ARRAY));
+            }
+        }
+
+        if (isset($parameters['tags']) && is_array($parameters['tags'])) {
+            $parameters['tags'] = implode(',', $parameters['tags']);
+        }
+
+        if (isset($parameters['includeFolder']) && is_bool($parameters['includeFolder'])) {
+            $parameters['includeFolder'] = json_encode($parameters['includeFolder']);
+        }
+
         $this->httpClient->setUri(Endpoints::getListFilesEndpoint());
         return Manage\File::listFile($parameters, $this->httpClient);
     }
@@ -235,7 +249,7 @@ class ImageKit
      *
      * @deprecated since 2.0.0, use <code>getFileDetails</code>
      */
-    public function getDetails($fileId)
+    public function getDetails($fileId=null)
     {
         return $this->getFileDetails($fileId);
     }
@@ -249,8 +263,11 @@ class ImageKit
      * @return Response
      *
      */
-    public function getFileDetails($fileId)
+    public function getFileDetails($fileId=null)
     {
+        if (empty($fileId)) {
+            return Response::respond(true, ((object)ErrorMessages::$fileId_MISSING));
+        }
         $this->httpClient->setUri(Endpoints::getDetailsEndpoint($fileId));
         return Manage\File::getDetails($fileId, $this->httpClient);
     }
@@ -313,7 +330,7 @@ class ImageKit
     public function getFileMetaData($fileId=null)
     {
         if (empty($fileId)) {
-            return Response::respond(true, ((object)ErrorMessages::$CACHE_PURGE_STATUS_ID_MISSING));
+            return Response::respond(true, ((object)ErrorMessages::$fileId_MISSING));
         }
         $this->httpClient->setUri(Endpoints::getListMetaDataFilesEndpoint($fileId));
         return Manage\File\Metadata::get($fileId, $this->httpClient);
@@ -330,7 +347,7 @@ class ImageKit
      * @return Response
      * @deprecated since 2.0.0, use <code>updateFileDetails</code>
      */
-    public function updateDetails($fileId, $updateData)
+    public function updateDetails($fileId=null, $updateData=null)
     {
         return $this->updateFileDetails($fileId, $updateData);
     }
@@ -344,8 +361,16 @@ class ImageKit
      * @param array $updateData
      * @return Response
      */
-    public function updateFileDetails($fileId, $updateData)
+    public function updateFileDetails($fileId=null, $updateData=null)
     {
+        if (empty($fileId)) {
+            return Response::respond(true, ((object)ErrorMessages::$fileId_MISSING));
+        }
+
+        if (!is_array($updateData) || sizeof($updateData)==0) {
+            return Response::respond(true, ((object)ErrorMessages::$UPDATE_DATA_MISSING));
+        }
+
         $this->httpClient->setUri(Endpoints::getUpdateFileDetailsEndpoint($fileId));
         return Manage\File::updateDetails($fileId, $updateData, $this->httpClient);
     }
@@ -361,8 +386,27 @@ class ImageKit
      *
      * @return Response
      */
-    public function bulkAddTags(array $fileIds, array $tags)
+    public function bulkAddTags($fileIds=null, $tags=null)
     {
+        if(!isset($fileIds)){
+            return Response::respond(true, ((object)ErrorMessages::$BULK_TAGS_FILEIDS_MISSING));
+        }
+        if(!is_array($fileIds)){
+            return Response::respond(true, ((object)ErrorMessages::$BULK_TAGS_FILEIDS_NON_ARRAY));
+        }
+        if(sizeof($fileIds)==0){
+            return Response::respond(true, ((object)ErrorMessages::$BULK_TAGS_FILEIDS_EMPTY_ARRAY));
+        }
+        if(!isset($tags)){
+            return Response::respond(true, ((object)ErrorMessages::$BULK_TAGS_TAGS_MISSING));
+        }
+        if(!is_array($tags)){
+            return Response::respond(true, ((object)ErrorMessages::$BULK_TAGS_TAGS_NON_ARRAY));
+        }
+        if(sizeof($tags)==0){
+            return Response::respond(true, ((object)ErrorMessages::$BULK_TAGS_TAGS_EMPTY_ARRAY));
+        }
+
         $this->httpClient->setUri(Endpoints::getBulkAddTagsEndpoint());
         return Manage\File::bulkAddTags($fileIds, $tags, $this->httpClient);
     }
@@ -378,8 +422,27 @@ class ImageKit
      *
      * @return Response
      */
-    public function bulkRemoveTags(array $fileIds, array $tags)
+    public function bulkRemoveTags($fileIds=null, $tags=null)
     {
+        if(!isset($fileIds)){
+            return Response::respond(true, ((object)ErrorMessages::$BULK_TAGS_FILEIDS_MISSING));
+        }
+        if(!is_array($fileIds)){
+            return Response::respond(true, ((object)ErrorMessages::$BULK_TAGS_FILEIDS_NON_ARRAY));
+        }
+        if(sizeof($fileIds)==0){
+            return Response::respond(true, ((object)ErrorMessages::$BULK_TAGS_FILEIDS_EMPTY_ARRAY));
+        }
+        if(!isset($tags)){
+            return Response::respond(true, ((object)ErrorMessages::$BULK_TAGS_TAGS_MISSING));
+        }
+        if(!is_array($tags)){
+            return Response::respond(true, ((object)ErrorMessages::$BULK_TAGS_TAGS_NON_ARRAY));
+        }
+        if(sizeof($tags)==0){
+            return Response::respond(true, ((object)ErrorMessages::$BULK_TAGS_TAGS_EMPTY_ARRAY));
+        }
+
         $this->httpClient->setUri(Endpoints::getBulkRemoveTagsEndpoint());
         return Manage\File::bulkRemoveTags($fileIds, $tags, $this->httpClient);
     }
@@ -409,8 +472,12 @@ class ImageKit
      * @return Response
      *
      */
-    public function deleteFile($fileId)
+    public function deleteFile($fileId=null)
     {
+        if (!isset($fileId) || empty($fileId)) {
+            return Response::respond(true, ((object)ErrorMessages::$fileId_MISSING));
+        }
+        
         $this->httpClient->setUri(Endpoints::getDeleteFilesEndpoint($fileId));
         return Manage\File::delete($fileId, $this->httpClient);
     }

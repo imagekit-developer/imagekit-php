@@ -284,6 +284,14 @@ class ImageKit
      */
     public function getFileVersionDetails($fileId=null, $versionId=null)
     {
+        if (empty($fileId)) {
+            return Response::respond(true, ((object)ErrorMessages::$fileId_MISSING));
+        }
+        
+        if (empty($versionId)) {
+            return Response::respond(true, ((object)ErrorMessages::$versionId_MISSING));
+        }
+        
         $this->httpClient->setUri(Endpoints::getVersionDetailsEndpoint($fileId, $versionId));
         return Manage\File::getVersionDetails($fileId, $versionId, $this->httpClient);
     }
@@ -299,6 +307,10 @@ class ImageKit
      */
     public function getFileVersions($fileId=null)
     {
+        if (empty($fileId)) {
+            return Response::respond(true, ((object)ErrorMessages::$fileId_MISSING));
+        }
+
         $this->httpClient->setUri(Endpoints::getFileVersionsEndpoint($fileId));
         return Manage\File::getFileVersions($fileId, $this->httpClient);
     }
@@ -457,8 +469,26 @@ class ImageKit
      *
      * @return Response
      */
-    public function bulkRemoveAITags(array $fileIds, array $AITags)
+    public function bulkRemoveAITags($fileIds=null, $AITags=null)
     {
+        if(!isset($fileIds)){
+            return Response::respond(true, ((object)ErrorMessages::$BULK_TAGS_FILEIDS_MISSING));
+        }
+        if(!is_array($fileIds)){
+            return Response::respond(true, ((object)ErrorMessages::$BULK_TAGS_FILEIDS_NON_ARRAY));
+        }
+        if(sizeof($fileIds)==0){
+            return Response::respond(true, ((object)ErrorMessages::$BULK_TAGS_FILEIDS_EMPTY_ARRAY));
+        }
+        if(!isset($AITags)){
+            return Response::respond(true, ((object)ErrorMessages::$BULK_TAGS_TAGS_MISSING));
+        }
+        if(!is_array($AITags)){
+            return Response::respond(true, ((object)ErrorMessages::$BULK_TAGS_TAGS_NON_ARRAY));
+        }
+        if(sizeof($AITags)==0){
+            return Response::respond(true, ((object)ErrorMessages::$BULK_TAGS_TAGS_EMPTY_ARRAY));
+        }
         $this->httpClient->setUri(Endpoints::getBulkRemoveAITagsEndpoint());
         return Manage\File::bulkRemoveAITags($fileIds, $AITags, $this->httpClient);
     }
@@ -495,6 +525,14 @@ class ImageKit
      */
     public function deleteFileVersion($fileId=null, $versionId=null)
     {
+        if (!isset($fileId) || empty($fileId)) {
+            return Response::respond(true, ((object)ErrorMessages::$fileId_MISSING));
+        }
+        
+        if (!isset($versionId) || empty($versionId)) {
+            return Response::respond(true, ((object)ErrorMessages::$versionId_MISSING));
+        }
+
         $this->httpClient->setUri(Endpoints::getDeleteFileVersionEndpoint($fileId,$versionId));
         return Manage\File::deleteVersion($fileId, $versionId, $this->httpClient);
     }
@@ -615,15 +653,8 @@ class ImageKit
      *
      * @deprecated since 2.0.0, use <code>bulkDeleteFiles</code>
      */
-    public function bulkFileDeleteByIds($fileIds)
+    public function bulkFileDeleteByIds($fileIds=null)
     {
-        if (!isset($fileIds)) {
-            return Response::respond(true, ((object)ErrorMessages::$fileIdS_MISSING));
-        }
-        if (!is_array($fileIds)) {
-            return Response::respond(true, ((object)ErrorMessages::$fileIdS_NON_ARRAY));
-        }
-
         return $this->bulkDeleteFiles($fileIds);
     }
 
@@ -636,8 +667,18 @@ class ImageKit
      * @return Response
      *
      */
-    public function bulkDeleteFiles($fileIds)
+    public function bulkDeleteFiles($fileIds=null)
     {
+        if (!isset($fileIds)) {
+            return Response::respond(true, ((object)ErrorMessages::$fileIdS_MISSING));
+        }
+        if (!is_array($fileIds)) {
+            return Response::respond(true, ((object)ErrorMessages::$fileIdS_NON_ARRAY));
+        }
+        if (sizeof($fileIds)==0) {
+            return Response::respond(true, ((object)ErrorMessages::$fileIdS_EMPTY_ARRAY));
+        }
+        
         $this->httpClient->setUri(Endpoints::getDeleteByFileIdsEndpoint());
         return Manage\File::bulkDeleteByFileIds($fileIds, $this->httpClient);
     }
@@ -708,8 +749,20 @@ class ImageKit
      * @param $purgeCache
      * @return Response
      */
-    public function renameFile($parameter, $purgeCache = false)
+    public function renameFile($parameter=null, $purgeCache = false)
     {
+        if(!isset($parameter)){
+            return Response::respond(true, ((object)ErrorMessages::$RENAME_FILE_PARAMETER_MISSING));
+        }
+        if(!is_array($parameter)){
+            return Response::respond(true, ((object)ErrorMessages::$RENAME_FILE_PARAMETER_NON_ARRAY));
+        }
+        if(sizeof($parameter)==0){
+            return Response::respond(true, ((object)ErrorMessages::$RENAME_FILE_PARAMETER_EMPTY_ARRAY));
+        }
+        if (empty($parameter['filePath']) || empty($parameter['newFileName'])) {
+            return Response::respond(true, ((object)ErrorMessages::$RENAME_FILE_DATA_INVALID));
+        }
 
         $this->httpClient->setUri(Endpoints::getRenameFileEndpoint());
         return Manage\File::rename($parameter['filePath'], $parameter['newFileName'], $purgeCache, $this->httpClient);

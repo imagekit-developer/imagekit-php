@@ -77,19 +77,6 @@ class File
      */
     public static function getVersionDetails($fileId, $versionId, GuzzleHttpWrapper $resource)
     {
-        $errors = [];
-        if (empty($fileId)) {
-            $errors[] = ((object)ErrorMessages::$fileId_MISSING);
-        }
-        
-        if (empty($versionId)) {
-            $errors[] = ((object)ErrorMessages::$versionId_MISSING);
-        }
-        
-        if(!empty($errors)){
-            return Response::respond(true, $errors);
-        }
-
         $res = $resource->get();
         $stream = $res->getBody();
         $content = [];
@@ -115,15 +102,7 @@ class File
      */
     public static function getFileVersions($fileId, GuzzleHttpWrapper $resource)
     {
-        $errors = [];
-        if (empty($fileId)) {
-            $errors[] = ((object)ErrorMessages::$fileId_MISSING);
-        }
         
-        if(!empty($errors)){
-            return Response::respond(true, $errors);
-        }
-
         $res = $resource->get();
         $stream = $res->getBody();
         $content = [];
@@ -178,20 +157,7 @@ class File
      * @return Response
      */
     public static function deleteVersion($fileId, $versionId, GuzzleHttpWrapper $resource)
-    {
-        $errors = [];
-        if (empty($fileId)) {
-            $errors[] = ((object)ErrorMessages::$fileId_MISSING);
-        }
-        
-        if (empty($versionId)) {
-            $errors[] = ((object)ErrorMessages::$versionId_MISSING);
-        }
-        
-        if(!empty($errors)){
-            return Response::respond(true, $errors);
-        }
-        
+    {   
         // $resource->setDatas($fileId);
         $res = $resource->delete();
         $stream = $res->getBody();
@@ -218,13 +184,7 @@ class File
      */
     public static function bulkDeleteByFileIds($fileIds, GuzzleHttpWrapper $resource)
     {
-        if (empty($fileIds)) {
-            return Response::respond(true, ((object)ErrorMessages::$fileIdS_MISSING));
-        }
-        if (!is_array($fileIds)) {
-            return Response::respond(true, ((object)ErrorMessages::$fileIdS_NON_ARRAY));
-        }
-
+        
         $resource->setDatas(['fileIds' => $fileIds]);
         $res = $resource->post();
         $stream = $res->getBody();
@@ -310,10 +270,6 @@ class File
      */
     public static function rename($filePath, $newFileName, $purgeCache, GuzzleHttpWrapper $resource)
     {
-        if (empty($filePath) || empty($newFileName)) {
-            return Response::respond(true, ((object)ErrorMessages::$RENAME_FILE_DATA_INVALID));
-        }
-
         $resource->setDatas(['filePath' => $filePath, 'newFileName' => $newFileName, 'purgeCache' => $purgeCache]);
         $res = $resource->put();
         $stream = $res->getBody();
@@ -429,10 +385,6 @@ class File
      */
     public static function bulkRemoveAITags(array $fileIds, array $AITags, GuzzleHttpWrapper $resource)
     {
-        if (!is_array($fileIds) || empty($fileIds) || !is_array($AITags) || empty($AITags)) {
-            return Response::respond(true, ((object)ErrorMessages::$BULK_TAGS_DATA_MISSING));
-        }
-
         $resource->setDatas(['fileIds' => $fileIds, 'AITags' => $AITags]);
         $res = $resource->post();
         $stream = $res->getBody();

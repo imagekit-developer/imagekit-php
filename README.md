@@ -831,7 +831,7 @@ Remove AI tags from multiple files in a single request. The method accepts an ar
 $fileIds = ['file_id1','file_id2'];
 $AITags = ['image_AITag_1', 'image_AITag_2'];
 
-$bulkRemoveTags = $imageKit->bulkRemoveTags($fileIds, $AITags);
+$bulkRemoveTags = $imageKit->bulkRemoveAITags($fileIds, $AITags);
 ```
 #### Response
 ```json
@@ -895,7 +895,7 @@ Deletes multiple files and their versions from the media library.
 #### Basic Usage
 ```php
 $fileIds = ["5e1c13d0c55ec3437c451406", ...];
-$deleteFiles = $imageKit->bulkFileDeleteByIds($fileIds);
+$deleteFiles = $imageKit->bulkDeleteFiles($fileIds);
 ```
 #### Response
 ```json

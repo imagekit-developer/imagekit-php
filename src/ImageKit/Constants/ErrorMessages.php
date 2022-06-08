@@ -43,8 +43,9 @@ class ErrorMessages
     public static $INVALID_PHASH_VALUE = ['message' => 'Invalid pHash value', 'help' => 'Both pHash strings must be valid hexadecimal numbers'];
     public static $MISSING_PHASH_VALUE = ['message' => 'Missing pHash value', 'help' => 'Both pHash strings must be valid hexadecimal numbers'];
     public static $UNEQUAL_STRING_LENGTH = ['message' => 'Unequal pHash string length', 'help' => 'For distance calucation, the two pHash strings must have equal length'];
-    public static $fileIdS_MISSING = ['message' => 'FileIds parameter is missing.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
-    public static $fileIdS_NON_ARRAY = ['message' => 'File ids should be passed in an array.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $fileIdS_MISSING = ['message' => 'Missing Parameter FileIds', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $fileIdS_NON_ARRAY = ['message' => 'File ids should be passed in an array', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $fileIdS_EMPTY_ARRAY = ['message' => 'File ids should be passed as an array of file ids, empty array passed', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $MISSING_URL_PARAMETER = ['message' => 'Your request is missing the url query paramater', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $INVALID_URL_PARAMETER = ['message' => 'Invalid URL provided for this request', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $URL_GENERATION_PARAMETER_MISSING = ['message' => 'URL Generation API accepts an array, null passed.', 'help' =>
@@ -66,29 +67,33 @@ class ErrorMessages
         'For support kindly contact us at support@imagekit.io .'];
     public static $COPY_FILE_PARAMETER_NON_ARRAY = ['message' => 'Copy File API accepts an array of parameters, non array value passed', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $COPY_FILE_PARAMETER_EMPTY_ARRAY = ['message' => 'Copy File API accepts an array of parameters, empty array passed', 'help' => 'For support kindly contact us at support@imagekit.io .'];
-    public static $COPY_FILE_DATA_INVALID = ['message' => 'Missing parameter sourceFilePath and/or destinationPath and/or includeVersions for copy file', 'help' =>
+    public static $COPY_FILE_DATA_INVALID = ['message' => 'Missing parameter sourceFilePath and/or destinationPath and/or includeVersions for Copy File API', 'help' =>
         'For support kindly contact us at support@imagekit.io .'];
     public static $MOVE_FILE_PARAMETER_MISSING = ['message' => 'Move File API accepts an array, null passed', 'help' =>
         'For support kindly contact us at support@imagekit.io .'];
     public static $MOVE_FILE_PARAMETER_NON_ARRAY = ['message' => 'Move File API accepts an array of parameters, non array value passed', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $MOVE_FILE_PARAMETER_EMPTY_ARRAY = ['message' => 'Move File API accepts an array of parameters, empty array passed', 'help' => 'For support kindly contact us at support@imagekit.io .'];
-    public static $MOVE_FILE_DATA_INVALID = ['message' => 'Missing parameter sourceFilePath and/or destinationPath for move file', 'help' =>
+    public static $MOVE_FILE_DATA_INVALID = ['message' => 'Missing parameter sourceFilePath and/or destinationPath for Move File API', 'help' =>
         'For support kindly contact us at support@imagekit.io .'];
-    
-    public static $RENAME_FILE_DATA_INVALID = ['message' => 'Rename File Parameters are invalid.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
-    public static $RESTORE_FILE_VERSION_PARAMETER_MISSING = ['message' => 'Restore File Version API accepts an array, null passed.', 'help' =>
+    public static $RENAME_FILE_PARAMETER_MISSING = ['message' => 'Rename File API accepts an array, null passed', 'help' =>
+        'For support kindly contact us at support@imagekit.io .'];
+    public static $RENAME_FILE_PARAMETER_NON_ARRAY = ['message' => 'Rename File API accepts an array of parameters, non array value passed', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $RENAME_FILE_PARAMETER_EMPTY_ARRAY = ['message' => 'Rename File API accepts an array of parameters, empty array passed', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $RENAME_FILE_DATA_INVALID = ['message' => 'Missing parameter filePath and/or newFileName for Rename File API', 'help' =>
+        'For support kindly contact us at support@imagekit.io .'];
+    public static $RESTORE_FILE_VERSION_PARAMETER_MISSING = ['message' => 'Restore File Version API accepts an array, null passed', 'help' =>
     'For support kindly contact us at support@imagekit.io .'];
-    public static $RESTORE_FILE_VERSION_PARAMETER_NON_ARRAY = ['message' => 'Restore File Version API accepts an array of parameters, non array value passed.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
-    public static $RESTORE_FILE_VERSION_PARAMETER_EMPTY_ARRAY = ['message' => 'Restore File Version API accepts an array of parameters, empty array passed.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
-    public static $RESTORE_FILE_VERSION_DATA_INVALID = ['message' => 'Missing parameter fileId and/or versionId for Restore File Version API.', 'help' =>
+    public static $RESTORE_FILE_VERSION_PARAMETER_NON_ARRAY = ['message' => 'Restore File Version API accepts an array of parameters, non array value passed', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $RESTORE_FILE_VERSION_PARAMETER_EMPTY_ARRAY = ['message' => 'Restore File Version API accepts an array of parameters, empty array passed', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $RESTORE_FILE_VERSION_DATA_INVALID = ['message' => 'Missing parameter fileId and/or versionId for Restore File Version API', 'help' =>
         'For support kindly contact us at support@imagekit.io .'];
-    public static $CREATE_FOLDER_PARAMETER_MISSING = ['message' => 'Create Folder API accepts an array, null passed.', 'help' =>
+    public static $CREATE_FOLDER_PARAMETER_MISSING = ['message' => 'Create Folder API accepts an array, null passed', 'help' =>
     'For support kindly contact us at support@imagekit.io .'];
-    public static $CREATE_FOLDER_PARAMETER_NON_ARRAY = ['message' => 'Create Folder API accepts an array of parameters, non array value passed.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
-    public static $CREATE_FOLDER_PARAMETER_EMPTY_ARRAY = ['message' => 'Create Folder API accepts an array of parameters, empty array passed.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
-    public static $CREATE_FOLDER_DATA_INVALID = ['message' => 'Missing parameter folderName and/or parentFolderPath for Create Folder API.', 'help' =>
+    public static $CREATE_FOLDER_PARAMETER_NON_ARRAY = ['message' => 'Create Folder API accepts an array of parameters, non array value passed', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $CREATE_FOLDER_PARAMETER_EMPTY_ARRAY = ['message' => 'Create Folder API accepts an array of parameters, empty array passed', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $CREATE_FOLDER_DATA_INVALID = ['message' => 'Missing parameter folderName and/or parentFolderPath for Create Folder API', 'help' =>
         'For support kindly contact us at support@imagekit.io .'];
-    public static $DELETE_FOLDER_PARAMETER_MISSING = ['message' => 'Missing folderPath for Delete Folder API.', 'help' =>
+    public static $DELETE_FOLDER_PARAMETER_MISSING = ['message' => 'Missing folderPath for Delete Folder API', 'help' =>
         'For support kindly contact us at support@imagekit.io .'];
     public static $COPY_FOLDER_PARAMETER_MISSING = ['message' => 'Copy Folder API accepts an array, null passed.', 'help' =>
         'For support kindly contact us at support@imagekit.io .'];

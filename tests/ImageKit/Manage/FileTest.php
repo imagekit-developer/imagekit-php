@@ -19,31 +19,340 @@ final class FileTest extends TestCase
      */
     private $client;
 
-    /**
+        /**
      *
      */
-    public function testDeleteSingleFile()
+    public function testListFiles()
     {
-        $fileId = "23902390239203923";
-        $mockBodyResponse = Utils::streamFor();
+        $responseBody = [
+            [
+                'type' => 'file',
+                'name' => 'default-image.jpg',
+                'fileId' => '5de4fb65c851e55df73abe8d',
+                'tags' => null,
+                'customCoordinates' => null,
+                'isPrivateFile' => false,
+                'url' => 'https://ik.imagekit.io/ot2cky3ujwa/default-image.jpg',
+                'thumbnail' => 'https://ik.imagekit.io/ot2cky3ujwa/tr:n-media_library_thumbnail/default-image.jpg',
+                'fileType' => 'image',
+                'filePath' => '/default-image.jpg',
+            ],
+        ];
+        $mockBodyResponse = Utils::streamFor(json_encode($responseBody));
 
-        $this->stubHttpClient('delete',new Response(200,['X-Foo' => 'Bar'], $mockBodyResponse));
+        $this->stubHttpClient('get', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
-        $response = $this->client->deleteFile($mockBodyResponse);
+        $response = $this->client->listFiles();
 
+        FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
     }
     
     /**
      *
      */
-    public function testDeleteSingleFileMissingFileId()
+    public function testListFilesWithOptions()
     {
-        $fileId = "";
+        $listOptions = [
+            'skip' => 0,
+            'limit' => 100,
+        ];
 
-        $response = $this->client->deleteFile($fileId);
+        $responseBody = [
+            [
+                'type' => 'file',
+                'name' => 'default-image.jpg',
+                'fileId' => '5de4fb65c851e55df73abe8d',
+                'tags' => null,
+                'customCoordinates' => null,
+                'isPrivateFile' => false,
+                'url' => 'https://ik.imagekit.io/ot2cky3ujwa/default-image.jpg',
+                'thumbnail' => 'https://ik.imagekit.io/ot2cky3ujwa/tr:n-media_library_thumbnail/default-image.jpg',
+                'fileType' => 'image',
+                'filePath' => '/default-image.jpg',
+            ],
+        ];
+
+        $mockBodyResponse = Utils::streamFor(json_encode($responseBody));
+
+        $this->stubHttpClient('get', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $response = $this->client->listFiles($listOptions);
+
+        FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
+    }
+      
+    /**
+     *
+     */
+    public function testListFilesWithInvalidOptions()
+    {
+        $listOptions = 'invalid';
+
+        $response = $this->client->listFiles($listOptions);
+
+        FileTest::assertEquals('List File Options accepts an array of parameters, non array value passed', $response->error->message);
+    }
+
+    /**
+     *
+     */
+    public function testGetFileDetails()
+    {
+        $fileId = '23902390239203923';
+       
+        $responseBody = [
+            'type' => 'file',
+            'name' => 'default-image.jpg',
+            'fileId' => '5de4fb65c851e55df73abe8d',
+            'tags' => null,
+            'customCoordinates' => null,
+            'isPrivateFile' => false,
+            'url' => 'https://ik.imagekit.io/ot2cky3ujwa/default-image.jpg',
+            'thumbnail' => 'https://ik.imagekit.io/ot2cky3ujwa/tr:n-media_library_thumbnail/default-image.jpg',
+            'fileType' => 'image',
+            'filePath' => '/default-image.jpg',
+        ];
+        $mockBodyResponse = Utils::streamFor(json_encode($responseBody));
+
+        $this->stubHttpClient('get', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $response = $this->client->getFileDetails($fileId);
+
+        FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
+    }
+
+    /**
+     *
+     */
+    public function testGetFileDetailsWithMissingFileId()
+    {
+        $fileId = '';
+       
+        $mockBodyResponse = Utils::streamFor();
+
+        $this->stubHttpClient('get', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $response = $this->client->getFileDetails($fileId);
 
         FileTest::assertEquals('Missing File ID parameter for this request',$response->error->message);
     }
+    
+    /**
+     *
+     */
+    public function testGetFileVersionDetails()
+    {
+        $fileId = '23902390239203923';
+        $versionId = '23902390239203923';
+       
+        $responseBody = [
+            'type' => 'file',
+            'name' => 'default-image.jpg',
+            'fileId' => '5de4fb65c851e55df73abe8d',
+            'tags' => null,
+            'customCoordinates' => null,
+            'isPrivateFile' => false,
+            'url' => 'https://ik.imagekit.io/ot2cky3ujwa/default-image.jpg',
+            'thumbnail' => 'https://ik.imagekit.io/ot2cky3ujwa/tr:n-media_library_thumbnail/default-image.jpg',
+            'fileType' => 'image',
+            'filePath' => '/default-image.jpg',
+            "versionInfo" => [
+                "id" => "598821f949c0a938d57563bd",
+                "name" => "Version 1"
+            ],
+        ];
+        $mockBodyResponse = Utils::streamFor(json_encode($responseBody));
+
+        $this->stubHttpClient('get', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $response = $this->client->getFileVersionDetails($fileId, $versionId);
+
+        FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
+    }
+
+    /**
+     *
+     */
+    public function testGetFileVersionDetailsWithMissingFileId()
+    {
+        $fileId = '';
+        $versionId = '23902390239203923';
+       
+        $response = $this->client->getFileVersionDetails($fileId, $versionId);
+
+        FileTest::assertEquals('Missing File ID parameter for this request', $response->error->message);
+    }
+
+    /**
+     *
+     */
+    public function testGetFileVersionDetailsWithMissingVersionId()
+    {
+        $fileId = '23902390239203923';
+        $versionId = '';
+       
+        $response = $this->client->getFileVersionDetails($fileId, $versionId);
+
+        FileTest::assertEquals('Missing Version ID parameter for this request', $response->error->message);
+    }
+
+    /**
+     *
+     */
+    public function testGetFileVersions()
+    {
+        $fileId = '23902390239203923';
+       
+        $responseBody = [
+            [
+                'type' => 'file',
+                'name' => 'default-image.jpg',
+                'fileId' => '5de4fb65c851e55df73abe8d',
+                'tags' => null,
+                'customCoordinates' => null,
+                'isPrivateFile' => false,
+                'url' => 'https://ik.imagekit.io/ot2cky3ujwa/default-image.jpg',
+                'thumbnail' => 'https://ik.imagekit.io/ot2cky3ujwa/tr:n-media_library_thumbnail/default-image.jpg',
+                'fileType' => 'image',
+                'filePath' => '/default-image.jpg',
+                "versionInfo" => [
+                    "id" => "598821f949c0a938d57563bd",
+                    "name" => "Version 1"
+                ]
+            ],
+            [
+                'type' => 'file',
+                'name' => 'default-image.jpg',
+                'fileId' => '5de4fb65c851e55df73abe8d',
+                'tags' => null,
+                'customCoordinates' => null,
+                'isPrivateFile' => false,
+                'url' => 'https://ik.imagekit.io/ot2cky3ujwa/default-image.jpg',
+                'thumbnail' => 'https://ik.imagekit.io/ot2cky3ujwa/tr:n-media_library_thumbnail/default-image.jpg',
+                'fileType' => 'image',
+                'filePath' => '/default-image.jpg',
+                "versionInfo" => [
+                    "id" => "330a81i1f949c0a938d57563bd",
+                    "name" => "Version 2"
+                ]
+            ],
+        ];
+        $mockBodyResponse = Utils::streamFor(json_encode($responseBody));
+
+        $this->stubHttpClient('get', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $response = $this->client->getFileVersions($fileId);
+
+        FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
+    }
+
+    
+    /**
+     *
+     */
+    public function testGetFileVersionsWithMissingFileId()
+    {
+        $fileId = '';
+       
+        $response = $this->client->getFileVersions($fileId);
+
+        FileTest::assertEquals('Missing File ID parameter for this request', $response->error->message);
+    }
+
+    
+    /**
+     *
+     */
+    public function testUpdateFileDetails()
+    {
+        $fileId = '5df36759adf3f523d81dd94f';
+
+        $updateData = [
+            'customCoordinates' => '10,10,100,100',
+            'tags' => ['tag1', 'tag2']
+        ];
+
+        $responseBody = [
+            'fileId' => '598821f949c0a938d57563bd',
+            'type' => 'file',
+            'name' => 'file1.jpg',
+            'filePath' => '/images/products/file1.jpg',
+            'tags' => ['t-shirt', 'round-neck', 'sale2019'],
+            'isPrivateFile' => false,
+            'customCoordinates' => null,
+            'url' => 'https://ik.imagekit.io/your_imagekit_id/images/products/file1.jpg',
+            'thumbnail' => 'https://ik.imagekit.io/your_imagekit_id/tr:n-media_library_thumbnail/images/products/file1.jpg',
+            'fileType' => 'image'
+        ];
+
+        $mockBodyResponse = Utils::streamFor(json_encode($responseBody));
+
+        $this->stubHttpClient('patch', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $response = $this->client->updateFileDetails($fileId, $updateData);
+
+        FileTest::assertNull($response->error);
+        FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
+    }
+
+    /**
+     *
+     */
+    public function testUpdateFileDetailsWithMissingFileId()
+    {
+        $fileId = '';
+
+        $updateData = [
+            'customCoordinates' => '10,10,100,100',
+            'tags' => ['tag1', 'tag2']
+        ];
+
+        $response = $this->client->updateFileDetails($fileId, $updateData);
+
+        FileTest::assertNull($response->result);
+        FileTest::assertEquals('Missing File ID parameter for this request', $response->error->message);
+    }
+
+    
+    /**
+     *
+     */
+    public function testUpdateFileDetailsWithInvalidUpdateData()
+    {
+        $fileId = '5df36759adf3f523d81dd94f';
+
+        $updateData = [];
+
+        $response = $this->client->updateFileDetails($fileId, $updateData);
+
+        FileTest::assertNull($response->result);
+        FileTest::assertEquals('Missing file update data for this request', $response->error->message);
+    }
+
+    /**
+     *
+     */
+    public function testBulkAddTags()
+    {
+        $fileIds = ['5e21880d5efe355febd4bccd','5e1c13c1c55ec3437c451403'];
+        $tags = ['testing_tag1'];
+
+        $responseBody = [
+            "successfullyUpdatedFileIds" => [
+                "5e21880d5efe355febd4bccd",
+                "5e1c13c1c55ec3437c451403"
+            ]
+        ];
+
+        $mockBodyResponse = Utils::streamfor(json_encode($responseBody));
+
+        $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $response = $this->client->bulkAddTags($fileIds, $tags);
+
+        FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
+    }
+    
     
     /**
      *
@@ -74,8 +383,7 @@ final class FileTest extends TestCase
         FileTest::assertEquals('Bulk Tags API accepts Tags as an array of tags, empty array passed', $response->error->message);
     }
 
-    
-    /**
+     /**
      *
      */
     public function testBulkAddTagsNonArrayFileId()
@@ -111,12 +419,19 @@ final class FileTest extends TestCase
         $fileIds = ['23902390239203923'];
         $tags = ['testing_tag1'];
 
-        $mockBodyResponse = Utils::streamFor();
+        $responseBody = [
+            "successfullyUpdatedFileIds" => [
+                "23902390239203923",
+            ]
+        ];
 
-        $this->stubHttpClient('post',new Response(200,['X-Foo' => 'Bar'], $mockBodyResponse));
+        $mockBodyResponse = Utils::streamfor(json_encode($responseBody));
+
+        $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
         $response = $this->client->bulkRemoveTags($fileIds, $tags);
 
+        FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
     }
     
     /**
@@ -174,6 +489,210 @@ final class FileTest extends TestCase
 
         FileTest::assertNull($response->result);
         FileTest::assertEquals('Bulk Tags API accepts Tags as an array, non array passed', $response->error->message);
+    }
+
+    /**
+     *
+     */
+    public function testBulkRemoveAITags()
+    {
+        $fileIds = ['5e21880d5efe355febd4bccd','5e1c13c1c55ec3437c451403'];
+        $tags = ['image_AITag_1','image_AITag_2'];
+
+        $responseBody = [
+            "successfullyUpdatedFileIds" => [
+                "5e21880d5efe355febd4bccd",
+                "5e1c13c1c55ec3437c451403"
+            ]
+        ];
+
+        $mockBodyResponse = Utils::streamfor(json_encode($responseBody));
+
+        $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $response = $this->client->bulkRemoveAITags($fileIds, $tags);
+
+        FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
+    }
+    
+    /**
+     *
+     */
+    public function testBulkRemoveAITagsMissingFileIds()
+    {
+        $fileIds = [];
+        $tags = ['image_AITag_1'];
+
+        $response = $this->client->bulkRemoveAITags($fileIds, $tags);
+
+        FileTest::assertNull($response->result);
+        FileTest::assertEquals('Bulk Tags API accepts FileIds as an array of ids, empty array passed', $response->error->message);
+    }
+    
+    /**
+     *
+     */
+    public function testBulkRemoveAITagsMissingTags()
+    {
+        $fileIds = ['23902390239203923'];
+        $tags = [];
+
+        $response = $this->client->bulkRemoveAITags($fileIds, $tags);
+
+        FileTest::assertNull($response->result);
+        FileTest::assertEquals('Bulk Tags API accepts Tags as an array of tags, empty array passed', $response->error->message);
+    }
+        
+     
+    /**
+     *
+     */
+    public function testBulkRemoveAITagsNonArrayFileId()
+    {
+        $fileIds = '23902390239203923';
+        $tags = ['testing_tag1'];
+
+        $response = $this->client->bulkRemoveAITags($fileIds, $tags);
+
+        FileTest::assertNull($response->result);
+        FileTest::assertEquals('Bulk Tags API accepts FileIds as an array, non array passed', $response->error->message);
+    }
+    
+    /**
+     *
+     */
+    public function testBulkRemoveAITagsNonArrayTags()
+    {
+        $fileIds = ['23902390239203923'];
+        $tags = 'testing_tag1';
+
+        $response = $this->client->bulkRemoveAITags($fileIds, $tags);
+
+        FileTest::assertNull($response->result);
+        FileTest::assertEquals('Bulk Tags API accepts Tags as an array, non array passed', $response->error->message);
+    }
+
+    /**
+     *
+     */
+    public function testDeleteSingleFile()
+    {
+        $fileId = "23902390239203923";
+        $mockBodyResponse = Utils::streamFor();
+
+        $this->stubHttpClient('delete',new Response(200,['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $response = $this->client->deleteFile($fileId);
+
+    }
+    
+    /**
+     *
+     */
+    public function testDeleteSingleFileMissingFileId()
+    {
+        $fileId = "";
+
+        $response = $this->client->deleteFile($fileId);
+
+        FileTest::assertEquals('Missing File ID parameter for this request',$response->error->message);
+    }
+    
+    /**
+     *
+     */
+    public function testDeleteFileVersion()
+    {
+        $fileId = 'file_id';
+        $versionId = "version_id";
+        
+        $mockBodyResponse = Utils::streamFor();
+
+        $this->stubHttpClient('delete',new Response(200,['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $response = $this->client->deleteFileVersion($fileId, $versionId);
+
+    }
+    
+    /**
+     *
+     */
+    public function testDeleteFileVersionWithMissingFileId()
+    {
+        $fileId = "";
+        $versionId = "version_id";
+
+        $response = $this->client->deleteFileVersion($fileId, $versionId);
+
+        FileTest::assertEquals('Missing File ID parameter for this request',$response->error->message);
+    }
+    
+    /**
+     *
+     */
+    public function testDeleteFileVersionWithMissingVisionId()
+    {
+        $fileId = "file_id";
+        $versionId = "";
+
+        $response = $this->client->deleteFileVersion($fileId, $versionId);
+
+        FileTest::assertEquals('Missing Version ID parameter for this request',$response->error->message);
+    }
+    
+    /**
+     *
+     */
+    public function testBulkDeleteFiles()
+    {
+        $fileIds = ['file_id1','file_id2'];
+        
+        $responseBody = [
+            "successfullyDeletedFileIds" => [
+                "5e21880d5efe355febd4bccd",
+                "5e1c13c1c55ec3437c451403"
+            ]
+        ];
+
+        $mockBodyResponse = Utils::streamFor(json_encode($responseBody));
+
+        $this->stubHttpClient('post',new Response(200,['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $response = $this->client->bulkDeleteFiles($fileIds);
+
+        FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
+    }
+
+    /**
+     *
+     */
+    public function testBulkDeleteFilesInvalidRequest()
+    {   
+        $response = $this->client->bulkDeleteFiles();
+
+        FileTest::assertEquals('Missing Parameter FileIds', $response->error->message);
+    }
+    
+    /**
+     *
+     */
+    public function testBulkDeleteFilesMissingFileIds()
+    {   
+        $fileIds = [];
+        $response = $this->client->bulkDeleteFiles($fileIds);
+
+        FileTest::assertEquals('File ids should be passed as an array of file ids, empty array passed', $response->error->message);
+    }
+    
+    /**
+     *
+     */
+    public function testBulkDeleteFilesNonArrayFileIds()
+    {   
+        $fileIds = 'file_id';
+        $response = $this->client->bulkDeleteFiles($fileIds);
+
+        FileTest::assertEquals('File ids should be passed in an array', $response->error->message);
     }
     
     /**
@@ -236,7 +755,7 @@ final class FileTest extends TestCase
 
         
         FileTest::assertNull($response->result);
-        FileTest::assertEquals('Missing parameter sourceFilePath and/or destinationPath and/or includeVersions for copy file',$response->error->message);
+        FileTest::assertEquals('Missing parameter sourceFilePath and/or destinationPath and/or includeVersions for Copy File API',$response->error->message);
 
     }
     
@@ -258,7 +777,7 @@ final class FileTest extends TestCase
 
         
         FileTest::assertNull($response->result);
-        FileTest::assertEquals('Missing parameter sourceFilePath and/or destinationPath and/or includeVersions for copy file',$response->error->message);
+        FileTest::assertEquals('Missing parameter sourceFilePath and/or destinationPath and/or includeVersions for Copy File API',$response->error->message);
 
     }
     
@@ -283,7 +802,7 @@ final class FileTest extends TestCase
 
         
         FileTest::assertNull($response->result);
-        FileTest::assertEquals('Missing parameter sourceFilePath and/or destinationPath and/or includeVersions for copy file',$response->error->message);
+        FileTest::assertEquals('Missing parameter sourceFilePath and/or destinationPath and/or includeVersions for Copy File API',$response->error->message);
 
     }
     
@@ -338,7 +857,7 @@ final class FileTest extends TestCase
         $response = $this->client->moveFile($requestBody);
 
         FileTest::assertNull($response->result);
-        FileTest::assertEquals('Missing parameter sourceFilePath and/or destinationPath for move file',$response->error->message);
+        FileTest::assertEquals('Missing parameter sourceFilePath and/or destinationPath for Move File API',$response->error->message);
     }
 
     /**
@@ -356,11 +875,216 @@ final class FileTest extends TestCase
         $response = $this->client->moveFile($requestBody);
 
         FileTest::assertNull($response->result);
-        FileTest::assertEquals('Missing parameter sourceFilePath and/or destinationPath for move file',$response->error->message);
+        FileTest::assertEquals('Missing parameter sourceFilePath and/or destinationPath for Move File API',$response->error->message);
 
     }
 
+     /**
+     *
+     */
+    public function testRenameFile()
+    {
+        $filePath = '/sample-folder/sample-file.jpg';
+        $newFileName = 'sample-file2.jpg';
 
+        $requestBody = [
+            'filePath' => $filePath,
+            'newFileName' => $newFileName,
+        ];
+        $mockBodyResponse = Utils::streamFor();
+
+        $this->stubHttpClient('put',new Response(200,['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $response = $this->client->renameFile($requestBody);
+    }
+
+     /**
+     *
+     */
+    public function testRenameFileWithInvalidRequest()
+    {
+        $response = $this->client->renameFile();
+
+        FileTest::assertEquals('Rename File API accepts an array, null passed',$response->error->message);
+    }
+    
+     /**
+     *
+     */
+    public function testRenameFileWithNonArrayParameter()
+    {
+        $filePath = '/sample-folder/sample-file.jpg';
+        $newFileName = 'sample-file2.jpg';
+
+        $requestBody = $filePath;
+
+        $response = $this->client->renameFile($requestBody);
+
+        FileTest::assertEquals('Rename File API accepts an array of parameters, non array value passed',$response->error->message);
+    }
+    
+     /**
+     *
+     */
+    public function testRenameFileWithEmptyArrayParameter()
+    {
+        $requestBody = [];
+
+        $response = $this->client->renameFile($requestBody);
+
+        FileTest::assertEquals('Rename File API accepts an array of parameters, empty array passed',$response->error->message);
+    }
+
+     /**
+     *
+     */
+    public function testRenameFileWithMissingFilePath()
+    {
+        $filePath = '';
+        $newFileName = 'sample-file2.jpg';
+
+        $requestBody = [
+            'filePath' => $filePath,
+            'newFileName' => $newFileName,
+        ];
+
+        $response = $this->client->renameFile($requestBody);
+
+        FileTest::assertEquals('Missing parameter filePath and/or newFileName for Rename File API',$response->error->message);
+    }
+    
+     /**
+     *
+     */
+    public function testRenameFileWithMissingNewFileName()
+    {
+        $filePath = '/sample-folder/sample-file.jpg';
+        $newFileName = '';
+
+        $requestBody = [
+            'filePath' => $filePath,
+            'newFileName' => $newFileName,
+        ];
+
+        $response = $this->client->renameFile($requestBody);
+
+        FileTest::assertEquals('Missing parameter filePath and/or newFileName for Rename File API',$response->error->message);
+    }
+    
+     /**
+     *
+     */
+    public function testRestoreFileVersion()
+    {
+        $fileId = 'fileId';
+        $versionId = 'versionId';
+
+        $requestBody = [
+            'fileId' => $fileId,
+            'versionId' => $versionId,
+        ];
+
+        $responseBody = [
+            'type' => 'file',
+            'name' => 'default-image.jpg',
+            'fileId' => '5de4fb65c851e55df73abe8d',
+            'tags' => null,
+            'customCoordinates' => null,
+            'isPrivateFile' => false,
+            'url' => 'https://ik.imagekit.io/ot2cky3ujwa/default-image.jpg',
+            'thumbnail' => 'https://ik.imagekit.io/ot2cky3ujwa/tr:n-media_library_thumbnail/default-image.jpg',
+            'fileType' => 'image',
+            'filePath' => '/default-image.jpg',
+            "versionInfo" => [
+                "id" => "598821f949c0a938d57563bd",
+                "name" => "Version 1"
+            ],
+        ];
+
+        $mockBodyResponse = Utils::streamFor(json_encode($responseBody));
+
+        $this->stubHttpClient('put',new Response(200,['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $response = $this->client->restoreFileVersion($requestBody);
+
+        FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
+    }
+
+     /**
+     *
+     */
+    public function testRestoreFileVersionWithInvalidRequest()
+    {
+        $response = $this->client->restoreFileVersion();
+
+        FileTest::assertEquals('Restore File Version API accepts an array, null passed',$response->error->message);
+    }
+    
+     /**
+     *
+     */
+    public function testRestoreFileVersionWithNonArrayParameter()
+    {
+        $fileId = 'fileId';
+        $versionId = 'versionId';
+
+        $requestBody = $fileId;
+
+        $response = $this->client->restoreFileVersion($requestBody);
+
+        FileTest::assertEquals('Restore File Version API accepts an array of parameters, non array value passed',$response->error->message);
+    }
+    
+     /**
+     *
+     */
+    public function testRestoreFileVersionWithEmptyArrayParameter()
+    {
+        $requestBody = [];
+
+        $response = $this->client->restoreFileVersion($requestBody);
+
+        FileTest::assertEquals('Restore File Version API accepts an array of parameters, empty array passed',$response->error->message);
+    }
+
+     /**
+     *
+     */
+    public function testRestoreFileVersionWithMissingFileId()
+    {
+        $fileId = '';
+        $versionId = 'versionId';
+
+        $requestBody = [
+            'fileId' => $fileId,
+            'versionId' => $versionId,
+        ];
+
+        $response = $this->client->restoreFileVersion($requestBody);
+
+        FileTest::assertEquals('Missing parameter fileId and/or versionId for Restore File Version API',$response->error->message);
+    }
+    
+     /**
+     *
+     */
+    public function testRestoreFileVersionWithMissingVersionId()
+    {
+        $fileId = 'fileId';
+        $versionId = '';
+
+        $requestBody = [
+            'fileId' => $fileId,
+            'versionId' => $versionId,
+        ];
+
+        $response = $this->client->restoreFileVersion($requestBody);
+
+        FileTest::assertEquals('Missing parameter fileId and/or versionId for Restore File Version API',$response->error->message);
+    }
+    
+
+    
     /**
      *
      */
@@ -500,6 +1224,8 @@ final class FileTest extends TestCase
         FileTest::assertEquals(json_encode($requestBody), json_encode($response->result));
     }
 
+
+
     /**
      *
      */
@@ -527,274 +1253,50 @@ final class FileTest extends TestCase
     /**
      *
      */
-    public function testGetFileDetails()
+    public function testGetBulkJobStatus()
     {
-        $fileId = '23902390239203923';
-       
-        $mockBodyResponse = Utils::streamFor();
-
-        $this->stubHttpClient('get', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->getFileDetails($fileId);
-    }
-
-    /**
-     *
-     */
-    public function testGetFileDetailsWithMissingFileId()
-    {
-        $fileId = '';
-       
-        $mockBodyResponse = Utils::streamFor();
-
-        $this->stubHttpClient('get', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->getFileDetails($fileId);
-
-        FileTest::assertEquals('Missing File ID parameter for this request',$response->error->message);
-    }
-
-    /**
-     *
-     */
-    public function testUpdateFileDetails()
-    {
-        $fileId = '5df36759adf3f523d81dd94f';
-
-        $updateData = [
-            'customCoordinates' => '10,10,100,100',
-            'tags' => ['tag1', 'tag2']
-        ];
+        $jobId = '598821f949c0a938d57563bd';
 
         $responseBody = [
-            'fileId' => '598821f949c0a938d57563bd',
-            'type' => 'file',
-            'name' => 'file1.jpg',
-            'filePath' => '/images/products/file1.jpg',
-            'tags' => ['t-shirt', 'round-neck', 'sale2019'],
-            'isPrivateFile' => false,
-            'customCoordinates' => null,
-            'url' => 'https://ik.imagekit.io/your_imagekit_id/images/products/file1.jpg',
-            'thumbnail' => 'https://ik.imagekit.io/your_imagekit_id/tr:n-media_library_thumbnail/images/products/file1.jpg',
-            'fileType' => 'image'
+            "jobId" => "598821f949c0a938d57563bd",
+            "type" => "COPY_FOLDER",
+            "status" => "Completed"
         ];
 
         $mockBodyResponse = Utils::streamFor(json_encode($responseBody));
 
-        $this->stubHttpClient('patch', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+        $this->stubHttpClient('get', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
-        $response = $this->client->updateFileDetails($fileId, $updateData);
+        $response = $this->client->getBulkJobStatus($jobId);
 
-        FileTest::assertNull($response->error);
         FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
     }
 
     /**
      *
      */
-    public function testUpdateFileDetailsWithMissingFileId()
+    public function testGetBulkJobStatusMissingJobId()
     {
-        $fileId = '';
-
-        $updateData = [
-            'customCoordinates' => '10,10,100,100',
-            'tags' => ['tag1', 'tag2']
-        ];
+        $jobId = '';
 
         $responseBody = [
-            'fileId' => '598821f949c0a938d57563bd',
-            'type' => 'file',
-            'name' => 'file1.jpg',
-            'filePath' => '/images/products/file1.jpg',
-            'tags' => ['t-shirt', 'round-neck', 'sale2019'],
-            'isPrivateFile' => false,
-            'customCoordinates' => null,
-            'url' => 'https://ik.imagekit.io/your_imagekit_id/images/products/file1.jpg',
-            'thumbnail' => 'https://ik.imagekit.io/your_imagekit_id/tr:n-media_library_thumbnail/images/products/file1.jpg',
-            'fileType' => 'image'
-        ];
-
-        $mockBodyResponse = Utils::streamFor(json_encode($responseBody));
-
-        $this->stubHttpClient('patch', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->updateFileDetails($fileId, $updateData);
-
-        FileTest::assertNull($response->result);
-        FileTest::assertEquals('Missing File ID parameter for this request', $response->error->message);
-    }
-
-    
-    /**
-     *
-     */
-    public function testUpdateFileDetailsWithInvalidUpdateData()
-    {
-        $fileId = '5df36759adf3f523d81dd94f';
-
-        $updateData = [];
-
-        $responseBody = [
-            'fileId' => '598821f949c0a938d57563bd',
-            'type' => 'file',
-            'name' => 'file1.jpg',
-            'filePath' => '/images/products/file1.jpg',
-            'tags' => ['t-shirt', 'round-neck', 'sale2019'],
-            'isPrivateFile' => false,
-            'customCoordinates' => null,
-            'url' => 'https://ik.imagekit.io/your_imagekit_id/images/products/file1.jpg',
-            'thumbnail' => 'https://ik.imagekit.io/your_imagekit_id/tr:n-media_library_thumbnail/images/products/file1.jpg',
-            'fileType' => 'image'
-        ];
-
-        $mockBodyResponse = Utils::streamFor(json_encode($responseBody));
-
-        $this->stubHttpClient('patch', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->updateFileDetails($fileId, $updateData);
-
-        FileTest::assertNull($response->result);
-        FileTest::assertEquals('Missing file update data for this request', $response->error->message);
-    }
-
-    /**
-     *
-     */
-    public function testListFiles()
-    {
-        $responseBody = [
-            [
-                'type' => 'file',
-                'name' => 'default-image.jpg',
-                'fileId' => '5de4fb65c851e55df73abe8d',
-                'tags' => null,
-                'customCoordinates' => null,
-                'isPrivateFile' => false,
-                'url' => 'https://ik.imagekit.io/ot2cky3ujwa/default-image.jpg',
-                'thumbnail' => 'https://ik.imagekit.io/ot2cky3ujwa/tr:n-media_library_thumbnail/default-image.jpg',
-                'fileType' => 'image',
-                'filePath' => '/default-image.jpg',
-            ],
-        ];
-        $mockBodyResponse = Utils::streamFor(json_encode($responseBody));
-
-        $this->stubHttpClient('get', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->listFiles();
-
-        FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
-    }
-    
-    /**
-     *
-     */
-    public function testListFilesWithOptions()
-    {
-        $listOptions = [
-            'skip' => 0,
-            'limit' => 100,
-        ];
-
-        $responseBody = [
-            [
-                'type' => 'file',
-                'name' => 'default-image.jpg',
-                'fileId' => '5de4fb65c851e55df73abe8d',
-                'tags' => null,
-                'customCoordinates' => null,
-                'isPrivateFile' => false,
-                'url' => 'https://ik.imagekit.io/ot2cky3ujwa/default-image.jpg',
-                'thumbnail' => 'https://ik.imagekit.io/ot2cky3ujwa/tr:n-media_library_thumbnail/default-image.jpg',
-                'fileType' => 'image',
-                'filePath' => '/default-image.jpg',
-            ],
+            "jobId" => "598821f949c0a938d57563bd",
+            "type" => "COPY_FOLDER",
+            "status" => "Completed"
         ];
 
         $mockBodyResponse = Utils::streamFor(json_encode($responseBody));
 
         $this->stubHttpClient('get', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
-        $response = $this->client->listFiles($listOptions);
+        $response = $this->client->getBulkJobStatus($jobId);
 
-        FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
+        FileTest::assertEquals('Missing Job ID parameter for this request',$response->error->message);
     }
-      
-    /**
-     *
-     */
-    public function testListFilesWithInvalidOptions()
-    {
-        $listOptions = 'invalid';
-
-        $response = $this->client->listFiles($listOptions);
-
-        FileTest::assertEquals('List File Options accepts an array of parameters, non array value passed', $response->error->message);
-    }
-
     
     /**
      *
      */
-    public function testBulkFileDeleteByFileIds()
-    {
-        $fileIds = ['fileId1','fileId2'];
-
-        $responseBody = [
-            "successfullyDeletedFileIds" => [
-                "fileId1",
-                "fileId2",
-            ]
-        ];
-
-        $mockBodyResponse = Utils::streamFor(json_encode($responseBody));
-
-        $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->bulkFileDeleteByIds($fileIds);
-
-        FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
-    }
-      
-    
-    /**
-     *
-     */
-    public function testListFilesWithEmptyValidParameters()
-    {
-        $mockBodyResponse = Utils::streamFor(json_encode([
-            [
-                'type' => 'file',
-                'name' => 'default-image.jpg',
-                'fileId' => '5de4fb65c851e55df73abe8d',
-                'tags' => null,
-                'customCoordinates' => null,
-                'isPrivateFile' => false,
-                'url' => 'https://ik.imagekit.io/ot2cky3ujwa/default-image.jpg',
-                'thumbnail' => 'https://ik.imagekit.io/ot2cky3ujwa/tr:n-media_library_thumbnail/default-image.jpg',
-                'fileType' => 'image',
-                'filePath' => '/default-image.jpg',
-            ],
-        ]));
-
-        $this->stubHttpClient('get', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->listFiles();
-
-        $el = get_object_vars($response->result[0]);
-        FileTest::assertEquals([
-            'type' => 'file',
-            'name' => 'default-image.jpg',
-            'fileId' => '5de4fb65c851e55df73abe8d',
-            'tags' => null,
-            'customCoordinates' => null,
-            'isPrivateFile' => false,
-            'url' => 'https://ik.imagekit.io/ot2cky3ujwa/default-image.jpg',
-            'thumbnail' => 'https://ik.imagekit.io/ot2cky3ujwa/tr:n-media_library_thumbnail/default-image.jpg',
-            'fileType' => 'image',
-            'filePath' => '/default-image.jpg',
-        ], $el);
-    }
-
     private function stubHttpClient($methodName, $response)
     {
         $stub = $this->createMock(GuzzleHttpWrapper::class);
@@ -806,1278 +1308,6 @@ final class FileTest extends TestCase
         };
         $doClosure = $closure->bindTo($this->client, ImageKit::class);
         $doClosure();
-    }
-
-    /**
-     *
-     */
-    public function testListFilesWithValidParameters()
-    {
-        $parameters = [
-            'tags' => [],
-            'includeFolder' => true
-        ];
-
-        $mockBodyResponse = Utils::streamFor(json_encode([
-            [
-                'type' => 'file',
-                'name' => 'default-image.jpg',
-                'fileId' => '5de4fb65c851e55df73abe8d',
-                'tags' => null,
-                'customCoordinates' => null,
-                'isPrivateFile' => false,
-                'url' => 'https://ik.imagekit.io/ot2cky3ujwa/default-image.jpg',
-                'thumbnail' => 'https://ik.imagekit.io/ot2cky3ujwa/tr:n-media_library_thumbnail/default-image.jpg',
-                'fileType' => 'image',
-                'filePath' => '/default-image.jpg',
-            ],
-        ]));
-
-        $this->stubHttpClient('get', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-        $response = $this->client->listFiles($parameters);
-
-        $el = get_object_vars($response->result[0]);
-        FileTest::assertEquals([
-            'type' => 'file',
-            'name' => 'default-image.jpg',
-            'fileId' => '5de4fb65c851e55df73abe8d',
-            'tags' => null,
-            'customCoordinates' => null,
-            'isPrivateFile' => false,
-            'url' => 'https://ik.imagekit.io/ot2cky3ujwa/default-image.jpg',
-            'thumbnail' => 'https://ik.imagekit.io/ot2cky3ujwa/tr:n-media_library_thumbnail/default-image.jpg',
-            'fileType' => 'image',
-            'filePath' => '/default-image.jpg',
-        ], $el);
-    }
-
-    /**
-     *
-     */
-    public function testGetDetailsWithEmptyFileId()
-    {
-        $fileId = '';
-
-        $mockBodyResponse = Utils::streamFor(json_encode([
-            [
-                'type' => 'file',
-                'name' => 'Kishan_2ZgC5VGZI',
-                'fileId' => '5df36759adf3f523d81dd94f',
-                'tags' => null,
-                'customCoordinates' => null,
-                'isPrivateFile' => false,
-                'url' => 'https://ik.imagekit.io/ot2cky3ujwa/Kishan_2ZgC5VGZI',
-                'thumbnail' => 'https://ik.imagekit.io/ot2cky3ujwa/tr:n-media_library_thumbnail/Kishan_2ZgC5VGZI',
-                'fileType' => 'image',
-                'filePath' => '/Kishan_2ZgC5VGZI',
-            ],
-        ]));
-
-        $this->stubHttpClient('get', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->getFileDetails($fileId);
-
-        FileTest::assertNull($response->result);
-        FileTest::assertEquals('Missing File ID parameter for this request', $response->error);
-    }
-
-    /**
-     *
-     */
-    public function testGetFileDetailsWithValidFileId()
-    {
-        $fileId = '5df36759adf3f523d81dd94f';
-
-        $mockBodyResponse = Utils::streamFor(json_encode([
-            [
-                'type' => 'file',
-                'name' => 'Kishan_2ZgC5VGZI',
-                'fileId' => '5df36759adf3f523d81dd94f',
-                'tags' => null,
-                'customCoordinates' => null,
-                'isPrivateFile' => false,
-                'url' => 'https://ik.imagekit.io/ot2cky3ujwa/Kishan_2ZgC5VGZI',
-                'thumbnail' => 'https://ik.imagekit.io/ot2cky3ujwa/tr:n-media_library_thumbnail/Kishan_2ZgC5VGZI',
-                'fileType' => 'image',
-                'filePath' => '/Kishan_2ZgC5VGZI',
-            ],
-        ]));
-
-        $this->stubHttpClient('get', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->getFileDetails($fileId);
-
-        $el = get_object_vars($response->result[0]);
-        FileTest::assertEquals([
-            'type' => 'file',
-            'name' => 'Kishan_2ZgC5VGZI',
-            'fileId' => '5df36759adf3f523d81dd94f',
-            'tags' => null,
-            'customCoordinates' => null,
-            'isPrivateFile' => false,
-            'url' => 'https://ik.imagekit.io/ot2cky3ujwa/Kishan_2ZgC5VGZI',
-            'thumbnail' => 'https://ik.imagekit.io/ot2cky3ujwa/tr:n-media_library_thumbnail/Kishan_2ZgC5VGZI',
-            'fileType' => 'image',
-            'filePath' => '/Kishan_2ZgC5VGZI',
-        ], $el);
-    }
-
-    /**
-     * @deprecated
-     */
-    public function testDeprecatedGetFileDetailsWithValidFileId()
-    {
-        $fileId = '5df36759adf3f523d81dd94f';
-
-        $mockBodyResponse = Utils::streamFor(json_encode([
-            [
-                'type' => 'file',
-                'name' => 'Kishan_2ZgC5VGZI',
-                'fileId' => '5df36759adf3f523d81dd94f',
-                'tags' => null,
-                'customCoordinates' => null,
-                'isPrivateFile' => false,
-                'url' => 'https://ik.imagekit.io/ot2cky3ujwa/Kishan_2ZgC5VGZI',
-                'thumbnail' => 'https://ik.imagekit.io/ot2cky3ujwa/tr:n-media_library_thumbnail/Kishan_2ZgC5VGZI',
-                'fileType' => 'image',
-                'filePath' => '/Kishan_2ZgC5VGZI',
-            ],
-        ]));
-
-        $this->stubHttpClient('get', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->getDetails($fileId);
-
-        $el = get_object_vars($response->result[0]);
-        FileTest::assertEquals([
-            'type' => 'file',
-            'name' => 'Kishan_2ZgC5VGZI',
-            'fileId' => '5df36759adf3f523d81dd94f',
-            'tags' => null,
-            'customCoordinates' => null,
-            'isPrivateFile' => false,
-            'url' => 'https://ik.imagekit.io/ot2cky3ujwa/Kishan_2ZgC5VGZI',
-            'thumbnail' => 'https://ik.imagekit.io/ot2cky3ujwa/tr:n-media_library_thumbnail/Kishan_2ZgC5VGZI',
-            'fileType' => 'image',
-            'filePath' => '/Kishan_2ZgC5VGZI',
-        ], $el);
-    }
-
-    // Get details
-
-    /**
-     *
-     */
-    public function testGetFileMetaDataDetailsWithEmptyFileId()
-    {
-        $fileId = '';
-
-        //5df36759adf3f523d81dd94f
-        $mockBodyResponse = Utils::streamFor(json_encode([
-            [
-                'height' => 3214,
-                'width' => 3948,
-                'size' => 207097,
-                'format' => 'jpg',
-                'hasColorProfile' => true,
-                'quality' => 90,
-                'density' => 300,
-                'hasTransparency' => false,
-                'exif' => [
-                    'image' => [
-                        'ImageWidth' => 4584,
-                        'ImageHeight' => 3334,
-                        'BitsPerSample' => [8, 8, 8],
-                        'PhotometricInterpretation' => 2,
-                        'ImageDescription' => 'Character illustration of people holding creative ideas icons',
-                        'Orientation' => 1,
-                        'SamplesPerPixel' => 3,
-                        'XResolution' => 300,
-                        'YResolution' => 300,
-                        'ResolutionUnit' => 2,
-                        'Software' => 'Adobe Photoshop CC 2019 (Windows)',
-                        'ModifyDate' => '2019=>05=>25 10=>16=>49',
-                        'Artist' => 'busbus',
-                        'Copyright' => 'Rawpixel Ltd.',
-                        'ExifOffset' => 356
-                    ],
-                    'thumbnail' => [
-                        'Compression' => 6,
-                        'XResolution' => 72,
-                        'YResolution' => 72,
-                        'ResolutionUnit' => 2,
-                        'ThumbnailOffset' => 506,
-                        'ThumbnailLength' => 6230,
-                    ],
-                    'exif' => [
-                        'ExifVersion' => '0221',
-                        'ColorSpace' => 65535,
-                        'ExifImageWidth' => 3948,
-                        'ExifImageHeight' => 3214
-                    ],
-                    'gps' => [],
-                    'interoperability' => [],
-                    'makernote' => [],
-                ],
-                'pHash' => 'd1813e2fc22c7b2f',
-            ],
-        ]));
-
-        $this->stubHttpClient('get', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->getFileMetaData($fileId);
-
-        FileTest::assertNull($response->result);
-        FileTest::assertEquals('Missing File ID parameter for this request', $response->error);
-    }
-
-    /**
-     *
-     */
-    public function testGetFileMetaDataDetails()
-    {
-        $fileId = '5df36759adf3f523d81dd94f';
-
-        $mockBodyResponse = Utils::streamFor(json_encode([
-            [
-                'height' => 3214,
-                'width' => 3948,
-                'size' => 207097,
-                'format' => 'jpg',
-                'hasColorProfile' => true,
-                'quality' => 90,
-                'density' => 300,
-                'hasTransparency' => false,
-                'exif' => [
-                    'image' => [
-                        'ImageWidth' => 4584,
-                        'ImageHeight' => 3334,
-                        'BitsPerSample' => [8, 8, 8],
-                        'PhotometricInterpretation' => 2,
-                        'ImageDescription' => 'Character illustration of people holding creative ideas icons',
-                        'Orientation' => 1,
-                        'SamplesPerPixel' => 3,
-                        'XResolution' => 300,
-                        'YResolution' => 300,
-                        'ResolutionUnit' => 2,
-                        'Software' => 'Adobe Photoshop CC 2019 (Windows)',
-                        'ModifyDate' => '2019=>05=>25 10=>16=>49',
-                        'Artist' => 'busbus',
-                        'Copyright' => 'Rawpixel Ltd.',
-                        'ExifOffset' => 356
-                    ],
-                    'thumbnail' => [
-                        'Compression' => 6,
-                        'XResolution' => 72,
-                        'YResolution' => 72,
-                        'ResolutionUnit' => 2,
-                        'ThumbnailOffset' => 506,
-                        'ThumbnailLength' => 6230,
-                    ],
-                    'exif' => [
-                        'ExifVersion' => '0221',
-                        'ColorSpace' => 65535,
-                        'ExifImageWidth' => 3948,
-                        'ExifImageHeight' => 3214
-                    ],
-                    'gps' => [],
-                    'interoperability' => [],
-                    'makernote' => [],
-                ],
-                'pHash' => 'd1813e2fc22c7b2f',
-            ],
-        ]));
-
-        $this->stubHttpClient('get', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->getFileMetaData($fileId);
-
-        $el = get_object_vars($response->result[0]);
-
-        FileTest::assertNull($response->error);
-        FileTest::assertEquals(207097, $el['size']);
-    }
-
-    /**
-     * @deprecated
-     */
-    public function testDeprecatedGetFileMetaDataDetails()
-    {
-        $fileId = '5df36759adf3f523d81dd94f';
-
-        $mockBodyResponse = Utils::streamFor(json_encode([
-            [
-                'height' => 3214,
-                'width' => 3948,
-                'size' => 207097,
-                'format' => 'jpg',
-                'hasColorProfile' => true,
-                'quality' => 90,
-                'density' => 300,
-                'hasTransparency' => false,
-                'exif' => [
-                    'image' => [
-                        'ImageWidth' => 4584,
-                        'ImageHeight' => 3334,
-                        'BitsPerSample' => [8, 8, 8],
-                        'PhotometricInterpretation' => 2,
-                        'ImageDescription' => 'Character illustration of people holding creative ideas icons',
-                        'Orientation' => 1,
-                        'SamplesPerPixel' => 3,
-                        'XResolution' => 300,
-                        'YResolution' => 300,
-                        'ResolutionUnit' => 2,
-                        'Software' => 'Adobe Photoshop CC 2019 (Windows)',
-                        'ModifyDate' => '2019=>05=>25 10=>16=>49',
-                        'Artist' => 'busbus',
-                        'Copyright' => 'Rawpixel Ltd.',
-                        'ExifOffset' => 356
-                    ],
-                    'thumbnail' => [
-                        'Compression' => 6,
-                        'XResolution' => 72,
-                        'YResolution' => 72,
-                        'ResolutionUnit' => 2,
-                        'ThumbnailOffset' => 506,
-                        'ThumbnailLength' => 6230,
-                    ],
-                    'exif' => [
-                        'ExifVersion' => '0221',
-                        'ColorSpace' => 65535,
-                        'ExifImageWidth' => 3948,
-                        'ExifImageHeight' => 3214
-                    ],
-                    'gps' => [],
-                    'interoperability' => [],
-                    'makernote' => [],
-                ],
-                'pHash' => 'd1813e2fc22c7b2f',
-            ],
-        ]));
-
-        $this->stubHttpClient('get', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->getMetaData($fileId);
-
-        $el = get_object_vars($response->result[0]);
-
-        FileTest::assertNull($response->error);
-        FileTest::assertEquals(207097, $el['size']);
-    }
-
-
-    // Get MetaData
-
-    /**
-     *
-     */
-    public function testWhileDeletingMissingFileIdParameter()
-    {
-
-        $fileId = '';
-
-        $mockBodyResponse = Utils::streamFor();
-
-        $this->stubHttpClient('delete', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->deleteFile($fileId);
-
-        FileTest::assertNull($response->result);
-        FileTest::assertEquals('Missing File ID parameter for this request', $response->error);
-    }
-
-    /**
-     *
-     */
-    public function testDeleteFileWhenSuccessful()
-    {
-        $fileId = '5df36759adf3f523d81dd94f';
-
-        $mockBodyResponse = Utils::streamFor();
-
-        $this->stubHttpClient('delete', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->deleteFile($fileId);
-
-        FileTest::assertNull($response->error);
-    }
-
-    // Delete Files
-
-    /**
-     *
-     */
-    public function testBulkFileDeleteWhenMissingFileIdsParameter()
-    {
-
-        $fileIds = [];
-
-        $mockBodyResponse = Utils::streamFor();
-
-        $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->bulkDeleteFiles($fileIds);
-
-        FileTest::assertNull($response->result);
-        FileTest::assertEquals('FileIds parameter is missing.', $response->error);
-    }
-
-    /**
-     *
-     */
-    public function testBulkFileDeleteWhenSuccessful()
-    {
-
-        $fileIds = ['6604876475937', '8242194892418'];
-
-        $mockBodyResponse = Utils::streamFor(json_encode([
-            [
-                'successfullyDeletedFileIds' => $fileIds,
-            ],
-        ]));
-
-        $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->bulkDeleteFiles($fileIds);
-
-        $el = get_object_vars($response->result[0]);
-        FileTest::assertEquals($fileIds[0], $el['successfullyDeletedFileIds'][0]);
-    }
-
-
-    /**
-     * @deprecated
-     */
-    public function testDeprecatedBulkFileDeleteByIdsWhenSuccessful()
-    {
-
-        $fileIds = ['6604876475937', '8242194892418'];
-
-        $mockBodyResponse = Utils::streamFor(json_encode([
-            [
-                'successfullyDeletedFileIds' => $fileIds,
-            ],
-        ]));
-
-        $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->bulkFileDeleteByIds(['fileIds' => $fileIds]);
-
-        $el = get_object_vars($response->result[0]);
-        FileTest::assertEquals($fileIds[0], $el['successfullyDeletedFileIds'][0]);
-    }
-
-
-
-    /**
-     *
-     */
-    public function testCopyFileWhenSourceIsEmpty()
-    {
-        $source = '';
-        $destination = '/destination';
-
-        $mockBodyResponse = Utils::streamFor();
-
-        $this->stubHttpClient('post', new Response(204, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->copyFile($source, $destination);
-
-        FileTest::assertNull($response->result);
-        FileTest::assertNotNull($response->error);
-        FileTest::assertEquals('Missing sourceFilePath and/or destinationPath for copy file.', $response->error);
-    }
-
-    /**
-     *
-     */
-    public function testCopyFileWhenDestinationIsEmpty()
-    {
-        $source = '/source';
-        $destination = '';
-
-        $mockBodyResponse = Utils::streamFor();
-
-        $this->stubHttpClient('post', new Response(204, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->copyFile($source, $destination);
-
-        FileTest::assertNull($response->result);
-        FileTest::assertNotNull($response->error);
-        FileTest::assertEquals('Missing sourceFilePath and/or destinationPath for copy file.', $response->error);
-    }
-
-    /**
-     *
-     */
-    public function testCopyFileSuccessful()
-    {
-        $source = '/source';
-        $destination = '/destination';
-
-        $mockBodyResponse = Utils::streamFor();
-
-        $this->stubHttpClient('post', new Response(204, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->copyFile($source, $destination);
-
-        FileTest::assertNull($response->result);
-        FileTest::assertNull($response->error);
-    }
-
-    /**
-     *
-     */
-    public function testMoveFileWhenSourceIsEmpty()
-    {
-        $source = '';
-        $destination = '/destination';
-
-        $mockBodyResponse = Utils::streamFor();
-
-        $this->stubHttpClient('post', new Response(204, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->moveFile($source, $destination);
-
-        FileTest::assertNull($response->result);
-        FileTest::assertNotNull($response->error);
-        FileTest::assertEquals('Missing sourceFilePath and/or destinationPath for copy file.', $response->error);
-    }
-
-    /**
-     *
-     */
-    public function testMoveFileWhenDestinationIsEmpty()
-    {
-        $source = '/source';
-        $destination = '';
-
-        $mockBodyResponse = Utils::streamFor();
-
-        $this->stubHttpClient('post', new Response(204, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->moveFile($source, $destination);
-
-        FileTest::assertNull($response->result);
-        FileTest::assertNotNull($response->error);
-        FileTest::assertEquals('Missing sourceFilePath and/or destinationPath for copy file.', $response->error);
-    }
-
-    /**
-     *
-     */
-    public function testMoveFileSuccessful()
-    {
-        $source = '/source';
-        $destination = '/destination';
-
-        $mockBodyResponse = Utils::streamFor();
-
-        $this->stubHttpClient('post', new Response(204, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->moveFile($source, $destination);
-
-        FileTest::assertNull($response->result);
-        FileTest::assertNull($response->error);
-    }
-
-    /**
-     *
-     */
-    public function testRenameFileEmptyFilePath()
-    {
-        $filePath = '';
-        $newFileName = 'new-name';
-
-        $mockBodyResponse = Utils::streamFor(json_encode([]));
-
-        $this->stubHttpClient('put', new Response(204, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->renameFile([
-            'filePath' => $filePath, 
-            'newFileName' => $newFileName
-        ]);
-
-        FileTest::assertNotNull($response->error);
-        FileTest::assertEquals('Rename File Parameters are invalid.', $response->error);
-    }
-
-    /**
-     *
-     */
-    public function testRenameFileEmptyNewFileName()
-    {
-        $filePath = '/filePath';
-        $newFileName = '';
-
-        $mockBodyResponse = Utils::streamFor(json_encode([]));
-
-        $this->stubHttpClient('put', new Response(204, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->renameFile([
-            'filePath' => $filePath, 
-            'newFileName' => $newFileName
-        ]);
-
-        FileTest::assertNotNull($response->error);
-        FileTest::assertEquals('Rename File Parameters are invalid.', $response->error);
-    }
-
-    /**
-     *
-     */
-    public function testRenameFileSuccess()
-    {
-        $filePath = '/filePath';
-        $newFileName = 'new-file';
-
-        $mockBodyResponse = Utils::streamFor(json_encode([]));
-
-        $this->stubHttpClient('put', new Response(204, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->renameFile([
-            'filePath' => $filePath, 
-            'newFileName' => $newFileName
-        ]);
-
-        FileTest::assertNotNull($response->result);
-        FileTest::assertNull($response->error);
-    }
-
-    /**
-     *
-     */
-    public function testRenameFilePurgeCacheFalse()
-    {
-        $filePath = '/filePath';
-        $newFileName = 'new-file';
-
-        $mockBodyResponse = Utils::streamFor(json_encode([]));
-
-        $this->stubHttpClient('put', new Response(204, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->renameFile([
-            'filePath' => $filePath, 
-            'newFileName' => $newFileName
-        ],false);
-
-        FileTest::assertNotNull($response->result);
-        FileTest::assertNull($response->error);
-    }
-
-    /**
-     *
-     */
-    public function testRenameFilePurgeCache()
-    {
-        $filePath = '/filePath';
-        $newFileName = 'new-file';
-
-        $mockBodyResponse = Utils::streamFor(json_encode([ 'purgeCacheId' => '598821f949c0a938d57563bd']));
-
-        $this->stubHttpClient('put', new Response(204, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->renameFile([
-            'filePath' => $filePath, 
-            'newFileName' => $newFileName
-        ],true);
-
-        FileTest::assertNotNull($response->result);
-        FileTest::assertNull($response->error);
-        FileTest::assertEquals('598821f949c0a938d57563bd', $response->result->purgeCacheId);
-    }
-
-    /**
-     *
-     */
-    public function testRenameFilePurgeCacheFailed()
-    {
-        $filePath = '/filePath';
-        $newFileName = 'new-file';
-
-        $mockBodyResponse = Utils::streamFor(json_encode([
-            'message' => 'File renamed successfully but we could not purge the CDN cache for old URL because of rate limits on purge API.',
-            'help' => 'For support kindly contact us at support@imagekit.io .',
-            'reason' => 'PURGE_FAILED'
-        ]));
-
-        $this->stubHttpClient('put', new Response(207, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->renameFile([
-            'filePath' => $filePath, 
-            'newFileName' => $newFileName
-        ],true);
-
-        FileTest::assertNotNull($response->result);
-        FileTest::assertNull($response->error);
-        FileTest::assertEquals('File renamed successfully but we could not purge the CDN cache for old URL because of rate limits on purge API.', $response->result->message);
-        FileTest::assertEquals('For support kindly contact us at support@imagekit.io .', $response->result->help);
-        FileTest::assertEquals('PURGE_FAILED', $response->result->reason);
-    }
-
-    /**
-     *
-     */
-    public function testUpdateFileDetailsWhenFileIDTagsAndCustomParameterIsPassed()
-    {
-
-        $fileId = '5df36759adf3f523d81dd94f';
-
-        $updateData = [
-            'customCoordinates' => '10,10,100,100',
-            'tags' => ['tag1', 'tag2']
-        ];
-
-        $mockBodyResponse = Utils::streamFor(json_encode([
-            'fileId' => '598821f949c0a938d57563bd',
-            'type' => 'file',
-            'name' => 'file1.jpg',
-            'filePath' => '/images/products/file1.jpg',
-            'tags' => ['t-shirt', 'round-neck', 'sale2019'],
-            'isPrivateFile' => false,
-            'customCoordinates' => null,
-            'url' => 'https://ik.imagekit.io/your_imagekit_id/images/products/file1.jpg',
-            'thumbnail' => 'https://ik.imagekit.io/your_imagekit_id/tr:n-media_library_thumbnail/images/products/file1.jpg',
-            'fileType' => 'image'
-        ]));
-
-        $this->stubHttpClient('patch', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->updateFileDetails($fileId, $updateData);
-
-        $el = get_object_vars($response->result);
-        FileTest::assertNull($response->error);
-        FileTest::assertEquals([
-            'fileId' => '598821f949c0a938d57563bd',
-            'type' => 'file',
-            'name' => 'file1.jpg',
-            'filePath' => '/images/products/file1.jpg',
-            'tags' => ['t-shirt', 'round-neck', 'sale2019'],
-            'isPrivateFile' => false,
-            'customCoordinates' => null,
-            'url' => 'https://ik.imagekit.io/your_imagekit_id/images/products/file1.jpg',
-            'thumbnail' => 'https://ik.imagekit.io/your_imagekit_id/tr:n-media_library_thumbnail/images/products/file1.jpg',
-            'fileType' => 'image'
-        ], $el);
-    }
-
-    /**
-     * @deprecated
-     */
-    public function testDeprecatedUpdateFileDetailsWhenFileIDTagsAndCustomParameterIsPassed()
-    {
-
-        $fileId = '5df36759adf3f523d81dd94f';
-
-        $updateData = [
-            'customCoordinates' => '10,10,100,100',
-            'tags' => ['tag1', 'tag2']
-        ];
-
-        $mockBodyResponse = Utils::streamFor(json_encode([
-            'fileId' => '598821f949c0a938d57563bd',
-            'type' => 'file',
-            'name' => 'file1.jpg',
-            'filePath' => '/images/products/file1.jpg',
-            'tags' => ['t-shirt', 'round-neck', 'sale2019'],
-            'isPrivateFile' => false,
-            'customCoordinates' => null,
-            'url' => 'https://ik.imagekit.io/your_imagekit_id/images/products/file1.jpg',
-            'thumbnail' => 'https://ik.imagekit.io/your_imagekit_id/tr:n-media_library_thumbnail/images/products/file1.jpg',
-            'fileType' => 'image'
-        ]));
-
-        $this->stubHttpClient('patch', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->updateDetails($fileId, $updateData);
-
-        $el = get_object_vars($response->result);
-        FileTest::assertNull($response->error);
-        FileTest::assertEquals([
-            'fileId' => '598821f949c0a938d57563bd',
-            'type' => 'file',
-            'name' => 'file1.jpg',
-            'filePath' => '/images/products/file1.jpg',
-            'tags' => ['t-shirt', 'round-neck', 'sale2019'],
-            'isPrivateFile' => false,
-            'customCoordinates' => null,
-            'url' => 'https://ik.imagekit.io/your_imagekit_id/images/products/file1.jpg',
-            'thumbnail' => 'https://ik.imagekit.io/your_imagekit_id/tr:n-media_library_thumbnail/images/products/file1.jpg',
-            'fileType' => 'image'
-        ], $el);
-    }
-
-    /**
-     *
-     */
-    public function testUpdateFileDetailsWhenFileIDParameterIsNotPassed()
-    {
-        $fileId = '';
-
-        $updateData = [
-            'customCoordinates' => '10,10,100,100',
-            'tags' => ['tag1', 'tag2']
-        ];
-
-        $mockBodyResponse = Utils::streamFor(json_encode([
-            [
-                'fileId' => '598821f949c0a938d57563bd',
-                'type' => 'file',
-                'name' => 'file1.jpg',
-                'filePath' => '/images/products/file1.jpg',
-                'tags' => ['t-shirt', 'round-neck', 'sale2019'],
-                'isPrivateFile' => false,
-                'customCoordinates' => null,
-                'url' => 'https://ik.imagekit.io/your_imagekit_id/images/products/file1.jpg',
-                'thumbnail' => 'https://ik.imagekit.io/your_imagekit_id/tr:n-media_library_thumbnail/images/products/file1.jpg',
-                'fileType' => 'image'
-            ],
-        ]));
-
-        $this->stubHttpClient('patch', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->updateFileDetails($fileId, $updateData);
-
-        FileTest::assertNull($response->result);
-        FileTest::assertEquals('Missing File ID parameter for this request', $response->error);
-    }
-
-
-    // Update details
-
-    /**
-     *
-     */
-    public function testUpdateFileDetailsWhenUpdateDataIsNotAnArray()
-    {
-
-
-        $fileId = '5df36759adf3f523d81dd94f';
-
-        $updateData = 'Keegan Trail';
-
-        $mockBodyResponse = Utils::streamFor(json_encode([
-            [
-                'fileId' => '598821f949c0a938d57563bd',
-                'type' => 'file',
-                'name' => 'file1.jpg',
-                'filePath' => '/images/products/file1.jpg',
-                'tags' => ['t-shirt', 'round-neck', 'sale2019'],
-                'isPrivateFile' => false,
-                'customCoordinates' => null,
-                'url' => 'https://ik.imagekit.io/your_imagekit_id/images/products/file1.jpg',
-                'thumbnail' => 'https://ik.imagekit.io/your_imagekit_id/tr:n-media_library_thumbnail/images/products/file1.jpg',
-                'fileType' => 'image'
-            ],
-        ]));
-
-        $this->stubHttpClient('patch', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->updateFileDetails($fileId, $updateData);
-
-        FileTest::assertNull($response->result);
-        FileTest::assertEquals('Missing file update data for this request', $response->error);
-    }
-
-    /**
-     *
-     */
-    public function testUpdateFileDetailsWhenUpdateDataTagIsInvalid()
-    {
-
-        $fileId = '5df36759adf3f523d81dd94f';
-
-        $updateData = [
-            'customCoordinates' => '10,10,100,100',
-            'tags' => ''
-        ];
-
-        $mockBodyResponse = Utils::streamFor(json_encode([
-            [
-                'fileId' => '598821f949c0a938d57563bd',
-                'type' => 'file',
-                'name' => 'file1.jpg',
-                'filePath' => '/images/products/file1.jpg',
-                'tags' => null,
-                'isPrivateFile' => false,
-                'customCoordinates' => null,
-                'url' => 'https://ik.imagekit.io/your_imagekit_id/images/products/file1.jpg',
-                'thumbnail' => 'https://ik.imagekit.io/your_imagekit_id/tr:n-media_library_thumbnail/images/products/file1.jpg',
-                'fileType' => 'image'
-            ],
-        ]));
-
-        $this->stubHttpClient('patch', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->updateFileDetails($fileId, $updateData);
-
-        FileTest::assertNull($response->result);
-        FileTest::assertEquals('Invalid tags parameter for this request', $response->error);
-    }
-
-    /**
-     *
-     */
-    public function testUpdateFileDetailsWhenUpdateCustomCoordinatesAreInvalid()
-    {
-
-        $fileId = '5df36759adf3f523d81dd94f';
-
-        $updateData = [
-            'customCoordinates' => [],
-            'tags' => ['tag1', 'tag2']
-        ];
-
-        $mockBodyResponse = Utils::streamFor(
-            json_encode([
-                'fileId' => '598821f949c0a938d57563bd',
-                'type' => 'file',
-                'name' => 'file1.jpg',
-                'filePath' => '/images/products/file1.jpg',
-                'tags' => null,
-                'isPrivateFile' => false,
-                'customCoordinates' => null,
-                'url' => 'https://ik.imagekit.io/your_imagekit_id/images/products/file1.jpg',
-                'thumbnail' => 'https://ik.imagekit.io/your_imagekit_id/tr:n-media_library_thumbnail/images/products/file1.jpg',
-                'fileType' => 'image'
-            ])
-        );
-
-        $this->stubHttpClient('patch', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->updateFileDetails($fileId, $updateData);
-
-        FileTest::assertNull($response->result);
-        FileTest::assertEquals('Invalid customCoordinates parameter for this request', $response->error);
-    }
-
-    public function testBulkAddTagsWhenFileIdsAreEmpty()
-    {
-        $fileIds = [];
-        $tags = ['testing_tag1'];
-
-        $mockBodyResponse = Utils::streamFor(
-            json_encode([
-                'successfullyUpdatedFileIds' => $fileIds
-            ])
-        );
-
-        $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->bulkAddTags($fileIds, $tags);
-
-        FileTest::assertNull($response->result);
-        FileTest::assertEquals('Missing bulk tag update data for this request', $response->error);
-    }
-
-    public function testBulkAddTagsWhenTagsAreEmpty()
-    {
-        $fileIds = ['5df36759adf3f523d81dd94f'];
-        $tags = [];
-
-        $mockBodyResponse = Utils::streamFor(
-            json_encode([
-                'successfullyUpdatedFileIds' => $fileIds
-            ])
-        );
-
-        $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->bulkAddTags($fileIds, $tags);
-
-        FileTest::assertNull($response->result);
-        FileTest::assertEquals('Missing bulk tag update data for this request', $response->error);
-    }
-
-    // Bulk Add Tags
-
-    public function testBulkAddTagsSuccessful()
-    {
-        $fileIds = ['5df36759adf3f523d81dd94f'];
-        $tags = ['testing_tags_!'];
-
-        $mockBodyResponse = Utils::streamFor(
-            json_encode([
-                'successfullyUpdatedFileIds' => $fileIds
-            ])
-        );
-
-        $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->bulkAddTags($fileIds, $tags);
-
-        $obj = get_object_vars($response->result);
-        FileTest::assertEquals(['successfullyUpdatedFileIds' => ['5df36759adf3f523d81dd94f']], $obj);
-    }
-
-    public function testBulkRemoveTagsWhenFileIdsAreEmpty()
-    {
-        $fileIds = [];
-        $tags = ['testing_tag1'];
-
-        $mockBodyResponse = Utils::streamFor(
-            json_encode([
-                'successfullyUpdatedFileIds' => $fileIds
-            ])
-        );
-
-        $this->stubHttpClient('delete', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->bulkRemoveTags($fileIds, $tags);
-
-        FileTest::assertNull($response->result);
-        FileTest::assertEquals('Missing bulk tag update data for this request', $response->error);
-    }
-
-    public function testBulkRemoveTagsWhenTagsAreEmpty()
-    {
-        $fileIds = ['5df36759adf3f523d81dd94f'];
-        $tags = [];
-
-        $mockBodyResponse = Utils::streamFor(
-            json_encode([
-                'successfullyUpdatedFileIds' => $fileIds
-            ])
-        );
-
-        $this->stubHttpClient('delete', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->bulkRemoveTags($fileIds, $tags);
-
-        FileTest::assertNull($response->result);
-        FileTest::assertEquals('Missing bulk tag update data for this request', $response->error);
-    }
-
-
-    // Bulk Remove Tags
-
-    public function testBulkRemoveTagsSuccessful()
-    {
-        $fileIds = ['5df36759adf3f523d81dd94f'];
-        $tags = ['testing_tags_!'];
-
-        $mockBodyResponse = Utils::streamFor(
-            json_encode([
-                'successfullyUpdatedFileIds' => $fileIds
-            ])
-        );
-
-        $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->bulkRemoveTags($fileIds, $tags);
-
-        $obj = get_object_vars($response->result);
-        FileTest::assertEquals(['successfullyUpdatedFileIds' => ['5df36759adf3f523d81dd94f']], $obj);
-    }
-
-    // Purge  Details
-
-    /**
-     *
-     */
-    public function testPurgeFileCacheWithoutUrlPatrameter()
-    {
-
-        $urlParam = '';
-
-        $mockBodyResponse = Utils::streamFor(json_encode([
-            [
-                'requestId' => '598821f949c0a938d57563bd',
-            ],
-        ]));
-
-        $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-        $response = $this->client->purgeCache($urlParam);
-
-        FileTest::assertNull($response->result);
-        FileTest::assertEquals('Missing URL parameter for this request', $response->error);
-    }
-
-    /**
-     *
-     */
-    public function testPurgeCache()
-    {
-
-        $urlParam = 'https://ik.imagekit.io/ot2cky3ujwa/default-image.jpg';
-
-        $mockBodyResponse = Utils::streamFor(json_encode([
-            [
-                'requestId' => '598821f949c0a938d57563bd',
-            ],
-        ]));
-
-        $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-        $response = $this->client->purgeCache($urlParam);
-
-        $el = get_object_vars($response->result[0]);
-        FileTest::assertEquals('598821f949c0a938d57563bd', $el['requestId']);
-    }
-
-
-    /**
-     * @deprecated
-     */
-    public function testDeprecatedPurgeFileCacheApi()
-    {
-
-        $urlParam = 'https://ik.imagekit.io/ot2cky3ujwa/default-image.jpg';
-
-        $mockBodyResponse = Utils::streamFor(json_encode([
-            [
-                'requestId' => '598821f949c0a938d57563bd',
-            ],
-        ]));
-
-        $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-        $response = $this->client->purgeFileCacheApi($urlParam);
-
-        $el = get_object_vars($response->result[0]);
-        FileTest::assertEquals('598821f949c0a938d57563bd', $el['requestId']);
-    }
-
-    /**
-     * @deprecated
-     */
-    public function testDeprecatedPurgeCacheApi()
-    {
-
-        $urlParam = 'https://ik.imagekit.io/ot2cky3ujwa/default-image.jpg';
-
-        $mockBodyResponse = Utils::streamFor(json_encode([
-            [
-                'requestId' => '598821f949c0a938d57563bd',
-            ],
-        ]));
-
-        $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-        $response = $this->client->purgeCacheApi($urlParam);
-
-        $el = get_object_vars($response->result[0]);
-        FileTest::assertEquals('598821f949c0a938d57563bd', $el['requestId']);
-    }
-
-    // Purge Cache Status API
-
-    /**
-     *
-     */
-    public function testPurgeFileCacheStatusWithoutRequestId()
-    {
-        $requestId = '';
-
-        $mockBodyResponse = Utils::streamFor(json_encode([
-            [
-                'status' => 'Pending'
-            ],
-        ]));
-
-        $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-        $response = $this->client->getPurgeCacheStatus($requestId);
-
-        FileTest::assertNull($response->result);
-        FileTest::assertEquals('Missing Request ID parameter for this request', $response->error);
-    }
-
-    /**
-     *
-     */
-    public function testPurgeFileCacheStatus()
-    {
-        $requestId = '598821f949c0a938d57563bd';
-
-        $mockBodyResponse = Utils::streamFor(json_encode([
-            [
-                'status' => 'Pending'
-            ],
-        ]));
-
-        $this->stubHttpClient('get', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-        $response = $this->client->getPurgeCacheStatus($requestId);
-
-        $el = get_object_vars($response->result[0]);
-        FileTest::assertEquals('Pending', $el['status']);
-    }
-
-    /**
-     * @deprecated
-     */
-    public function testDeprecatedPurgeCacheApiStatusStatus()
-    {
-        $requestId = '598821f949c0a938d57563bd';
-
-        $mockBodyResponse = Utils::streamFor(json_encode([
-            [
-                'status' => 'Pending'
-            ],
-        ]));
-
-        $this->stubHttpClient('get', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-        $response = $this->client->purgeFileCacheApiStatus($requestId);
-
-        $el = get_object_vars($response->result[0]);
-        FileTest::assertEquals('Pending', $el['status']);
-    }
-
-    /**
-     *
-     */
-    public function testDeprecatedPurgeFileCacheApiStatusStatus()
-    {
-        $requestId = '598821f949c0a938d57563bd';
-
-        $mockBodyResponse = Utils::streamFor(json_encode([
-            [
-                'status' => 'Pending'
-            ],
-        ]));
-
-        $this->stubHttpClient('get', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-        $response = $this->client->purgeFileCacheApiStatus($requestId);
-
-        $el = get_object_vars($response->result[0]);
-        FileTest::assertEquals('Pending', $el['status']);
-    }
-
-    // Remote URL Metadata
-
-    /**
-     *
-     */
-    public function testGetFileMetadataFromRemoteURLWhenURLParamIsMissing()
-    {
-        $url = '';
-
-        $mockBodyResponse = Utils::streamFor(json_encode([
-            ['pHash' => 'f06830ca9f1e3e90'],
-        ]));
-
-        $this->stubHttpClient('get', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->getFileMetadataFromRemoteURL($url);
-
-        FileTest::assertNull($response->result);
-        FileTest::assertEquals('Your request is missing the url query paramater.', $response->error);
-    }
-
-    /**
-     *
-     */
-    public function testGetFileMetadataFromRemoteURLWhenSuccessful()
-    {
-        $url = 'https://dummy.example.com/';
-        $phash = '1578156593879';
-
-        $mockBodyResponse = Utils::streamFor(json_encode([
-            ['pHash' => $phash],
-        ]));
-
-        $this->stubHttpClient('get', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->getFileMetadataFromRemoteURL($url);
-
-        $el = get_object_vars($response->result[0]);
-        FileTest::assertEquals($phash, $el['pHash']);
     }
 
     protected function setUp(): void

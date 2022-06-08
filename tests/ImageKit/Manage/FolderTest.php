@@ -16,101 +16,125 @@ class FolderTest extends TestCase
      */
     private $client;
 
-    protected function setUp(): void
+    /**
+     * 
+     */
+    public function testCreateFolder()
     {
-        $this->client = new ImageKit(
-            'testing_public_key',
-            'testing_private_key',
-            'https://ik.imagekit.io/demo'
-        );
+        $folderName = 'new-folder';
+        $parentFolderPath = '/';
+
+        $requestBody = [
+            'folderName' => $folderName,
+            'parentFolderPath' => $parentFolderPath,
+        ];
+
+        $mockBodyResponse = Utils::streamFor();
+
+        $this->stubHttpClient('post', new Response(201, ['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $response = $this->client->createFolder($requestBody);
+
     }
 
-    protected function tearDown(): void
+     /**
+     * 
+     */
+    public function testCreateFolderInvalidRequest()
     {
-        $this->client = null;
+        $response = $this->client->createFolder();
+
+        FolderTest::assertEquals('Create Folder API accepts an array, null passed',$response->error->message);
     }
 
-    private function stubHttpClient($methodName, $response)
+    /**
+     * 
+     */
+    public function testCreateFolderWithNonArrayParameter()
     {
-        $stub = $this->createMock(GuzzleHttpWrapper::class);
-        $stub->method('setDatas');
-        $stub->method($methodName)->willReturn($response);
+        $folderName = 'new-folder';
+        $parentFolderPath = '/';
 
-        $closure = function () use ($stub) {
-            $this->httpClient = $stub;
-        };
-        $doClosure = $closure->bindTo($this->client, ImageKit::class);
-        $doClosure();
+        $requestBody = $folderName;
+
+        $response = $this->client->createFolder($requestBody);
+
+        FolderTest::assertEquals('Create Folder API accepts an array of parameters, non array value passed',$response->error->message);
     }
 
-    public function testCreateInvalidFolderName()
+    /**
+     * 
+     */
+    public function testCreateFolderWithEmptyArrayParameter()
+    {
+        $requestBody = [];
+
+        $response = $this->client->createFolder($requestBody);
+
+        FolderTest::assertEquals('Create Folder API accepts an array of parameters, empty array passed',$response->error->message);
+    }
+   
+
+    public function testCreateFolderWithMissingFolderName()
     {
         $folderName = '';
         $parentFolderPath = '/';
 
-        $mockBodyResponse = Utils::streamFor();
+        $requestBody = [
+            'folderName' => $folderName,
+            'parentFolderPath' => $parentFolderPath,
+        ];
 
-        $this->stubHttpClient('post', new Response(201, ['X-Foo' => 'Bar'], $mockBodyResponse));
+        $response = $this->client->createFolder($requestBody);
 
-        $response = $this->client->createFolder($folderName, $parentFolderPath);
-
-        FolderTest::assertEquals('Missing data for creation of folder', $response->error);
+        FolderTest::assertEquals('Missing parameter folderName and/or parentFolderPath for Create Folder API', $response->error->message);
     }
 
-    public function testCreateInvalidParentFolderPath()
+    public function testCreateFolderWithMissingParentFolderPath()
     {
-        $folderName = '/testing';
+        $folderName = 'new-folder';
         $parentFolderPath = '';
+        
+        $requestBody = [
+            'folderName' => $folderName,
+            'parentFolderPath' => $parentFolderPath,
+        ];
 
-        $mockBodyResponse = Utils::streamFor();
+        $response = $this->client->createFolder($requestBody);
 
-        $this->stubHttpClient('post', new Response(201, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->createFolder($folderName, $parentFolderPath);
-
-        FolderTest::assertEquals('Missing data for creation of folder', $response->error);
+        FolderTest::assertEquals('Missing parameter folderName and/or parentFolderPath for Create Folder API', $response->error->message);
     }
-
-    public function testCreate()
+    
+    /**
+     * 
+     */
+    public function testDeleteFolder()
     {
-        $folderName = 'testing';
-        $parentFolderPath = '/';
+        $folderPath = '/new-folder';
 
         $mockBodyResponse = Utils::streamFor();
 
-        $this->stubHttpClient('post', new Response(201, ['X-Foo' => 'Bar'], $mockBodyResponse));
+        $this->stubHttpClient('delete', new Response(201, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
-        $response = $this->client->createFolder($folderName, $parentFolderPath);
-
-        FolderTest::assertNull($response->result);
-        FolderTest::assertNull($response->error);
+        $response = $this->client->deleteFolder($folderPath);
     }
-
-    public function testDeleteEmptyFolderPath()
+    
+    /**
+     * 
+     */
+    public function testDeleteFolderMissingFolderPath()
     {
         $folderPath = '';
 
-        $mockBodyResponse = Utils::streamFor();
-
-        $this->stubHttpClient('delete', new Response(204, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
         $response = $this->client->deleteFolder($folderPath);
 
-        FolderTest::assertEquals('Missing data for deletion of folder', $response->error);
+        FolderTest::assertEquals('Missing folderPath for Delete Folder API',$response->error->message);
     }
 
-    public function testDelete()
-    {
-        $folderPath = '/testing';
-
-        $mockBodyResponse = Utils::streamFor();
-
-        $this->stubHttpClient('delete', new Response(204, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->deleteFolder($folderPath);
-
-        FolderTest::assertNull($response->result);
-        FolderTest::assertNull($response->error);
+    public function testCopyFolder(){
+        $sourceFolderPath = "/source-folder/";
+        $destinationPath = "/destination-folder/";
+        $includeVersions = false;
     }
 
     public function testCopyEmptySource()
@@ -205,5 +229,32 @@ class FolderTest extends TestCase
 
         $el = get_object_vars($response->result);
         FolderTest::assertEquals('Testing_job_id', $el['jobId']);
+    }
+    
+    private function stubHttpClient($methodName, $response)
+    {
+        $stub = $this->createMock(GuzzleHttpWrapper::class);
+        $stub->method('setDatas');
+        $stub->method($methodName)->willReturn($response);
+
+        $closure = function () use ($stub) {
+            $this->httpClient = $stub;
+        };
+        $doClosure = $closure->bindTo($this->client, ImageKit::class);
+        $doClosure();
+    }
+
+    protected function setUp(): void
+    {
+        $this->client = new ImageKit(
+            'testing_public_key',
+            'testing_private_key',
+            'https://ik.imagekit.io/demo'
+        );
+    }
+
+    protected function tearDown(): void
+    {
+        $this->client = null;
     }
 }

@@ -140,13 +140,13 @@ final class UploadTest extends TestCase
             ]
         ];
 
-        $mockBodyResponse = Utils::streamFor(json_encode($fileOptions));
+        $mockBodyResponse = Utils::streamFor(json_encode($this->uploadSuccessResponseObj));
 
         $this->stubHttpClient(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
         $response = $this->client->upload($fileOptions);
 
-        // UploadTest::assertEquals('asd', json_encode($response));
+        UploadTest::assertEquals(json_encode($this->uploadSuccessResponseObj), json_encode($response->result));
     }
     
     // /**

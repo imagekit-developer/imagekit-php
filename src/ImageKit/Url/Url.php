@@ -309,15 +309,15 @@ class Url
 
                     }
                 }
-                else{
-                    $transform_block = $this->buildingTransformationBlocks($key,$value);
-                    array_push($parsedTransformStep, $transform_block);
+                else if($key!=''){
+                        $transform_block = $this->buildingTransformationBlocks($key,$value);
+                        array_push($parsedTransformStep, $transform_block);
                 }
                 
             }
-            $delimiter = Transformation::getTransformDelimiter();
-            $List = implode($delimiter, $parsedTransformStep);
-            array_push($parsedTransforms, $List);
+                $delimiter = Transformation::getTransformDelimiter();
+                $List = implode($delimiter, $parsedTransformStep);
+                array_push($parsedTransforms, $List);
         }
         $setChainDelimiter = Transformation::getChainTransformDelimiter();
         return implode($setChainDelimiter, $parsedTransforms);

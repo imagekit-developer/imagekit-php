@@ -1265,50 +1265,6 @@ final class FileTest extends TestCase
     /**
      *
      */
-    public function testGetBulkJobStatus()
-    {
-        $jobId = '598821f949c0a938d57563bd';
-
-        $responseBody = [
-            "jobId" => "598821f949c0a938d57563bd",
-            "type" => "COPY_FOLDER",
-            "status" => "Completed"
-        ];
-
-        $mockBodyResponse = Utils::streamFor(json_encode($responseBody));
-
-        $this->stubHttpClient('get', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->getBulkJobStatus($jobId);
-
-        FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
-    }
-
-    /**
-     *
-     */
-    public function testGetBulkJobStatusMissingJobId()
-    {
-        $jobId = '';
-
-        $responseBody = [
-            "jobId" => "598821f949c0a938d57563bd",
-            "type" => "COPY_FOLDER",
-            "status" => "Completed"
-        ];
-
-        $mockBodyResponse = Utils::streamFor(json_encode($responseBody));
-
-        $this->stubHttpClient('get', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->getBulkJobStatus($jobId);
-
-        FileTest::assertEquals('Missing Job ID parameter for this request',$response->error->message);
-    }
-    
-    /**
-     *
-     */
     private function stubHttpClient($methodName, $response)
     {
         $stub = $this->createMock(GuzzleHttpWrapper::class);

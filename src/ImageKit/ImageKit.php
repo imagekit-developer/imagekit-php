@@ -547,7 +547,7 @@ class ImageKit
      *
      * @deprecated since 2.0.0, use <code>purgeCache</code>
      */
-    public function purgeFileCacheApi($options)
+    public function purgeFileCacheApi($options=null)
     {
         return $this->purgeCache($options);
     }
@@ -601,10 +601,6 @@ class ImageKit
      */
     public function purgeCacheStatus($requestId=null)
     {
-        if (empty($requestId)) {
-            return Response::respond(true, ((object)ErrorMessages::$CACHE_PURGE_STATUS_ID_MISSING));
-        }
-        
         return $this->getPurgeCacheStatus($requestId);
     }
 
@@ -620,9 +616,6 @@ class ImageKit
      */
     public function purgeFileCacheApiStatus($requestId=null)
     {
-        if (empty($requestId)) {
-            return Response::respond(true, ((object)ErrorMessages::$CACHE_PURGE_STATUS_ID_MISSING));
-        }
         return $this->getPurgeCacheStatus($requestId);
     }
 
@@ -639,6 +632,7 @@ class ImageKit
         if (empty($requestId)) {
             return Response::respond(true, ((object)ErrorMessages::$CACHE_PURGE_STATUS_ID_MISSING));
         }
+        
         $this->httpClient->setUri(Endpoints::getPurgeCacheApiStatusEndpoint($requestId));
         return Manage\Cache::purgeFileCacheStatus($requestId, $this->httpClient);
     }
@@ -1022,6 +1016,9 @@ class ImageKit
      */
     public function getCustomMetadataFields($includeDeleted=false)
     {
+        if(!is_bool($includeDeleted)){
+            return Response::respond(true, ((object)ErrorMessages::$GET_CUSTOM_METADATA_INVALID_PARAMETER)); 
+        }
         $this->httpClient->setUri(Endpoints::getCustomMetadataField());
         return Manage\File\Metadata::getCustomMetadataField($includeDeleted, $this->httpClient);
     }
@@ -1037,11 +1034,14 @@ class ImageKit
      */
     public function updateCustomMetadataField($id=null,$parameter=null)
     {
+        if(!isset($id) && !isset($parameter)){
+            return Response::respond(true, ((object)ErrorMessages::$UPDATE_CUSTOM_METADATA_PARAMETER_MISSING));
+        }
         if(!isset($id) || empty($id)){
             return Response::respond(true, ((object)ErrorMessages::$UPDATE_CUSTOM_METADATA_ID_MISSING));
         }
         if(!isset($parameter)){
-            return Response::respond(true, ((object)ErrorMessages::$UPDATE_CUSTOM_METADATA_PARAMETER_MISSING));
+            return Response::respond(true, ((object)ErrorMessages::$UPDATE_CUSTOM_METADATA_BODY_MISSING));
         }
         if(!is_array($parameter)){
             return Response::respond(true, ((object)ErrorMessages::$UPDATE_CUSTOM_METADATA_PARAMETER_NON_ARRAY));

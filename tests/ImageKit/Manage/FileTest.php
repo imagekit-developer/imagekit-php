@@ -584,6 +584,8 @@ final class FileTest extends TestCase
 
         $response = $this->client->deleteFile($fileId);
 
+        FolderTest::assertNull($response->result);
+        FolderTest::assertNull($response->error);
     }
     
     /**
@@ -612,6 +614,8 @@ final class FileTest extends TestCase
 
         $response = $this->client->deleteFileVersion($fileId, $versionId);
 
+        FolderTest::assertNull($response->result);
+        FolderTest::assertNull($response->error);
     }
     
     /**
@@ -716,6 +720,8 @@ final class FileTest extends TestCase
 
         $response = $this->client->copyFile($requestBody);
 
+        FolderTest::assertNull($response->result);
+        FolderTest::assertNull($response->error);
     }
     
     /**
@@ -824,6 +830,9 @@ final class FileTest extends TestCase
         $this->stubHttpClient('post',new Response(200,['X-Foo' => 'Bar'], $mockBodyResponse));
 
         $response = $this->client->moveFile($requestBody);
+        
+        FolderTest::assertNull($response->result);
+        FolderTest::assertNull($response->error);
     }
     
     /**
@@ -896,6 +905,9 @@ final class FileTest extends TestCase
         $this->stubHttpClient('put',new Response(200,['X-Foo' => 'Bar'], $mockBodyResponse));
 
         $response = $this->client->renameFile($requestBody);
+        
+        FolderTest::assertNull($response->result);
+        FolderTest::assertNull($response->error);
     }
 
      /**

@@ -35,6 +35,8 @@ class FolderTest extends TestCase
 
         $response = $this->client->createFolder($requestBody);
 
+        FolderTest::assertNull($response->result);
+        FolderTest::assertNull($response->error);
     }
 
      /**
@@ -117,6 +119,9 @@ class FolderTest extends TestCase
         $this->stubHttpClient('delete', new Response(201, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
         $response = $this->client->deleteFolder($folderPath);
+        
+        FolderTest::assertNull($response->result);
+        FolderTest::assertNull($response->error);
     }
     
     /**
@@ -132,104 +137,208 @@ class FolderTest extends TestCase
     }
 
     public function testCopyFolder(){
+        
         $sourceFolderPath = "/source-folder/";
         $destinationPath = "/destination-folder/";
         $includeVersions = false;
-    }
 
-    public function testCopyEmptySource()
-    {
-        $sourceFolderPath = '';
-        $destinationPath = '/testing2';
-
-        $mockBodyResponse = Utils::streamFor(json_encode([ 'jobId' => 'Testing_job_id' ]));
-
-        $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->copyFolder($sourceFolderPath, $destinationPath);
-
-        FolderTest::assertEquals('Missing data for copying folder', $response->error);
-    }
-
-    public function testCopyEmptyDestinationPath()
-    {
-        $sourceFolderPath = '/';
-        $destinationPath = '';
-
-        $mockBodyResponse = Utils::streamFor(json_encode([ 'jobId' => 'Testing_job_id' ]));
-
-        $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->copyFolder($sourceFolderPath, $destinationPath);
-
-        FolderTest::assertEquals('Missing data for copying folder', $response->error);
-    }
-
-    public function testCopy()
-    {
-        $sourceFolderPath = '/testing';
-        $destinationPath = '/testing2';
-
-        $mockBodyResponse = Utils::streamFor(json_encode([ 'jobId' => 'Testing_job_id' ]));
-
-        $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->copyFolder([
-            'sourceFolderPath' => $sourceFolderPath, 
-            'destinationPath'  => $destinationPath,
-            'includeVersions'  => false
-        ]);
-
-        $el = get_object_vars($response->result);
-        FolderTest::assertEquals('Testing_job_id', $el['jobId']);
-    }
-
-    public function testMoveEmptySource()
-    {
-        $sourceFolderPath = '';
-        $destinationPath = '/testing2';
-
-        $mockBodyResponse = Utils::streamFor(json_encode([ 'jobId' => 'Testing_job_id' ]));
-
-        $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->moveFolder($sourceFolderPath, $destinationPath);
-
-        FolderTest::assertEquals('Missing data for moving folder', $response->error);
-    }
-
-    public function testMoveEmptyDestinationPath()
-    {
-        $sourceFolderPath = '/';
-        $destinationPath = '';
-
-        $mockBodyResponse = Utils::streamFor(json_encode([ 'jobId' => 'Testing_job_id' ]));
-
-        $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->moveFolder($sourceFolderPath, $destinationPath);
-
-        FolderTest::assertEquals('Missing data for moving folder', $response->error);
-    }
-
-    public function testMove()
-    {
-        $sourceFolderPath = '/testing';
-        $destinationPath = '/testing2';
-
-        $mockBodyResponse = Utils::streamFor(json_encode([ 'jobId' => 'Testing_job_id' ]));
-
-        $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->moveFolder([
-            'sourceFolderPath' => $sourceFolderPath, 
+        $requestBody = [
+            'sourceFolderPath' => $sourceFolderPath,
             'destinationPath' => $destinationPath,
-            'includeVersions' => true
-        ]);
+            'includeVersions' => $includeVersions
+        ];
+        
+        $responseBody = [
+            "jobId" => "598821f949c0a938d57563bd"
+        ];
 
-        $el = get_object_vars($response->result);
-        FolderTest::assertEquals('Testing_job_id', $el['jobId']);
+        $mockBodyResponse = Utils::streamFor(json_encode($responseBody));
+
+        $this->stubHttpClient('post', new Response(201, ['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $response = $this->client->copyFolder($requestBody);
+
+        FolderTest::assertEquals(json_encode($responseBody), json_encode($response->result));
     }
+
+    
+    public function testCopyFolderInvalidRequest(){
+
+        $response = $this->client->copyFolder();
+
+        FolderTest::assertEquals("Copy Folder API accepts an array, null passed", $response->error->message);
+
+    }
+    
+    public function testCopyFolderNonArray(){
+
+        $sourceFolderPath = "/source-folder/";
+        $destinationPath = "/destination-folder/";
+        $includeVersions = false;
+
+        $requestBody = $sourceFolderPath;
+        $response = $this->client->copyFolder($requestBody);
+
+        FolderTest::assertEquals("Copy Folder API accepts an array of parameters, non array value passed", $response->error->message);
+
+    }
+
+    public function testCopyFolderEmptyArray(){
+
+        $sourceFolderPath = "/source-folder/";
+        $destinationPath = "/destination-folder/";
+        $includeVersions = false;
+
+        $requestBody = [];
+        $response = $this->client->copyFolder($requestBody);
+
+        FolderTest::assertEquals("Copy Folder API accepts an array of parameters, empty array passed", $response->error->message);
+
+    }
+
+    public function testCopyFolderWithMissingSourceFolderPath(){
+
+        $sourceFolderPath = "";
+        $destinationPath = "/destination-folder/";
+        $includeVersions = false;
+
+        $requestBody = [
+            'sourceFolderPath' => $sourceFolderPath,
+            'destinationPath' => $destinationPath,
+            'includeVersions' => $includeVersions
+        ];
+        
+        $response = $this->client->copyFolder($requestBody);
+
+        FolderTest::assertEquals("Missing parameter sourceFolderPath and/or destinationPath and/or includeVersions for Copy Folder API", $response->error->message);
+
+    }
+
+    public function testCopyFolderWithMissingDestinationPath(){
+
+        $sourceFolderPath = "/source-folder/";
+        $destinationPath = "";
+        $includeVersions = false;
+
+        $requestBody = [
+            'sourceFolderPath' => $sourceFolderPath,
+            'destinationPath' => $destinationPath,
+            'includeVersions' => $includeVersions
+        ];
+        
+        $response = $this->client->copyFolder($requestBody);
+
+        FolderTest::assertEquals("Missing parameter sourceFolderPath and/or destinationPath and/or includeVersions for Copy Folder API", $response->error->message);
+
+    }
+
+    public function testCopyFolderWithNullIncludeVersions(){
+
+        $sourceFolderPath = "/source-folder/";
+        $destinationPath = "/destination-folder/";
+        $includeVersions = null;
+
+        $requestBody = [
+            'sourceFolderPath' => $sourceFolderPath,
+            'destinationPath' => $destinationPath,
+            'includeVersions' => $includeVersions
+        ];
+        
+        $response = $this->client->copyFolder($requestBody);
+
+        FolderTest::assertEquals("Missing parameter sourceFolderPath and/or destinationPath and/or includeVersions for Copy Folder API", $response->error->message);
+
+    }
+
+    
+    public function testMoveFolder(){
+        
+        $sourceFolderPath = "/source-folder/";
+        $destinationPath = "/destination-folder/";
+
+        $requestBody = [
+            'sourceFolderPath' => $sourceFolderPath,
+            'destinationPath' => $destinationPath,
+        ];
+        
+        $responseBody = [
+            "jobId" => "598821f949c0a938d57563bd"
+        ];
+
+        $mockBodyResponse = Utils::streamFor(json_encode($responseBody));
+
+        $this->stubHttpClient('post', new Response(201, ['X-Foo' => 'Bar'], $mockBodyResponse));
+
+        $response = $this->client->moveFolder($requestBody);
+
+        FolderTest::assertEquals(json_encode($responseBody), json_encode($response->result));
+    }
+
+    
+    public function testMoveFolderInvalidRequest(){
+
+        $response = $this->client->moveFolder();
+
+        FolderTest::assertEquals("Move Folder API accepts an array, null passed", $response->error->message);
+
+    }
+    
+    public function testMoveFolderNonArray(){
+
+        $sourceFolderPath = "/source-folder/";
+        $destinationPath = "/destination-folder/";
+
+        $requestBody = $sourceFolderPath;
+        $response = $this->client->moveFolder($requestBody);
+
+        FolderTest::assertEquals("Move Folder API accepts an array of parameters, non array value passed", $response->error->message);
+
+    }
+
+    public function testMoveFolderEmptyArray(){
+
+        $sourceFolderPath = "/source-folder/";
+        $destinationPath = "/destination-folder/";
+
+        $requestBody = [];
+        $response = $this->client->moveFolder($requestBody);
+
+        FolderTest::assertEquals("Move Folder API accepts an array of parameters, empty array passed", $response->error->message);
+
+    }
+
+    public function testMoveFolderWithMissingSourceFolderPath(){
+
+        $sourceFolderPath = "";
+        $destinationPath = "/destination-folder/";
+
+        $requestBody = [
+            'sourceFolderPath' => $sourceFolderPath,
+            'destinationPath' => $destinationPath,
+        ];
+        
+        $response = $this->client->moveFolder($requestBody);
+
+        FolderTest::assertEquals("Missing parameter sourceFolderPath and/or destinationPath for Move Folder API", $response->error->message);
+
+    }
+
+    public function testMoveFolderWithMissingDestinationPath(){
+
+        $sourceFolderPath = "/source-folder/";
+        $destinationPath = "";
+
+        $requestBody = [
+            'sourceFolderPath' => $sourceFolderPath,
+            'destinationPath' => $destinationPath,
+        ];
+        
+        $response = $this->client->moveFolder($requestBody);
+
+        FolderTest::assertEquals("Missing parameter sourceFolderPath and/or destinationPath for Move Folder API", $response->error->message);
+
+    }
+
     
     private function stubHttpClient($methodName, $response)
     {

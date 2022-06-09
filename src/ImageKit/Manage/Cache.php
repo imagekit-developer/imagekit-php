@@ -51,10 +51,6 @@ class Cache
      */
     public static function purgeFileCacheStatus($requestId, GuzzleHttpWrapper $resource)
     {
-        if (empty($requestId)) {
-            return Response::respond(true, ((object)ErrorMessages::$CACHE_PURGE_STATUS_ID_MISSING));
-        }
-
         $res = $resource->get();
         $stream = $res->getBody();
         $content = [];

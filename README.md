@@ -1214,7 +1214,7 @@ Get the purge cache request status using the `requestId` returned when a purge c
 #### Basic Usage
 ```php
 $cacheRequestId = '598821f949c0a938d57563bd';
-$purgeCacheStatus = $imageKit->purgeCacheStatus($cacheRequestId);
+$getPurgeCacheStatus = $imageKit->getPurgeCacheStatus($cacheRequestId);
 ```
 #### Response
 ```json

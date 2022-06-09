@@ -95,39 +95,42 @@ class ErrorMessages
         'For support kindly contact us at support@imagekit.io .'];
     public static $DELETE_FOLDER_PARAMETER_MISSING = ['message' => 'Missing folderPath for Delete Folder API', 'help' =>
         'For support kindly contact us at support@imagekit.io .'];
-    public static $COPY_FOLDER_PARAMETER_MISSING = ['message' => 'Copy Folder API accepts an array, null passed.', 'help' =>
+    public static $COPY_FOLDER_PARAMETER_MISSING = ['message' => 'Copy Folder API accepts an array, null passed', 'help' =>
         'For support kindly contact us at support@imagekit.io .'];
-    public static $COPY_FOLDER_PARAMETER_NON_ARRAY = ['message' => 'Copy Folder API accepts an array of parameters, non array value passed.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
-    public static $COPY_FOLDER_PARAMETER_EMPTY_ARRAY = ['message' => 'Copy Folder API accepts an array of parameters, empty array passed.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
-    public static $COPY_FOLDER_DATA_INVALID = ['message' => 'Missing parameter sourceFolderPath and/or destinationPath and/or includeVersions for Copy folder API.', 'help' =>
+    public static $COPY_FOLDER_PARAMETER_NON_ARRAY = ['message' => 'Copy Folder API accepts an array of parameters, non array value passed', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $COPY_FOLDER_PARAMETER_EMPTY_ARRAY = ['message' => 'Copy Folder API accepts an array of parameters, empty array passed', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $COPY_FOLDER_DATA_INVALID = ['message' => 'Missing parameter sourceFolderPath and/or destinationPath and/or includeVersions for Copy Folder API', 'help' =>
         'For support kindly contact us at support@imagekit.io .'];
-    public static $MOVE_FOLDER_PARAMETER_MISSING = ['message' => 'Move Folder API accepts an array, null passed.', 'help' =>
+    public static $MOVE_FOLDER_PARAMETER_MISSING = ['message' => 'Move Folder API accepts an array, null passed', 'help' =>
         'For support kindly contact us at support@imagekit.io .'];
-    public static $MOVE_FOLDER_PARAMETER_NON_ARRAY = ['message' => 'Move Folder API accepts an array of parameters, non array value passed.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
-    public static $MOVE_FOLDER_PARAMETER_EMPTY_ARRAY = ['message' => 'Move Folder API accepts an array of parameters, empty array passed.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
-    public static $MOVE_FOLDER_DATA_INVALID = ['message' => 'Missing parameter sourceFolderPath and/or destinationPath for Move folder API.', 'help' =>
+    public static $MOVE_FOLDER_PARAMETER_NON_ARRAY = ['message' => 'Move Folder API accepts an array of parameters, non array value passed', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $MOVE_FOLDER_PARAMETER_EMPTY_ARRAY = ['message' => 'Move Folder API accepts an array of parameters, empty array passed', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $MOVE_FOLDER_DATA_INVALID = ['message' => 'Missing parameter sourceFolderPath and/or destinationPath for Move Folder API', 'help' =>
         'For support kindly contact us at support@imagekit.io .'];
     public static $MISSING_CREATE_FOLDER_OPTIONS = ['message' => 'Missing data for creation of folder', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $MISSING_DELETE_FOLDER_OPTIONS = ['message' => 'Missing data for deletion of folder', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $MISSING_COPY_FOLDER_OPTIONS = ['message' => 'Missing data for copying folder', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $MISSING_MOVE_FOLDER_OPTIONS = ['message' => 'Missing data for moving folder', 'help' => 'For support kindly contact us at support@imagekit.io .'];
-    public static $CREATE_CUSTOM_METADATA_PARAMETER_MISSING = ['message' => 'Create Custom Metadata API accepts an array, null passed.', 'help' =>
+    public static $CREATE_CUSTOM_METADATA_PARAMETER_MISSING = ['message' => 'Create Custom Metadata API accepts an array, null passed', 'help' =>
         'For support kindly contact us at support@imagekit.io .'];
-    public static $CREATE_CUSTOM_METADATA_PARAMETER_NON_ARRAY = ['message' => 'Create Custom Metadata API accepts an array of parameters, non array value passed.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
-    public static $CREATE_CUSTOM_METADATA_PARAMETER_EMPTY_ARRAY = ['message' => 'Create Custom Metadata API accepts an array of parameters, empty array passed.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
-    public static $CREATE_CUSTOM_METADATA_DATA_INVALID = ['message' => 'Missing parameter name and/or label and/or schema for this request.', 'help' =>
+    public static $CREATE_CUSTOM_METADATA_PARAMETER_NON_ARRAY = ['message' => 'Create Custom Metadata API accepts an array of parameters, non array value passed', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $CREATE_CUSTOM_METADATA_PARAMETER_EMPTY_ARRAY = ['message' => 'Create Custom Metadata API accepts an array of parameters, empty array passed', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $CREATE_CUSTOM_METADATA_DATA_INVALID = ['message' => 'Missing parameter name and/or label and/or schema for this request', 'help' =>
         'For support kindly contact us at support@imagekit.io .'];
-    public static $CREATE_CUSTOM_METADATA_DATA_INVALID_SCHEMA_OBJECT = ['message' => 'Invalid parameter schema.', 'help' =>
+    public static $CREATE_CUSTOM_METADATA_DATA_INVALID_SCHEMA_OBJECT = ['message' => 'Invalid parameter schema', 'help' =>
         'For support kindly contact us at support@imagekit.io .'];
-    public static $UPDATE_CUSTOM_METADATA_PARAMETER_MISSING = ['message' => 'Update Custom Metadata API accepts an array, null passed.', 'help' =>
+    public static $GET_CUSTOM_METADATA_INVALID_PARAMETER = ['message' => 'Invalid parameter includeDeleted', 'help' =>
         'For support kindly contact us at support@imagekit.io .'];
-    public static $UPDATE_CUSTOM_METADATA_PARAMETER_NON_ARRAY = ['message' => 'Update Custom Metadata API accepts an array of parameters, non array value passed.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
-    public static $UPDATE_CUSTOM_METADATA_PARAMETER_EMPTY_ARRAY = ['message' => 'Update Custom Metadata API accepts an array of parameters, empty array passed.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
-    public static $UPDATE_CUSTOM_METADATA_DATA_INVALID = ['message' => 'Missing parameter label and/or schema for this request.', 'help' =>
+    public static $UPDATE_CUSTOM_METADATA_PARAMETER_MISSING = ['message' => 'Update Custom Metadata API accepts an id and requestBody, null passed', 'help' =>
         'For support kindly contact us at support@imagekit.io .'];
-    public static $UPDATE_CUSTOM_METADATA_DATA_INVALID_SCHEMA_OBJECT = ['message' => 'Invalid parameter schema.', 'help' =>
+    public static $UPDATE_CUSTOM_METADATA_PARAMETER_NON_ARRAY = ['message' => 'Update Custom Metadata API accepts requestBody as an array of parameters, non array value passed', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $UPDATE_CUSTOM_METADATA_PARAMETER_EMPTY_ARRAY = ['message' => 'Update Custom Metadata API accepts an array of parameters, empty array passed', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $UPDATE_CUSTOM_METADATA_DATA_INVALID = ['message' => 'Missing parameter label and/or schema for this request', 'help' =>
+        'For support kindly contact us at support@imagekit.io .'];
+    public static $UPDATE_CUSTOM_METADATA_DATA_INVALID_SCHEMA_OBJECT = ['message' => 'Invalid parameter schema', 'help' =>
         'For support kindly contact us at support@imagekit.io .'];
     public static $UPDATE_CUSTOM_METADATA_ID_MISSING = ['message' => 'Missing Custom Metadata Field ID parameter for this request', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $UPDATE_CUSTOM_METADATA_BODY_MISSING = ['message' => 'Missing body parameter for this request', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $DELETE_CUSTOM_METADATA_ID_MISSING = ['message' => 'Missing Custom Metadata Field ID parameter for this request', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $PHASH_DISTANCE_FIRST_PHASH_MISSING = ['message' => 'Missing First pHash parameter for this request', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $PHASH_DISTANCE_SECOND_PHASH_MISSING = ['message' => 'Missing Second pHash parameter for this request', 'help' => 'For support kindly contact us at support@imagekit.io .'];

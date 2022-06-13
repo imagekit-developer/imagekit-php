@@ -235,7 +235,7 @@ class ImageKit
         }
 
         $this->httpClient->setUri(Endpoints::getListFilesEndpoint());
-        return Manage\File::listFile($parameters, $this->httpClient);
+        return Manage\File::listFile($this->httpClient, $parameters);
     }
 
     /**

@@ -20,7 +20,7 @@ class File
      *
      * @return Response
      */
-    public static function listFile($parameters=null, GuzzleHttpWrapper $resource)
+    public static function listFile(GuzzleHttpWrapper $resource,$parameters=null)
     {
         if($parameters){
             $resource->setDatas($parameters);

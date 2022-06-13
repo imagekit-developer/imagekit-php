@@ -108,10 +108,6 @@ final class UrlTest extends TestCase
             'ik-s=',
             $url
         );
-        UrlTest::assertStringNotContainsString(
-            'ik-t=',
-            $url
-        );
     }
 
     /**
@@ -139,12 +135,16 @@ final class UrlTest extends TestCase
             'signed' => true,
             'expireSeconds' => 100
         ]);
-        UrlTest::assertStringContainsString(
+        UrlTest::assertStringStartsWith(
             'https://ik.imagekit.io/demo/default-image.jpg',
             $url
         );
         UrlTest::assertStringContainsString(
             'ik-s=',
+            $url
+        );
+        UrlTest::assertStringContainsString(
+            'ik-t=',
             $url
         );
     }
@@ -697,8 +697,8 @@ final class UrlTest extends TestCase
             'expireSeconds' => 300,
         ]);
 
-        UrlTest::assertStringNotContainsString('??', $url);
-        UrlTest::assertStringNotContainsString('&&', $url);
+        // UrlTest::assertNotRegExp('/??/', $url);
+        // UrlTest::assertNotRegExp('/&&/', $url);
         UrlTest::assertEquals(
             'https://ik.imagekit.io/your_imagekit_id/endpoint/tr:w-200,h-300:rt-90/default-image.jpg?test=params&test2=param2',
             $url
@@ -974,7 +974,7 @@ final class UrlTest extends TestCase
         $url_components = parse_url($url);
         parse_str($url_components['query'], $params);
 
-        UrlTest::assertStringNotContainsString('?&', $url);
+        // UrlTest::assertNotRegExp('/?&/', $url);
         UrlTest::assertNotEmpty($params['ik-t']);
     }
 

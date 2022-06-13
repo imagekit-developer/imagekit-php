@@ -423,8 +423,8 @@ class Url
                 (strlen($search) > 0 ? str_replace('=',':',$search).'/' : '') .
                  $file_name .
                  (strlen($queryParameters) > 0 ? ( '?' . $queryParameters): '') .
-                 (strlen($timestampParameterString) > 0 ? ((strlen($queryParameters)?'&':'?') . $timestampParameterString): '') .
-                 (strlen($signatureParameterString) > 0 ? ('&' . $signatureParameterString): '');
+                 ((!empty($timestampParameterString) && strlen($timestampParameterString) > 0) ? (((!empty($queryParameters) && strlen($queryParameters)>0)?'&':'?') . $timestampParameterString): '') .
+                 ((!empty($signatureParameterString) && strlen($signatureParameterString) > 0) ? ('&' . $signatureParameterString): '');
 
         }
             // (strlen($search) > 0 ? '?ik-sdk-version=php-' . ImageKit::SDK_VERSION : '?ik-sdk-version=php-' . ImageKit::SDK_VERSION);

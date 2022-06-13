@@ -330,7 +330,7 @@ class ImageKitTest extends TestCase
         );
     }
 
-    protected function tearDown(): void
+    protected function tearDown():void
     {
         $this->client = null;
     }

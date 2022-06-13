@@ -9,7 +9,7 @@ $url_end_point = 'https://ik.imagekit.io/demo';
 ```
 
 ### Step 2:
-Run the `sample.php`
+Run the `sample.php` file.
 ```bash
 php sample.php
 ```

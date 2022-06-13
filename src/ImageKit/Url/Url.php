@@ -153,7 +153,6 @@ class Url
 
         // transformationPosition
         $urlObject->transformationPosition = $obj->transformationPosition;
-
         // Signature String and Timestamp
         // We can do this only for URLs that are created using urlEndpoint and path parameter
         // because we need to know the endpoint to be able to remove it from the URL to create a signature
@@ -196,6 +195,7 @@ class Url
             // }
         }
         $urlObjectArray = json_decode(json_encode($urlObject), true);
+
         return $this->unparsed_url($urlObjectArray);
     }
 
@@ -348,6 +348,7 @@ class Url
             } else {
                 $finalTransformation .= $value;
             }
+            
             return $finalTransformation;
         }
     }
@@ -385,15 +386,18 @@ class Url
      */
     public function unparsed_url(array $parsed)
     {
+
         $get = function ($key) use ($parsed) {
             return isset($parsed[$key]) ? $parsed[$key] : null;
         };
         $scheme = $get('scheme');
         $host = $get('host');
+        
         $pathname = $get('pathname');
         $last_slash_index = strripos($pathname,'/');
         $file_name = substr($pathname,$last_slash_index+1);
-        $pathname = str_replace($file_name,'',$pathname);
+        $pathname = str_replace('/'.$file_name,'',$pathname);
+        $pathname = $pathname.'/';
         $search = $get('search');
         $queryParameters = $get('queryParameters');
         $transformationPosition = $get('transformationPosition');
@@ -412,6 +416,7 @@ class Url
                 (strlen($signatureParameterString) > 0 ? ('&' . $signatureParameterString): '');
         }
         else{
+
             return (strlen($scheme) > 0 ? "$scheme:" : '') .
                 (strlen($host) > 0 ? "//$host" : '') .
                 (strlen($pathname) > 0 ? "$pathname" : '') .

@@ -1,6 +1,6 @@
 # Running the sample application
 
-### Step 1: Install dependencies
+### Step 1
 Open `sample.php` and fill the account details:
 ```php
 $public_key = 'your_public_key';

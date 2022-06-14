@@ -718,7 +718,7 @@ final class FileTest extends TestCase
 
         $this->stubHttpClient('post',new Response(200,['X-Foo' => 'Bar'], $mockBodyResponse));
 
-        $response = $this->client->copyFile($requestBody);
+        $response = $this->client->copy($requestBody);
 
         FolderTest::assertNull($response->result);
         FolderTest::assertNull($response->error);
@@ -735,7 +735,7 @@ final class FileTest extends TestCase
 
         $requestBody = [];
 
-        $response = $this->client->copyFile($requestBody);
+        $response = $this->client->copy($requestBody);
 
         FileTest::assertNull($response->result);
         FileTest::assertEquals('Copy File API accepts an array of parameters, empty array passed',$response->error->message);
@@ -757,7 +757,7 @@ final class FileTest extends TestCase
             'includeVersions' => $includeVersions
         ];
 
-        $response = $this->client->copyFile($requestBody);
+        $response = $this->client->copy($requestBody);
 
         
         FileTest::assertNull($response->result);
@@ -779,7 +779,7 @@ final class FileTest extends TestCase
             'includeVersions' => $includeVersions
         ];
 
-        $response = $this->client->copyFile($requestBody);
+        $response = $this->client->copy($requestBody);
 
         
         FileTest::assertNull($response->result);
@@ -804,7 +804,7 @@ final class FileTest extends TestCase
             'includeVersions'   => $includeVersions
         ];
 
-        $response = $this->client->copyFile($requestBody);
+        $response = $this->client->copy($requestBody);
 
         
         FileTest::assertNull($response->result);
@@ -829,7 +829,7 @@ final class FileTest extends TestCase
 
         $this->stubHttpClient('post',new Response(200,['X-Foo' => 'Bar'], $mockBodyResponse));
 
-        $response = $this->client->moveFile($requestBody);
+        $response = $this->client->move($requestBody);
         
         FolderTest::assertNull($response->result);
         FolderTest::assertNull($response->error);
@@ -845,7 +845,7 @@ final class FileTest extends TestCase
 
         $requestBody = [];
 
-        $response = $this->client->moveFile($requestBody);
+        $response = $this->client->move($requestBody);
 
         FileTest::assertNull($response->result);
         FileTest::assertEquals('Move File API accepts an array of parameters, empty array passed',$response->error->message);
@@ -863,7 +863,7 @@ final class FileTest extends TestCase
             'destinationPath' => $destinationPath,
         ];
 
-        $response = $this->client->moveFile($requestBody);
+        $response = $this->client->move($requestBody);
 
         FileTest::assertNull($response->result);
         FileTest::assertEquals('Missing parameter sourceFilePath and/or destinationPath for Move File API',$response->error->message);
@@ -881,7 +881,7 @@ final class FileTest extends TestCase
             'sourceFilePath' => $sourceFilePath,
         ];
 
-        $response = $this->client->moveFile($requestBody);
+        $response = $this->client->move($requestBody);
 
         FileTest::assertNull($response->result);
         FileTest::assertEquals('Missing parameter sourceFilePath and/or destinationPath for Move File API',$response->error->message);
@@ -904,7 +904,7 @@ final class FileTest extends TestCase
 
         $this->stubHttpClient('put',new Response(200,['X-Foo' => 'Bar'], $mockBodyResponse));
 
-        $response = $this->client->renameFile($requestBody);
+        $response = $this->client->rename($requestBody);
         
         FolderTest::assertNull($response->result);
         FolderTest::assertNull($response->error);
@@ -915,7 +915,7 @@ final class FileTest extends TestCase
      */
     public function testRenameFileWithInvalidRequest()
     {
-        $response = $this->client->renameFile();
+        $response = $this->client->rename();
 
         FileTest::assertEquals('Rename File API accepts an array, null passed',$response->error->message);
     }
@@ -930,7 +930,7 @@ final class FileTest extends TestCase
 
         $requestBody = $filePath;
 
-        $response = $this->client->renameFile($requestBody);
+        $response = $this->client->rename($requestBody);
 
         FileTest::assertEquals('Rename File API accepts an array of parameters, non array value passed',$response->error->message);
     }
@@ -942,7 +942,7 @@ final class FileTest extends TestCase
     {
         $requestBody = [];
 
-        $response = $this->client->renameFile($requestBody);
+        $response = $this->client->rename($requestBody);
 
         FileTest::assertEquals('Rename File API accepts an array of parameters, empty array passed',$response->error->message);
     }
@@ -960,7 +960,7 @@ final class FileTest extends TestCase
             'newFileName' => $newFileName,
         ];
 
-        $response = $this->client->renameFile($requestBody);
+        $response = $this->client->rename($requestBody);
 
         FileTest::assertEquals('Missing parameter filePath and/or newFileName for Rename File API',$response->error->message);
     }
@@ -978,7 +978,7 @@ final class FileTest extends TestCase
             'newFileName' => $newFileName,
         ];
 
-        $response = $this->client->renameFile($requestBody);
+        $response = $this->client->rename($requestBody);
 
         FileTest::assertEquals('Missing parameter filePath and/or newFileName for Rename File API',$response->error->message);
     }

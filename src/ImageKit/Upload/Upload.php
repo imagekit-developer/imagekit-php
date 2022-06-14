@@ -20,39 +20,63 @@ class Upload
     {
         $opts = (object)$uploadOptions;
 
-        
         $file = $opts->file;
         $fileName = $opts->fileName;
-
-        // die($fileName);
-
+        
         $payload = [];
         if (isset($opts->options) && is_array($opts->options)) {
             $payload = $opts->options;        
         }
+        else{
+            $payload = (array)$opts;    
+        }
         $payload['file'] = $file;
         $payload['fileName'] = $fileName;
-
-        // die(json_encode($payload));
-        // if (isset($opts->tags) && is_array($opts->tags)) {
-        //     $opts->tags = implode(',', $opts->tags);
-        // }
-
-        $resource->setDatas((array)$payload);
-        $res = $resource->postMultipart();
-
-        $stream = $res->getBody();
-        $content = [];
-        $content['body'] = json_decode($stream->getContents());
-        $headers = $res->getHeaders();
-        $content['headers'] = $headers;
-        $content['statusCode'] = $res->getStatusCode();
-
-        if ($res->getStatusCode() && ($res->getStatusCode() < 200 || $res->getStatusCode() > 300)) {
-            return Response::respond(true, ($content));
+                
+        if (isset($payload['tags']) && is_array($payload['tags'])) {
+            $payload['tags'] = implode(',', $payload['tags']);
         }
 
-        return Response::respond(false, ($content));
+        if (isset($payload['customCoordinates']) && is_array($payload['customCoordinates'])) {
+            $payload['customCoordinates'] = implode(',', $payload['customCoordinates']);
+        }
+
+        if (isset($payload['responseFields']) && is_array($payload['responseFields'])) {
+            $payload['responseFields'] = implode(',', $payload['responseFields']);
+        }
+        
+        if (isset($payload['extensions']) && is_array($payload['extensions'])) {
+            $payload['extensions'] = json_encode($payload['extensions']);
+        }
+        
+        if (isset($payload['customMetadata']) && is_array($payload['customMetadata'])) {
+            $payload['customMetadata'] = json_encode($payload['customMetadata']);
+        }
+
+        $resource->setDatas((array)$payload);
+        try {
+            $res = $resource->postMultipart();
+        } catch (\Throwable $th) {
+            return Response::respond(true, $th->getMessage());
+        }
+        if($res && $res->getBody() && $res->getHeaders() && $res->getStatusCode()){
+            $stream = $res->getBody();
+            $content = [];
+            $content['body'] = json_decode($stream->getContents());
+            $headers = $res->getHeaders();
+            $content['headers'] = $headers;
+            $content['statusCode'] = $res->getStatusCode();
+    
+            if ($res->getStatusCode() && ($res->getStatusCode() < 200 || $res->getStatusCode() > 300)) {
+                return Response::respond(true, ($content));
+            }
+    
+            return Response::respond(false, ($content));
+        }
+        else{
+            return Response::respond(true, ((object)ErrorMessages::$INVALID_REQUEST)->message);
+        }
+
         
     }
 }

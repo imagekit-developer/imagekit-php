@@ -124,7 +124,7 @@ echo "\n";
 // Copy File
 
 $destinationPath = '/sample-folder2/';
-$copyFile = $imageKit->copyFile([
+$copyFile = $imageKit->copy([
     'sourceFilePath' => $sourceFilePath,
     'destinationPath' => $destinationPath,
     'includeVersions' => false
@@ -138,7 +138,7 @@ echo "\n";
 // Move File
 
 $destinationPath = '/';
-$moveFile = $imageKit->moveFile([
+$moveFile = $imageKit->move([
     'sourceFilePath' => '/sample-folder2/default-image.jpg',
     'destinationPath' => $destinationPath
 ]);
@@ -148,29 +148,16 @@ echo "12. Move File: \n";
 echo "\033[01;32m".print_r($moveFile,true)."\033[0m";
 echo "\n";
 
-// Move File
-
-$destinationPath = '/';
-$moveFile = $imageKit->moveFile([
-    'sourceFilePath' => '/sample-folder2/default-image.jpg',
-    'destinationPath' => $destinationPath
-]);
-
-echo "\n\n";
-echo "13. Move File: \n";
-echo "\033[01;32m".print_r($moveFile,true)."\033[0m";
-echo "\n";
-
 // Rename File with purge cache false
 
 $newFileName = 'sample-file2.jpg';
-$renameFile = $imageKit->renameFile([
+$renameFile = $imageKit->rename([
     'filePath' => $filePath,
     'newFileName' => $newFileName,
 ], false);
 
 echo "\n\n";
-echo "14. Rename File with Pruge Cache False: \n";
+echo "13. Rename File with Pruge Cache False: \n";
 echo "\033[01;32m".print_r($renameFile,true)."\033[0m";
 echo "\n";
 
@@ -183,7 +170,7 @@ $renameFile = $imageKit->renameFile([
 ], true);
 
 echo "\n\n";
-echo "15. Rename File with Pruge Cache True: \n";
+echo "14. Rename File with Pruge Cache True: \n";
 echo "\033[01;32m".print_r($renameFile,true)."\033[0m";
 echo "\n";
 
@@ -195,7 +182,7 @@ $restoreFileVersion = $imageKit->restoreFileVersion([
 ]);
 
 echo "\n\n";
-echo "16. Restore File Version: \n";
+echo "15. Restore File Version: \n";
 echo "\033[01;32m".print_r($restoreFileVersion,true)."\033[0m";
 echo "\n";
 
@@ -209,7 +196,7 @@ $createFolder = $imageKit->createFolder([
 ]);
 
 echo "\n\n";
-echo "17. Create Folder: \n";
+echo "16. Create Folder: \n";
 echo "\033[01;32m".print_r($createFolder,true)."\033[0m";
 echo "\n";
 
@@ -225,7 +212,7 @@ $copyFolder = $imageKit->copyFolder([
 ]);
 
 echo "\n\n";
-echo "18. Copy Folder: \n";
+echo "17. Copy Folder: \n";
 echo "\033[01;32m".print_r($copyFolder,true)."\033[0m";
 echo "\n";
 
@@ -241,7 +228,7 @@ $moveFolder = $imageKit->moveFolder([
 $job_id = $moveFolder->result->jobId;
 
 echo "\n\n";
-echo "19. Move Folder: \n";
+echo "18. Move Folder: \n";
 echo "\033[01;32m".print_r($moveFolder,true)."\033[0m";
 echo "\n";
 
@@ -251,7 +238,7 @@ $folderPath = '/sample-folder/new-folder';
 $deleteFolder = $imageKit->deleteFolder($folderPath);
 
 echo "\n\n";
-echo "20. Delete Folder: \n";
+echo "19. Delete Folder: \n";
 echo "\033[01;32m".print_r($deleteFolder,true)."\033[0m";
 echo "\n";
 
@@ -260,7 +247,7 @@ echo "\n";
 $bulkJobStatus = $imageKit->getBulkJobStatus($job_id);
 
 echo "\n\n";
-echo "21. Bulk Job Status: \n";
+echo "20. Bulk Job Status: \n";
 echo "\033[01;32m".print_r($bulkJobStatus,true)."\033[0m";
 echo "\n";
 
@@ -270,7 +257,7 @@ $image_url = $url_end_point.'/sample-folder/default-image.jpg';
 $purgeCache = $imageKit->purgeCache($image_url);
 $cacheRequestId = $purgeCache->result->requestId;
 echo "\n\n";
-echo "22. Purge Cache: \n";
+echo "21. Purge Cache: \n";
 echo "\033[01;32m".print_r($purgeCache,true)."\033[0m";
 echo "\n";
 
@@ -279,7 +266,7 @@ echo "\n";
 $getPurgeCacheStatus = $imageKit->getPurgeCacheStatus($cacheRequestId);
 
 echo "\n\n";
-echo "23. Purge Cache Status: \n";
+echo "22. Purge Cache Status: \n";
 echo "\033[01;32m".print_r($getPurgeCacheStatus,true)."\033[0m";
 echo "\n";
 
@@ -288,7 +275,7 @@ echo "\n";
 $getFileMetadata = $imageKit->getFileMetaData($file_id);
 
 echo "\n\n";
-echo "24. Get File Metadata (From File ID): \n";
+echo "23. Get File Metadata (From File ID): \n";
 echo "\033[01;32m".print_r($getFileMetadata,true)."\033[0m";
 echo "\n";
 
@@ -297,7 +284,7 @@ echo "\n";
 $getFileMetadata = $imageKit->getFileMetadataFromRemoteURL($image_url);
 
 echo "\n\n";
-echo "25. Get File Metadata (From Remote URL): \n";
+echo "24. Get File Metadata (From Remote URL): \n";
 echo "\033[01;32m".print_r($getFileMetadata,true)."\033[0m";
 echo "\n";
 
@@ -306,7 +293,7 @@ echo "\n";
 $deleteFileVersion = $imageKit->deleteFileVersion($file_id, $version_id);
 
 echo "\n\n";
-echo "26. Delete File Version: \n";
+echo "25. Delete File Version: \n";
 echo "\033[01;32m".print_r($deleteFileVersion,true)."\033[0m";
 echo "\n";
 
@@ -315,7 +302,7 @@ echo "\n";
 $deleteFile = $imageKit->deleteFile($file_id);
 
 echo "\n\n";
-echo "27. Delete File: \n";
+echo "26. Delete File: \n";
 echo "\033[01;32m".print_r($deleteFile,true)."\033[0m";
 echo "\n";
 
@@ -325,6 +312,6 @@ $fileIds = [$file_id];
 $deleteFiles = $imageKit->bulkDeleteFiles($fileIds);
 
 echo "\n\n";
-echo "28. Delete Files (Bulk): \n";
+echo "27. Delete Files (Bulk): \n";
 echo "\033[01;32m".print_r($deleteFiles,true)."\033[0m";
 echo "\n";

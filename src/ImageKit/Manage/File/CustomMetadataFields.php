@@ -1,28 +1,110 @@
 <?php
 
-namespace ImageKit\Manage;
+namespace ImageKit\Manage\File;
 
 use ImageKit\Constants\ErrorMessages;
-use ImageKit\Resource\GuzzleHttpWrapper;
 use ImageKit\Utils\Response;
 
 /**
  *
  */
-class Folder
+class CustomMetadataFields
 {
+
     /**
-     * @param $folderName
-     * @param $parentFolderPath
-     * @param GuzzleHttpWrapper $httpClient
-     *
+     * @param $fileId
+     * @param $resource
      * @return Response
      */
-    public static function create($folderName, $parentFolderPath, GuzzleHttpWrapper $httpClient)
+    public static function get($fileId, $resource)
     {
-        $httpClient->setDatas(['parentFolderPath' => $parentFolderPath, 'folderName' => $folderName]);
+        if (empty($fileId)) {
+            return Response::respond(true, ((object)ErrorMessages::$fileId_MISSING));
+        }
         try {
-            $res = $httpClient->post();
+            $res = $resource->get();
+        } catch (\Throwable $th) {
+            return Response::respond(true, $th->getMessage());
+        }
+        if($res && $res->getBody() && $res->getHeaders() && $res->getStatusCode()){
+            $stream = $res->getBody();
+            $content = [];
+            $content['body'] = json_decode($stream->getContents());
+            $headers = $res->getHeaders();
+            $content['headers'] = $headers;
+            $content['statusCode'] = $res->getStatusCode();
+    
+            if ($res->getStatusCode() && ($res->getStatusCode() < 200 || $res->getStatusCode() > 300)) {
+                return Response::respond(true, ($content));
+            }
+    
+            return Response::respond(false, ($content));
+        }
+        else{
+            return Response::respond(true, ((object)ErrorMessages::$INVALID_REQUEST)->message);
+        }
+    }
+
+
+    /**
+     * Get file metadata from remote URL
+     *
+     * @param $url
+     * @param $resource
+     * @return Response
+     */
+    public static function getFileMetadataFromRemoteURL($url, $resource)
+    {
+        if (empty($url)) {
+            return Response::respond(true, ((object)ErrorMessages::$MISSING_URL_PARAMETER));
+        }
+
+        $resource->setDatas([
+            'url' => $url
+        ]);
+        try {
+            $res = $resource->get();
+        } catch (\Throwable $th) {
+            return Response::respond(true, $th->getMessage());
+        }
+        if($res && $res->getBody() && $res->getHeaders() && $res->getStatusCode()){
+            $stream = $res->getBody();
+            $content = [];
+            $content['body'] = json_decode($stream->getContents());
+            $headers = $res->getHeaders();
+            $content['headers'] = $headers;
+            $content['statusCode'] = $res->getStatusCode();
+    
+            if ($res->getStatusCode() && ($res->getStatusCode() < 200 || $res->getStatusCode() > 300)) {
+                return Response::respond(true, ($content));
+            }
+    
+            return Response::respond(false, ($content));
+        }
+        else{
+            return Response::respond(true, ((object)ErrorMessages::$INVALID_REQUEST)->message);
+        }
+    }
+
+    
+    /**
+     * Create custom metadata field 
+     *
+     * @param $name
+     * @param $label
+     * @param $schema
+     * @param $resource
+     * @return Response
+     */
+    public static function createCustomMetadataField($name, $label, $schema, $resource)
+    {
+        $resource->setDatas([
+            'name' => $name,
+            'label' => $label,
+            'schema' => $schema
+        ]);
+        try {
+            $res = $resource->post();
         } catch (\Throwable $th) {
             return Response::respond(true, $th->getMessage());
         }
@@ -46,20 +128,58 @@ class Folder
     }
 
     /**
-     * @param $folderPath
-     * @param GuzzleHttpWrapper $httpClient
+     * Get custom metadata field 
      *
+     * @param $includeDeleted
+     * @param $resource 
      * @return Response
      */
-    public static function delete($folderPath, GuzzleHttpWrapper $httpClient)
+    public static function getCustomMetadataField($includeDeleted, $resource)
     {
-        if (empty($folderPath)) {
-            return Response::respond(true, ((object)ErrorMessages::$MISSING_DELETE_FOLDER_OPTIONS));
-        }
-
-        $httpClient->setDatas(['folderPath' => $folderPath]);
+        $resource->setDatas([
+            'includeDeleted' => $includeDeleted
+        ]);
+       
         try {
-            $res = $httpClient->delete();
+            $res = $resource->get();
+        } catch (\Throwable $th) {
+            return Response::respond(true, $th->getMessage());
+        }
+        if($res && $res->getBody() && $res->getHeaders() && $res->getStatusCode()){
+            $stream = $res->getBody();
+            $content = [];
+            $content['body'] = json_decode($stream->getContents());
+            $headers = $res->getHeaders();
+            $content['headers'] = $headers;
+            $content['statusCode'] = $res->getStatusCode();
+    
+            if ($res->getStatusCode() && ($res->getStatusCode() < 200 || $res->getStatusCode() > 300)) {
+                return Response::respond(true, $content);
+            }
+    
+            return Response::respond(false, $content);
+        }
+        else{
+            return Response::respond(true, ((object)ErrorMessages::$INVALID_REQUEST)->message);
+        }
+    }
+
+     /**
+     * Update custom metadata field 
+     *
+     * @param $label
+     * @param $schema
+     * @param $resource
+     * @return Response
+     */
+    public static function updateCustomMetadataField($label, $schema, $resource)
+    {
+        $resource->setDatas([
+            'label' => $label,
+            'schema' => $schema
+        ]);
+        try {
+            $res = $resource->patch();
         } catch (\Throwable $th) {
             return Response::respond(true, $th->getMessage());
         }
@@ -82,53 +202,16 @@ class Folder
         }
     }
 
-    /**
-     * @param $sourceFolderPath
-     * @param $destinationPath
-     * @param $includeVersions
-     * @param GuzzleHttpWrapper $httpClient
+     /**
+     * Update custom metadata field 
      *
+     * @param $resource
      * @return Response
      */
-    public static function copy($sourceFolderPath, $destinationPath, $includeVersions, GuzzleHttpWrapper $httpClient)
+    public static function deleteCustomMetadataField($resource)
     {
-        $httpClient->setDatas(['sourceFolderPath' => $sourceFolderPath, 'destinationPath' => $destinationPath, 'includeVersions' => $includeVersions]);
         try {
-            $res = $httpClient->post();
-        } catch (\Throwable $th) {
-            return Response::respond(true, $th->getMessage());
-        }
-        if($res && $res->getBody() && $res->getHeaders() && $res->getStatusCode()){
-            $stream = $res->getBody();
-            $content = [];
-            $content['body'] = json_decode($stream->getContents());
-            $headers = $res->getHeaders();
-            $content['headers'] = $headers;
-            $content['statusCode'] = $res->getStatusCode();
-    
-            if ($res->getStatusCode() && ($res->getStatusCode() < 200 || $res->getStatusCode() > 300)) {
-                return Response::respond(true, ($content));
-            }
-    
-            return Response::respond(false, ($content));
-        }
-        else{
-            return Response::respond(true, ((object)ErrorMessages::$INVALID_REQUEST)->message);
-        }
-    }
-
-    /**
-     * @param $sourceFolderPath
-     * @param $destinationPath
-     * @param GuzzleHttpWrapper $httpClient
-     *
-     * @return Response
-     */
-    public static function move($sourceFolderPath, $destinationPath, GuzzleHttpWrapper $httpClient)
-    {
-        $httpClient->setDatas(['sourceFolderPath' => $sourceFolderPath, 'destinationPath' => $destinationPath]);
-        try {
-            $res = $httpClient->post();
+            $res = $resource->delete();
         } catch (\Throwable $th) {
             return Response::respond(true, $th->getMessage());
         }

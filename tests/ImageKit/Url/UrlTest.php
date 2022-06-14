@@ -663,7 +663,25 @@ final class UrlTest extends TestCase
             'expireSeconds' => 300,
         ]);
 
-        UrlTest::assertEquals('Invalid URL provided in the request', json_decode($url)->error->message);
+        UrlTest::assertEquals('src is not a valid URL', json_decode($url)->error->message);
+
+    }
+
+    /**
+     *
+     */
+    public function testUrlGenerationIfUrlEmptyEmpty()
+    {
+        $url = $this->client->url([
+            'urlEndpoint' => '',
+            'transformationPosition' => 'path',
+            'transformation' => [['width' => '200', 'height' => '300']],
+            'queryParameters' => ['v' => '123123'],
+            'signed' => true,
+            'expireSeconds' => 300,
+        ]);
+
+        UrlTest::assertEquals('Invalid urlEndpoint value', json_decode($url)->error->message);
 
     }
 

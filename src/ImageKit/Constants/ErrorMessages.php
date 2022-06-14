@@ -8,6 +8,7 @@ namespace ImageKit\Constants;
  */
 class ErrorMessages
 {
+    public static $INVALID_REQUEST = ['message' => 'Invalid Request', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $INVALID_UPLOAD_OPTIONS = ['message' => 'Invalid Upload Options ImageKit initialization', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $INVALID_LIST_FILES_OPTIONS = ['message' => 'Invalid List Files Options ImageKit initialization', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $MANDATORY_INITIALIZATION_MISSING = ['message' => 'Missing publicKey or privateKey or urlEndpoint during ImageKit initialization', 'help' => 'For support kindly contact us at support@imagekit.io .'];
@@ -37,6 +38,14 @@ class ErrorMessages
     public static $UPLOAD_FILE_PARAMETER_NON_ARRAY = ['message' => 'Upload API accepts an array of parameters, non array value passed', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $UPLOAD_FILE_PARAMETER_EMPTY_ARRAY = ['message' => 'Upload API accepts an array of parameters, empty array passed', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $UPLOAD_FILE_PARAMETER_OPTIONS_NON_ARRAY = ['message' => 'Upload API parameter "options" accepts an array of parameters, non array value passed', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $UPLOAD_FILE_PARAMETER_OPTIONS_USEUNIQUEFILENAME_INVALID = ['message' => 'useUniqueFileName must be boolean', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $UPLOAD_FILE_PARAMETER_OPTIONS_ISPRIVATEFILE_INVALID = ['message' => 'isPrivateFile must be boolean', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $UPLOAD_FILE_PARAMETER_OPTIONS_OVERWRITEFILE_INVALID = ['message' => 'overwriteFile must be boolean', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $UPLOAD_FILE_PARAMETER_OPTIONS_OVERWRITEAITAGS_INVALID = ['message' => 'overwriteAITags must be boolean', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $UPLOAD_FILE_PARAMETER_OPTIONS_OVERWRITETAGS_INVALID = ['message' => 'overwriteTags must be boolean', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $UPLOAD_FILE_PARAMETER_OPTIONS_OVERWRITECUSTOMMETADATA_INVALID = ['message' => 'overwriteCustomMetadata must be boolean', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $UPLOAD_FILE_PARAMETER_OPTIONS_EXTENSIONS_INVALID = ['message' => 'extensions must be an array', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $UPLOAD_FILE_PARAMETER_OPTIONS_CUSTOMMETADATA_INVALID = ['message' => 'customMetadata must be an array', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $MISSING_UPLOAD_DATA = ['message' => 'Missing data for upload', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $MISSING_UPLOAD_FILE_PARAMETER = ['message' => 'Missing file parameter for upload', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $MISSING_UPLOAD_FILENAME_PARAMETER = ['message' => 'Missing fileName parameter for upload', 'help' => 'For support kindly contact us at support@imagekit.io .'];
@@ -52,7 +61,8 @@ class ErrorMessages
         'For support kindly contact us at support@imagekit.io .'];
     public static $URL_GENERATION_PARAMETER_NON_ARRAY = ['message' => 'URL Generation API accepts an array of parameters, non array value passed.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $URL_GENERATION_PARAMETER_EMPTY_ARRAY = ['message' => 'URL Generation API accepts an array of parameters, empty array passed.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
-    public static $URL_GENERATION_URL_INVALID = ['message' => 'Invalid URL provided in the request', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $URL_GENERATION_SRC_INVALID = ['message' => 'src is not a valid URL', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $URL_GENERATION_URL_INVALID = ['message' => 'Invalid urlEndpoint value', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $URL_GENERATION_TRANSFORMATION_PARAMETER_INVALID = ['message' => 'Transformation Parameter accepts an array, not array or null provided.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $URL_GENERATION_IF_CONDITION_MISSING = ['message' => 'Missing Parameter "condition" in if statement.', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $URL_GENERATION_IF_CONDITION_NON_ARRAY = ['message' => 'Invalid Parameter. "condition" accepts an array of parameters, non array value passed.', 'help' => 'For support kindly contact us at support@imagekit.io .'];

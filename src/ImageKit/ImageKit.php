@@ -118,7 +118,7 @@ class ImageKit
             return json_encode(Response::respond(true, ((object)ErrorMessages::$URL_GENERATION_PARAMETER_EMPTY_ARRAY)));
         }
         if (isset($options['src']) && !filter_var($options['src'], FILTER_VALIDATE_URL)) {
-            return json_encode(Response::respond(true, ((object)ErrorMessages::$URL_GENERATION_URL_INVALID)));
+            return json_encode(Response::respond(true, ((object)ErrorMessages::$URL_GENERATION_SRC_INVALID)));
         }
         if (isset($options['urlEndpoint']) && !filter_var($options['urlEndpoint'], FILTER_VALIDATE_URL)) {
             return json_encode(Response::respond(true, ((object)ErrorMessages::$URL_GENERATION_URL_INVALID)));
@@ -127,9 +127,6 @@ class ImageKit
         if (isset($options['transformation']) && !is_array($options['transformation'])) {
             return json_encode(Response::respond(true, ((object)ErrorMessages::$URL_GENERATION_TRANSFORMATION_PARAMETER_INVALID)));
         }
-        // if (isset($options['transformation'][0]) && !is_array($options['transformation'][0])) {
-        //     return json_encode(Response::respond(true, ((object)ErrorMessages::$URL_GENERATION_TRANSFORMATION_PARAMETER_INVALID)));
-        // }
         
         $urlInstance = new Url();
         return $urlInstance->buildURL(array_merge((array)$this->configuration, $options));
@@ -149,7 +146,6 @@ class ImageKit
      */
     public function upload($options=null)
     {
-
         if(!isset($options)){
             return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_MISSING));
         }
@@ -165,12 +161,40 @@ class ImageKit
         if (empty($options['fileName'])) {
             return Response::respond(true, ((object)ErrorMessages::$MISSING_UPLOAD_FILENAME_PARAMETER));
         }
-        if(isset($options['options']) && !is_array($options['options'])){
-            return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_NON_ARRAY));
+        if(isset($options['options'])){
+            if(!is_array($options['options'])){
+                return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_NON_ARRAY));
+            }
+            else{
+                if(isset($options['options']['useUniqueFileName']) && !is_bool($options['options']['useUniqueFileName'])){
+                    return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_USEUNIQUEFILENAME_INVALID));
+                }
+                if(isset($options['options']['isPrivateFile']) && !is_bool($options['options']['isPrivateFile'])){
+                    return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_ISPRIVATEFILE_INVALID));
+                }
+                if(isset($options['options']['overwriteFile']) && !is_bool($options['options']['overwriteFile'])){
+                    return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_OVERWRITEFILE_INVALID));
+                }
+                if(isset($options['options']['overwriteAITags']) && !is_bool($options['options']['overwriteAITags'])){
+                    return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_OVERWRITEAITAGS_INVALID));
+                }
+                if(isset($options['options']['overwriteTags']) && !is_bool($options['options']['overwriteTags'])){
+                    return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_OVERWRITETAGS_INVALID));
+                }
+                if(isset($options['options']['overwriteCustomMetadata']) && !is_bool($options['options']['overwriteCustomMetadata'])){
+                    return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_OVERWRITECUSTOMMETADATA_INVALID));
+                }
+                if(isset($options['options']['extensions']) && !is_array($options['options']['extensions'])){
+                    return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_EXTENSIONS_INVALID));
+                }
+                if(isset($options['options']['customMetadata']) && !is_array($options['options']['customMetadata'])){
+                    return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_CUSTOMMETADATA_INVALID));
+                }
+            }
         }
 
-
-        return $this->uploadFile($options);
+        $this->httpClient->setUri(Endpoints::getUploadFileEndpoint());
+        return Upload::upload($options, $this->httpClient);
     }
 
     /**
@@ -184,8 +208,49 @@ class ImageKit
      * @param array $options
      * @return Response
      */
-    public function uploadFile($options)
+    public function uploadFile($options=null)
     {
+        
+        if(!isset($options)){
+            return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_MISSING));
+        }
+        if(!is_array($options)){
+            return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_NON_ARRAY));
+        }
+        if(sizeof($options)==0){
+            return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_EMPTY_ARRAY));
+        }
+        if (empty($options['file'])) {
+            return Response::respond(true, ((object)ErrorMessages::$MISSING_UPLOAD_FILE_PARAMETER));
+        }
+        if (empty($options['fileName'])) {
+            return Response::respond(true, ((object)ErrorMessages::$MISSING_UPLOAD_FILENAME_PARAMETER));
+        }
+        if(isset($options['useUniqueFileName']) && !is_bool($options['useUniqueFileName'])){
+            return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_USEUNIQUEFILENAME_INVALID));
+        }
+        if(isset($options['isPrivateFile']) && !is_bool($options['isPrivateFile'])){
+            return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_ISPRIVATEFILE_INVALID));
+        }
+        if(isset($options['overwriteFile']) && !is_bool($options['overwriteFile'])){
+            return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_OVERWRITEFILE_INVALID));
+        }
+        if(isset($options['overwriteAITags']) && !is_bool($options['overwriteAITags'])){
+            return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_OVERWRITEAITAGS_INVALID));
+        }
+        if(isset($options['overwriteTags']) && !is_bool($options['overwriteTags'])){
+            return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_OVERWRITETAGS_INVALID));
+        }
+        if(isset($options['overwriteCustomMetadata']) && !is_bool($options['overwriteCustomMetadata'])){
+            return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_OVERWRITECUSTOMMETADATA_INVALID));
+        }
+        if(isset($options['extensions']) && !is_array($options['extensions'])){
+            return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_EXTENSIONS_INVALID));
+        }
+        if(isset($options['customMetadata']) && !is_array($options['customMetadata'])){
+            return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_CUSTOMMETADATA_INVALID));
+        }
+
         $this->httpClient->setUri(Endpoints::getUploadFileEndpoint());
         return Upload::upload($options, $this->httpClient);
     }
@@ -204,7 +269,7 @@ class ImageKit
      * @deprecated since 2.0.0, use <code>uploadFile</code>; uploadFiles was misleading as it supports only singular
      * file upload
      */
-    public function uploadFiles(array $options)
+    public function uploadFiles($options=null)
     {
         return $this->uploadFile($options);
     }
@@ -224,14 +289,6 @@ class ImageKit
             if(!is_array($parameters)){
                 return Response::respond(true, ((object)ErrorMessages::$LIST_FILES_OPTIONS_NON_ARRAY));
             }
-        }
-
-        if (isset($parameters['tags']) && is_array($parameters['tags'])) {
-            $parameters['tags'] = implode(',', $parameters['tags']);
-        }
-
-        if (isset($parameters['includeFolder']) && is_bool($parameters['includeFolder'])) {
-            $parameters['includeFolder'] = json_encode($parameters['includeFolder']);
         }
 
         $this->httpClient->setUri(Endpoints::getListFilesEndpoint());
@@ -345,7 +402,7 @@ class ImageKit
             return Response::respond(true, ((object)ErrorMessages::$fileId_MISSING));
         }
         $this->httpClient->setUri(Endpoints::getListMetaDataFilesEndpoint($fileId));
-        return Manage\File\Metadata::get($fileId, $this->httpClient);
+        return Manage\File\CustomMetadataFields::get($fileId, $this->httpClient);
     }
 
     /**
@@ -562,7 +619,7 @@ class ImageKit
      *
      * @deprecated since 2.0.0, use <code>purgeCache</code>
      */
-    public function purgeCacheApi($options)
+    public function purgeCacheApi($options=null)
     {
         return $this->purgeCache($options);
     }
@@ -685,8 +742,9 @@ class ImageKit
      *
      * @param $parameter['sourceFilePath','destinationPath','includeVersions']
      * @return Response
+     * 
      */
-    public function copyFile($parameter=null)
+    public function copy($parameter=null)
     {
         if(!isset($parameter)){
             return Response::respond(true, ((object)ErrorMessages::$COPY_FILE_PARAMETER_MISSING));
@@ -705,6 +763,32 @@ class ImageKit
         return Manage\File::copy($parameter['sourceFilePath'], $parameter['destinationPath'], $parameter['includeVersions'], $this->httpClient);
     }
 
+    
+    /**
+     * This will copy a file from one location to another. This method accepts an array of source file's path, destination path and boolean to include versions or not
+     * folder path.
+     *
+     * @link https://docs.imagekit.io/api-reference/media-api/copy-file
+     *
+     * @param $sourceFilePath
+     * @param $destinationPath
+     * @param $includeVersions
+     * @return Response
+     * 
+     * @deprecated since 2.0.0, use <code>copy</code>
+     *
+     */
+    public function copyFile($sourceFilePath=null, $destinationPath=null, $includeVersions=null)
+    {
+        
+        if (empty($sourceFilePath) || empty($destinationPath)) {
+            return Response::respond(true, ((object)ErrorMessages::$COPY_FILE_DATA_INVALID));
+        }
+
+        $this->httpClient->setUri(Endpoints::getCopyFileEndpoint());
+        return Manage\File::copy($sourceFilePath, $destinationPath, $includeVersions, $this->httpClient);
+    }
+
     /**
      * This will move a file from one location to another. This method accepts an array containing source file's path and destination path
      * folder path.
@@ -714,7 +798,7 @@ class ImageKit
      * @param $parameter['sourceFilePath','destinationPath']
      * @return Response
      */
-    public function moveFile($parameter=null)
+    public function move($parameter=null)
     {
         if(!isset($parameter)){
             return Response::respond(true, ((object)ErrorMessages::$MOVE_FILE_PARAMETER_MISSING));
@@ -733,6 +817,28 @@ class ImageKit
     }
 
     /**
+     * This will move a file from one location to another. This method accepts an array containing source file's path and destination path
+     * folder path.
+     *
+     * @link https://docs.imagekit.io/api-reference/media-api/move-file
+     *
+     * @param $sourceFilePath
+     * @param $destinationPath
+     * @param $includeVersions
+     * @return Response
+     * 
+     * @deprecated since 2.0.0, use <code>move</code>
+     */
+    public function moveFile($sourceFilePath=null, $destinationPath=null)
+    {
+        if (empty($sourceFilePath) || empty($destinationPath)) {
+            return Response::respond(true, ((object)ErrorMessages::$MOVE_FILE_DATA_INVALID));
+        }
+        $this->httpClient->setUri(Endpoints::getMoveFileEndpoint());
+        return Manage\File::move($sourceFilePath, $destinationPath, $this->httpClient);
+    }
+
+    /**
      * This will rename a file. This method accepts the source file's path, new file name and an optional parameter
      * boolean to purge cache
      *
@@ -743,7 +849,7 @@ class ImageKit
      * @param $purgeCache
      * @return Response
      */
-    public function renameFile($parameter=null, $purgeCache = false)
+    public function rename($parameter=null, $purgeCache = false)
     {
         if(!isset($parameter)){
             return Response::respond(true, ((object)ErrorMessages::$RENAME_FILE_PARAMETER_MISSING));
@@ -762,6 +868,29 @@ class ImageKit
         return Manage\File::rename($parameter['filePath'], $parameter['newFileName'], $purgeCache, $this->httpClient);
     }
 
+    /**
+     * This will rename a file. This method accepts the source file's path, new file name and an optional parameter
+     * boolean to purge cache
+     *
+     *
+     * @link https://docs.imagekit.io/api-reference/media-api/rename-file
+     *
+     * @param $filePath
+     * @param $newFileName
+     * @param $purgeCache
+     * @return Response
+     * 
+     * @deprecated since 2.0.0, use <code>rename</code>
+     */
+    public function renameFile($filePath, $newFileName, $purgeCache = false)
+    {
+        if (empty($filePath) || empty($newFileName)) {
+            return Response::respond(true, ((object)ErrorMessages::$RENAME_FILE_DATA_INVALID));
+        }
+
+        $this->httpClient->setUri(Endpoints::getRenameFileEndpoint());
+        return Manage\File::rename($filePath, $newFileName, $purgeCache, $this->httpClient);
+    }
     
     /**
      * This will Restore file version to a different version of a file. This method accepts the fileId and versionId
@@ -920,15 +1049,28 @@ class ImageKit
         }
         $this->httpClient->setUri(Endpoints::getBulkJobStatusEndpoint($jobId));
         
-        $res = $this->httpClient->get();
-        $stream = $res->getBody();
-        $content = $stream->getContents();
-
-        if ($res->getStatusCode() && !(200 >= $res->getStatusCode() || $res->getStatusCode() <= 300)) {
-            return Response::respond(true, json_decode($content));
+        try {
+            $res = $this->httpClient->get();
+        } catch (\Throwable $th) {
+            return Response::respond(true, $th->getMessage());
         }
-
-        return Response::respond(false, json_decode($content));
+        if($res && $res->getBody() && $res->getHeaders() && $res->getStatusCode()){
+            $stream = $res->getBody();
+            $content = [];
+            $content['body'] = json_decode($stream->getContents());
+            $headers = $res->getHeaders();
+            $content['headers'] = $headers;
+            $content['statusCode'] = $res->getStatusCode();
+    
+            if ($res->getStatusCode() && ($res->getStatusCode() < 200 || $res->getStatusCode() > 300)) {
+                return Response::respond(true, ($content));
+            }
+    
+            return Response::respond(false, ($content));
+        }
+        else{
+            return Response::respond(true, ((object)ErrorMessages::$INVALID_REQUEST)->message);
+        }
     }
 
     /**
@@ -950,7 +1092,7 @@ class ImageKit
         }
 
         $this->httpClient->setUri(Endpoints::getFileMetadataFromRemoteURLEndpoint());
-        return Manage\File\Metadata::getFileMetadataFromRemoteURL($url, $this->httpClient);
+        return Manage\File\CustomMetadataFields::getFileMetadataFromRemoteURL($url, $this->httpClient);
     }
     /**
      * Using pHash to find similar or duplicate images
@@ -1003,7 +1145,7 @@ class ImageKit
         }
 
         $this->httpClient->setUri(Endpoints::createCustomMetadataField());
-        return Manage\File\Metadata::createCustomMetadataField($parameter['name'], $parameter['label'], $parameter['schema'], $this->httpClient);
+        return Manage\File\CustomMetadataFields::createCustomMetadataField($parameter['name'], $parameter['label'], $parameter['schema'], $this->httpClient);
     }
     
     /**
@@ -1020,7 +1162,7 @@ class ImageKit
             return Response::respond(true, ((object)ErrorMessages::$GET_CUSTOM_METADATA_INVALID_PARAMETER)); 
         }
         $this->httpClient->setUri(Endpoints::getCustomMetadataField());
-        return Manage\File\Metadata::getCustomMetadataField($includeDeleted, $this->httpClient);
+        return Manage\File\CustomMetadataFields::getCustomMetadataField($includeDeleted, $this->httpClient);
     }
     
     /**
@@ -1057,7 +1199,7 @@ class ImageKit
         }
 
         $this->httpClient->setUri(Endpoints::updateCustomMetadataField($id));
-        return Manage\File\Metadata::updateCustomMetadataField($parameter['label'], $parameter['schema'], $this->httpClient);
+        return Manage\File\CustomMetadataFields::updateCustomMetadataField($parameter['label'], $parameter['schema'], $this->httpClient);
     }
     
     /**
@@ -1075,7 +1217,7 @@ class ImageKit
         }
         
         $this->httpClient->setUri(Endpoints::deleteCustomMetadataField($id));
-        return Manage\File\Metadata::deleteCustomMetadataField($this->httpClient);
+        return Manage\File\CustomMetadataFields::deleteCustomMetadataField($this->httpClient);
     }
 
 }

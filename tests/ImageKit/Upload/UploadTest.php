@@ -120,23 +120,23 @@ final class UploadTest extends TestCase
                 "isPrivateFile" => true,                                           // true|false
                 "customCoordinates" => implode(",", ["10", "10", "100", "100"]),    // Comma Separated, Max length: 500 chars
                 "responseFields" => implode(",", ["tags", "customMetadata"]),       // Comma Separated, check docs for more responseFields
-                "extensions" => json_encode([                                       // Stringified JSON object with an array of extensions, for more extensions refer to docs
+                "extensions" => [                                                  // An array of extensions, for more extensions refer to docs
                     [
                         "name" => "remove-bg",
                         "options" => [  // all parameters inside this object are sent directly to the third-party service
                             "add_shadow" => true
                         ]
                     ]
-                ]),
+                ],
                 "webhookUrl" => "https://example.com/webhook",                      // Notification URL to receive the final status of pending extensions
                 "overwriteFile" => true,                                            // true|false, in case of false useUniqueFileName should be true
                 "overwriteAITags" => false,                                          // true|false, set to false in order to preserve overwriteAITags
                 "overwriteTags" => false,                                            // true|false
                 "overwriteCustomMetadata" => true,                                  // true|false
-                "customMetadata" => json_encode([                                   // Stringified JSON object with an array of created custom fields, for more details refer to docs
+                "customMetadata" => [                                              // An array of created custom fields, for more details refer to docs
                         "SKU" => "VS882HJ2JD",
                         "price" => 599.99,
-                ])
+                ]
             ]
         ];
 
@@ -237,26 +237,6 @@ final class UploadTest extends TestCase
         UploadTest::assertArrayNotHasKey('customCoordinates', (array) $response->result->options);
         UploadTest::assertArrayNotHasKey('responseFields', (array) $response->result->options);
     }
-
-    /**
-     *
-     */
-    public function testFileUploadNetworkError()
-    {
-        $fileOptions = [
-            'file'  =>  'http://lorempixel.com/640/480/',
-            'fileName'  =>  'test_file_name',
-        ];
-
-        $mockBodyResponse = Utils::streamFor(json_encode($fileOptions));
-
-        $this->stubHttpClient(new Response(100, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->upload($fileOptions);
-
-        UploadTest::assertEquals('Network error occured', $response->error);
-    }
-
     
     /**
      *
@@ -275,23 +255,23 @@ final class UploadTest extends TestCase
                 "isPrivateFile" => true,                                           // true|false
                 "customCoordinates" => implode(",", ["10", "10", "100", "100"]),    // Comma Separated, Max length: 500 chars
                 "responseFields" => implode(",", ["tags", "customMetadata"]),       // Comma Separated, check docs for more responseFields
-                "extensions" => json_encode([                                       // Stringified JSON object with an array of extensions, for more extensions refer to docs
+                "extensions" => [                                                   // An array of extensions, for more extensions refer to docs
                     [
                         "name" => "remove-bg",
                         "options" => [  // all parameters inside this object are sent directly to the third-party service
                             "add_shadow" => true
                         ]
                     ]
-                ]),
-                "webhookUrl" => "https://example.com/webhook",                      // Notification URL to receive the final status of pending extensions
-                "overwriteFile" => true,                                            // true|false, in case of false useUniqueFileName should be true
+                ],
+                "webhookUrl" => "https://example.com/webhook",                       // Notification URL to receive the final status of pending extensions
+                "overwriteFile" => true,                                             // true|false, in case of false useUniqueFileName should be true
                 "overwriteAITags" => false,                                          // true|false, set to false in order to preserve overwriteAITags
                 "overwriteTags" => false,                                            // true|false
-                "overwriteCustomMetadata" => true,                                  // true|false
-                "customMetadata" => json_encode([                                   // Stringified JSON object with an array of created custom fields, for more details refer to docs
+                "overwriteCustomMetadata" => true,                                   // true|false
+                "customMetadata" => [                                                // An array of created custom fields, for more details refer to docs
                         "SKU" => "VS882HJ2JD",
                         "price" => 599.99,
-                ])
+                ]
             ]
         ];
         

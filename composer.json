@@ -32,7 +32,7 @@
         "beberlei/assert": "^3.3"
     },
     "require-dev": {
-        "phpunit/phpunit": "*"
+        "phpunit/phpunit": "^9"
     },
     "support": {
         "email": "support@imagekit.io"

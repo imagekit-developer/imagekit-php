@@ -149,7 +149,7 @@ class ImageKitTest extends TestCase
             'token' => $token,
             'expire' => $expire,
             'signature' => $signature,
-        ]), json_encode($response->result));
+        ]), json_encode($response));
     }
 
     /**

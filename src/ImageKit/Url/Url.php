@@ -167,8 +167,7 @@ class Url
                 'urlEndpoint' => $urlOptions['urlEndpoint'],
                 'expiryTimestamp' => $expiryTimestamp,
             ];
-            // return json_encode($urlSignatureArray);
-            // return date('Y-m-d H:i:s',$urlSignatureArray['expiryTimestamp']);
+            
             $urlSignature = $this->getSignature($urlSignatureArray);
             if ($expiryTimestamp && $expiryTimestamp != self::DEFAULT_TIMESTAMP) {
                 $timestampParameter = [
@@ -176,11 +175,6 @@ class Url
                 ];
                 $timestampParameterString = http_build_query($timestampParameter);
                 $urlObject->timestampParameterString = $timestampParameterString;
-                // if ($urlObject->search === '') {
-                //     $urlObject->search .= $timestampParameterString;
-                // } else {
-                //     $urlObject->search .= '&' . $timestampParameterString;
-                // }
             }
             $signatureParameter = [
                 self::SIGNATURE_PARAMETER => $urlSignature
@@ -188,11 +182,6 @@ class Url
             $signatureParameterString = http_build_query($signatureParameter);
             
             $urlObject->signatureParameterString = $signatureParameterString;
-            // if ($urlObject->search === '') {
-            //     $urlObject->search .= $signatureParameterString;
-            // } else {
-            //     $urlObject->search .= '&' . $signatureParameterString;
-            // }
         }
         $urlObjectArray = json_decode(json_encode($urlObject), true);
 
@@ -401,11 +390,11 @@ class Url
         $search = $get('search');
         $queryParameters = $get('queryParameters');
         $transformationPosition = $get('transformationPosition');
-        // return $transformationPosition;
+
         $signatureParameterString = $get('signatureParameterString');
-        // return $signatureParameterString;
+
         $timestampParameterString = $get('timestampParameterString');
-        // return $timestampParameterString;
+
         if($transformationPosition=='query'){
             return (strlen($scheme) > 0 ? "$scheme:" : '') .
                 (strlen($host) > 0 ? "//$host" : '') .
@@ -427,7 +416,6 @@ class Url
                  ((!empty($signatureParameterString) && strlen($signatureParameterString) > 0) ? ('&' . $signatureParameterString): '');
 
         }
-            // (strlen($search) > 0 ? '?ik-sdk-version=php-' . ImageKit::SDK_VERSION : '?ik-sdk-version=php-' . ImageKit::SDK_VERSION);
     }
 
     /**

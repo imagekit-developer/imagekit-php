@@ -162,15 +162,14 @@ class GuzzleHttpWrapper implements HttpRequest
      */
     protected function handleException(Exception $e)
     {
-        $status = $e->getCode();
-        $headers = [];
-        $body = $e->getMessage();
-
-        if($status==0){
-            $status=100;
+        if(!$sock = @fsockopen('api.imagekit.io', 443))
+        {
+            throw new Exception('Network Error');
         }
-
-        return new Response($status, $headers, $body);
+        else
+        {
+            throw $e;
+        }
     }
 
     /**

@@ -45,13 +45,8 @@ class Signature
             $authParameters['signature'] = $signature;
 
         }
-        
-        $content = [];
-        $content['body'] = (object)$authParameters;
-        $content['headers'] = [];
-        $content['statusCode'] = null;
 
-        return Response::respond(false, ($content));
+        return (object)$authParameters;
 
     }
 

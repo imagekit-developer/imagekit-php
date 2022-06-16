@@ -26,8 +26,11 @@ ImageKit is a complete image optimization and transformation solution that comes
 - [File Management](#file-management)
 - [Custom Metadata Fields API](#custom-metadata-fields-api)
 - [Utility Function](#utility-functions)
+- [Opening Issues](#opening-issues)
+- [Support](#support)
+- [Resources](#resources)
+- [Related Projects](#related-imagekit-projects)
 - [License](#license)
-
 
 ## Key Features
 - [URL Generation](#url-generation)

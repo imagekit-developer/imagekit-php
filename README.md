@@ -117,6 +117,19 @@ $uploadFile = $imageKit->upload([
 ]);
 ```  
 
+#### Response Structure
+```json
+{
+    "error": {},
+    "result": {},
+    "responseMetadata": {
+        "headers": {},
+        "raw": {},
+        "statusCode": {statusCode}
+    }
+}
+```
+
 ## Demo application
 
 * The official step by step PHP quick start guide - https://docs.imagekit.io/getting-started/quickstart-guides/php

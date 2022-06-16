@@ -8,17 +8,26 @@ PHP SDK for [ImageKit](https://imagekit.io/) implements the new APIs and interfa
 
 ImageKit is a complete image optimization and transformation solution that comes with an [image CDN](https://imagekit.io/features/imagekit-infrastructure) and media storage. It can be integrated with your existing infrastructure - storage like AWS S3, web servers, your CDN, and custom domain names, allowing you to deliver optimized images in minutes with minimal code changes.
 
-Table of contents -
 
-- [Installation](#Installation)
-- [Initialization](#Initialization)
-- [Demo application](#demo-application)
-- [URL generation](#URL-generation)
-- [File upload](#File-upload)
-- [Media management](#File-management)
-- [Utility functions](#Utility-functions)
-- [Support](#Support)
-- [Links](#Links)
+- [Key Features](#key-features)
+- [Requirements](#requirements)
+- [Version Support](#version-support)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Getting Started](#getting-started)
+- [Quick Examples](#quick-examples)
+    * [Create an ImageKit Instance](#create-an-imagekit-instance)
+    * [URL Generation](#url-generation)
+    * [File Upload](#file-upload)
+- [Demo Application](#demo-application)
+- [URL Generation](#url-generation-1)
+- [Signed URL & Image Transformations](#applying-chained-transformations-common-image-manipulations-signed-url--conditional-transformation)
+- [Server-side File Upload](#server-side-file-upload)
+- [File Management](#file-management)
+- [Custom Metadata Fields API](#custom-metadata-fields-api)
+- [Utility Function](#utility-functions)
+- [License](#license)
+
 
 ## Key Features
 - [URL Generation](#url-generation)
@@ -1569,14 +1578,28 @@ $imageKit->pHashDistance('a4a65595ac94518b', '7838873e791f8400');
 // output: 37 (dissimilar images)  
 ```  
 
+## Opening Issues
+If you encounter a bug with `imagekit-php` we would like to hear about it. Search the existing issues and try to make sure your problem doesn’t already exist before opening a new issue. It’s helpful if you include the version of `imagekit-php`, PHP version and OS you’re using. Please include a stack trace and a simple workflow to reproduce the case when appropriate, too.
+
+
 ## Support
 
 For any feedback or to report any issues or general implementation support, please reach out to [support@imagekit.io](mailto:support@imagekit.io)
 
-## Links
+## Resources
 
-- [Documentation](https://docs.imagekit.io)
-- [Main website](https://imagekit.io)
+- [Main website](https://imagekit.io) -- Main Website.
+- [Documentation](https://docs.imagekit.io) -- For both getting started and in-depth SDK usage information.
+- [PHP Sample Project](/tree/master/sample) -- A quick, sample project to help get you started.
+- [Issues](/issues) -- Check the open and closed issueses. You can report your issues as well.
+
+## Related ImageKit Projects
+
+- [ImageKit Node.js SDK](https://github.com/imagekit-developer/imagekit-nodejs)
+- [ImageKit Ruby On Rails SDK](https://github.com/imagekit-developer/imagekit-ruby)
+- [ImageKit Java SDK](https://github.com/imagekit-developer/imagekit-java)
+- [ImageKit React SDK](https://github.com/imagekit-developer/imagekit-react)
+- For more SDKs check [ImageKit Github](https://github.com/imagekit-developer) 
 
 ## License
 

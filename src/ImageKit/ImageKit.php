@@ -135,8 +135,6 @@ class ImageKit
     /**
      * You can upload files to ImageKit.io media library from your server-side using private API key authentication.
      *
-     * File size limit
-     * The maximum upload file size is limited to 25MB.
      *
      * @link https://docs.imagekit.io/api-reference/upload-file-api/server-side-file-upload API Reference
      *
@@ -200,8 +198,6 @@ class ImageKit
     /**
      * You can upload files to ImageKit.io media library from your server-side using private API key authentication.
      *
-     * File size limit
-     * The maximum upload file size is limited to 25MB.
      *
      * @link https://docs.imagekit.io/api-reference/upload-file-api/server-side-file-upload API Reference
      *
@@ -258,8 +254,6 @@ class ImageKit
     /**
      * You can upload files to ImageKit.io media library from your server-side using private API key authentication.
      *
-     * File size limit
-     * The maximum upload file size is limited to 25MB.
      *
      * @link https://docs.imagekit.io/api-reference/upload-file-api/server-side-file-upload API Reference
      *
@@ -402,7 +396,7 @@ class ImageKit
             return Response::respond(true, ((object)ErrorMessages::$fileId_MISSING));
         }
         $this->httpClient->setUri(Endpoints::getListMetaDataFilesEndpoint($fileId));
-        return Manage\File\CustomMetadataFields::get($fileId, $this->httpClient);
+        return Manage\CustomMetadataFields::get($fileId, $this->httpClient);
     }
 
     /**
@@ -1092,7 +1086,7 @@ class ImageKit
         }
 
         $this->httpClient->setUri(Endpoints::getFileMetadataFromRemoteURLEndpoint());
-        return Manage\File\CustomMetadataFields::getFileMetadataFromRemoteURL($url, $this->httpClient);
+        return Manage\CustomMetadataFields::getFileMetadataFromRemoteURL($url, $this->httpClient);
     }
     /**
      * Using pHash to find similar or duplicate images
@@ -1145,7 +1139,7 @@ class ImageKit
         }
 
         $this->httpClient->setUri(Endpoints::createCustomMetadataField());
-        return Manage\File\CustomMetadataFields::createCustomMetadataField($parameter['name'], $parameter['label'], $parameter['schema'], $this->httpClient);
+        return Manage\CustomMetadataFields::createCustomMetadataField($parameter['name'], $parameter['label'], $parameter['schema'], $this->httpClient);
     }
     
     /**
@@ -1162,7 +1156,7 @@ class ImageKit
             return Response::respond(true, ((object)ErrorMessages::$GET_CUSTOM_METADATA_INVALID_PARAMETER)); 
         }
         $this->httpClient->setUri(Endpoints::getCustomMetadataField());
-        return Manage\File\CustomMetadataFields::getCustomMetadataField($includeDeleted, $this->httpClient);
+        return Manage\CustomMetadataFields::getCustomMetadataField($includeDeleted, $this->httpClient);
     }
     
     /**
@@ -1199,7 +1193,7 @@ class ImageKit
         }
 
         $this->httpClient->setUri(Endpoints::updateCustomMetadataField($id));
-        return Manage\File\CustomMetadataFields::updateCustomMetadataField($parameter['label'], $parameter['schema'], $this->httpClient);
+        return Manage\CustomMetadataFields::updateCustomMetadataField($parameter['label'], $parameter['schema'], $this->httpClient);
     }
     
     /**
@@ -1217,7 +1211,7 @@ class ImageKit
         }
         
         $this->httpClient->setUri(Endpoints::deleteCustomMetadataField($id));
-        return Manage\File\CustomMetadataFields::deleteCustomMetadataField($this->httpClient);
+        return Manage\CustomMetadataFields::deleteCustomMetadataField($this->httpClient);
     }
 
 }

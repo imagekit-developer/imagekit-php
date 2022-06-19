@@ -4,8 +4,6 @@ namespace ImageKit\Utils;
 
 use ImageKit\Constants\SupportedTransforms;
 use ImageKit\Constants\ErrorMessages;
-use ImageKit\Constants\SupportedOperands;
-
 
 /**
  *
@@ -23,48 +21,15 @@ class Transformation
      * @param $transformation
      * @return mixed
      */
-    public static function getTransformKey($transformation, $ifCondition=false)
+    public static function getTransformKey($transformation)
     {
-        if($ifCondition){
-            $supportedTransforms = SupportedTransforms::getIf();
+        $supportedTransforms = SupportedTransforms::get();
 
-            if (isset($supportedTransforms[$transformation])) {
-                return $supportedTransforms[$transformation];
-            }
-            else{
-                throw new \InvalidArgumentException(ErrorMessages::$URL_GENERATION_IF_CONDITION_INVALID_PROPERTY['message']);
-            }
-    
-        }
-        else{
-            $supportedTransforms = SupportedTransforms::get();
-
-            if (isset($supportedTransforms[$transformation])) {
-                return $supportedTransforms[$transformation];
-            }
-    
-            return $transformation;    
-        }
-        
-    }
-
-    /**
-     * @param $transformation
-     * @return mixed
-     */
-    public static function getTransformConditionOperand($transformation)
-    {
-
-        $supportedOperands = SupportedOperands::get();
-
-        if (isset($supportedOperands[$transformation])) {
-            return $supportedOperands[$transformation];
-        }
-        else{
-            throw new \InvalidArgumentException(ErrorMessages::$URL_GENERATION_IF_CONDITION_INVALID_OPERAND['message']);
+        if (isset($supportedTransforms[$transformation])) {
+            return $supportedTransforms[$transformation];
         }
 
-        return $transformation;
+        return $transformation;    
     }
 
     /**

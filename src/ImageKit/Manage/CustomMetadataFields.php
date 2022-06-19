@@ -1,6 +1,6 @@
 <?php
 
-namespace ImageKit\Manage\File;
+namespace ImageKit\Manage;
 
 use ImageKit\Constants\ErrorMessages;
 use ImageKit\Utils\Response;

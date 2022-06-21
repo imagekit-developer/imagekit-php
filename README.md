@@ -118,14 +118,59 @@ $uploadFile = $imageKit->upload([
 ```  
 
 #### Response Structure
+Following is the response for [Server Side File Upload API](https://docs.imagekit.io/api-reference/upload-file-api/server-side-file-upload#response-code-and-structure-json)
 ```json
 {
-    "error": {},
-    "result": {},
-    "responseMetadata": {
-        "headers": {},
-        "raw": {},
-        "statusCode": {statusCode}
+    "error": null,
+    "result": {
+        "fileId": "6286329dfef1b033aee60211",
+        "name": "your_file_name_S-PgGysnR.jpg",
+        "size": 94466,
+        "versionInfo": {
+            "id": "6286329dfef1b033aee60211",
+            "name": "Version 1"
+        },
+        "filePath": "/your_file_name_S-PgGysnR.jpg",
+        "url": "https://ik.imagekit.io/demo/your_file_name_S-PgGysnR.jpg",
+        "fileType": "image",
+        "height": 640,
+        "width": 960,
+        "thumbnailUrl": "https://ik.imagekit.io/demo/tr:n-ik_ml_thumbnail/your_file_name_S-PgGysnR.jpg",
+        "tags": [],
+        "AITags": null,
+        "customMetadata": { },
+        "extensionStatus": {}
+    },
+    "responseMetadata":{
+        "headers":{
+            "access-control-allow-origin": "*",
+            "x-ik-requestid": "e98f2464-2a86-4934-a5ab-9a226df012c9",
+            "content-type": "application/json; charset=utf-8",
+            "content-length": "434",
+            "etag": "W/"1b2-reNzjRCFNt45rEyD7yFY/dk+Ghg"",
+            "date": "Thu, 16 Jun 2022 14:22:01 GMT",
+            "x-request-id": "e98f2464-2a86-4934-a5ab-9a226df012c9"
+        },
+        "raw":{
+            "fileId": "6286329dfef1b033aee60211",
+            "name": "your_file_name_S-PgGysnR.jpg",
+            "size": 94466,
+            "versionInfo": {
+                "id": "6286329dfef1b033aee60211",
+                "name": "Version 1"
+            },
+            "filePath": "/your_file_name_S-PgGysnR.jpg",
+            "url": "https://ik.imagekit.io/demo/your_file_name_S-PgGysnR.jpg",
+            "fileType": "image",
+            "height": 640,
+            "width": 960,
+            "thumbnailUrl": "https://ik.imagekit.io/demo/tr:n-ik_ml_thumbnail/your_file_name_S-PgGysnR.jpg",
+            "tags": [],
+            "AITags": null,
+            "customMetadata": { },
+            "extensionStatus": {}
+        },
+        "statusCode":200
     }
 }
 ```
@@ -202,7 +247,7 @@ The `$imageKit->url()` method accepts the following parameters.
 | signed                | Optional. Boolean. The default value is `false`. If set to `true`, the SDK generates a signed image URL adding the image signature to the image URL.                                                                                                                                                                                                                                                                                                              |  
 | expireSeconds         | Optional. Integer. It is used along with the `signed` parameter. It specifies the time in seconds from now when the signed URL will expire. If specified, the URL contains the expiry timestamp in the URL, and the image signature is modified accordingly.                                                                                                                                                
 
-### Applying Chained Transformations, Common Image Manipulations, Signed URL & Conditional Transformation
+### Applying Chained Transformations, Common Image Manipulations & Signed URL
 
 This section covers the basics:
 
@@ -212,7 +257,6 @@ This section covers the basics:
 * [Quality manipulation](#4-quality-manipulation)
 * [Adding overlays to images](#5-adding-overlays-to-images)
 * [Signed URL](#6-signed-url)
-* [Conditional Transformation](6#conditional-transformation)
 
 The PHP SDK gives a name to each transformation parameter e.g. `height` for `h` and `width` for `w` parameter. It makes your code more readable.  See the [Full list of supported transformations](#list-of-supported-transformations).
 
@@ -227,9 +271,10 @@ The PHP SDK gives a name to each transformation parameter e.g. `height` for `h` 
 ]
 // works the same
 ```
-👉 Note that you can also use `h` and `w` parameter instead of `height` and `width`. 
+👉 Note that you can also use the `h` and `w` parameters instead of `height` and `width`. 
 
-For more examples check the [Demo Application](#demo-application).
+For more examples check the [Demo Application](https://github.com/imagekit-developer/imagekit-php/tree/master/sample).
+
 
 ### 1. Chained Transformations as a query parameter
 
@@ -377,39 +422,6 @@ https://ik.imagekit.io/your_imagekit_id/tr:h-300,w-400/default-image.jpg?v=123&i
 
 You can manage [Security Settings](https://docs.imagekit.io/features/security#restricting-unsigned-urls) from the dashboard to prevent unsigned URLs usage. In that case, if the URL doesn't have signature `ik-s` parameter or the signature is invalid, ImageKit will return a forbidden error instead of an actual image.
 
-
-### 7. Conditional Transformation
-
-Transformations can be applied conditionally i.e. only if certain properties of the input asset satisfy a given condition.
-- Please find the allowed [**Conditional Properties list**](#list-of-supported-properties-for-condition-transformation).
-- Please find the allowed [**Conditional Operators list**](#list-of-supported-operators-for-condition-transformation).
-
-```php
-$imageURL = $imageKit->url([
-    'src' => 'https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg',
-    'transformation' => [
-        [
-            'if' => [
-                'condition' => [        // required
-                    'originalHeight' => '100',
-                    'operator' => '<'   // required
-                ],
-                'true' => [             // required
-                    'width' =>  '200',
-                ],
-                'false' => [
-                    'width' =>  '300',
-                ],
-            ],
-        ]
-    ],
-]);
-```
-#### Response
-```
-https://ik.imagekit.io/your_imagekit_id/endpoint/tr:if-ih_lt_100,w-200,if-else,w-300,if-end/default-image.jpg
-```
-
 ### List of supported transformations
 
 The complete list of transformations supported and their usage in ImageKit can be found [here](https://docs.imagekit.io/features/image-transformations). The SDK gives a name to each transformation parameter, making the code simpler and readable. If a transformation is supported in ImageKit, but a name for it cannot be found in the table below, use the transformation code from ImageKit docs as the name when using it in the `url` function.
@@ -474,31 +486,6 @@ The complete list of transformations supported and their usage in ImageKit can b
 | overlayRadius                 | or                      |  
 | overlayImageFocus             | oifo                    |  
 
-
-### List of Supported Properties For Condition Transformation
-
-For detailed explanation refer to [Supported Properties](https://docs.imagekit.io/features/image-transformations/conditional-transformations#supported-properties).
-|   Supported Property Name     | Translates to parameter |  
-| ----------------------------- | ----------------------- |  
-| height                        | h                       |  
-| width                         | w                       |  
-| aspectRatio                   | ar                      |  
-| originalHeight                | ih                      |  
-| originalWidth                 | iw                      |  
-| originalAspectRatio           | iar                     |  
-
-
-### List of Supported Operators For Condition Transformation
-
-For detailed explanation refer to [Supported Operators](https://docs.imagekit.io/features/image-transformations/conditional-transformations#supported-operators).
-|   Supported Property Name     | Translates to parameter |  
-| ----------------------------- | ----------------------- |  
-| ==                            | eq                      |  
-| !=                            | w                       |  
-| >                             | gt                      |  
-| >=                            | gte                     |  
-| <                             | lt                      |  
-| <=                            | lte                     |  
 
 ## Server-side File Upload
 
@@ -572,6 +559,7 @@ $uploadFile = $imageKit->upload([
 }
 ```
 #### Optional Parameters
+Please refer to [Server Side File Upload - Request Structure](https://docs.imagekit.io/api-reference/upload-file-api/server-side-file-upload#request-structure-multipart-form-data) for detailed explanation about mandatory and optional parameters.
 ```php
 // Set of optional parameters
 $uploadOptions = [
@@ -612,54 +600,15 @@ $uploadFile = $imageKit->upload([
 
 The SDK provides a simple interface for all the following [Media APIs](https://docs.imagekit.io/api-reference/media-api) to manage your files.
 
-### 1. List & Search Files
+### 1. List and Search Files
 
-This API can list all the uploaded files and folders in your [ImageKit.io](https://docs.imagekit.io/api-reference/media-api) media library.
+This API can list all the uploaded files and folders in your [ImageKit.io](https://docs.imagekit.io/api-reference/media-api) media library. 
+
+Refer to the [List and Search File API](https://docs.imagekit.io/api-reference/media-api/list-and-search-files) for a better understanding of the **Request & Response Structure**.
 
 #### Example
 ```php
 $listFiles = $imageKit->listFiles();
-```
-#### Response
-```json
-[
-    {
-        "fileId": "598821f949c0a938d57563bd",
-        "type": "file",
-        "name": "file1.jpg",
-        "filePath": "/images/products/file1.jpg",
-        "tags": ["t-shirt", "round-neck", "sale2019"],
-        "AITags": [
-            {
-                "name": "Shirt",
-                "confidence": 90.12,
-                "source": "google-auto-tagging"
-            },
-            /* ... more googleVision tags ... */
-        ],
-        "versionInfo": {
-            "id": "598821f949c0a938d57563bd",
-            "name": "Version 1"
-        },
-        "isPrivateFile": false,
-        "customCoordinates": null,
-        "url": "https://ik.imagekit.io/your_imagekit_id/images/products/file1.jpg",
-        "thumbnail": "https://ik.imagekit.io/your_imagekit_id/tr:n-media_library_thumbnail/images/products/file1.jpg",
-        "fileType": "image",
-        "mime": "image/jpeg",
-        "width": 100,
-        "height": 100,
-        "size": 100,
-        "hasAlpha": false,
-        "customMetadata": {
-            "brand": "Nike",
-            "color": "red"
-        },
-        "createdAt": "2019-08-24T06:14:41.313Z",
-        "updatedAt": "2019-08-24T06:14:41.313Z"
-    },
-    ...more items
-]
 ```
 #### Applying Filters
 Filter out the files with an object specifying the parameters. 
@@ -676,164 +625,55 @@ $listFiles = $imageKit->listFiles([
 ```
 
 #### Advance Search
-In addition, you can fine-tune your query by specifying various filters by generating a query string in a Lucene-like syntax and provide this generated string as the value of the `searchQuery`.
+In addition, you can fine-tune your query by specifying various filters by generating a query string in a Lucene-like syntax and providing this generated string as the value of the `searchQuery`.
 ```php
 $listFiles = $imageKit->listFiles([
     "searchQuery" => '(size < "1mb" AND width > 500) OR (tags IN ["summer-sale","banner"])',
 ]);
 ```
-Detailed documentaion can be found here for [Advance Search Queries](https://docs.imagekit.io/api-reference/media-api/list-and-search-files#advanced-search-queries).
+Detailed documentation can be found here for [Advance Search Queries](https://docs.imagekit.io/api-reference/media-api/list-and-search-files#advanced-search-queries).
 
 ### 2. Get File Details
 
 This API can get you all the details and attributes of the current version of the file.
 
+Refer to the [Get File Details API](https://docs.imagekit.io/api-reference/media-api/get-file-details) for a better understanding of the **Request & Response Structure**.
+
 #### Example
 ```php
 $getFileDetails = $imageKit->getFileDetails('file_id');
-```
-#### Response
-```json
-{
-    "fileId": "598821f949c0a938d57563bd",
-    "type": "file",
-    "name": "file1.jpg",
-    "filePath": "/images/products/file1.jpg",
-    "tags": ["t-shirt", "round-neck", "sale2019"],
-    "AITags": [
-        {
-            "name": "Shirt",
-            "confidence": 90.12,
-            "source": "google-auto-tagging"
-        },
-        /* ... more googleVision tags ... */
-    ],
-    "versionInfo": {
-            "id": "598821f949c0a938d57563bd",
-            "name": "Version 1"
-    },
-    "isPrivateFile": false,
-    "customCoordinates": null,
-    "url": "https://ik.imagekit.io/your_imagekit_id/images/products/file1.jpg",
-    "thumbnail": "https://ik.imagekit.io/your_imagekit_id/tr:n-media_library_thumbnail/images/products/file1.jpg",
-    "fileType": "image",
-    "mime": "image/jpeg",
-    "width": 100,
-    "height": 100,
-    "size": 100,
-    "hasAlpha": false,
-    "customMetadata": {
-        "brand": "Nike",
-        "color": "red"
-    },
-    "createdAt": "2019-08-24T06:14:41.313Z",
-    "updatedAt": "2019-08-24T06:14:41.313Z"
-}
 ```
 
 ### 3. Get File Version Details
 
 This API can get you all the details and attributes for the provided version of the file.`versionID` can be found in the following APIs as `id` within the `versionInfo` parameter:
 - [Server-side File Upload API](#server-side-file-upload).
-- [List & Search File API](#1-list--search-files)
+- [List & Search File API](#1-list-and-search-files)
 - [Get File Details API](#2-get-file-details)
+
+Refer to the [Get File Version Details API](https://docs.imagekit.io/api-reference/media-api/get-file-version-details) for a better understanding of the **Request & Response Structure**.
 
 #### Example
 ```php
 $getFileVersionDetails = $imageKit->getFileVersionDetails('file_id','version_id');
-```
-#### Response
-```json
-{
-    "fileId": "598821f949c0a938d57563bd",
-    "type": "file",
-    "name": "file1.jpg",
-    "filePath": "/images/products/file1.jpg",
-    "tags": ["t-shirt", "round-neck", "sale2019"],
-    "AITags": [
-        {
-            "name": "Shirt",
-            "confidence": 90.12,
-            "source": "google-auto-tagging"
-        },
-        /* ... more googleVision tags ... */
-    ],
-    "versionInfo": {
-            "id": "598821f949c0a938d57563bd",
-            "name": "Version 1"
-    },
-    "isPrivateFile": false,
-    "customCoordinates": null,
-    "url": "https://ik.imagekit.io/your_imagekit_id/images/products/file1.jpg",
-    "thumbnail": "https://ik.imagekit.io/your_imagekit_id/tr:n-media_library_thumbnail/images/products/file1.jpg",
-    "fileType": "image",
-    "mime": "image/jpeg",
-    "width": 100,
-    "height": 100,
-    "size": 100,
-    "hasAlpha": false,
-    "customMetadata": {
-        "brand": "Nike",
-        "color": "red"
-    },
-    "createdAt": "2019-08-24T06:14:41.313Z",
-    "updatedAt": "2019-08-24T06:14:41.313Z"
-}
 ```
 
 ### 4. Get File Versions
 
 This API can get you all the versions of the file.
 
+Refer to the [Get File Versions API](https://docs.imagekit.io/api-reference/media-api/get-file-versions) for a better understanding of the **Request & Response Structure**.
+
 #### Example
 ```php
 $getFileVersions = $imageKit->getFileVersions('file_id');
 ```
-#### Response
-```json
-[
-    {
-        "fileId": "598821f949c0a938d57563bd",
-        "type": "file-version",
-        "name": "file1.jpg",
-        "filePath": "/images/products/file1.jpg",
-        "tags": ["t-shirt", "round-neck", "sale2019"],
-        "AITags": [
-            {
-                "name": "Shirt",
-                "confidence": 90.12,
-                "source": "google-auto-tagging"
-            },
-            /* ... more googleVision tags ... */
-        ],
-        "versionInfo": {
-                "id": "697821f849c0a938d57563ce",
-                "name": "Version 2"
-        },
-        "isPrivateFile": false,
-        "customCoordinates": null,
-        "url": "https://ik.imagekit.io/your_imagekit_id/images/products/file1.jpg?ik-obj-version=bREnN9Z5VQQ5OOZCSvaXcO9SW.su4QLu",
-        "thumbnail": "https://ik.imagekit.io/your_imagekit_id/tr:n-media_library_thumbnail/images/products/file1.jpg?ik-obj-version=bREnN9Z5VQQ5OOZCSvaXcO9SW.su4QLu",
-        "fileType": "image",
-        "mime": "image/jpeg",
-        "width": 100,
-        "height": 100,
-        "size": 100,
-        "hasAlpha": false,
-        "customMetadata": {
-            "brand": "Nike",
-            "color": "red"
-        },
-        "createdAt": "2019-08-24T06:14:41.313Z",
-        "updatedAt": "2019-09-24T06:14:41.313Z"
-    },
-    ...more items
-]
-```
 
 ### 5. Update File Details
 
-Update file details such as tags, customCoordinates attributes, remove existing AITags and apply [extensions](https://docs.imagekit.io/extensions/overview) using Update File Details API. This operation can only be performed on the current version of the file.
+Update file details such as tags, customCoordinates attributes, remove existing AITags, and apply [extensions](https://docs.imagekit.io/extensions/overview) using Update File Details API. This operation can only be performed on the current version of the file.
+
+Refer to the [Update File Details API](https://docs.imagekit.io/api-reference/media-api/update-file-details) for better understanding about the **Request & Response Structure**.
 
 #### Example
 ```php
@@ -866,46 +706,12 @@ $updateFileDetails = $imageKit->updateFileDetails(
     $updateData
 );
 ```
-#### Response
-```json
-// This example response is after extensions are applied in the update API.
-{
-    "fileId" : "598821f949c0a938d57563bd",
-    "type": "file",
-    "name": "file1.jpg",
-    "filePath": "/images/products/file1.jpg",
-    "tags": ["t-shirt","round-neck","sale2019"],
-    "AITags": [],
-    "versionInfo": {
-            "id": "598821f949c0a938d57563bd",
-            "name": "Version 1"
-    },
-    "isPrivateFile" : false,
-    "customCoordinates" : null,
-    "url": "https://ik.imagekit.io/your_imagekit_id/images/products/file1.jpg",
-    "thumbnail": "https://ik.imagekit.io/your_imagekit_id/tr:n-media_library_thumbnail/images/products/file1.jpg",
-    "fileType": "image",
-    "mime": "image/jpeg",
-    "width": 100,
-    "height": 100,
-    "size": 100,
-    "hasAlpha": false,
-    "customMetadata": {
-        "brand": "Nike",
-        "color": "red"
-    },
-    "extensionStatus": {
-        "remove-bg": "pending",
-        "google-auto-tagging": "success"
-    },
-    "createdAt": "2019-08-24T06:14:41.313Z",
-    "updatedAt": "2019-08-24T06:14:41.313Z"
-}
-```
 
 ### 6. Add Tags (Bulk) API
 
 Add tags to multiple files in a single request. The method accepts an array of `fileIds` of the files and an array of `tags` that have to be added to those files.
+
+Refer to the [Add Tags (Bulk) API](https://docs.imagekit.io/api-reference/media-api/add-tags-bulk) for a better understanding of the **Request & Response Structure**.
 
 #### Example
 ```php
@@ -914,19 +720,12 @@ $tags = ['image_tag_1', 'image_tag_2'];
 
 $bulkAddTags = $imageKit->bulkAddTags($fileIds, $tags);
 ```
-#### Response
-```json
-{
-    "successfullyUpdatedFileIds": [
-        "5e21880d5efe355febd4bccd",
-        "5e1c13c1c55ec3437c451403"
-    ]
-}
-```
 
 ### 7. Remove Tags (Bulk) API
 
 Remove tags from multiple files in a single request. The method accepts an array of `fileIds` of the files and an array of `tags` that have to be removed from those files.
+
+Refer to the [Remove Tags (Bulk) API](https://docs.imagekit.io/api-reference/media-api/remove-tags-bulk) for a better understanding of the **Request & Response Structure**.
 
 #### Example
 ```php
@@ -935,35 +734,19 @@ $tags = ['image_tag_1', 'image_tag_2'];
 
 $bulkRemoveTags = $imageKit->bulkRemoveTags($fileIds, $tags);
 ```
-#### Response
-```json
-{
-    "successfullyUpdatedFileIds": [
-        "5e21880d5efe355febd4bccd",
-        "5e1c13c1c55ec3437c451403"
-    ]
-}
-```
 
 ### 8. Remove AI Tags (Bulk) API
 
 Remove AI tags from multiple files in a single request. The method accepts an array of `fileIds` of the files and an array of `AITags` that have to be removed from those files.
+
+Refer to the [Remove AI Tags (Bulk) API](https://docs.imagekit.io/api-reference/media-api/remove-aitags-bulk) for a better understanding of the **Request & Response Structure**.
 
 #### Example
 ```php
 $fileIds = ['file_id1','file_id2'];
 $AITags = ['image_AITag_1', 'image_AITag_2'];
 
-$bulkRemoveTags = $imageKit->bulkRemoveAITags($fileIds, $AITags);
-```
-#### Response
-```json
-{
-    "successfullyUpdatedFileIds": [
-        "5e21880d5efe355febd4bccd",
-        "5e1c13c1c55ec3437c451403"
-    ]
-}
+$bulkRemoveTags = $imageKit->bulkRemoveTags($fileIds, $AITags);
 ```
 
 ### 9. Delete File API
@@ -972,7 +755,9 @@ You can programmatically delete uploaded files in the media library using delete
 
 > If a file or specific transformation has been requested in the past, then the response is cached. Deleting a file does not purge the cache. You can purge the cache using [Purge Cache API](#21-purge-cache-api).
 
-#### Example
+Refer to the [Delete File API](https://docs.imagekit.io/api-reference/media-api/delete-file) for better understanding about the **Request & Response Structure**.
+
+#### Basic Usage
 ```php
 $fileId = 'file_id';
 $deleteFile = $imageKit->deleteFile($fileId);
@@ -980,35 +765,31 @@ $deleteFile = $imageKit->deleteFile($fileId);
 
 ### 10. Delete File Version API
 
-You can programmatically delete uploaded file version in the media library using delete file version API.
+You can programmatically delete the uploaded file version in the media library using the delete file version API.
 
 > You can delete only the non-current version of a file.
+
+Refer to the [Delete File Version API](https://docs.imagekit.io/api-reference/media-api/delete-file-version) for a better understanding of the **Request & Response Structure**.
 
 #### Example
 ```php
 $fileId = 'file_id';
 $versionId = 'version_id';
-$deleteFile = $imageKit->deleteFileVersion($fileId, $versionId);
+$deleteFileVersion = $imageKit->deleteFileVersion($fileId, $versionId);
 ```
 
 ### 11. Delete Files (Bulk) API
 
 Deletes multiple files and their versions from the media library.
 
+Refer to the [Delete Files (Bulk) API](https://docs.imagekit.io/api-reference/media-api/delete-files-bulk) for a better understanding of the **Request & Response Structure**.
+
 #### Example
 ```php
 $fileIds = ["5e1c13d0c55ec3437c451406", ...];
-$deleteFiles = $imageKit->bulkDeleteFiles($fileIds);
+$deleteFiles = $imageKit->bulkFileDeleteByIds($fileIds);
 ```
-#### Response
-```json
-{
-    "successfullyDeletedFileIds": [
-        "5e1c13d0c55ec3437c451406",
-        ...
-    ]
-}
-```
+
 
 ### 12. Copy File API
 
@@ -1016,7 +797,9 @@ This will copy a file from one folder to another.
 
 >  If any file at the destination has the same name as the source file, then the source file and its versions (if `includeVersions` is set to true) will be appended to the destination file version history.
 
-#### Example
+Refer to the [Copy File API](https://docs.imagekit.io/api-reference/media-api/copy-file) for a better understanding of the **Request & Response Structure**.
+
+#### Basic Usage
 ```php
 $sourceFilePath = '/sample-folder1/sample-file.jpg';
 $destinationPath = '/sample-folder2/';
@@ -1035,6 +818,8 @@ This will move a file and all its versions from one folder to another.
 
 >  If any file at the destination has the same name as the source file, then the source file and its versions will be appended to the destination file.
 
+Refer to the [Move File API](https://docs.imagekit.io/api-reference/media-api/move-file) for a better understanding of the **Request & Response Structure**.
+
 #### Example
 ```php
 $sourceFilePath = '/sample-file.jpg';
@@ -1047,9 +832,12 @@ $moveFile = $imageKit->move([
 ```
 
 ### 14. Rename File API
+
 You can programmatically rename an already existing file in the media library using Rename File API. This operation would rename all file versions of the file.
 
 >  The old URLs will stop working. The file/file version URLs cached on CDN will continue to work unless a purge is requested.
+
+Refer to the [Rename File API](https://docs.imagekit.io/api-reference/media-api/rename-file) for a better understanding of the **Request & Response Structure**.
 
 #### Example
 ```php
@@ -1066,20 +854,17 @@ When `purgeCache` is set to `true`, response will return `purgeRequestId`. This 
 ```php
 $filePath = '/sample-folder/sample-file.jpg';
 $newFileName = 'sample-file2.jpg';
-$renameFile = $imageKit->renameFile([
+$renameFile = $imageKit->rename([
     'filePath' => $filePath,
     'newFileName' => $newFileName,
 ],true);
 ```
-#### Response
-```json
-{
-    "purgeRequestId": "598821f949c0a938d57563bd"
-}
-```
 
 ### 15. Restore File Version API
-This will restore the provided file version to a different version of the file. The new restored version of the file will be returned in response.
+
+This will restore the provided file version to a different version of the file. The newly restored version of the file will be returned in the response.
+
+Refer to the [Restore File Version API](https://docs.imagekit.io/api-reference/media-api/restore-file-version) for a better understanding of the **Request & Response Structure**.
 
 #### Example
 ```php
@@ -1090,48 +875,12 @@ $restoreFileVersion = $imageKit->restoreFileVersion([
     'versionId' => $versionId,
 ]);
 ```
-#### Response
-```json
-{
-    "fileId": "598821f949c0a938d57563bd",
-    "type": "file",
-    "name": "file1.jpg",
-    "filePath": "/images/products/file1.jpg",
-    "tags": ["t-shirt", "round-neck", "sale2019"],
-    "AITags": [
-        {
-            "name": "Shirt",
-            "confidence": 90.12,
-            "source": "google-auto-tagging"
-        },
-        /* ... more googleVision tags ... */
-    ],
-    "versionInfo": {
-            "id": "697821f849c0a938d57563ce",
-            "name": "Version 2"
-    },
-    "isPrivateFile": false,
-    "customCoordinates": null,
-    "url": "https://ik.imagekit.io/your_imagekit_id/images/products/file1.jpg",
-    "thumbnail": "https://ik.imagekit.io/your_imagekit_id/tr:n-media_library_thumbnail/images/products/file1.jpg",
-    "fileType": "image",
-    "mime": "image/jpeg",
-    "width": 100,
-    "height": 100,
-    "size": 100,
-    "hasAlpha": false,
-    "customMetadata": {
-        "brand": "Nike",
-        "color": "red"
-    },
-    "createdAt": "2019-08-24T06:14:41.313Z",
-    "updatedAt": "2019-09-24T06:14:41.313Z"
-}
-```
 
 ### 16. Create Folder API
 
 This will create a new folder. You can specify the folder name and location of the parent folder where this new folder should be created.
+
+Refer to the [Create Folder API](https://docs.imagekit.io/api-reference/media-api/create-folder) for a better understanding of the **Request & Response Structure**.
 
 #### Example
 ```php
@@ -1147,6 +896,8 @@ $createFolder = $imageKit->createFolder([
 
 This will delete the specified folder and all nested files, their versions & folders. This action cannot be undone.
 
+Refer to the [Delete Folder API](https://docs.imagekit.io/api-reference/media-api/delete-folder) for a better understanding of the **Request & Response Structure**.
+
 #### Example
 ```php
 $folderPath = '/new-folder';
@@ -1156,6 +907,8 @@ $deleteFolder = $imageKit->deleteFolder($folderPath);
 ### 18. Copy Folder API
 
 This will copy one folder into another.
+
+Refer to the [Copy Folder API](https://docs.imagekit.io/api-reference/media-api/copy-folder) for a better understanding of the **Request & Response Structure**.
 
 #### Example
 ```php
@@ -1168,18 +921,14 @@ $copyFolder = $imageKit->copyFolder([
     'includeVersions' => $includeVersions
 ]);
 ```
-#### Response
-```json
-{
-    "jobId": "598821f949c0a938d57563bd"
-}
-```
 
 ### 19. Move Folder API
 
 This will move one folder into another. The selected folder, its nested folders, files, and their versions are moved in this operation.
 
 > If any file at the destination has the same name as the source file, then the source file and its versions will be appended to the destination file version history.
+
+Refer to the [Move Folder API](https://docs.imagekit.io/api-reference/media-api/move-folder) for a better understanding of the **Request & Response Structure**.
 
 #### Example
 ```php
@@ -1190,254 +939,80 @@ $moveFolder = $imageKit->moveFolder([
     'destinationPath' => $destinationPath
 ]);
 ```
-#### Response
-```json
-{
-    "jobId": "598821f949c0a938d57563bd"
-}
-```
 
 ### 20. Bulk Job Status API
 
 This endpoint allows you to get the status of a bulk operation e.g. [Copy Folder API](#18-copy-folder-api) or [Move Folder API](#19-move-folder-api).
+
+Refer to the [Bulk Job Status API](https://docs.imagekit.io/api-reference/media-api/copy-move-folder-status) for a better understanding of the **Request & Response Structure**.
 
 #### Example
 ```php
 $jobId = 'jobId';
 $bulkJobStatus = $imageKit->getBulkJobStatus($jobId);
 ```
-#### Response
-```json
-{
-    "jobId": "598821f949c0a938d57563bd",
-    "type": "COPY_FOLDER",
-    "status": "Completed" // or "Pending"
-}
-```
 
 ### 21. Purge Cache API
 
 This will purge CDN and ImageKit.io's internal cache. In response `requestId` is returned which can be used to fetch the status of the submitted purge request with [Purge Cache Status API](#22-purge-cache-status-api).
+
+Refer to the [Purge Cache API](https://docs.imagekit.io/api-reference/media-api/purge-cache) for a better understanding of the **Request & Response Structure**.
+
 #### Example
 ```php
 $image_url = 'https://ik.imagekit.io/demo/sample-folder/sample-file.jpg';
 $purgeCache = $imageKit->purgeCache($image_url);
 ```
-#### Response
-```json
-{
-    "requestId" : "598821f949c0a938d57563bd"
-}
-```
+
 You can purge the cache for multiple files. Check [Purge Cache Multiple Files](https://docs.imagekit.io/api-reference/media-api/purge-cache#purge-cache-for-multiple-files).
 
 ### 22. Purge Cache Status API
 
 Get the purge cache request status using the `requestId` returned when a purge cache request gets submitted with [Purge Cache API](#21-purge-cache-api)
 
+Refer to the [Purge Cache Status API](https://docs.imagekit.io/api-reference/media-api/purge-cache-status) for a better understanding of the **Request & Response Structure**.
+
 #### Example
 ```php
 $cacheRequestId = '598821f949c0a938d57563bd';
-$getPurgeCacheStatus = $imageKit->getPurgeCacheStatus($cacheRequestId);
-```
-#### Response
-```json
-{
-    "status" : "Pending" // or "Completed"
-}
+$purgeCacheStatus = $imageKit->purgeCacheStatus($cacheRequestId);
 ```
 
 ### 23. Get File Metadata API (From File ID)
 
-Get the image EXIF, pHash, and other metadata for uploaded files in ImageKit.io media library using this API.
+Get the image EXIF, pHash, and other metadata for uploaded files in the ImageKit.io media library using this API.
+
+Refer to the [Get image metadata for uploaded media files API](https://docs.imagekit.io/api-reference/metadata-api/get-image-metadata-for-uploaded-media-files) for a better understanding of the **Request & Response Structure**.
 
 #### Example
 ```php
 $fileId = '598821f949c0a938d57563bd';
 $getFileMetadata = $imageKit->getFileMetaData($fileId);
 ```
-#### Response
-```json
-{
-    "height": 68,
-    "width": 100,
-    "size": 7749,
-    "format": "jpg",
-    "hasColorProfile": true,
-    "quality": 0,
-    "density": 72,
-    "hasTransparency": false,
-    "pHash": "f06830ca9f1e3e90",
-    "exif": {
-        "image": {
-            "Make": "Canon",
-            "Model": "Canon EOS 40D",
-            "Orientation": 1,
-            "XResolution": 72,
-            "YResolution": 72,
-            "ResolutionUnit": 2,
-            "Software": "GIMP 2.4.5",
-            "ModifyDate": "2008:07:31 10:38:11",
-            "YCbCrPositioning": 2,
-            "ExifOffset": 214,
-            "GPSInfo": 978
-        },
-        "thumbnail": {
-            "Compression": 6,
-            "XResolution": 72,
-            "YResolution": 72,
-            "ResolutionUnit": 2,
-            "ThumbnailOffset": 1090,
-            "ThumbnailLength": 1378
-        },
-        "exif": {
-            "ExposureTime": 0.00625,
-            "FNumber": 7.1,
-            "ExposureProgram": 1,
-            "ISO": 100,
-            "ExifVersion": "0221",
-            "DateTimeOriginal": "2008:05:30 15:56:01",
-            "CreateDate": "2008:05:30 15:56:01",
-            "ShutterSpeedValue": 7.375,
-            "ApertureValue": 5.625,
-            "ExposureCompensation": 0,
-            "MeteringMode": 5,
-            "Flash": 9,
-            "FocalLength": 135,
-            "SubSecTime": "00",
-            "SubSecTimeOriginal": "00",
-            "SubSecTimeDigitized": "00",
-            "FlashpixVersion": "0100",
-            "ColorSpace": 1,
-            "ExifImageWidth": 100,
-            "ExifImageHeight": 68,
-            "InteropOffset": 948,
-            "FocalPlaneXResolution": 4438.356164383562,
-            "FocalPlaneYResolution": 4445.969125214408,
-            "FocalPlaneResolutionUnit": 2,
-            "CustomRendered": 0,
-            "ExposureMode": 1,
-            "WhiteBalance": 0,
-            "SceneCaptureType": 0
-        },
-        "gps": {
-            "GPSVersionID": [
-                2,
-                2,
-                0,
-                0
-            ]
-        },
-        "interoperability": {
-            "InteropIndex": "R98",
-            "InteropVersion": "0100"
-        },
-        "makernote": {}
-    }
-}
-```
-
 
 ### 24. Get File Metadata API (From Remote URL)
 
 Get image EXIF, pHash, and other metadata from ImageKit.io powered remote URL using this API.
+
+Refer to the [Get image metadata from remote URL API](https://docs.imagekit.io/api-reference/metadata-api/get-image-metadata-from-remote-url) for a better understanding of the **Request & Response Structure**.
 
 #### Example
 ```php
 $image_url = 'https://ik.imagekit.io/demo/sample-folder/sample-file.jpg';
 $getFileMetadataFromRemoteURL = $imageKit->getFileMetadataFromRemoteURL($image_url);
 ```
-#### Response
-```json
-{
-    "height": 68,
-    "width": 100,
-    "size": 7749,
-    "format": "jpg",
-    "hasColorProfile": true,
-    "quality": 0,
-    "density": 72,
-    "hasTransparency": false,
-    "pHash": "f06830ca9f1e3e90",
-    "exif": {
-        "image": {
-            "Make": "Canon",
-            "Model": "Canon EOS 40D",
-            "Orientation": 1,
-            "XResolution": 72,
-            "YResolution": 72,
-            "ResolutionUnit": 2,
-            "Software": "GIMP 2.4.5",
-            "ModifyDate": "2008:07:31 10:38:11",
-            "YCbCrPositioning": 2,
-            "ExifOffset": 214,
-            "GPSInfo": 978
-        },
-        "thumbnail": {
-            "Compression": 6,
-            "XResolution": 72,
-            "YResolution": 72,
-            "ResolutionUnit": 2,
-            "ThumbnailOffset": 1090,
-            "ThumbnailLength": 1378
-        },
-        "exif": {
-            "ExposureTime": 0.00625,
-            "FNumber": 7.1,
-            "ExposureProgram": 1,
-            "ISO": 100,
-            "ExifVersion": "0221",
-            "DateTimeOriginal": "2008:05:30 15:56:01",
-            "CreateDate": "2008:05:30 15:56:01",
-            "ShutterSpeedValue": 7.375,
-            "ApertureValue": 5.625,
-            "ExposureCompensation": 0,
-            "MeteringMode": 5,
-            "Flash": 9,
-            "FocalLength": 135,
-            "SubSecTime": "00",
-            "SubSecTimeOriginal": "00",
-            "SubSecTimeDigitized": "00",
-            "FlashpixVersion": "0100",
-            "ColorSpace": 1,
-            "ExifImageWidth": 100,
-            "ExifImageHeight": 68,
-            "InteropOffset": 948,
-            "FocalPlaneXResolution": 4438.356164383562,
-            "FocalPlaneYResolution": 4445.969125214408,
-            "FocalPlaneResolutionUnit": 2,
-            "CustomRendered": 0,
-            "ExposureMode": 1,
-            "WhiteBalance": 0,
-            "SceneCaptureType": 0
-        },
-        "gps": {
-            "GPSVersionID": [
-                2,
-                2,
-                0,
-                0
-            ]
-        },
-        "interoperability": {
-            "InteropIndex": "R98",
-            "InteropVersion": "0100"
-        },
-        "makernote": {}
-    }
-}
-```
-
-
 ## Custom Metadata Fields API
 
 Imagekit.io allows you to define a `schema` for your metadata keys and the value filled against that key will have to adhere to those rules. You can [Create](#1-create-fields), [Read](#2-get-fields) and [Update](#3-update-fields) custom metadata rules and update your file with custom metadata value in [File update API](#5-update-file-details) or [File Upload API](#server-side-file-upload).
 
-For detailed explanation refer to the [Official Documentaion](https://docs.imagekit.io/api-reference/custom-metadata-fields-api).
+For a detailed explanation refer to the [Custom Metadata Documentaion](https://docs.imagekit.io/api-reference/custom-metadata-fields-api).
+
 
 ### 1. Create Fields
 
 Create a Custom Metadata Field with this API.
+
+Refer to the [Create Custom Metadata Fields API](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/create-custom-metadata-field) for a better understanding of the **Request & Response Structure**.
 
 #### Example
 ```php
@@ -1454,59 +1029,25 @@ $body = [
 $createCustomMetadataField = $imageKit->createCustomMetadataField($body);
 ```
 
-#### Response
-```json
-{
-    "id": "598821f949c0a938d57563dd",
-    "name": "price",
-    "label": "price",
-    "schema": {
-        "type": "Number",
-        "minValue": 1000,
-        "maxValue": 3000
-    }
-}
-```
 Check for the [Allowed Values In The Schema](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/create-custom-metadata-field#allowed-values-in-the-schema-object).
 
 ### 2. Get Fields
 
 Get a list of all the custom metadata fields.
 
+Refer to the [Get Custom Metadata Fields API](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/get-custom-metadata-field) for a better understanding of the **Request & Response Structure**.
+
 #### Example
 ```php
 $includeDeleted = false;
-$getCustomMetadataFields = $imageKit->getCustomMetadataFields($includeDeleted);
+$getCustomMetadataField = $imageKit->getCustomMetadataField($includeDeleted);
 ```
-#### Response
-```json
-[
-    {
-        "id": "598821f949c0a938d57563dd",
-        "name": "brand",
-        "label": "brand",
-        "schema": {
-            "type": "Text",
-            "defaultValue": "Nike"
-        }
-    },
-    {
-        "id": "865421f949c0a835d57563dd"
-        "name": "price",
-        "label": "price",
-        "schema": {
-            "type": "Number",
-            "minValue": 1000,
-            "maxValue": 3000
-        }
-    }
-]
-```
-
 
 ### 3. Update Fields
 
 Update the `label` or `schema` of an existing custom metadata field.
+
+Refer to the [Update Custom Metadata Fields API](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/update-custom-metadata-field) for a better understanding of the **Request & Response Structure**.
 
 #### Example
 ```php
@@ -1521,22 +1062,14 @@ $body = [
 $updateCustomMetadataField = $imageKit->updateCustomMetadataField($customMetadataFieldId, $body);
 ```
 
-#### Response
-```json
-{
-    "id": "598821f949c0a938d57563dd",
-    "name": "price",
-    "label": "Net Price",
-    "schema": {
-        "type": "Number"
-    }
-}
-```
 Check for the [Allowed Values In The Schema](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/create-custom-metadata-field#allowed-values-in-the-schema-object).
+
 
 ### 4. Delete Fields
 
 Delete a custom metadata field.
+
+Refer to the [Delete Custom Metadata Fields API](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/delete-custom-metadata-field) for a better understanding of the **Request & Response Structure**.
 
 #### Example
 ```php
@@ -1544,6 +1077,7 @@ $customMetadataFieldId = '598821f949c0a938d57563dd';
 
 $deleteCustomMetadataField = $imageKit->deleteCustomMetadataField($customMetadataFieldId);
 ```
+
 
 ## Utility functions
 

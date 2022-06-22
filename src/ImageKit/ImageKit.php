@@ -30,7 +30,7 @@ class ImageKit
      *
      * @var string
      */
-    const SDK_VERSION = '2.0.0';
+    const SDK_VERSION = '3.0.0';
 
     /**
      * @var Configuration
@@ -261,6 +261,7 @@ class ImageKit
      * @return Response
      *
      * @deprecated since 2.0.0, use <code>uploadFile</code>; uploadFiles was misleading as it supports only singular
+     * 
      * file upload
      */
     public function uploadFiles($options=null)
@@ -769,7 +770,7 @@ class ImageKit
      * @param $includeVersions
      * @return Response
      * 
-     * @deprecated since 2.0.0, use <code>copy</code>
+     * @deprecated since 3.0.0, use <code>copy</code>
      *
      */
     public function copyFile($sourceFilePath=null, $destinationPath=null, $includeVersions=null)
@@ -791,6 +792,7 @@ class ImageKit
      *
      * @param $parameter['sourceFilePath','destinationPath']
      * @return Response
+     * 
      */
     public function move($parameter=null)
     {
@@ -821,7 +823,7 @@ class ImageKit
      * @param $includeVersions
      * @return Response
      * 
-     * @deprecated since 2.0.0, use <code>move</code>
+     * @deprecated since 3.0.0, use <code>move</code>
      */
     public function moveFile($sourceFilePath=null, $destinationPath=null)
     {
@@ -874,7 +876,7 @@ class ImageKit
      * @param $purgeCache
      * @return Response
      * 
-     * @deprecated since 2.0.0, use <code>rename</code>
+     * @deprecated since 3.0.0, use <code>rename</code>
      */
     public function renameFile($filePath, $newFileName, $purgeCache = false)
     {

@@ -5,7 +5,7 @@
 
 PHP SDK for [ImageKit](https://imagekit.io/) implements the new APIs and interface for different file operations.
 
-ImageKit is a complete media optimization and transformation solution that comes with an [image and video CDN](https://imagekit.io/features/imagekit-infrastructure) and media storage. It can be integrated with your existing infrastructure - storage like AWS S3, web servers, your CDN, and custom domain names, allowing you to deliver optimized images in minutes with minimal code changes.
+ImageKit is a complete media storage, optimization and transformation solution that comes with an [image and video CDN](https://imagekit.io/features/imagekit-infrastructure). It can be integrated with your existing infrastructure - storage like AWS S3, web servers, your CDN, and custom domain names, allowing you to deliver optimized images in minutes with minimal code changes.
 
 
 - [Key Features](#key-features)
@@ -28,7 +28,6 @@ ImageKit is a complete media optimization and transformation solution that comes
 - [Opening Issues](#opening-issues)
 - [Support](#support)
 - [Resources](#resources)
-- [Related Projects](#related-imagekit-projects)
 - [License](#license)
 
 ## Key Features
@@ -72,15 +71,14 @@ You can use this PHP SDK for three different methods - URL generation, file uplo
 
 ## Getting Started
 1. **Sign up for ImageKit** – Before you begin, you need to sign up for an [ImageKit account](https://imagekit.io/registration/)
-1. Create your API Keys from [Developer Options](https://imagekit.io/dashboard/developer)
-1. We will be using the newly created API Keys and URL-endpoint (from [Developer Options](https://imagekit.io/dashboard/developer)) to initialize the ImageKit instance.
-1. **Minimum requirements** – To use PHP SDK, your system must meet the minimum requirements, including having **PHP >= 5.6**. We highly recommend having it compiled with the cURL extension and cURL 7.16.2+ compiled with a TLS backend (e.g., NSS or OpenSSL).
-1. **Install the SDK** – Using [Composer] is the recommended way to install the ImageKit SDK for PHP. The SDK is available via [Packagist](http://packagist.org/) under the [`imagekit/imagekit`](https://packagist.org/packages/imagekit/imagekit) package. If Composer is installed globally on your system, you can run the following in the base directory of your project to add the SDK as a dependency:
+2. Get your [API Keys](https://docs.imagekit.io/api-reference/api-introduction/api-keys) from [developer options](https://imagekit.io/dashboard/developer) inside the dashboard.
+3. **Minimum requirements** – To use PHP SDK, your system must meet the minimum requirements, including having **PHP >= 5.6**. We highly recommend having it compiled with the cURL extension and cURL 7.16.2+ compiled with a TLS backend (e.g., NSS or OpenSSL).
+4. **Install the SDK** – Using Composer is the recommended way to install the ImageKit SDK for PHP. The SDK is available via [Packagist](http://packagist.org/) under the [`imagekit/imagekit`](https://packagist.org/packages/imagekit/imagekit) package. If Composer is installed globally on your system, you can run the following in the base directory of your project to add the SDK as a dependency:
    ```
    composer require imagekit/imagekit
    ```
    Please see the [Installation](#installation) section for more detailed information about installing.
-1. **Using the SDK** – The best way to become familiar with how to use the SDK is to follow the Examples provided in the [Official Documentaion](https://docs.imagekit.io/getting-started/quickstart-guides/php).
+5. **Using the SDK** – The best way to become familiar with how to use the SDK is to follow the examples provided in the [quick start guide](https://docs.imagekit.io/getting-started/quickstart-guides/php).
 
 ## Quick Examples
 #### Create an ImageKit Instance
@@ -117,7 +115,7 @@ $uploadFile = $imageKit->upload([
 ```  
 
 #### Response Structure
-Following is the response for [Server Side File Upload API](https://docs.imagekit.io/api-reference/upload-file-api/server-side-file-upload#response-code-and-structure-json)
+Following is the response for [server-side file upload API](https://docs.imagekit.io/api-reference/upload-file-api/server-side-file-upload#response-code-and-structure-json)
 ```json
 {
     "error": null,
@@ -146,7 +144,7 @@ Following is the response for [Server Side File Upload API](https://docs.imageki
             "x-ik-requestid": "e98f2464-2a86-4934-a5ab-9a226df012c9",
             "content-type": "application/json; charset=utf-8",
             "content-length": "434",
-            "etag": "W/"1b2-reNzjRCFNt45rEyD7yFY/dk+Ghg"",
+            "etag": 'W/"1b2-reNzjRCFNt45rEyD7yFY/dk+Ghg"',
             "date": "Thu, 16 Jun 2022 14:22:01 GMT",
             "x-request-id": "e98f2464-2a86-4934-a5ab-9a226df012c9"
         },
@@ -176,19 +174,18 @@ Following is the response for [Server Side File Upload API](https://docs.imageki
 
 ## Demo application
 
-* The official step-by-step PHP quick start guide - https://docs.imagekit.io/getting-started/quickstart-guides/php
+* Step-by-step PHP quick start guide - https://docs.imagekit.io/getting-started/quickstart-guides/php
 * You can also run the demo application in this repository's [sample](/sample) folder.
-
-```sh  
-cd sample
-php sample.php
-```  
+  ```sh  
+  cd sample
+  php sample.php
+  ```  
   
 ## URL generation 
 
 ### Using relative file path and URL endpoint
   
-This method allows you to create an URL to access a file using the relative file path and the ImageKit URL endpoint (`urlEndpoint`). The file can be images, video or any other static file supported by ImageKit.
+This method allows you to create an URL to access a file using the relative file path and the ImageKit URL endpoint (`urlEndpoint`). The file can be an image, video or any other static file supported by ImageKit.
   
 #### Example
 ```php  
@@ -245,20 +242,20 @@ The `$imageKit->url()` method accepts the following parameters.
 | signed                | Optional. Boolean. The default value is `false`. If set to `true`, the SDK generates a signed image URL adding the image signature to the image URL.                                                                                                                                                                                                                                                                                                              |  
 | expireSeconds         | Optional. Integer. It is used along with the `signed` parameter. It specifies the time in seconds from now when the signed URL will expire. If specified, the URL contains the expiry timestamp in the URL, and the image signature is modified accordingly.                                                                                                                                                
 
-### Applying Chained Transformations, Common Image Manipulations & Signed URL
+### Applying chained transformations, common image manipulations & signed URL
 
 This section covers the basics:
 
 * [Chained Transformations as a query parameter](#1-chained-transformations-as-a-query-parameter)
-* [Image Enhancement & Color Manipulation](#2-image-enhancement-and-color-manipulation)
-* [Resizing images](#3-resizing-images)
+* [Image enhancement & color manipulation](#2-image-enhancement-and-color-manipulation)
+* [Resizing images and videos](#3-resizing-images-and-videos)
 * [Quality manipulation](#4-quality-manipulation)
 * [Adding overlays to images](#5-adding-overlays-to-images)
 * [Signed URL](#6-signed-url)
 
 The PHP SDK gives a name to each transformation parameter e.g. `height` for `h` and `width` for `w` parameter. It makes your code more readable. See the [Full list of supported transformations](#list-of-supported-transformations).
 
-👉 If the property does not match any of the available options, it is added as it is.\ e.g
+👉 If the property does not match any of the available options, it is added as it is. For example:
 ```php
 [
     'effectGray' => 'e-grayscale'
@@ -274,7 +271,7 @@ The PHP SDK gives a name to each transformation parameter e.g. `height` for `h` 
 For more examples, check the [Demo Application](https://github.com/imagekit-developer/imagekit-php/tree/master/sample).
 
 
-### 1. Chained Transformations as a query parameter
+### 1. Chained transformations as a query parameter
 
 #### Example
 ```php  
@@ -300,7 +297,7 @@ https://ik.imagekit.io/your_imagekit_id/endpoint/default-image.jpg?tr=h-300,w-40
 
 ### 2. Image enhancement and color manipulation
 
-Some transformations like [Contrast stretch](https://docs.imagekit.io/features/image-transformations/image-enhancement-and-color-manipulation#contrast-stretch-e-contrast) , [Sharpen](https://docs.imagekit.io/features/image-transformations/image-enhancement-and-color-manipulation#sharpen-e-sharpen) and [Unsharp mask](https://docs.imagekit.io/features/image-transformations/image-enhancement-and-color-manipulation#unsharp-mask-e-usm) can be added to the URL with or without any other value. To use such transforms without specifying a value, specify the value as "-" in the transformation object. Otherwise, specify the value that you want to be added to this transformation.
+Some transformations like [contrast stretch](https://docs.imagekit.io/features/image-transformations/image-enhancement-and-color-manipulation#contrast-stretch-e-contrast) , [sharpen](https://docs.imagekit.io/features/image-transformations/image-enhancement-and-color-manipulation#sharpen-e-sharpen) and [unsharp mask](https://docs.imagekit.io/features/image-transformations/image-enhancement-and-color-manipulation#unsharp-mask-e-usm) can be added to the URL with or without any other value. To use such transforms without specifying a value, specify the value as "-" in the transformation object. Otherwise, specify the value that you want to be added to this transformation.
 
 #### Example
 ```php  
@@ -322,9 +319,9 @@ $imageURL = $imageKit->url([
 https://ik.imagekit.io/your_imagekit_id/endpoint/tr:f-jpg,pr-true,e-sharpen,e-contrast-1/default-image.jpg 
 ```  
 
-### 3. Resizing images
+### 3. Resizing images and videos
 Let's resize the image to `width` 400 and `height` 300.
-Check detailed instructions on [Resize, Crop and Other Common Transformations](https://docs.imagekit.io/features/image-transformations/resize-crop-and-other-transformations)
+Check detailed instructions on [resize, crop and other Common transformations](https://docs.imagekit.io/features/image-transformations/resize-crop-and-other-transformations)
 
 #### Example
 ```php
@@ -344,7 +341,7 @@ https://ik.imagekit.io/your_imagekit_id/tr:w-400,h-300/default-image.jpg
 ```
 
 ### 4. Quality manipulation
-You can use the [Quality Parameter](https://docs.imagekit.io/features/image-transformations/resize-crop-and-other-transformations#quality-q) to change quality like this.
+You can use the [quality parameter](https://docs.imagekit.io/features/image-transformations/resize-crop-and-other-transformations#quality-q) to change quality like this.
 
 #### Example
 ```php
@@ -418,7 +415,7 @@ $imageURL = $imageKit->url([
 https://ik.imagekit.io/your_imagekit_id/tr:h-300,w-400/default-image.jpg?v=123&ik-t=1654183277&ik-s=f98618f264a9ccb3c017e7b7441e86d1bc9a7ebb
 ```  
 
-You can manage [Security Settings](https://docs.imagekit.io/features/security#restricting-unsigned-urls) from the dashboard to prevent unsigned URLs usage. In that case, if the URL doesn't have a signature `ik-s` parameter or the signature is invalid, ImageKit will return a forbidden error instead of an actual image.
+You can manage [security settings](https://docs.imagekit.io/features/security#restricting-unsigned-urls) from the dashboard to prevent unsigned URLs usage. In that case, if the URL doesn't have a signature `ik-s` parameter or the signature is invalid, ImageKit will return a forbidden error instead of an actual image.
 
 ### List of supported transformations
 
@@ -494,9 +491,8 @@ If you want to generate transformations in your application and add them to the 
 
 The SDK provides a simple interface using the `$imageKit->upload()` method to upload files to the [ImageKit Media Library](https://imagekit.io/dashboard/media-library). 
 
-- [See full documentation](https://cloudinary.com/documentation/php_image_and_video_upload).
-- [Check all the supported file types and extensions](https://docs.imagekit.io/api-reference/upload-file-api#allowed-file-types-for-uploading).
-- [Check all the supported parameters and details](https://docs.imagekit.io/api-reference/upload-file-api/server-side-file-upload).
+- [Server-side file upload API](https://docs.imagekit.io/api-reference/upload-file-api/server-side-file-upload).
+- [Supported file types and extensions](https://docs.imagekit.io/api-reference/upload-file-api#allowed-file-types-for-uploading).
 
 #### Basic Usage
 ```php
@@ -534,7 +530,7 @@ $uploadFile = $imageKit->upload([
             "x-ik-requestid": "e98f2464-2a86-4934-a5ab-9a226df012c9",
             "content-type": "application/json; charset=utf-8",
             "content-length": "434",
-            "etag": "W/"1b2-reNzjRCFNt45rEyD7yFY/dk+Ghg"",
+            "etag": 'W/"1b2-reNzjRCFNt45rEyD7yFY/dk+Ghg"',
             "date": "Thu, 16 Jun 2022 14:22:01 GMT",
             "x-request-id": "e98f2464-2a86-4934-a5ab-9a226df012c9"
         },
@@ -562,7 +558,7 @@ $uploadFile = $imageKit->upload([
 }
 ```
 #### Optional Parameters
-Please refer to [Server Side File Upload - Request Structure](https://docs.imagekit.io/api-reference/upload-file-api/server-side-file-upload#request-structure-multipart-form-data) for detailed explanation about mandatory and optional parameters.
+Please refer to [server-side file upload API request structure](https://docs.imagekit.io/api-reference/upload-file-api/server-side-file-upload#request-structure-multipart-form-data) for detailed explanation about mandatory and optional parameters.
 ```php
 // Set of optional parameters
 $uploadOptions = [
@@ -607,7 +603,7 @@ The SDK provides a simple interface for all the following [Media APIs](https://d
 
 This API can list all the uploaded files and folders in your [ImageKit.io](https://docs.imagekit.io/api-reference/media-api) media library. 
 
-Refer to the [list and search file API](https://docs.imagekit.io/api-reference/media-api/list-and-search-files) for a better understanding of the **Request & Response Structure**.
+Refer to the [list and search file API](https://docs.imagekit.io/api-reference/media-api/list-and-search-files) for a better understanding of the **request & response structure**.
 
 #### Example
 ```php
@@ -640,7 +636,7 @@ Detailed documentation can be found here for [advance search queries](https://do
 
 This API will get all the details and attributes of the current version of the asset.
 
-Refer to the [get file details API](https://docs.imagekit.io/api-reference/media-api/get-file-details) for a better understanding of the **Request & Response Structure**.
+Refer to the [get file details API](https://docs.imagekit.io/api-reference/media-api/get-file-details) for a better understanding of the **request & response structure**.
 
 #### Example
 ```php
@@ -649,13 +645,9 @@ $getFileDetails = $imageKit->getFileDetails('file_id');
 
 ### 3. Get File Version Details
 
-This API can get you all the details and attributes for the provided version of the file.`versionID` can be found in the following APIs as `id` within the `versionInfo` parameter:
+This API can get you all the details and attributes for the provided version of the file.`versionID` is returned in list file API response.
 
-- [Server-side File Upload API](#server-side-file-upload).
-- [List & Search File API](#1-list-and-search-files)
-- [Get File Details API](#2-get-file-details)
-
-Refer to the [get file version details API](https://docs.imagekit.io/api-reference/media-api/get-file-version-details) for a better understanding of the **Request & Response Structure**.
+Refer to the [get file version details API](https://docs.imagekit.io/api-reference/media-api/get-file-version-details) for a better understanding of the **request & response structure**.
 
 #### Example
 ```php
@@ -666,7 +658,7 @@ $getFileVersionDetails = $imageKit->getFileVersionDetails('file_id','version_id'
 
 This API will get you all the versions of an asset.
 
-Refer to the [get file versions API](https://docs.imagekit.io/api-reference/media-api/get-file-versions) for a better understanding of the **Request & Response Structure**.
+Refer to the [get file versions API](https://docs.imagekit.io/api-reference/media-api/get-file-versions) for a better understanding of the **request & response structure**.
 
 #### Example
 ```php
@@ -677,7 +669,7 @@ $getFileVersions = $imageKit->getFileVersions('file_id');
 
 Update file details such as `tags`, `customCoordinates` attributes, remove existing `AITags`, and apply [extensions](https://docs.imagekit.io/extensions/overview) using update file details API. This operation can only be performed only on the current version of an asset.
 
-Refer to the [update file details API](https://docs.imagekit.io/api-reference/media-api/update-file-details) for better understanding about the **Request & Response Structure**.
+Refer to the [update file details API](https://docs.imagekit.io/api-reference/media-api/update-file-details) for better understanding about the **request & response structure**.
 
 #### Example
 ```php
@@ -715,7 +707,7 @@ $updateFileDetails = $imageKit->updateFileDetails(
 
 Add tags to multiple files in a single request. The method accepts an array of `fileIds` of the files and an array of `tags` that have to be added to those files.
 
-Refer to the [add tags (Bulk) API](https://docs.imagekit.io/api-reference/media-api/add-tags-bulk) for a better understanding of the **Request & Response Structure**.
+Refer to the [add tags (Bulk) API](https://docs.imagekit.io/api-reference/media-api/add-tags-bulk) for a better understanding of the **request & response structure**.
 
 #### Example
 ```php
@@ -729,7 +721,7 @@ $bulkAddTags = $imageKit->bulkAddTags($fileIds, $tags);
 
 Remove tags from multiple files in a single request. The method accepts an array of `fileIds` of the files and an array of `tags` that have to be removed from those files.
 
-Refer to the [remove tags (Bulk) API](https://docs.imagekit.io/api-reference/media-api/remove-tags-bulk) for a better understanding of the **Request & Response Structure**.
+Refer to the [remove tags (Bulk) API](https://docs.imagekit.io/api-reference/media-api/remove-tags-bulk) for a better understanding of the **request & response structure**.
 
 #### Example
 ```php
@@ -743,7 +735,7 @@ $bulkRemoveTags = $imageKit->bulkRemoveTags($fileIds, $tags);
 
 Remove AI tags from multiple files in a single request. The method accepts an array of `fileIds` of the files and an array of `AITags` that have to be removed from those files.
 
-Refer to the [remove AI Tags (Bulk) API](https://docs.imagekit.io/api-reference/media-api/remove-aitags-bulk) for a better understanding of the **Request & Response Structure**.
+Refer to the [remove AI Tags (Bulk) API](https://docs.imagekit.io/api-reference/media-api/remove-aitags-bulk) for a better understanding of the **request & response structure**.
 
 #### Example
 ```php
@@ -759,7 +751,7 @@ You can programmatically delete uploaded files in the media library using delete
 
 > If a file or specific transformation has been requested in the past, then the response is cached. Deleting a file does not purge the cache. You can purge the cache using [Purge Cache API](#21-purge-cache-api).
 
-Refer to the [delete file API](https://docs.imagekit.io/api-reference/media-api/delete-file) for better understanding about the **Request & Response Structure**.
+Refer to the [delete file API](https://docs.imagekit.io/api-reference/media-api/delete-file) for better understanding about the **request & response structure**.
 
 #### Basic Usage
 ```php
@@ -773,7 +765,7 @@ Using the delete file version API, you can programmatically delete the uploaded 
 
 > You can delete only the non-current version of a file.
 
-Refer to the [delete file version API](https://docs.imagekit.io/api-reference/media-api/delete-file-version) for a better understanding of the **Request & Response Structure**.
+Refer to the [delete file version API](https://docs.imagekit.io/api-reference/media-api/delete-file-version) for a better understanding of the **request & response structure**.
 
 #### Example
 ```php
@@ -786,7 +778,7 @@ $deleteFileVersion = $imageKit->deleteFileVersion($fileId, $versionId);
 
 Deletes multiple files and their versions from the media library.
 
-Refer to the [delete files (Bulk) API](https://docs.imagekit.io/api-reference/media-api/delete-files-bulk) for a better understanding of the **Request & Response Structure**.
+Refer to the [delete files (Bulk) API](https://docs.imagekit.io/api-reference/media-api/delete-files-bulk) for a better understanding of the **request & response structure**.
 
 #### Example
 ```php
@@ -801,7 +793,7 @@ This will copy a file from one folder to another.
 
 >  If any file at the destination has the same name as the source file, then the source file and its versions (if `includeVersions` is set to true) will be appended to the destination file version history.
 
-Refer to the [copy file API](https://docs.imagekit.io/api-reference/media-api/copy-file) for a better understanding of the **Request & Response Structure**.
+Refer to the [copy file API](https://docs.imagekit.io/api-reference/media-api/copy-file) for a better understanding of the **request & response structure**.
 
 #### Basic Usage
 ```php
@@ -822,7 +814,7 @@ This will move a file and all its versions from one folder to another.
 
 >  If any file at the destination has the same name as the source file, then the source file and its versions will be appended to the destination file.
 
-Refer to the [move file API](https://docs.imagekit.io/api-reference/media-api/move-file) for a better understanding of the **Request & Response Structure**.
+Refer to the [move file API](https://docs.imagekit.io/api-reference/media-api/move-file) for a better understanding of the **request & response structure**.
 
 #### Example
 ```php
@@ -841,7 +833,7 @@ Using Rename File API, you can programmatically rename an already existing file 
 
 >  The old URLs will stop working. However, the file/file version URLs cached on CDN will continue to work unless a purge is requested.
 
-Refer to the [rename file API](https://docs.imagekit.io/api-reference/media-api/rename-file) for a better understanding of the **Request & Response Structure**.
+Refer to the [rename file API](https://docs.imagekit.io/api-reference/media-api/rename-file) for a better understanding of the **request & response structure**.
 
 #### Example
 ```php
@@ -868,7 +860,7 @@ $renameFile = $imageKit->rename([
 
 This will restore the provided file version to a different version of the file. The newly restored version of the file will be returned in the response.
 
-Refer to the [restore file version API](https://docs.imagekit.io/api-reference/media-api/restore-file-version) for a better understanding of the **Request & Response Structure**.
+Refer to the [restore file version API](https://docs.imagekit.io/api-reference/media-api/restore-file-version) for a better understanding of the **request & response structure**.
 
 #### Example
 ```php
@@ -884,7 +876,7 @@ $restoreFileVersion = $imageKit->restoreFileVersion([
 
 This will create a new folder. You can specify the folder name and location of the parent folder where this new folder should be created.
 
-Refer to the [create folder API](https://docs.imagekit.io/api-reference/media-api/create-folder) for a better understanding of the **Request & Response Structure**.
+Refer to the [create folder API](https://docs.imagekit.io/api-reference/media-api/create-folder) for a better understanding of the **request & response structure**.
 
 #### Example
 ```php
@@ -900,7 +892,7 @@ $createFolder = $imageKit->createFolder([
 
 This will delete the specified folder and all nested files, their versions & folders. This action cannot be undone.
 
-Refer to the [delete folder API](https://docs.imagekit.io/api-reference/media-api/delete-folder) for a better understanding of the **Request & Response Structure**.
+Refer to the [delete folder API](https://docs.imagekit.io/api-reference/media-api/delete-folder) for a better understanding of the **request & response structure**.
 
 #### Example
 ```php
@@ -912,7 +904,7 @@ $deleteFolder = $imageKit->deleteFolder($folderPath);
 
 This will copy one folder into another.
 
-Refer to the [copy folder API](https://docs.imagekit.io/api-reference/media-api/copy-folder) for a better understanding of the **Request & Response Structure**.
+Refer to the [copy folder API](https://docs.imagekit.io/api-reference/media-api/copy-folder) for a better understanding of the **request & response structure**.
 
 #### Example
 ```php
@@ -932,7 +924,7 @@ This will move one folder into another. The selected folder, its nested folders,
 
 > If any file at the destination has the same name as the source file, then the source file and its versions will be appended to the destination file version history.
 
-Refer to the [move folder API](https://docs.imagekit.io/api-reference/media-api/move-folder) for a better understanding of the **Request & Response Structure**.
+Refer to the [move folder API](https://docs.imagekit.io/api-reference/media-api/move-folder) for a better understanding of the **request & response structure**.
 
 #### Example
 ```php
@@ -948,7 +940,7 @@ $moveFolder = $imageKit->moveFolder([
 
 This endpoint allows you to get the status of a bulk operation e.g. [Copy Folder API](#18-copy-folder-api) or [Move Folder API](#19-move-folder-api).
 
-Refer to the [bulk job status API](https://docs.imagekit.io/api-reference/media-api/copy-move-folder-status) for a better understanding of the **Request & Response Structure**.
+Refer to the [bulk job status API](https://docs.imagekit.io/api-reference/media-api/copy-move-folder-status) for a better understanding of the **request & response structure**.
 
 #### Example
 ```php
@@ -960,7 +952,7 @@ $bulkJobStatus = $imageKit->getBulkJobStatus($jobId);
 
 This will purge CDN and ImageKit.io's internal cache. In response `requestId` is returned which can be used to fetch the status of the submitted purge request with [Purge Cache Status API](#22-purge-cache-status-api).
 
-Refer to the [Purge Cache API](https://docs.imagekit.io/api-reference/media-api/purge-cache) for a better understanding of the **Request & Response Structure**.
+Refer to the [Purge Cache API](https://docs.imagekit.io/api-reference/media-api/purge-cache) for a better understanding of the **request & response structure**.
 
 #### Example
 ```php
@@ -974,7 +966,7 @@ You can purge the cache for multiple files. Check [purge cache multiple files](h
 
 Get the purge cache request status using the `requestId` returned when a purge cache request gets submitted with [Purge Cache API](#21-purge-cache-api)
 
-Refer to the [Purge Cache Status API](https://docs.imagekit.io/api-reference/media-api/purge-cache-status) for a better understanding of the **Request & Response Structure**.
+Refer to the [Purge Cache Status API](https://docs.imagekit.io/api-reference/media-api/purge-cache-status) for a better understanding of the **request & response structure**.
 
 #### Example
 ```php
@@ -986,7 +978,7 @@ $purgeCacheStatus = $imageKit->purgeCacheStatus($cacheRequestId);
 
 Get the image EXIF, pHash, and other metadata for uploaded files in the ImageKit.io media library using this API.
 
-Refer to the [get image metadata for uploaded media files API](https://docs.imagekit.io/api-reference/metadata-api/get-image-metadata-for-uploaded-media-files) for a better understanding of the **Request & Response Structure**.
+Refer to the [get image metadata for uploaded media files API](https://docs.imagekit.io/api-reference/metadata-api/get-image-metadata-for-uploaded-media-files) for a better understanding of the **request & response structure**.
 
 #### Example
 ```php
@@ -998,7 +990,7 @@ $getFileMetadata = $imageKit->getFileMetaData($fileId);
 
 Get image EXIF, pHash, and other metadata from ImageKit.io powered remote URL using this API.
 
-Refer to the [get image metadata from remote URL API](https://docs.imagekit.io/api-reference/metadata-api/get-image-metadata-from-remote-url) for a better understanding of the **Request & Response Structure**.
+Refer to the [get image metadata from remote URL API](https://docs.imagekit.io/api-reference/metadata-api/get-image-metadata-from-remote-url) for a better understanding of the **request & response structure**.
 
 #### Example
 ```php
@@ -1007,7 +999,7 @@ $getFileMetadataFromRemoteURL = $imageKit->getFileMetadataFromRemoteURL($image_u
 ```
 ## Custom Metadata Fields API
 
-Imagekit.io allows you to define a `schema` for your metadata keys, and the value filled against that key will have to adhere to those rules. You can [Create](#1-create-fields), [Read](#2-get-fields) and [Update](#3-update-fields) custom metadata rules and update your file with custom metadata value in [File update API](#5-update-file-details) or [File Upload API](#server-side-file-upload).
+Imagekit.io allows you to define a `schema` for your metadata keys, and the value filled against that key will have to adhere to those rules. You can [create](#1-create-fields), [read](#2-get-fields) and [update](#3-update-fields) custom metadata rules and update your file with custom metadata value in [file update API](#5-update-file-details) or [file upload API](#server-side-file-upload).
 
 For a detailed explanation, refer to the [custom metadata fields documentation](https://docs.imagekit.io/api-reference/custom-metadata-fields-api).
 
@@ -1016,7 +1008,7 @@ For a detailed explanation, refer to the [custom metadata fields documentation](
 
 Create a custom metadata field with this API.
 
-Refer to the [create custom metadata fields API](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/create-custom-metadata-field) for a better understanding of the **Request & Response Structure**.
+Refer to the [create custom metadata fields API](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/create-custom-metadata-field) for a better understanding of the **request & response structure**.
 
 #### Example
 ```php
@@ -1039,7 +1031,7 @@ Check for the [allowed values in the schema](https://docs.imagekit.io/api-refere
 
 Get a list of all the custom metadata fields.
 
-Refer to the [get custom metadata fields API](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/get-custom-metadata-field) for a better understanding of the **Request & Response Structure**.
+Refer to the [get custom metadata fields API](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/get-custom-metadata-field) for a better understanding of the **request & response structure**.
 
 #### Example
 ```php
@@ -1051,7 +1043,7 @@ $getCustomMetadataField = $imageKit->getCustomMetadataField($includeDeleted);
 
 Update the `label` or `schema` of an existing custom metadata field.
 
-Refer to the [update custom metadata fields API](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/update-custom-metadata-field) for a better understanding of the **Request & Response Structure**.
+Refer to the [update custom metadata fields API](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/update-custom-metadata-field) for a better understanding of the **request & response structure**.
 
 #### Example
 ```php
@@ -1073,7 +1065,7 @@ Check for the [allowed values in the schema](https://docs.imagekit.io/api-refere
 
 Delete a custom metadata field.
 
-Refer to the [delete custom metadata fields API](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/delete-custom-metadata-field) for a better understanding of the **Request & Response Structure**.
+Refer to the [delete custom metadata fields API](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/delete-custom-metadata-field) for a better understanding of the **request & response structure**.
 
 #### Example
 ```php
@@ -1142,18 +1134,9 @@ For any feedback or to report any issues or general implementation support, plea
 
 ## Resources
 
-- [Main website](https://imagekit.io) -- Main Website.
-- [Documentation](https://docs.imagekit.io) -- For both getting started and in-depth SDK usage information.
-- [PHP Sample Project](/tree/master/sample) -- A quick, sample project to help get you started.
-- [Issues](/issues) -- Check the open and closed issues. You can report your issues as well.
-
-## Related ImageKit Projects
-
-- [ImageKit Node.js SDK](https://github.com/imagekit-developer/imagekit-nodejs)
-- [ImageKit Ruby On Rails SDK](https://github.com/imagekit-developer/imagekit-ruby)
-- [ImageKit Java SDK](https://github.com/imagekit-developer/imagekit-java)
-- [ImageKit React SDK](https://github.com/imagekit-developer/imagekit-react)
-- For more SDKs check [ImageKit Github](https://github.com/imagekit-developer) 
+- [Main website](https://imagekit.io) - Main Website.
+- [Documentation](https://docs.imagekit.io) - For both getting started and in-depth SDK usage information.
+- [PHP quick start guide](https://docs.imagekit.io/getting-started/quickstart-guides/php)
 
 ## License
 

@@ -111,7 +111,7 @@ echo $imageURL;
 #### File Upload
 ```php
 // For File Upload
-$uploadFile = $imageKit->upload([
+$uploadFile = $imageKit->uploadFile([
     'file' => 'file-url',
     'fileName' => 'new-file'
 ]);
@@ -489,7 +489,7 @@ The complete list of transformations supported and their usage in ImageKit can b
 
 ## Server-side File Upload
 
-The SDK provides a simple interface using the `$imageKit->upload()` method to upload files to the [ImageKit Media Library](https://imagekit.io/dashboard/media-library). 
+The SDK provides a simple interface using the `$imageKit->uploadFile()` method to upload files to the [ImageKit Media Library](https://imagekit.io/dashboard/media-library). 
 
 - [See full documentation](https://cloudinary.com/documentation/php_image_and_video_upload).
 - [Check all the supported file types and extensions](https://docs.imagekit.io/api-reference/upload-file-api#allowed-file-types-for-uploading).
@@ -497,7 +497,7 @@ The SDK provides a simple interface using the `$imageKit->upload()` method to up
 
 #### Basic Usage
 ```php
-$uploadFile = $imageKit->upload([
+$uploadFile = $imageKit->uploadFile([
     'file' => 'your_file',              //  required, "binary","base64" or "file url"
     'fileName' => 'your_file_name.jpg', //  required
 ]);
@@ -561,8 +561,12 @@ $uploadFile = $imageKit->upload([
 #### Optional Parameters
 Please refer to [Server Side File Upload - Request Structure](https://docs.imagekit.io/api-reference/upload-file-api/server-side-file-upload#request-structure-multipart-form-data) for detailed explanation about mandatory and optional parameters.
 ```php
-// Set of optional parameters
-$uploadOptions = [
+
+// Attempt File Uplaod
+$uploadFile = $imageKit->uploadFile([
+    'file' => 'your_file',                  //  required, "binary","base64" or "file url"
+    'fileName' => 'your_file_name.jpg',     //  required
+    // Optional Parameters
     "useUniqueFileName" => true,            // true|false
     "tags" => implode(",",["abd", "def"]),  // max: 500 chars
     "folder" => "/sample-folder",           
@@ -586,13 +590,6 @@ $uploadOptions = [
     //         "SKU" => "VS882HJ2JD",
     //         "price" => 599.99,
     // ]
-];
-
-// Attempt File Uplaod
-$uploadFile = $imageKit->upload([
-    'file' => 'your_file',                  //  required, "binary","base64" or "file url"
-    'fileName' => 'your_file_name.jpg',     //  required
-    'options' => $uploadOptions             // optional
 ]);
 ```  
 

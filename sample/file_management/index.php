@@ -154,7 +154,8 @@ $newFileName = 'sample-file2.jpg';
 $renameFile = $imageKit->rename([
     'filePath' => $filePath,
     'newFileName' => $newFileName,
-], false);
+    'purgeCache' => false
+]);
 
 echo "\n\n";
 echo "13. Rename File with Pruge Cache False: \n";

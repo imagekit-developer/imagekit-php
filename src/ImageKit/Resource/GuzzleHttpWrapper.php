@@ -6,6 +6,7 @@ use Exception;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Response;
 
+use ImageKit\Constants\ErrorMessages;
 
 /**
  *
@@ -31,6 +32,8 @@ class GuzzleHttpWrapper implements HttpRequest
         $this->client = $client;
         $this->serviceId = self::gen_uuid();
     }
+
+    
 
     /**
      * @return string
@@ -146,6 +149,8 @@ class GuzzleHttpWrapper implements HttpRequest
         $body = '';
         if ($e->hasResponse()) {
             $body = (string)$e->getResponse()->getBody();
+            $headers = $e->getResponse()->getHeaders();
+            $statusCode = $e->getResponse()->getStatusCode();
         }
 
         return new Response($status, $headers, $body);
@@ -157,11 +162,14 @@ class GuzzleHttpWrapper implements HttpRequest
      */
     protected function handleException(Exception $e)
     {
-        $status = $e->getCode();
-        $headers = [];
-        $body = $e->getMessage();
-
-        return new Response($status, $headers, $body);
+        if(!$sock = @fsockopen('api.imagekit.io', 443))
+        {
+            throw new Exception('Network Error');
+        }
+        else
+        {
+            throw $e;
+        }
     }
 
     /**
@@ -300,5 +308,6 @@ class GuzzleHttpWrapper implements HttpRequest
             return $this->handleException($e);
         }
     }
+
 
 }

@@ -20,26 +20,35 @@ class File
      *
      * @return Response
      */
-    public static function listFile(array $parameters, GuzzleHttpWrapper $resource)
+    public static function listFile(GuzzleHttpWrapper $resource,$parameters=null)
     {
-        if (isset($parameters['tags']) && is_array($parameters['tags'])) {
-            $parameters['tags'] = implode(',', $parameters['tags']);
+        if($parameters){
+            $resource->setDatas($parameters);
         }
-
-        if (isset($parameters['includeFolder']) && is_bool($parameters['includeFolder'])) {
-            $parameters['includeFolder'] = json_encode($parameters['includeFolder']);
+        try {
+            $res = $resource->get();
+        } catch (\Throwable $th) {
+            return Response::respond(true, $th->getMessage());
         }
-
-        $resource->setDatas($parameters);
-        $res = $resource->get();
-        $stream = $res->getBody();
-        $content = $stream->getContents();
-
-        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
-            return Response::respond(true, json_decode($content));
+        if($res && $res->getBody() && $res->getHeaders() && $res->getStatusCode()){
+            $stream = $res->getBody();
+            $content = [];
+            $content['body'] = json_decode($stream->getContents());
+            $headers = $res->getHeaders();
+            $content['headers'] = $headers;
+            $content['statusCode'] = $res->getStatusCode();
+    
+            if ($res->getStatusCode() && ($res->getStatusCode() < 200 || $res->getStatusCode() > 300)) {
+                return Response::respond(true, ($content));
+            }
+    
+            return Response::respond(false, ($content));
         }
-
-        return Response::respond(false, json_decode($content));
+        else{
+            return Response::respond(true, ((object)ErrorMessages::$INVALID_REQUEST)->message);
+        }
+        
+        
     }
 
     /**
@@ -52,20 +61,97 @@ class File
      */
     public static function getDetails($fileId, GuzzleHttpWrapper $resource)
     {
-        if (empty($fileId)) {
-            return Response::respond(true, ((object)ErrorMessages::$fileId_MISSING));
+        try {
+            $res = $resource->get();
+        } catch (\Throwable $th) {
+            return Response::respond(true, $th->getMessage());
         }
-
-        $res = $resource->get();
-        $stream = $res->getBody();
-        $content = $stream->getContents();
-
-        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
-            return Response::respond(true, json_decode($content));
+        if($res && $res->getBody() && $res->getHeaders() && $res->getStatusCode()){
+            $stream = $res->getBody();
+            $content = [];
+            $content['body'] = json_decode($stream->getContents());
+            $headers = $res->getHeaders();
+            $content['headers'] = $headers;
+            $content['statusCode'] = $res->getStatusCode();
+            
+            if ($res->getStatusCode() && ($res->getStatusCode() < 200 || $res->getStatusCode() > 300)) {
+                return Response::respond(true, ($content));
+            }
+            return Response::respond(false, ($content));
         }
-
-        return Response::respond(false, json_decode($content));
+        else{
+            return Response::respond(true, ((object)ErrorMessages::$INVALID_REQUEST)->message);
+        }
     }
+
+    /**
+     * Get Version Details Of file
+     *
+     * @param string $fileId
+     * @param string $versionId
+     * @param GuzzleHttpWrapper $resource
+     *
+     * @return Response
+     */
+    public static function getVersionDetails($fileId, $versionId, GuzzleHttpWrapper $resource)
+    {
+        try {
+            $res = $resource->get();
+        } catch (\Throwable $th) {
+            return Response::respond(true, $th->getMessage());
+        }
+        if($res && $res->getBody() && $res->getHeaders() && $res->getStatusCode()){
+            $stream = $res->getBody();
+            $content = [];
+            $content['body'] = json_decode($stream->getContents());
+            $headers = $res->getHeaders();
+            $content['headers'] = $headers;
+            $content['statusCode'] = $res->getStatusCode();
+            
+            if ($res->getStatusCode() && ($res->getStatusCode() < 200 || $res->getStatusCode() > 300)) {
+                return Response::respond(true, ($content));
+            }
+            return Response::respond(false, ($content));
+        }
+        else{
+            return Response::respond(true, ((object)ErrorMessages::$INVALID_REQUEST)->message);
+        }
+    }
+
+    /**
+     * Get All Versions Of file
+     *
+     * @param string $fileId
+     * @param GuzzleHttpWrapper $resource
+     *
+     * @return Response
+     */
+    public static function getFileVersions($fileId, GuzzleHttpWrapper $resource)
+    {
+        try {
+            $res = $resource->get();
+        } catch (\Throwable $th) {
+            return Response::respond(true, $th->getMessage());
+        }
+        if($res && $res->getBody() && $res->getHeaders() && $res->getStatusCode()){
+            $stream = $res->getBody();
+            $content = [];
+            $content['body'] = json_decode($stream->getContents());
+            $headers = $res->getHeaders();
+            $content['headers'] = $headers;
+            $content['statusCode'] = $res->getStatusCode();
+    
+            if ($res->getStatusCode() && ($res->getStatusCode() < 200 || $res->getStatusCode() > 300)) {
+                return Response::respond(true, ($content));
+            }
+    
+            return Response::respond(false, ($content));
+        }
+        else{
+            return Response::respond(true, ((object)ErrorMessages::$INVALID_REQUEST)->message);
+        }        
+    }
+
 
     /**
      * Delete File API
@@ -77,20 +163,67 @@ class File
      */
     public static function delete($fileId, GuzzleHttpWrapper $resource)
     {
-        if (empty($fileId)) {
-            return Response::respond(true, ((object)ErrorMessages::$fileId_MISSING));
-        }
-
+        
         $resource->setDatas((array)$fileId);
-        $res = $resource->delete();
-        $stream = $res->getBody();
-        $content = $stream->getContents();
-
-        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
-            return Response::respond(true, json_decode($content));
+        try {
+            $res = $resource->delete();
+        } catch (\Throwable $th) {
+            return Response::respond(true, $th->getMessage());
         }
+        if($res && $res->getBody() && $res->getHeaders() && $res->getStatusCode()){
+            $stream = $res->getBody();
+            $content = [];
+            $content['body'] = json_decode($stream->getContents());
+            $headers = $res->getHeaders();
+            $content['headers'] = $headers;
+            $content['statusCode'] = $res->getStatusCode();
+    
+            if ($res->getStatusCode() && ($res->getStatusCode() < 200 || $res->getStatusCode() > 300)) {
+                return Response::respond(true, ($content));
+            }
+    
+            return Response::respond(false, ($content));
+        }
+        else{
+            return Response::respond(true, ((object)ErrorMessages::$INVALID_REQUEST)->message);
+        }
+    }
 
-        return Response::respond(false, json_decode($content));
+
+    /**
+     * Delete File Version API
+     *
+     * @param $fileId
+     * @param $versionId
+     * @param GuzzleHttpWrapper $resource
+     *
+     * @return Response
+     */
+    public static function deleteVersion($fileId, $versionId, GuzzleHttpWrapper $resource)
+    {   
+        $resource->setDatas([$fileId,$versionId]);
+        try {
+            $res = $resource->delete();
+        } catch (\Throwable $th) {
+            return Response::respond(true, $th->getMessage());
+        }
+        if($res && $res->getBody() && $res->getHeaders() && $res->getStatusCode()){
+            $stream = $res->getBody();
+            $content = [];
+            $content['body'] = json_decode($stream->getContents());
+            $headers = $res->getHeaders();
+            $content['headers'] = $headers;
+            $content['statusCode'] = $res->getStatusCode();
+    
+            if ($res->getStatusCode() && ($res->getStatusCode() < 200 || $res->getStatusCode() > 300)) {
+                return Response::respond(true, ($content));
+            }
+    
+            return Response::respond(false, ($content));
+        }
+        else{
+            return Response::respond(true, ((object)ErrorMessages::$INVALID_REQUEST)->message);
+        }        
     }
 
     /**
@@ -103,20 +236,30 @@ class File
      */
     public static function bulkDeleteByFileIds($fileIds, GuzzleHttpWrapper $resource)
     {
-        if (empty($fileIds)) {
-            return Response::respond(true, ((object)ErrorMessages::$fileIdS_MISSING));
-        }
-
         $resource->setDatas(['fileIds' => $fileIds]);
-        $res = $resource->post();
-        $stream = $res->getBody();
-        $content = $stream->getContents();
-
-        if ($res->getStatusCode() && !(200 >= $res->getStatusCode() || $res->getStatusCode() <= 300)) {
-            return Response::respond(true, json_decode($content));
+        
+        try {
+            $res = $resource->post();
+        } catch (\Throwable $th) {
+            return Response::respond(true, $th->getMessage());
         }
-
-        return Response::respond(false, json_decode($content));
+        if($res && $res->getBody() && $res->getHeaders() && $res->getStatusCode()){
+            $stream = $res->getBody();
+            $content = [];
+            $content['body'] = json_decode($stream->getContents());
+            $headers = $res->getHeaders();
+            $content['headers'] = $headers;
+            $content['statusCode'] = $res->getStatusCode();
+    
+            if ($res->getStatusCode() && ($res->getStatusCode() < 200 || $res->getStatusCode() > 300)) {
+                return Response::respond(true, ($content));
+            }
+    
+            return Response::respond(false, ($content));
+        }
+        else{
+            return Response::respond(true, ((object)ErrorMessages::$INVALID_REQUEST)->message);
+        }
     }
 
 
@@ -125,26 +268,36 @@ class File
      *
      * @param $sourceFilePath
      * @param $destinationPath
+     * @param $includeVersions
      * @param GuzzleHttpWrapper $resource
      *
      * @return Response
      */
-    public static function copy($sourceFilePath, $destinationPath, GuzzleHttpWrapper $resource)
+    public static function copy($sourceFilePath, $destinationPath, $includeVersions, GuzzleHttpWrapper $resource)
     {
-        if (empty($sourceFilePath) || empty($destinationPath)) {
-            return Response::respond(true, ((object)ErrorMessages::$COPY_FILE_DATA_INVALID));
+        $resource->setDatas(['sourceFilePath' => $sourceFilePath, 'destinationPath' => $destinationPath, 'includeVersions' => $includeVersions]);
+        try {
+            $res = $resource->post();
+        } catch (\Throwable $th) {
+            return Response::respond(true, $th->getMessage());
         }
-
-        $resource->setDatas(['sourceFilePath' => $sourceFilePath, 'destinationPath' => $destinationPath]);
-        $res = $resource->post();
-        $stream = $res->getBody();
-        $content = $stream->getContents();
-
-        if ($res->getStatusCode() && !(200 >= $res->getStatusCode() || $res->getStatusCode() <= 300)) {
-            return Response::respond(true, json_decode($content));
+        if($res && $res->getBody() && $res->getHeaders() && $res->getStatusCode()){
+            $stream = $res->getBody();
+            $content = [];
+            $content['body'] = json_decode($stream->getContents());
+            $headers = $res->getHeaders();
+            $content['headers'] = $headers;
+            $content['statusCode'] = $res->getStatusCode();
+    
+            if ($res->getStatusCode() && ($res->getStatusCode() < 200 || $res->getStatusCode() > 300)) {
+                return Response::respond(true, ($content));
+            }
+    
+            return Response::respond(false, ($content));
         }
-
-        return Response::respond(false, json_decode($content));
+        else{
+            return Response::respond(true, ((object)ErrorMessages::$INVALID_REQUEST)->message);
+        }
     }
 
     /**
@@ -158,20 +311,29 @@ class File
      */
     public static function move($sourceFilePath, $destinationPath, GuzzleHttpWrapper $resource)
     {
-        if (empty($sourceFilePath) || empty($destinationPath)) {
-            return Response::respond(true, ((object)ErrorMessages::$COPY_FILE_DATA_INVALID));
-        }
-
         $resource->setDatas(['sourceFilePath' => $sourceFilePath, 'destinationPath' => $destinationPath]);
-        $res = $resource->post();
-        $stream = $res->getBody();
-        $content = $stream->getContents();
-
-        if ($res->getStatusCode() && !(200 >= $res->getStatusCode() || $res->getStatusCode() <= 300)) {
-            return Response::respond(true, json_decode($content));
+        try {
+            $res = $resource->post();
+        } catch (\Throwable $th) {
+            return Response::respond(true, $th->getMessage());
         }
-
-        return Response::respond(false, json_decode($content));
+        if($res && $res->getBody() && $res->getHeaders() && $res->getStatusCode()){
+            $stream = $res->getBody();
+            $content = [];
+            $content['body'] = json_decode($stream->getContents());
+            $headers = $res->getHeaders();
+            $content['headers'] = $headers;
+            $content['statusCode'] = $res->getStatusCode();
+    
+            if ($res->getStatusCode() && ($res->getStatusCode() < 200 || $res->getStatusCode() > 300)) {
+                return Response::respond(true, ($content));
+            }
+    
+            return Response::respond(false, ($content));
+        }
+        else{
+            return Response::respond(true, ((object)ErrorMessages::$INVALID_REQUEST)->message);
+        }
     }
 
 
@@ -187,20 +349,63 @@ class File
      */
     public static function rename($filePath, $newFileName, $purgeCache, GuzzleHttpWrapper $resource)
     {
-        if (empty($filePath) || empty($newFileName)) {
-            return Response::respond(true, ((object)ErrorMessages::$RENAME_FILE_DATA_INVALID));
-        }
-
         $resource->setDatas(['filePath' => $filePath, 'newFileName' => $newFileName, 'purgeCache' => $purgeCache]);
-        $res = $resource->put();
-        $stream = $res->getBody();
-        $content = $stream->getContents();
-
-        if ($res->getStatusCode() && !(200 >= $res->getStatusCode() || $res->getStatusCode() <= 300)) {
-            return Response::respond(true, json_decode($content));
+        try {
+            $res = $resource->put();
+        } catch (\Throwable $th) {
+            return Response::respond(true, $th->getMessage());
         }
+        if($res && $res->getBody() && $res->getHeaders() && $res->getStatusCode()){
+            $stream = $res->getBody();
+            $content = [];
+            $content['body'] = json_decode($stream->getContents());
+            $headers = $res->getHeaders();
+            $content['headers'] = $headers;
+            $content['statusCode'] = $res->getStatusCode();
+    
+            if ($res->getStatusCode() && ($res->getStatusCode() < 200 || $res->getStatusCode() > 300)) {
+                return Response::respond(true, ($content));
+            }
+    
+            return Response::respond(false, ($content));
+        }
+        else{
+            return Response::respond(true, ((object)ErrorMessages::$INVALID_REQUEST)->message);
+        }
+    }
 
-        return Response::respond(false, json_decode($content));
+    
+    /**
+     * Restore File Version API
+     *
+     * @param GuzzleHttpWrapper $resource
+     *
+     * @return Response
+     */
+    public static function restoreVersion(GuzzleHttpWrapper $resource)
+    {
+        try {
+            $res = $resource->put();
+        } catch (\Throwable $th) {
+            return Response::respond(true, $th->getMessage());
+        }
+        if($res && $res->getBody() && $res->getHeaders() && $res->getStatusCode()){
+            $stream = $res->getBody();
+            $content = [];
+            $content['body'] = json_decode($stream->getContents());
+            $headers = $res->getHeaders();
+            $content['headers'] = $headers;
+            $content['statusCode'] = $res->getStatusCode();
+    
+            if ($res->getStatusCode() && ($res->getStatusCode() < 200 || $res->getStatusCode() > 300)) {
+                return Response::respond(true, ($content));
+            }
+    
+            return Response::respond(false, ($content));
+        }
+        else{
+            return Response::respond(true, ((object)ErrorMessages::$INVALID_REQUEST)->message);
+        }
     }
 
 
@@ -213,23 +418,32 @@ class File
      *
      * @return Response
      */
-    public static function bulkAddTags(array $fileIds, array $tags, GuzzleHttpWrapper $resource)
+    public static function bulkAddTags($fileIds, $tags, GuzzleHttpWrapper $resource)
     {
 
-        if (!is_array($fileIds) || empty($fileIds) || !is_array($tags) || empty($tags)) {
-            return Response::respond(true, ((object)ErrorMessages::$BULK_TAGS_DATA_MISSING));
-        }
-
         $resource->setDatas(['fileIds' => $fileIds, 'tags' => $tags]);
-        $res = $resource->post();
-        $stream = $res->getBody();
-        $content = $stream->getContents();
-
-        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
-            return Response::respond(true, json_decode($content));
+        try {
+            $res = $resource->post();
+        } catch (\Throwable $th) {
+            return Response::respond(true, $th->getMessage());
         }
-
-        return Response::respond(false, json_decode($content));
+        if($res && $res->getBody() && $res->getHeaders() && $res->getStatusCode()){
+            $stream = $res->getBody();
+            $content = [];
+            $content['body'] = json_decode($stream->getContents());
+            $headers = $res->getHeaders();
+            $content['headers'] = $headers;
+            $content['statusCode'] = $res->getStatusCode();
+    
+            if ($res->getStatusCode() && ($res->getStatusCode() < 200 || $res->getStatusCode() > 300)) {
+                return Response::respond(true, ($content));
+            }
+    
+            return Response::respond(false, ($content));
+        }
+        else{
+            return Response::respond(true, ((object)ErrorMessages::$INVALID_REQUEST)->message);
+        }
     }
 
     /**
@@ -244,21 +458,73 @@ class File
     public static function bulkRemoveTags(array $fileIds, array $tags, GuzzleHttpWrapper $resource)
     {
 
+
         if (!is_array($fileIds) || empty($fileIds) || !is_array($tags) || empty($tags)) {
             return Response::respond(true, ((object)ErrorMessages::$BULK_TAGS_DATA_MISSING));
         }
 
         $resource->setDatas(['fileIds' => $fileIds, 'tags' => $tags]);
-        $res = $resource->delete();
-        $stream = $res->getBody();
-        $content = $stream->getContents();
-
-        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
-            return Response::respond(true, json_decode($content));
+        try {
+            $res = $resource->post();
+        } catch (\Throwable $th) {
+            return Response::respond(true, $th->getMessage());
         }
-
-        return Response::respond(false, json_decode($content));
+        if($res && $res->getBody() && $res->getHeaders() && $res->getStatusCode()){
+            $stream = $res->getBody();
+            $content = [];
+            $content['body'] = json_decode($stream->getContents());
+            $headers = $res->getHeaders();
+            $content['headers'] = $headers;
+            $content['statusCode'] = $res->getStatusCode();
+    
+            if ($res->getStatusCode() && ($res->getStatusCode() < 200 || $res->getStatusCode() > 300)) {
+                return Response::respond(true, ($content));
+            }
+    
+            return Response::respond(false, ($content));
+        }
+        else{
+            return Response::respond(true, ((object)ErrorMessages::$INVALID_REQUEST)->message);
+        }
     }
+
+
+    /**
+     * Bulk Remove AI Tags
+     *
+     * @param array $fileIds
+     * @param array $AITags
+     * @param GuzzleHttpWrapper $resource
+     *
+     * @return Response
+     */
+    public static function bulkRemoveAITags(array $fileIds, array $AITags, GuzzleHttpWrapper $resource)
+    {
+        $resource->setDatas(['fileIds' => $fileIds, 'AITags' => $AITags]);
+        try {
+            $res = $resource->post();
+        } catch (\Throwable $th) {
+            return Response::respond(true, $th->getMessage());
+        }
+        if($res && $res->getBody() && $res->getHeaders() && $res->getStatusCode()){
+            $stream = $res->getBody();
+            $content = [];
+            $content['body'] = json_decode($stream->getContents());
+            $headers = $res->getHeaders();
+            $content['headers'] = $headers;
+            $content['statusCode'] = $res->getStatusCode();
+    
+            if ($res->getStatusCode() && ($res->getStatusCode() < 200 || $res->getStatusCode() > 300)) {
+                return Response::respond(true, ($content));
+            }
+    
+            return Response::respond(false, ($content));
+        }
+        else{
+            return Response::respond(true, ((object)ErrorMessages::$INVALID_REQUEST)->message);
+        }
+    }
+
 
     /**
      * Update File Details
@@ -271,14 +537,6 @@ class File
      */
     public static function updateDetails($fileId, $updateData, GuzzleHttpWrapper $resource)
     {
-        if (empty($fileId)) {
-            return Response::respond(true, ((object)ErrorMessages::$fileId_MISSING));
-        }
-
-        if (!is_array($updateData)) {
-            return Response::respond(true, ((object)ErrorMessages::$UPDATE_DATA_MISSING));
-        }
-
         $obj = (object)$updateData;
 
         if (isset($obj->tags) && ($obj->tags !== null) && ($obj->tags !== 'undefined') && !is_array($obj->tags)) {
@@ -290,14 +548,27 @@ class File
         }
 
         $resource->setDatas($updateData);
-        $res = $resource->patch();
-        $stream = $res->getBody();
-        $content = $stream->getContents();
-
-        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
-            return Response::respond(true, json_decode($content));
+        try {
+            $res = $resource->patch();
+        } catch (\Throwable $th) {
+            return Response::respond(true, $th->getMessage());
         }
-
-        return Response::respond(false, json_decode($content));
+        if($res && $res->getBody() && $res->getHeaders() && $res->getStatusCode()){
+            $stream = $res->getBody();
+            $content = [];
+            $content['body'] = json_decode($stream->getContents());
+            $headers = $res->getHeaders();
+            $content['headers'] = $headers;
+            $content['statusCode'] = $res->getStatusCode();
+    
+            if ($res->getStatusCode() && ($res->getStatusCode() < 200 || $res->getStatusCode() > 300)) {
+                return Response::respond(true, ($content));
+            }
+    
+            return Response::respond(false, ($content));
+        }
+        else{
+            return Response::respond(true, ((object)ErrorMessages::$INVALID_REQUEST)->message);
+        }
     }
 }

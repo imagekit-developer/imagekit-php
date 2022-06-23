@@ -30,7 +30,7 @@ class ImageKit
      *
      * @var string
      */
-    const SDK_VERSION = '2.0.0';
+    const SDK_VERSION = '3.0.0';
 
     /**
      * @var Configuration
@@ -106,8 +106,28 @@ class ImageKit
      * @param array $options
      * @return string
      */
-    public function url(array $options)
+    public function url($options=null)
     {
+        if(!isset($options)){
+            return json_encode(Response::respond(true, ((object)ErrorMessages::$URL_GENERATION_PARAMETER_MISSING)));
+        }
+        if(!is_array($options)){
+            return json_encode(Response::respond(true, ((object)ErrorMessages::$URL_GENERATION_PARAMETER_NON_ARRAY)));
+        }
+        if(sizeof($options)==0){
+            return json_encode(Response::respond(true, ((object)ErrorMessages::$URL_GENERATION_PARAMETER_EMPTY_ARRAY)));
+        }
+        if (isset($options['src']) && !filter_var($options['src'], FILTER_VALIDATE_URL)) {
+            return json_encode(Response::respond(true, ((object)ErrorMessages::$URL_GENERATION_SRC_INVALID)));
+        }
+        if (isset($options['urlEndpoint']) && !filter_var($options['urlEndpoint'], FILTER_VALIDATE_URL)) {
+            return json_encode(Response::respond(true, ((object)ErrorMessages::$URL_GENERATION_URL_INVALID)));
+        }
+        
+        if (isset($options['transformation']) && !is_array($options['transformation'])) {
+            return json_encode(Response::respond(true, ((object)ErrorMessages::$URL_GENERATION_TRANSFORMATION_PARAMETER_INVALID)));
+        }
+        
         $urlInstance = new Url();
         return $urlInstance->buildURL(array_merge((array)$this->configuration, $options));
     }
@@ -115,8 +135,6 @@ class ImageKit
     /**
      * You can upload files to ImageKit.io media library from your server-side using private API key authentication.
      *
-     * File size limit
-     * The maximum upload file size is limited to 25MB.
      *
      * @link https://docs.imagekit.io/api-reference/upload-file-api/server-side-file-upload API Reference
      *
@@ -124,24 +142,55 @@ class ImageKit
      * @return object
      *
      */
-    public function upload(array $options)
+    public function upload($options=null)
     {
-        return $this->uploadFile($options);
-    }
+        if(!isset($options)){
+            return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_MISSING));
+        }
+        if(!is_array($options)){
+            return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_NON_ARRAY));
+        }
+        if(sizeof($options)==0){
+            return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_EMPTY_ARRAY));
+        }
+        if (empty($options['file'])) {
+            return Response::respond(true, ((object)ErrorMessages::$MISSING_UPLOAD_FILE_PARAMETER));
+        }
+        if (empty($options['fileName'])) {
+            return Response::respond(true, ((object)ErrorMessages::$MISSING_UPLOAD_FILENAME_PARAMETER));
+        }
+        if(isset($options['options'])){
+            if(!is_array($options['options'])){
+                return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_NON_ARRAY));
+            }
+            else{
+                if(isset($options['options']['useUniqueFileName']) && !is_bool($options['options']['useUniqueFileName'])){
+                    return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_USEUNIQUEFILENAME_INVALID));
+                }
+                if(isset($options['options']['isPrivateFile']) && !is_bool($options['options']['isPrivateFile'])){
+                    return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_ISPRIVATEFILE_INVALID));
+                }
+                if(isset($options['options']['overwriteFile']) && !is_bool($options['options']['overwriteFile'])){
+                    return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_OVERWRITEFILE_INVALID));
+                }
+                if(isset($options['options']['overwriteAITags']) && !is_bool($options['options']['overwriteAITags'])){
+                    return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_OVERWRITEAITAGS_INVALID));
+                }
+                if(isset($options['options']['overwriteTags']) && !is_bool($options['options']['overwriteTags'])){
+                    return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_OVERWRITETAGS_INVALID));
+                }
+                if(isset($options['options']['overwriteCustomMetadata']) && !is_bool($options['options']['overwriteCustomMetadata'])){
+                    return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_OVERWRITECUSTOMMETADATA_INVALID));
+                }
+                if(isset($options['options']['extensions']) && !is_array($options['options']['extensions'])){
+                    return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_EXTENSIONS_INVALID));
+                }
+                if(isset($options['options']['customMetadata']) && !is_array($options['options']['customMetadata'])){
+                    return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_CUSTOMMETADATA_INVALID));
+                }
+            }
+        }
 
-    /**
-     * You can upload files to ImageKit.io media library from your server-side using private API key authentication.
-     *
-     * File size limit
-     * The maximum upload file size is limited to 25MB.
-     *
-     * @link https://docs.imagekit.io/api-reference/upload-file-api/server-side-file-upload API Reference
-     *
-     * @param array $options
-     * @return Response
-     */
-    public function uploadFile($options)
-    {
         $this->httpClient->setUri(Endpoints::getUploadFileEndpoint());
         return Upload::upload($options, $this->httpClient);
     }
@@ -149,8 +198,62 @@ class ImageKit
     /**
      * You can upload files to ImageKit.io media library from your server-side using private API key authentication.
      *
-     * File size limit
-     * The maximum upload file size is limited to 25MB.
+     *
+     * @link https://docs.imagekit.io/api-reference/upload-file-api/server-side-file-upload API Reference
+     *
+     * @param array $options
+     * @return Response
+     */
+    public function uploadFile($options=null)
+    {
+        
+        if(!isset($options)){
+            return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_MISSING));
+        }
+        if(!is_array($options)){
+            return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_NON_ARRAY));
+        }
+        if(sizeof($options)==0){
+            return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_EMPTY_ARRAY));
+        }
+        if (empty($options['file'])) {
+            return Response::respond(true, ((object)ErrorMessages::$MISSING_UPLOAD_FILE_PARAMETER));
+        }
+        if (empty($options['fileName'])) {
+            return Response::respond(true, ((object)ErrorMessages::$MISSING_UPLOAD_FILENAME_PARAMETER));
+        }
+        if(isset($options['useUniqueFileName']) && !is_bool($options['useUniqueFileName'])){
+            return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_USEUNIQUEFILENAME_INVALID));
+        }
+        if(isset($options['isPrivateFile']) && !is_bool($options['isPrivateFile'])){
+            return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_ISPRIVATEFILE_INVALID));
+        }
+        if(isset($options['overwriteFile']) && !is_bool($options['overwriteFile'])){
+            return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_OVERWRITEFILE_INVALID));
+        }
+        if(isset($options['overwriteAITags']) && !is_bool($options['overwriteAITags'])){
+            return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_OVERWRITEAITAGS_INVALID));
+        }
+        if(isset($options['overwriteTags']) && !is_bool($options['overwriteTags'])){
+            return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_OVERWRITETAGS_INVALID));
+        }
+        if(isset($options['overwriteCustomMetadata']) && !is_bool($options['overwriteCustomMetadata'])){
+            return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_OVERWRITECUSTOMMETADATA_INVALID));
+        }
+        if(isset($options['extensions']) && !is_array($options['extensions'])){
+            return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_EXTENSIONS_INVALID));
+        }
+        if(isset($options['customMetadata']) && !is_array($options['customMetadata'])){
+            return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_CUSTOMMETADATA_INVALID));
+        }
+
+        $this->httpClient->setUri(Endpoints::getUploadFileEndpoint());
+        return Upload::upload($options, $this->httpClient);
+    }
+
+    /**
+     * You can upload files to ImageKit.io media library from your server-side using private API key authentication.
+     *
      *
      * @link https://docs.imagekit.io/api-reference/upload-file-api/server-side-file-upload API Reference
      *
@@ -158,9 +261,10 @@ class ImageKit
      * @return Response
      *
      * @deprecated since 2.0.0, use <code>uploadFile</code>; uploadFiles was misleading as it supports only singular
+     * 
      * file upload
      */
-    public function uploadFiles(array $options)
+    public function uploadFiles($options=null)
     {
         return $this->uploadFile($options);
     }
@@ -174,10 +278,16 @@ class ImageKit
      * @param array $parameters
      * @return Response
      */
-    public function listFiles(array $parameters = [])
+    public function listFiles($parameters = null)
     {
+        if($parameters){
+            if(!is_array($parameters)){
+                return Response::respond(true, ((object)ErrorMessages::$LIST_FILES_OPTIONS_NON_ARRAY));
+            }
+        }
+
         $this->httpClient->setUri(Endpoints::getListFilesEndpoint());
-        return Manage\File::listFile($parameters, $this->httpClient);
+        return Manage\File::listFile($this->httpClient, $parameters);
     }
 
     /**
@@ -191,7 +301,7 @@ class ImageKit
      *
      * @deprecated since 2.0.0, use <code>getFileDetails</code>
      */
-    public function getDetails($fileId)
+    public function getDetails($fileId=null)
     {
         return $this->getFileDetails($fileId);
     }
@@ -205,10 +315,56 @@ class ImageKit
      * @return Response
      *
      */
-    public function getFileDetails($fileId)
+    public function getFileDetails($fileId=null)
     {
+        if (empty($fileId)) {
+            return Response::respond(true, ((object)ErrorMessages::$fileId_MISSING));
+        }
         $this->httpClient->setUri(Endpoints::getDetailsEndpoint($fileId));
         return Manage\File::getDetails($fileId, $this->httpClient);
+    }
+
+    /**
+     * Get the file version details such as tags, customCoordinates, and isPrivate properties using get file version details API.
+     *
+     * @link https://docs.imagekit.io/api-reference/media-api/get-file-version-details API Reference
+     *
+     * @param string $fileId
+     * @param string $versionId
+     * @return Response
+     *
+     */
+    public function getFileVersionDetails($fileId=null, $versionId=null)
+    {
+        if (empty($fileId)) {
+            return Response::respond(true, ((object)ErrorMessages::$fileId_MISSING));
+        }
+        
+        if (empty($versionId)) {
+            return Response::respond(true, ((object)ErrorMessages::$versionId_MISSING));
+        }
+        
+        $this->httpClient->setUri(Endpoints::getVersionDetailsEndpoint($fileId, $versionId));
+        return Manage\File::getVersionDetails($fileId, $versionId, $this->httpClient);
+    }
+
+    /**
+     * Get all the versions of a file using get file versions API.
+     *
+     * @link https://docs.imagekit.io/api-reference/media-api/get-file-versions API Reference
+     *
+     * @param string $fileId
+     * @return Response
+     * 
+     */
+    public function getFileVersions($fileId=null)
+    {
+        if (empty($fileId)) {
+            return Response::respond(true, ((object)ErrorMessages::$fileId_MISSING));
+        }
+
+        $this->httpClient->setUri(Endpoints::getFileVersionsEndpoint($fileId));
+        return Manage\File::getFileVersions($fileId, $this->httpClient);
     }
 
     /**
@@ -221,7 +377,7 @@ class ImageKit
      * @return Response
      * @deprecated since 2.0.0, use <code>getFileMetaData</code>
      */
-    public function getMetaData($fileId)
+    public function getMetaData($fileId=null)
     {
         return $this->getFileMetaData($fileId);
     }
@@ -235,10 +391,13 @@ class ImageKit
      *
      * @return Response
      */
-    public function getFileMetaData($fileId)
+    public function getFileMetaData($fileId=null)
     {
+        if (empty($fileId)) {
+            return Response::respond(true, ((object)ErrorMessages::$fileId_MISSING));
+        }
         $this->httpClient->setUri(Endpoints::getListMetaDataFilesEndpoint($fileId));
-        return Manage\File\Metadata::get($fileId, $this->httpClient);
+        return Manage\CustomMetadataFields::get($fileId, $this->httpClient);
     }
 
     /**
@@ -252,7 +411,7 @@ class ImageKit
      * @return Response
      * @deprecated since 2.0.0, use <code>updateFileDetails</code>
      */
-    public function updateDetails($fileId, $updateData)
+    public function updateDetails($fileId=null, $updateData=null)
     {
         return $this->updateFileDetails($fileId, $updateData);
     }
@@ -266,8 +425,16 @@ class ImageKit
      * @param array $updateData
      * @return Response
      */
-    public function updateFileDetails($fileId, $updateData)
+    public function updateFileDetails($fileId=null, $updateData=null)
     {
+        if (empty($fileId)) {
+            return Response::respond(true, ((object)ErrorMessages::$fileId_MISSING));
+        }
+
+        if (!is_array($updateData) || sizeof($updateData)==0) {
+            return Response::respond(true, ((object)ErrorMessages::$UPDATE_DATA_MISSING));
+        }
+
         $this->httpClient->setUri(Endpoints::getUpdateFileDetailsEndpoint($fileId));
         return Manage\File::updateDetails($fileId, $updateData, $this->httpClient);
     }
@@ -283,8 +450,27 @@ class ImageKit
      *
      * @return Response
      */
-    public function bulkAddTags(array $fileIds, array $tags)
+    public function bulkAddTags($fileIds=null, $tags=null)
     {
+        if(!isset($fileIds)){
+            return Response::respond(true, ((object)ErrorMessages::$BULK_TAGS_FILEIDS_MISSING));
+        }
+        if(!is_array($fileIds)){
+            return Response::respond(true, ((object)ErrorMessages::$BULK_TAGS_FILEIDS_NON_ARRAY));
+        }
+        if(sizeof($fileIds)==0){
+            return Response::respond(true, ((object)ErrorMessages::$BULK_TAGS_FILEIDS_EMPTY_ARRAY));
+        }
+        if(!isset($tags)){
+            return Response::respond(true, ((object)ErrorMessages::$BULK_TAGS_TAGS_MISSING));
+        }
+        if(!is_array($tags)){
+            return Response::respond(true, ((object)ErrorMessages::$BULK_TAGS_TAGS_NON_ARRAY));
+        }
+        if(sizeof($tags)==0){
+            return Response::respond(true, ((object)ErrorMessages::$BULK_TAGS_TAGS_EMPTY_ARRAY));
+        }
+
         $this->httpClient->setUri(Endpoints::getBulkAddTagsEndpoint());
         return Manage\File::bulkAddTags($fileIds, $tags, $this->httpClient);
     }
@@ -300,10 +486,63 @@ class ImageKit
      *
      * @return Response
      */
-    public function bulkRemoveTags(array $fileIds, array $tags)
+    public function bulkRemoveTags($fileIds=null, $tags=null)
     {
+        if(!isset($fileIds)){
+            return Response::respond(true, ((object)ErrorMessages::$BULK_TAGS_FILEIDS_MISSING));
+        }
+        if(!is_array($fileIds)){
+            return Response::respond(true, ((object)ErrorMessages::$BULK_TAGS_FILEIDS_NON_ARRAY));
+        }
+        if(sizeof($fileIds)==0){
+            return Response::respond(true, ((object)ErrorMessages::$BULK_TAGS_FILEIDS_EMPTY_ARRAY));
+        }
+        if(!isset($tags)){
+            return Response::respond(true, ((object)ErrorMessages::$BULK_TAGS_TAGS_MISSING));
+        }
+        if(!is_array($tags)){
+            return Response::respond(true, ((object)ErrorMessages::$BULK_TAGS_TAGS_NON_ARRAY));
+        }
+        if(sizeof($tags)==0){
+            return Response::respond(true, ((object)ErrorMessages::$BULK_TAGS_TAGS_EMPTY_ARRAY));
+        }
+
         $this->httpClient->setUri(Endpoints::getBulkRemoveTagsEndpoint());
         return Manage\File::bulkRemoveTags($fileIds, $tags, $this->httpClient);
+    }
+
+    /**
+     * Remove AI tags from multiple files in a single request. The method accepts an array of fileIDs of the files and an array of tags that have to be removed to those files.
+     *
+     * @link https://docs.imagekit.io/api-reference/media-api/remove-aitags-bulk
+     *
+     * @param array<int, string> $fileIds
+     * @param array<int, string> $AITags
+     *
+     * @return Response
+     */
+    public function bulkRemoveAITags($fileIds=null, $AITags=null)
+    {
+        if(!isset($fileIds)){
+            return Response::respond(true, ((object)ErrorMessages::$BULK_TAGS_FILEIDS_MISSING));
+        }
+        if(!is_array($fileIds)){
+            return Response::respond(true, ((object)ErrorMessages::$BULK_TAGS_FILEIDS_NON_ARRAY));
+        }
+        if(sizeof($fileIds)==0){
+            return Response::respond(true, ((object)ErrorMessages::$BULK_TAGS_FILEIDS_EMPTY_ARRAY));
+        }
+        if(!isset($AITags)){
+            return Response::respond(true, ((object)ErrorMessages::$BULK_TAGS_TAGS_MISSING));
+        }
+        if(!is_array($AITags)){
+            return Response::respond(true, ((object)ErrorMessages::$BULK_TAGS_TAGS_NON_ARRAY));
+        }
+        if(sizeof($AITags)==0){
+            return Response::respond(true, ((object)ErrorMessages::$BULK_TAGS_TAGS_EMPTY_ARRAY));
+        }
+        $this->httpClient->setUri(Endpoints::getBulkRemoveAITagsEndpoint());
+        return Manage\File::bulkRemoveAITags($fileIds, $AITags, $this->httpClient);
     }
 
     /**
@@ -315,12 +554,41 @@ class ImageKit
      * @return Response
      *
      */
-    public function deleteFile($fileId)
+    public function deleteFile($fileId=null)
     {
+        if (!isset($fileId) || empty($fileId)) {
+            return Response::respond(true, ((object)ErrorMessages::$fileId_MISSING));
+        }
+        
         $this->httpClient->setUri(Endpoints::getDeleteFilesEndpoint($fileId));
         return Manage\File::delete($fileId, $this->httpClient);
     }
 
+
+    /**
+     * You can programmatically delete uploaded file version in media library using delete file version API.
+     *
+     * @link https://docs.imagekit.io/api-reference/media-api/delete-file-version
+     *
+     * @param $fileId
+     * @param $versionId
+     * @return Response
+     *
+     */
+    public function deleteFileVersion($fileId=null, $versionId=null)
+    {
+        if (!isset($fileId) || empty($fileId)) {
+            return Response::respond(true, ((object)ErrorMessages::$fileId_MISSING));
+        }
+        
+        if (!isset($versionId) || empty($versionId)) {
+            return Response::respond(true, ((object)ErrorMessages::$versionId_MISSING));
+        }
+
+        $this->httpClient->setUri(Endpoints::getDeleteFileVersionEndpoint($fileId,$versionId));
+        return Manage\File::deleteVersion($fileId, $versionId, $this->httpClient);
+    }
+
     /**
      * This will purge CDN and ImageKit.io internal cache.
      *
@@ -331,7 +599,7 @@ class ImageKit
      *
      * @deprecated since 2.0.0, use <code>purgeCache</code>
      */
-    public function purgeFileCacheApi($options)
+    public function purgeFileCacheApi($options=null)
     {
         return $this->purgeCache($options);
     }
@@ -346,7 +614,7 @@ class ImageKit
      *
      * @deprecated since 2.0.0, use <code>purgeCache</code>
      */
-    public function purgeCacheApi($options)
+    public function purgeCacheApi($options=null)
     {
         return $this->purgeCache($options);
     }
@@ -359,8 +627,16 @@ class ImageKit
      * @param $options
      * @return Response
      */
-    public function purgeCache($options)
+    public function purgeCache($options=null)
     {
+        if (empty($options)) {
+            return Response::respond(true, ((object)ErrorMessages::$CACHE_PURGE_URL_MISSING));
+        }
+        
+        if (!filter_var($options, FILTER_VALIDATE_URL)) {
+            return Response::respond(true, ((object)ErrorMessages::$CACHE_PURGE_URL_INVALID));
+        }
+
         $this->httpClient->setUri(Endpoints::getPurgeCacheEndpoint());
         return Manage\Cache::purgeFileCache($options, $this->httpClient);
     }
@@ -375,7 +651,7 @@ class ImageKit
      *
      * @deprecated since 2.0.0, use <code>getPurgeCacheStatus</code>
      */
-    public function purgeCacheApiStatus($requestId)
+    public function purgeCacheStatus($requestId=null)
     {
         return $this->getPurgeCacheStatus($requestId);
     }
@@ -390,7 +666,7 @@ class ImageKit
      *
      * @deprecated since 2.0.0, use <code>getPurgeCacheStatus</code>
      */
-    public function purgeFileCacheApiStatus($requestId)
+    public function purgeFileCacheApiStatus($requestId=null)
     {
         return $this->getPurgeCacheStatus($requestId);
     }
@@ -403,8 +679,12 @@ class ImageKit
      * @param $requestId
      * @return Response
      */
-    public function getPurgeCacheStatus($requestId)
+    public function getPurgeCacheStatus($requestId=null)
     {
+        if (empty($requestId)) {
+            return Response::respond(true, ((object)ErrorMessages::$CACHE_PURGE_STATUS_ID_MISSING));
+        }
+        
         $this->httpClient->setUri(Endpoints::getPurgeCacheApiStatusEndpoint($requestId));
         return Manage\Cache::purgeFileCacheStatus($requestId, $this->httpClient);
     }
@@ -419,13 +699,9 @@ class ImageKit
      *
      * @deprecated since 2.0.0, use <code>bulkDeleteFiles</code>
      */
-    public function bulkFileDeleteByIds($options)
+    public function bulkFileDeleteByIds($fileIds=null)
     {
-        if (!isset($options['fileIds'])) {
-            return Response::respond(true, ((object)ErrorMessages::$fileIdS_MISSING));
-        }
-
-        return $this->bulkDeleteFiles($options['fileIds']);
+        return $this->bulkDeleteFiles($fileIds);
     }
 
     /**
@@ -437,42 +713,155 @@ class ImageKit
      * @return Response
      *
      */
-    public function bulkDeleteFiles($fileIds)
+    public function bulkDeleteFiles($fileIds=null)
     {
+        if (!isset($fileIds)) {
+            return Response::respond(true, ((object)ErrorMessages::$fileIdS_MISSING));
+        }
+        if (!is_array($fileIds)) {
+            return Response::respond(true, ((object)ErrorMessages::$fileIdS_NON_ARRAY));
+        }
+        if (sizeof($fileIds)==0) {
+            return Response::respond(true, ((object)ErrorMessages::$fileIdS_EMPTY_ARRAY));
+        }
+        
         $this->httpClient->setUri(Endpoints::getDeleteByFileIdsEndpoint());
         return Manage\File::bulkDeleteByFileIds($fileIds, $this->httpClient);
     }
 
     /**
-     * This will copy a file from one location to another. This method accepts the source file's path and destination
+     * This will copy a file from one location to another. This method accepts an array of source file's path, destination path and boolean to include versions or not
+     * folder path.
+     *
+     * @link https://docs.imagekit.io/api-reference/media-api/copy-file
+     *
+     * @param $parameter['sourceFilePath','destinationPath','includeVersions']
+     * @return Response
+     * 
+     */
+    public function copy($parameter=null)
+    {
+        if(!isset($parameter)){
+            return Response::respond(true, ((object)ErrorMessages::$COPY_FILE_PARAMETER_MISSING));
+        }
+        if(!is_array($parameter)){
+            return Response::respond(true, ((object)ErrorMessages::$COPY_FILE_PARAMETER_NON_ARRAY));
+        }
+        if(sizeof($parameter)==0){
+            return Response::respond(true, ((object)ErrorMessages::$COPY_FILE_PARAMETER_EMPTY_ARRAY));
+        }
+        if (empty($parameter['sourceFilePath']) || empty($parameter['destinationPath']) || !isset($parameter['includeVersions'])) {
+            return Response::respond(true, ((object)ErrorMessages::$COPY_FILE_DATA_INVALID));
+        }
+
+        $this->httpClient->setUri(Endpoints::getCopyFileEndpoint());
+        return Manage\File::copy($parameter['sourceFilePath'], $parameter['destinationPath'], $parameter['includeVersions'], $this->httpClient);
+    }
+
+    
+    /**
+     * This will copy a file from one location to another. This method accepts an array of source file's path, destination path and boolean to include versions or not
      * folder path.
      *
      * @link https://docs.imagekit.io/api-reference/media-api/copy-file
      *
      * @param $sourceFilePath
      * @param $destinationPath
+     * @param $includeVersions
      * @return Response
+     * 
+     * @deprecated since 3.0.0, use <code>copy</code>
+     *
      */
-    public function copyFile($sourceFilePath, $destinationPath)
+    public function copyFile($sourceFilePath=null, $destinationPath=null, $includeVersions=null)
     {
+        
+        if (empty($sourceFilePath) || empty($destinationPath)) {
+            return Response::respond(true, ((object)ErrorMessages::$COPY_FILE_DATA_INVALID));
+        }
+
         $this->httpClient->setUri(Endpoints::getCopyFileEndpoint());
-        return Manage\File::copy($sourceFilePath, $destinationPath, $this->httpClient);
+        return Manage\File::copy($sourceFilePath, $destinationPath, $includeVersions, $this->httpClient);
     }
 
     /**
-     * This will move a file from one location to another. This method accepts the source file's path and destination
+     * This will move a file from one location to another. This method accepts an array containing source file's path and destination path
+     * folder path.
+     *
+     * @link https://docs.imagekit.io/api-reference/media-api/move-file
+     *
+     * @param $parameter['sourceFilePath','destinationPath']
+     * @return Response
+     * 
+     */
+    public function move($parameter=null)
+    {
+        if(!isset($parameter)){
+            return Response::respond(true, ((object)ErrorMessages::$MOVE_FILE_PARAMETER_MISSING));
+        }
+        if(!is_array($parameter)){
+            return Response::respond(true, ((object)ErrorMessages::$MOVE_FILE_PARAMETER_NON_ARRAY));
+        }
+        if(sizeof($parameter)==0){
+            return Response::respond(true, ((object)ErrorMessages::$MOVE_FILE_PARAMETER_EMPTY_ARRAY));
+        }
+        if (empty($parameter['sourceFilePath']) || empty($parameter['destinationPath'])) {
+            return Response::respond(true, ((object)ErrorMessages::$MOVE_FILE_DATA_INVALID));
+        }
+        $this->httpClient->setUri(Endpoints::getMoveFileEndpoint());
+        return Manage\File::move($parameter['sourceFilePath'], $parameter['destinationPath'], $this->httpClient);
+    }
+
+    /**
+     * This will move a file from one location to another. This method accepts an array containing source file's path and destination path
      * folder path.
      *
      * @link https://docs.imagekit.io/api-reference/media-api/move-file
      *
      * @param $sourceFilePath
      * @param $destinationPath
+     * @param $includeVersions
      * @return Response
+     * 
+     * @deprecated since 3.0.0, use <code>move</code>
      */
-    public function moveFile($sourceFilePath, $destinationPath)
+    public function moveFile($sourceFilePath=null, $destinationPath=null)
     {
+        if (empty($sourceFilePath) || empty($destinationPath)) {
+            return Response::respond(true, ((object)ErrorMessages::$MOVE_FILE_DATA_INVALID));
+        }
         $this->httpClient->setUri(Endpoints::getMoveFileEndpoint());
         return Manage\File::move($sourceFilePath, $destinationPath, $this->httpClient);
+    }
+
+    /**
+     * This will rename a file. This method accepts the source file's path, new file name and an optional parameter
+     * boolean to purge cache
+     *
+     *
+     * @link https://docs.imagekit.io/api-reference/media-api/rename-file
+     *
+     * @param $parameter[$filePath, $newFileName]
+     * @param $purgeCache
+     * @return Response
+     */
+    public function rename($parameter=null, $purgeCache = false)
+    {
+        if(!isset($parameter)){
+            return Response::respond(true, ((object)ErrorMessages::$RENAME_FILE_PARAMETER_MISSING));
+        }
+        if(!is_array($parameter)){
+            return Response::respond(true, ((object)ErrorMessages::$RENAME_FILE_PARAMETER_NON_ARRAY));
+        }
+        if(sizeof($parameter)==0){
+            return Response::respond(true, ((object)ErrorMessages::$RENAME_FILE_PARAMETER_EMPTY_ARRAY));
+        }
+        if (empty($parameter['filePath']) || empty($parameter['newFileName'])) {
+            return Response::respond(true, ((object)ErrorMessages::$RENAME_FILE_DATA_INVALID));
+        }
+
+        $this->httpClient->setUri(Endpoints::getRenameFileEndpoint());
+        return Manage\File::rename($parameter['filePath'], $parameter['newFileName'], $purgeCache, $this->httpClient);
     }
 
     /**
@@ -486,27 +875,72 @@ class ImageKit
      * @param $newFileName
      * @param $purgeCache
      * @return Response
+     * 
+     * @deprecated since 3.0.0, use <code>rename</code>
      */
     public function renameFile($filePath, $newFileName, $purgeCache = false)
     {
+        if (empty($filePath) || empty($newFileName)) {
+            return Response::respond(true, ((object)ErrorMessages::$RENAME_FILE_DATA_INVALID));
+        }
+
         $this->httpClient->setUri(Endpoints::getRenameFileEndpoint());
         return Manage\File::rename($filePath, $newFileName, $purgeCache, $this->httpClient);
     }
+    
+    /**
+     * This will Restore file version to a different version of a file. This method accepts the fileId and versionId
+     *
+     *
+     * @link https://docs.imagekit.io/api-reference/media-api/restore-file-version
+     *
+     * @param $parameter[$fileId, $versionId]
+     * @return Response
+     */
+    public function restoreFileVersion($parameter=null)
+    {
+        if(!isset($parameter)){
+            return Response::respond(true, ((object)ErrorMessages::$RESTORE_FILE_VERSION_PARAMETER_MISSING));
+        }
+        if(!is_array($parameter)){
+            return Response::respond(true, ((object)ErrorMessages::$RESTORE_FILE_VERSION_PARAMETER_NON_ARRAY));
+        }
+        if(sizeof($parameter)==0){
+            return Response::respond(true, ((object)ErrorMessages::$RESTORE_FILE_VERSION_PARAMETER_EMPTY_ARRAY));
+        }
+        if (empty($parameter['fileId']) || empty($parameter['versionId'])) {
+            return Response::respond(true, ((object)ErrorMessages::$RESTORE_FILE_VERSION_DATA_INVALID));
+        }
+        $this->httpClient->setUri(Endpoints::getRestoreFileVersionEndpoint($parameter['fileId'], $parameter['versionId']));
+        return Manage\File::restoreVersion($this->httpClient);
+    }
+
 
     /**
-     * This will create a new folder. This method accepts folder name and parent folder path.
+     * This will create a new folder. This method accepts folder name and parent folder path in an array.
      *
      * @link https://docs.imagekit.io/api-reference/media-api/create-folder
      *
-     * @param $folderName
-     * @param $parentFolderPath
+     * @param $parameter[$folderName, $parentFolderPath]
      *
      * @return Response
      */
-    public function createFolder($folderName, $parentFolderPath = '/')
+    public function createFolder($parameter=null)
     {
+        if(!isset($parameter)){
+            return Response::respond(true, ((object)ErrorMessages::$CREATE_FOLDER_PARAMETER_MISSING));
+        }
+        if(!is_array($parameter)){
+            return Response::respond(true, ((object)ErrorMessages::$CREATE_FOLDER_PARAMETER_NON_ARRAY));
+        }
+        if(sizeof($parameter)==0){
+            return Response::respond(true, ((object)ErrorMessages::$CREATE_FOLDER_PARAMETER_EMPTY_ARRAY));
+        }
+        if (empty($parameter['folderName']) || empty($parameter['parentFolderPath'])) {
+            return Response::respond(true, ((object)ErrorMessages::$CREATE_FOLDER_DATA_INVALID));
+        }
         $this->httpClient->setUri(Endpoints::getCreateFolderEndpoint());
-        return Manage\Folder::create($folderName, $parentFolderPath, $this->httpClient);
+        return Manage\Folder::create($parameter['folderName'], $parameter['parentFolderPath'], $this->httpClient);
     }
 
     /**
@@ -519,44 +953,70 @@ class ImageKit
      *
      * @return Response
      */
-    public function deleteFolder($folderPath)
+    public function deleteFolder($folderPath=null)
     {
+        if(!isset($folderPath) || empty($folderPath)){
+            return Response::respond(true, ((object)ErrorMessages::$DELETE_FOLDER_PARAMETER_MISSING));
+        }
         $this->httpClient->setUri(Endpoints::getDeleteFolderEndpoint());
         return Manage\Folder::delete($folderPath, $this->httpClient);
     }
 
     /**
-     * This will copy a folder from one location to another. This method accepts the source folder's path
-     * and destination folder path.
+     * This will copy a folder from one location to another. This method accepts an array of source folder's path, destination path and boolean to include versions or not.
      *
      * @link https://docs.imagekit.io/api-reference/media-api/copy-folder
      *
-     * @param $sourceFolderPath
-     * @param $destinationPath
+     * @param $parameter[$sourceFolderPath, $destinationPath, includeVersions]
      *
      * @return Response
      */
-    public function copyFolder($sourceFolderPath, $destinationPath)
+    public function copyFolder($parameter=null)
     {
+        if(!isset($parameter)){
+            return Response::respond(true, ((object)ErrorMessages::$COPY_FOLDER_PARAMETER_MISSING));
+        }
+        if(!is_array($parameter)){
+            return Response::respond(true, ((object)ErrorMessages::$COPY_FOLDER_PARAMETER_NON_ARRAY));
+        }
+        if(sizeof($parameter)==0){
+            return Response::respond(true, ((object)ErrorMessages::$COPY_FOLDER_PARAMETER_EMPTY_ARRAY));
+        }
+        if (empty($parameter['sourceFolderPath']) || empty($parameter['destinationPath']) || !isset($parameter['includeVersions'])) {
+            return Response::respond(true, ((object)ErrorMessages::$COPY_FOLDER_DATA_INVALID));
+        }
+
         $this->httpClient->setUri(Endpoints::getCopyFolderEndpoint());
-        return Manage\Folder::copy($sourceFolderPath, $destinationPath, $this->httpClient);
+        return Manage\Folder::copy($parameter['sourceFolderPath'], $parameter['destinationPath'], $parameter['includeVersions'], $this->httpClient);
     }
 
     /**
      * This will move a folder from one location to another. This method accepts the source folder's path
-     * and destination folder path.
+     * and destination folder path in an array.
      *
      * @link https://docs.imagekit.io/api-reference/media-api/move-folder
      *
-     * @param $sourceFolderPath
-     * @param $destinationPath
+     * @param $parameter[$sourceFolderPath, $destinationPath]
      *
      * @return Response
      */
-    public function moveFolder($sourceFolderPath, $destinationPath)
+    public function moveFolder($parameter=null)
     {
+        if(!isset($parameter)){
+            return Response::respond(true, ((object)ErrorMessages::$MOVE_FOLDER_PARAMETER_MISSING));
+        }
+        if(!is_array($parameter)){
+            return Response::respond(true, ((object)ErrorMessages::$MOVE_FOLDER_PARAMETER_NON_ARRAY));
+        }
+        if(sizeof($parameter)==0){
+            return Response::respond(true, ((object)ErrorMessages::$MOVE_FOLDER_PARAMETER_EMPTY_ARRAY));
+        }
+        if (empty($parameter['sourceFolderPath']) || empty($parameter['destinationPath'])) {
+            return Response::respond(true, ((object)ErrorMessages::$MOVE_FOLDER_DATA_INVALID));
+        }
+
         $this->httpClient->setUri(Endpoints::getMoveFolderEndpoint());
-        return Manage\Folder::move($sourceFolderPath, $destinationPath, $this->httpClient);
+        return Manage\Folder::move($parameter['sourceFolderPath'], $parameter['destinationPath'], $this->httpClient);
     }
 
     /**
@@ -577,23 +1037,36 @@ class ImageKit
      * @param $jobId
      * @return Response
      */
-    public function getBulkJobStatus($jobId)
+    public function getBulkJobStatus($jobId=null)
     {
-        $this->httpClient->setUri(Endpoints::getBulkJobStatusEndpoint($jobId));
-
+        
         if (empty($jobId)) {
             return Response::respond(true, ((object)ErrorMessages::$JOBID_MISSING));
         }
-
-        $res = $this->httpClient->get();
-        $stream = $res->getBody();
-        $content = $stream->getContents();
-
-        if ($res->getStatusCode() && !(200 >= $res->getStatusCode() || $res->getStatusCode() <= 300)) {
-            return Response::respond(true, json_decode($content));
+        $this->httpClient->setUri(Endpoints::getBulkJobStatusEndpoint($jobId));
+        
+        try {
+            $res = $this->httpClient->get();
+        } catch (\Throwable $th) {
+            return Response::respond(true, $th->getMessage());
         }
-
-        return Response::respond(false, json_decode($content));
+        if($res && $res->getBody() && $res->getHeaders() && $res->getStatusCode()){
+            $stream = $res->getBody();
+            $content = [];
+            $content['body'] = json_decode($stream->getContents());
+            $headers = $res->getHeaders();
+            $content['headers'] = $headers;
+            $content['statusCode'] = $res->getStatusCode();
+    
+            if ($res->getStatusCode() && ($res->getStatusCode() < 200 || $res->getStatusCode() > 300)) {
+                return Response::respond(true, ($content));
+            }
+    
+            return Response::respond(false, ($content));
+        }
+        else{
+            return Response::respond(true, ((object)ErrorMessages::$INVALID_REQUEST)->message);
+        }
     }
 
     /**
@@ -604,10 +1077,18 @@ class ImageKit
      * @param $url
      * @return Response
      */
-    public function getFileMetadataFromRemoteURL($url)
+    public function getFileMetadataFromRemoteURL($url=null)
     {
+        if (empty($url)) {
+            return Response::respond(true, ((object)ErrorMessages::$MISSING_URL_PARAMETER));
+        }
+        
+        if (!filter_var($url, FILTER_VALIDATE_URL)) {
+            return Response::respond(true, ((object)ErrorMessages::$INVALID_URL_PARAMETER));
+        }
+
         $this->httpClient->setUri(Endpoints::getFileMetadataFromRemoteURLEndpoint());
-        return Manage\File\Metadata::getFileMetadataFromRemoteURL($url, $this->httpClient);
+        return Manage\CustomMetadataFields::getFileMetadataFromRemoteURL($url, $this->httpClient);
     }
     /**
      * Using pHash to find similar or duplicate images
@@ -621,9 +1102,118 @@ class ImageKit
      * @param string $secondPHash
      * @return int
      */
-    public function pHashDistance($firstPHash, $secondPHash)
+    public function pHashDistance($firstPHash=null, $secondPHash=null)
     {
+        if(!isset($firstPHash) || empty($firstPHash)){
+            return Response::respond(true, ((object)ErrorMessages::$PHASH_DISTANCE_FIRST_PHASH_MISSING));
+        }
+        if(!isset($secondPHash) || empty($secondPHash)){
+            return Response::respond(true, ((object)ErrorMessages::$PHASH_DISTANCE_SECOND_PHASH_MISSING));
+        }
         return Phash::pHashDistance($firstPHash, $secondPHash);
+    }
+
+    
+    /**
+     * Create custom metadata field using this API.
+     *
+     * @link https://docs.imagekit.io/api-reference/custom-metadata-fields-api/create-custom-metadata-field
+     *
+     * @param $parameter[$name,$label,$schema]
+     * @return Response
+     */
+    public function createCustomMetadataField($parameter=null)
+    {
+        if(!isset($parameter)){
+            return Response::respond(true, ((object)ErrorMessages::$CREATE_CUSTOM_METADATA_PARAMETER_MISSING));
+        }
+        if(!is_array($parameter)){
+            return Response::respond(true, ((object)ErrorMessages::$CREATE_CUSTOM_METADATA_PARAMETER_NON_ARRAY));
+        }
+        if(sizeof($parameter)==0){
+            return Response::respond(true, ((object)ErrorMessages::$CREATE_CUSTOM_METADATA_PARAMETER_EMPTY_ARRAY));
+        }
+        if (empty($parameter['name']) || empty($parameter['label']) || !isset($parameter['schema'])) {
+            return Response::respond(true, ((object)ErrorMessages::$CREATE_CUSTOM_METADATA_DATA_INVALID));
+        }
+        if(!isset($parameter['schema']['type']) || empty($parameter['schema']['type'])){
+            return Response::respond(true, ((object)ErrorMessages::$CREATE_CUSTOM_METADATA_DATA_INVALID_SCHEMA_OBJECT));
+        }
+
+        $this->httpClient->setUri(Endpoints::createCustomMetadataField());
+        return Manage\CustomMetadataFields::createCustomMetadataField($parameter['name'], $parameter['label'], $parameter['schema'], $this->httpClient);
+    }
+    
+    /**
+     * Get custom metadata field using this API.
+     *
+     * @link https://docs.imagekit.io/api-reference/custom-metadata-fields-api/get-custom-metadata-field
+     *
+     * @param $includeDeleted
+     * @return Response
+     */
+    public function getCustomMetadataFields($includeDeleted=false)
+    {
+        if(!is_bool($includeDeleted)){
+            return Response::respond(true, ((object)ErrorMessages::$GET_CUSTOM_METADATA_INVALID_PARAMETER)); 
+        }
+        $this->httpClient->setUri(Endpoints::getCustomMetadataField());
+        return Manage\CustomMetadataFields::getCustomMetadataField($includeDeleted, $this->httpClient);
+    }
+    
+    /**
+     * Update custom metadata field using this API.
+     *
+     * @link https://docs.imagekit.io/api-reference/custom-metadata-fields-api/update-custom-metadata-field
+     *
+     * @param $id
+     * @param $parameter[$name,$label,$schema]
+     * @return Response
+     */
+    public function updateCustomMetadataField($id=null,$parameter=null)
+    {
+        if(!isset($id) && !isset($parameter)){
+            return Response::respond(true, ((object)ErrorMessages::$UPDATE_CUSTOM_METADATA_PARAMETER_MISSING));
+        }
+        if(!isset($id) || empty($id)){
+            return Response::respond(true, ((object)ErrorMessages::$UPDATE_CUSTOM_METADATA_ID_MISSING));
+        }
+        if(!isset($parameter)){
+            return Response::respond(true, ((object)ErrorMessages::$UPDATE_CUSTOM_METADATA_BODY_MISSING));
+        }
+        if(!is_array($parameter)){
+            return Response::respond(true, ((object)ErrorMessages::$UPDATE_CUSTOM_METADATA_PARAMETER_NON_ARRAY));
+        }
+        if(sizeof($parameter)==0){
+            return Response::respond(true, ((object)ErrorMessages::$UPDATE_CUSTOM_METADATA_PARAMETER_EMPTY_ARRAY));
+        }
+        if (empty($parameter['label']) || !isset($parameter['schema'])) {
+            return Response::respond(true, ((object)ErrorMessages::$UPDATE_CUSTOM_METADATA_DATA_INVALID));
+        }
+        if(!isset($parameter['schema']['type']) || empty($parameter['schema']['type'])){
+            return Response::respond(true, ((object)ErrorMessages::$UPDATE_CUSTOM_METADATA_DATA_INVALID_SCHEMA_OBJECT));
+        }
+
+        $this->httpClient->setUri(Endpoints::updateCustomMetadataField($id));
+        return Manage\CustomMetadataFields::updateCustomMetadataField($parameter['label'], $parameter['schema'], $this->httpClient);
+    }
+    
+    /**
+     * Delete custom metadata field using this API.
+     *
+     * @link https://docs.imagekit.io/api-reference/custom-metadata-fields-api/delete-custom-metadata-field
+     *
+     * @param $id
+     * @return Response
+     */
+    public function deleteCustomMetadataField($id=null)
+    {
+        if(!isset($id) || empty($id)){
+            return Response::respond(true, ((object)ErrorMessages::$DELETE_CUSTOM_METADATA_ID_MISSING));
+        }
+        
+        $this->httpClient->setUri(Endpoints::deleteCustomMetadataField($id));
+        return Manage\CustomMetadataFields::deleteCustomMetadataField($this->httpClient);
     }
 
 }

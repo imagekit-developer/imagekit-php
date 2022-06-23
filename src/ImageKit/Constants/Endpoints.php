@@ -30,6 +30,25 @@ class Endpoints
 
     /**
      * @param $fileId
+     * @param $versionId
+     * @return string
+     */
+    public static function getVersionDetailsEndpoint($fileId,$versionId)
+    {
+        return (self::API_BASE_ENDPOINT . '/files/' . $fileId . '/versions/' . $versionId);
+    }
+
+    /**
+     * @param $fileId
+     * @return string
+     */
+    public static function getFileVersionsEndpoint($fileId)
+    {
+        return (self::API_BASE_ENDPOINT . '/files/' . $fileId . '/versions');
+    }
+
+    /**
+     * @param $fileId
      * @return string
      */
     public static function getListMetaDataFilesEndpoint($fileId)
@@ -53,6 +72,16 @@ class Endpoints
     public static function getDeleteFilesEndpoint($fileId)
     {
         return (self::API_BASE_ENDPOINT . '/files/' . $fileId);
+    }
+
+    /**
+     * @param $fileId
+     * @param $versionId
+     * @return string
+     */
+    public static function getDeleteFileVersionEndpoint($fileId,$versionId)
+    {
+        return (self::API_BASE_ENDPOINT . '/files/' . $fileId . '/versions/' . $versionId);
     }
 
     /**
@@ -115,6 +144,14 @@ class Endpoints
     /**
      * @return string
      */
+    public static function getBulkRemoveAITagsEndpoint()
+    {
+        return (self::API_BASE_ENDPOINT . '/files/removeAITags');
+    }
+
+    /**
+     * @return string
+     */
     public static function getCopyFileEndpoint()
     {
         return (self::API_BASE_ENDPOINT . '/files/copy');
@@ -134,6 +171,17 @@ class Endpoints
     public static function getRenameFileEndpoint()
     {
         return (self::API_BASE_ENDPOINT . '/files/rename');
+    }
+
+    /**
+     * @return string
+     * @var $fileId
+     * @var $versionId
+     * 
+     */
+    public static function getRestoreFileVersionEndpoint($fileId, $versionId)
+    {
+        return (self::API_BASE_ENDPOINT . '/files/' . $fileId . '/versions/' . $versionId . '/restore');
     }
 
     /**
@@ -176,6 +224,38 @@ class Endpoints
     public static function getMoveFolderEndpoint()
     {
         return (self::API_BASE_ENDPOINT . '/bulkJobs/moveFolder');
+    }
+
+    /**
+     * @return string
+     */
+    public static function createCustomMetadataField()
+    {
+        return (self::API_BASE_ENDPOINT . '/customMetadataFields');
+    }
+
+    /**
+     * @return string
+     */
+    public static function getCustomMetadataField()
+    {
+        return (self::API_BASE_ENDPOINT . '/customMetadataFields');
+    }
+
+    /**
+     * @return string
+     */
+    public static function updateCustomMetadataField($id)
+    {
+        return (self::API_BASE_ENDPOINT . '/customMetadataFields/' . $id);
+    }
+
+    /**
+     * @return string
+     */
+    public static function deleteCustomMetadataField($id)
+    {
+        return (self::API_BASE_ENDPOINT . '/customMetadataFields/' . $id);
     }
 
 }

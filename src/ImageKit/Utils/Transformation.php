@@ -3,7 +3,7 @@
 namespace ImageKit\Utils;
 
 use ImageKit\Constants\SupportedTransforms;
-
+use ImageKit\Constants\ErrorMessages;
 
 /**
  *
@@ -23,14 +23,13 @@ class Transformation
      */
     public static function getTransformKey($transformation)
     {
-
         $supportedTransforms = SupportedTransforms::get();
 
         if (isset($supportedTransforms[$transformation])) {
             return $supportedTransforms[$transformation];
         }
 
-        return $transformation;
+        return $transformation;    
     }
 
     /**

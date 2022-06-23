@@ -5,6 +5,10 @@ namespace ImageKit\Url;
 use ImageKit\ImageKit;
 use ImageKit\Utils\Transformation;
 
+use ImageKit\Constants\ErrorMessages;
+use ImageKit\Resource\GuzzleHttpWrapper;
+use ImageKit\Utils\Response;
+
 /**
  *
  */
@@ -76,6 +80,7 @@ class Url
             'host' => '',
             'pathname' => '',
             'search' => [],
+            'queryParameters' => [],
         ];
         $urlObject = (object)($urlArray);
         if (!empty($path)) {
@@ -92,9 +97,28 @@ class Url
         if (isset($parsedURL[0]['query'])) {
             parse_str($parsedURL[0]['query'], $urlObject->search);
         }
-        if (isset($obj->queryParameters)) {
-            $urlObject->search = array_merge($urlObject->search, $obj->queryParameters);
+        if(isset($obj->transformationPosition)){
+            if($obj->transformationPosition=='query'){
+                if (isset($obj->queryParameters)) {
+                    $urlObject->search = array_merge($urlObject->search, $obj->queryParameters);
+                }
+            }
+            else if($obj->transformationPosition=='path'){
+                if (isset($obj->queryParameters)) {
+                    $urlObject->queryParameters = $obj->queryParameters;
+                }
+            }
+            else{
+                throw new \InvalidArgumentException(ErrorMessages::$URL_GENERATION_TRANSFORMATION_QUERY_INVALID['message']);
+            }
+            
         }
+        else{
+            if (isset($obj->queryParameters)) {
+                $urlObject->queryParameters = $obj->queryParameters;
+            }
+        }
+
 
         ksort($urlObject->search);
 
@@ -124,11 +148,16 @@ class Url
         // Build Search Params here
         $urlObject->search = urldecode(http_build_query($urlObject->search));
 
+        // Build queryParameters here
+        $urlObject->queryParameters = urldecode(http_build_query($urlObject->queryParameters));
+
+        // transformationPosition
+        $urlObject->transformationPosition = $obj->transformationPosition;
         // Signature String and Timestamp
         // We can do this only for URLs that are created using urlEndpoint and path parameter
         // because we need to know the endpoint to be able to remove it from the URL to create a signature
         // for the remaining. With the src parameter, we would not know the "pattern" in the URL
-        if ($signed === true and !$isSrcParameterUsedForURL) {
+        if ($signed === true) {
             $expiryTimestamp = $this->getSignatureTimestamp($expireSeconds);
             $myArray = json_decode(json_encode($urlObject), true);
             $intermediateURL = $this->unparsed_url($myArray);
@@ -138,29 +167,24 @@ class Url
                 'urlEndpoint' => $urlOptions['urlEndpoint'],
                 'expiryTimestamp' => $expiryTimestamp,
             ];
+            
             $urlSignature = $this->getSignature($urlSignatureArray);
             if ($expiryTimestamp && $expiryTimestamp != self::DEFAULT_TIMESTAMP) {
                 $timestampParameter = [
                     self::TIMESTAMP_PARAMETER => $expiryTimestamp
                 ];
                 $timestampParameterString = http_build_query($timestampParameter);
-                if ($urlObject->search === '') {
-                    $urlObject->search .= $timestampParameterString;
-                } else {
-                    $urlObject->search .= '&' . $timestampParameterString;
-                }
+                $urlObject->timestampParameterString = $timestampParameterString;
             }
             $signatureParameter = [
                 self::SIGNATURE_PARAMETER => $urlSignature
             ];
             $signatureParameterString = http_build_query($signatureParameter);
-            if ($urlObject->search === '') {
-                $urlObject->search .= $signatureParameterString;
-            } else {
-                $urlObject->search .= '&' . $signatureParameterString;
-            }
+            
+            $urlObject->signatureParameterString = $signatureParameterString;
         }
         $urlObjectArray = json_decode(json_encode($urlObject), true);
+
         return $this->unparsed_url($urlObjectArray);
     }
 
@@ -201,36 +225,52 @@ class Url
         for ($i = 0; $i < count($transformation); $i++) {
             $parsedTransformStep = [];
             foreach ($transformation[$i] as $key => $value) {
-                if (is_bool($value)) {
-                    $value = $value ? 'true' : 'false';
+                if($key=='raw'){
+                    array_push($parsedTransformStep, $value);    
                 }
-                $value = (string)$value;
-
-                $transformKey = Transformation::getTransformKey($key);
-                if (empty($transformKey)) {
-                    continue;
+                else if($key!=''){
+                        $transform_block = $this->buildingTransformationBlocks($key,$value);
+                        array_push($parsedTransformStep, $transform_block);
                 }
-                if ((empty($value) && $value !== '0') || $value === '-') {
-                    array_push($parsedTransformStep, $transformKey);
-                } else {
-                    $transformationUtils = Transformation::getTransformKeyValueDelimiter();
-                    $finalTransformation = $transformKey . $transformationUtils;
-                    if (strpos($value, '/') !== false) {
-                        $finalTransformation .= str_replace('/', '@@', rtrim(ltrim($value, '/'), '/'));
-                    } else {
-                        $finalTransformation .= $value;
-                    }
-                    array_push($parsedTransformStep, $finalTransformation);
-                }
+                
             }
-            $delimiter = Transformation::getTransformDelimiter();
-            $List = implode($delimiter, $parsedTransformStep);
-            array_push($parsedTransforms, $List);
+                $delimiter = Transformation::getTransformDelimiter();
+                $List = implode($delimiter, $parsedTransformStep);
+                array_push($parsedTransforms, $List);
         }
         $setChainDelimiter = Transformation::getChainTransformDelimiter();
         return implode($setChainDelimiter, $parsedTransforms);
     }
 
+    /**
+     * @param $key
+     * @param $value
+     * @return array
+     */
+    private function buildingTransformationBlocks($key, $value){
+        if (is_bool($value)) {
+            $value = $value ? 'true' : 'false';
+        }
+
+        $value = (string)$value;
+        $transformKey = Transformation::getTransformKey($key);
+        if (empty($transformKey)) {
+            return [];
+        }
+        if ((empty($value) && $value !== '0') || $value === '-') {
+            return $transformKey;
+        } else {
+            $transformationUtils = Transformation::getTransformKeyValueDelimiter();
+            $finalTransformation = $transformKey . $transformationUtils;
+            if (strpos($value, '/') !== false) {
+                $finalTransformation .= str_replace('/', '@@', rtrim(ltrim($value, '/'), '/'));
+            } else {
+                $finalTransformation .= $value;
+            }
+            
+            return $finalTransformation;
+        }
+    }
 
     /**
      * @param $string
@@ -265,18 +305,47 @@ class Url
      */
     public function unparsed_url(array $parsed)
     {
+
         $get = function ($key) use ($parsed) {
             return isset($parsed[$key]) ? $parsed[$key] : null;
         };
         $scheme = $get('scheme');
         $host = $get('host');
+        
         $pathname = $get('pathname');
+        $last_slash_index = strripos($pathname,'/');
+        $file_name = substr($pathname,$last_slash_index+1);
+        $pathname = str_replace('/'.$file_name,'',$pathname);
+        $pathname = $pathname.'/';
         $search = $get('search');
-        return (strlen($scheme) > 0 ? "$scheme:" : '') .
-            (strlen($host) > 0 ? "//$host" : '') .
-            (strlen($pathname) > 0 ? "$pathname" : '') .
-            (strlen($search) > 0 ? "?$search" : '') .
-            (strlen($search) > 0 ? '&ik-sdk-version=php-' . ImageKit::SDK_VERSION : '?ik-sdk-version=php-' . ImageKit::SDK_VERSION);
+        $queryParameters = $get('queryParameters');
+        $transformationPosition = $get('transformationPosition');
+
+        $signatureParameterString = $get('signatureParameterString');
+
+        $timestampParameterString = $get('timestampParameterString');
+
+        if($transformationPosition=='query'){
+            return (strlen($scheme) > 0 ? "$scheme:" : '') .
+                (strlen($host) > 0 ? "//$host" : '') .
+                (strlen($pathname) > 0 ? "$pathname" : '') .
+                $file_name .
+                (strlen($search) > 0 ? '?' .$search : '') .
+                (strlen($timestampParameterString) > 0 ? ((strlen($search)?'&':'?') . $timestampParameterString): '') .
+                (strlen($signatureParameterString) > 0 ? ('&' . $signatureParameterString): '');
+        }
+        else{
+
+            return (strlen($scheme) > 0 ? "$scheme:" : '') .
+                (strlen($host) > 0 ? "//$host" : '') .
+                (strlen($pathname) > 0 ? "$pathname" : '') .
+                (strlen($search) > 0 ? str_replace('=',':',$search).'/' : '') .
+                 $file_name .
+                 (strlen($queryParameters) > 0 ? ( '?' . $queryParameters): '') .
+                 ((!empty($timestampParameterString) && strlen($timestampParameterString) > 0) ? (((!empty($queryParameters) && strlen($queryParameters)>0)?'&':'?') . $timestampParameterString): '') .
+                 ((!empty($signatureParameterString) && strlen($signatureParameterString) > 0) ? ('&' . $signatureParameterString): '');
+
+        }
     }
 
     /**

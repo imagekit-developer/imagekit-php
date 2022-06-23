@@ -21,24 +21,34 @@ class Cache
      */
     public static function purgeFileCache($urlParam, $resource)
     {
-        if (empty($urlParam)) {
-            return Response::respond(true, ((object)ErrorMessages::$CACHE_PURGE_URL_MISSING));
-        }
 
         $urlParamArray = [
             'url' => $urlParam
         ];
 
         $resource->setDatas($urlParamArray);
-        $res = $resource->post();
-        $stream = $res->getBody();
-        $content = $stream->getContents();
-
-        if ($res->getStatusCode() && !(200 >= $res->getStatusCode() || $res->getStatusCode() <= 300)) {
-            return Response::respond(true, json_decode($content));
+        try {
+            $res = $resource->post();
+        } catch (\Throwable $th) {
+            return Response::respond(true, $th->getMessage());
         }
-
-        return Response::respond(false, json_decode($content));
+        if($res && $res->getBody() && $res->getHeaders() && $res->getStatusCode()){
+            $stream = $res->getBody();
+            $content = [];
+            $content['body'] = json_decode($stream->getContents());
+            $headers = $res->getHeaders();
+            $content['headers'] = $headers;
+            $content['statusCode'] = $res->getStatusCode();
+    
+            if ($res->getStatusCode() && ($res->getStatusCode() < 200 || $res->getStatusCode() > 300)) {
+                return Response::respond(true, ($content));
+            }
+    
+            return Response::respond(false, ($content));
+        }
+        else{
+            return Response::respond(true, ((object)ErrorMessages::$INVALID_REQUEST)->message);
+        }
     }
 
     /**
@@ -50,20 +60,28 @@ class Cache
      */
     public static function purgeFileCacheStatus($requestId, GuzzleHttpWrapper $resource)
     {
-        if (empty($requestId)) {
-            return Response::respond(true, ((object)ErrorMessages::$CACHE_PURGE_STATUS_ID_MISSING));
+        try {
+            $res = $resource->get();
+        } catch (\Throwable $th) {
+            return Response::respond(true, $th->getMessage());
         }
-
-        $res = $resource->get();
-
-        $stream = $res->getBody();
-        $content = $stream->getContents();
-
-        if ($res->getStatusCode() && $res->getStatusCode() !== 200) {
-            return Response::respond(true, json_decode($content));
+        if($res && $res->getBody() && $res->getHeaders() && $res->getStatusCode()){
+            $stream = $res->getBody();
+            $content = [];
+            $content['body'] = json_decode($stream->getContents());
+            $headers = $res->getHeaders();
+            $content['headers'] = $headers;
+            $content['statusCode'] = $res->getStatusCode();
+    
+            if ($res->getStatusCode() && ($res->getStatusCode() < 200 || $res->getStatusCode() > 300)) {
+                return Response::respond(true, ($content));
+            }
+    
+            return Response::respond(false, ($content));
         }
-
-        return Response::respond(false, json_decode($content));
+        else{
+            return Response::respond(true, ((object)ErrorMessages::$INVALID_REQUEST)->message);
+        }
     }
 
 }

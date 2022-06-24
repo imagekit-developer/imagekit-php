@@ -64,7 +64,7 @@ final class UploadTest extends TestCase
 
         $mockBodyResponse = Utils::streamFor();
 
-        $response = $this->client->upload(null);
+        $response = $this->client->uploadFile(null);
 
         // echo json_encode($response->error);
         UploadTest::assertNull($response->result);
@@ -81,7 +81,7 @@ final class UploadTest extends TestCase
             'file' => 'http://lorempixel.com/640/480/',
         ];
 
-        $response = $this->client->upload($fileOptions);
+        $response = $this->client->uploadFile($fileOptions);
 
         // echo json_encode($response->error);
         UploadTest::assertNull($response->result);
@@ -97,7 +97,7 @@ final class UploadTest extends TestCase
             'fileName' => 'default-image.png',
         ];
 
-        $response = $this->client->upload($fileOptions);
+        $response = $this->client->uploadFile($fileOptions);
 
         // echo json_encode($response->error);
         UploadTest::assertNull($response->result);
@@ -113,30 +113,28 @@ final class UploadTest extends TestCase
         $fileOptions = [
             'file'  =>  'http://lorempixel.com/640/480/',
             'fileName'  =>  'test_file_name',
-            'options'   =>  [
-                "useUniqueFileName" => false,                                        // true|false
-                "tags" => implode(",",["abd", "def"]),                              // Comma Separated, Max length: 500 chars
-                "folder" => "/sample-folder",                                          // Using multiple forward slash (/) creates a nested folder
-                "isPrivateFile" => true,                                           // true|false
-                "customCoordinates" => implode(",", ["10", "10", "100", "100"]),    // Comma Separated, Max length: 500 chars
-                "responseFields" => implode(",", ["tags", "customMetadata"]),       // Comma Separated, check docs for more responseFields
-                "extensions" => [                                                  // An array of extensions, for more extensions refer to docs
-                    [
-                        "name" => "remove-bg",
-                        "options" => [  // all parameters inside this object are sent directly to the third-party service
-                            "add_shadow" => true
-                        ]
+            "useUniqueFileName" => false,                                        // true|false
+            "tags" => implode(",",["abd", "def"]),                              // Comma Separated, Max length: 500 chars
+            "folder" => "/sample-folder",                                          // Using multiple forward slash (/) creates a nested folder
+            "isPrivateFile" => true,                                           // true|false
+            "customCoordinates" => implode(",", ["10", "10", "100", "100"]),    // Comma Separated, Max length: 500 chars
+            "responseFields" => implode(",", ["tags", "customMetadata"]),       // Comma Separated, check docs for more responseFields
+            "extensions" => [                                                  // An array of extensions, for more extensions refer to docs
+                [
+                    "name" => "remove-bg",
+                    "options" => [  // all parameters inside this object are sent directly to the third-party service
+                        "add_shadow" => true
                     ]
-                ],
-                "webhookUrl" => "https://example.com/webhook",                      // Notification URL to receive the final status of pending extensions
-                "overwriteFile" => true,                                            // true|false, in case of false useUniqueFileName should be true
-                "overwriteAITags" => false,                                          // true|false, set to false in order to preserve overwriteAITags
-                "overwriteTags" => false,                                            // true|false
-                "overwriteCustomMetadata" => true,                                  // true|false
-                "customMetadata" => [                                              // An array of created custom fields, for more details refer to docs
-                        "SKU" => "VS882HJ2JD",
-                        "price" => 599.99,
                 ]
+            ],
+            "webhookUrl" => "https://example.com/webhook",                      // Notification URL to receive the final status of pending extensions
+            "overwriteFile" => true,                                            // true|false, in case of false useUniqueFileName should be true
+            "overwriteAITags" => false,                                          // true|false, set to false in order to preserve overwriteAITags
+            "overwriteTags" => false,                                            // true|false
+            "overwriteCustomMetadata" => true,                                  // true|false
+            "customMetadata" => [                                              // An array of created custom fields, for more details refer to docs
+                    "SKU" => "VS882HJ2JD",
+                    "price" => 599.99,
             ]
         ];
 
@@ -144,7 +142,7 @@ final class UploadTest extends TestCase
 
         $this->stubHttpClient(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
-        $response = $this->client->upload($fileOptions);
+        $response = $this->client->uploadFile($fileOptions);
 
         UploadTest::assertEquals(json_encode($this->uploadSuccessResponseObj), json_encode($response->result));
     }
@@ -176,18 +174,16 @@ final class UploadTest extends TestCase
         $fileOptions = [
             'file'  =>  'http://lorempixel.com/640/480/',
             'fileName'  =>  'test_file_name',
-            'options'   =>  [
-                'isPrivateFile' => true
-            ]
+            'isPrivateFile' => true
         ];
 
         $mockBodyResponse = Utils::streamFor(json_encode($fileOptions));
 
         $this->stubHttpClient(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
-        $response = $this->client->upload($fileOptions);
+        $response = $this->client->uploadFile($fileOptions);
 
-        UploadTest::assertArrayNotHasKey('useUniqueFileName', (array) $response->result->options);
+        UploadTest::assertArrayNotHasKey('useUniqueFileName', (array) $response->result);
     }
 
     /**
@@ -198,19 +194,17 @@ final class UploadTest extends TestCase
         $fileOptions = [
             'file'  =>  'http://lorempixel.com/640/480/',
             'fileName'  =>  'test_file_name',
-            'options'   =>  [
-                "tags" => implode(",",["abd", "def"]),
-            ]
+            "tags" => implode(",",["abd", "def"]),
         ];
 
         $mockBodyResponse = Utils::streamFor(json_encode($fileOptions));
 
         $this->stubHttpClient(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
-        $response = $this->client->upload($fileOptions);
+        $response = $this->client->uploadFile($fileOptions);
 
-        UploadTest::assertArrayNotHasKey('isPrivateFile', (array) $response->result->options);
-        UploadTest::assertArrayNotHasKey('useUniqueFileName', (array) $response->result->options);
+        UploadTest::assertArrayNotHasKey('isPrivateFile', (array) $response->result);
+        UploadTest::assertArrayNotHasKey('useUniqueFileName', (array) $response->result);
     }
 
 
@@ -222,20 +216,19 @@ final class UploadTest extends TestCase
         $fileOptions = [
             'file'  =>  'http://lorempixel.com/640/480/',
             'fileName'  =>  'test_file_name',
-            'options'   => []
         ];
 
         $mockBodyResponse = Utils::streamFor(json_encode($fileOptions));
 
         $this->stubHttpClient(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
-        $response = $this->client->upload($fileOptions);
+        $response = $this->client->uploadFile($fileOptions);
 
-        UploadTest::assertArrayNotHasKey('tags', (array) $response->result->options);
-        UploadTest::assertArrayNotHasKey('useUniqueFileName', (array) $response->result->options);
-        UploadTest::assertArrayNotHasKey('isPrivateFile', (array) $response->result->options);
-        UploadTest::assertArrayNotHasKey('customCoordinates', (array) $response->result->options);
-        UploadTest::assertArrayNotHasKey('responseFields', (array) $response->result->options);
+        UploadTest::assertArrayNotHasKey('tags', (array) $response->result);
+        UploadTest::assertArrayNotHasKey('useUniqueFileName', (array) $response->result);
+        UploadTest::assertArrayNotHasKey('isPrivateFile', (array) $response->result);
+        UploadTest::assertArrayNotHasKey('customCoordinates', (array) $response->result);
+        UploadTest::assertArrayNotHasKey('responseFields', (array) $response->result);
     }
     
     /**
@@ -248,30 +241,28 @@ final class UploadTest extends TestCase
         $fileOptions = [
             'file'  =>  'http://lorempixel.com/640/480/',
             'fileName'  =>  'test_file_name',
-            'options'   =>  [
-                "useUniqueFileName" => false,                                        // true|false
-                "tags" => implode(",",["abd", "def"]),                              // Comma Separated, Max length: 500 chars
-                "folder" => "/sample-folder",                                          // Using multiple forward slash (/) creates a nested folder
-                "isPrivateFile" => true,                                           // true|false
-                "customCoordinates" => implode(",", ["10", "10", "100", "100"]),    // Comma Separated, Max length: 500 chars
-                "responseFields" => implode(",", ["tags", "customMetadata"]),       // Comma Separated, check docs for more responseFields
-                "extensions" => [                                                   // An array of extensions, for more extensions refer to docs
-                    [
-                        "name" => "remove-bg",
-                        "options" => [  // all parameters inside this object are sent directly to the third-party service
-                            "add_shadow" => true
-                        ]
+            "useUniqueFileName" => false,                                        // true|false
+            "tags" => implode(",",["abd", "def"]),                              // Comma Separated, Max length: 500 chars
+            "folder" => "/sample-folder",                                          // Using multiple forward slash (/) creates a nested folder
+            "isPrivateFile" => true,                                           // true|false
+            "customCoordinates" => implode(",", ["10", "10", "100", "100"]),    // Comma Separated, Max length: 500 chars
+            "responseFields" => implode(",", ["tags", "customMetadata"]),       // Comma Separated, check docs for more responseFields
+            "extensions" => [                                                   // An array of extensions, for more extensions refer to docs
+                [
+                    "name" => "remove-bg",
+                    "options" => [  // all parameters inside this object are sent directly to the third-party service
+                        "add_shadow" => true
                     ]
-                ],
-                "webhookUrl" => "https://example.com/webhook",                       // Notification URL to receive the final status of pending extensions
-                "overwriteFile" => true,                                             // true|false, in case of false useUniqueFileName should be true
-                "overwriteAITags" => false,                                          // true|false, set to false in order to preserve overwriteAITags
-                "overwriteTags" => false,                                            // true|false
-                "overwriteCustomMetadata" => true,                                   // true|false
-                "customMetadata" => [                                                // An array of created custom fields, for more details refer to docs
-                        "SKU" => "VS882HJ2JD",
-                        "price" => 599.99,
                 ]
+            ],
+            "webhookUrl" => "https://example.com/webhook",                       // Notification URL to receive the final status of pending extensions
+            "overwriteFile" => true,                                             // true|false, in case of false useUniqueFileName should be true
+            "overwriteAITags" => false,                                          // true|false, set to false in order to preserve overwriteAITags
+            "overwriteTags" => false,                                            // true|false
+            "overwriteCustomMetadata" => true,                                   // true|false
+            "customMetadata" => [                                                // An array of created custom fields, for more details refer to docs
+                    "SKU" => "VS882HJ2JD",
+                    "price" => 599.99,
             ]
         ];
         
@@ -281,7 +272,7 @@ final class UploadTest extends TestCase
 
         $this->stubHttpClient(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
-        $response = $this->client->upload($fileOptions);
+        $response = $this->client->uploadFile($fileOptions);
         $response = json_decode(json_encode($response),true);
 
         UploadTest::assertEquals($fileOptions, $response['result']);

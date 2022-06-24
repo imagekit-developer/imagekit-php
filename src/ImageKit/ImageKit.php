@@ -144,55 +144,7 @@ class ImageKit
      */
     public function upload($options=null)
     {
-        if(!isset($options)){
-            return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_MISSING));
-        }
-        if(!is_array($options)){
-            return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_NON_ARRAY));
-        }
-        if(sizeof($options)==0){
-            return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_EMPTY_ARRAY));
-        }
-        if (empty($options['file'])) {
-            return Response::respond(true, ((object)ErrorMessages::$MISSING_UPLOAD_FILE_PARAMETER));
-        }
-        if (empty($options['fileName'])) {
-            return Response::respond(true, ((object)ErrorMessages::$MISSING_UPLOAD_FILENAME_PARAMETER));
-        }
-        if(isset($options['options'])){
-            if(!is_array($options['options'])){
-                return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_NON_ARRAY));
-            }
-            else{
-                if(isset($options['options']['useUniqueFileName']) && !is_bool($options['options']['useUniqueFileName'])){
-                    return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_USEUNIQUEFILENAME_INVALID));
-                }
-                if(isset($options['options']['isPrivateFile']) && !is_bool($options['options']['isPrivateFile'])){
-                    return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_ISPRIVATEFILE_INVALID));
-                }
-                if(isset($options['options']['overwriteFile']) && !is_bool($options['options']['overwriteFile'])){
-                    return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_OVERWRITEFILE_INVALID));
-                }
-                if(isset($options['options']['overwriteAITags']) && !is_bool($options['options']['overwriteAITags'])){
-                    return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_OVERWRITEAITAGS_INVALID));
-                }
-                if(isset($options['options']['overwriteTags']) && !is_bool($options['options']['overwriteTags'])){
-                    return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_OVERWRITETAGS_INVALID));
-                }
-                if(isset($options['options']['overwriteCustomMetadata']) && !is_bool($options['options']['overwriteCustomMetadata'])){
-                    return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_OVERWRITECUSTOMMETADATA_INVALID));
-                }
-                if(isset($options['options']['extensions']) && !is_array($options['options']['extensions'])){
-                    return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_EXTENSIONS_INVALID));
-                }
-                if(isset($options['options']['customMetadata']) && !is_array($options['options']['customMetadata'])){
-                    return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_CUSTOMMETADATA_INVALID));
-                }
-            }
-        }
-
-        $this->httpClient->setUri(Endpoints::getUploadFileEndpoint());
-        return Upload::upload($options, $this->httpClient);
+        return $this->uploadFile($options);
     }
 
     /**
@@ -841,11 +793,11 @@ class ImageKit
      *
      * @link https://docs.imagekit.io/api-reference/media-api/rename-file
      *
-     * @param $parameter[$filePath, $newFileName]
-     * @param $purgeCache
+     * @param $parameter[$filePath, $newFileNamem, $purgeCache]
+     * 
      * @return Response
      */
-    public function rename($parameter=null, $purgeCache = false)
+    public function rename($parameter=null)
     {
         if(!isset($parameter)){
             return Response::respond(true, ((object)ErrorMessages::$RENAME_FILE_PARAMETER_MISSING));
@@ -858,6 +810,15 @@ class ImageKit
         }
         if (empty($parameter['filePath']) || empty($parameter['newFileName'])) {
             return Response::respond(true, ((object)ErrorMessages::$RENAME_FILE_DATA_INVALID));
+        }
+        $purgeCache= false;
+        if(isset($parameter['purgeCache'])){
+            if(!is_bool($parameter['purgeCache'])){
+                return Response::respond(true, ((object)ErrorMessages::$RENAME_FILE_DATA_INVALID_PURGE_CACHE));
+            }
+            else{
+                $purgeCache = $parameter['purgeCache'];
+            }
         }
 
         $this->httpClient->setUri(Endpoints::getRenameFileEndpoint());

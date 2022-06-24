@@ -89,8 +89,8 @@ class ErrorMessages
         'For support kindly contact us at support@imagekit.io .'];
     public static $RENAME_FILE_PARAMETER_NON_ARRAY = ['message' => 'Rename File API accepts an array of parameters, non array value passed', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $RENAME_FILE_PARAMETER_EMPTY_ARRAY = ['message' => 'Rename File API accepts an array of parameters, empty array passed', 'help' => 'For support kindly contact us at support@imagekit.io .'];
-    public static $RENAME_FILE_DATA_INVALID = ['message' => 'Missing parameter filePath and/or newFileName for Rename File API', 'help' =>
-        'For support kindly contact us at support@imagekit.io .'];
+    public static $RENAME_FILE_DATA_INVALID = ['message' => 'Missing parameter filePath and/or newFileName for Rename File API', 'help' => 'For support kindly contact us at support@imagekit.io .'];
+    public static $RENAME_FILE_DATA_INVALID_PURGE_CACHE = ['message' => 'purgeCache parameter must be boolean', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $RESTORE_FILE_VERSION_PARAMETER_MISSING = ['message' => 'Restore File Version API accepts an array, null passed', 'help' =>
     'For support kindly contact us at support@imagekit.io .'];
     public static $RESTORE_FILE_VERSION_PARAMETER_NON_ARRAY = ['message' => 'Restore File Version API accepts an array of parameters, non array value passed', 'help' => 'For support kindly contact us at support@imagekit.io .'];

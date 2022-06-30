@@ -10,7 +10,14 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Utils;
 use ImageKit\ImageKit;
 use ImageKit\Resource\GuzzleHttpWrapper;
+use GuzzleHttp\Handler\MockHandler;
 use PHPUnit\Framework\TestCase;
+use GuzzleHttp\Client;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Middleware;
+use ImageKit\Constants\Endpoints;
+
+
 use function json_encode;
 
 
@@ -57,6 +64,13 @@ final class UploadTest extends TestCase
         $doClosure();
     }
 
+    private function checkFormData($requestBody, $boundary, $fieldName, $fieldValue) {
+        
+        $string = '--'.$boundary.' Content-Disposition: form-data; name="'.$fieldName.'" Content-Length: '.strlen($fieldValue).'  '.$fieldValue;
+        $string = substr(json_encode($string),1,-1);
+
+        UploadTest::assertStringContainsString($string,$requestBody);
+    }
 
     /**
      *
@@ -68,7 +82,6 @@ final class UploadTest extends TestCase
 
         $response = $this->client->uploadFile(null);
 
-        // echo json_encode($response->error);
         UploadTest::assertNull($response->result);
         UploadTest::assertEquals('Upload API accepts an array of parameters, null passed', $response->error->message);
     }
@@ -85,7 +98,6 @@ final class UploadTest extends TestCase
 
         $response = $this->client->uploadFile($fileOptions);
 
-        // echo json_encode($response->error);
         UploadTest::assertNull($response->result);
         UploadTest::assertEquals('Missing fileName parameter for upload', $response->error->message);
     }
@@ -101,7 +113,6 @@ final class UploadTest extends TestCase
 
         $response = $this->client->uploadFile($fileOptions);
 
-        // echo json_encode($response->error);
         UploadTest::assertNull($response->result);
         UploadTest::assertEquals('Missing file parameter for upload', $response->error->message);
     }
@@ -142,25 +153,52 @@ final class UploadTest extends TestCase
 
         $mockBodyResponse = Utils::streamFor(json_encode($this->uploadSuccessResponseObj));
 
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
+        ]);
+
+        $handlerStack = HandlerStack::create($mock);
+
+        $container = [];
+        $history = Middleware::history($container);
+
+        $handlerStack->push($history);
+        
+        $client = new Client(['handler' => $handlerStack]);
+
+        $requestMultiPart = GuzzleHttpWrapper::getMultipartData($fileOptions);
+        $client->request('POST', Endpoints::getUploadFileEndpoint(), [
+            'multipart' =>$requestMultiPart
+        ]);
+
+        $requestBody = $container[0]['request']->getBody();
+        $requestHeaders = $container[0]['request']->getHeaders();
+        $boundary = str_replace("multipart/form-data; boundary=","",$requestHeaders["Content-Type"][0]);
+
+        UploadTest::assertArrayHasKey("Content-Type",$requestHeaders);
+        UploadTest::assertStringStartsWith("multipart/form-data; boundary=",$requestHeaders['Content-Type'][0]);
+
+        $stream = Utils::streamFor($requestBody);
+        $stream = str_replace('\r\n',' ',json_encode($stream->getContents()));
+
+        $this->checkFormData($stream,$boundary,"file",$fileOptions['file']);
+        $this->checkFormData($stream,$boundary,"fileName",$fileOptions['fileName']);
+        $this->checkFormData($stream,$boundary,"tags",implode(',',["abd", "def"]));
+        $this->checkFormData($stream,$boundary,"isPrivateFile","true");
+        $this->checkFormData($stream,$boundary,"useUniqueFileName","false");
+        $this->checkFormData($stream,$boundary,"responseFields",implode(",", ["tags", "customMetadata"]));
+        $this->checkFormData($stream,$boundary,"extensions[0][name]","remove-bg");
+        $this->checkFormData($stream,$boundary,"webhookUrl","https://example.com/webhook");
+        $this->checkFormData($stream,$boundary,"overwriteFile","true");
+        $this->checkFormData($stream,$boundary,"overwriteAITags","false");
+        $this->checkFormData($stream,$boundary,"overwriteCustomMetadata","true");
+        $this->checkFormData($stream,$boundary,"customMetadata[SKU]","VS882HJ2JD");
+        $this->checkFormData($stream,$boundary,"customMetadata[price]","599.99");
+        
         $this->stubHttpClient(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
         $response = $this->client->uploadFile($fileOptions);
-
-        // Request Body Check
-        UploadTest::assertArrayHasKey('file',$fileOptions);
-        UploadTest::assertArrayHasKey('fileName',$fileOptions);
-        UploadTest::assertIsString($fileOptions['tags']);
-        UploadTest::assertArrayHasKey('useUniqueFileName',$fileOptions);
-        UploadTest::assertIsBool($fileOptions['useUniqueFileName']);
-        UploadTest::assertIsBool($fileOptions['isPrivateFile']);
-        UploadTest::assertIsString($fileOptions['responseFields']);
-        UploadTest::assertIsArray($fileOptions['extensions']);
-        UploadTest::assertIsBool($fileOptions['overwriteFile']);
-        UploadTest::assertIsBool($fileOptions['overwriteAITags']);
-        UploadTest::assertIsBool($fileOptions['overwriteTags']);
-        UploadTest::assertIsBool($fileOptions['overwriteCustomMetadata']);
-        UploadTest::assertIsArray($fileOptions['customMetadata']);
-
+        
         // Response Check
         UploadTest::assertEquals(json_encode($this->uploadSuccessResponseObj), json_encode($response->result));
     }
@@ -178,17 +216,44 @@ final class UploadTest extends TestCase
 
         $mockBodyResponse = Utils::streamFor(json_encode($fileOptions));
 
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
+        ]);
+
+        $handlerStack = HandlerStack::create($mock);
+
+        $container = [];
+        $history = Middleware::history($container);
+
+        $handlerStack->push($history);
+        
+        $client = new Client(['handler' => $handlerStack]);
+
+        $requestMultiPart = GuzzleHttpWrapper::getMultipartData($fileOptions);
+        $client->request('POST', Endpoints::getUploadFileEndpoint(), [
+            'multipart' =>$requestMultiPart
+        ]);
+
+        $requestBody = $container[0]['request']->getBody();
+        $requestHeaders = $container[0]['request']->getHeaders();
+        $boundary = str_replace("multipart/form-data; boundary=","",$requestHeaders["Content-Type"][0]);
+
+        UploadTest::assertArrayHasKey("Content-Type",$requestHeaders);
+        UploadTest::assertStringStartsWith("multipart/form-data; boundary=",$requestHeaders['Content-Type'][0]);
+
+        $stream = Utils::streamFor($requestBody);
+        $stream = str_replace('\r\n',' ',json_encode($stream->getContents()));
+
+        $this->checkFormData($stream,$boundary,"file",$fileOptions['file']);
+        $this->checkFormData($stream,$boundary,"fileName",$fileOptions['fileName']);
+        $this->checkFormData($stream,$boundary,"isPrivateFile","true");
+        UploadTest::assertStringNotContainsString("useUniqueFileName",$stream);
+        
+        $mockBodyResponse = Utils::streamFor(json_encode($fileOptions));
+
         $this->stubHttpClient(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
         $response = $this->client->uploadFile($fileOptions);
-
-        // Request Check
-        UploadTest::assertArrayHasKey('file',$fileOptions);
-        UploadTest::assertArrayHasKey('fileName',$fileOptions);
-        UploadTest::assertIsBool($fileOptions['isPrivateFile']);
-
-        // Response Check
-        UploadTest::assertArrayNotHasKey('useUniqueFileName', (array) $response->result);
     }
 
     /**
@@ -204,20 +269,44 @@ final class UploadTest extends TestCase
 
         $mockBodyResponse = Utils::streamFor(json_encode($fileOptions));
 
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
+        ]);
+
+        $handlerStack = HandlerStack::create($mock);
+
+        $container = [];
+        $history = Middleware::history($container);
+
+        $handlerStack->push($history);
+        
+        $client = new Client(['handler' => $handlerStack]);
+
+        $requestMultiPart = GuzzleHttpWrapper::getMultipartData($fileOptions);
+        $client->request('POST', Endpoints::getUploadFileEndpoint(), [
+            'multipart' =>$requestMultiPart
+        ]);
+
+        $requestBody = $container[0]['request']->getBody();
+        $requestHeaders = $container[0]['request']->getHeaders();
+        $boundary = str_replace("multipart/form-data; boundary=","",$requestHeaders["Content-Type"][0]);
+
+        UploadTest::assertArrayHasKey("Content-Type",$requestHeaders);
+        UploadTest::assertStringStartsWith("multipart/form-data; boundary=",$requestHeaders['Content-Type'][0]);
+
+        $stream = Utils::streamFor($requestBody);
+        $stream = str_replace('\r\n',' ',json_encode($stream->getContents()));
+
+        $this->checkFormData($stream,$boundary,"file",$fileOptions['file']);
+        $this->checkFormData($stream,$boundary,"fileName",$fileOptions['fileName']);
+        $this->checkFormData($stream,$boundary,"tags","abd,def");
+        UploadTest::assertStringNotContainsString("isPrivateFile",$stream);
+        UploadTest::assertStringNotContainsString("useUniqueFileName",$stream);
+        
         $this->stubHttpClient(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
         $response = $this->client->uploadFile($fileOptions);
-
-        // Request Body Check
-        UploadTest::assertArrayHasKey('file',$fileOptions);
-        UploadTest::assertArrayHasKey('fileName',$fileOptions);
-        UploadTest::assertIsString($fileOptions['tags']);
-
-        // Response Check
-        UploadTest::assertArrayNotHasKey('isPrivateFile', (array) $response->result);
-        UploadTest::assertArrayNotHasKey('useUniqueFileName', (array) $response->result);
     }
-
 
     /**
      *
@@ -231,21 +320,45 @@ final class UploadTest extends TestCase
 
         $mockBodyResponse = Utils::streamFor(json_encode($fileOptions));
 
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
+        ]);
+
+        $handlerStack = HandlerStack::create($mock);
+
+        $container = [];
+        $history = Middleware::history($container);
+
+        $handlerStack->push($history);
+        
+        $client = new Client(['handler' => $handlerStack]);
+
+        $requestMultiPart = GuzzleHttpWrapper::getMultipartData($fileOptions);
+        $client->request('POST', Endpoints::getUploadFileEndpoint(), [
+            'multipart' =>$requestMultiPart
+        ]);
+
+        $requestBody = $container[0]['request']->getBody();
+        $requestHeaders = $container[0]['request']->getHeaders();
+        $boundary = str_replace("multipart/form-data; boundary=","",$requestHeaders["Content-Type"][0]);
+
+        UploadTest::assertArrayHasKey("Content-Type",$requestHeaders);
+        UploadTest::assertStringStartsWith("multipart/form-data; boundary=",$requestHeaders['Content-Type'][0]);
+
+        $stream = Utils::streamFor($requestBody);
+        $stream = str_replace('\r\n',' ',json_encode($stream->getContents()));
+
+        $this->checkFormData($stream,$boundary,"file",$fileOptions['file']);
+        $this->checkFormData($stream,$boundary,"fileName",$fileOptions['fileName']);
+        UploadTest::assertStringNotContainsString("tags",$stream);
+        UploadTest::assertStringNotContainsString("isPrivateFile",$stream);
+        UploadTest::assertStringNotContainsString("useUniqueFileName",$stream);
+        UploadTest::assertStringNotContainsString("customCoordinates",$stream);
+        UploadTest::assertStringNotContainsString("responseFields",$stream);
+        
         $this->stubHttpClient(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
         $response = $this->client->uploadFile($fileOptions);
-
-        
-        // Request Body Check
-        UploadTest::assertArrayHasKey('file',$fileOptions);
-        UploadTest::assertArrayHasKey('fileName',$fileOptions);
-
-        // Response Check
-        UploadTest::assertArrayNotHasKey('tags', (array) $response->result);
-        UploadTest::assertArrayNotHasKey('useUniqueFileName', (array) $response->result);
-        UploadTest::assertArrayNotHasKey('isPrivateFile', (array) $response->result);
-        UploadTest::assertArrayNotHasKey('customCoordinates', (array) $response->result);
-        UploadTest::assertArrayNotHasKey('responseFields', (array) $response->result);
     }
     
     /**

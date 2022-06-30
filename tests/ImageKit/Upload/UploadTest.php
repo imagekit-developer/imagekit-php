@@ -6,6 +6,7 @@ include_once __DIR__ . '/../../../src/ImageKit/Utils/Transformation.php';
 include_once __DIR__ . '/../../../src/ImageKit/Utils/Authorization.php';
 
 use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Utils;
 use ImageKit\ImageKit;
 use ImageKit\Resource\GuzzleHttpWrapper;
@@ -55,6 +56,7 @@ final class UploadTest extends TestCase
         $doClosure = $closure->bindTo($this->client, ImageKit::class);
         $doClosure();
     }
+
 
     /**
      *
@@ -114,7 +116,7 @@ final class UploadTest extends TestCase
             'file'  =>  'http://lorempixel.com/640/480/',
             'fileName'  =>  'test_file_name',
             "useUniqueFileName" => false,                                        // true|false
-            "tags" => implode(",",["abd", "def"]),                              // Comma Separated, Max length: 500 chars
+            "tags" => implode(',',["abd", "def"]),                              // Comma Separated, Max length: 500 chars
             "folder" => "/sample-folder",                                          // Using multiple forward slash (/) creates a nested folder
             "isPrivateFile" => true,                                           // true|false
             "customCoordinates" => implode(",", ["10", "10", "100", "100"]),    // Comma Separated, Max length: 500 chars
@@ -144,27 +146,24 @@ final class UploadTest extends TestCase
 
         $response = $this->client->uploadFile($fileOptions);
 
+        // Request Body Check
+        UploadTest::assertArrayHasKey('file',$fileOptions);
+        UploadTest::assertArrayHasKey('fileName',$fileOptions);
+        UploadTest::assertIsString($fileOptions['tags']);
+        UploadTest::assertArrayHasKey('useUniqueFileName',$fileOptions);
+        UploadTest::assertIsBool($fileOptions['useUniqueFileName']);
+        UploadTest::assertIsBool($fileOptions['isPrivateFile']);
+        UploadTest::assertIsString($fileOptions['responseFields']);
+        UploadTest::assertIsArray($fileOptions['extensions']);
+        UploadTest::assertIsBool($fileOptions['overwriteFile']);
+        UploadTest::assertIsBool($fileOptions['overwriteAITags']);
+        UploadTest::assertIsBool($fileOptions['overwriteTags']);
+        UploadTest::assertIsBool($fileOptions['overwriteCustomMetadata']);
+        UploadTest::assertIsArray($fileOptions['customMetadata']);
+
+        // Response Check
         UploadTest::assertEquals(json_encode($this->uploadSuccessResponseObj), json_encode($response->result));
     }
-    
-    // /**
-    //  *
-    //  */
-    // public function testFileUploadBufferFile()
-    // {
-    //     $fileOptions = [
-    //         'file'  =>  file_get_contents(__DIR__.'\data\test_image.jpg'),
-    //         'fileName'  =>  'test_file_name',
-    //     ];
-
-    //     $mockBodyResponse = Utils::streamFor(json_encode($fileOptions));
-
-    //     $this->stubHttpClient(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-    //     $response = $this->client->upload($fileOptions);
-
-    //     UploadTest::assertEquals('asd', json_encode($response));
-    // }
 
     /**
      *
@@ -183,6 +182,12 @@ final class UploadTest extends TestCase
 
         $response = $this->client->uploadFile($fileOptions);
 
+        // Request Check
+        UploadTest::assertArrayHasKey('file',$fileOptions);
+        UploadTest::assertArrayHasKey('fileName',$fileOptions);
+        UploadTest::assertIsBool($fileOptions['isPrivateFile']);
+
+        // Response Check
         UploadTest::assertArrayNotHasKey('useUniqueFileName', (array) $response->result);
     }
 
@@ -203,6 +208,12 @@ final class UploadTest extends TestCase
 
         $response = $this->client->uploadFile($fileOptions);
 
+        // Request Body Check
+        UploadTest::assertArrayHasKey('file',$fileOptions);
+        UploadTest::assertArrayHasKey('fileName',$fileOptions);
+        UploadTest::assertIsString($fileOptions['tags']);
+
+        // Response Check
         UploadTest::assertArrayNotHasKey('isPrivateFile', (array) $response->result);
         UploadTest::assertArrayNotHasKey('useUniqueFileName', (array) $response->result);
     }
@@ -224,6 +235,12 @@ final class UploadTest extends TestCase
 
         $response = $this->client->uploadFile($fileOptions);
 
+        
+        // Request Body Check
+        UploadTest::assertArrayHasKey('file',$fileOptions);
+        UploadTest::assertArrayHasKey('fileName',$fileOptions);
+
+        // Response Check
         UploadTest::assertArrayNotHasKey('tags', (array) $response->result);
         UploadTest::assertArrayNotHasKey('useUniqueFileName', (array) $response->result);
         UploadTest::assertArrayNotHasKey('isPrivateFile', (array) $response->result);
@@ -234,50 +251,28 @@ final class UploadTest extends TestCase
     /**
      *
      */
-    public function testFileUploadIfSuccessfulWithAllParameters()
+    public function testServerSideError()
     {
-
-        // parameters
         $fileOptions = [
             'file'  =>  'http://lorempixel.com/640/480/',
             'fileName'  =>  'test_file_name',
-            "useUniqueFileName" => false,                                        // true|false
-            "tags" => implode(",",["abd", "def"]),                              // Comma Separated, Max length: 500 chars
-            "folder" => "/sample-folder",                                          // Using multiple forward slash (/) creates a nested folder
-            "isPrivateFile" => true,                                           // true|false
-            "customCoordinates" => implode(",", ["10", "10", "100", "100"]),    // Comma Separated, Max length: 500 chars
-            "responseFields" => implode(",", ["tags", "customMetadata"]),       // Comma Separated, check docs for more responseFields
-            "extensions" => [                                                   // An array of extensions, for more extensions refer to docs
-                [
-                    "name" => "remove-bg",
-                    "options" => [  // all parameters inside this object are sent directly to the third-party service
-                        "add_shadow" => true
-                    ]
-                ]
-            ],
-            "webhookUrl" => "https://example.com/webhook",                       // Notification URL to receive the final status of pending extensions
-            "overwriteFile" => true,                                             // true|false, in case of false useUniqueFileName should be true
-            "overwriteAITags" => false,                                          // true|false, set to false in order to preserve overwriteAITags
-            "overwriteTags" => false,                                            // true|false
-            "overwriteCustomMetadata" => true,                                   // true|false
-            "customMetadata" => [                                                // An array of created custom fields, for more details refer to docs
-                    "SKU" => "VS882HJ2JD",
-                    "price" => 599.99,
-            ]
         ];
-        
 
+        $error = [
+            "help" => "For support kindly contact us at support@imagekit.io .",
+            "message" => "Your account cannot be authenticated."
+        ];
 
         $mockBodyResponse = Utils::streamFor(json_encode($fileOptions));
 
-        $this->stubHttpClient(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+        $this->stubHttpClient(new Response(403, ['X-Foo' => 'Bar'], json_encode($error)));
 
         $response = $this->client->uploadFile($fileOptions);
-        $response = json_decode(json_encode($response),true);
 
-        UploadTest::assertEquals($fileOptions, $response['result']);
+        // Request Body Check
+        UploadTest::assertEquals(json_encode($error),json_encode($response->error));
     }
-
+    
     protected function setUp(): void
     {
         $this->client = new ImageKit(

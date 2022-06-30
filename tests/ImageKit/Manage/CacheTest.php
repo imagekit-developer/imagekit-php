@@ -31,7 +31,15 @@ class CacheTest extends TestCase
         $this->stubHttpClient('post', new Response(201, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
         $response = $this->client->purgeCache($image_url);
+        
+        // Request Check
+        CacheTest::assertNotNull($image_url);
+        if (!filter_var($image_url, FILTER_VALIDATE_URL)) {
+            CacheTest::assertFalse('Invalid URL');
+        }
+        CacheTest::assertIsString($image_url);
 
+        // Response Check
         CacheTest::assertEquals(json_encode($responseBody), json_encode($response->result));
     }
     
@@ -76,6 +84,11 @@ class CacheTest extends TestCase
 
         $response = $this->client->purgeCacheStatus($cacheRequestId);
 
+        // Request Check
+        CacheTest::assertNotNull($cacheRequestId);
+        CacheTest::assertIsString($cacheRequestId);
+
+        // Response Check
         CacheTest::assertEquals(json_encode($responseBody), json_encode($response->result));
     }
 

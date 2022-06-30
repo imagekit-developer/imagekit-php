@@ -127,7 +127,7 @@ $destinationPath = '/sample-folder2/';
 $copyFile = $imageKit->copy([
     'sourceFilePath' => $sourceFilePath,
     'destinationPath' => $destinationPath,
-    'includeVersions' => false
+    'includeFileVersions' => false
 ]);
 
 echo "\n\n";
@@ -205,11 +205,11 @@ echo "\n";
 
 $sourceFolderPath = $folderName;
 $destinationPath = '/sample-folder';
-$includeVersions = false;
+$includeFileVersions = false;
 $copyFolder = $imageKit->copyFolder([
     'sourceFolderPath' => $sourceFolderPath,
     'destinationPath' => $destinationPath,
-    'includeVersions' => $includeVersions
+    'includeFileVersions' => $includeFileVersions
 ]);
 
 echo "\n\n";

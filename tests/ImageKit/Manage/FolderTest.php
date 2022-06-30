@@ -35,6 +35,15 @@ class FolderTest extends TestCase
 
         $response = $this->client->createFolder($requestBody);
 
+        // Request Check
+        FolderTest::assertNotEmpty($requestBody);
+        FolderTest::assertIsArray($requestBody);
+        FolderTest::assertNotNull($requestBody['folderName']);
+        FolderTest::assertIsString($requestBody['folderName']);
+        FolderTest::assertNotNull($requestBody['parentFolderPath']);
+        FolderTest::assertIsString($requestBody['parentFolderPath']);
+
+        // Response Check
         FolderTest::assertNull($response->result);
         FolderTest::assertNull($response->error);
     }
@@ -120,6 +129,11 @@ class FolderTest extends TestCase
 
         $response = $this->client->deleteFolder($folderPath);
         
+        // Request Check
+        FolderTest::assertNotNull($folderPath);
+        FolderTest::assertIsString($folderPath);
+
+        // Response Check
         FolderTest::assertNull($response->result);
         FolderTest::assertNull($response->error);
     }
@@ -140,12 +154,12 @@ class FolderTest extends TestCase
         
         $sourceFolderPath = "/source-folder/";
         $destinationPath = "/destination-folder/";
-        $includeVersions = false;
+        $includeFileVersions = false;
 
         $requestBody = [
             'sourceFolderPath' => $sourceFolderPath,
             'destinationPath' => $destinationPath,
-            'includeVersions' => $includeVersions
+            'includeFileVersions' => $includeFileVersions
         ];
         
         $responseBody = [
@@ -157,7 +171,18 @@ class FolderTest extends TestCase
         $this->stubHttpClient('post', new Response(201, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
         $response = $this->client->copyFolder($requestBody);
+        
+        // Request Check
+        FileTest::assertIsArray($requestBody);
+        FileTest::assertNotEmpty($requestBody);
+        FileTest::assertNotNull($requestBody['sourceFolderPath']);
+        FileTest::assertIsString($requestBody['sourceFolderPath']);
+        FileTest::assertNotNull($requestBody['destinationPath']);
+        FileTest::assertIsString($requestBody['destinationPath']);
+        FileTest::assertArrayHasKey('includeFileVersions',$requestBody);
+        FileTest::assertIsBool($requestBody['includeFileVersions']);
 
+        // Response Check
         FolderTest::assertEquals(json_encode($responseBody), json_encode($response->result));
     }
 
@@ -271,6 +296,16 @@ class FolderTest extends TestCase
 
         $response = $this->client->moveFolder($requestBody);
 
+        
+        // Request Check
+        FileTest::assertIsArray($requestBody);
+        FileTest::assertNotEmpty($requestBody);
+        FileTest::assertNotNull($requestBody['sourceFolderPath']);
+        FileTest::assertIsString($requestBody['sourceFolderPath']);
+        FileTest::assertNotNull($requestBody['destinationPath']);
+        FileTest::assertIsString($requestBody['destinationPath']);
+
+        // Response Check
         FolderTest::assertEquals(json_encode($responseBody), json_encode($response->result));
     }
 

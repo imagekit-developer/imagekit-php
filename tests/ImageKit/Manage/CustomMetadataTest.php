@@ -48,6 +48,19 @@ class CustomMetadataTest extends TestCase
 
         $response = $this->client->createCustomMetadataField($requestBody);
 
+        // Request Check
+        CacheTest::assertNotEmpty($requestBody);
+        CacheTest::assertIsArray($requestBody);
+        CacheTest::assertNotNull($requestBody['name']);
+        CacheTest::assertIsString($requestBody['name']);
+        CacheTest::assertNotNull($requestBody['label']);
+        CacheTest::assertIsString($requestBody['label']);
+        CacheTest::assertIsArray($requestBody['schema']);
+        CacheTest::assertNotEmpty($requestBody['schema']);
+        CacheTest::assertNotNull($requestBody['schema']['type']);
+        CacheTest::assertIsString($requestBody['schema']['type']);
+
+        // Response Check
         CacheTest::assertEquals(json_encode($responseBody), json_encode($response->result));
     }
 
@@ -197,6 +210,10 @@ class CustomMetadataTest extends TestCase
 
          $response = $this->client->getCustomMetadataFields($includeDeleted);
 
+        // Request Check
+        CacheTest::assertIsBool($includeDeleted);
+
+        // Response Check
         CacheTest::assertEquals(json_encode($responseBody), json_encode($response->result));
     }
 
@@ -241,6 +258,15 @@ class CustomMetadataTest extends TestCase
 
         $response = $this->client->updateCustomMetadataField($customMetadataFieldId, $requestBody);
 
+        // Request Check
+        CacheTest::assertNotEmpty($requestBody);
+        CacheTest::assertIsArray($requestBody);
+        CacheTest::assertNotNull($requestBody['label']);
+        CacheTest::assertIsString($requestBody['label']);
+        CacheTest::assertIsArray($requestBody['schema']);
+        CacheTest::assertNotEmpty($requestBody['schema']);
+
+        // Response Check
         CacheTest::assertEquals(json_encode($responseBody), json_encode($response->result));
     }
 
@@ -390,7 +416,12 @@ class CustomMetadataTest extends TestCase
         $this->stubHttpClient('delete', new Response(201, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
         $response = $this->client->deleteCustomMetadataField($customMetadataFieldId);
+        
+        // Request Check
+        CacheTest::assertNotNull($customMetadataFieldId);
+        CacheTest::assertIsString($customMetadataFieldId);
 
+        // Response Check
         CacheTest::assertNull($response->result);    
         CacheTest::assertNull($response->error);    
     }

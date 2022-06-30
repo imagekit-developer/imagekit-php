@@ -687,7 +687,7 @@ class ImageKit
      *
      * @link https://docs.imagekit.io/api-reference/media-api/copy-file
      *
-     * @param $parameter['sourceFilePath','destinationPath','includeVersions']
+     * @param $parameter['sourceFilePath','destinationPath','includeFileVersions']
      * @return Response
      * 
      */
@@ -702,12 +702,12 @@ class ImageKit
         if(sizeof($parameter)==0){
             return Response::respond(true, ((object)ErrorMessages::$COPY_FILE_PARAMETER_EMPTY_ARRAY));
         }
-        if (empty($parameter['sourceFilePath']) || empty($parameter['destinationPath']) || !isset($parameter['includeVersions'])) {
+        if (empty($parameter['sourceFilePath']) || empty($parameter['destinationPath']) || !isset($parameter['includeFileVersions'])) {
             return Response::respond(true, ((object)ErrorMessages::$COPY_FILE_DATA_INVALID));
         }
 
         $this->httpClient->setUri(Endpoints::getCopyFileEndpoint());
-        return Manage\File::copy($parameter['sourceFilePath'], $parameter['destinationPath'], $parameter['includeVersions'], $this->httpClient);
+        return Manage\File::copy($parameter['sourceFilePath'], $parameter['destinationPath'], $parameter['includeFileVersions'], $this->httpClient);
     }
 
     
@@ -719,13 +719,13 @@ class ImageKit
      *
      * @param $sourceFilePath
      * @param $destinationPath
-     * @param $includeVersions
+     * @param $includeFileVersions
      * @return Response
      * 
      * @deprecated since 3.0.0, use <code>copy</code>
      *
      */
-    public function copyFile($sourceFilePath=null, $destinationPath=null, $includeVersions=null)
+    public function copyFile($sourceFilePath=null, $destinationPath=null, $includeFileVersions=null)
     {
         
         if (empty($sourceFilePath) || empty($destinationPath)) {
@@ -733,7 +733,7 @@ class ImageKit
         }
 
         $this->httpClient->setUri(Endpoints::getCopyFileEndpoint());
-        return Manage\File::copy($sourceFilePath, $destinationPath, $includeVersions, $this->httpClient);
+        return Manage\File::copy($sourceFilePath, $destinationPath, $includeFileVersions, $this->httpClient);
     }
 
     /**
@@ -928,7 +928,7 @@ class ImageKit
      *
      * @link https://docs.imagekit.io/api-reference/media-api/copy-folder
      *
-     * @param $parameter[$sourceFolderPath, $destinationPath, includeVersions]
+     * @param $parameter[$sourceFolderPath, $destinationPath, includeFileVersions]
      *
      * @return Response
      */
@@ -943,12 +943,12 @@ class ImageKit
         if(sizeof($parameter)==0){
             return Response::respond(true, ((object)ErrorMessages::$COPY_FOLDER_PARAMETER_EMPTY_ARRAY));
         }
-        if (empty($parameter['sourceFolderPath']) || empty($parameter['destinationPath']) || !isset($parameter['includeVersions'])) {
+        if (empty($parameter['sourceFolderPath']) || empty($parameter['destinationPath']) || !isset($parameter['includeFileVersions'])) {
             return Response::respond(true, ((object)ErrorMessages::$COPY_FOLDER_DATA_INVALID));
         }
 
         $this->httpClient->setUri(Endpoints::getCopyFolderEndpoint());
-        return Manage\Folder::copy($parameter['sourceFolderPath'], $parameter['destinationPath'], $parameter['includeVersions'], $this->httpClient);
+        return Manage\Folder::copy($parameter['sourceFolderPath'], $parameter['destinationPath'], $parameter['includeFileVersions'], $this->httpClient);
     }
 
     /**

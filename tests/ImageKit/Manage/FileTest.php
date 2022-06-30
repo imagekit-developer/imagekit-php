@@ -78,6 +78,11 @@ final class FileTest extends TestCase
 
         $response = $this->client->listFiles($listOptions);
 
+        // Request Check
+        FileTest::assertIsArray($listOptions);
+        FileTest::assertNotEmpty($listOptions);
+
+        // Response Check
         FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
     }
       
@@ -118,6 +123,11 @@ final class FileTest extends TestCase
 
         $response = $this->client->getFileDetails($fileId);
 
+        // Request Check
+        FileTest::assertNotNull($fileId);
+        FileTest::assertIsString($fileId);
+
+        // Response Check
         FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
     }
 
@@ -167,6 +177,13 @@ final class FileTest extends TestCase
 
         $response = $this->client->getFileVersionDetails($fileId, $versionId);
 
+        // Request Check
+        FileTest::assertNotNull($fileId);
+        FileTest::assertIsString($fileId);
+        FileTest::assertNotNull($versionId);
+        FileTest::assertIsString($versionId);
+
+        // Response Check
         FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
     }
 
@@ -243,6 +260,11 @@ final class FileTest extends TestCase
 
         $response = $this->client->getFileVersions($fileId);
 
+        // Request Check
+        FileTest::assertNotNull($fileId);
+        FileTest::assertIsString($fileId);
+
+        // Response Check
         FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
     }
 
@@ -269,7 +291,19 @@ final class FileTest extends TestCase
 
         $updateData = [
             'customCoordinates' => '10,10,100,100',
-            'tags' => ['tag1', 'tag2']
+            'tags' => ['tag1', 'tag2'],
+            'removeAITags'=>['car','vehicle','motorsports'],
+            'extensions'=>[
+                [
+                    "name" => "google-auto-tagging",
+                    "maxTags" => 5,
+                    "minConfidence" => 95
+                ]
+            ],
+            "customMetadata" => [
+                "SKU" => "VS882HJ2JD",
+                "price" => 599.99,
+            ]
         ];
 
         $responseBody = [
@@ -291,6 +325,16 @@ final class FileTest extends TestCase
 
         $response = $this->client->updateFileDetails($fileId, $updateData);
 
+        // Request Check
+        FileTest::assertNotNull($fileId);
+        FileTest::assertIsString($fileId);
+        FileTest::assertIsString($updateData['customCoordinates']);
+        FileTest::assertIsArray($updateData['tags']);
+        FileTest::assertIsArray($updateData['removeAITags']);
+        FileTest::assertIsArray($updateData['extensions']);
+        FileTest::assertIsArray($updateData['customMetadata']);
+
+        // Response Check        
         FileTest::assertNull($response->error);
         FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
     }
@@ -350,6 +394,13 @@ final class FileTest extends TestCase
 
         $response = $this->client->bulkAddTags($fileIds, $tags);
 
+        // Request Check
+        FileTest::assertNotEmpty($fileIds);
+        FileTest::assertIsArray($fileIds);
+        FileTest::assertNotEmpty($tags);
+        FileTest::assertIsArray($tags);
+
+        // Response Check
         FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
     }
     
@@ -431,6 +482,13 @@ final class FileTest extends TestCase
 
         $response = $this->client->bulkRemoveTags($fileIds, $tags);
 
+        // Request Check
+        FileTest::assertNotEmpty($fileIds);
+        FileTest::assertIsArray($fileIds);
+        FileTest::assertNotEmpty($tags);
+        FileTest::assertIsArray($tags);
+
+        // Response Check
         FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
     }
     
@@ -497,7 +555,7 @@ final class FileTest extends TestCase
     public function testBulkRemoveAITags()
     {
         $fileIds = ['5e21880d5efe355febd4bccd','5e1c13c1c55ec3437c451403'];
-        $tags = ['image_AITag_1','image_AITag_2'];
+        $AItags = ['image_AITag_1','image_AITag_2'];
 
         $responseBody = [
             "successfullyUpdatedFileIds" => [
@@ -510,8 +568,15 @@ final class FileTest extends TestCase
 
         $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
-        $response = $this->client->bulkRemoveAITags($fileIds, $tags);
+        $response = $this->client->bulkRemoveAITags($fileIds, $AItags);
 
+        // Request Check
+        FileTest::assertNotEmpty($fileIds);
+        FileTest::assertIsArray($fileIds);
+        FileTest::assertNotEmpty($AItags);
+        FileTest::assertIsArray($AItags);
+
+        // Response Check
         FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
     }
     
@@ -584,6 +649,11 @@ final class FileTest extends TestCase
 
         $response = $this->client->deleteFile($fileId);
 
+        // Request Check
+        FileTest::assertNotNull($fileId);
+        FileTest::assertIsString($fileId);
+
+        // Response Check
         FolderTest::assertNull($response->result);
         FolderTest::assertNull($response->error);
     }
@@ -614,6 +684,13 @@ final class FileTest extends TestCase
 
         $response = $this->client->deleteFileVersion($fileId, $versionId);
 
+        // Request Check
+        FileTest::assertNotNull($fileId);
+        FileTest::assertIsString($fileId);
+        FileTest::assertNotNull($versionId);
+        FileTest::assertIsString($versionId);
+
+        // Response Check
         FolderTest::assertNull($response->result);
         FolderTest::assertNull($response->error);
     }
@@ -664,6 +741,11 @@ final class FileTest extends TestCase
 
         $response = $this->client->bulkDeleteFiles($fileIds);
 
+        // Request Check
+        FileTest::assertNotEmpty($fileIds);
+        FileTest::assertIsArray($fileIds);
+
+        // Response Check
         FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
     }
 
@@ -706,12 +788,12 @@ final class FileTest extends TestCase
     {
         $sourceFilePath = '/file.jpg';
         $destinationPath = '/';
-        $includeVersions = true;
+        $includeFileVersions = true;
 
         $requestBody = [
             'sourceFilePath' => $sourceFilePath,
             'destinationPath' => $destinationPath,
-            'includeVersions' => $includeVersions
+            'includeFileVersions' => $includeFileVersions
         ];
 
         $mockBodyResponse = Utils::streamFor();
@@ -720,6 +802,17 @@ final class FileTest extends TestCase
 
         $response = $this->client->copy($requestBody);
 
+        // Request Check
+        FileTest::assertIsArray($requestBody);
+        FileTest::assertNotEmpty($requestBody);
+        FileTest::assertNotNull($requestBody['sourceFilePath']);
+        FileTest::assertIsString($requestBody['sourceFilePath']);
+        FileTest::assertNotNull($requestBody['destinationPath']);
+        FileTest::assertIsString($requestBody['destinationPath']);
+        FileTest::assertArrayHasKey('includeFileVersions',$requestBody);
+        FileTest::assertIsBool($requestBody['includeFileVersions']);
+
+        // Response Check
         FolderTest::assertNull($response->result);
         FolderTest::assertNull($response->error);
     }
@@ -762,7 +855,6 @@ final class FileTest extends TestCase
         
         FileTest::assertNull($response->result);
         FileTest::assertEquals('Missing parameter sourceFilePath and/or destinationPath and/or includeVersions for Copy File API',$response->error->message);
-
     }
     
     /**
@@ -831,6 +923,15 @@ final class FileTest extends TestCase
 
         $response = $this->client->move($requestBody);
         
+        // Request Check
+        FileTest::assertIsArray($requestBody);
+        FileTest::assertNotEmpty($requestBody);
+        FileTest::assertNotNull($requestBody['sourceFilePath']);
+        FileTest::assertIsString($requestBody['sourceFilePath']);
+        FileTest::assertNotNull($requestBody['destinationPath']);
+        FileTest::assertIsString($requestBody['destinationPath']);
+
+        // Response Check
         FolderTest::assertNull($response->result);
         FolderTest::assertNull($response->error);
     }
@@ -899,6 +1000,7 @@ final class FileTest extends TestCase
         $requestBody = [
             'filePath' => $filePath,
             'newFileName' => $newFileName,
+            'purgeCache' => true
         ];
         $mockBodyResponse = Utils::streamFor();
 
@@ -906,6 +1008,16 @@ final class FileTest extends TestCase
 
         $response = $this->client->rename($requestBody);
         
+        // Request Check
+        FileTest::assertIsArray($requestBody);
+        FileTest::assertNotEmpty($requestBody);
+        FileTest::assertNotNull($requestBody['filePath']);
+        FileTest::assertIsString($requestBody['filePath']);
+        FileTest::assertNotNull($requestBody['newFileName']);
+        FileTest::assertIsString($requestBody['newFileName']);
+        FileTest::assertIsBool($requestBody['purgeCache']);
+
+        // Response Check
         FolderTest::assertNull($response->result);
         FolderTest::assertNull($response->error);
     }
@@ -1019,6 +1131,15 @@ final class FileTest extends TestCase
 
         $response = $this->client->restoreFileVersion($requestBody);
 
+        // Request Check
+        FileTest::assertIsArray($requestBody);
+        FileTest::assertNotEmpty($requestBody);
+        FileTest::assertNotNull($requestBody['fileId']);
+        FileTest::assertIsString($requestBody['fileId']);
+        FileTest::assertNotNull($requestBody['versionId']);
+        FileTest::assertIsString($requestBody['versionId']);
+
+        // Response Check
         FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
     }
 
@@ -1104,7 +1225,7 @@ final class FileTest extends TestCase
     {
         $fileId = '5de4fb65c851e55df73abe8d';
         
-        $requestBody = [
+        $responseBody = [
             'height' => 3214,
             'width' => 3948,
             'size' => 207097,
@@ -1151,13 +1272,18 @@ final class FileTest extends TestCase
             ],
             'pHash' => 'd1813e2fc22c7b2f',
         ];
-        $mockBodyResponse = Utils::streamFor(json_encode($requestBody));
+        $mockBodyResponse = Utils::streamFor(json_encode($responseBody));
 
         $this->stubHttpClient('get', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
 
         $response = $this->client->getFileMetaData($fileId);
 
-        FileTest::assertEquals(json_encode($requestBody), json_encode($response->result));
+        // Request Check
+        FileTest::assertNotNull($fileId);
+        FileTest::assertIsString($fileId);
+
+        // Response Check
+        FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
     }
 
     

@@ -9,6 +9,7 @@ use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Utils;
 use ImageKit\ImageKit;
+use ImageKit\Utils\Transformation;
 use ImageKit\Resource\GuzzleHttpWrapper;
 use GuzzleHttp\Handler\MockHandler;
 use PHPUnit\Framework\TestCase;
@@ -29,7 +30,9 @@ final class UploadTest extends TestCase
     /**
      * @var ImageKit
      */
+    
     private $client;
+    private $mockClient;
 
     private $uploadSuccessResponseObj = [
         "fileId"=> "598821f949c0a938d57563bd",
@@ -153,6 +156,7 @@ final class UploadTest extends TestCase
 
         $mockBodyResponse = Utils::streamFor(json_encode($this->uploadSuccessResponseObj));
 
+
         $mock = new MockHandler([
             new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
         ]);
@@ -164,13 +168,16 @@ final class UploadTest extends TestCase
 
         $handlerStack->push($history);
         
-        $client = new Client(['handler' => $handlerStack]);
-
-        $requestMultiPart = GuzzleHttpWrapper::getMultipartData($fileOptions);
-        $client->request('POST', Endpoints::getUploadFileEndpoint(), [
-            'multipart' =>$requestMultiPart
-        ]);
-
+        $mockClient = new ImageKit(
+            'testing_public_key',
+            'testing_private_key',
+            'https://ik.imagekit.io/demo',
+            Transformation::DEFAULT_TRANSFORMATION_POSITION,
+            $handlerStack
+        );
+        
+        $response = $mockClient->uploadFile($fileOptions);
+        
         $requestBody = $container[0]['request']->getBody();
         $requestHeaders = $container[0]['request']->getHeaders();
         $boundary = str_replace("multipart/form-data; boundary=","",$requestHeaders["Content-Type"][0]);
@@ -187,17 +194,12 @@ final class UploadTest extends TestCase
         $this->checkFormData($stream,$boundary,"isPrivateFile","true");
         $this->checkFormData($stream,$boundary,"useUniqueFileName","false");
         $this->checkFormData($stream,$boundary,"responseFields",implode(",", ["tags", "customMetadata"]));
-        $this->checkFormData($stream,$boundary,"extensions[0][name]","remove-bg");
+        $this->checkFormData($stream,$boundary,"extensions",json_encode($fileOptions['extensions']));
         $this->checkFormData($stream,$boundary,"webhookUrl","https://example.com/webhook");
         $this->checkFormData($stream,$boundary,"overwriteFile","true");
         $this->checkFormData($stream,$boundary,"overwriteAITags","false");
         $this->checkFormData($stream,$boundary,"overwriteCustomMetadata","true");
-        $this->checkFormData($stream,$boundary,"customMetadata[SKU]","VS882HJ2JD");
-        $this->checkFormData($stream,$boundary,"customMetadata[price]","599.99");
-        
-        $this->stubHttpClient(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->uploadFile($fileOptions);
+        $this->checkFormData($stream,$boundary,"customMetadata",json_encode($fileOptions['customMetadata']));
         
         // Response Check
         UploadTest::assertEquals(json_encode($this->uploadSuccessResponseObj), json_encode($response->result));
@@ -227,13 +229,16 @@ final class UploadTest extends TestCase
 
         $handlerStack->push($history);
         
-        $client = new Client(['handler' => $handlerStack]);
-
-        $requestMultiPart = GuzzleHttpWrapper::getMultipartData($fileOptions);
-        $client->request('POST', Endpoints::getUploadFileEndpoint(), [
-            'multipart' =>$requestMultiPart
-        ]);
-
+        $mockClient = new ImageKit(
+            'testing_public_key',
+            'testing_private_key',
+            'https://ik.imagekit.io/demo',
+            Transformation::DEFAULT_TRANSFORMATION_POSITION,
+            $handlerStack
+        );
+        
+        $response = $mockClient->uploadFile($fileOptions);
+        
         $requestBody = $container[0]['request']->getBody();
         $requestHeaders = $container[0]['request']->getHeaders();
         $boundary = str_replace("multipart/form-data; boundary=","",$requestHeaders["Content-Type"][0]);
@@ -248,12 +253,6 @@ final class UploadTest extends TestCase
         $this->checkFormData($stream,$boundary,"fileName",$fileOptions['fileName']);
         $this->checkFormData($stream,$boundary,"isPrivateFile","true");
         UploadTest::assertStringNotContainsString("useUniqueFileName",$stream);
-        
-        $mockBodyResponse = Utils::streamFor(json_encode($fileOptions));
-
-        $this->stubHttpClient(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->uploadFile($fileOptions);
     }
 
     /**
@@ -280,12 +279,15 @@ final class UploadTest extends TestCase
 
         $handlerStack->push($history);
         
-        $client = new Client(['handler' => $handlerStack]);
-
-        $requestMultiPart = GuzzleHttpWrapper::getMultipartData($fileOptions);
-        $client->request('POST', Endpoints::getUploadFileEndpoint(), [
-            'multipart' =>$requestMultiPart
-        ]);
+        $mockClient = new ImageKit(
+            'testing_public_key',
+            'testing_private_key',
+            'https://ik.imagekit.io/demo',
+            Transformation::DEFAULT_TRANSFORMATION_POSITION,
+            $handlerStack
+        );
+        
+        $response = $mockClient->uploadFile($fileOptions);
 
         $requestBody = $container[0]['request']->getBody();
         $requestHeaders = $container[0]['request']->getHeaders();
@@ -302,10 +304,6 @@ final class UploadTest extends TestCase
         $this->checkFormData($stream,$boundary,"tags","abd,def");
         UploadTest::assertStringNotContainsString("isPrivateFile",$stream);
         UploadTest::assertStringNotContainsString("useUniqueFileName",$stream);
-        
-        $this->stubHttpClient(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->uploadFile($fileOptions);
     }
 
     /**
@@ -331,12 +329,15 @@ final class UploadTest extends TestCase
 
         $handlerStack->push($history);
         
-        $client = new Client(['handler' => $handlerStack]);
-
-        $requestMultiPart = GuzzleHttpWrapper::getMultipartData($fileOptions);
-        $client->request('POST', Endpoints::getUploadFileEndpoint(), [
-            'multipart' =>$requestMultiPart
-        ]);
+        $mockClient = new ImageKit(
+            'testing_public_key',
+            'testing_private_key',
+            'https://ik.imagekit.io/demo',
+            Transformation::DEFAULT_TRANSFORMATION_POSITION,
+            $handlerStack
+        );
+        
+        $response = $mockClient->uploadFile($fileOptions);
 
         $requestBody = $container[0]['request']->getBody();
         $requestHeaders = $container[0]['request']->getHeaders();
@@ -355,10 +356,6 @@ final class UploadTest extends TestCase
         UploadTest::assertStringNotContainsString("useUniqueFileName",$stream);
         UploadTest::assertStringNotContainsString("customCoordinates",$stream);
         UploadTest::assertStringNotContainsString("responseFields",$stream);
-        
-        $this->stubHttpClient(new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
-
-        $response = $this->client->uploadFile($fileOptions);
     }
     
     /**

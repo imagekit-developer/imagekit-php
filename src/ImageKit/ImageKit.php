@@ -59,7 +59,7 @@ class ImageKit
      * @return void
      */
     public function __construct($publicKey, $privateKey, $urlEndpoint, $transformationPosition =
-    Transformation::DEFAULT_TRANSFORMATION_POSITION)
+    Transformation::DEFAULT_TRANSFORMATION_POSITION, $handlerStack=null)
     {
         $this->configuration = new Configuration();
         if ($publicKey == null || empty($publicKey)) {
@@ -90,8 +90,7 @@ class ImageKit
         }
         $this->configuration->transformationPosition = $transformationPosition;
 
-
-        $client = new Client(Authorization::addAuthorization($this->configuration));
+        $client = new Client(Authorization::addAuthorization($this->configuration,$handlerStack));
         $this->httpClient = new GuzzleHttpWrapper($client);
     }
 

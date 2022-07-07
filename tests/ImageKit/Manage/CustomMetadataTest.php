@@ -5,9 +5,13 @@ namespace ImageKit\Tests\ImageKit\Manage;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Utils;
 use ImageKit\ImageKit;
-use ImageKit\Manage\Cache;
+use ImageKit\Utils\Transformation;
 use ImageKit\Resource\GuzzleHttpWrapper;
+use GuzzleHttp\Handler\MockHandler;
 use PHPUnit\Framework\TestCase;
+use GuzzleHttp\Client;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Middleware;
 
 class CustomMetadataTest extends TestCase
 {
@@ -44,21 +48,34 @@ class CustomMetadataTest extends TestCase
         
         $mockBodyResponse = Utils::streamFor(json_encode($responseBody));
 
-        $this->stubHttpClient('post', new Response(201, ['X-Foo' => 'Bar'], $mockBodyResponse));
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
+        ]);
 
-        $response = $this->client->createCustomMetadataField($requestBody);
+        $handlerStack = HandlerStack::create($mock);
+
+        $container = [];
+        $history = Middleware::history($container);
+
+        $handlerStack->push($history);
+        
+        $this->createMockClient($handlerStack);
+
+        $response = $this->mockClient->createCustomMetadataField($requestBody);
+
+        $request = $container[0]['request'];
+        $requestPath = $request->getUri()->getPath();
+        $stream = Utils::streamFor($request->getBody())->getContents();
+        $stream = json_decode($stream,true);
 
         // Request Check
-        CacheTest::assertNotEmpty($requestBody);
-        CacheTest::assertIsArray($requestBody);
-        CacheTest::assertNotNull($requestBody['name']);
-        CacheTest::assertIsString($requestBody['name']);
-        CacheTest::assertNotNull($requestBody['label']);
-        CacheTest::assertIsString($requestBody['label']);
-        CacheTest::assertIsArray($requestBody['schema']);
-        CacheTest::assertNotEmpty($requestBody['schema']);
-        CacheTest::assertNotNull($requestBody['schema']['type']);
-        CacheTest::assertIsString($requestBody['schema']['type']);
+        CacheTest::assertEquals("/v1/customMetadataFields",$requestPath);
+        CacheTest::assertEquals($stream['name'],$requestBody['name']);
+        CacheTest::assertEquals($stream['label'],$requestBody['label']);
+        CacheTest::assertEquals($stream['schema'],$requestBody['schema']);
+        CacheTest::assertEquals($stream['schema']['type'],$requestBody['schema']['type']);
+        CacheTest::assertEquals($stream['schema']['minValue'],$requestBody['schema']['minValue']);
+        CacheTest::assertEquals($stream['schema']['maxValue'],$requestBody['schema']['maxValue']);
 
         // Response Check
         CacheTest::assertEquals(json_encode($responseBody), json_encode($response->result));
@@ -206,12 +223,90 @@ class CustomMetadataTest extends TestCase
         
         $mockBodyResponse = Utils::streamFor(json_encode($responseBody));
 
-        $this->stubHttpClient('get', new Response(201, ['X-Foo' => 'Bar'], $mockBodyResponse));
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
+        ]);
 
-         $response = $this->client->getCustomMetadataFields($includeDeleted);
+        $handlerStack = HandlerStack::create($mock);
 
+        $container = [];
+        $history = Middleware::history($container);
+
+        $handlerStack->push($history);
+        
+        $this->createMockClient($handlerStack);
+
+        $response = $this->mockClient->getCustomMetadataFields($includeDeleted);
+
+        $request = $container[0]['request'];
+        $requestPath = $request->getUri()->getPath();
+        $queryString = $request->getUri()->getQuery();
+        $stream = Utils::streamFor($request->getBody())->getContents();
+        $stream = json_decode($stream,true);
+        
         // Request Check
-        CacheTest::assertIsBool($includeDeleted);
+        CacheTest::assertEquals("/v1/customMetadataFields",$requestPath);
+        CacheTest::assertEquals($queryString,http_build_query(['includeDeleted'=>$includeDeleted]));
+
+        // Response Check
+        CacheTest::assertEquals(json_encode($responseBody), json_encode($response->result));
+    }
+
+    
+    /**
+     * 
+     */
+    public function testGetFieldsWithoutIncludeDeleted()
+    {
+        
+        $responseBody = [
+            [
+                "id" => "598821f949c0a938d57563dd",
+                "name" => "brand",
+                "label" => "brand",
+                "schema" => [
+                    "type" => "Text",
+                    "defaultValue" => "Nike"
+                ]
+            ],
+            [
+                "id" => "865421f949c0a835d57563dd",
+                "name" => "price",
+                "label" => "price",
+                "schema" => [
+                    "type" => "Number",
+                    "minValue" => 1000,
+                    "maxValue" => 3000
+                ]
+            ]
+        ];
+        
+        $mockBodyResponse = Utils::streamFor(json_encode($responseBody));
+
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
+        ]);
+
+        $handlerStack = HandlerStack::create($mock);
+
+        $container = [];
+        $history = Middleware::history($container);
+
+        $handlerStack->push($history);
+        
+        $this->createMockClient($handlerStack);
+
+        $response = $this->mockClient->getCustomMetadataFields();
+
+        $request = $container[0]['request'];
+        $requestPath = $request->getUri()->getPath();
+        $queryString = $request->getUri()->getQuery();
+        $stream = Utils::streamFor($request->getBody())->getContents();
+        $stream = json_decode($stream,true);
+        
+        // Request Check
+        CacheTest::assertEquals("/v1/customMetadataFields",$requestPath);
+        CacheTest::assertEquals($queryString,http_build_query(['includeDeleted'=>false]));
 
         // Response Check
         CacheTest::assertEquals(json_encode($responseBody), json_encode($response->result));
@@ -254,18 +349,31 @@ class CustomMetadataTest extends TestCase
         
         $mockBodyResponse = Utils::streamFor(json_encode($responseBody));
 
-        $this->stubHttpClient('patch', new Response(201, ['X-Foo' => 'Bar'], $mockBodyResponse));
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
+        ]);
 
-        $response = $this->client->updateCustomMetadataField($customMetadataFieldId, $requestBody);
+        $handlerStack = HandlerStack::create($mock);
+
+        $container = [];
+        $history = Middleware::history($container);
+
+        $handlerStack->push($history);
+        
+        $this->createMockClient($handlerStack);
+        
+        $response = $this->mockClient->updateCustomMetadataField($customMetadataFieldId, $requestBody);
+
+        $request = $container[0]['request'];
+        $requestPath = $request->getUri()->getPath();
+        $stream = Utils::streamFor($request->getBody())->getContents();
+        $stream = json_decode($stream,true);
 
         // Request Check
-        CacheTest::assertNotEmpty($requestBody);
-        CacheTest::assertIsArray($requestBody);
-        CacheTest::assertNotNull($requestBody['label']);
-        CacheTest::assertIsString($requestBody['label']);
-        CacheTest::assertIsArray($requestBody['schema']);
-        CacheTest::assertNotEmpty($requestBody['schema']);
-
+        CacheTest::assertEquals("/v1/customMetadataFields/" . $customMetadataFieldId,$requestPath);
+        CacheTest::assertEquals($stream['label'],$requestBody['label']);
+        CacheTest::assertEquals($stream['schema'],$requestBody['schema']);CacheTest::assertEquals($stream['schema']['type'],$requestBody['schema']['type']);
+        
         // Response Check
         CacheTest::assertEquals(json_encode($responseBody), json_encode($response->result));
     }
@@ -413,13 +521,29 @@ class CustomMetadataTest extends TestCase
 
         $mockBodyResponse = Utils::streamFor();
 
-        $this->stubHttpClient('delete', new Response(201, ['X-Foo' => 'Bar'], $mockBodyResponse));
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
+        ]);
 
-        $response = $this->client->deleteCustomMetadataField($customMetadataFieldId);
+        $handlerStack = HandlerStack::create($mock);
+
+        $container = [];
+        $history = Middleware::history($container);
+
+        $handlerStack->push($history);
         
+        $this->createMockClient($handlerStack);
+
+        $response = $this->mockClient->deleteCustomMetadataField($customMetadataFieldId);
+        
+        $request = $container[0]['request'];
+        $requestPath = $request->getUri()->getPath();
+        $stream = Utils::streamFor($request->getBody())->getContents();
+        $stream = json_decode($stream,true);
+
         // Request Check
-        CacheTest::assertNotNull($customMetadataFieldId);
-        CacheTest::assertIsString($customMetadataFieldId);
+        CacheTest::assertEquals("/v1/customMetadataFields/" . $customMetadataFieldId,$requestPath);
+        CacheTest::assertEmpty($stream);
 
         // Response Check
         CacheTest::assertNull($response->result);    
@@ -461,6 +585,20 @@ class CustomMetadataTest extends TestCase
         );
 
     }
+    
+    /**
+     * 
+     */
+    private function createMockClient($handler){
+        $this->mockClient = new ImageKit(
+            'testing_public_key',
+            'testing_private_key',
+            'https://ik.imagekit.io/demo',
+            Transformation::DEFAULT_TRANSFORMATION_POSITION,
+            $handler
+        );
+    }
+
 
     protected function tearDown(): void
     {

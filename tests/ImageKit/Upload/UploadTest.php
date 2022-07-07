@@ -16,8 +16,6 @@ use PHPUnit\Framework\TestCase;
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
-use ImageKit\Constants\Endpoints;
-
 
 use function json_encode;
 
@@ -67,6 +65,19 @@ final class UploadTest extends TestCase
         $doClosure();
     }
 
+    /**
+     * 
+     */
+    private function createMockClient($handler){
+        $this->mockClient = new ImageKit(
+            'testing_public_key',
+            'testing_private_key',
+            'https://ik.imagekit.io/demo',
+            Transformation::DEFAULT_TRANSFORMATION_POSITION,
+            $handler
+        );
+    }
+     
     private function checkFormData($requestBody, $boundary, $fieldName, $fieldValue) {
         
         $string = '--'.$boundary.' Content-Disposition: form-data; name="'.$fieldName.'" Content-Length: '.strlen($fieldValue).'  '.$fieldValue;
@@ -168,15 +179,9 @@ final class UploadTest extends TestCase
 
         $handlerStack->push($history);
         
-        $mockClient = new ImageKit(
-            'testing_public_key',
-            'testing_private_key',
-            'https://ik.imagekit.io/demo',
-            Transformation::DEFAULT_TRANSFORMATION_POSITION,
-            $handlerStack
-        );
+        $this->createMockClient($handlerStack);
         
-        $response = $mockClient->uploadFile($fileOptions);
+        $response = $this->mockClient->uploadFile($fileOptions);
         
         $requestBody = $container[0]['request']->getBody();
         $requestHeaders = $container[0]['request']->getHeaders();
@@ -229,15 +234,9 @@ final class UploadTest extends TestCase
 
         $handlerStack->push($history);
         
-        $mockClient = new ImageKit(
-            'testing_public_key',
-            'testing_private_key',
-            'https://ik.imagekit.io/demo',
-            Transformation::DEFAULT_TRANSFORMATION_POSITION,
-            $handlerStack
-        );
+        $this->createMockClient($handlerStack);
         
-        $response = $mockClient->uploadFile($fileOptions);
+        $response = $this->mockClient->uploadFile($fileOptions);
         
         $requestBody = $container[0]['request']->getBody();
         $requestHeaders = $container[0]['request']->getHeaders();
@@ -278,16 +277,10 @@ final class UploadTest extends TestCase
         $history = Middleware::history($container);
 
         $handlerStack->push($history);
+
+        $this->createMockClient($handlerStack);
         
-        $mockClient = new ImageKit(
-            'testing_public_key',
-            'testing_private_key',
-            'https://ik.imagekit.io/demo',
-            Transformation::DEFAULT_TRANSFORMATION_POSITION,
-            $handlerStack
-        );
-        
-        $response = $mockClient->uploadFile($fileOptions);
+        $response = $this->mockClient->uploadFile($fileOptions);
 
         $requestBody = $container[0]['request']->getBody();
         $requestHeaders = $container[0]['request']->getHeaders();
@@ -304,6 +297,136 @@ final class UploadTest extends TestCase
         $this->checkFormData($stream,$boundary,"tags","abd,def");
         UploadTest::assertStringNotContainsString("isPrivateFile",$stream);
         UploadTest::assertStringNotContainsString("useUniqueFileName",$stream);
+    }
+
+    /**
+     *
+     */
+    public function testFileUploadTagsAsArray()
+    {
+        $fileOptions = [
+            'file'  =>  'http://lorempixel.com/640/480/',
+            'fileName'  =>  'test_file_name',
+            "tags" => ["abd", "def"],
+        ];
+
+        $mockBodyResponse = Utils::streamFor(json_encode($fileOptions));
+
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
+        ]);
+
+        $handlerStack = HandlerStack::create($mock);
+
+        $container = [];
+        $history = Middleware::history($container);
+
+        $handlerStack->push($history);
+        
+        $this->createMockClient($handlerStack);
+        
+        $response = $this->mockClient->uploadFile($fileOptions);
+
+        $requestBody = $container[0]['request']->getBody();
+        $requestHeaders = $container[0]['request']->getHeaders();
+        $boundary = str_replace("multipart/form-data; boundary=","",$requestHeaders["Content-Type"][0]);
+
+        UploadTest::assertArrayHasKey("Content-Type",$requestHeaders);
+        UploadTest::assertStringStartsWith("multipart/form-data; boundary=",$requestHeaders['Content-Type'][0]);
+
+        $stream = Utils::streamFor($requestBody);
+        $stream = str_replace('\r\n',' ',json_encode($stream->getContents()));
+
+        $this->checkFormData($stream,$boundary,"file",$fileOptions['file']);
+        $this->checkFormData($stream,$boundary,"fileName",$fileOptions['fileName']);
+        $this->checkFormData($stream,$boundary,"tags","abd,def");
+    }
+
+    /**
+     *
+     */
+    public function testFileUploadCustomCoordinatesAsArray()
+    {
+        $fileOptions = [
+            'file'  =>  'http://lorempixel.com/640/480/',
+            'fileName'  =>  'test_file_name',
+            "customCoordinates" => ["10", "10", "100", "100"],
+        ];
+
+        $mockBodyResponse = Utils::streamFor(json_encode($fileOptions));
+
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
+        ]);
+
+        $handlerStack = HandlerStack::create($mock);
+
+        $container = [];
+        $history = Middleware::history($container);
+
+        $handlerStack->push($history);
+        
+        $this->createMockClient($handlerStack);
+        
+        $response = $this->mockClient->uploadFile($fileOptions);
+
+        $requestBody = $container[0]['request']->getBody();
+        $requestHeaders = $container[0]['request']->getHeaders();
+        $boundary = str_replace("multipart/form-data; boundary=","",$requestHeaders["Content-Type"][0]);
+
+        UploadTest::assertArrayHasKey("Content-Type",$requestHeaders);
+        UploadTest::assertStringStartsWith("multipart/form-data; boundary=",$requestHeaders['Content-Type'][0]);
+
+        $stream = Utils::streamFor($requestBody);
+        $stream = str_replace('\r\n',' ',json_encode($stream->getContents()));
+
+        $this->checkFormData($stream,$boundary,"file",$fileOptions['file']);
+        $this->checkFormData($stream,$boundary,"fileName",$fileOptions['fileName']);
+        $this->checkFormData($stream,$boundary,"customCoordinates","10,10,100,100");
+    }
+
+    
+    /**
+     * 
+     */
+    public function testFileUploadResponseFieldsAsArray()
+    {
+        $fileOptions = [
+            'file'  =>  'http://lorempixel.com/640/480/',
+            'fileName'  =>  'test_file_name',
+            "responseFields" => ["tags", "customMetadata"],
+        ];
+
+        $mockBodyResponse = Utils::streamFor(json_encode($fileOptions));
+
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
+        ]);
+
+        $handlerStack = HandlerStack::create($mock);
+
+        $container = [];
+        $history = Middleware::history($container);
+
+        $handlerStack->push($history);
+        
+        $this->createMockClient($handlerStack);
+        
+        $response = $this->mockClient->uploadFile($fileOptions);
+
+        $requestBody = $container[0]['request']->getBody();
+        $requestHeaders = $container[0]['request']->getHeaders();
+        $boundary = str_replace("multipart/form-data; boundary=","",$requestHeaders["Content-Type"][0]);
+
+        UploadTest::assertArrayHasKey("Content-Type",$requestHeaders);
+        UploadTest::assertStringStartsWith("multipart/form-data; boundary=",$requestHeaders['Content-Type'][0]);
+
+        $stream = Utils::streamFor($requestBody);
+        $stream = str_replace('\r\n',' ',json_encode($stream->getContents()));
+
+        $this->checkFormData($stream,$boundary,"file",$fileOptions['file']);
+        $this->checkFormData($stream,$boundary,"fileName",$fileOptions['fileName']);
+        $this->checkFormData($stream,$boundary,"responseFields","tags,customMetadata");
     }
 
     /**
@@ -329,15 +452,9 @@ final class UploadTest extends TestCase
 
         $handlerStack->push($history);
         
-        $mockClient = new ImageKit(
-            'testing_public_key',
-            'testing_private_key',
-            'https://ik.imagekit.io/demo',
-            Transformation::DEFAULT_TRANSFORMATION_POSITION,
-            $handlerStack
-        );
+        $this->createMockClient($handlerStack);
         
-        $response = $mockClient->uploadFile($fileOptions);
+        $response = $this->mockClient->uploadFile($fileOptions);
 
         $requestBody = $container[0]['request']->getBody();
         $requestHeaders = $container[0]['request']->getHeaders();

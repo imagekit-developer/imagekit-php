@@ -90,9 +90,9 @@ class Folder
      *
      * @return Response
      */
-    public static function copy($sourceFolderPath, $destinationPath, $includeVersions, GuzzleHttpWrapper $httpClient)
+    public static function copy($sourceFolderPath, $destinationPath, $includeFileVersions, GuzzleHttpWrapper $httpClient)
     {
-        $httpClient->setDatas(['sourceFolderPath' => $sourceFolderPath, 'destinationPath' => $destinationPath, 'includeVersions' => $includeVersions]);
+        $httpClient->setDatas(['sourceFolderPath' => $sourceFolderPath, 'destinationPath' => $destinationPath, 'includeFileVersions' => $includeFileVersions]);
         try {
             $res = $httpClient->post();
         } catch (\Throwable $th) {

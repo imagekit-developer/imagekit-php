@@ -77,7 +77,7 @@ class ErrorMessages
         'For support kindly contact us at support@imagekit.io .'];
     public static $COPY_FILE_PARAMETER_NON_ARRAY = ['message' => 'Copy File API accepts an array of parameters, non array value passed', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $COPY_FILE_PARAMETER_EMPTY_ARRAY = ['message' => 'Copy File API accepts an array of parameters, empty array passed', 'help' => 'For support kindly contact us at support@imagekit.io .'];
-    public static $COPY_FILE_DATA_INVALID = ['message' => 'Missing parameter sourceFilePath and/or destinationPath and/or includeVersions for Copy File API', 'help' =>
+    public static $COPY_FILE_DATA_INVALID = ['message' => 'Missing parameter sourceFilePath and/or destinationPath for Copy File API', 'help' =>
         'For support kindly contact us at support@imagekit.io .'];
     public static $MOVE_FILE_PARAMETER_MISSING = ['message' => 'Move File API accepts an array, null passed', 'help' =>
         'For support kindly contact us at support@imagekit.io .'];
@@ -109,7 +109,7 @@ class ErrorMessages
         'For support kindly contact us at support@imagekit.io .'];
     public static $COPY_FOLDER_PARAMETER_NON_ARRAY = ['message' => 'Copy Folder API accepts an array of parameters, non array value passed', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $COPY_FOLDER_PARAMETER_EMPTY_ARRAY = ['message' => 'Copy Folder API accepts an array of parameters, empty array passed', 'help' => 'For support kindly contact us at support@imagekit.io .'];
-    public static $COPY_FOLDER_DATA_INVALID = ['message' => 'Missing parameter sourceFolderPath and/or destinationPath and/or includeVersions for Copy Folder API', 'help' =>
+    public static $COPY_FOLDER_DATA_INVALID = ['message' => 'Missing parameter sourceFolderPath and/or destinationPath for Copy Folder API', 'help' =>
         'For support kindly contact us at support@imagekit.io .'];
     public static $MOVE_FOLDER_PARAMETER_MISSING = ['message' => 'Move Folder API accepts an array, null passed', 'help' =>
         'For support kindly contact us at support@imagekit.io .'];

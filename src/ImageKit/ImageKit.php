@@ -701,12 +701,12 @@ class ImageKit
         if(sizeof($parameter)==0){
             return Response::respond(true, ((object)ErrorMessages::$COPY_FILE_PARAMETER_EMPTY_ARRAY));
         }
-        if (empty($parameter['sourceFilePath']) || empty($parameter['destinationPath']) || !isset($parameter['includeFileVersions'])) {
+        if (empty($parameter['sourceFilePath']) || empty($parameter['destinationPath'])) {
             return Response::respond(true, ((object)ErrorMessages::$COPY_FILE_DATA_INVALID));
         }
 
         $this->httpClient->setUri(Endpoints::getCopyFileEndpoint());
-        return Manage\File::copy($parameter['sourceFilePath'], $parameter['destinationPath'], $parameter['includeFileVersions'], $this->httpClient);
+        return Manage\File::copy($parameter['sourceFilePath'], $parameter['destinationPath'], $parameter['includeFileVersions']??false, $this->httpClient);
     }
 
     
@@ -942,12 +942,12 @@ class ImageKit
         if(sizeof($parameter)==0){
             return Response::respond(true, ((object)ErrorMessages::$COPY_FOLDER_PARAMETER_EMPTY_ARRAY));
         }
-        if (empty($parameter['sourceFolderPath']) || empty($parameter['destinationPath']) || !isset($parameter['includeFileVersions'])) {
+        if (empty($parameter['sourceFolderPath']) || empty($parameter['destinationPath'])) {
             return Response::respond(true, ((object)ErrorMessages::$COPY_FOLDER_DATA_INVALID));
         }
 
         $this->httpClient->setUri(Endpoints::getCopyFolderEndpoint());
-        return Manage\Folder::copy($parameter['sourceFolderPath'], $parameter['destinationPath'], $parameter['includeFileVersions'], $this->httpClient);
+        return Manage\Folder::copy($parameter['sourceFolderPath'], $parameter['destinationPath'], $parameter['includeFileVersions']??false, $this->httpClient);
     }
 
     /**

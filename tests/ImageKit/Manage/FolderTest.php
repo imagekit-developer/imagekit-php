@@ -5,9 +5,14 @@ namespace ImageKit\Tests\ImageKit\Manage;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Utils;
 use ImageKit\ImageKit;
+use ImageKit\Utils\Transformation;
 use ImageKit\Manage\Folder;
 use ImageKit\Resource\GuzzleHttpWrapper;
+use GuzzleHttp\Handler\MockHandler;
 use PHPUnit\Framework\TestCase;
+use GuzzleHttp\Client;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Middleware;
 
 class FolderTest extends TestCase
 {
@@ -15,7 +20,8 @@ class FolderTest extends TestCase
      * @var ImageKit
      */
     private $client;
-
+    private $mockClient;
+    
     /**
      * 
      */
@@ -25,23 +31,34 @@ class FolderTest extends TestCase
         $parentFolderPath = '/';
 
         $requestBody = [
-            'folderName' => $folderName,
             'parentFolderPath' => $parentFolderPath,
+            'folderName' => $folderName,
         ];
 
         $mockBodyResponse = Utils::streamFor();
 
-        $this->stubHttpClient('post', new Response(201, ['X-Foo' => 'Bar'], $mockBodyResponse));
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
+        ]);
 
-        $response = $this->client->createFolder($requestBody);
+        $handlerStack = HandlerStack::create($mock);
+
+        $container = [];
+        $history = Middleware::history($container);
+
+        $handlerStack->push($history);
+        
+        $this->createMockClient($handlerStack);
+
+        $response = $this->mockClient->createFolder($requestBody);
+
+        $request = $container[0]['request'];
+        $requestPath = $request->getUri()->getPath();
+        $stream = Utils::streamFor($request->getBody())->getContents();
 
         // Request Check
-        FolderTest::assertNotEmpty($requestBody);
-        FolderTest::assertIsArray($requestBody);
-        FolderTest::assertNotNull($requestBody['folderName']);
-        FolderTest::assertIsString($requestBody['folderName']);
-        FolderTest::assertNotNull($requestBody['parentFolderPath']);
-        FolderTest::assertIsString($requestBody['parentFolderPath']);
+        FileTest::assertEquals("/v1/folder/",$requestPath);
+        FileTest::assertEquals($stream,json_encode($requestBody));
 
         // Response Check
         FolderTest::assertNull($response->result);
@@ -125,13 +142,29 @@ class FolderTest extends TestCase
 
         $mockBodyResponse = Utils::streamFor();
 
-        $this->stubHttpClient('delete', new Response(201, ['X-Foo' => 'Bar'], $mockBodyResponse));
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
+        ]);
 
-        $response = $this->client->deleteFolder($folderPath);
+        $handlerStack = HandlerStack::create($mock);
+
+        $container = [];
+        $history = Middleware::history($container);
+
+        $handlerStack->push($history);
         
+        $this->createMockClient($handlerStack);
+        
+        $response = $this->mockClient->deleteFolder($folderPath);
+        
+        $request = $container[0]['request'];
+        $requestPath = $request->getUri()->getPath();
+        $stream = Utils::streamFor($request->getBody())->getContents();
+        $stream = json_decode($stream,true);
+
         // Request Check
-        FolderTest::assertNotNull($folderPath);
-        FolderTest::assertIsString($folderPath);
+        FileTest::assertEquals("/v1/folder/",$requestPath);
+        FileTest::assertEquals($stream['folderPath'],$folderPath);
 
         // Response Check
         FolderTest::assertNull($response->result);
@@ -168,19 +201,76 @@ class FolderTest extends TestCase
 
         $mockBodyResponse = Utils::streamFor(json_encode($responseBody));
 
-        $this->stubHttpClient('post', new Response(201, ['X-Foo' => 'Bar'], $mockBodyResponse));
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
+        ]);
 
-        $response = $this->client->copyFolder($requestBody);
+        $handlerStack = HandlerStack::create($mock);
+
+        $container = [];
+        $history = Middleware::history($container);
+
+        $handlerStack->push($history);
         
+        $this->createMockClient($handlerStack);
+
+        $response = $this->mockClient->copyFolder($requestBody);
+        
+        $request = $container[0]['request'];
+        $requestPath = $request->getUri()->getPath();
+        $stream = Utils::streamFor($request->getBody())->getContents();
+
         // Request Check
-        FileTest::assertIsArray($requestBody);
-        FileTest::assertNotEmpty($requestBody);
-        FileTest::assertNotNull($requestBody['sourceFolderPath']);
-        FileTest::assertIsString($requestBody['sourceFolderPath']);
-        FileTest::assertNotNull($requestBody['destinationPath']);
-        FileTest::assertIsString($requestBody['destinationPath']);
-        FileTest::assertArrayHasKey('includeFileVersions',$requestBody);
-        FileTest::assertIsBool($requestBody['includeFileVersions']);
+        FileTest::assertEquals("/v1/bulkJobs/copyFolder",$requestPath);
+        FileTest::assertEquals($stream,json_encode($requestBody));
+
+        // Response Check
+        FolderTest::assertEquals(json_encode($responseBody), json_encode($response->result));
+    }
+
+    
+    public function testCopyFolderWithoutIncludeFileVersions(){
+        
+        $sourceFolderPath = "/source-folder/";
+        $destinationPath = "/destination-folder/";
+
+        $requestBody = [
+            'sourceFolderPath' => $sourceFolderPath,
+            'destinationPath' => $destinationPath,
+        ];
+        
+        $responseBody = [
+            "jobId" => "598821f949c0a938d57563bd"
+        ];
+
+        $mockBodyResponse = Utils::streamFor(json_encode($responseBody));
+
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
+        ]);
+
+        $handlerStack = HandlerStack::create($mock);
+
+        $container = [];
+        $history = Middleware::history($container);
+
+        $handlerStack->push($history);
+        
+        $this->createMockClient($handlerStack);
+
+        $response = $this->mockClient->copyFolder($requestBody);
+        
+        $request = $container[0]['request'];
+        $requestPath = $request->getUri()->getPath();
+        $stream = Utils::streamFor($request->getBody())->getContents();
+
+        // Request Check
+        FileTest::assertEquals("/v1/bulkJobs/copyFolder",$requestPath);
+        FileTest::assertEquals($stream,json_encode([
+            'sourceFolderPath' => '/source-folder/',
+            'destinationPath' => '/destination-folder/',
+            'includeFileVersions' => false
+        ]));
 
         // Response Check
         FolderTest::assertEquals(json_encode($responseBody), json_encode($response->result));
@@ -235,7 +325,7 @@ class FolderTest extends TestCase
         
         $response = $this->client->copyFolder($requestBody);
 
-        FolderTest::assertEquals("Missing parameter sourceFolderPath and/or destinationPath and/or includeVersions for Copy Folder API", $response->error->message);
+        FolderTest::assertEquals("Missing parameter sourceFolderPath and/or destinationPath for Copy Folder API", $response->error->message);
 
     }
 
@@ -253,7 +343,7 @@ class FolderTest extends TestCase
         
         $response = $this->client->copyFolder($requestBody);
 
-        FolderTest::assertEquals("Missing parameter sourceFolderPath and/or destinationPath and/or includeVersions for Copy Folder API", $response->error->message);
+        FolderTest::assertEquals("Missing parameter sourceFolderPath and/or destinationPath for Copy Folder API", $response->error->message);
 
     }
 
@@ -269,9 +359,34 @@ class FolderTest extends TestCase
             'includeVersions' => $includeVersions
         ];
         
-        $response = $this->client->copyFolder($requestBody);
+        $mockBodyResponse = Utils::streamFor();
 
-        FolderTest::assertEquals("Missing parameter sourceFolderPath and/or destinationPath and/or includeVersions for Copy Folder API", $response->error->message);
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
+        ]);
+
+        $handlerStack = HandlerStack::create($mock);
+
+        $container = [];
+        $history = Middleware::history($container);
+
+        $handlerStack->push($history);
+        
+        $this->createMockClient($handlerStack);
+
+        $response = $this->mockClient->copyFolder($requestBody);
+
+        $request = $container[0]['request'];
+        $requestPath = $request->getUri()->getPath();
+        $stream = Utils::streamFor($request->getBody())->getContents();
+
+        // Request Check
+        FileTest::assertEquals("/v1/bulkJobs/copyFolder",$requestPath);
+        FileTest::assertEquals($stream,json_encode([
+            'sourceFolderPath' => '/source-folder/',
+            'destinationPath' => '/destination-folder/',
+            'includeFileVersions' => false
+        ]));
 
     }
 
@@ -292,18 +407,28 @@ class FolderTest extends TestCase
 
         $mockBodyResponse = Utils::streamFor(json_encode($responseBody));
 
-        $this->stubHttpClient('post', new Response(201, ['X-Foo' => 'Bar'], $mockBodyResponse));
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
+        ]);
 
-        $response = $this->client->moveFolder($requestBody);
+        $handlerStack = HandlerStack::create($mock);
 
+        $container = [];
+        $history = Middleware::history($container);
+
+        $handlerStack->push($history);
         
+        $this->createMockClient($handlerStack);
+        
+        $response = $this->mockClient->moveFolder($requestBody);
+
+        $request = $container[0]['request'];
+        $requestPath = $request->getUri()->getPath();
+        $stream = Utils::streamFor($request->getBody())->getContents();
+
         // Request Check
-        FileTest::assertIsArray($requestBody);
-        FileTest::assertNotEmpty($requestBody);
-        FileTest::assertNotNull($requestBody['sourceFolderPath']);
-        FileTest::assertIsString($requestBody['sourceFolderPath']);
-        FileTest::assertNotNull($requestBody['destinationPath']);
-        FileTest::assertIsString($requestBody['destinationPath']);
+        FileTest::assertEquals("/v1/bulkJobs/moveFolder",$requestPath);
+        FileTest::assertEquals($stream,json_encode($requestBody));
 
         // Response Check
         FolderTest::assertEquals(json_encode($responseBody), json_encode($response->result));
@@ -394,6 +519,19 @@ class FolderTest extends TestCase
             'testing_public_key',
             'testing_private_key',
             'https://ik.imagekit.io/demo'
+        );
+    }
+
+    /**
+     * 
+     */
+    private function createMockClient($handler){
+        $this->mockClient = new ImageKit(
+            'testing_public_key',
+            'testing_private_key',
+            'https://ik.imagekit.io/demo',
+            Transformation::DEFAULT_TRANSFORMATION_POSITION,
+            $handler
         );
     }
 

@@ -79,6 +79,10 @@ class CustomMetadataTest extends TestCase
 
         // Response Check
         CacheTest::assertEquals(json_encode($responseBody), json_encode($response->result));
+        
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        FileTest::assertEquals($requestMethod,'POST');
     }
 
     /**
@@ -250,6 +254,10 @@ class CustomMetadataTest extends TestCase
 
         // Response Check
         CacheTest::assertEquals(json_encode($responseBody), json_encode($response->result));
+        
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        FileTest::assertEquals($requestMethod,'GET');
     }
 
     
@@ -310,6 +318,10 @@ class CustomMetadataTest extends TestCase
 
         // Response Check
         CacheTest::assertEquals(json_encode($responseBody), json_encode($response->result));
+        
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        FileTest::assertEquals($requestMethod,'GET');
     }
 
     /**
@@ -376,6 +388,10 @@ class CustomMetadataTest extends TestCase
         
         // Response Check
         CacheTest::assertEquals(json_encode($responseBody), json_encode($response->result));
+        
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        FileTest::assertEquals($requestMethod,'PATCH');
     }
 
     /**
@@ -548,6 +564,10 @@ class CustomMetadataTest extends TestCase
         // Response Check
         CacheTest::assertNull($response->result);    
         CacheTest::assertNull($response->error);    
+        
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        FileTest::assertEquals($requestMethod,'DELETE');
     }
 
     /**

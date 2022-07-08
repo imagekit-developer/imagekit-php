@@ -63,6 +63,10 @@ class FolderTest extends TestCase
         // Response Check
         FolderTest::assertNull($response->result);
         FolderTest::assertNull($response->error);
+        
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        FileTest::assertEquals($requestMethod,'POST');
     }
 
      /**
@@ -169,6 +173,10 @@ class FolderTest extends TestCase
         // Response Check
         FolderTest::assertNull($response->result);
         FolderTest::assertNull($response->error);
+        
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        FileTest::assertEquals($requestMethod,'DELETE');
     }
     
     /**
@@ -226,6 +234,10 @@ class FolderTest extends TestCase
 
         // Response Check
         FolderTest::assertEquals(json_encode($responseBody), json_encode($response->result));
+        
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        FileTest::assertEquals($requestMethod,'POST');
     }
 
     
@@ -274,6 +286,10 @@ class FolderTest extends TestCase
 
         // Response Check
         FolderTest::assertEquals(json_encode($responseBody), json_encode($response->result));
+        
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        FileTest::assertEquals($requestMethod,'POST');
     }
 
     
@@ -388,6 +404,9 @@ class FolderTest extends TestCase
             'includeFileVersions' => false
         ]));
 
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        FileTest::assertEquals($requestMethod,'POST');
     }
 
     
@@ -432,6 +451,10 @@ class FolderTest extends TestCase
 
         // Response Check
         FolderTest::assertEquals(json_encode($responseBody), json_encode($response->result));
+        
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        FileTest::assertEquals($requestMethod,'POST');
     }
 
     

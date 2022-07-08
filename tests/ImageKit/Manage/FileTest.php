@@ -40,7 +40,7 @@ final class FileTest extends TestCase
                 'type' => 'file',
                 'name' => 'default-image.jpg',
                 'fileId' => '5de4fb65c851e55df73abe8d',
-                'tags' => implode(",",["tag1","tag2"]),
+                'tags' => ["tag1","tag2"],
                 'customCoordinates' => null,
                 'isPrivateFile' => false,
                 'url' => 'https://ik.imagekit.io/ot2cky3ujwa/default-image.jpg',
@@ -70,7 +70,7 @@ final class FileTest extends TestCase
             "fileType" => "all",
             "limit" => 10,
             "skip" => 0,
-            "tags" => implode(",",["tag3","tag4"]),
+            "tags" => ["tag3","tag4"],
         ];
 
         $responseBody = [
@@ -110,11 +110,14 @@ final class FileTest extends TestCase
         $requestBody = $request->getBody();
         $stream = Utils::streamFor($requestBody)->getContents();
 
-        FileTest::assertEquals(http_build_query($listOptions),$queryString);
         FileTest::assertEmpty($stream);
 
         // Response Check
         FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
+        
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        FileTest::assertEquals($requestMethod,'GET');
     }
       
 
@@ -168,6 +171,10 @@ final class FileTest extends TestCase
 
         // Response Check
         FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
+        
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        FileTest::assertEquals($requestMethod,'GET');
     }
       
     /**
@@ -228,6 +235,10 @@ final class FileTest extends TestCase
 
         // Response Check
         FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
+        
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        FileTest::assertEquals($requestMethod,'GET');
     }
 
     /**
@@ -313,6 +324,10 @@ final class FileTest extends TestCase
         
         // Response Check
         FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
+                
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        FileTest::assertEquals($requestMethod,'GET');
     }
 
     /**
@@ -410,6 +425,10 @@ final class FileTest extends TestCase
         
         // Response Check
         FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
+                
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        FileTest::assertEquals($requestMethod,'GET');
     }
 
     
@@ -492,76 +511,10 @@ final class FileTest extends TestCase
         // Response Check        
         FileTest::assertNull($response->error);
         FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
-    }
-
-    /**
-     *
-     */
-    public function testUpdateFileDetailsWithTagsAndCustomCoodinatesConvessions()
-    {
-        $fileId = '5df36759adf3f523d81dd94f';
-
-        $updateData = [
-            'customCoordinates' => ['10','10','100','100'],
-            'tags' => 'tag1,tag2',
-            'removeAITags'=>['car','vehicle','motorsports'],
-            'extensions'=>[
-                [
-                    "name" => "google-auto-tagging",
-                    "maxTags" => 5,
-                    "minConfidence" => 95
-                ]
-            ],
-            "customMetadata" => [
-                "SKU" => "VS882HJ2JD",
-                "price" => 599.99,
-            ]
-        ];
-
-        $responseBody = [
-            'fileId' => '598821f949c0a938d57563bd',
-            'type' => 'file',
-            'name' => 'file1.jpg',
-            'filePath' => '/images/products/file1.jpg',
-            'tags' => ['t-shirt', 'round-neck', 'sale2019'],
-            'isPrivateFile' => false,
-            'customCoordinates' => null,
-            'url' => 'https://ik.imagekit.io/your_imagekit_id/images/products/file1.jpg',
-            'thumbnail' => 'https://ik.imagekit.io/your_imagekit_id/tr:n-media_library_thumbnail/images/products/file1.jpg',
-            'fileType' => 'image'
-        ];
-
-        $mockBodyResponse = Utils::streamFor(json_encode($responseBody));
-
-        $mock = new MockHandler([
-            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
-        ]);
-
-        $handlerStack = HandlerStack::create($mock);
-
-        $container = [];
-        $history = Middleware::history($container);
-
-        $handlerStack->push($history);
-        
-        $this->createMockClient($handlerStack);
-
-        $response = $this->mockClient->updateFileDetails($fileId, $updateData);
-
-        $request = $container[0]['request'];
-        $requestPath = $request->getUri()->getPath();
-        $requestBody = $request->getBody();
-        $stream = Utils::streamFor($requestBody)->getContents();
-        $stream = json_decode($stream,true);
-
-        // Request Check
-        FileTest::assertEquals("/v1/files/{$fileId}/details",$requestPath);
-        FileTest::assertEquals($stream['tags'],['tag1','tag2']);
-        FileTest::assertEquals($stream['customCoordinates'],'10,10,100,100');
-
-        // Response Check        
-        FileTest::assertNull($response->error);
-        FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
+                
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        FileTest::assertEquals($requestMethod,'PATCH');
     }
 
     /**
@@ -664,6 +617,10 @@ final class FileTest extends TestCase
 
         // Response Check
         FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
+                
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        FileTest::assertEquals($requestMethod,'POST');
     }
     
     
@@ -768,6 +725,10 @@ final class FileTest extends TestCase
 
         // Response Check
         FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
+        
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        FileTest::assertEquals($requestMethod,'POST');
     }
     
     /**
@@ -872,6 +833,10 @@ final class FileTest extends TestCase
 
         // Response Check
         FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
+        
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        FileTest::assertEquals($requestMethod,'POST');
     }
     
     /**
@@ -968,6 +933,10 @@ final class FileTest extends TestCase
         // Response Check
         FolderTest::assertNull($response->result);
         FolderTest::assertNull($response->error);
+        
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        FileTest::assertEquals($requestMethod,'DELETE');
     }
     
     /**
@@ -1021,6 +990,10 @@ final class FileTest extends TestCase
         // Response Check
         FolderTest::assertNull($response->result);
         FolderTest::assertNull($response->error);
+        
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        FileTest::assertEquals($requestMethod,'DELETE');
     }
     
     /**
@@ -1092,6 +1065,10 @@ final class FileTest extends TestCase
 
         // Response Check
         FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
+        
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        FileTest::assertEquals($requestMethod,'POST');
     }
 
     /**
@@ -1170,6 +1147,10 @@ final class FileTest extends TestCase
         // Response Check
         FolderTest::assertNull($response->result);
         FolderTest::assertNull($response->error);
+        
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        FileTest::assertEquals($requestMethod,'POST');
     }
     
     
@@ -1220,6 +1201,10 @@ final class FileTest extends TestCase
         // Response Check
         FolderTest::assertNull($response->result);
         FolderTest::assertNull($response->error);
+        
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        FileTest::assertEquals($requestMethod,'POST');
     }
     
     /**
@@ -1325,6 +1310,10 @@ final class FileTest extends TestCase
         // Response Check
         FolderTest::assertNull($response->result);
         FolderTest::assertNull($response->error);
+        
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        FileTest::assertEquals($requestMethod,'POST');
     }
     
     /**
@@ -1422,6 +1411,10 @@ final class FileTest extends TestCase
         // Response Check
         FolderTest::assertNull($response->result);
         FolderTest::assertNull($response->error);
+        
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        FileTest::assertEquals($requestMethod,'PUT');
     }
 
     
@@ -1470,6 +1463,10 @@ final class FileTest extends TestCase
         // Response Check
         FolderTest::assertNull($response->result);
         FolderTest::assertNull($response->error);
+        
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        FileTest::assertEquals($requestMethod,'PUT');
     }
 
      /**
@@ -1604,6 +1601,10 @@ final class FileTest extends TestCase
 
         // Response Check
         FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
+        
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        FileTest::assertEquals($requestMethod,'PUT');
     }
 
      /**
@@ -1764,6 +1765,10 @@ final class FileTest extends TestCase
 
         // Response Check
         FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
+        
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        FileTest::assertEquals($requestMethod,'GET');        
     }
 
     
@@ -1862,6 +1867,10 @@ final class FileTest extends TestCase
 
         // Response Check
         FileTest::assertEquals(json_encode($requestBody), json_encode($response->result));
+        
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        FileTest::assertEquals($requestMethod,'GET');
     }
 
 

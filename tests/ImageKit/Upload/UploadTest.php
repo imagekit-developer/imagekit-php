@@ -205,6 +205,10 @@ final class UploadTest extends TestCase
         $this->checkFormData($stream,$boundary,"overwriteAITags","false");
         $this->checkFormData($stream,$boundary,"overwriteCustomMetadata","true");
         $this->checkFormData($stream,$boundary,"customMetadata",json_encode($fileOptions['customMetadata']));
+
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        UploadTest::assertEquals($requestMethod,'POST');
         
         // Response Check
         UploadTest::assertEquals(json_encode($this->uploadSuccessResponseObj), json_encode($response->result));
@@ -252,6 +256,10 @@ final class UploadTest extends TestCase
         $this->checkFormData($stream,$boundary,"fileName",$fileOptions['fileName']);
         $this->checkFormData($stream,$boundary,"isPrivateFile","true");
         UploadTest::assertStringNotContainsString("useUniqueFileName",$stream);
+
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        UploadTest::assertEquals($requestMethod,'POST');        
     }
 
     /**
@@ -297,6 +305,10 @@ final class UploadTest extends TestCase
         $this->checkFormData($stream,$boundary,"tags","abd,def");
         UploadTest::assertStringNotContainsString("isPrivateFile",$stream);
         UploadTest::assertStringNotContainsString("useUniqueFileName",$stream);
+        
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        UploadTest::assertEquals($requestMethod,'POST');        
     }
 
     /**
@@ -340,6 +352,10 @@ final class UploadTest extends TestCase
         $this->checkFormData($stream,$boundary,"file",$fileOptions['file']);
         $this->checkFormData($stream,$boundary,"fileName",$fileOptions['fileName']);
         $this->checkFormData($stream,$boundary,"tags","abd,def");
+
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        UploadTest::assertEquals($requestMethod,'POST');        
     }
 
     /**
@@ -383,6 +399,10 @@ final class UploadTest extends TestCase
         $this->checkFormData($stream,$boundary,"file",$fileOptions['file']);
         $this->checkFormData($stream,$boundary,"fileName",$fileOptions['fileName']);
         $this->checkFormData($stream,$boundary,"customCoordinates","10,10,100,100");
+        
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        UploadTest::assertEquals($requestMethod,'POST');        
     }
 
     
@@ -427,6 +447,10 @@ final class UploadTest extends TestCase
         $this->checkFormData($stream,$boundary,"file",$fileOptions['file']);
         $this->checkFormData($stream,$boundary,"fileName",$fileOptions['fileName']);
         $this->checkFormData($stream,$boundary,"responseFields","tags,customMetadata");
+        
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        UploadTest::assertEquals($requestMethod,'POST');        
     }
 
     /**
@@ -473,6 +497,10 @@ final class UploadTest extends TestCase
         UploadTest::assertStringNotContainsString("useUniqueFileName",$stream);
         UploadTest::assertStringNotContainsString("customCoordinates",$stream);
         UploadTest::assertStringNotContainsString("responseFields",$stream);
+        
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        UploadTest::assertEquals($requestMethod,'POST');        
     }
     
     /**

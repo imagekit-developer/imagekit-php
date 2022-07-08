@@ -6,8 +6,13 @@ namespace ImageKit\Tests\ImageKit\Manage;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Utils;
 use ImageKit\ImageKit;
+use ImageKit\Utils\Transformation;
 use ImageKit\Resource\GuzzleHttpWrapper;
+use GuzzleHttp\Handler\MockHandler;
 use PHPUnit\Framework\TestCase;
+use GuzzleHttp\Client;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Middleware;
 
 /**
  *
@@ -18,6 +23,12 @@ final class FileTest extends TestCase
      * @var ImageKit
      */
     private $client;
+    private $mockClient;
+
+    private $dummyAPIErrorResponse = [
+        "help" => "help",
+        "message" => "message"
+    ];
 
         /**
      *
@@ -29,7 +40,7 @@ final class FileTest extends TestCase
                 'type' => 'file',
                 'name' => 'default-image.jpg',
                 'fileId' => '5de4fb65c851e55df73abe8d',
-                'tags' => null,
+                'tags' => implode(",",["tag1","tag2"]),
                 'customCoordinates' => null,
                 'isPrivateFile' => false,
                 'url' => 'https://ik.imagekit.io/ot2cky3ujwa/default-image.jpg',
@@ -53,8 +64,13 @@ final class FileTest extends TestCase
     public function testListFilesWithOptions()
     {
         $listOptions = [
-            'skip' => 0,
-            'limit' => 100,
+            "type" => "file",
+            "sort" => "ASC_CREATED",    
+            "path" => "/sample-folder",
+            "fileType" => "all",
+            "limit" => 10,
+            "skip" => 0,
+            "tags" => implode(",",["tag3","tag4"]),
         ];
 
         $responseBody = [
@@ -74,10 +90,83 @@ final class FileTest extends TestCase
 
         $mockBodyResponse = Utils::streamFor(json_encode($responseBody));
 
-        $this->stubHttpClient('get', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
+        ]);
 
-        $response = $this->client->listFiles($listOptions);
+        $handlerStack = HandlerStack::create($mock);
 
+        $container = [];
+        $history = Middleware::history($container);
+
+        $handlerStack->push($history);
+        
+        $this->createMockClient($handlerStack);
+
+        $response = $this->mockClient->listFiles($listOptions);
+
+        $request = $container[0]['request'];
+        $queryString = $request->getUri()->getQuery();
+        $requestBody = $request->getBody();
+        $stream = Utils::streamFor($requestBody)->getContents();
+
+        FileTest::assertEquals(http_build_query($listOptions),$queryString);
+        FileTest::assertEmpty($stream);
+
+        // Response Check
+        FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
+    }
+      
+
+    
+    /**
+     *
+     */
+    public function testListFilesWithEmptyOptions()
+    {
+        $listOptions = [];
+
+        $responseBody = [
+            [
+                'type' => 'file',
+                'name' => 'default-image.jpg',
+                'fileId' => '5de4fb65c851e55df73abe8d',
+                'tags' => null,
+                'customCoordinates' => null,
+                'isPrivateFile' => false,
+                'url' => 'https://ik.imagekit.io/ot2cky3ujwa/default-image.jpg',
+                'thumbnail' => 'https://ik.imagekit.io/ot2cky3ujwa/tr:n-media_library_thumbnail/default-image.jpg',
+                'fileType' => 'image',
+                'filePath' => '/default-image.jpg',
+            ],
+        ];
+
+        $mockBodyResponse = Utils::streamFor(json_encode($responseBody));
+
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
+        ]);
+
+        $handlerStack = HandlerStack::create($mock);
+
+        $container = [];
+        $history = Middleware::history($container);
+
+        $handlerStack->push($history);
+        
+        $this->createMockClient($handlerStack);
+
+        $response = $this->mockClient->listFiles($listOptions);
+
+        $request = $container[0]['request'];
+        $queryString = $request->getUri()->getQuery();
+        $requestBody = $request->getBody();
+        $stream = Utils::streamFor($requestBody)->getContents();
+
+        FileTest::assertEmpty($queryString);
+        FileTest::assertEmpty($stream);
+
+        // Response Check
         FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
     }
       
@@ -114,10 +203,30 @@ final class FileTest extends TestCase
         ];
         $mockBodyResponse = Utils::streamFor(json_encode($responseBody));
 
-        $this->stubHttpClient('get', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
+        ]);
 
-        $response = $this->client->getFileDetails($fileId);
+        $handlerStack = HandlerStack::create($mock);
 
+        $container = [];
+        $history = Middleware::history($container);
+
+        $handlerStack->push($history);
+        
+        $this->createMockClient($handlerStack);
+        
+        $response = $this->mockClient->getFileDetails($fileId);
+
+        $request = $container[0]['request'];
+        $requestPath = $request->getUri()->getPath();
+        $requestBody = $request->getBody();
+        $stream = Utils::streamFor($requestBody)->getContents();
+
+        // Request Check
+        FileTest::assertEquals("/v1/files/{$fileId}/details",$requestPath);
+
+        // Response Check
         FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
     }
 
@@ -135,6 +244,20 @@ final class FileTest extends TestCase
         $response = $this->client->getFileDetails($fileId);
 
         FileTest::assertEquals('Missing File ID parameter for this request',$response->error->message);
+    }
+
+    /**
+     *
+     */
+    public function testGetFileDetailsWithError()
+    {
+        $fileId = '23902390239203923';
+       
+        $this->stubHttpClient('get', new Response(500, ['X-Foo' => 'Bar'], json_encode($this->dummyAPIErrorResponse)));
+
+        $response = $this->client->getFileDetails($fileId);
+
+        FileTest::assertEquals(json_encode($this->dummyAPIErrorResponse),json_encode($response->error));
     }
     
     /**
@@ -161,12 +284,34 @@ final class FileTest extends TestCase
                 "name" => "Version 1"
             ],
         ];
+        
         $mockBodyResponse = Utils::streamFor(json_encode($responseBody));
 
-        $this->stubHttpClient('get', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
+        ]);
 
-        $response = $this->client->getFileVersionDetails($fileId, $versionId);
+        $handlerStack = HandlerStack::create($mock);
 
+        $container = [];
+        $history = Middleware::history($container);
+
+        $handlerStack->push($history);
+        
+        $this->createMockClient($handlerStack);
+        
+        $response = $this->mockClient->getFileVersionDetails($fileId, $versionId);
+        
+        $request = $container[0]['request'];
+        $requestPath = $request->getUri()->getPath();
+        $requestBody = $request->getBody();
+        $stream = Utils::streamFor($requestBody)->getContents();
+        
+        
+        // Request Check
+        FileTest::assertEquals("/v1/files/{$fileId}/versions/{$versionId}",$requestPath);
+        
+        // Response Check
         FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
     }
 
@@ -237,12 +382,33 @@ final class FileTest extends TestCase
                 ]
             ],
         ];
+        
         $mockBodyResponse = Utils::streamFor(json_encode($responseBody));
 
-        $this->stubHttpClient('get', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
+        ]);
 
-        $response = $this->client->getFileVersions($fileId);
+        $handlerStack = HandlerStack::create($mock);
 
+        $container = [];
+        $history = Middleware::history($container);
+
+        $handlerStack->push($history);
+        
+        $this->createMockClient($handlerStack);
+
+        $response = $this->mockClient->getFileVersions($fileId);
+
+        $request = $container[0]['request'];
+        $requestPath = $request->getUri()->getPath();
+        $requestBody = $request->getBody();
+        $stream = Utils::streamFor($requestBody)->getContents();
+        
+        // Request Check
+        FileTest::assertEquals("/v1/files/{$fileId}/versions",$requestPath);
+        
+        // Response Check
         FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
     }
 
@@ -269,7 +435,19 @@ final class FileTest extends TestCase
 
         $updateData = [
             'customCoordinates' => '10,10,100,100',
-            'tags' => ['tag1', 'tag2']
+            'tags' => ['tag1', 'tag2'],
+            'removeAITags'=>['car','vehicle','motorsports'],
+            'extensions'=>[
+                [
+                    "name" => "google-auto-tagging",
+                    "maxTags" => 5,
+                    "minConfidence" => 95
+                ]
+            ],
+            "customMetadata" => [
+                "SKU" => "VS882HJ2JD",
+                "price" => 599.99,
+            ]
         ];
 
         $responseBody = [
@@ -287,10 +465,101 @@ final class FileTest extends TestCase
 
         $mockBodyResponse = Utils::streamFor(json_encode($responseBody));
 
-        $this->stubHttpClient('patch', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
+        ]);
 
-        $response = $this->client->updateFileDetails($fileId, $updateData);
+        $handlerStack = HandlerStack::create($mock);
 
+        $container = [];
+        $history = Middleware::history($container);
+
+        $handlerStack->push($history);
+        
+        $this->createMockClient($handlerStack);
+
+        $response = $this->mockClient->updateFileDetails($fileId, $updateData);
+
+        $request = $container[0]['request'];
+        $requestPath = $request->getUri()->getPath();
+        $requestBody = $request->getBody();
+        $stream = Utils::streamFor($requestBody)->getContents();
+        
+        // Request Check
+        FileTest::assertEquals("/v1/files/{$fileId}/details",$requestPath);
+        FileTest::assertEquals($stream,json_encode($updateData));
+
+        // Response Check        
+        FileTest::assertNull($response->error);
+        FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
+    }
+
+    /**
+     *
+     */
+    public function testUpdateFileDetailsWithTagsAndCustomCoodinatesConvessions()
+    {
+        $fileId = '5df36759adf3f523d81dd94f';
+
+        $updateData = [
+            'customCoordinates' => ['10','10','100','100'],
+            'tags' => 'tag1,tag2',
+            'removeAITags'=>['car','vehicle','motorsports'],
+            'extensions'=>[
+                [
+                    "name" => "google-auto-tagging",
+                    "maxTags" => 5,
+                    "minConfidence" => 95
+                ]
+            ],
+            "customMetadata" => [
+                "SKU" => "VS882HJ2JD",
+                "price" => 599.99,
+            ]
+        ];
+
+        $responseBody = [
+            'fileId' => '598821f949c0a938d57563bd',
+            'type' => 'file',
+            'name' => 'file1.jpg',
+            'filePath' => '/images/products/file1.jpg',
+            'tags' => ['t-shirt', 'round-neck', 'sale2019'],
+            'isPrivateFile' => false,
+            'customCoordinates' => null,
+            'url' => 'https://ik.imagekit.io/your_imagekit_id/images/products/file1.jpg',
+            'thumbnail' => 'https://ik.imagekit.io/your_imagekit_id/tr:n-media_library_thumbnail/images/products/file1.jpg',
+            'fileType' => 'image'
+        ];
+
+        $mockBodyResponse = Utils::streamFor(json_encode($responseBody));
+
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
+        ]);
+
+        $handlerStack = HandlerStack::create($mock);
+
+        $container = [];
+        $history = Middleware::history($container);
+
+        $handlerStack->push($history);
+        
+        $this->createMockClient($handlerStack);
+
+        $response = $this->mockClient->updateFileDetails($fileId, $updateData);
+
+        $request = $container[0]['request'];
+        $requestPath = $request->getUri()->getPath();
+        $requestBody = $request->getBody();
+        $stream = Utils::streamFor($requestBody)->getContents();
+        $stream = json_decode($stream,true);
+
+        // Request Check
+        FileTest::assertEquals("/v1/files/{$fileId}/details",$requestPath);
+        FileTest::assertEquals($stream['tags'],['tag1','tag2']);
+        FileTest::assertEquals($stream['customCoordinates'],'10,10,100,100');
+
+        // Response Check        
         FileTest::assertNull($response->error);
         FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
     }
@@ -329,6 +598,27 @@ final class FileTest extends TestCase
         FileTest::assertEquals('Missing file update data for this request', $response->error->message);
     }
 
+    
+    /**
+     *
+     */
+    public function testUpdateFileDetailsWithError()
+    {
+        $fileId = '5df36759adf3f523d81dd94f';
+
+        $updateData = [
+            'customCoordinates' => '10,10,100,100',
+            'tags' => ['tag1', 'tag2']
+        ];
+
+        $this->stubHttpClient('patch', new Response(500, ['X-Foo' => 'Bar'], json_encode($this->dummyAPIErrorResponse)));
+
+        $response = $this->client->updateFileDetails($fileId, $updateData);
+
+        FileTest::assertEquals(json_encode($this->dummyAPIErrorResponse),json_encode($response->error));
+    }
+    
+
     /**
      *
      */
@@ -344,12 +634,35 @@ final class FileTest extends TestCase
             ]
         ];
 
-        $mockBodyResponse = Utils::streamfor(json_encode($responseBody));
+        $mockBodyResponse = Utils::streamFor(json_encode($responseBody));
 
-        $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
+        ]);
 
-        $response = $this->client->bulkAddTags($fileIds, $tags);
+        $handlerStack = HandlerStack::create($mock);
 
+        $container = [];
+        $history = Middleware::history($container);
+
+        $handlerStack->push($history);
+        
+        $this->createMockClient($handlerStack);
+        
+        $response = $this->mockClient->bulkAddTags($fileIds, $tags);
+
+        $request = $container[0]['request'];
+        $requestPath = $request->getUri()->getPath();
+        $requestBody = $request->getBody();
+        $stream = Utils::streamFor($requestBody)->getContents();
+        $stream = json_decode($stream,true);
+
+        // Request Check
+        FileTest::assertEquals($stream['fileIds'],$fileIds);
+        FileTest::assertEquals($stream['tags'],$tags);
+        FileTest::assertEquals("/v1/files/addTags",$requestPath);
+
+        // Response Check
         FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
     }
     
@@ -425,12 +738,35 @@ final class FileTest extends TestCase
             ]
         ];
 
-        $mockBodyResponse = Utils::streamfor(json_encode($responseBody));
+        $mockBodyResponse = Utils::streamFor(json_encode($responseBody));
 
-        $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
+        ]);
 
-        $response = $this->client->bulkRemoveTags($fileIds, $tags);
+        $handlerStack = HandlerStack::create($mock);
 
+        $container = [];
+        $history = Middleware::history($container);
+
+        $handlerStack->push($history);
+        
+        $this->createMockClient($handlerStack);
+
+        $response = $this->mockClient->bulkRemoveTags($fileIds, $tags);
+
+        $request = $container[0]['request'];
+        $requestPath = $request->getUri()->getPath();
+        $requestBody = $request->getBody();
+        $stream = Utils::streamFor($requestBody)->getContents();
+        $stream = json_decode($stream,true);
+
+        // Request Check
+        FileTest::assertEquals($stream['fileIds'],$fileIds);
+        FileTest::assertEquals($stream['tags'],$tags);
+        FileTest::assertEquals("/v1/files/removeTags",$requestPath);
+
+        // Response Check
         FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
     }
     
@@ -497,7 +833,7 @@ final class FileTest extends TestCase
     public function testBulkRemoveAITags()
     {
         $fileIds = ['5e21880d5efe355febd4bccd','5e1c13c1c55ec3437c451403'];
-        $tags = ['image_AITag_1','image_AITag_2'];
+        $AItags = ['image_AITag_1','image_AITag_2'];
 
         $responseBody = [
             "successfullyUpdatedFileIds" => [
@@ -506,12 +842,35 @@ final class FileTest extends TestCase
             ]
         ];
 
-        $mockBodyResponse = Utils::streamfor(json_encode($responseBody));
+        $mockBodyResponse = Utils::streamFor(json_encode($responseBody));
 
-        $this->stubHttpClient('post', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
+        ]);
 
-        $response = $this->client->bulkRemoveAITags($fileIds, $tags);
+        $handlerStack = HandlerStack::create($mock);
 
+        $container = [];
+        $history = Middleware::history($container);
+
+        $handlerStack->push($history);
+        
+        $this->createMockClient($handlerStack);
+
+        $response = $this->mockClient->bulkRemoveAITags($fileIds, $AItags);
+
+        $request = $container[0]['request'];
+        $requestPath = $request->getUri()->getPath();
+        $requestBody = $request->getBody();
+        $stream = Utils::streamFor($requestBody)->getContents();
+        $stream = json_decode($stream,true);
+
+        // Request Check
+        FileTest::assertEquals($stream['fileIds'],$fileIds);
+        FileTest::assertEquals($stream['AITags'],$AItags);
+        FileTest::assertEquals("/v1/files/removeAITags",$requestPath);
+
+        // Response Check
         FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
     }
     
@@ -578,12 +937,35 @@ final class FileTest extends TestCase
     public function testDeleteSingleFile()
     {
         $fileId = "23902390239203923";
+
         $mockBodyResponse = Utils::streamFor();
 
-        $this->stubHttpClient('delete',new Response(200,['X-Foo' => 'Bar'], $mockBodyResponse));
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
+        ]);
 
-        $response = $this->client->deleteFile($fileId);
+        $handlerStack = HandlerStack::create($mock);
 
+        $container = [];
+        $history = Middleware::history($container);
+
+        $handlerStack->push($history);
+        
+        $this->createMockClient($handlerStack);
+
+        $response = $this->mockClient->deleteFile($fileId);
+        
+        $request = $container[0]['request'];
+        $requestPath = $request->getUri()->getPath();
+        $requestBody = $request->getBody();
+        $stream = Utils::streamFor($requestBody)->getContents();
+        $stream = json_decode($stream,true);
+
+        // Request Check
+        FileTest::assertEquals("/v1/files/".$fileId,$requestPath);
+        FileTest::assertEquals($stream[0],$fileId);
+
+        // Response Check
         FolderTest::assertNull($response->result);
         FolderTest::assertNull($response->error);
     }
@@ -605,15 +987,38 @@ final class FileTest extends TestCase
      */
     public function testDeleteFileVersion()
     {
-        $fileId = 'file_id';
-        $versionId = "version_id";
+        $fileId = '23902390239203923';
+        $versionId = "123213239023902392";
         
         $mockBodyResponse = Utils::streamFor();
 
-        $this->stubHttpClient('delete',new Response(200,['X-Foo' => 'Bar'], $mockBodyResponse));
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
+        ]);
 
-        $response = $this->client->deleteFileVersion($fileId, $versionId);
+        $handlerStack = HandlerStack::create($mock);
 
+        $container = [];
+        $history = Middleware::history($container);
+
+        $handlerStack->push($history);
+        
+        $this->createMockClient($handlerStack);
+        
+        $response = $this->mockClient->deleteFileVersion($fileId, $versionId);
+
+        $request = $container[0]['request'];
+        $requestPath = $request->getUri()->getPath();
+        $requestBody = $request->getBody();
+        $stream = Utils::streamFor($requestBody)->getContents();
+        $stream = json_decode($stream,true);
+
+        // Request Check
+        FileTest::assertEquals("/v1/files/{$fileId}/versions/{$versionId}",$requestPath);
+        FileTest::assertEquals($stream[0],$fileId);
+        FileTest::assertEquals($stream[1],$versionId);
+
+        // Response Check
         FolderTest::assertNull($response->result);
         FolderTest::assertNull($response->error);
     }
@@ -660,10 +1065,32 @@ final class FileTest extends TestCase
 
         $mockBodyResponse = Utils::streamFor(json_encode($responseBody));
 
-        $this->stubHttpClient('post',new Response(200,['X-Foo' => 'Bar'], $mockBodyResponse));
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
+        ]);
 
-        $response = $this->client->bulkDeleteFiles($fileIds);
+        $handlerStack = HandlerStack::create($mock);
 
+        $container = [];
+        $history = Middleware::history($container);
+
+        $handlerStack->push($history);
+        
+        $this->createMockClient($handlerStack);
+
+        $response = $this->mockClient->bulkDeleteFiles($fileIds);
+        
+        $request = $container[0]['request'];
+        $requestPath = $request->getUri()->getPath();
+        $requestBody = $request->getBody();
+        $stream = Utils::streamFor($requestBody)->getContents();
+        $stream = json_decode($stream,true);
+
+        // Request Check
+        FileTest::assertEquals("/v1/files/batch/deleteByFileIds",$requestPath);
+        FileTest::assertEquals($stream['fileIds'],$fileIds);
+
+        // Response Check
         FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
     }
 
@@ -706,20 +1133,91 @@ final class FileTest extends TestCase
     {
         $sourceFilePath = '/file.jpg';
         $destinationPath = '/';
-        $includeVersions = true;
+        $includeFileVersions = true;
 
         $requestBody = [
             'sourceFilePath' => $sourceFilePath,
             'destinationPath' => $destinationPath,
-            'includeVersions' => $includeVersions
+            'includeFileVersions' => $includeFileVersions
         ];
 
         $mockBodyResponse = Utils::streamFor();
 
-        $this->stubHttpClient('post',new Response(200,['X-Foo' => 'Bar'], $mockBodyResponse));
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
+        ]);
 
-        $response = $this->client->copy($requestBody);
+        $handlerStack = HandlerStack::create($mock);
 
+        $container = [];
+        $history = Middleware::history($container);
+
+        $handlerStack->push($history);
+        
+        $this->createMockClient($handlerStack);
+
+        $response = $this->mockClient->copy($requestBody);
+        
+        $request = $container[0]['request'];
+        $requestPath = $request->getUri()->getPath();
+        $stream = Utils::streamFor($request->getBody())->getContents();
+        // $stream = json_decode($stream,true);
+
+        // Request Check
+        FileTest::assertEquals("/v1/files/copy",$requestPath);
+        FileTest::assertEquals($stream,json_encode($requestBody));
+
+        // Response Check
+        FolderTest::assertNull($response->result);
+        FolderTest::assertNull($response->error);
+    }
+    
+    
+    /**
+     *
+     */
+    public function testCopyFileWithoutIncludeFileVersions()
+    {
+        $sourceFilePath = '/file.jpg';
+        $destinationPath = '/';
+        $includeFileVersions = true;
+
+        $requestBody = [
+            'sourceFilePath' => $sourceFilePath,
+            'destinationPath' => $destinationPath,
+        ];
+
+        $mockBodyResponse = Utils::streamFor();
+
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
+        ]);
+
+        $handlerStack = HandlerStack::create($mock);
+
+        $container = [];
+        $history = Middleware::history($container);
+
+        $handlerStack->push($history);
+        
+        $this->createMockClient($handlerStack);
+
+        $response = $this->mockClient->copy($requestBody);
+        
+        $request = $container[0]['request'];
+        $requestPath = $request->getUri()->getPath();
+        $stream = Utils::streamFor($request->getBody())->getContents();
+        // $stream = json_decode($stream,true);
+
+        // Request Check
+        FileTest::assertEquals("/v1/files/copy",$requestPath);
+        FileTest::assertEquals($stream,json_encode([
+            'sourceFilePath' => '/file.jpg',
+            'destinationPath' => '/',
+            'includeFileVersions' => false
+        ]));
+
+        // Response Check
         FolderTest::assertNull($response->result);
         FolderTest::assertNull($response->error);
     }
@@ -761,8 +1259,7 @@ final class FileTest extends TestCase
 
         
         FileTest::assertNull($response->result);
-        FileTest::assertEquals('Missing parameter sourceFilePath and/or destinationPath and/or includeVersions for Copy File API',$response->error->message);
-
+        FileTest::assertEquals('Missing parameter sourceFilePath and/or destinationPath for Copy File API',$response->error->message);
     }
     
     /**
@@ -783,32 +1280,7 @@ final class FileTest extends TestCase
 
         
         FileTest::assertNull($response->result);
-        FileTest::assertEquals('Missing parameter sourceFilePath and/or destinationPath and/or includeVersions for Copy File API',$response->error->message);
-
-    }
-    
-    
-    /**
-     *
-     */
-    public function testCopyFileNullIncludeVersions()
-    {
-        $sourceFilePath = '/file.jpg';
-        $destinationPath = '/';
-        $includeVersions = null;
-
-
-        $requestBody = [
-            'sourceFilePath' => $sourceFilePath,
-            'destinationPath' => $destinationPath,
-            'includeVersions'   => $includeVersions
-        ];
-
-        $response = $this->client->copy($requestBody);
-
-        
-        FileTest::assertNull($response->result);
-        FileTest::assertEquals('Missing parameter sourceFilePath and/or destinationPath and/or includeVersions for Copy File API',$response->error->message);
+        FileTest::assertEquals('Missing parameter sourceFilePath and/or destinationPath for Copy File API',$response->error->message);
 
     }
     
@@ -827,10 +1299,30 @@ final class FileTest extends TestCase
 
         $mockBodyResponse = Utils::streamFor();
 
-        $this->stubHttpClient('post',new Response(200,['X-Foo' => 'Bar'], $mockBodyResponse));
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
+        ]);
 
-        $response = $this->client->move($requestBody);
+        $handlerStack = HandlerStack::create($mock);
+
+        $container = [];
+        $history = Middleware::history($container);
+
+        $handlerStack->push($history);
         
+        $this->createMockClient($handlerStack);
+
+        $response = $this->mockClient->move($requestBody);
+        
+        $request = $container[0]['request'];
+        $requestPath = $request->getUri()->getPath();
+        $stream = Utils::streamFor($request->getBody())->getContents();
+
+        // Request Check
+        FileTest::assertEquals("/v1/files/move",$requestPath);
+        FileTest::assertEquals($stream,json_encode($requestBody));
+
+        // Response Check
         FolderTest::assertNull($response->result);
         FolderTest::assertNull($response->error);
     }
@@ -899,13 +1391,83 @@ final class FileTest extends TestCase
         $requestBody = [
             'filePath' => $filePath,
             'newFileName' => $newFileName,
+            'purgeCache' => true
         ];
+        
         $mockBodyResponse = Utils::streamFor();
 
-        $this->stubHttpClient('put',new Response(200,['X-Foo' => 'Bar'], $mockBodyResponse));
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
+        ]);
 
-        $response = $this->client->rename($requestBody);
+        $handlerStack = HandlerStack::create($mock);
+
+        $container = [];
+        $history = Middleware::history($container);
+
+        $handlerStack->push($history);
         
+        $this->createMockClient($handlerStack);
+
+        $response = $this->mockClient->rename($requestBody);
+        
+        $request = $container[0]['request'];
+        $requestPath = $request->getUri()->getPath();
+        $stream = Utils::streamFor($request->getBody())->getContents();
+
+        // Request Check
+        FileTest::assertEquals("/v1/files/rename",$requestPath);
+        FileTest::assertEquals($stream,json_encode($requestBody));
+
+        // Response Check
+        FolderTest::assertNull($response->result);
+        FolderTest::assertNull($response->error);
+    }
+
+    
+     /**
+     *
+     */
+    public function testRenameFileWithoutPurgeCache()
+    {
+        $filePath = '/sample-folder/sample-file.jpg';
+        $newFileName = 'sample-file2.jpg';
+
+        $requestBody = [
+            'filePath' => $filePath,
+            'newFileName' => $newFileName,
+        ];
+        
+        $mockBodyResponse = Utils::streamFor();
+
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
+        ]);
+
+        $handlerStack = HandlerStack::create($mock);
+
+        $container = [];
+        $history = Middleware::history($container);
+
+        $handlerStack->push($history);
+        
+        $this->createMockClient($handlerStack);
+
+        $response = $this->mockClient->rename($requestBody);
+        
+        $request = $container[0]['request'];
+        $requestPath = $request->getUri()->getPath();
+        $stream = Utils::streamFor($request->getBody())->getContents();
+
+        // Request Check
+        FileTest::assertEquals("/v1/files/rename",$requestPath);
+        FileTest::assertEquals($stream,json_encode([
+            'filePath' => '/sample-folder/sample-file.jpg',
+            'newFileName' => 'sample-file2.jpg',
+            'purgeCache' => false
+        ]));
+
+        // Response Check
         FolderTest::assertNull($response->result);
         FolderTest::assertNull($response->error);
     }
@@ -1015,10 +1577,32 @@ final class FileTest extends TestCase
 
         $mockBodyResponse = Utils::streamFor(json_encode($responseBody));
 
-        $this->stubHttpClient('put',new Response(200,['X-Foo' => 'Bar'], $mockBodyResponse));
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
+        ]);
 
-        $response = $this->client->restoreFileVersion($requestBody);
+        $handlerStack = HandlerStack::create($mock);
 
+        $container = [];
+        $history = Middleware::history($container);
+
+        $handlerStack->push($history);
+        
+        $this->createMockClient($handlerStack);
+
+        $response = $this->mockClient->restoreFileVersion($requestBody);
+
+        $request = $container[0]['request'];
+        $queryString = $request->getUri()->getQuery();
+        $requestPath = $request->getUri()->getPath();
+
+        $stream = Utils::streamFor($request->getBody())->getContents();
+        $stream = json_decode($stream,true);
+        // Request Check
+        FileTest::assertEquals("/v1/files/{$fileId}/versions/{$versionId}/restore",$requestPath);
+        FileTest::assertEmpty($stream);
+
+        // Response Check
         FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
     }
 
@@ -1104,7 +1688,7 @@ final class FileTest extends TestCase
     {
         $fileId = '5de4fb65c851e55df73abe8d';
         
-        $requestBody = [
+        $responseBody = [
             'height' => 3214,
             'width' => 3948,
             'size' => 207097,
@@ -1151,13 +1735,35 @@ final class FileTest extends TestCase
             ],
             'pHash' => 'd1813e2fc22c7b2f',
         ];
-        $mockBodyResponse = Utils::streamFor(json_encode($requestBody));
+        $mockBodyResponse = Utils::streamFor(json_encode($responseBody));
 
-        $this->stubHttpClient('get', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
+        ]);
 
-        $response = $this->client->getFileMetaData($fileId);
+        $handlerStack = HandlerStack::create($mock);
 
-        FileTest::assertEquals(json_encode($requestBody), json_encode($response->result));
+        $container = [];
+        $history = Middleware::history($container);
+
+        $handlerStack->push($history);
+        
+        $this->createMockClient($handlerStack);
+
+        $response = $this->mockClient->getFileMetaData($fileId);
+
+        $request = $container[0]['request'];
+        $requestPath = $request->getUri()->getPath();
+        $queryString = $request->getUri()->getQuery();
+        $stream = Utils::streamFor($request->getBody())->getContents();
+        // $stream = json_decode($stream,true);
+
+        // Request Check
+        FileTest::assertEquals("/v1/files/{$fileId}/metadata",$requestPath);
+        FileTest::assertEmpty($stream);
+
+        // Response Check
+        FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
     }
 
     
@@ -1229,10 +1835,32 @@ final class FileTest extends TestCase
         ];
         $mockBodyResponse = Utils::streamFor(json_encode($requestBody));
 
-        $this->stubHttpClient('get', new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse));
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
+        ]);
 
-        $response = $this->client->getFileMetadataFromRemoteURL($remoteURL);
+        $handlerStack = HandlerStack::create($mock);
 
+        $container = [];
+        $history = Middleware::history($container);
+
+        $handlerStack->push($history);
+        
+        $this->createMockClient($handlerStack);
+
+        $response = $this->mockClient->getFileMetadataFromRemoteURL($remoteURL);
+
+        $request = $container[0]['request'];
+        $requestPath = $request->getUri()->getPath();
+        $queryString = $request->getUri()->getQuery();
+        $stream = Utils::streamFor($request->getBody())->getContents();
+        $stream = json_decode($stream,true);
+
+        // Request Check
+        FileTest::assertEquals("/v1/metadata",$requestPath);
+        FileTest::assertEquals($queryString,http_build_query(['url'=>$remoteURL]));
+
+        // Response Check
         FileTest::assertEquals(json_encode($requestBody), json_encode($response->result));
     }
 
@@ -1276,6 +1904,19 @@ final class FileTest extends TestCase
         };
         $doClosure = $closure->bindTo($this->client, ImageKit::class);
         $doClosure();
+    }
+    
+    /**
+     * 
+     */
+    private function createMockClient($handler){
+        $this->mockClient = new ImageKit(
+            'testing_public_key',
+            'testing_private_key',
+            'https://ik.imagekit.io/demo',
+            Transformation::DEFAULT_TRANSFORMATION_POSITION,
+            $handler
+        );
     }
 
     protected function setUp(): void

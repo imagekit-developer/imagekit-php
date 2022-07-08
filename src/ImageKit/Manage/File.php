@@ -23,6 +23,9 @@ class File
     public static function listFile(GuzzleHttpWrapper $resource,$parameters=null)
     {
         if($parameters){
+            if (isset($parameters['tags']) && is_array($parameters['tags'])) {
+                $parameters['tags'] = implode(',', $parameters['tags']);
+            }
             $resource->setDatas($parameters);
         }
         try {
@@ -273,9 +276,9 @@ class File
      *
      * @return Response
      */
-    public static function copy($sourceFilePath, $destinationPath, $includeVersions, GuzzleHttpWrapper $resource)
+    public static function copy($sourceFilePath, $destinationPath, $includeFileVersions, GuzzleHttpWrapper $resource)
     {
-        $resource->setDatas(['sourceFilePath' => $sourceFilePath, 'destinationPath' => $destinationPath, 'includeVersions' => $includeVersions]);
+        $resource->setDatas(['sourceFilePath' => $sourceFilePath, 'destinationPath' => $destinationPath, 'includeFileVersions' => $includeFileVersions]);
         try {
             $res = $resource->post();
         } catch (\Throwable $th) {
@@ -539,12 +542,12 @@ class File
     {
         $obj = (object)$updateData;
 
-        if (isset($obj->tags) && ($obj->tags !== null) && ($obj->tags !== 'undefined') && !is_array($obj->tags)) {
-            return Response::respond(true, ((object)ErrorMessages::$UPDATE_DATA_TAGS_INVALID));
+        if (isset($obj->tags) && is_string($obj->tags)) {
+            $updateData['tags'] = explode(',', $obj->tags);
         }
 
-        if (isset($obj->customCoordinates) && ($obj->customCoordinates !== 'undefined') && is_array($obj->customCoordinates)) {
-            return Response::respond(true, ((object)ErrorMessages::$UPDATE_DATA_COORDS_INVALID));
+        if (isset($obj->customCoordinates) && is_array($obj->customCoordinates)) {
+            $updateData['customCoordinates'] = implode(',', $obj->customCoordinates);
         }
 
         $resource->setDatas($updateData);

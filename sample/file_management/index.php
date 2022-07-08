@@ -28,6 +28,7 @@ $listFilteredFiles = $imageKit->listFiles([
     "fileType" => "all",
     "limit" => 10,
     "skip" => 0,
+    "tags" => implode(",",["tag3","tag4"]),
 ]);
 
 echo "\n\n";
@@ -127,7 +128,7 @@ $destinationPath = '/sample-folder2/';
 $copyFile = $imageKit->copy([
     'sourceFilePath' => $sourceFilePath,
     'destinationPath' => $destinationPath,
-    'includeVersions' => false
+    'includeFileVersions' => false
 ]);
 
 echo "\n\n";
@@ -205,11 +206,11 @@ echo "\n";
 
 $sourceFolderPath = $folderName;
 $destinationPath = '/sample-folder';
-$includeVersions = false;
+$includeFileVersions = false;
 $copyFolder = $imageKit->copyFolder([
     'sourceFolderPath' => $sourceFolderPath,
     'destinationPath' => $destinationPath,
-    'includeVersions' => $includeVersions
+    'includeFileVersions' => $includeFileVersions
 ]);
 
 echo "\n\n";

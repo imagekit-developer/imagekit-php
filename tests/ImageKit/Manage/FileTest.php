@@ -517,6 +517,33 @@ final class FileTest extends TestCase
         FileTest::assertEquals($requestMethod,'PATCH');
     }
 
+    public function testUpdateFileDetailsWithInvalidTags()
+    {
+        $fileId = '5df36759adf3f523d81dd94f';
+
+        $updateData = [
+            'customCoordinates' => '10,10,100,100',
+            'tags' => 'tag1,tag2',
+            'removeAITags'=>['car','vehicle','motorsports'],
+            'extensions'=>[
+                [
+                    "name" => "google-auto-tagging",
+                    "maxTags" => 5,
+                    "minConfidence" => 95
+                ]
+            ],
+            "customMetadata" => [
+                "SKU" => "VS882HJ2JD",
+                "price" => 599.99,
+            ]
+        ];
+
+        $response = $this->client->updateFileDetails($fileId, $updateData);
+
+        FileTest::assertNull($response->result);
+        FileTest::assertEquals('Invalid tags parameter for this request', $response->error->message);
+    }
+
     /**
      *
      */

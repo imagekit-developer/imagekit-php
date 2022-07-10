@@ -28,7 +28,7 @@ $listFilteredFiles = $imageKit->listFiles([
     "fileType" => "all",
     "limit" => 10,
     "skip" => 0,
-    "tags" => implode(",",["tag3","tag4"]),
+    "tags" => ["tag3","tag4"],
 ]);
 
 echo "\n\n";

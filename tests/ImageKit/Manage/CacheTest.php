@@ -59,6 +59,10 @@ class CacheTest extends TestCase
 
         // Response Check
         CacheTest::assertEquals(json_encode($responseBody), json_encode($response->result));
+        
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        FileTest::assertEquals($requestMethod,'POST');
     }
     
     /**
@@ -122,9 +126,12 @@ class CacheTest extends TestCase
         CacheTest::assertEquals("/v1/files/purge/{$cacheRequestId}",$requestPath);
         CacheTest::assertEmpty($stream);
 
-
         // Response Check
         CacheTest::assertEquals(json_encode($responseBody), json_encode($response->result));
+        
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        FileTest::assertEquals($requestMethod,'GET');
     }
 
     /**

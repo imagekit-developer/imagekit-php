@@ -13,12 +13,13 @@ class Authorization
      * @param Configuration $configuration
      * @return array[]
      */
-    public static function addAuthorization(Configuration $configuration)
+    public static function addAuthorization(Configuration $configuration,$handlerStack=null)
     {
         return [
             'auth' => [
                 $configuration->privateKey, ''
-            ]
+            ],
+            'handler'=>$handlerStack
         ];
     }
 }

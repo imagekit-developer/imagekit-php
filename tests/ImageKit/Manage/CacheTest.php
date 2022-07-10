@@ -5,9 +5,14 @@ namespace ImageKit\Tests\ImageKit\Manage;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Utils;
 use ImageKit\ImageKit;
+use ImageKit\Utils\Transformation;
 use ImageKit\Manage\Cache;
 use ImageKit\Resource\GuzzleHttpWrapper;
+use GuzzleHttp\Handler\MockHandler;
 use PHPUnit\Framework\TestCase;
+use GuzzleHttp\Client;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Middleware;
 
 class CacheTest extends TestCase
 {
@@ -28,11 +33,36 @@ class CacheTest extends TestCase
         ];
         $mockBodyResponse = Utils::streamFor(json_encode($responseBody));
 
-        $this->stubHttpClient('post', new Response(201, ['X-Foo' => 'Bar'], $mockBodyResponse));
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
+        ]);
 
-        $response = $this->client->purgeCache($image_url);
+        $handlerStack = HandlerStack::create($mock);
 
+        $container = [];
+        $history = Middleware::history($container);
+
+        $handlerStack->push($history);
+        
+        $this->createMockClient($handlerStack);
+
+        $response = $this->mockClient->purgeCache($image_url);
+        
+        $request = $container[0]['request'];
+        $requestPath = $request->getUri()->getPath();
+        $stream = Utils::streamFor($request->getBody())->getContents();
+        $stream = json_decode($stream,true);
+
+        // Request Check
+        CacheTest::assertEquals("/v1/files/purge",$requestPath);
+        CacheTest::assertEquals($stream['url'],$image_url);
+
+        // Response Check
         CacheTest::assertEquals(json_encode($responseBody), json_encode($response->result));
+        
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        FileTest::assertEquals($requestMethod,'POST');
     }
     
     /**
@@ -72,11 +102,36 @@ class CacheTest extends TestCase
         
         $mockBodyResponse = Utils::streamFor(json_encode($responseBody));
 
-        $this->stubHttpClient('get', new Response(201, ['X-Foo' => 'Bar'], $mockBodyResponse));
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
+        ]);
 
-        $response = $this->client->purgeCacheStatus($cacheRequestId);
+        $handlerStack = HandlerStack::create($mock);
 
+        $container = [];
+        $history = Middleware::history($container);
+
+        $handlerStack->push($history);
+        
+        $this->createMockClient($handlerStack);
+        
+        $response = $this->mockClient->purgeCacheStatus($cacheRequestId);
+
+        $request = $container[0]['request'];
+        $requestPath = $request->getUri()->getPath();
+        $stream = Utils::streamFor($request->getBody())->getContents();
+        $stream = json_decode($stream,true);
+        
+        // Request Check
+        CacheTest::assertEquals("/v1/files/purge/{$cacheRequestId}",$requestPath);
+        CacheTest::assertEmpty($stream);
+
+        // Response Check
         CacheTest::assertEquals(json_encode($responseBody), json_encode($response->result));
+        
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        FileTest::assertEquals($requestMethod,'GET');
     }
 
     /**
@@ -115,6 +170,20 @@ class CacheTest extends TestCase
         );
 
     }
+
+    /**
+     * 
+     */
+    private function createMockClient($handler){
+        $this->mockClient = new ImageKit(
+            'testing_public_key',
+            'testing_private_key',
+            'https://ik.imagekit.io/demo',
+            Transformation::DEFAULT_TRANSFORMATION_POSITION,
+            $handler
+        );
+    }
+
 
     protected function tearDown(): void
     {

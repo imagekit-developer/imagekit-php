@@ -23,6 +23,9 @@ class File
     public static function listFile(GuzzleHttpWrapper $resource,$parameters=null)
     {
         if($parameters){
+            if (isset($parameters['tags']) && is_array($parameters['tags'])) {
+                $parameters['tags'] = implode(',', $parameters['tags']);
+            }
             $resource->setDatas($parameters);
         }
         try {
@@ -273,9 +276,9 @@ class File
      *
      * @return Response
      */
-    public static function copy($sourceFilePath, $destinationPath, $includeVersions, GuzzleHttpWrapper $resource)
+    public static function copy($sourceFilePath, $destinationPath, $includeFileVersions, GuzzleHttpWrapper $resource)
     {
-        $resource->setDatas(['sourceFilePath' => $sourceFilePath, 'destinationPath' => $destinationPath, 'includeVersions' => $includeVersions]);
+        $resource->setDatas(['sourceFilePath' => $sourceFilePath, 'destinationPath' => $destinationPath, 'includeFileVersions' => $includeFileVersions]);
         try {
             $res = $resource->post();
         } catch (\Throwable $th) {

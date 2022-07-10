@@ -19,7 +19,7 @@ ImageKit is complete media storage, optimization, and transformation solution th
     * [File Upload](#file-upload)
 - [Demo Application](#demo-application)
 - [URL Generation](#url-generation-1)
-- [Signed URL & Image Transformations](#applying-chained-transformations-common-image-manipulations-signed-url--conditional-transformation)
+- [Signed URL & Image Transformations](#applying-chained-transformations-common-image-manipulations--signed-url)
 - [Server-side File Upload](#server-side-file-upload)
 - [File Management](#file-management)
 - [Custom Metadata Fields API](#custom-metadata-fields-api)
@@ -787,7 +787,7 @@ $deleteFiles = $imageKit->bulkFileDeleteByIds($fileIds);
 
 This will copy a file from one folder to another.
 
->  If any file at the destination has the same name as the source file, then the source file and its versions (if `includeVersions` is set to true) will be appended to the destination file version history.
+>  If any file at the destination has the same name as the source file, then the source file and its versions (if `includeFileVersions` is set to true) will be appended to the destination file version history.
 
 Refer to the [copy file API](https://docs.imagekit.io/api-reference/media-api/copy-file) for a better understanding of the **request & response structure**.
 
@@ -795,12 +795,12 @@ Refer to the [copy file API](https://docs.imagekit.io/api-reference/media-api/co
 ```php
 $sourceFilePath = '/sample-folder1/sample-file.jpg';
 $destinationPath = '/sample-folder2/';
-$includeVersions = false;
+$includeFileVersions = false;
 
 $copyFile = $imageKit->copy([
     'sourceFilePath' => $sourceFilePath,
     'destinationPath' => $destinationPath,
-    'includeVersions' => $includeVersions
+    'includeFileVersions' => $includeFileVersions
 ]);
 ```
 
@@ -906,11 +906,11 @@ Refer to the [copy folder API](https://docs.imagekit.io/api-reference/media-api/
 ```php
 $sourceFolderPath = '/source-folder/';
 $destinationPath = '/destination-folder/';
-$includeVersions = false;
+$includeFileVersions = false;
 $copyFolder = $imageKit->copyFolder([
     'sourceFolderPath' => $sourceFolderPath,
     'destinationPath' => $destinationPath,
-    'includeVersions' => $includeVersions
+    'includeFileVersions' => $includeFileVersions
 ]);
 ```
 

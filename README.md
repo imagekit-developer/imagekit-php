@@ -426,65 +426,66 @@ You can manage [Security Settings](https://docs.imagekit.io/features/security#re
 
 The complete list of transformations supported and their usage in ImageKit can be found [here](https://docs.imagekit.io/features/image-transformations). The SDK gives a name to each transformation parameter, making the code simpler and readable. If a transformation is supported in ImageKit, but a name for it cannot be found in the table below, use the transformation code from ImageKit docs as the name when using it in the `url` function.
 
-| Supported Transformation Name | Translates to parameter |  
-| ----------------------------- | ----------------------- |  
-| height                        | h                       |  
-| width                         | w                       |  
-| aspectRatio                   | ar                      |  
-| quality                       | q                       |  
-| crop                          | c                       |  
-| cropMode                      | cm                      |  
-| x                             | x                       |  
-| y                             | y                       |  
-| focus                         | fo                      |  
-| format                        | f                       |  
-| radius                        | r                       |  
-| background                    | bg                      |  
-| border                        | bo                      |  
-| rotation                      | rt                      |  
-| blur                          | bl                      |  
-| named                         | n                       |  
-| overlayImage                  | oi                      |  
-| overlayX                      | ox                      |  
-| overlayY                      | oy                      |  
-| overlayFocus                  | ofo                     |  
-| overlayHeight                 | oh                      |  
-| overlayWidth                  | ow                      |  
-| overlayText                   | ot                      |  
-| overlayTextFontSize           | ots                     |  
-| overlayTextFontFamily         | otf                     |  
-| overlayTextColor              | otc                     |  
-| overlayAlpha                  | oa                      |  
-| overlayTextTypography         | ott                     |  
-| overlayBackground             | obg                     |  
-| overlayImageTrim              | oit                     |  
-| progressive                   | pr                      |  
-| lossless                      | lo                      |  
-| trim                          | t                       |  
-| metadata                      | md                      |  
-| colorProfile                  | cp                      |  
-| defaultImage                  | di                      |  
-| dpr                           | dpr                     |  
-| effectSharpen                 | e-sharpen               |  
-| effectUSM                     | e-usm                   |  
-| effectContrast                | e-contrast              |  
-| effectGray                    | e-grayscale             |  
-| original                      | orig                    |  
-| rotate                        | rt                      |  
-| overlayImageAspectRatio       | oiar                    |  
-| overlayImageBackground        | oibg                    |  
-| overlayImageBorder            | oib                     |  
-| overlayImageDPR               | oidpr                   |  
-| overlayImageQuality           | oiq                     |  
-| overlayImageCropping          | oic                     |  
-| overlayTextTransparency       | oa                      |  
-| overlayTextEncoded            | ote                     |  
-| overlayTextWidth              | otw                     |  
-| overlayTextBackground         | otbg                    |  
-| overlayTextPadding            | otp                     |  
-| overlayTextInnerAlignment     | otia                    |  
-| overlayRadius                 | or                      |  
-| overlayImageFocus             | oifo                    |  
+| Supported Transformation Name | Translates to parameter |
+|-------------------------------|-------------------------|
+| height | h |
+| width | w |
+| aspectRatio | ar |
+| quality | q |
+| crop | c |
+| cropMode | cm |
+| x | x |
+| y | y |
+| focus | fo |
+| format | f |
+| radius | r |
+| background | bg |
+| border | b |
+| rotation | rt |
+| blur | bl |
+| named | n |
+| overlayX | ox |
+| overlayY | oy |
+| overlayFocus | ofo |
+| overlayHeight | oh |
+| overlayWidth | ow |
+| overlayImage | oi |
+| overlayImageTrim | oit |
+| overlayImageAspectRatio | oiar |
+| overlayImageBackground | oibg |
+| overlayImageBorder | oib |
+| overlayImageDPR | oidpr |
+| overlayImageQuality | oiq |
+| overlayImageCropping | oic |
+| overlayImageFocus | oifo |
+| overlayImageTrim | oit |
+| overlayText | ot |
+| overlayTextFontSize | ots |
+| overlayTextFontFamily | otf |
+| overlayTextColor | otc |
+| overlayTextTransparency | oa |
+| overlayAlpha | oa |
+| overlayTextTypography | ott |
+| overlayBackground | obg |
+| overlayTextEncoded | ote |
+| overlayTextWidth | otw |
+| overlayTextBackground | otbg |
+| overlayTextPadding | otp |
+| overlayTextInnerAlignment | otia |
+| overlayRadius | or |
+| progressive | pr |
+| lossless | lo |
+| trim | t |
+| metadata | md |
+| colorProfile | cp |
+| defaultImage | di |
+| dpr | dpr |
+| effectSharpen | e-sharpen |
+| effectUSM | e-usm |
+| effectContrast | e-contrast |
+| effectGray | e-grayscale |
+| original | orig |
+| raw | `replaced by the parameter value` |
 
 
 ## Server-side File Upload
@@ -784,7 +785,7 @@ Refer to the [Delete Files (Bulk) API](https://docs.imagekit.io/api-reference/me
 #### Example
 ```php
 $fileIds = ["5e1c13d0c55ec3437c451406", ...];
-$deleteFiles = $imageKit->bulkFileDeleteByIds($fileIds);
+$deleteFiles = $imageKit->bulkDeleteFiles($fileIds);
 ```
 
 

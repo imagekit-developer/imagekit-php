@@ -5,7 +5,7 @@
 
 PHP SDK for [ImageKit](https://imagekit.io/) implements the new APIs and interface for different file operations.
 
-ImageKit is complete media storage, optimization, and transformation solution that comes with an [image and video CDN](https://imagekit.io/features/imagekit-infrastructure). It can be integrated with your existing infrastructure - storage like AWS S3, web servers, your CDN, and custom domain names, allowing you to deliver optimized images in minutes with minimal code changes.
+ImageKit is complete media storage, optimization, and transformation solution that comes with an [image and video CDN](https://imagekit.io/). It can be integrated with your existing infrastructure - storage like AWS S3, web servers, your CDN, and custom domain names, allowing you to deliver optimized images in minutes with minimal code changes.
 
 - [Key Features](#key-features)
 - [Requirements](#requirements)
@@ -80,6 +80,7 @@ You can use this PHP SDK for three different methods - URL generation, file uplo
 5. **Using the SDK** – The best way to become familiar with how to use the SDK is to follow the examples provided in the [quick start guide](https://docs.imagekit.io/getting-started/quickstart-guides/php).
 
 ## Quick Examples
+
 #### Create an ImageKit Instance
 ```php  
 // Require the Composer autoloader.
@@ -108,13 +109,14 @@ echo $imageURL;
 ```php
 // For File Upload
 $uploadFile = $imageKit->uploadFile([
-    'file' => 'file-url',
-    'fileName' => 'new-file'
+    'file' => 'file-url', # required, "binary","base64" or "file url"
+    'fileName' => 'new-file' # required
 ]);
 ```  
 
 #### Response Structure
 Following is the response for [server-side file upload API](https://docs.imagekit.io/api-reference/upload-file-api/server-side-file-upload#response-code-and-structure-json)
+
 ```json
 {
     "error": null,
@@ -184,9 +186,10 @@ Following is the response for [server-side file upload API](https://docs.imageki
 
 ### Using relative file path and URL endpoint
   
-This method allows you to create an URL to access a file using the relative file path and the ImageKit URL endpoint (`urlEndpoint`). The file can be an image, video or any other static file supported by ImageKit.
+This method allows you to create an URL to access a file using the relative file path and the ImageKit URL endpoint (`urlEndpoint`). The file can be an image, video, or any other static file supported by ImageKit.
   
 #### Example
+
 ```php  
 $imageURL = $imageKit->url(
     [
@@ -236,7 +239,7 @@ The `$imageKit->url()` method accepts the following parameters.
 | path                  | Conditional. This is the path at which the image exists. For example, `/path/to/image.jpg`. Either the `path` or `src` parameter needs to be specified for URL generation.                                                                                                                                                                                                                                                                                                                                                                                                                |  
 | src                   | Conditional. This is the complete URL of an image already mapped to ImageKit. For example, `https://ik.imagekit.io/your_imagekit_id/endpoint/path/to/image.jpg`. Either the `path` or `src` parameter needs to be specified for URL generation.                                                                                                                                                                                                                                                                                                                                           |  
 | transformation        | Optional. An array of objects specifying the transformation to be applied in the URL. The transformation name and the value should be specified as a key-value pair in the object. Different steps of a [chained transformation](https://docs.imagekit.io/features/image-transformations/chained-transformations) can be specified as different objects of the array. The complete [List of supported transformations](#list-of-supported-transformations) in the SDK and some examples of using them are given later. If you use a transformation name that is not specified in the SDK, it gets applied as it is in the URL. |  
-| transformationPosition | Optional. The default value is `path` that places the transformation string as a path parameter in the URL. It can also be specified as `query`, which adds the transformation string as the query parameter `tr` in the URL. If you use the `src` parameter to create the URL, the transformation string is always added as a query parameter.                                                                                                                                                                                                                                                 |  
+| transformationPosition | Optional. The default value is `path` which places the transformation string as a path parameter in the URL. It can also be specified as `query`, which adds the transformation string as the query parameter `tr` in the URL. The transformation string is always added as a query parameter if you use the `src` parameter to create the URL.                                                                                                                                                                                                                                                 |  
 | queryParameters       | Optional. These are the other query parameters that you want to add to the final URL. These can be any query parameters and are not necessarily related to ImageKit. Especially useful if you want to add some versioning parameters to your URLs.                                                                                                                                                                                                                                                                                                                                           |  
 | signed                | Optional. Boolean. The default value is `false`. If set to `true`, the SDK generates a signed image URL adding the image signature to the image URL.                                                                                                                                                                                                                                                                                                              |  
 | expireSeconds         | Optional. Integer. It is used along with the `signed` parameter. It specifies the time in seconds from now when the signed URL will expire. If specified, the URL contains the expiry timestamp in the URL, and the image signature is modified accordingly.                                                                                                                                                
@@ -320,7 +323,7 @@ https://ik.imagekit.io/your_imagekit_id/endpoint/tr:f-jpg,pr-true,e-sharpen,e-co
 
 ### 3. Resizing images and videos
 Let's resize the image to `width` 400 and `height` 300.
-Check detailed instructions on [resize, crop and other Common transformations](https://docs.imagekit.io/features/image-transformations/resize-crop-and-other-transformations)
+Check detailed instructions on [resize, crop, and other Common transformations](https://docs.imagekit.io/features/image-transformations/resize-crop-and-other-transformations)
 
 #### Example
 ```php
@@ -557,9 +560,9 @@ $uploadFile = $imageKit->uploadFile([
 }
 ```
 #### Optional Parameters
-Please refer to [server-side file upload API request structure](https://docs.imagekit.io/api-reference/upload-file-api/server-side-file-upload#request-structure-multipart-form-data) for detailed explanation about mandatory and optional parameters.
-```php
+Please refer to [server-side file upload API request structure](https://docs.imagekit.io/api-reference/upload-file-api/server-side-file-upload#request-structure-multipart-form-data) for a detailed explanation of mandatory and optional parameters.
 
+```php
 // Attempt File Uplaod
 $uploadFile = $imageKit->uploadFile([
     'file' => 'your_file',                  //  required, "binary","base64" or "file url"
@@ -607,6 +610,7 @@ $listFiles = $imageKit->listFiles();
 ```
 #### Applying Filters
 Filter out the files with an object specifying the parameters. 
+
 ```php
 $listFiles = $imageKit->listFiles([
     "type" => "file",           // file, file-version or folder
@@ -621,6 +625,7 @@ $listFiles = $imageKit->listFiles([
 
 #### Advance Search
 In addition, you can fine-tune your query by specifying various filters by generating a query string in a Lucene-like syntax and providing this generated string as the value of the `searchQuery`.
+
 ```php
 $listFiles = $imageKit->listFiles([
     "searchQuery" => '(size < "1mb" AND width > 500) OR (tags IN ["summer-sale","banner"])',
@@ -641,7 +646,7 @@ $getFileDetails = $imageKit->getFileDetails('file_id');
 
 ### 3. Get File Version Details
 
-This API can get you all the details and attributes for the provided version of the file.`versionID` is returned in list file API response.
+This API can get you all the details and attributes for the provided version of the file.
 
 Refer to the [get file version details API](https://docs.imagekit.io/api-reference/media-api/get-file-version-details) for a better understanding of the **request & response structure**.
 
@@ -745,7 +750,7 @@ $bulkRemoveTags = $imageKit->bulkRemoveTags($fileIds, $AITags);
 
 You can programmatically delete uploaded files in the media library using delete file API.
 
-> If a file or specific transformation has been requested in the past, then the response is cached. Deleting a file does not purge the cache. You can purge the cache using [Purge Cache API](#21-purge-cache-api).
+> If a file or specific transformation has been requested in the past, then the response is cached. Deleting a file does not purge the cache. However, you can purge the cache using [Purge Cache API](#21-purge-cache-api).
 
 Refer to the [delete file API](https://docs.imagekit.io/api-reference/media-api/delete-file) for better understanding about the **request & response structure**.
 
@@ -946,7 +951,7 @@ $bulkJobStatus = $imageKit->getBulkJobStatus($jobId);
 
 ### 21. Purge Cache API
 
-This will purge CDN and ImageKit.io's internal cache. In response `requestId` is returned which can be used to fetch the status of the submitted purge request with [Purge Cache Status API](#22-purge-cache-status-api).
+This will purge CDN and ImageKit.io's internal cache. In response, `requestId` is returned, which can be used to fetch the status of the submitted purge request with [Purge Cache Status API](#22-purge-cache-status-api).
 
 Refer to the [Purge Cache API](https://docs.imagekit.io/api-reference/media-api/purge-cache) for a better understanding of the **request & response structure**.
 
@@ -1037,7 +1042,7 @@ $getCustomMetadataField = $imageKit->getCustomMetadataField($includeDeleted);
 
 ### 3. Update Fields
 
-Update the `label` or `schema` of an existing custom metadata field.
+Update an existing custom metadata field's `label` or `schema`.
 
 Refer to the [update custom metadata fields API](https://docs.imagekit.io/api-reference/custom-metadata-fields-api/update-custom-metadata-field) for a better understanding of the **request & response structure**.
 
@@ -1077,7 +1082,7 @@ We have included the following commonly used utility functions in this SDK.
 
 ### Authentication parameter generation
 
-If you are looking to implement client-side file upload, you will need a `token`, `expiry` timestamp, and a valid `signature` for that upload. The SDK provides a simple method that you can use in your code to generate these authentication parameters for you.
+If you want to implement client-side file upload, you will need a `token`, `expiry` timestamp, and a valid `signature` for that upload. The SDK provides a simple method you can use in your code to generate these authentication parameters.
 
 _Note: The Private API Key should never be exposed in any client-side code. You must always generate these authentication parameters on the server-side_
 
@@ -1095,7 +1100,7 @@ Returns
 }
 ```  
 
-Both the `token` and `expire` parameters are optional. If not specified, the SDK generates a random token and also generates a valid expiry timestamp internally. The value of the `token` and `expire` used to create the signature is always returned in the response, whether they are provided in input or not.
+Both the `token` and `expire` parameters are optional. If not specified, the SDK internally generates a random token and a valid expiry timestamp. The value of the `token` and `expire` used to create the signature is always returned in the response, whether they are provided in input or not.
 
 ### Distance calculation between two pHash values
 
@@ -1121,7 +1126,7 @@ $imageKit->pHashDistance('a4a65595ac94518b', '7838873e791f8400');
 ```  
 
 ## Opening Issues
-If you encounter a bug with `imagekit-php` we would like to hear about it. Search the existing issues and try to make sure your problem doesn’t already exist before opening a new issue. It’s helpful if you include the version of `imagekit-php`, PHP version, and OS you’re using. Please include a stack trace and a simple workflow to reproduce the case when appropriate, too.
+If you encounter a bug with `imagekit-php` we would like to hear about it. Search the existing issues and try to make sure your problem doesn't already exist before opening a new issue. It's helpful if you include the version of `imagekit-php`, PHP version, and OS you're using. Please include a stack trace and a simple workflow to reproduce the case when appropriate, too.
 
 
 ## Support

@@ -26,13 +26,6 @@ use InvalidArgumentException;
 class ImageKit
 {
     /**
-     * ImageKit SDK VERSION
-     *
-     * @var string
-     */
-    const SDK_VERSION = '3.0.0';
-
-    /**
      * @var Configuration
      */
     private $configuration;

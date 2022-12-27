@@ -115,14 +115,133 @@ final class UrlTest extends TestCase
      */
     public function testUrlSignedUrlWithInvalidExpiryString()
     {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('expireSeconds should be numeric');
         $url = $this->client->url([
             'path' => '/default-image.jpg',
             'signed' => true,
             'expireSeconds' => 'asdad'
         ]);
-        // UrlTest::assertEquals('expireSeconds should be numericasd',$url);
+        UrlTest::assertEquals('expireSeconds accepts an integer value, non integer value provided.',json_decode($url)->error->message);
+    }
+
+    /**
+     *
+     */
+    public function testUrlSignedUrlWithoutExpiry()
+    {
+        $url = $this->client->url([
+            'path' => '/default-image.jpg',
+            'signed' => true
+        ]);
+        UrlTest::assertStringContainsString(
+            '?ik-s=',
+            $url
+        );
+    }
+
+    /**
+     *
+     */
+    public function testUrlSignedUrlWithExpiryWithTransformation()
+    {
+        $url = $this->client->url([
+            'path' => '/default-image.jpg',
+            "transformation" => [
+                [
+                    "height" => "300",
+                ]
+            ],
+            'signed' => true,
+            'expireSeconds' => 300
+        ]);
+        UrlTest::assertStringContainsString(
+            '?ik-t=',
+            $url
+        );
+        UrlTest::assertStringContainsString(
+            '&ik-s=',
+            $url
+        );
+    }
+
+    /**
+     *
+     */
+    public function testUrlSignedUrlWithExpiryWithQueryParameters()
+    {
+        $url = $this->client->url([
+            'path' => '/default-image.jpg',
+            "queryParameters" => 
+            [
+                "key" => "value"
+            ],
+            'signed' => true,
+            'expireSeconds' => 300
+        ]);
+        UrlTest::assertStringContainsString(
+            '&ik-t=',
+            $url
+        );
+        UrlTest::assertStringContainsString(
+            '&ik-s=',
+            $url
+        );
+    }
+
+    /**
+     *
+     */
+    public function testUrlSignedUrlWithExpiryWithTransformationWithQueryParameters()
+    {
+        $url = $this->client->url([
+            'path' => '/default-image.jpg',
+            "queryParameters" => 
+            [
+                "key" => "value"
+            ],
+            "transformation" => [
+                [
+                    "height" => "300",
+                ]
+            ],
+            'signed' => true,
+            'expireSeconds' => 300
+        ]);
+        UrlTest::assertStringContainsString(
+            '&ik-t=',
+            $url
+        );
+        UrlTest::assertStringContainsString(
+            '&ik-s=',
+            $url
+        );
+    }
+
+    /**
+     *
+     */
+    public function testUrlSignedUrlWithoutExpiryWithTransformationWithQueryParameters()
+    {
+        $url = $this->client->url([
+            'path' => '/default-image.jpg',
+            "queryParameters" => 
+            [
+                "key" => "value"
+            ],
+            "transformation" => [
+                [
+                    "height" => "300",
+                ]
+            ],
+            'signed' => true
+        ]);
+        UrlTest::assertStringNotContainsString(
+            '&ik-t=',
+            $url
+        );
+        UrlTest::assertStringContainsString(
+            '&ik-s=',
+            $url
+        );
     }
 
     /**

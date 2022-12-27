@@ -40,10 +40,6 @@ class Url
 
         if (isset($obj->expireSeconds)) {
             $expireSeconds = $obj->expireSeconds;
-
-            if ($signed === true && $expireSeconds !== '' && !is_numeric($expireSeconds)) {
-                throw new \InvalidArgumentException('expireSeconds should be numeric');
-            }
         }
 
         if (isset($obj->path)) {
@@ -340,10 +336,12 @@ class Url
                 (strlen($host) > 0 ? "//$host" : '') .
                 (strlen($pathname) > 0 ? "$pathname" : '') .
                 (strlen($search) > 0 ? str_replace('=',':',$search).'/' : '') .
-                 $file_name .
-                 (strlen($queryParameters) > 0 ? ( '?' . $queryParameters): '') .
-                 ((!empty($timestampParameterString) && strlen($timestampParameterString) > 0) ? (((!empty($queryParameters) && strlen($queryParameters)>0)?'&':'?') . $timestampParameterString): '') .
-                 ((!empty($signatureParameterString) && strlen($signatureParameterString) > 0) ? ('&' . $signatureParameterString): '');
+                $file_name .
+                (strlen($queryParameters) > 0 ? ( '?' . $queryParameters): '') .
+                ((!empty($timestampParameterString) && strlen($timestampParameterString) > 0) ? (((!empty($queryParameters) && strlen($queryParameters)>0)?'&':'?') . $timestampParameterString): '') .
+                ((!empty($signatureParameterString) && strlen($signatureParameterString) > 0) ? (((!empty($queryParameters) && strlen($queryParameters)>0)?'&':
+                ((!empty($timestampParameterString) && strlen($timestampParameterString) > 0)?'&':'?')
+                ) . $signatureParameterString): '');
 
         }
     }

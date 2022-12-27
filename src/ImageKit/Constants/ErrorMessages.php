@@ -144,5 +144,5 @@ class ErrorMessages
     public static $DELETE_CUSTOM_METADATA_ID_MISSING = ['message' => 'Missing Custom Metadata Field ID parameter for this request', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $PHASH_DISTANCE_FIRST_PHASH_MISSING = ['message' => 'Missing First pHash parameter for this request', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $PHASH_DISTANCE_SECOND_PHASH_MISSING = ['message' => 'Missing Second pHash parameter for this request', 'help' => 'For support kindly contact us at support@imagekit.io .'];
-    
+    public static $URL_GENERATION_EXPIRESECONDS_PARAMETER_INVALID = ['message' => 'expireSeconds accepts an integer value, non integer value provided.', 'help' => 'For support kindly contact us at support@imagekit.io .'];       
 }

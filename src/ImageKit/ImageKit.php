@@ -26,13 +26,6 @@ use InvalidArgumentException;
 class ImageKit
 {
     /**
-     * ImageKit SDK VERSION
-     *
-     * @var string
-     */
-    const SDK_VERSION = '3.0.0';
-
-    /**
      * @var Configuration
      */
     private $configuration;
@@ -127,6 +120,12 @@ class ImageKit
             return json_encode(Response::respond(true, ((object)ErrorMessages::$URL_GENERATION_TRANSFORMATION_PARAMETER_INVALID)));
         }
         
+        if (isset($options['signed']) && $options['signed'] === true){
+            if(isset($options['expireSeconds']) && $options['expireSeconds'] !== '' && !is_numeric($options['expireSeconds'])){
+                return json_encode(Response::respond(true, ((object)ErrorMessages::$URL_GENERATION_EXPIRESECONDS_PARAMETER_INVALID)));
+            }
+        }
+
         $urlInstance = new Url();
         return $urlInstance->buildURL(array_merge((array)$this->configuration, $options));
     }

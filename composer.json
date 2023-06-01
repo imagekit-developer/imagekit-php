@@ -37,6 +37,5 @@
     "support": {
         "email": "support@imagekit.io"
     },
-    "type": "library",
-    "version": "3.0.1"
+    "type": "library"
 }

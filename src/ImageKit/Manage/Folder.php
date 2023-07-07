@@ -32,7 +32,7 @@ class Folder
             $content['body'] = json_decode($stream->getContents());
             $headers = $res->getHeaders();
             $content['headers'] = $headers;
-            $content['statusCode'] = $res->getStatusCode();
+            $content['statusCode'] = (int)$res->getStatusCode();
     
             if ($res->getStatusCode() && ($res->getStatusCode() < 200 || $res->getStatusCode() > 300)) {
                 return Response::respond(true, ($content));
@@ -69,7 +69,7 @@ class Folder
             $content['body'] = json_decode($stream->getContents());
             $headers = $res->getHeaders();
             $content['headers'] = $headers;
-            $content['statusCode'] = $res->getStatusCode();
+            $content['statusCode'] = (int)$res->getStatusCode();
     
             if ($res->getStatusCode() && ($res->getStatusCode() < 200 || $res->getStatusCode() > 300)) {
                 return Response::respond(true, ($content));
@@ -104,7 +104,7 @@ class Folder
             $content['body'] = json_decode($stream->getContents());
             $headers = $res->getHeaders();
             $content['headers'] = $headers;
-            $content['statusCode'] = $res->getStatusCode();
+            $content['statusCode'] = (int)$res->getStatusCode();
     
             if ($res->getStatusCode() && ($res->getStatusCode() < 200 || $res->getStatusCode() > 300)) {
                 return Response::respond(true, ($content));
@@ -138,7 +138,7 @@ class Folder
             $content['body'] = json_decode($stream->getContents());
             $headers = $res->getHeaders();
             $content['headers'] = $headers;
-            $content['statusCode'] = $res->getStatusCode();
+            $content['statusCode'] = (int)$res->getStatusCode();
     
             if ($res->getStatusCode() && ($res->getStatusCode() < 200 || $res->getStatusCode() > 300)) {
                 return Response::respond(true, ($content));

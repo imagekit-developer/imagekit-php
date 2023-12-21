@@ -252,7 +252,7 @@ This section covers the basics:
 * [Image enhancement & color manipulation](#2-image-enhancement-and-color-manipulation)
 * [Resizing images and videos](#3-resizing-images-and-videos)
 * [Quality manipulation](#4-quality-manipulation)
-* [Adding overlays to images](#5-adding-overlays-to-images)
+* [Adding overlays](#5-adding-overlays)
 * [Signed URL](#6-signed-url)
 
 The PHP SDK gives a name to each transformation parameter e.g. `height` for `h` and `width` for `w` parameter. It makes your code more readable. See the [Full list of supported transformations](#list-of-supported-transformations).

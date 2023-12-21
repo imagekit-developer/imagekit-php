@@ -362,28 +362,83 @@ $imageURL = $imageKit->url(array(
 https://ik.imagekit.io/your_imagekit_id/tr:q-40/default-image.jpg
 ```
 
-### 5. Adding overlays to images
-ImageKit.io  allows overlaying [text](https://docs.imagekit.io/features/image-transformations/overlay-using-layers#add-text-over-image) or [image](https://docs.imagekit.io/features/image-transformations/overlay-using-layers#add-images-over-image) over other images and videos for watermarking or creating dynamic assets using custom text.
+### 5. Adding overlays
 
-#### Example
+ImageKit.io enables you to apply overlays to [images](https://docs.imagekit.io/features/image-transformations/overlay-using-layers) and [videos](https://docs.imagekit.io/features/video-transformation/overlay) using the raw parameter with the concept of [layers](https://docs.imagekit.io/features/image-transformations/overlay-using-layers#layers). The raw parameter facilitates incorporating transformations directly in the URL. A layer is a distinct type of transformation that allows you to define an asset to serve as an overlay, along with its positioning and additional transformations.
+
+#### Text as overlays
+
+You can add any text string over a base video or image using a text layer (l-text).
+
+For example:
+
 ```php
 $imageURL = $imageKit->url(array(
     'path' => '/default-image.jpg',
     'urlEndpoint' => 'https://ik.imagekit.io/your_imagekit_id'
     
-    // It means first resize the image to 400x300 and then rotate 90 degree
     'transformation' => [
         [
             'height' => '300',
-            'width' => '300',
+            'width' => '400',
+            'raw': "l-text,i-Imagekit,fs-50,l-end"
+        ]
+    ]
+));
+```
+#### Sample Result URL
+```
+https://ik.imagekit.io/your_imagekit_id/tr:h-300,w-400,l-text,i-Imagekit,fs-50,l-end/default-image.jpg
+```
+
+#### Image as overlays
+
+You can add an image over a base video or image using an image layer (l-image).
+
+For example:
+
+```php
+$imageURL = $imageKit->url(array(
+    'path' => '/default-image.jpg',
+    'urlEndpoint' => 'https://ik.imagekit.io/your_imagekit_id'
+    
+    'transformation' => [
+        [
+            'height' => '300',
+            'width' => '400',
             'raw': "l-image,i-default-image.jpg,w-100,b-10_CDDC39,l-end"
         ]
     ]
 ));
 ```
-#### Response
+#### Sample Result URL
 ```
-https://ik.imagekit.io/your_imagekit_id/endpoint/tr:w-300,h-300,l-image,i-default-image.jpg,w-100,b-10_CDDC39,l-end/default-image.jpg
+https://ik.imagekit.io/your_imagekit_id/tr:h-300,w-400,l-image,i-default-image.jpg,w-100,b-10_CDDC39,l-end/default-image.jpg
+```
+
+#### Solid color blocks as overlays
+
+You can add solid color blocks over a base video or image using an image layer (l-image).
+
+For example:
+
+```php
+$imageURL = $imageKit->url(array(
+    'path' => '/img/sample-video.mp4',
+    'urlEndpoint' => 'https://ik.imagekit.io/your_imagekit_id'
+    
+    'transformation' => [
+        [
+            'height' => '300',
+            'width' => '400',
+            'raw': "l-image,i-ik_canvas,bg-FF0000,w-300,h-100,l-end"
+        ]
+    ]
+));
+```
+#### Sample Result URL
+```
+https://ik.imagekit.io/your_imagekit_id/tr:h-300,w-400,l-image,i-ik_canvas,bg-FF0000,w-300,h-100,l-end/img/sample-video.mp4
 ```
 
 ### 6. Signed URL

@@ -252,7 +252,7 @@ This section covers the basics:
 * [Image enhancement & color manipulation](#2-image-enhancement-and-color-manipulation)
 * [Resizing images and videos](#3-resizing-images-and-videos)
 * [Quality manipulation](#4-quality-manipulation)
-* [Adding overlays to images](#5-adding-overlays-to-images)
+* [Adding overlays](#5-adding-overlays)
 * [Signed URL](#6-signed-url)
 
 The PHP SDK gives a name to each transformation parameter e.g. `height` for `h` and `width` for `w` parameter. It makes your code more readable. See the [Full list of supported transformations](#list-of-supported-transformations).
@@ -362,31 +362,83 @@ $imageURL = $imageKit->url(array(
 https://ik.imagekit.io/your_imagekit_id/tr:q-40/default-image.jpg
 ```
 
-### 5. Adding overlays to images
-ImageKit.io  allows overlaying [images](https://docs.imagekit.io/features/image-transformations/overlay#image-overlay) or [text](https://docs.imagekit.io/features/image-transformations/overlay#text-overlay) over other images and videos for watermarking or creating dynamic assets using custom text.
+### 5. Adding overlays
 
-#### Example
+ImageKit.io enables you to apply overlays to [images](https://docs.imagekit.io/features/image-transformations/overlay-using-layers) and [videos](https://docs.imagekit.io/features/video-transformation/overlay) using the raw parameter with the concept of [layers](https://docs.imagekit.io/features/image-transformations/overlay-using-layers#layers). The raw parameter facilitates incorporating transformations directly in the URL. A layer is a distinct type of transformation that allows you to define an asset to serve as an overlay, along with its positioning and additional transformations.
+
+#### Text as overlays
+
+You can add any text string over a base video or image using a text layer (l-text).
+
+For example:
+
 ```php
 $imageURL = $imageKit->url(array(
     'path' => '/default-image.jpg',
     'urlEndpoint' => 'https://ik.imagekit.io/your_imagekit_id'
     
-    // It means first resize the image to 400x300 and then rotate 90 degree
     'transformation' => [
         [
             'height' => '300',
-            'width' => '300',
-            'overlayImage' => 'default-image.jpg',
-            'overlaywidth' => '100',
-            'overlayX' => '0',
-            'overlayImageBorder' => '10_CDDC39' // 10px border of color CDDC39
+            'width' => '400',
+            'raw': "l-text,i-Imagekit,fs-50,l-end"
         ]
     ]
 ));
 ```
-#### Response
+#### Sample Result URL
 ```
-https://ik.imagekit.io/your_imagekit_id/endpoint/tr:w-300,h-300,oi-default-image.jpg,ow-100,ox-0,oib-10_CDDC39/default-image.jpg
+https://ik.imagekit.io/your_imagekit_id/tr:h-300,w-400,l-text,i-Imagekit,fs-50,l-end/default-image.jpg
+```
+
+#### Image as overlays
+
+You can add an image over a base video or image using an image layer (l-image).
+
+For example:
+
+```php
+$imageURL = $imageKit->url(array(
+    'path' => '/default-image.jpg',
+    'urlEndpoint' => 'https://ik.imagekit.io/your_imagekit_id'
+    
+    'transformation' => [
+        [
+            'height' => '300',
+            'width' => '400',
+            'raw': "l-image,i-default-image.jpg,w-100,b-10_CDDC39,l-end"
+        ]
+    ]
+));
+```
+#### Sample Result URL
+```
+https://ik.imagekit.io/your_imagekit_id/tr:h-300,w-400,l-image,i-default-image.jpg,w-100,b-10_CDDC39,l-end/default-image.jpg
+```
+
+#### Solid color blocks as overlays
+
+You can add solid color blocks over a base video or image using an image layer (l-image).
+
+For example:
+
+```php
+$imageURL = $imageKit->url(array(
+    'path' => '/img/sample-video.mp4',
+    'urlEndpoint' => 'https://ik.imagekit.io/your_imagekit_id'
+    
+    'transformation' => [
+        [
+            'height' => '300',
+            'width' => '400',
+            'raw': "l-image,i-ik_canvas,bg-FF0000,w-300,h-100,l-end"
+        ]
+    ]
+));
+```
+#### Sample Result URL
+```
+https://ik.imagekit.io/your_imagekit_id/tr:h-300,w-400,l-image,i-ik_canvas,bg-FF0000,w-300,h-100,l-end/img/sample-video.mp4
 ```
 
 ### 6. Signed URL
@@ -445,35 +497,6 @@ If you want to generate transformations in your application and add them to the 
 | rotation | rt |
 | blur | bl |
 | named | n |
-| overlayX | ox |
-| overlayY | oy |
-| overlayFocus | ofo |
-| overlayHeight | oh |
-| overlayWidth | ow |
-| overlayImage | oi |
-| overlayImageTrim | oit |
-| overlayImageAspectRatio | oiar |
-| overlayImageBackground | oibg |
-| overlayImageBorder | oib |
-| overlayImageDPR | oidpr |
-| overlayImageQuality | oiq |
-| overlayImageCropping | oic |
-| overlayImageFocus | oifo |
-| overlayImageTrim | oit |
-| overlayText | ot |
-| overlayTextFontSize | ots |
-| overlayTextFontFamily | otf |
-| overlayTextColor | otc |
-| overlayTextTransparency | oa |
-| overlayAlpha | oa |
-| overlayTextTypography | ott |
-| overlayBackground | obg |
-| overlayTextEncoded | ote |
-| overlayTextWidth | otw |
-| overlayTextBackground | otbg |
-| overlayTextPadding | otp |
-| overlayTextInnerAlignment | otia |
-| overlayRadius | or |
 | progressive | pr |
 | lossless | lo |
 | trim | t |

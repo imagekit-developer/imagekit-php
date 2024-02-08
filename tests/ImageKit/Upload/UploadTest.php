@@ -162,7 +162,16 @@ final class UploadTest extends TestCase
             "customMetadata" => [                                              // An array of created custom fields, for more details refer to docs
                     "SKU" => "VS882HJ2JD",
                     "price" => 599.99,
-            ]
+            ],
+            'transformation' => [ 
+                'pre' => 'l-text,i-Imagekit,fs-50,l-end', 
+                'post' => [
+                    [ 
+                        'type' => 'transformation', 
+                        'value' => 'h-100' 
+                    ]
+                ]
+            ],
         ];
 
         $mockBodyResponse = Utils::streamFor(json_encode($this->uploadSuccessResponseObj));
@@ -205,6 +214,126 @@ final class UploadTest extends TestCase
         $this->checkFormData($stream,$boundary,"overwriteAITags","false");
         $this->checkFormData($stream,$boundary,"overwriteCustomMetadata","true");
         $this->checkFormData($stream,$boundary,"customMetadata",json_encode($fileOptions['customMetadata']));
+        $this->checkFormData($stream,$boundary,"transformation",json_encode($fileOptions['transformation']));
+
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        UploadTest::assertEquals($requestMethod,'POST');
+        
+        // Response Check
+        UploadTest::assertEquals(json_encode($this->uploadSuccessResponseObj), json_encode($response->result));
+    }
+
+    /**
+     *
+     */
+    public function testFileUploadWithOnlyPreTransformationIfSuccessful()
+    {
+        $fileOptions = [
+            'file'  =>  'http://lorempixel.com/640/480/',
+            'fileName'  =>  'test_file_name',
+            "useUniqueFileName" => true,                                        // true|false
+            "responseFields" => implode(",", ["tags", "customMetadata"]),       // Comma Separated, check docs for more responseFields
+            'transformation' => [ 
+                'pre' => 'l-text,i-Imagekit,fs-50,l-end', 
+            ],
+        ];
+
+        $mockBodyResponse = Utils::streamFor(json_encode($this->uploadSuccessResponseObj));
+
+
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
+        ]);
+
+        $handlerStack = HandlerStack::create($mock);
+
+        $container = [];
+        $history = Middleware::history($container);
+
+        $handlerStack->push($history);
+        
+        $this->createMockClient($handlerStack);
+        
+        $response = $this->mockClient->uploadFile($fileOptions);
+        
+        $requestBody = $container[0]['request']->getBody();
+        $requestHeaders = $container[0]['request']->getHeaders();
+        $boundary = str_replace("multipart/form-data; boundary=","",$requestHeaders["Content-Type"][0]);
+
+        UploadTest::assertArrayHasKey("Content-Type",$requestHeaders);
+        UploadTest::assertStringStartsWith("multipart/form-data; boundary=",$requestHeaders['Content-Type'][0]);
+
+        $stream = Utils::streamFor($requestBody);
+        $stream = str_replace('\r\n',' ',json_encode($stream->getContents()));
+
+        $this->checkFormData($stream,$boundary,"file",$fileOptions['file']);
+        $this->checkFormData($stream,$boundary,"fileName",$fileOptions['fileName']);
+        $this->checkFormData($stream,$boundary,"useUniqueFileName","true");
+        $this->checkFormData($stream,$boundary,"responseFields",implode(",", ["tags", "customMetadata"]));
+        $this->checkFormData($stream,$boundary,"transformation",json_encode($fileOptions['transformation']));
+
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        UploadTest::assertEquals($requestMethod,'POST');
+        
+        // Response Check
+        UploadTest::assertEquals(json_encode($this->uploadSuccessResponseObj), json_encode($response->result));
+    }
+
+    /**
+     *
+     */
+    public function testFileUploadWithOnlyPostTransformationIfSuccessful()
+    {
+        $fileOptions = [
+            'file'  =>  'http://lorempixel.com/640/480/',
+            'fileName'  =>  'test_file_name',
+            "useUniqueFileName" => true,                                        // true|false
+            "responseFields" => implode(",", ["tags", "customMetadata"]),       // Comma Separated, check docs for more responseFields
+            'transformation' => [ 
+                'post' => [
+                    [ 
+                        'type' => 'transformation', 
+                        'value' => 'h-100' 
+                    ]
+                ]
+            ],
+        ];
+
+        $mockBodyResponse = Utils::streamFor(json_encode($this->uploadSuccessResponseObj));
+
+
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
+        ]);
+
+        $handlerStack = HandlerStack::create($mock);
+
+        $container = [];
+        $history = Middleware::history($container);
+
+        $handlerStack->push($history);
+        
+        $this->createMockClient($handlerStack);
+        
+        $response = $this->mockClient->uploadFile($fileOptions);
+        
+        $requestBody = $container[0]['request']->getBody();
+        $requestHeaders = $container[0]['request']->getHeaders();
+        $boundary = str_replace("multipart/form-data; boundary=","",$requestHeaders["Content-Type"][0]);
+
+        UploadTest::assertArrayHasKey("Content-Type",$requestHeaders);
+        UploadTest::assertStringStartsWith("multipart/form-data; boundary=",$requestHeaders['Content-Type'][0]);
+
+        $stream = Utils::streamFor($requestBody);
+        $stream = str_replace('\r\n',' ',json_encode($stream->getContents()));
+
+        $this->checkFormData($stream,$boundary,"file",$fileOptions['file']);
+        $this->checkFormData($stream,$boundary,"fileName",$fileOptions['fileName']);
+        $this->checkFormData($stream,$boundary,"useUniqueFileName","true");
+        $this->checkFormData($stream,$boundary,"responseFields",implode(",", ["tags", "customMetadata"]));
+        $this->checkFormData($stream,$boundary,"transformation",json_encode($fileOptions['transformation']));
 
         // Assert Method
         $requestMethod = $container[0]['request']->getMethod();
@@ -527,6 +656,135 @@ final class UploadTest extends TestCase
         // Request Body Check
         UploadTest::assertEquals(json_encode($error),json_encode($response->error));
     }
+
+    /**
+     *
+     */
+    public function testFileUploadWithInvalidTransformation()
+    {
+        $fileOptions = [
+            'file'  =>  'http://lorempixel.com/640/480/',
+            'fileName'  =>  'test_file_name',
+            "useUniqueFileName" => true,                                        // true|false
+            "responseFields" => implode(",", ["tags", "customMetadata"]),       // Comma Separated, check docs for more responseFields
+            'transformation' => [],
+        ];
+
+        $error = [
+            "message" => "Invalid transformation parameter. Please include at least pre, post, or both.",
+            "help" => "For support kindly contact us at support@imagekit.io ."
+        ];
+
+        $mockBodyResponse = Utils::streamFor(json_encode($fileOptions));
+
+        $this->stubHttpClient(new Response(403, ['X-Foo' => 'Bar'], json_encode($error)));
+
+        $response = $this->client->uploadFile($fileOptions);
+
+        // Request Body Check
+        UploadTest::assertEquals(json_encode($error),json_encode($response->error));
+    }
+
+    /**
+     *
+     */
+    public function testFileUploadWithInvalidPreTransformation()
+    {
+        $fileOptions = [
+            'file'  =>  'http://lorempixel.com/640/480/',
+            'fileName'  =>  'test_file_name',
+            "useUniqueFileName" => true,                                        // true|false
+            "responseFields" => implode(",", ["tags", "customMetadata"]),       // Comma Separated, check docs for more responseFields
+            'transformation' => [ 
+                'pre' => '',
+            ],
+        ];
+
+        $error = [
+            "message" => "Invalid pre transformation parameter.",
+            "help" => "For support kindly contact us at support@imagekit.io ."
+        ];
+
+        $mockBodyResponse = Utils::streamFor(json_encode($fileOptions));
+
+        $this->stubHttpClient(new Response(403, ['X-Foo' => 'Bar'], json_encode($error)));
+
+        $response = $this->client->uploadFile($fileOptions);
+
+        // Request Body Check
+        UploadTest::assertEquals(json_encode($error),json_encode($response->error));
+    }
+    
+    /**
+     *
+    */
+    public function testFileUploadWithInvalidAbsTypePostTransformation()
+    {
+        $fileOptions = [
+            'file'  =>  'http://lorempixel.com/640/480/',
+            'fileName'  =>  'test_file_name',
+            "useUniqueFileName" => true,                                        // true|false
+            "responseFields" => implode(",", ["tags", "customMetadata"]),       // Comma Separated, check docs for more responseFields
+            'transformation' => [ 
+                'post' => [
+                    [ 
+                        'type' => 'abs', 
+                        'value' => '' 
+                    ]
+                ]
+            ],
+        ];
+
+        $error = [
+            "message" => "Invalid post transformation parameter.",
+            "help" => "For support kindly contact us at support@imagekit.io ."
+        ];
+
+        $mockBodyResponse = Utils::streamFor(json_encode($fileOptions));
+
+        $this->stubHttpClient(new Response(403, ['X-Foo' => 'Bar'], json_encode($error)));
+
+        $response = $this->client->uploadFile($fileOptions);
+
+        // Request Body Check
+        UploadTest::assertEquals(json_encode($error),json_encode($response->error));
+    }
+
+    /**
+     *
+    */
+    public function testFileUploadWithInvalidTransformationTypePostTransformation()
+    {
+        $fileOptions = [
+            'file'  =>  'http://lorempixel.com/640/480/',
+            'fileName'  =>  'test_file_name',
+            "useUniqueFileName" => true,                                        // true|false
+            "responseFields" => implode(",", ["tags", "customMetadata"]),       // Comma Separated, check docs for more responseFields
+            'transformation' => [ 
+                'post' => [
+                    [ 
+                        'type' => 'transformation', 
+                        'value' => '' 
+                    ]
+                ]
+            ],
+        ];
+
+        $error = [
+            "message" => "Invalid post transformation parameter.",
+            "help" => "For support kindly contact us at support@imagekit.io ."
+        ];
+
+        $mockBodyResponse = Utils::streamFor(json_encode($fileOptions));
+
+        $this->stubHttpClient(new Response(403, ['X-Foo' => 'Bar'], json_encode($error)));
+
+        $response = $this->client->uploadFile($fileOptions);
+
+        // Request Body Check
+        UploadTest::assertEquals(json_encode($error),json_encode($response->error));
+    }
+
     
     protected function setUp(): void
     {

@@ -543,7 +543,7 @@ If you want to generate transformations in your application and add them to the 
 | effectSharpen | e-sharpen |
 | effectUSM | e-usm |
 | effectContrast | e-contrast |
-| effectGray | e-grayscale 
+| effectGray | e-grayscale |
 | effectShadow | e-shadow |
 | effectGradient | e-gradient |
 | original | orig |

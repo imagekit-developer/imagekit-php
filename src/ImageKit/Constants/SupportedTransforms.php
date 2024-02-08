@@ -49,6 +49,8 @@ class SupportedTransforms
         'effectUSM' => 'e-usm',
         'effectContrast' => 'e-contrast',
         'effectGray' => 'e-grayscale',
+        'effectShadow' => 'e-shadow',
+        'effectGradient' => 'e-gradient',
         'original' => 'orig',
         'rotate' => 'rt',
         'overlayImageAspectRatio' => 'oiar',

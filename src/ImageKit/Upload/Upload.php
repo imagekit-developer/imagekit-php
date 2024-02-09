@@ -53,6 +53,10 @@ class Upload
             $payload['customMetadata'] = json_encode($payload['customMetadata']);
         }
 
+        if (isset($payload['transformation'])) {
+            $payload['transformation'] = json_encode($payload['transformation']);
+        }
+
         $resource->setDatas((array)$payload);
         try {
             $res = $resource->postMultipart();

@@ -10,6 +10,7 @@ ImageKit is complete media storage, optimization, and transformation solution th
 - [Key Features](#key-features)
 - [Requirements](#requirements)
 - [Version Support](#version-support)
+- [Breaking changes](#breaking-changes)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Getting Started](#getting-started)
@@ -44,9 +45,19 @@ ImageKit is complete media storage, optimization, and transformation solution th
 ## Version Support
 | SDK Version | PHP 5.4 | PHP 5.5 | PHP 5.6 | PHP 7.x | PHP 8.x |
 |-------------|---------|---------|---------|---------|---------|
+| 4.x         | ❌     | ❌      | ✔️       | ✔️     |✔️      |
 | 3.x         | ❌     | ❌      | ✔️       | ✔️     |✔️      |
 | 2.x         | ❌     | ❌      | ✔️       | ✔️     |✔️      |
 | 1.x         | ❌     | ✔️      | ✔️       | ✔️     |✔️      |
+
+## Breaking changes
+
+### Upgrading from 3.x to 4.x version
+
+1. Overlay syntax update
+
+* In version 4.0.0, we've removed the old overlay syntax parameters for transformations, such as `oi`, `ot`, `obg`, and [more](https://docs.imagekit.io/features/image-transformations/overlay). These parameters are deprecated and will start returning errors when used in URLs. Please migrate to the new layers syntax that supports overlay nesting, provides better positional control, and allows more transformations at the layer level. You can start with [examples](https://docs.imagekit.io/features/image-transformations/overlay-using-layers#examples) to learn quickly.
+* You can migrate to the new layers syntax using the `raw` transformation parameter.
 
 ## Installation
 
@@ -441,7 +452,32 @@ $imageURL = $imageKit->url(array(
 https://ik.imagekit.io/your_imagekit_id/tr:h-300,w-400,l-image,i-ik_canvas,bg-FF0000,w-300,h-100,l-end/img/sample-video.mp4
 ```
 
-### 6. Signed URL
+### 6. Arithmetic expressions in transformations
+
+ImageKit allows use of [arithmetic expressions](https://docs.imagekit.io/features/arithmetic-expressions-in-transformations) in certain dimension and position-related parameters, making media transformations more flexible and dynamic.
+
+For example:
+
+```php
+$imageURL = $imageKit->url(array(
+    'path' => '/default-image.jpg',
+    'urlEndpoint' => 'https://ik.imagekit.io/your_imagekit_id'
+    'transformation' => [
+        [
+            "height": "ih_div_2",
+            "width": "iw_div_4",
+            "border": "cw_mul_0.05_yellow"
+        ]
+    ]
+));
+```
+
+#### Sample Result URL
+```
+https://ik.imagekit.io/your_imagekit_id/default-image.jpg?tr=w-iw_div_4,h-ih_div_2,b-cw_mul_0.05_yellow
+``
+
+### 7. Signed URL
 
 For example, the signed URL expires in 300 seconds with the default URL endpoint and other query parameters.
 For a detailed explanation of the signed URL, refer to this [documentation](https://docs.imagekit.io/features/security/signed-urls).
@@ -508,6 +544,8 @@ If you want to generate transformations in your application and add them to the 
 | effectUSM | e-usm |
 | effectContrast | e-contrast |
 | effectGray | e-grayscale |
+| effectShadow | e-shadow |
+| effectGradient | e-gradient |
 | original | orig |
 | raw | `replaced by the parameter value` |
 
@@ -610,6 +648,15 @@ $uploadFile = $imageKit->uploadFile([
     "overwriteAITags" => true,      // set to false in order to preserve overwriteAITags
     "overwriteTags" => true,
     "overwriteCustomMetadata" => true,
+    'transformation' => [ 
+        'pre' => 'l-text,i-Imagekit,fs-50,l-end', 
+        'post' => [
+            [ 
+                'type' => 'transformation', 
+                'value' => 'h-100' 
+            ]
+        ]
+    ],
     // "customMetadata" => [
     //         "SKU" => "VS882HJ2JD",
     //         "price" => 599.99,

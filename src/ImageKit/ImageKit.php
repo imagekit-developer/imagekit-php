@@ -196,6 +196,28 @@ class ImageKit
         if(isset($options['customMetadata']) && !is_array($options['customMetadata'])){
             return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_CUSTOMMETADATA_INVALID));
         }
+        if (isset($options['transformation'])) {
+            if (!isset($options['transformation']['pre']) && !isset($options['transformation']['post'])) {
+                return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_INVALID_TRANSFORMATION));
+            }
+            if (isset($options['transformation']['pre']) && empty($options['transformation']['pre'])) {
+                return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_INVALID_PRE_TRANSFORMATION));
+            }
+            if (isset($options['transformation']['post'])) {
+                if (is_array($options['transformation']['post'])) {
+                    foreach ($options['transformation']['post'] as $transformation) {
+                        if ($transformation['type'] === "abs" && (!isset($transformation['protocol']) || !isset($transformation['value']))) {
+                            return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_INVALID_POST_TRANSFORMATION));
+                        } else if ($transformation['type'] === "transformation" && empty($transformation['value'])) {
+                            return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_INVALID_POST_TRANSFORMATION));
+                        }
+                    }
+                } else {
+                    return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_INVALID_POST_TRANSFORMATION));
+                }
+            }
+        }
+        
 
         $this->httpClient->setUri(Endpoints::getUploadFileEndpoint());
         return Upload::upload($options, $this->httpClient);

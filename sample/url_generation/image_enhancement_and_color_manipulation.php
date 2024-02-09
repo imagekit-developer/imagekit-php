@@ -63,3 +63,43 @@ echo "\n\n";
 echo "3. Unsharp mask Image URL: \n";
 echo "\033[01;32m$imageURL\033[0m";
 echo "\n";
+
+// Shadow (e-shadow)
+// https://docs.imagekit.io/features/image-transformations/image-enhancement-and-color-manipulation#shadow-e-shadow
+
+$imageURL = $imageKit->url(
+    [
+        'src' => 'https://ik.imagekit.io/demo/sample_image.jpg',
+        'transformation' => [
+            [
+                'height' => '300',
+                'effectShadow' => 'bl-15_st-40_x-10_y-N5'
+            ]
+        ],
+    ]
+);
+
+echo "\n\n";
+echo "4. Shadow image URL: \n";
+echo "\033[01;32m$imageURL\033[0m";
+echo "\n";
+
+// Gradient (e-gradient)
+// https://docs.imagekit.io/features/image-transformations/image-enhancement-and-color-manipulation#gradient-e-gradient
+
+$imageURL = $imageKit->url(
+    [
+        'src' => 'https://ik.imagekit.io/demo/sample_image.jpg',
+        'transformation' => [
+            [
+                'height' => '300',
+                'effectGradient' => 'from-red_to-white',
+            ]
+        ],
+    ]
+);
+
+echo "\n\n";
+echo "5. Gradient image URL: \n";
+echo "\033[01;32m$imageURL\033[0m";
+echo "\n";

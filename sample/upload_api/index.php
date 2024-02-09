@@ -18,7 +18,16 @@ $uploadFile = $imageKit->uploadFile([
     'folder' => 'sample-folder',
     'tags' => implode(['abd', 'def']),
     'useUniqueFileName' => false,
-    'customCoordinates' => implode(',', ['10', '10', '100', '100'])
+    'customCoordinates' => implode(',', ['10', '10', '100', '100']),
+    'transformation' => [ 
+        'pre' => 'l-text,i-Imagekit,fs-50,l-end', 
+        'post' => [
+            [ 
+                'type' => 'transformation', 
+                'value' => 'h-100' 
+            ]
+        ]
+    ],
 ]);
 
 echo "\n\n";
@@ -34,7 +43,16 @@ $uploadFile = $imageKit->uploadFile([
     'folder' => 'sample-folder',
     'tags' => implode(['abd', 'def']),
     'useUniqueFileName' => true,
-    'customCoordinates' => implode(',', ['10', '10', '100', '100'])
+    'customCoordinates' => implode(',', ['10', '10', '100', '100']),
+    'transformation' => [ 
+        'pre' => 'l-text,i-Imagekit,fs-50,l-end', 
+        'post' => [
+            [ 
+                'type' => 'transformation', 
+                'value' => 'h-100' 
+            ]
+        ]
+    ],
 ]);
 
 echo "\n\n";
@@ -51,7 +69,16 @@ $uploadFile = $imageKit->uploadFile([
     'folder' => 'sample-folder',
     'tags' => implode(['abd', 'def']),
     'useUniqueFileName' => true,
-    'customCoordinates' => implode(',', ['10', '10', '100', '100'])
+    'customCoordinates' => implode(',', ['10', '10', '100', '100']),
+    'transformation' => [ 
+        'pre' => 'l-text,i-Imagekit,fs-50,l-end', 
+        'post' => [
+            [ 
+                'type' => 'transformation', 
+                'value' => 'h-100' 
+            ]
+        ]
+    ],
 ]);
 
 echo "\n\n";

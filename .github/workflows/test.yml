@@ -7,42 +7,30 @@ jobs:
     runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
-        operating-system: ['ubuntu-latest', 'windows-latest', 'macos-latest']
-        php-versions: ['5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0']
+        operating-system:
+          - 'ubuntu-latest'
+          - 'windows-latest'
+          - 'macos-latest'
+        php-versions:
+          - { version: '5.6', require: 'shivammathur/setup-php@v2' }
+          - { version: '7.0', require: 'shivammathur/setup-php@v2' }
+          - { version: '7.1', require: 'shivammathur/setup-php@v2' }
+          - { version: '7.2', require: 'shivammathur/setup-php@v2' }
+          - { version: '7.3', require: 'shivammathur/setup-php@v2' }
+          - { version: '7.4', require: 'shivammathur/setup-php@v2' }
+          - { version: '8.0', require: 'shivammathur/setup-php@v2' }
         phpunit-versions: ['latest']
     steps:
       - uses: actions/checkout@v1
-
-      - name: Loop over PHP versions
-        run: |
-          for version in ${{ matrix.php-versions }}; do
-            echo "Setting up PHP version $version"
-            php_version="$version"
-            echo "::set-output name=php-version::$php_version"
-          done
-        id: php-setup
-        shell: bash
-
       - name: Setup PHP
-        uses: shivammathur/setup-php@v2
+        uses: ${{ matrix.php-versions.require }}
         with:
-          php-version: ${{ steps.php-setup.outputs.php-version }}
+          php-versions: ${{ matrix.php-versions.version }}
 
       - name: Validate composer.json and composer.lock
         run: composer validate
 
-      - name: Check if composer.lock exists
-        run: test -f composer.lock
-        continue-on-error: true
-        id: check-composer-lock
-
-      - name: Run Composer update if lock file exists
-        if: steps.check-composer-lock.outputs.result == 'success'
-        run: composer update --no-progress --no-suggest
-        continue-on-error: true
-
-      - name: Install dependencies if lock file does not exist
-        if: steps.check-composer-lock.outputs.result != 'success'
+      - name: Install dependencies
         run: composer install --prefer-dist --no-progress --no-suggest
 
       - name: Run test suite

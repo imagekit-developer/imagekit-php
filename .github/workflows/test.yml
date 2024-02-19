@@ -1,37 +1,30 @@
 name: PHP Test CI
 
-on: [push, pull_request]
+on: [ push, pull_request ]
 
 jobs:
-  build:
-    runs-on: ${{ matrix.operating-system }}
-    strategy:
-      matrix:
-        operating-system:
-          - 'ubuntu-latest'
-          - 'windows-latest'
-          - 'macos-latest'
-        php-versions:
-          - { version: '5.6', require: 'shivammathur/setup-php@v2' }
-          - { version: '7.0', require: 'shivammathur/setup-php@v2' }
-          - { version: '7.1', require: 'shivammathur/setup-php@v2' }
-          - { version: '7.2', require: 'shivammathur/setup-php@v2' }
-          - { version: '7.3', require: 'shivammathur/setup-php@v2' }
-          - { version: '7.4', require: 'shivammathur/setup-php@v2' }
-          - { version: '8.0', require: 'shivammathur/setup-php@v2' }
-        phpunit-versions: ['latest']
-    steps:
-      - uses: actions/checkout@v1
-      - name: Setup PHP
-        uses: ${{ matrix.php-versions.require }}
-        with:
-          php-versions: ${{ matrix.php-versions.version }}
+    build:
+        runs-on: ${{ matrix.operating-system }}
+        strategy:
+            matrix:
+                operating-system: [ 'ubuntu-latest', 'windows-latest', 'macos-latest' ]
+                php-versions: [ '5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0' ]
+                phpunit-versions: [ 'latest' ]
+        steps:
+            -   uses: actions/checkout@v1
+            -   name: Setup PHP
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-versions: ${{ matrix.php-versions }}
 
-      - name: Validate composer.json and composer.lock
-        run: composer validate
+            -   name: Validate composer.json and composer.lock
+                run: composer validate
 
-      - name: Install dependencies
-        run: composer install --prefer-dist --no-progress --no-suggest
+            -   name: Install dependencies
+                run: composer install --prefer-dist --no-progress --no-suggest
 
-      - name: Run test suite
-        run: ./vendor/bin/phpunit
+            # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
+            # Docs: https://getcomposer.org/doc/articles/scripts.md
+
+            -   name: Run test suite
+                run: ./vendor/bin/phpunit

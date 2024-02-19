@@ -1,61 +1,38 @@
 name: PHP Test CI
 
-on: [ push, pull_request ]
+on: [push, pull_request]
 
 jobs:
-    build:
-        runs-on: ${{ matrix.operating-system }}
-        strategy:
-            matrix:
-                operating-system: [ 'ubuntu-latest', 'windows-latest', 'macos-latest' ]
-                php-versions: [ '5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0' ]
-                phpunit-versions: [ 'latest' ]
-        steps:
-            -   uses: actions/checkout@v1
+  build:
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        operating-system: ['ubuntu-latest', 'windows-latest', 'macos-latest']
+        php-versions: ['5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0']
+        phpunit-versions: ['latest']
+    steps:
+      - uses: actions/checkout@v1
 
-            -   name: Setup PHP 5.6
-                uses: shivammathur/setup-php@v2
-                with:
-                    php-version: 5.6
+      - name: Loop over PHP versions
+        run: |
+          for version in ${{ matrix.php-versions }}; do
+            echo "Setting up PHP version $version"
+            php_version="$version"
+            echo "::set-output name=php-version::$php_version"
+          done
+        id: php-setup
+        shell: bash
 
-            -   name: Setup PHP 7.0
-                uses: shivammathur/setup-php@v2
-                with:
-                    php-version: 7.0
-            
-            -   name: Setup PHP 7.1
-                uses: shivammathur/setup-php@v2
-                with:
-                    php-version: 7.1
-            
-            -   name: Setup PHP 7.2
-                uses: shivammathur/setup-php@v2
-                with:
-                    php-version: 7.2
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ steps.php-setup.outputs.php-version }}
 
-            -   name: Setup PHP 7.3
-                uses: shivammathur/setup-php@v2
-                with:
-                    php-version: 7.3
+      - name: Validate composer.json and composer.lock
+        run: composer validate
 
-            -   name: Setup PHP 7.4
-                uses: shivammathur/setup-php@v2
-                with:
-                    php-version: 7.4
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
 
-            -   name: Setup PHP 8.0
-                uses: shivammathur/setup-php@v2
-                with:
-                    php-version: 8.0
-
-            -   name: Validate composer.json and composer.lock
-                run: composer validate
-
-            -   name: Install dependencies
-                run: composer install --prefer-dist --no-progress --no-suggest
-
-            # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
-            # Docs: https://getcomposer.org/doc/articles/scripts.md
-
-            -   name: Run test suite
-                run: ./vendor/bin/phpunit
+      - name: Run test suite
+        run: ./vendor/bin/phpunit

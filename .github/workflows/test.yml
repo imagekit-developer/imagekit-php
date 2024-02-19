@@ -31,7 +31,18 @@ jobs:
       - name: Validate composer.json and composer.lock
         run: composer validate
 
-      - name: Install dependencies
+      - name: Check if composer.lock exists
+        run: test -f composer.lock
+        continue-on-error: true
+        id: check-composer-lock
+
+      - name: Run Composer update if lock file exists
+        if: steps.check-composer-lock.outputs.result == 'success'
+        run: composer update --no-progress --no-suggest
+        continue-on-error: true
+
+      - name: Install dependencies if lock file does not exist
+        if: steps.check-composer-lock.outputs.result != 'success'
         run: composer install --prefer-dist --no-progress --no-suggest
 
       - name: Run test suite

@@ -87,7 +87,7 @@ final class UrlTest extends TestCase
             'path' => '/default-image.jpg',
             'signed' => true
         ]);
-        UrlTest::assertStringContainsString(
+        UrlTest::assertContains(
             'ik-s=',
             $url
         );
@@ -104,7 +104,7 @@ final class UrlTest extends TestCase
             'expireSeconds' => ''
         ]);
         
-        UrlTest::assertStringContainsString(
+        UrlTest::assertContains(
             'ik-s=',
             $url
         );
@@ -132,7 +132,7 @@ final class UrlTest extends TestCase
             'path' => '/default-image.jpg',
             'signed' => true
         ]);
-        UrlTest::assertStringContainsString(
+        UrlTest::assertContains(
             '?ik-s=',
             $url
         );
@@ -153,11 +153,11 @@ final class UrlTest extends TestCase
             'signed' => true,
             'expireSeconds' => 300
         ]);
-        UrlTest::assertStringContainsString(
+        UrlTest::assertContains(
             '?ik-t=',
             $url
         );
-        UrlTest::assertStringContainsString(
+        UrlTest::assertContains(
             '&ik-s=',
             $url
         );
@@ -177,11 +177,11 @@ final class UrlTest extends TestCase
             'signed' => true,
             'expireSeconds' => 300
         ]);
-        UrlTest::assertStringContainsString(
+        UrlTest::assertContains(
             '&ik-t=',
             $url
         );
-        UrlTest::assertStringContainsString(
+        UrlTest::assertContains(
             '&ik-s=',
             $url
         );
@@ -206,11 +206,11 @@ final class UrlTest extends TestCase
             'signed' => true,
             'expireSeconds' => 300
         ]);
-        UrlTest::assertStringContainsString(
+        UrlTest::assertContains(
             '&ik-t=',
             $url
         );
-        UrlTest::assertStringContainsString(
+        UrlTest::assertContains(
             '&ik-s=',
             $url
         );
@@ -234,11 +234,11 @@ final class UrlTest extends TestCase
             ],
             'signed' => true
         ]);
-        UrlTest::assertStringNotContainsString(
+        UrlTest::assertNotContains(
             '&ik-t=',
             $url
         );
-        UrlTest::assertStringContainsString(
+        UrlTest::assertContains(
             '&ik-s=',
             $url
         );
@@ -258,11 +258,11 @@ final class UrlTest extends TestCase
             'https://ik.imagekit.io/demo/default-image.jpg',
             $url
         );
-        UrlTest::assertStringContainsString(
+        UrlTest::assertContains(
             'ik-s=',
             $url
         );
-        UrlTest::assertStringContainsString(
+        UrlTest::assertContains(
             'ik-t=',
             $url
         );

@@ -83,7 +83,7 @@ final class UploadTest extends TestCase
         $string = '--'.$boundary.' Content-Disposition: form-data; name="'.$fieldName.'" Content-Length: '.strlen($fieldValue).'  '.$fieldValue;
         $string = substr(json_encode($string),1,-1);
 
-        UploadTest::assertStringContainsString($string,$requestBody);
+        UploadTest::assertContains($string,$requestBody);
     }
 
     /**
@@ -384,7 +384,7 @@ final class UploadTest extends TestCase
         $this->checkFormData($stream,$boundary,"file",$fileOptions['file']);
         $this->checkFormData($stream,$boundary,"fileName",$fileOptions['fileName']);
         $this->checkFormData($stream,$boundary,"isPrivateFile","true");
-        UploadTest::assertStringNotContainsString("useUniqueFileName",$stream);
+        UploadTest::assertNotContains("useUniqueFileName",$stream);
 
         // Assert Method
         $requestMethod = $container[0]['request']->getMethod();
@@ -432,8 +432,8 @@ final class UploadTest extends TestCase
         $this->checkFormData($stream,$boundary,"file",$fileOptions['file']);
         $this->checkFormData($stream,$boundary,"fileName",$fileOptions['fileName']);
         $this->checkFormData($stream,$boundary,"tags","abd,def");
-        UploadTest::assertStringNotContainsString("isPrivateFile",$stream);
-        UploadTest::assertStringNotContainsString("useUniqueFileName",$stream);
+        UploadTest::assertNotContains("isPrivateFile",$stream);
+        UploadTest::assertNotContains("useUniqueFileName",$stream);
         
         // Assert Method
         $requestMethod = $container[0]['request']->getMethod();
@@ -621,11 +621,11 @@ final class UploadTest extends TestCase
 
         $this->checkFormData($stream,$boundary,"file",$fileOptions['file']);
         $this->checkFormData($stream,$boundary,"fileName",$fileOptions['fileName']);
-        UploadTest::assertStringNotContainsString("tags",$stream);
-        UploadTest::assertStringNotContainsString("isPrivateFile",$stream);
-        UploadTest::assertStringNotContainsString("useUniqueFileName",$stream);
-        UploadTest::assertStringNotContainsString("customCoordinates",$stream);
-        UploadTest::assertStringNotContainsString("responseFields",$stream);
+        UploadTest::assertNotContains("tags",$stream);
+        UploadTest::assertNotContains("isPrivateFile",$stream);
+        UploadTest::assertNotContains("useUniqueFileName",$stream);
+        UploadTest::assertNotContains("customCoordinates",$stream);
+        UploadTest::assertNotContains("responseFields",$stream);
         
         // Assert Method
         $requestMethod = $container[0]['request']->getMethod();

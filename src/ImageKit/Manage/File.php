@@ -48,7 +48,8 @@ class File
             return Response::respond(false, ($content));
         }
         else{
-            return Response::respond(true, ((object)ErrorMessages::$INVALID_REQUEST)->message);
+            $message = ErrorMessages::$INVALID_REQUEST->message;
+            return Response::respond(true, $message);
         }
         
         
@@ -83,7 +84,8 @@ class File
             return Response::respond(false, ($content));
         }
         else{
-            return Response::respond(true, ((object)ErrorMessages::$INVALID_REQUEST)->message);
+            $message = ErrorMessages::$INVALID_REQUEST->message;
+            return Response::respond(true, $message);
         }
     }
 
@@ -117,7 +119,8 @@ class File
             return Response::respond(false, ($content));
         }
         else{
-            return Response::respond(true, ((object)ErrorMessages::$INVALID_REQUEST)->message);
+            $message = ErrorMessages::$INVALID_REQUEST->message;
+            return Response::respond(true, $message);
         }
     }
 
@@ -151,7 +154,8 @@ class File
             return Response::respond(false, ($content));
         }
         else{
-            return Response::respond(true, ((object)ErrorMessages::$INVALID_REQUEST)->message);
+            $message = ErrorMessages::$INVALID_REQUEST->message;
+            return Response::respond(true, $message);
         }        
     }
 
@@ -188,7 +192,8 @@ class File
             return Response::respond(false, ($content));
         }
         else{
-            return Response::respond(true, ((object)ErrorMessages::$INVALID_REQUEST)->message);
+            $message = ErrorMessages::$INVALID_REQUEST->message;
+            return Response::respond(true, $message);
         }
     }
 
@@ -225,7 +230,8 @@ class File
             return Response::respond(false, ($content));
         }
         else{
-            return Response::respond(true, ((object)ErrorMessages::$INVALID_REQUEST)->message);
+            $message = ErrorMessages::$INVALID_REQUEST->message;
+            return Response::respond(true, $message);
         }        
     }
 
@@ -261,7 +267,8 @@ class File
             return Response::respond(false, ($content));
         }
         else{
-            return Response::respond(true, ((object)ErrorMessages::$INVALID_REQUEST)->message);
+            $message = ErrorMessages::$INVALID_REQUEST->message;
+            return Response::respond(true, $message);
         }
     }
 
@@ -299,7 +306,8 @@ class File
             return Response::respond(false, ($content));
         }
         else{
-            return Response::respond(true, ((object)ErrorMessages::$INVALID_REQUEST)->message);
+            $message = ErrorMessages::$INVALID_REQUEST->message;
+            return Response::respond(true, $message);
         }
     }
 
@@ -335,7 +343,8 @@ class File
             return Response::respond(false, ($content));
         }
         else{
-            return Response::respond(true, ((object)ErrorMessages::$INVALID_REQUEST)->message);
+            $message = ErrorMessages::$INVALID_REQUEST->message;
+            return Response::respond(true, $message);
         }
     }
 
@@ -373,7 +382,8 @@ class File
             return Response::respond(false, ($content));
         }
         else{
-            return Response::respond(true, ((object)ErrorMessages::$INVALID_REQUEST)->message);
+            $message = ErrorMessages::$INVALID_REQUEST->message;
+            return Response::respond(true, $message);
         }
     }
 
@@ -407,7 +417,8 @@ class File
             return Response::respond(false, ($content));
         }
         else{
-            return Response::respond(true, ((object)ErrorMessages::$INVALID_REQUEST)->message);
+            $message = ErrorMessages::$INVALID_REQUEST->message;
+            return Response::respond(true, $message);
         }
     }
 
@@ -445,7 +456,8 @@ class File
             return Response::respond(false, ($content));
         }
         else{
-            return Response::respond(true, ((object)ErrorMessages::$INVALID_REQUEST)->message);
+            $message = ErrorMessages::$INVALID_REQUEST->message;
+            return Response::respond(true, $message);
         }
     }
 
@@ -487,7 +499,8 @@ class File
             return Response::respond(false, ($content));
         }
         else{
-            return Response::respond(true, ((object)ErrorMessages::$INVALID_REQUEST)->message);
+            $message = ErrorMessages::$INVALID_REQUEST->message;
+            return Response::respond(true, $message);
         }
     }
 
@@ -524,7 +537,8 @@ class File
             return Response::respond(false, ($content));
         }
         else{
-            return Response::respond(true, ((object)ErrorMessages::$INVALID_REQUEST)->message);
+            $message = ErrorMessages::$INVALID_REQUEST->message;
+            return Response::respond(true, $message);
         }
     }
 
@@ -571,7 +585,8 @@ class File
             return Response::respond(false, ($content));
         }
         else{
-            return Response::respond(true, ((object)ErrorMessages::$INVALID_REQUEST)->message);
+            $message = ErrorMessages::$INVALID_REQUEST->message;
+            return Response::respond(true, $message);
         }
     }
 }

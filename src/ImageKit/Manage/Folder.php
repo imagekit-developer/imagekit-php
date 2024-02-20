@@ -41,7 +41,8 @@ class Folder
             return Response::respond(false, ($content));
         }
         else{
-            return Response::respond(true, ErrorMessages::$INVALID_REQUEST->message);
+            $errorObject = (object) ErrorMessages::$INVALID_REQUEST;
+            return Response::respond(true, $errorObject->message);
         }
     }
 
@@ -78,7 +79,8 @@ class Folder
             return Response::respond(false, ($content));
         }
         else{
-            return Response::respond(true, ErrorMessages::$INVALID_REQUEST->message);
+            $errorObject = (object) ErrorMessages::$INVALID_REQUEST;
+            return Response::respond(true, $errorObject->message);
         }
     }
 
@@ -113,7 +115,8 @@ class Folder
             return Response::respond(false, ($content));
         }
         else{
-            return Response::respond(true, ErrorMessages::$INVALID_REQUEST->message);
+            $errorObject = (object) ErrorMessages::$INVALID_REQUEST;
+            return Response::respond(true, $errorObject->message);
         }
     }
 
@@ -147,7 +150,8 @@ class Folder
             return Response::respond(false, ($content));
         }
         else{
-            return Response::respond(true, ErrorMessages::$INVALID_REQUEST->message);
+            $errorObject = (object) ErrorMessages::$INVALID_REQUEST;
+            return Response::respond(true, $errorObject->message);
         }
     }
 }

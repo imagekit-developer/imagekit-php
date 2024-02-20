@@ -1046,8 +1046,7 @@ class ImageKit
             return Response::respond(false, ($content));
         }
         else{
-            $message = ErrorMessages::$INVALID_REQUEST->message;
-            return Response::respond(true, $message);
+           return Response::respond(true, ErrorMessages::$INVALID_REQUEST->message);
         }
     }
 

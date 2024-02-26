@@ -17,7 +17,7 @@ jobs:
                 run: |
                     brew update
                     brew install icu4c
-                    brew link
+                    brew link 63.1
                     brew cleanup
 
             -   name: Setup PHP

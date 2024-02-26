@@ -14,8 +14,8 @@ jobs:
             -   uses: actions/checkout@v2
 
             -   name: Install ICU library (if necessary)
-                    if: runner.os == 'macOS'
-                    run: brew install icu4c
+                if: runner.os == 'macOS'
+                run: brew install icu4c
 
             -   name: Setup PHP
                 uses: shivammathur/setup-php@v2

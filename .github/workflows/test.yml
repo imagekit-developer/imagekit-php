@@ -13,20 +13,16 @@ jobs:
         steps:
             -   uses: actions/checkout@v2
 
-            -   name: Install ICU library (if necessary)
-                if: runner.os == 'macOS'
-                run: brew install icu4c
-
-            -   name: Setup PHP
-                uses: shivammathur/setup-php@v1
-                with:
-                    php-version: '${{ matrix.php-versions }}'
-
             -   name: Install ICU library for macOS
                 if: ${{ matrix.operating-system == 'macos-latest' }}
                 run: |
                     brew update
                     brew install icu4c
+
+            -   name: Setup PHP
+                uses: shivammathur/setup-php@v1
+                with:
+                    php-version: '${{ matrix.php-versions }}'
 
             -   name: Install dependencies
                 run: composer install --prefer-dist --no-progress --no-suggest

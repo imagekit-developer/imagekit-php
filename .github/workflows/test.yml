@@ -12,8 +12,8 @@ jobs:
                 phpunit-versions: [ 'latest' ]
         steps:
             -   uses: actions/checkout@v1
-            -   name: Install ICU library (macOS)
-                if: ${{ matrix.operating-system == 'macos-latest' }}
+            -   name: Install ICU library (macOS for PHP 8.0)
+                if: ${{ matrix.operating-system == 'macos-latest' && matrix.php-versions == '8.0' }}
                 run: |
                     brew update
                     brew install icu4c

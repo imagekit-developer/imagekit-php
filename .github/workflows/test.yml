@@ -12,7 +12,6 @@ jobs:
                 phpunit-versions: [ 'latest' ]
         steps:
             -   uses: actions/checkout@v1
-
             -   name: Install ICU library (macOS)
                     if: ${{ matrix.operating-system == 'macos-latest' }}
                     run: |

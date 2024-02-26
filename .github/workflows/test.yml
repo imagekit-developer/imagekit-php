@@ -17,6 +17,9 @@ jobs:
                 uses: shivammathur/setup-php@v2
                 with:
                     php-version: '${{ matrix.php-versions }}'
+                    coverage: none
+                    ini-file: production
+                    extensions: intl 
 
             -   name: Validate composer.json and composer.lock
                 run: composer validate

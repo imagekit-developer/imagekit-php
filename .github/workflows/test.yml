@@ -13,8 +13,8 @@ jobs:
         steps:
             -   uses: actions/checkout@v1
             -   name: Install ICU library (macOS)
-                    if: ${{ matrix.operating-system == 'macos-latest' }}
-                    run: |
+                if: ${{ matrix.operating-system == 'macos-latest' }}
+                run: |
                     brew update
                     brew install icu4c
 

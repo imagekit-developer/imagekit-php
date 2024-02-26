@@ -7,11 +7,16 @@ jobs:
         runs-on: ${{ matrix.operating-system }}
         strategy:
             matrix:
-                operating-system: [ 'macos-latest' ]
+                operating-system: [ 'ubuntu-latest', 'windows-latest', 'macos-latest' ]
                 php-versions: [ '5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0' ]
                 phpunit-versions: [ 'latest' ]
         steps:
             -   uses: actions/checkout@v1
+
+            -   name: Install ICU library (macOS)
+                if: ${{ matrix.operating-system == 'macos-latest' }}
+                run: brew install icu4c
+
             -   name: Setup PHP
                 uses: shivammathur/setup-php@v2
                 with:

@@ -271,6 +271,30 @@ final class UrlTest extends TestCase
     /**
      *
      */
+    public function testUrlSignedUrlWithExpiryWithDiacritic()
+    {
+        $url = $this->client->url([
+            'path' => '/four-penguins-with-é.webp',
+            'signed' => true,
+            'expireSeconds' => 100
+        ]);
+        UrlTest::assertStringStartsWith(
+            'https://ik.imagekit.io/demo/four-penguins-with-é.webp',
+            $url
+        );
+        UrlTest::assertContains(
+            'ik-s=',
+            $url
+        );
+        UrlTest::assertContains(
+            'ik-t=',
+            $url
+        );
+    }
+
+    /**
+     *
+     */
     public function testUrlURLWithPath()
     {
         $url = $this->client->url([

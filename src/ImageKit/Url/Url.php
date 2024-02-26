@@ -352,6 +352,15 @@ class Url
      */
     public function getSignature($options)
     {
+        $lastSlashPos = strrpos($options['url'], '/');
+        $questionMarkPos = strpos($options['url'], '?', $lastSlashPos);
+        $path = $questionMarkPos !== false ? substr($options['url'], $lastSlashPos + 1, $questionMarkPos - $lastSlashPos - 1) : substr($options['url'], $lastSlashPos + 1);
+        $encodedPath = $this->encodeStringIfRequired($path);
+        $encoded_url = substr_replace($options['url'], $encodedPath, $lastSlashPos + 1, strlen($path));
+        $options['url'] = $encoded_url;
+        print_r($options);
+
+
         if (empty($options['privateKey']) or empty($options['url']) or empty($options['urlEndpoint'])) {
             return '';
         } else {
@@ -370,5 +379,22 @@ class Url
             $str = $str . '/';
         }
         return $str;
+    }
+
+    // Used to check if special char is present in string (you'll need to encode it to utf-8 if it does)
+    private function hasMoreThanAscii($str)
+    {
+        $chars = str_split($str);
+        foreach ($chars as $char) {
+            if (ord($char) > 127) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private function encodeStringIfRequired($str)
+    {
+        return $this->hasMoreThanAscii($str) ? urlencode($str) : $str;
     }
 }

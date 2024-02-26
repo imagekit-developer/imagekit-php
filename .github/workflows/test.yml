@@ -18,15 +18,15 @@ jobs:
                 run: brew install icu4c
 
             -   name: Setup PHP
-                uses: shivammathur/setup-php@v2
+                uses: shivammathur/setup-php@v1
                 with:
                     php-version: '${{ matrix.php-versions }}'
-                    coverage: none
-                    ini-file: production
-                    extensions: intl 
 
-            -   name: Validate composer.json and composer.lock
-                run: composer validate
+            -   name: Install ICU library for macOS
+                if: ${{ matrix.operating-system == 'macos-latest' }}
+                run: |
+                    brew update
+                    brew install icu4c
 
             -   name: Install dependencies
                 run: composer install --prefer-dist --no-progress --no-suggest

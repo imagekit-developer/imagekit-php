@@ -352,19 +352,11 @@ class Url
      */
     public function getSignature($options)
     {
-        $lastSlashPos = strrpos($options['url'], '/');
-        $questionMarkPos = strpos($options['url'], '?', $lastSlashPos);
-        $path = $questionMarkPos !== false ? substr($options['url'], $lastSlashPos + 1, $questionMarkPos - $lastSlashPos - 1) : substr($options['url'], $lastSlashPos + 1);
-        $encodedPath = $this->encodeStringIfRequired($path);
-        $encoded_url = substr_replace($options['url'], $encodedPath, $lastSlashPos + 1, strlen($path));
-        $options['url'] = $encoded_url;
-        print_r($options);
-
-
         if (empty($options['privateKey']) or empty($options['url']) or empty($options['urlEndpoint'])) {
             return '';
         } else {
             $data = (str_replace($this->addTrailingSlash($options['urlEndpoint']), '', $options['url']) . $options['expiryTimestamp']);
+            $data =  $this->encodeStringIfRequired($data);
             return hash_hmac('sha1', $data, $options['privateKey']);
         }
     }
@@ -393,8 +385,36 @@ class Url
         return false;
     }
 
-    private function encodeStringIfRequired($str)
+    function encodeURI($str)
     {
-        return $this->hasMoreThanAscii($str) ? urlencode($str) : $str;
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURI
+        $encoded_str = rawurlencode($str);
+        $encoded_str =
+            str_replace(
+                array('%2E', '%21', '%7E', '%2A', '%27', '%28', '%29', '%3B', '%2F', '%3F', '%3A', '%40', '%26', '%3D', '%2B', '%24', '%2C', '%23'),
+                array('.', '!', '~', '*', "'", '(', ')', ';', '/', '?', ':', '@', '&', '=', '+', '$', ',', '#'),
+                $encoded_str
+            );
+        return $encoded_str;
+    }
+
+    function custom_encodeURIComponent($url_str) {
+        $parsed_url = parse_url($url_str);
+        $encoded_url = "";
+        if (isset($parsed_url['query'])) {
+            $encoded_url .=  $this->encodeURI(explode("?", $url_str)[0]).'?' . $this->encodeURI($parsed_url['query']);
+        }
+        else
+            $encoded_url = $this->encodeURI($url_str);
+        return $encoded_url;
+    }
+
+    /**
+     * @param $str
+     * @return string
+     */
+    public function encodeStringIfRequired($str)
+    {
+        return $this->hasMoreThanAscii($str) ? $this->custom_encodeURIComponent($str) : $str;
     }
 }

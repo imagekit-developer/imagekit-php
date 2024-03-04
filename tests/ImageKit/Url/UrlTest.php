@@ -271,23 +271,139 @@ final class UrlTest extends TestCase
     /**
      *
      */
-    public function testUrlSignedUrlWithExpiryWithDiacritic()
+    public function testUrlSignedWithDiacriticInFilename()
     {
+        $url = 'https://ik.imagekit.io/demo/test_é_path_alt.jpg';
+        $urlInstance = new Url();
+        $encodedUrl = $urlInstance->encodeStringIfRequired($url);
+        UrlTest::assertEquals('https://ik.imagekit.io/demo/test_%C3%A9_path_alt.jpg', $encodedUrl);
+
+        $opts = [
+            'privateKey' => 'testing_private_key',
+            'url' => $url,
+            'urlEndpoint' => 'https://ik.imagekit.io/demo',
+            'expiryTimestamp' => '9999999999'
+        ];
+        $signature = $urlInstance->getSignature($opts);
         $url = $this->client->url([
-            'path' => '/four-penguins-with-é.webp',
+            'path' => '/test_é_path_alt.jpg',
             'signed' => true,
-            'expireSeconds' => 100
+            'expireSeconds' => ''
         ]);
-        UrlTest::assertStringStartsWith(
-            'https://ik.imagekit.io/demo/four-penguins-with-é.webp',
+        UrlTest::assertEquals(
+            'https://ik.imagekit.io/demo/test_é_path_alt.jpg?ik-s=f5575cb3dcd9a5aa2a8871bf6964cbc896a26afc',
             $url
         );
         UrlTest::assertContains(
-            'ik-s=',
+            'ik-s=' . $signature,
+            $url
+        );
+    }
+
+    /**
+     *
+     */
+    public function testUrlSignedWithDiacriticInFilenameAndPath()
+    {
+        $url = 'https://ik.imagekit.io/demo/aéb/test_é_path_alt.jpg';
+        $urlInstance = new Url();
+        $encodedUrl = $urlInstance->encodeStringIfRequired($url);
+        UrlTest::assertEquals('https://ik.imagekit.io/demo/a%C3%A9b/test_%C3%A9_path_alt.jpg', $encodedUrl);
+
+        $opts = [
+            'privateKey' => 'testing_private_key',
+            'url' => $url,
+            'urlEndpoint' => 'https://ik.imagekit.io/demo',
+            'expiryTimestamp' => '9999999999'
+        ];
+        $signature = $urlInstance->getSignature($opts);
+        $url = $this->client->url([
+            'path' => '/aéb/test_é_path_alt.jpg',
+            'signed' => true,
+            'expireSeconds' => ''
+        ]);
+        UrlTest::assertEquals(
+            'https://ik.imagekit.io/demo/aéb/test_é_path_alt.jpg?ik-s=e8a198ccd5d82841f31455a4e7a908d8c07cb21d',
             $url
         );
         UrlTest::assertContains(
-            'ik-t=',
+            'ik-s=' . $signature,
+            $url
+        );
+    }
+
+    /**
+     *
+     */
+    public function testUrlSignedWithDiacriticInFilenamePathTransforamtionInPath()
+    {
+        $url = 'https://ik.imagekit.io/demo/tr:l-text,i-Imagekité,fs-50,l-end/aéb/test_é_path_alt.jpg';
+        $urlInstance = new Url();
+        $encodedUrl = $urlInstance->encodeStringIfRequired($url);
+        UrlTest::assertEquals('https://ik.imagekit.io/demo/tr:l-text,i-Imagekit%C3%A9,fs-50,l-end/a%C3%A9b/test_%C3%A9_path_alt.jpg', $encodedUrl);
+
+        $opts = [
+            'privateKey' => 'testing_private_key',
+            'url' => $url,
+            'urlEndpoint' => 'https://ik.imagekit.io/demo',
+            'expiryTimestamp' => '9999999999'
+        ];
+        $signature = $urlInstance->getSignature($opts);
+        $url = $this->client->url([
+            'path' => '/aéb/test_é_path_alt.jpg',
+            'signed' => true,
+            "transformation" => [
+                [
+                    "raw" => "l-text,i-Imagekité,fs-50,l-end"
+                ]
+            ],
+            "transformationPosition" => "path",
+            'expireSeconds' => ''
+        ]);
+        UrlTest::assertEquals(
+            'https://ik.imagekit.io/demo/tr:l-text,i-Imagekité,fs-50,l-end/aéb/test_é_path_alt.jpg?ik-s=62f5cc82fa070614c6b70e7a42fc5171cdf41a1f',
+            $url
+        );
+        UrlTest::assertContains(
+            'ik-s=' . $signature,
+            $url
+        );
+    }
+
+    /**
+     *
+     */
+    public function testUrlSignedWithDiacriticInFilenamePathTransforamtionInQuery()
+    {
+        $url = 'https://ik.imagekit.io/demo/aéb/test_é_path_alt.jpg?tr=l-text,i-Imagekité,fs-50,l-end';
+        $urlInstance = new Url();
+        $encodedUrl = $urlInstance->encodeStringIfRequired($url);
+        UrlTest::assertEquals('https://ik.imagekit.io/demo/a%C3%A9b/test_%C3%A9_path_alt.jpg?tr=l-text,i-Imagekit%C3%A9,fs-50,l-end', $encodedUrl);
+
+        $opts = [
+            'privateKey' => 'testing_private_key',
+            'url' => $url,
+            'urlEndpoint' => 'https://ik.imagekit.io/demo',
+            'expiryTimestamp' => '9999999999'
+        ];
+        $signature = $urlInstance->getSignature($opts);
+        $url = $this->client->url([
+            'path' => '/aéb/test_é_path_alt.jpg',
+            'signed' => true,
+            "transformation" => [
+                [
+                    "raw" => "l-text,i-Imagekité,fs-50,l-end"
+                ]
+            ],
+            "transformationPosition" => "query",
+            'expireSeconds' => ''
+        ]);
+        UrlTest::assertEquals(
+            'https://ik.imagekit.io/demo/aéb/test_é_path_alt.jpg?tr=l-text,i-Imagekité,fs-50,l-end&ik-s=7656092e837af64427a757ef12d16b6fde1ce152',
+            $url
+        );
+        UrlTest::assertContains(
+            'ik-s=' . $signature,
             $url
         );
     }

@@ -1955,7 +1955,7 @@ final class FileTest extends TestCase
         );
     }
 
-    protected function setUp(): void
+    protected function setUp()
     {
         $this->client = new ImageKit(
             'testing_public_key',
@@ -1965,7 +1965,7 @@ final class FileTest extends TestCase
 
     }
 
-    protected function tearDown(): void
+    protected function tearDown()
     {
         $this->client = null;
     }

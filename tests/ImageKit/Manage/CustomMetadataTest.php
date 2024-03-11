@@ -596,7 +596,7 @@ class CustomMetadataTest extends TestCase
         $doClosure();
     }
 
-    protected function setUp(): void
+    protected function setUp()
     {
         $this->client = new ImageKit(
             'testing_public_key',
@@ -620,7 +620,7 @@ class CustomMetadataTest extends TestCase
     }
 
 
-    protected function tearDown(): void
+    protected function tearDown()
     {
         $this->client = null;
     }

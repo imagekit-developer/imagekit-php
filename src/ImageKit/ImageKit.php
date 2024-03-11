@@ -727,7 +727,7 @@ class ImageKit
         }
 
         $this->httpClient->setUri(Endpoints::getCopyFileEndpoint());
-        return Manage\File::copy($parameter['sourceFilePath'], $parameter['destinationPath'], $parameter['includeFileVersions']??false, $this->httpClient);
+        return Manage\File::copy($parameter['sourceFilePath'], $parameter['destinationPath'], isset($parameter['includeFileVersions']) ? $parameter['includeFileVersions'] : false, $this->httpClient);
     }
 
     
@@ -968,7 +968,7 @@ class ImageKit
         }
 
         $this->httpClient->setUri(Endpoints::getCopyFolderEndpoint());
-        return Manage\Folder::copy($parameter['sourceFolderPath'], $parameter['destinationPath'], $parameter['includeFileVersions']??false, $this->httpClient);
+        return Manage\Folder::copy($parameter['sourceFolderPath'], $parameter['destinationPath'], isset($parameter['includeFileVersions']) ? $parameter['includeFileVersions'] : false, $this->httpClient);
     }
 
     /**
@@ -1046,7 +1046,8 @@ class ImageKit
             return Response::respond(false, ($content));
         }
         else{
-            return Response::respond(true, ((object)ErrorMessages::$INVALID_REQUEST)->message);
+           $errorObject = (object) ErrorMessages::$INVALID_REQUEST;
+            return Response::respond(true, $errorObject->message);
         }
     }
 

@@ -536,7 +536,7 @@ class FolderTest extends TestCase
         $doClosure();
     }
 
-    protected function setUp(): void
+    protected function setUp()
     {
         $this->client = new ImageKit(
             'testing_public_key',
@@ -558,7 +558,7 @@ class FolderTest extends TestCase
         );
     }
 
-    protected function tearDown(): void
+    protected function tearDown()
     {
         $this->client = null;
     }

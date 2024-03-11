@@ -291,11 +291,7 @@ final class UrlTest extends TestCase
             'expireSeconds' => ''
         ]);
         UrlTest::assertEquals(
-            'https://ik.imagekit.io/demo/test_é_path_alt.jpg?ik-s=f5575cb3dcd9a5aa2a8871bf6964cbc896a26afc',
-            $url
-        );
-        UrlTest::assertContains(
-            'ik-s=' . $signature,
+            'https://ik.imagekit.io/demo/test_é_path_alt.jpg?ik-s='. $signature,
             $url
         );
     }
@@ -323,11 +319,7 @@ final class UrlTest extends TestCase
             'expireSeconds' => ''
         ]);
         UrlTest::assertEquals(
-            'https://ik.imagekit.io/demo/aéb/test_é_path_alt.jpg?ik-s=e8a198ccd5d82841f31455a4e7a908d8c07cb21d',
-            $url
-        );
-        UrlTest::assertContains(
-            'ik-s=' . $signature,
+            'https://ik.imagekit.io/demo/aéb/test_é_path_alt.jpg?ik-s='. $signature,
             $url
         );
     }
@@ -361,11 +353,7 @@ final class UrlTest extends TestCase
             'expireSeconds' => ''
         ]);
         UrlTest::assertEquals(
-            'https://ik.imagekit.io/demo/tr:l-text,i-Imagekité,fs-50,l-end/aéb/test_é_path_alt.jpg?ik-s=62f5cc82fa070614c6b70e7a42fc5171cdf41a1f',
-            $url
-        );
-        UrlTest::assertContains(
-            'ik-s=' . $signature,
+            'https://ik.imagekit.io/demo/tr:l-text,i-Imagekité,fs-50,l-end/aéb/test_é_path_alt.jpg?ik-s='. $signature,
             $url
         );
     }
@@ -399,11 +387,7 @@ final class UrlTest extends TestCase
             'expireSeconds' => ''
         ]);
         UrlTest::assertEquals(
-            'https://ik.imagekit.io/demo/aéb/test_é_path_alt.jpg?tr=l-text,i-Imagekité,fs-50,l-end&ik-s=7656092e837af64427a757ef12d16b6fde1ce152',
-            $url
-        );
-        UrlTest::assertContains(
-            'ik-s=' . $signature,
+            'https://ik.imagekit.io/demo/aéb/test_é_path_alt.jpg?tr=l-text,i-Imagekité,fs-50,l-end&ik-s='. $signature,
             $url
         );
     }

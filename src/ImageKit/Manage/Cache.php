@@ -47,7 +47,8 @@ class Cache
             return Response::respond(false, ($content));
         }
         else{
-            return Response::respond(true, ((object)ErrorMessages::$INVALID_REQUEST)->message);
+            $errorObject = (object) ErrorMessages::$INVALID_REQUEST;
+            return Response::respond(true, $errorObject->message);
         }
     }
 
@@ -80,7 +81,8 @@ class Cache
             return Response::respond(false, ($content));
         }
         else{
-            return Response::respond(true, ((object)ErrorMessages::$INVALID_REQUEST)->message);
+            $errorObject = (object) ErrorMessages::$INVALID_REQUEST;
+            return Response::respond(true, $errorObject->message);
         }
     }
 

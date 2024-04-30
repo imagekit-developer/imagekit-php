@@ -689,7 +689,6 @@ $listFiles = $imageKit->listFiles([
     "fileType" => "all",        // all, image, non-image
     "limit" => 10,              // min:1, max:1000
     "skip" => 0,                // min:0
-    "searchQuery" => 'size < "20kb"',
 ]);
 ```
 

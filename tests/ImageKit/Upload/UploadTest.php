@@ -172,6 +172,7 @@ final class UploadTest extends TestCase
                     ]
                 ]
             ],
+            'checks' => "'request.folder' : '/sample-folder'"
         ];
 
         $mockBodyResponse = Utils::streamFor(json_encode($this->uploadSuccessResponseObj));
@@ -215,6 +216,7 @@ final class UploadTest extends TestCase
         $this->checkFormData($stream,$boundary,"overwriteCustomMetadata","true");
         $this->checkFormData($stream,$boundary,"customMetadata",json_encode($fileOptions['customMetadata']));
         $this->checkFormData($stream,$boundary,"transformation",json_encode($fileOptions['transformation']));
+        $this->checkFormData($stream,$boundary,"checks",$fileOptions['checks']);
 
         // Assert Method
         $requestMethod = $container[0]['request']->getMethod();
@@ -785,6 +787,32 @@ final class UploadTest extends TestCase
         UploadTest::assertEquals(json_encode($error),json_encode($response->error));
     }
 
+
+    /**
+     *
+    */
+    public function testFileUploadWithInvalidChecks()
+    {
+        $fileOptions = [
+            'file'  =>  'http://lorempixel.com/640/480/',
+            'fileName'  =>  'test_file_name',
+            "useUniqueFileName" => true,                                        // true|false
+            "responseFields" => implode(",", ["tags", "customMetadata"]),       // Comma Separated, check docs for more responseFields
+            'checks' => true
+        ];
+
+        $error = [
+            "message" => "The value provided for the checks parameter is invalid.",
+            "help" => "For support kindly contact us at support@imagekit.io ."
+        ];
+
+        $this->stubHttpClient(new Response(403, ['X-Foo' => 'Bar'], json_encode($error)));
+
+        $response = $this->client->uploadFile($fileOptions);
+
+        // Request Body Check
+        UploadTest::assertEquals(json_encode($error),json_encode($response->error));
+    }
     
     protected function setUp()
     {

@@ -122,6 +122,7 @@ echo $imageURL;
 $uploadFile = $imageKit->uploadFile([
     'file' => 'file-url', # required, "binary","base64" or "file url"
     'fileName' => 'new-file' # required
+    'checks' => '"file.size" < "1mb"' //  optional `checks` parameters can be used to run server-side checks before files are uploaded to the Media Library.
 ]);
 ```  
 
@@ -562,6 +563,7 @@ The SDK provides a simple interface using the `$imageKit->uploadFile()` method t
 $uploadFile = $imageKit->uploadFile([
     'file' => 'your_file',              //  required, "binary","base64" or "file url"
     'fileName' => 'your_file_name.jpg', //  required
+    'checks' => '"file.size" < "1mb"',  //  optional `checks` parameters can be used to run server-side checks before files are uploaded to the Media Library.
 ]);
 ```
 #### Response
@@ -657,6 +659,7 @@ $uploadFile = $imageKit->uploadFile([
             ]
         ]
     ],
+    'checks' => '"file.size" < "1mb"',  //  optional `checks` parameters can be used to run server-side checks before files are uploaded to the Media Library.
     // "customMetadata" => [
     //         "SKU" => "VS882HJ2JD",
     //         "price" => 599.99,

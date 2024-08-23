@@ -216,12 +216,13 @@ class ImageKit
                     return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_INVALID_POST_TRANSFORMATION));
                 }
             }
-            if(isset($options['checks']) && !is_string($options['checks'])){
-                return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_INVALID_CHECKS));
-            }
         }
-        
-
+        if(isset($options['checks']) && !is_string($options['checks'])){
+            return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_INVALID_CHECKS));
+        }
+        if(isset($options['isPublished']) && !is_bool($options['isPublished'])){
+            return Response::respond(true, ((object)ErrorMessages::$UPLOAD_FILE_PARAMETER_OPTIONS_INVALID_PUBLISH_STATUS));
+        }
         $this->httpClient->setUri(Endpoints::getUploadFileEndpoint());
         return Upload::upload($options, $this->httpClient);
     }

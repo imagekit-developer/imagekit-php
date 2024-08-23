@@ -660,6 +660,7 @@ $uploadFile = $imageKit->uploadFile([
         ]
     ],
     'checks' => '"file.size" < "1mb"',  //  optional `checks` parameters can be used to run server-side checks before files are uploaded to the Media Library.
+    'isPublished' => true,
     // "customMetadata" => [
     //         "SKU" => "VS882HJ2JD",
     //         "price" => 599.99,
@@ -767,6 +768,27 @@ $updateData = [
         //     "SKU" => "VS882HJ2JD",
         //     "price" => 599.99,
         // ]
+];
+
+// Attempt Update
+$updateFileDetails = $imageKit->updateFileDetails(
+    'file_id',
+    $updateData
+);
+```
+
+**Update publish status**
+
+If any parameter other than `publish` is included in the update options, an error will be returned: `Your request cannot contain any other parameters when publish is present.`.
+
+#### Example
+```php
+// Update parameters
+$updateData = [
+    "publish" => [
+        "isPublished" => true,
+        "includeFileVersions" => true
+    ]
 ];
 
 // Attempt Update

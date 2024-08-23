@@ -779,7 +779,7 @@ $updateFileDetails = $imageKit->updateFileDetails(
 
 **Update publish status**
 
-If any parameter other than `publish` is included in the update options, an error will be returned: `Your request cannot contain any other parameters when publish is present.`.
+If `publish` is included in the update options, no other parameters are allowed. If any are present, an error will be returned: `Your request cannot contain any other parameters when publish is present`.
 
 #### Example
 ```php

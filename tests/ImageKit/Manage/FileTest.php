@@ -517,6 +517,69 @@ final class FileTest extends TestCase
         FileTest::assertEquals($requestMethod,'PATCH');
     }
 
+        /**
+     *
+     */
+    public function testUpdateFilePublishStatus()
+    {
+        $fileId = '5df36759adf3f523d81dd94f';
+
+        $updateData = [
+            "publish" => [
+                "isPublished" => true,
+                "includeFileVersions" => true
+            ]
+        ];
+
+        $responseBody = [
+            'fileId' => '598821f949c0a938d57563bd',
+            'type' => 'file',
+            'name' => 'file1.jpg',
+            'filePath' => '/images/products/file1.jpg',
+            'tags' => ['t-shirt', 'round-neck', 'sale2019'],
+            'isPrivateFile' => false,
+            'isPublished' => true,
+            'customCoordinates' => null,
+            'url' => 'https://ik.imagekit.io/your_imagekit_id/images/products/file1.jpg',
+            'thumbnail' => 'https://ik.imagekit.io/your_imagekit_id/tr:n-media_library_thumbnail/images/products/file1.jpg',
+            'fileType' => 'image'
+        ];
+
+        $mockBodyResponse = Utils::streamFor(json_encode($responseBody));
+
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $mockBodyResponse)
+        ]);
+
+        $handlerStack = HandlerStack::create($mock);
+
+        $container = [];
+        $history = Middleware::history($container);
+
+        $handlerStack->push($history);
+        
+        $this->createMockClient($handlerStack);
+
+        $response = $this->mockClient->updateFileDetails($fileId, $updateData);
+
+        $request = $container[0]['request'];
+        $requestPath = $request->getUri()->getPath();
+        $requestBody = $request->getBody();
+        $stream = Utils::streamFor($requestBody)->getContents();
+        
+        // Request Check
+        FileTest::assertEquals("/v1/files/{$fileId}/details",$requestPath);
+        FileTest::assertEquals($stream,json_encode($updateData));
+
+        // Response Check        
+        FileTest::assertNull($response->error);
+        FileTest::assertEquals(json_encode($responseBody), json_encode($response->result));
+                
+        // Assert Method
+        $requestMethod = $container[0]['request']->getMethod();
+        FileTest::assertEquals($requestMethod,'PATCH');
+    }
+    
     public function testUpdateFileDetailsWithInvalidTags()
     {
         $fileId = '5df36759adf3f523d81dd94f';

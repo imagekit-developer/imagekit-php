@@ -49,6 +49,8 @@ class ErrorMessages
     public static $UPLOAD_FILE_PARAMETER_OPTIONS_INVALID_TRANSFORMATION  = [ "message" => "Invalid transformation parameter. Please include at least pre, post, or both.", "help" => "For support kindly contact us at support@imagekit.io ."];
     public static $UPLOAD_FILE_PARAMETER_OPTIONS_INVALID_PRE_TRANSFORMATION = [ "message" => "Invalid pre transformation parameter.", "help" => "For support kindly contact us at support@imagekit.io ."];
     public static $UPLOAD_FILE_PARAMETER_OPTIONS_INVALID_POST_TRANSFORMATION = [ "message" => "Invalid post transformation parameter.", "help" => "For support kindly contact us at support@imagekit.io ."];
+    public static $UPLOAD_FILE_PARAMETER_OPTIONS_INVALID_CHECKS = [ "message" => "The value provided for the checks parameter is invalid.", "help" => "For support kindly contact us at support@imagekit.io ."];
+    public static $UPLOAD_FILE_PARAMETER_OPTIONS_INVALID_PUBLISH_STATUS = [ "message" => "isPublished must be boolean.", "help" => "For support kindly contact us at support@imagekit.io ."];
     public static $MISSING_UPLOAD_DATA = ['message' => 'Missing data for upload', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $MISSING_UPLOAD_FILE_PARAMETER = ['message' => 'Missing file parameter for upload', 'help' => 'For support kindly contact us at support@imagekit.io .'];
     public static $MISSING_UPLOAD_FILENAME_PARAMETER = ['message' => 'Missing fileName parameter for upload', 'help' => 'For support kindly contact us at support@imagekit.io .'];

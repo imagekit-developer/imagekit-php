@@ -53,7 +53,7 @@ final class Thumbnail implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function new(
+    public static function from(
         ?int $compression = null,
         ?int $resolutionUnit = null,
         ?int $thumbnailLength = null,

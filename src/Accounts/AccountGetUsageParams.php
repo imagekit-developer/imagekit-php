@@ -44,7 +44,7 @@ final class AccountGetUsageParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function new(
+    public static function from(
         \DateTimeInterface $endDate,
         \DateTimeInterface $startDate
     ): self {
@@ -54,5 +54,25 @@ final class AccountGetUsageParams implements BaseModel
         $obj->startDate = $startDate;
 
         return $obj;
+    }
+
+    /**
+     * Specify a `endDate` in `YYYY-MM-DD` format. It should be after the `startDate`. The difference between `startDate` and `endDate` should be less than 90 days.
+     */
+    public function setEndDate(\DateTimeInterface $endDate): self
+    {
+        $this->endDate = $endDate;
+
+        return $this;
+    }
+
+    /**
+     * Specify a `startDate` in `YYYY-MM-DD` format. It should be before the `endDate`. The difference between `startDate` and `endDate` should be less than 90 days.
+     */
+    public function setStartDate(\DateTimeInterface $startDate): self
+    {
+        $this->startDate = $startDate;
+
+        return $this;
     }
 }

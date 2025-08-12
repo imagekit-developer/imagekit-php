@@ -125,7 +125,7 @@ final class Metadata implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function new(
+    public static function from(
         ?string $audioCodec = null,
         ?int $bitRate = null,
         ?int $density = null,

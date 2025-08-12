@@ -46,7 +46,7 @@ $client = new Client(
   password: getenv("ORG_MY_PASSWORD_TOKEN") ?: "does_not_matter",
 );
 
-$params = FileUploadV1Params::new(
+$params = FileUploadV1Params::from(
   file: "https://www.example.com/rest-of-the-image-path.jpg",
   fileName: "fileName",
 );
@@ -66,7 +66,7 @@ use ImageKit\Errors\APIConnectionError;
 use ImageKit\Files\FileUploadV1Params;
 
 try {
-    $params = FileUploadV1Params::new(
+    $params = FileUploadV1Params::from(
       file: "https://www.example.com/rest-of-the-image-path.jpg",
       fileName: "fileName",
     );
@@ -115,7 +115,7 @@ use ImageKit\Files\FileUploadV1Params;
 
 // Configure the default for all requests:
 $client = new Client(maxRetries: 0);
-$params = FileUploadV1Params::new(
+$params = FileUploadV1Params::from(
   file: "https://www.example.com/rest-of-the-image-path.jpg",
   fileName: "fileName",
 );
@@ -140,7 +140,7 @@ Note: the `extra_` parameters of the same name overrides the documented paramete
 use ImageKit\RequestOptions;
 use ImageKit\Files\FileUploadV1Params;
 
-$params = FileUploadV1Params::new(
+$params = FileUploadV1Params::from(
   file: "https://www.example.com/rest-of-the-image-path.jpg",
   fileName: "fileName",
 );

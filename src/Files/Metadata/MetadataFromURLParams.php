@@ -36,12 +36,22 @@ final class MetadataFromURLParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function new(string $url): self
+    public static function from(string $url): self
     {
         $obj = new self;
 
         $obj->url = $url;
 
         return $obj;
+    }
+
+    /**
+     * Should be a valid file URL. It should be accessible using your ImageKit.io account.
+     */
+    public function setURL(string $url): self
+    {
+        $this->url = $url;
+
+        return $this;
     }
 }

@@ -50,7 +50,7 @@ final class MetadataTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = MetadataFromURLParams::new(url: 'url');
+        $params = MetadataFromURLParams::from(url: 'url');
         $result = $this->client->files->metadata->fromURL($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
@@ -63,7 +63,7 @@ final class MetadataTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = MetadataFromURLParams::new(url: 'url');
+        $params = MetadataFromURLParams::from(url: 'url');
         $result = $this->client->files->metadata->fromURL($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line

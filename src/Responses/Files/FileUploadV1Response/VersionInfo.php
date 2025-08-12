@@ -40,7 +40,7 @@ final class VersionInfo implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function new(?string $id = null, ?string $name = null): self
+    public static function from(?string $id = null, ?string $name = null): self
     {
         $obj = new self;
 

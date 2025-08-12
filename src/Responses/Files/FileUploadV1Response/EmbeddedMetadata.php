@@ -929,7 +929,7 @@ final class EmbeddedMetadata implements BaseModel
      * @param null|list<string> $subjectCode
      * @param null|list<string> $subjectReference
      */
-    public static function new(
+    public static function from(
         ?string $aboutCvTermCvID = null,
         ?string $aboutCvTermID = null,
         ?string $aboutCvTermName = null,

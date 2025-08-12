@@ -51,7 +51,7 @@ final class AutoTaggingExtension implements BaseModel
      *
      * @param Name::* $name
      */
-    public static function new(
+    public static function from(
         int $maxTags,
         int $minConfidence,
         string $name

@@ -32,7 +32,7 @@ final class PurgeExecuteResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function new(?string $requestID = null): self
+    public static function from(?string $requestID = null): self
     {
         $obj = new self;
 

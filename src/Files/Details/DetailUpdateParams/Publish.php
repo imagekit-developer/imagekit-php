@@ -42,7 +42,7 @@ final class Publish implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function new(
+    public static function from(
         bool $isPublished,
         ?bool $includeFileVersions = null
     ): self {

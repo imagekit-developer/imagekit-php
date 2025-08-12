@@ -43,7 +43,7 @@ final class FileAddTagsResponse implements BaseModel
      *
      * @param null|list<string> $successfullyUpdatedFileIDs
      */
-    public static function new(?array $successfullyUpdatedFileIDs = null): self
+    public static function from(?array $successfullyUpdatedFileIDs = null): self
     {
         $obj = new self;
 

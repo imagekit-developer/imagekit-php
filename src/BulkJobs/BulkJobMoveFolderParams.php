@@ -44,7 +44,7 @@ final class BulkJobMoveFolderParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function new(
+    public static function from(
         string $destinationPath,
         string $sourceFolderPath
     ): self {
@@ -54,5 +54,25 @@ final class BulkJobMoveFolderParams implements BaseModel
         $obj->sourceFolderPath = $sourceFolderPath;
 
         return $obj;
+    }
+
+    /**
+     * Full path to the destination folder where you want to move the source folder into.
+     */
+    public function setDestinationPath(string $destinationPath): self
+    {
+        $this->destinationPath = $destinationPath;
+
+        return $this;
+    }
+
+    /**
+     * The full path to the source folder you want to move.
+     */
+    public function setSourceFolderPath(string $sourceFolderPath): self
+    {
+        $this->sourceFolderPath = $sourceFolderPath;
+
+        return $this;
     }
 }

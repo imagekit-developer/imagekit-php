@@ -88,7 +88,7 @@ final class Schema implements BaseModel
      * @param null|bool|float|list<bool|float|string>|string $defaultValue
      * @param null|list<bool|float|string> $selectOptions
      */
-    public static function new(
+    public static function from(
         null|array|bool|float|string $defaultValue = null,
         ?bool $isValueRequired = null,
         ?float $maxLength = null,

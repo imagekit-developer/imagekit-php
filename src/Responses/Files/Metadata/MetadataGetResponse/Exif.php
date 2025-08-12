@@ -75,7 +75,7 @@ final class Exif implements BaseModel
      *
      * @param null|array<string, mixed> $makernote
      */
-    public static function new(
+    public static function from(
         ?Exif1 $exif = null,
         ?Gps $gps = null,
         ?Image $image = null,

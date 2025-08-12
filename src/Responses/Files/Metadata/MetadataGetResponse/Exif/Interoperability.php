@@ -36,7 +36,7 @@ final class Interoperability implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function new(
+    public static function from(
         ?string $interopIndex = null,
         ?string $interopVersion = null
     ): self {

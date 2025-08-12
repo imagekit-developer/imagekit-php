@@ -46,7 +46,7 @@ final class BulkJobGetStatusResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function new(
+    public static function from(
         ?string $jobID = null,
         ?string $status = null,
         ?string $type = null

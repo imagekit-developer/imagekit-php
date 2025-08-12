@@ -49,7 +49,7 @@ final class ExtensionStatus implements BaseModel
      * @param null|GoogleAutoTagging::* $googleAutoTagging
      * @param null|RemoveBg::* $removeBg
      */
-    public static function new(
+    public static function from(
         ?string $awsAutoTagging = null,
         ?string $googleAutoTagging = null,
         ?string $removeBg = null,

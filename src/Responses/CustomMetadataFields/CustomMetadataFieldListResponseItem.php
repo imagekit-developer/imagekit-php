@@ -55,7 +55,7 @@ final class CustomMetadataFieldListResponseItem implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function new(
+    public static function from(
         string $id,
         string $label,
         string $name,

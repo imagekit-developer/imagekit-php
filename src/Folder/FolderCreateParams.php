@@ -48,7 +48,7 @@ final class FolderCreateParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function new(
+    public static function from(
         string $folderName,
         string $parentFolderPath
     ): self {
@@ -58,5 +58,29 @@ final class FolderCreateParams implements BaseModel
         $obj->parentFolderPath = $parentFolderPath;
 
         return $obj;
+    }
+
+    /**
+     * The folder will be created with this name.
+     *
+     * All characters except alphabets and numbers (inclusive of unicode letters, marks, and numerals in other languages) will be replaced by an underscore i.e. `_`.
+     */
+    public function setFolderName(string $folderName): self
+    {
+        $this->folderName = $folderName;
+
+        return $this;
+    }
+
+    /**
+     * The folder where the new folder should be created, for root use `/` else the path e.g. `containing/folder/`.
+     *
+     * Note: If any folder(s) is not present in the parentFolderPath parameter, it will be automatically created. For example, if you pass `/product/images/summer`, then `product`, `images`, and `summer` folders will be created if they don't already exist.
+     */
+    public function setParentFolderPath(string $parentFolderPath): self
+    {
+        $this->parentFolderPath = $parentFolderPath;
+
+        return $this;
     }
 }

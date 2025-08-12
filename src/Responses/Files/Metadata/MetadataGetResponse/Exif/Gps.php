@@ -35,7 +35,7 @@ final class Gps implements BaseModel
      *
      * @param null|list<int> $gpsVersionID
      */
-    public static function new(?array $gpsVersionID = null): self
+    public static function from(?array $gpsVersionID = null): self
     {
         $obj = new self;
 

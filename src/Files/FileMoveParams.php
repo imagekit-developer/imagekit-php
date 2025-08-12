@@ -46,7 +46,7 @@ final class FileMoveParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function new(
+    public static function from(
         string $destinationPath,
         string $sourceFilePath
     ): self {
@@ -56,5 +56,25 @@ final class FileMoveParams implements BaseModel
         $obj->sourceFilePath = $sourceFilePath;
 
         return $obj;
+    }
+
+    /**
+     * Full path to the folder you want to move the above file into.
+     */
+    public function setDestinationPath(string $destinationPath): self
+    {
+        $this->destinationPath = $destinationPath;
+
+        return $this;
+    }
+
+    /**
+     * The full path of the file you want to move.
+     */
+    public function setSourceFilePath(string $sourceFilePath): self
+    {
+        $this->sourceFilePath = $sourceFilePath;
+
+        return $this;
     }
 }

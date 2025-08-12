@@ -43,7 +43,7 @@ final class RemovedotBgExtension implements BaseModel
      *
      * @param Name::* $name
      */
-    public static function new(string $name, ?Options $options = null): self
+    public static function from(string $name, ?Options $options = null): self
     {
         $obj = new self;
 

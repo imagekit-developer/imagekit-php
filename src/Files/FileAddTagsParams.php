@@ -50,7 +50,7 @@ final class FileAddTagsParams implements BaseModel
      * @param list<string> $fileIDs
      * @param list<string> $tags
      */
-    public static function new(array $fileIDs, array $tags): self
+    public static function from(array $fileIDs, array $tags): self
     {
         $obj = new self;
 
@@ -58,5 +58,29 @@ final class FileAddTagsParams implements BaseModel
         $obj->tags = $tags;
 
         return $obj;
+    }
+
+    /**
+     * An array of fileIds to which you want to add tags.
+     *
+     * @param list<string> $fileIDs
+     */
+    public function setFileIDs(array $fileIDs): self
+    {
+        $this->fileIDs = $fileIDs;
+
+        return $this;
+    }
+
+    /**
+     * An array of tags that you want to add to the files.
+     *
+     * @param list<string> $tags
+     */
+    public function setTags(array $tags): self
+    {
+        $this->tags = $tags;
+
+        return $this;
     }
 }

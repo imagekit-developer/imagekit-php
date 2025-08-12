@@ -33,12 +33,19 @@ final class VersionRestoreParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function new(string $fileID): self
+    public static function from(string $fileID): self
     {
         $obj = new self;
 
         $obj->fileID = $fileID;
 
         return $obj;
+    }
+
+    public function setFileID(string $fileID): self
+    {
+        $this->fileID = $fileID;
+
+        return $this;
     }
 }

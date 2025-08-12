@@ -214,7 +214,7 @@ final class FileUploadV2Response implements BaseModel
      * @param null|list<AITag> $aiTags
      * @param null|list<string> $tags
      */
-    public static function new(
+    public static function from(
         ?array $aiTags = null,
         ?string $audioCodec = null,
         ?int $bitRate = null,

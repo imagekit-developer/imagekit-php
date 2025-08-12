@@ -52,7 +52,7 @@ final class FileCopyParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function new(
+    public static function from(
         string $destinationPath,
         string $sourceFilePath,
         ?bool $includeFileVersions = null,
@@ -65,5 +65,35 @@ final class FileCopyParams implements BaseModel
         null !== $includeFileVersions && $obj->includeFileVersions = $includeFileVersions;
 
         return $obj;
+    }
+
+    /**
+     * Full path to the folder you want to copy the above file into.
+     */
+    public function setDestinationPath(string $destinationPath): self
+    {
+        $this->destinationPath = $destinationPath;
+
+        return $this;
+    }
+
+    /**
+     * The full path of the file you want to copy.
+     */
+    public function setSourceFilePath(string $sourceFilePath): self
+    {
+        $this->sourceFilePath = $sourceFilePath;
+
+        return $this;
+    }
+
+    /**
+     * Option to copy all versions of a file. By default, only the current version of the file is copied. When set to true, all versions of the file will be copied. Default value - `false`.
+     */
+    public function setIncludeFileVersions(bool $includeFileVersions): self
+    {
+        $this->includeFileVersions = $includeFileVersions;
+
+        return $this;
     }
 }

@@ -43,7 +43,7 @@ final class BatchDeleteResponse implements BaseModel
      *
      * @param null|list<string> $successfullyDeletedFileIDs
      */
-    public static function new(?array $successfullyDeletedFileIDs = null): self
+    public static function from(?array $successfullyDeletedFileIDs = null): self
     {
         $obj = new self;
 

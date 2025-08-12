@@ -62,7 +62,7 @@ final class AccountGetUsageResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function new(
+    public static function from(
         ?int $bandwidthBytes = null,
         ?int $extensionUnitsCount = null,
         ?int $mediaLibraryStorageBytes = null,

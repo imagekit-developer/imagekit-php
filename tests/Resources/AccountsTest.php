@@ -38,7 +38,7 @@ final class AccountsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = AccountGetUsageParams::new(
+        $params = AccountGetUsageParams::from(
             endDate: new \DateTimeImmutable('2019-12-27'),
             startDate: new \DateTimeImmutable('2019-12-27'),
         );
@@ -54,7 +54,7 @@ final class AccountsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = AccountGetUsageParams::new(
+        $params = AccountGetUsageParams::from(
             endDate: new \DateTimeImmutable('2019-12-27'),
             startDate: new \DateTimeImmutable('2019-12-27'),
         );

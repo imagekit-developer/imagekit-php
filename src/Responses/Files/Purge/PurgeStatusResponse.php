@@ -37,7 +37,7 @@ final class PurgeStatusResponse implements BaseModel
      *
      * @param null|Status::* $status
      */
-    public static function new(?string $status = null): self
+    public static function from(?string $status = null): self
     {
         $obj = new self;
 

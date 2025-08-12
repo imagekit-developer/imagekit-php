@@ -45,12 +45,24 @@ final class BatchDeleteParams implements BaseModel
      *
      * @param list<string> $fileIDs
      */
-    public static function new(array $fileIDs): self
+    public static function from(array $fileIDs): self
     {
         $obj = new self;
 
         $obj->fileIDs = $fileIDs;
 
         return $obj;
+    }
+
+    /**
+     * An array of fileIds which you want to delete.
+     *
+     * @param list<string> $fileIDs
+     */
+    public function setFileIDs(array $fileIDs): self
+    {
+        $this->fileIDs = $fileIDs;
+
+        return $this;
     }
 }

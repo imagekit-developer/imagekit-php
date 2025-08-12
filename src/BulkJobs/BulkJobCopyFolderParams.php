@@ -50,7 +50,7 @@ final class BulkJobCopyFolderParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function new(
+    public static function from(
         string $destinationPath,
         string $sourceFolderPath,
         ?bool $includeVersions = null,
@@ -63,5 +63,35 @@ final class BulkJobCopyFolderParams implements BaseModel
         null !== $includeVersions && $obj->includeVersions = $includeVersions;
 
         return $obj;
+    }
+
+    /**
+     * Full path to the destination folder where you want to copy the source folder into.
+     */
+    public function setDestinationPath(string $destinationPath): self
+    {
+        $this->destinationPath = $destinationPath;
+
+        return $this;
+    }
+
+    /**
+     * The full path to the source folder you want to copy.
+     */
+    public function setSourceFolderPath(string $sourceFolderPath): self
+    {
+        $this->sourceFolderPath = $sourceFolderPath;
+
+        return $this;
+    }
+
+    /**
+     * Option to copy all versions of files that are nested inside the selected folder. By default, only the current version of each file will be copied. When set to true, all versions of each file will be copied. Default value - `false`.
+     */
+    public function setIncludeVersions(bool $includeVersions): self
+    {
+        $this->includeVersions = $includeVersions;
+
+        return $this;
     }
 }

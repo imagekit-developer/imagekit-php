@@ -39,7 +39,7 @@ final class FolderTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = FolderCreateParams::new(
+        $params = FolderCreateParams::from(
             folderName: 'summer',
             parentFolderPath: '/product/images/'
         );
@@ -55,7 +55,7 @@ final class FolderTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = FolderCreateParams::new(
+        $params = FolderCreateParams::from(
             folderName: 'summer',
             parentFolderPath: '/product/images/'
         );
@@ -71,7 +71,7 @@ final class FolderTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = FolderDeleteParams::new(folderPath: '/folder/to/delete/');
+        $params = FolderDeleteParams::from(folderPath: '/folder/to/delete/');
         $result = $this->client->folder->delete($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
@@ -84,7 +84,7 @@ final class FolderTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = FolderDeleteParams::new(folderPath: '/folder/to/delete/');
+        $params = FolderDeleteParams::from(folderPath: '/folder/to/delete/');
         $result = $this->client->folder->delete($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line

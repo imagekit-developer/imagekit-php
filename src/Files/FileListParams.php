@@ -120,7 +120,7 @@ final class FileListParams implements BaseModel
      *
      * @param null|Type::* $type
      */
-    public static function new(
+    public static function from(
         ?string $fileType = null,
         ?string $limit = null,
         ?string $path = null,
@@ -140,5 +140,112 @@ final class FileListParams implements BaseModel
         null !== $type && $obj->type = $type;
 
         return $obj;
+    }
+
+    /**
+     * Type of files to include in the result set. Accepts three values:
+     *
+     * `all` - include all types of files in the result set.
+     * `image` - only search in image type files.
+     * `non-image` - only search in files that are not images, e.g., JS or CSS or video files.
+     *
+     * Default value - `all`
+     */
+    public function setFileType(string $fileType): self
+    {
+        $this->fileType = $fileType;
+
+        return $this;
+    }
+
+    /**
+     * The maximum number of results to return in response:
+     *
+     * Minimum value - 1
+     *
+     * Maximum value - 1000
+     *
+     * Default value - 1000
+     */
+    public function setLimit(string $limit): self
+    {
+        $this->limit = $limit;
+
+        return $this;
+    }
+
+    /**
+     * Folder path if you want to limit the search within a specific folder. For example, `/sales-banner/` will only search in folder sales-banner.
+     */
+    public function setPath(string $path): self
+    {
+        $this->path = $path;
+
+        return $this;
+    }
+
+    /**
+     * Query string in a Lucene-like query language e.g. `createdAt > "7d"`.
+     *
+     * Note : When the searchQuery parameter is present, the following query parameters will have no effect on the result:
+     *
+     * 1. `tags`
+     * 2. `type`
+     * 3. `name`
+     *
+     * [Learn more](/docs/api-reference/digital-asset-management-dam/list-and-search-assets#advanced-search-queries) from examples.
+     */
+    public function setSearchQuery(string $searchQuery): self
+    {
+        $this->searchQuery = $searchQuery;
+
+        return $this;
+    }
+
+    /**
+     * The number of results to skip before returning results:
+     *
+     * Minimum value - 0
+     *
+     * Default value - 0
+     */
+    public function setSkip(string $skip): self
+    {
+        $this->skip = $skip;
+
+        return $this;
+    }
+
+    /**
+     * You can sort based on the following fields:
+     *
+     * 1. name - `ASC_NAME` or `DESC_NAME`
+     * 2. createdAt - `ASC_CREATED` or `DESC_CREATED`
+     * 3. updatedAt - `ASC_UPDATED` or `DESC_UPDATED`
+     * 4. height - `ASC_HEIGHT` or `DESC_HEIGHT`
+     * 5. width - `ASC_WIDTH` or `DESC_WIDTH`
+     * 6. size - `ASC_SIZE` or `DESC_SIZE`
+     *
+     * Default value - `ASC_CREATED`
+     */
+    public function setSort(string $sort): self
+    {
+        $this->sort = $sort;
+
+        return $this;
+    }
+
+    /**
+     * Limit search to one of `file`, `file-version`, or `folder`. Pass `all` to include `files` and `folders` in search results (`file-version` will not be included in this case).
+     *
+     * Default value - `file`
+     *
+     * @param Type::* $type
+     */
+    public function setType(string $type): self
+    {
+        $this->type = $type;
+
+        return $this;
     }
 }

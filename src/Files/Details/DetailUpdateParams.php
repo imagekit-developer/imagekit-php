@@ -101,7 +101,7 @@ final class DetailUpdateParams implements BaseModel
      * @param null|list<string>|UnionMember1::* $removeAITags
      * @param null|list<string> $tags
      */
-    public static function new(
+    public static function from(
         ?string $customCoordinates = null,
         mixed $customMetadata = null,
         ?array $extensions = null,
@@ -121,5 +121,85 @@ final class DetailUpdateParams implements BaseModel
         null !== $publish && $obj->publish = $publish;
 
         return $obj;
+    }
+
+    /**
+     * Define an important area in the image in the format `x,y,width,height` e.g. `10,10,100,100`. Send `null` to unset this value.
+     */
+    public function setCustomCoordinates(?string $customCoordinates): self
+    {
+        $this->customCoordinates = $customCoordinates;
+
+        return $this;
+    }
+
+    /**
+     * A key-value data to be associated with the asset. To unset a key, send `null` value for that key. Before setting any custom metadata on an asset you have to create the field using custom metadata fields API.
+     */
+    public function setCustomMetadata(mixed $customMetadata): self
+    {
+        $this->customMetadata = $customMetadata;
+
+        return $this;
+    }
+
+    /**
+     * Array of extensions to be applied to the asset. Each extension can be configured with specific parameters based on the extension type.
+     *
+     * @param list<AutoTaggingExtension|RemovedotBgExtension> $extensions
+     */
+    public function setExtensions(array $extensions): self
+    {
+        $this->extensions = $extensions;
+
+        return $this;
+    }
+
+    /**
+     * An array of AITags associated with the file that you want to remove, e.g. `["car", "vehicle", "motorsports"]`.
+     *
+     * If you want to remove all AITags associated with the file, send a string - "all".
+     *
+     * Note: The remove operation for `AITags` executes before any of the `extensions` are processed.
+     *
+     * @param list<string>|UnionMember1::* $removeAITags
+     */
+    public function setRemoveAITags(array|string $removeAITags): self
+    {
+        $this->removeAITags = $removeAITags;
+
+        return $this;
+    }
+
+    /**
+     * An array of tags associated with the file, such as `["tag1", "tag2"]`. Send `null` to unset all tags associated with the file.
+     *
+     * @param null|list<string> $tags
+     */
+    public function setTags(?array $tags): self
+    {
+        $this->tags = $tags;
+
+        return $this;
+    }
+
+    /**
+     * The final status of extensions after they have completed execution will be delivered to this endpoint as a POST request. [Learn more](/docs/api-reference/digital-asset-management-dam/managing-assets/update-file-details#webhook-payload-structure) about the webhook payload structure.
+     */
+    public function setWebhookURL(string $webhookURL): self
+    {
+        $this->webhookURL = $webhookURL;
+
+        return $this;
+    }
+
+    /**
+     * Configure the publication status of a file and its versions.
+     */
+    public function setPublish(Publish $publish): self
+    {
+        $this->publish = $publish;
+
+        return $this;
     }
 }

@@ -36,12 +36,22 @@ final class PurgeExecuteParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function new(string $url): self
+    public static function from(string $url): self
     {
         $obj = new self;
 
         $obj->url = $url;
 
         return $obj;
+    }
+
+    /**
+     * The full URL of the file to be purged.
+     */
+    public function setURL(string $url): self
+    {
+        $this->url = $url;
+
+        return $this;
     }
 }

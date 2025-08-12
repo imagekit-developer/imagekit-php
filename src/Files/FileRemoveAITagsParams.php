@@ -52,7 +52,7 @@ final class FileRemoveAITagsParams implements BaseModel
      * @param list<string> $aiTags
      * @param list<string> $fileIDs
      */
-    public static function new(array $aiTags, array $fileIDs): self
+    public static function from(array $aiTags, array $fileIDs): self
     {
         $obj = new self;
 
@@ -60,5 +60,29 @@ final class FileRemoveAITagsParams implements BaseModel
         $obj->fileIDs = $fileIDs;
 
         return $obj;
+    }
+
+    /**
+     * An array of AITags that you want to remove from the files.
+     *
+     * @param list<string> $aiTags
+     */
+    public function setAITags(array $aiTags): self
+    {
+        $this->aiTags = $aiTags;
+
+        return $this;
+    }
+
+    /**
+     * An array of fileIds from which you want to remove AITags.
+     *
+     * @param list<string> $fileIDs
+     */
+    public function setFileIDs(array $fileIDs): self
+    {
+        $this->fileIDs = $fileIDs;
+
+        return $this;
     }
 }

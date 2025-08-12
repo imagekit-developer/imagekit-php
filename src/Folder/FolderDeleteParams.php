@@ -36,12 +36,22 @@ final class FolderDeleteParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function new(string $folderPath): self
+    public static function from(string $folderPath): self
     {
         $obj = new self;
 
         $obj->folderPath = $folderPath;
 
         return $obj;
+    }
+
+    /**
+     * Full path to the folder you want to delete. For example `/folder/to/delete/`.
+     */
+    public function setFolderPath(string $folderPath): self
+    {
+        $this->folderPath = $folderPath;
+
+        return $this;
     }
 }

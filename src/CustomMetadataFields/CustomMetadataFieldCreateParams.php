@@ -46,7 +46,7 @@ final class CustomMetadataFieldCreateParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function new(
+    public static function from(
         string $label,
         string $name,
         Schema $schema
@@ -58,5 +58,32 @@ final class CustomMetadataFieldCreateParams implements BaseModel
         $obj->schema = $schema;
 
         return $obj;
+    }
+
+    /**
+     * Human readable name of the custom metadata field. This should be unique across all non deleted custom metadata fields. This name is displayed as form field label to the users while setting field value on an asset in the media library UI.
+     */
+    public function setLabel(string $label): self
+    {
+        $this->label = $label;
+
+        return $this;
+    }
+
+    /**
+     * API name of the custom metadata field. This should be unique across all (including deleted) custom metadata fields.
+     */
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function setSchema(Schema $schema): self
+    {
+        $this->schema = $schema;
+
+        return $this;
     }
 }

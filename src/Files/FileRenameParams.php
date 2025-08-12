@@ -65,7 +65,7 @@ final class FileRenameParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function new(
+    public static function from(
         string $filePath,
         string $newFileName,
         ?bool $purgeCache = null
@@ -78,5 +78,48 @@ final class FileRenameParams implements BaseModel
         null !== $purgeCache && $obj->purgeCache = $purgeCache;
 
         return $obj;
+    }
+
+    /**
+     * The full path of the file you want to rename.
+     */
+    public function setFilePath(string $filePath): self
+    {
+        $this->filePath = $filePath;
+
+        return $this;
+    }
+
+    /**
+     * The new name of the file. A filename can contain:
+     *
+     * Alphanumeric Characters: `a-z`, `A-Z`, `0-9` (including Unicode letters, marks, and numerals in other languages).
+     * Special Characters: `.`, `_`, and `-`.
+     *
+     * Any other character, including space, will be replaced by `_`.
+     */
+    public function setNewFileName(string $newFileName): self
+    {
+        $this->newFileName = $newFileName;
+
+        return $this;
+    }
+
+    /**
+     * Option to purge cache for the old file and its versions' URLs.
+     *
+     * When set to true, it will internally issue a purge cache request on CDN to remove cached content of old file and its versions. This purge request is counted against your monthly purge quota.
+     *
+     * Note: If the old file were accessible at `https://ik.imagekit.io/demo/old-filename.jpg`, a purge cache request would be issued against `https://ik.imagekit.io/demo/old-filename.jpg*` (with a wildcard at the end). It will remove the file and its versions' URLs and any transformations made using query parameters on this file or its versions. However, the cache for file transformations made using path parameters will persist. You can purge them using the purge API. For more details, refer to the purge API documentation.
+     *
+     *
+     *
+     * Default value - `false`
+     */
+    public function setPurgeCache(bool $purgeCache): self
+    {
+        $this->purgeCache = $purgeCache;
+
+        return $this;
     }
 }

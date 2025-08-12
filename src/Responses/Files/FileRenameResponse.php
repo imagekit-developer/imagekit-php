@@ -32,7 +32,7 @@ final class FileRenameResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function new(?string $purgeRequestID = null): self
+    public static function from(?string $purgeRequestID = null): self
     {
         $obj = new self;
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Responses\Files\Metadata\MetadataFromURLResponse\Exif;
+namespace ImageKit\Files;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\Model;
@@ -11,7 +11,7 @@ use ImageKit\Core\Contracts\BaseModel;
 /**
  * Object containing Exif details.
  *
- * @phpstan-type exif_alias = array{
+ * @phpstan-type exif_details_alias = array{
  *   apertureValue?: float,
  *   colorSpace?: int,
  *   createDate?: string,
@@ -40,7 +40,7 @@ use ImageKit\Core\Contracts\BaseModel;
  *   whiteBalance?: int,
  * }
  */
-final class Exif implements BaseModel
+final class ExifDetails implements BaseModel
 {
     use Model;
 

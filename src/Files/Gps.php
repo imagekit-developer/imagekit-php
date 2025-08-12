@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Responses\Files\FileUploadV1Response\Metadata\Exif;
+namespace ImageKit\Files;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\Model;

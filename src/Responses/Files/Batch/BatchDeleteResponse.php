@@ -1,0 +1,67 @@
+<?php
+
+declare(strict_types=1);
+
+namespace ImageKit\Responses\Files\Batch;
+
+use ImageKit\Core\Attributes\Api;
+use ImageKit\Core\Concerns\Model;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Core\Conversion\ListOf;
+
+/**
+ * @phpstan-type batch_delete_response_alias = array{
+ *   successfullyDeletedFileIDs?: list<string>
+ * }
+ */
+final class BatchDeleteResponse implements BaseModel
+{
+    use Model;
+
+    /**
+     * An array of fileIds that were successfully deleted.
+     *
+     * @var null|list<string> $successfullyDeletedFileIDs
+     */
+    #[Api(
+        'successfullyDeletedFileIds',
+        type: new ListOf('string'),
+        optional: true
+    )]
+    public ?array $successfullyDeletedFileIDs;
+
+    public function __construct()
+    {
+        self::introspect();
+        $this->unsetOptionalProperties();
+    }
+
+    /**
+     * Construct an instance from the required parameters.
+     *
+     * You must use named parameters to construct any parameters with a default value.
+     *
+     * @param null|list<string> $successfullyDeletedFileIDs
+     */
+    public static function new(?array $successfullyDeletedFileIDs = null): self
+    {
+        $obj = new self;
+
+        null !== $successfullyDeletedFileIDs && $obj->successfullyDeletedFileIDs = $successfullyDeletedFileIDs;
+
+        return $obj;
+    }
+
+    /**
+     * An array of fileIds that were successfully deleted.
+     *
+     * @param list<string> $successfullyDeletedFileIDs
+     */
+    public function setSuccessfullyDeletedFileIDs(
+        array $successfullyDeletedFileIDs
+    ): self {
+        $this->successfullyDeletedFileIDs = $successfullyDeletedFileIDs;
+
+        return $this;
+    }
+}

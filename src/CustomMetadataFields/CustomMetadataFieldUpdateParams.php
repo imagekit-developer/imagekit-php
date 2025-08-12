@@ -1,0 +1,57 @@
+<?php
+
+declare(strict_types=1);
+
+namespace ImageKit\CustomMetadataFields;
+
+use ImageKit\Core\Attributes\Api;
+use ImageKit\Core\Concerns\Model;
+use ImageKit\Core\Concerns\Params;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema;
+
+/**
+ * This API updates the label or schema of an existing custom metadata field.
+ *
+ * @phpstan-type update_params = array{label?: string, schema?: Schema}
+ */
+final class CustomMetadataFieldUpdateParams implements BaseModel
+{
+    use Model;
+    use Params;
+
+    /**
+     * Human readable name of the custom metadata field. This should be unique across all non deleted custom metadata fields. This name is displayed as form field label to the users while setting field value on an asset in the media library UI. This parameter is required if `schema` is not provided.
+     */
+    #[Api(optional: true)]
+    public ?string $label;
+
+    /**
+     * An object that describes the rules for the custom metadata key. This parameter is required if `label` is not provided. Note: `type` cannot be updated and will be ignored if sent with the `schema`. The schema will be validated as per the existing `type`.
+     */
+    #[Api(optional: true)]
+    public ?Schema $schema;
+
+    public function __construct()
+    {
+        self::introspect();
+        $this->unsetOptionalProperties();
+    }
+
+    /**
+     * Construct an instance from the required parameters.
+     *
+     * You must use named parameters to construct any parameters with a default value.
+     */
+    public static function new(
+        ?string $label = null,
+        ?Schema $schema = null
+    ): self {
+        $obj = new self;
+
+        null !== $label && $obj->label = $label;
+        null !== $schema && $obj->schema = $schema;
+
+        return $obj;
+    }
+}

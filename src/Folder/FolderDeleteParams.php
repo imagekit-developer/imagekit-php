@@ -25,6 +25,20 @@ final class FolderDeleteParams implements BaseModel
     #[Api]
     public string $folderPath;
 
+    /**
+     * `new FolderDeleteParams()` is missing required properties by the API.
+     *
+     * To enforce required parameters use
+     * ```
+     * FolderDeleteParams::with(folderPath: ...)
+     * ```
+     *
+     * Otherwise ensure the following setters are called
+     *
+     * ```
+     * (new FolderDeleteParams)->withFolderPath(...)
+     * ```
+     */
     public function __construct()
     {
         self::introspect();
@@ -36,7 +50,7 @@ final class FolderDeleteParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(string $folderPath): self
+    public static function with(string $folderPath): self
     {
         $obj = new self;
 
@@ -48,10 +62,11 @@ final class FolderDeleteParams implements BaseModel
     /**
      * Full path to the folder you want to delete. For example `/folder/to/delete/`.
      */
-    public function setFolderPath(string $folderPath): self
+    public function withFolderPath(string $folderPath): self
     {
-        $this->folderPath = $folderPath;
+        $obj = clone $this;
+        $obj->folderPath = $folderPath;
 
-        return $this;
+        return $obj;
     }
 }

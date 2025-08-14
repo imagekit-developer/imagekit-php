@@ -38,7 +38,7 @@ final class BatchTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = BatchDeleteParams::from(
+        $params = BatchDeleteParams::with(
             fileIDs: ['598821f949c0a938d57563bd', '598821f949c0a938d57563be']
         );
         $result = $this->client->files->batch->delete($params);
@@ -53,7 +53,7 @@ final class BatchTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = BatchDeleteParams::from(
+        $params = BatchDeleteParams::with(
             fileIDs: ['598821f949c0a938d57563bd', '598821f949c0a938d57563be']
         );
         $result = $this->client->files->batch->delete($params);

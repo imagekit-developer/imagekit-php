@@ -46,7 +46,7 @@ final class AITag implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(
+    public static function with(
         ?float $confidence = null,
         ?string $name = null,
         ?string $source = null
@@ -63,30 +63,33 @@ final class AITag implements BaseModel
     /**
      * Confidence score of the tag.
      */
-    public function setConfidence(float $confidence): self
+    public function withConfidence(float $confidence): self
     {
-        $this->confidence = $confidence;
+        $obj = clone $this;
+        $obj->confidence = $confidence;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Name of the tag.
      */
-    public function setName(string $name): self
+    public function withName(string $name): self
     {
-        $this->name = $name;
+        $obj = clone $this;
+        $obj->name = $name;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Array of `AITags` associated with the image. If no `AITags` are set, it will be null. These tags can be added using the `google-auto-tagging` or `aws-auto-tagging` extensions.
      */
-    public function setSource(string $source): self
+    public function withSource(string $source): self
     {
-        $this->source = $source;
+        $obj = clone $this;
+        $obj->source = $source;
 
-        return $this;
+        return $obj;
     }
 }

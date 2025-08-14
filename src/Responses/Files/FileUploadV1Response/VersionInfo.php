@@ -40,7 +40,7 @@ final class VersionInfo implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(?string $id = null, ?string $name = null): self
+    public static function with(?string $id = null, ?string $name = null): self
     {
         $obj = new self;
 
@@ -53,20 +53,22 @@ final class VersionInfo implements BaseModel
     /**
      * Unique identifier of the file version.
      */
-    public function setID(string $id): self
+    public function withID(string $id): self
     {
-        $this->id = $id;
+        $obj = clone $this;
+        $obj->id = $id;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Name of the file version.
      */
-    public function setName(string $name): self
+    public function withName(string $name): self
     {
-        $this->name = $name;
+        $obj = clone $this;
+        $obj->name = $name;
 
-        return $this;
+        return $obj;
     }
 }

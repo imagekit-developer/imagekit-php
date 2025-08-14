@@ -32,7 +32,7 @@ final class PurgeExecuteResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(?string $requestID = null): self
+    public static function with(?string $requestID = null): self
     {
         $obj = new self;
 
@@ -44,10 +44,11 @@ final class PurgeExecuteResponse implements BaseModel
     /**
      * Unique identifier of the purge request. This can be used to check the status of the purge request.
      */
-    public function setRequestID(string $requestID): self
+    public function withRequestID(string $requestID): self
     {
-        $this->requestID = $requestID;
+        $obj = clone $this;
+        $obj->requestID = $requestID;
 
-        return $this;
+        return $obj;
     }
 }

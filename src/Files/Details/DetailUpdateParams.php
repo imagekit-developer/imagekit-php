@@ -101,7 +101,7 @@ final class DetailUpdateParams implements BaseModel
      * @param null|list<string>|UnionMember1::* $removeAITags
      * @param null|list<string> $tags
      */
-    public static function from(
+    public static function with(
         ?string $customCoordinates = null,
         mixed $customMetadata = null,
         ?array $extensions = null,
@@ -126,21 +126,23 @@ final class DetailUpdateParams implements BaseModel
     /**
      * Define an important area in the image in the format `x,y,width,height` e.g. `10,10,100,100`. Send `null` to unset this value.
      */
-    public function setCustomCoordinates(?string $customCoordinates): self
+    public function withCustomCoordinates(?string $customCoordinates): self
     {
-        $this->customCoordinates = $customCoordinates;
+        $obj = clone $this;
+        $obj->customCoordinates = $customCoordinates;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * A key-value data to be associated with the asset. To unset a key, send `null` value for that key. Before setting any custom metadata on an asset you have to create the field using custom metadata fields API.
      */
-    public function setCustomMetadata(mixed $customMetadata): self
+    public function withCustomMetadata(mixed $customMetadata): self
     {
-        $this->customMetadata = $customMetadata;
+        $obj = clone $this;
+        $obj->customMetadata = $customMetadata;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -148,11 +150,12 @@ final class DetailUpdateParams implements BaseModel
      *
      * @param list<AutoTaggingExtension|RemovedotBgExtension> $extensions
      */
-    public function setExtensions(array $extensions): self
+    public function withExtensions(array $extensions): self
     {
-        $this->extensions = $extensions;
+        $obj = clone $this;
+        $obj->extensions = $extensions;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -164,11 +167,12 @@ final class DetailUpdateParams implements BaseModel
      *
      * @param list<string>|UnionMember1::* $removeAITags
      */
-    public function setRemoveAITags(array|string $removeAITags): self
+    public function withRemoveAITags(array|string $removeAITags): self
     {
-        $this->removeAITags = $removeAITags;
+        $obj = clone $this;
+        $obj->removeAITags = $removeAITags;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -176,30 +180,33 @@ final class DetailUpdateParams implements BaseModel
      *
      * @param null|list<string> $tags
      */
-    public function setTags(?array $tags): self
+    public function withTags(?array $tags): self
     {
-        $this->tags = $tags;
+        $obj = clone $this;
+        $obj->tags = $tags;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The final status of extensions after they have completed execution will be delivered to this endpoint as a POST request. [Learn more](/docs/api-reference/digital-asset-management-dam/managing-assets/update-file-details#webhook-payload-structure) about the webhook payload structure.
      */
-    public function setWebhookURL(string $webhookURL): self
+    public function withWebhookURL(string $webhookURL): self
     {
-        $this->webhookURL = $webhookURL;
+        $obj = clone $this;
+        $obj->webhookURL = $webhookURL;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Configure the publication status of a file and its versions.
      */
-    public function setPublish(Publish $publish): self
+    public function withPublish(Publish $publish): self
     {
-        $this->publish = $publish;
+        $obj = clone $this;
+        $obj->publish = $publish;
 
-        return $this;
+        return $obj;
     }
 }

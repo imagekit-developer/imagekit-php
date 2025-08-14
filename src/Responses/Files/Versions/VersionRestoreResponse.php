@@ -191,7 +191,7 @@ final class VersionRestoreResponse implements BaseModel
      * @param null|list<AITag> $aiTags
      * @param null|list<string> $tags
      */
-    public static function from(
+    public static function with(
         ?array $aiTags = null,
         ?string $createdAt = null,
         ?string $customCoordinates = null,
@@ -246,141 +246,155 @@ final class VersionRestoreResponse implements BaseModel
      *
      * @param null|list<AITag> $aiTags
      */
-    public function setAITags(?array $aiTags): self
+    public function withAITags(?array $aiTags): self
     {
-        $this->aiTags = $aiTags;
+        $obj = clone $this;
+        $obj->aiTags = $aiTags;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Date and time when the file was uploaded. The date and time is in ISO8601 format.
      */
-    public function setCreatedAt(string $createdAt): self
+    public function withCreatedAt(string $createdAt): self
     {
-        $this->createdAt = $createdAt;
+        $obj = clone $this;
+        $obj->createdAt = $createdAt;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * An string with custom coordinates of the file.
      */
-    public function setCustomCoordinates(?string $customCoordinates): self
+    public function withCustomCoordinates(?string $customCoordinates): self
     {
-        $this->customCoordinates = $customCoordinates;
+        $obj = clone $this;
+        $obj->customCoordinates = $customCoordinates;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * An object with custom metadata for the file.
      */
-    public function setCustomMetadata(mixed $customMetadata): self
+    public function withCustomMetadata(mixed $customMetadata): self
     {
-        $this->customMetadata = $customMetadata;
+        $obj = clone $this;
+        $obj->customMetadata = $customMetadata;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Unique identifier of the asset.
      */
-    public function setFileID(string $fileID): self
+    public function withFileID(string $fileID): self
     {
-        $this->fileID = $fileID;
+        $obj = clone $this;
+        $obj->fileID = $fileID;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Path of the file. This is the path you would use in the URL to access the file. For example, if the file is at the root of the media library, the path will be `/file.jpg`. If the file is inside a folder named `images`, the path will be `/images/file.jpg`.
      */
-    public function setFilePath(string $filePath): self
+    public function withFilePath(string $filePath): self
     {
-        $this->filePath = $filePath;
+        $obj = clone $this;
+        $obj->filePath = $filePath;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Type of the file. Possible values are `image`, `non-image`.
      */
-    public function setFileType(string $fileType): self
+    public function withFileType(string $fileType): self
     {
-        $this->fileType = $fileType;
+        $obj = clone $this;
+        $obj->fileType = $fileType;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Specifies if the image has an alpha channel.
      */
-    public function setHasAlpha(bool $hasAlpha): self
+    public function withHasAlpha(bool $hasAlpha): self
     {
-        $this->hasAlpha = $hasAlpha;
+        $obj = clone $this;
+        $obj->hasAlpha = $hasAlpha;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Height of the file.
      */
-    public function setHeight(float $height): self
+    public function withHeight(float $height): self
     {
-        $this->height = $height;
+        $obj = clone $this;
+        $obj->height = $height;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Specifies if the file is private or not.
      */
-    public function setIsPrivateFile(bool $isPrivateFile): self
+    public function withIsPrivateFile(bool $isPrivateFile): self
     {
-        $this->isPrivateFile = $isPrivateFile;
+        $obj = clone $this;
+        $obj->isPrivateFile = $isPrivateFile;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Specifies if the file is published or not.
      */
-    public function setIsPublished(bool $isPublished): self
+    public function withIsPublished(bool $isPublished): self
     {
-        $this->isPublished = $isPublished;
+        $obj = clone $this;
+        $obj->isPublished = $isPublished;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * MIME type of the file.
      */
-    public function setMime(string $mime): self
+    public function withMime(string $mime): self
     {
-        $this->mime = $mime;
+        $obj = clone $this;
+        $obj->mime = $mime;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Name of the asset.
      */
-    public function setName(string $name): self
+    public function withName(string $name): self
     {
-        $this->name = $name;
+        $obj = clone $this;
+        $obj->name = $name;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Size of the file in bytes.
      */
-    public function setSize(float $size): self
+    public function withSize(float $size): self
     {
-        $this->size = $size;
+        $obj = clone $this;
+        $obj->size = $size;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -388,70 +402,77 @@ final class VersionRestoreResponse implements BaseModel
      *
      * @param null|list<string> $tags
      */
-    public function setTags(?array $tags): self
+    public function withTags(?array $tags): self
     {
-        $this->tags = $tags;
+        $obj = clone $this;
+        $obj->tags = $tags;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * URL of the thumbnail image. This URL is used to access the thumbnail image of the file in the media library.
      */
-    public function setThumbnail(string $thumbnail): self
+    public function withThumbnail(string $thumbnail): self
     {
-        $this->thumbnail = $thumbnail;
+        $obj = clone $this;
+        $obj->thumbnail = $thumbnail;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Type of the asset.
      */
-    public function setType(string $type): self
+    public function withType(string $type): self
     {
-        $this->type = $type;
+        $obj = clone $this;
+        $obj->type = $type;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Date and time when the file was last updated. The date and time is in ISO8601 format.
      */
-    public function setUpdatedAt(string $updatedAt): self
+    public function withUpdatedAt(string $updatedAt): self
     {
-        $this->updatedAt = $updatedAt;
+        $obj = clone $this;
+        $obj->updatedAt = $updatedAt;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * URL of the file.
      */
-    public function setURL(string $url): self
+    public function withURL(string $url): self
     {
-        $this->url = $url;
+        $obj = clone $this;
+        $obj->url = $url;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * An object with details of the file version.
      */
-    public function setVersionInfo(VersionInfo $versionInfo): self
+    public function withVersionInfo(VersionInfo $versionInfo): self
     {
-        $this->versionInfo = $versionInfo;
+        $obj = clone $this;
+        $obj->versionInfo = $versionInfo;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Width of the file.
      */
-    public function setWidth(float $width): self
+    public function withWidth(float $width): self
     {
-        $this->width = $width;
+        $obj = clone $this;
+        $obj->width = $width;
 
-        return $this;
+        return $obj;
     }
 }

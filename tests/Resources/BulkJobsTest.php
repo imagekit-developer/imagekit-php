@@ -39,7 +39,7 @@ final class BulkJobsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = BulkJobCopyFolderParams::from(
+        $params = BulkJobCopyFolderParams::with(
             destinationPath: '/path/of/destination/folder',
             sourceFolderPath: '/path/of/source/folder',
         );
@@ -55,7 +55,7 @@ final class BulkJobsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = BulkJobCopyFolderParams::from(
+        $params = BulkJobCopyFolderParams::with(
             destinationPath: '/path/of/destination/folder',
             sourceFolderPath: '/path/of/source/folder',
             includeVersions: true,
@@ -72,7 +72,7 @@ final class BulkJobsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = BulkJobMoveFolderParams::from(
+        $params = BulkJobMoveFolderParams::with(
             destinationPath: '/path/of/destination/folder',
             sourceFolderPath: '/path/of/source/folder',
         );
@@ -88,7 +88,7 @@ final class BulkJobsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = BulkJobMoveFolderParams::from(
+        $params = BulkJobMoveFolderParams::with(
             destinationPath: '/path/of/destination/folder',
             sourceFolderPath: '/path/of/source/folder',
         );

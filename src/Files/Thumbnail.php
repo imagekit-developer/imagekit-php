@@ -53,7 +53,7 @@ final class Thumbnail implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(
+    public static function with(
         ?int $compression = null,
         ?int $resolutionUnit = null,
         ?int $thumbnailLength = null,
@@ -73,45 +73,51 @@ final class Thumbnail implements BaseModel
         return $obj;
     }
 
-    public function setCompression(int $compression): self
+    public function withCompression(int $compression): self
     {
-        $this->compression = $compression;
+        $obj = clone $this;
+        $obj->compression = $compression;
 
-        return $this;
+        return $obj;
     }
 
-    public function setResolutionUnit(int $resolutionUnit): self
+    public function withResolutionUnit(int $resolutionUnit): self
     {
-        $this->resolutionUnit = $resolutionUnit;
+        $obj = clone $this;
+        $obj->resolutionUnit = $resolutionUnit;
 
-        return $this;
+        return $obj;
     }
 
-    public function setThumbnailLength(int $thumbnailLength): self
+    public function withThumbnailLength(int $thumbnailLength): self
     {
-        $this->thumbnailLength = $thumbnailLength;
+        $obj = clone $this;
+        $obj->thumbnailLength = $thumbnailLength;
 
-        return $this;
+        return $obj;
     }
 
-    public function setThumbnailOffset(int $thumbnailOffset): self
+    public function withThumbnailOffset(int $thumbnailOffset): self
     {
-        $this->thumbnailOffset = $thumbnailOffset;
+        $obj = clone $this;
+        $obj->thumbnailOffset = $thumbnailOffset;
 
-        return $this;
+        return $obj;
     }
 
-    public function setXResolution(int $xResolution): self
+    public function withXResolution(int $xResolution): self
     {
-        $this->xResolution = $xResolution;
+        $obj = clone $this;
+        $obj->xResolution = $xResolution;
 
-        return $this;
+        return $obj;
     }
 
-    public function setYResolution(int $yResolution): self
+    public function withYResolution(int $yResolution): self
     {
-        $this->yResolution = $yResolution;
+        $obj = clone $this;
+        $obj->yResolution = $yResolution;
 
-        return $this;
+        return $obj;
     }
 }

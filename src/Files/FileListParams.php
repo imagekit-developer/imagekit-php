@@ -120,7 +120,7 @@ final class FileListParams implements BaseModel
      *
      * @param null|Type::* $type
      */
-    public static function from(
+    public static function with(
         ?string $fileType = null,
         ?string $limit = null,
         ?string $path = null,
@@ -151,11 +151,12 @@ final class FileListParams implements BaseModel
      *
      * Default value - `all`
      */
-    public function setFileType(string $fileType): self
+    public function withFileType(string $fileType): self
     {
-        $this->fileType = $fileType;
+        $obj = clone $this;
+        $obj->fileType = $fileType;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -167,21 +168,23 @@ final class FileListParams implements BaseModel
      *
      * Default value - 1000
      */
-    public function setLimit(string $limit): self
+    public function withLimit(string $limit): self
     {
-        $this->limit = $limit;
+        $obj = clone $this;
+        $obj->limit = $limit;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Folder path if you want to limit the search within a specific folder. For example, `/sales-banner/` will only search in folder sales-banner.
      */
-    public function setPath(string $path): self
+    public function withPath(string $path): self
     {
-        $this->path = $path;
+        $obj = clone $this;
+        $obj->path = $path;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -195,11 +198,12 @@ final class FileListParams implements BaseModel
      *
      * [Learn more](/docs/api-reference/digital-asset-management-dam/list-and-search-assets#advanced-search-queries) from examples.
      */
-    public function setSearchQuery(string $searchQuery): self
+    public function withSearchQuery(string $searchQuery): self
     {
-        $this->searchQuery = $searchQuery;
+        $obj = clone $this;
+        $obj->searchQuery = $searchQuery;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -209,11 +213,12 @@ final class FileListParams implements BaseModel
      *
      * Default value - 0
      */
-    public function setSkip(string $skip): self
+    public function withSkip(string $skip): self
     {
-        $this->skip = $skip;
+        $obj = clone $this;
+        $obj->skip = $skip;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -228,11 +233,12 @@ final class FileListParams implements BaseModel
      *
      * Default value - `ASC_CREATED`
      */
-    public function setSort(string $sort): self
+    public function withSort(string $sort): self
     {
-        $this->sort = $sort;
+        $obj = clone $this;
+        $obj->sort = $sort;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -242,10 +248,11 @@ final class FileListParams implements BaseModel
      *
      * @param Type::* $type
      */
-    public function setType(string $type): self
+    public function withType(string $type): self
     {
-        $this->type = $type;
+        $obj = clone $this;
+        $obj->type = $type;
 
-        return $this;
+        return $obj;
     }
 }

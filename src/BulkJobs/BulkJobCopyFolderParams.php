@@ -39,6 +39,22 @@ final class BulkJobCopyFolderParams implements BaseModel
     #[Api(optional: true)]
     public ?bool $includeVersions;
 
+    /**
+     * `new BulkJobCopyFolderParams()` is missing required properties by the API.
+     *
+     * To enforce required parameters use
+     * ```
+     * BulkJobCopyFolderParams::with(destinationPath: ..., sourceFolderPath: ...)
+     * ```
+     *
+     * Otherwise ensure the following setters are called
+     *
+     * ```
+     * (new BulkJobCopyFolderParams)
+     *   ->withDestinationPath(...)
+     *   ->withSourceFolderPath(...)
+     * ```
+     */
     public function __construct()
     {
         self::introspect();
@@ -50,7 +66,7 @@ final class BulkJobCopyFolderParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(
+    public static function with(
         string $destinationPath,
         string $sourceFolderPath,
         ?bool $includeVersions = null,
@@ -68,30 +84,33 @@ final class BulkJobCopyFolderParams implements BaseModel
     /**
      * Full path to the destination folder where you want to copy the source folder into.
      */
-    public function setDestinationPath(string $destinationPath): self
+    public function withDestinationPath(string $destinationPath): self
     {
-        $this->destinationPath = $destinationPath;
+        $obj = clone $this;
+        $obj->destinationPath = $destinationPath;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The full path to the source folder you want to copy.
      */
-    public function setSourceFolderPath(string $sourceFolderPath): self
+    public function withSourceFolderPath(string $sourceFolderPath): self
     {
-        $this->sourceFolderPath = $sourceFolderPath;
+        $obj = clone $this;
+        $obj->sourceFolderPath = $sourceFolderPath;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Option to copy all versions of files that are nested inside the selected folder. By default, only the current version of each file will be copied. When set to true, all versions of each file will be copied. Default value - `false`.
      */
-    public function setIncludeVersions(bool $includeVersions): self
+    public function withIncludeVersions(bool $includeVersions): self
     {
-        $this->includeVersions = $includeVersions;
+        $obj = clone $this;
+        $obj->includeVersions = $includeVersions;
 
-        return $this;
+        return $obj;
     }
 }

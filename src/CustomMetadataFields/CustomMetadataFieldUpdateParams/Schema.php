@@ -88,7 +88,7 @@ final class Schema implements BaseModel
      * @param null|bool|float|list<bool|float|string>|string $defaultValue
      * @param null|list<bool|float|string> $selectOptions
      */
-    public static function from(
+    public static function with(
         null|array|bool|float|string $defaultValue = null,
         ?bool $isValueRequired = null,
         ?float $maxLength = null,
@@ -115,61 +115,68 @@ final class Schema implements BaseModel
      *
      * @param bool|float|list<bool|float|string>|string $defaultValue
      */
-    public function setDefaultValue(array|bool|float|string $defaultValue): self
-    {
-        $this->defaultValue = $defaultValue;
+    public function withDefaultValue(
+        array|bool|float|string $defaultValue
+    ): self {
+        $obj = clone $this;
+        $obj->defaultValue = $defaultValue;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Sets this custom metadata field as required. Setting custom metadata fields on an asset will throw error if the value for all required fields are not present in upload or update asset API request body.
      */
-    public function setIsValueRequired(bool $isValueRequired): self
+    public function withIsValueRequired(bool $isValueRequired): self
     {
-        $this->isValueRequired = $isValueRequired;
+        $obj = clone $this;
+        $obj->isValueRequired = $isValueRequired;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Maximum length of string. Only set this property if `type` is set to `Text` or `Textarea`.
      */
-    public function setMaxLength(float $maxLength): self
+    public function withMaxLength(float $maxLength): self
     {
-        $this->maxLength = $maxLength;
+        $obj = clone $this;
+        $obj->maxLength = $maxLength;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Maximum value of the field. Only set this property if field type is `Date` or `Number`. For `Date` type field, set the minimum date in ISO8601 string format. For `Number` type field, set the minimum numeric value.
      */
-    public function setMaxValue(float|string $maxValue): self
+    public function withMaxValue(float|string $maxValue): self
     {
-        $this->maxValue = $maxValue;
+        $obj = clone $this;
+        $obj->maxValue = $maxValue;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Minimum length of string. Only set this property if `type` is set to `Text` or `Textarea`.
      */
-    public function setMinLength(float $minLength): self
+    public function withMinLength(float $minLength): self
     {
-        $this->minLength = $minLength;
+        $obj = clone $this;
+        $obj->minLength = $minLength;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Minimum value of the field. Only set this property if field type is `Date` or `Number`. For `Date` type field, set the minimum date in ISO8601 string format. For `Number` type field, set the minimum numeric value.
      */
-    public function setMinValue(float|string $minValue): self
+    public function withMinValue(float|string $minValue): self
     {
-        $this->minValue = $minValue;
+        $obj = clone $this;
+        $obj->minValue = $minValue;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -177,10 +184,11 @@ final class Schema implements BaseModel
      *
      * @param list<bool|float|string> $selectOptions
      */
-    public function setSelectOptions(array $selectOptions): self
+    public function withSelectOptions(array $selectOptions): self
     {
-        $this->selectOptions = $selectOptions;
+        $obj = clone $this;
+        $obj->selectOptions = $selectOptions;
 
-        return $this;
+        return $obj;
     }
 }

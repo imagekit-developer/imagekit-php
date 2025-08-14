@@ -25,6 +25,20 @@ final class PurgeExecuteParams implements BaseModel
     #[Api]
     public string $url;
 
+    /**
+     * `new PurgeExecuteParams()` is missing required properties by the API.
+     *
+     * To enforce required parameters use
+     * ```
+     * PurgeExecuteParams::with(url: ...)
+     * ```
+     *
+     * Otherwise ensure the following setters are called
+     *
+     * ```
+     * (new PurgeExecuteParams)->withURL(...)
+     * ```
+     */
     public function __construct()
     {
         self::introspect();
@@ -36,7 +50,7 @@ final class PurgeExecuteParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(string $url): self
+    public static function with(string $url): self
     {
         $obj = new self;
 
@@ -48,10 +62,11 @@ final class PurgeExecuteParams implements BaseModel
     /**
      * The full URL of the file to be purged.
      */
-    public function setURL(string $url): self
+    public function withURL(string $url): self
     {
-        $this->url = $url;
+        $obj = clone $this;
+        $obj->url = $url;
 
-        return $this;
+        return $obj;
     }
 }

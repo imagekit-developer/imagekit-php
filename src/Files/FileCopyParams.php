@@ -41,6 +41,20 @@ final class FileCopyParams implements BaseModel
     #[Api(optional: true)]
     public ?bool $includeFileVersions;
 
+    /**
+     * `new FileCopyParams()` is missing required properties by the API.
+     *
+     * To enforce required parameters use
+     * ```
+     * FileCopyParams::with(destinationPath: ..., sourceFilePath: ...)
+     * ```
+     *
+     * Otherwise ensure the following setters are called
+     *
+     * ```
+     * (new FileCopyParams)->withDestinationPath(...)->withSourceFilePath(...)
+     * ```
+     */
     public function __construct()
     {
         self::introspect();
@@ -52,7 +66,7 @@ final class FileCopyParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(
+    public static function with(
         string $destinationPath,
         string $sourceFilePath,
         ?bool $includeFileVersions = null,
@@ -70,30 +84,33 @@ final class FileCopyParams implements BaseModel
     /**
      * Full path to the folder you want to copy the above file into.
      */
-    public function setDestinationPath(string $destinationPath): self
+    public function withDestinationPath(string $destinationPath): self
     {
-        $this->destinationPath = $destinationPath;
+        $obj = clone $this;
+        $obj->destinationPath = $destinationPath;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The full path of the file you want to copy.
      */
-    public function setSourceFilePath(string $sourceFilePath): self
+    public function withSourceFilePath(string $sourceFilePath): self
     {
-        $this->sourceFilePath = $sourceFilePath;
+        $obj = clone $this;
+        $obj->sourceFilePath = $sourceFilePath;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Option to copy all versions of a file. By default, only the current version of the file is copied. When set to true, all versions of the file will be copied. Default value - `false`.
      */
-    public function setIncludeFileVersions(bool $includeFileVersions): self
+    public function withIncludeFileVersions(bool $includeFileVersions): self
     {
-        $this->includeFileVersions = $includeFileVersions;
+        $obj = clone $this;
+        $obj->includeFileVersions = $includeFileVersions;
 
-        return $this;
+        return $obj;
     }
 }

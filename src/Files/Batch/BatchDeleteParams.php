@@ -32,6 +32,20 @@ final class BatchDeleteParams implements BaseModel
     #[Api('fileIds', type: new ListOf('string'))]
     public array $fileIDs;
 
+    /**
+     * `new BatchDeleteParams()` is missing required properties by the API.
+     *
+     * To enforce required parameters use
+     * ```
+     * BatchDeleteParams::with(fileIDs: ...)
+     * ```
+     *
+     * Otherwise ensure the following setters are called
+     *
+     * ```
+     * (new BatchDeleteParams)->withFileIDs(...)
+     * ```
+     */
     public function __construct()
     {
         self::introspect();
@@ -45,7 +59,7 @@ final class BatchDeleteParams implements BaseModel
      *
      * @param list<string> $fileIDs
      */
-    public static function from(array $fileIDs): self
+    public static function with(array $fileIDs): self
     {
         $obj = new self;
 
@@ -59,10 +73,11 @@ final class BatchDeleteParams implements BaseModel
      *
      * @param list<string> $fileIDs
      */
-    public function setFileIDs(array $fileIDs): self
+    public function withFileIDs(array $fileIDs): self
     {
-        $this->fileIDs = $fileIDs;
+        $obj = clone $this;
+        $obj->fileIDs = $fileIDs;
 
-        return $this;
+        return $obj;
     }
 }

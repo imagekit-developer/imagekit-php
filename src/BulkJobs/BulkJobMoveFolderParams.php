@@ -33,6 +33,22 @@ final class BulkJobMoveFolderParams implements BaseModel
     #[Api]
     public string $sourceFolderPath;
 
+    /**
+     * `new BulkJobMoveFolderParams()` is missing required properties by the API.
+     *
+     * To enforce required parameters use
+     * ```
+     * BulkJobMoveFolderParams::with(destinationPath: ..., sourceFolderPath: ...)
+     * ```
+     *
+     * Otherwise ensure the following setters are called
+     *
+     * ```
+     * (new BulkJobMoveFolderParams)
+     *   ->withDestinationPath(...)
+     *   ->withSourceFolderPath(...)
+     * ```
+     */
     public function __construct()
     {
         self::introspect();
@@ -44,7 +60,7 @@ final class BulkJobMoveFolderParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(
+    public static function with(
         string $destinationPath,
         string $sourceFolderPath
     ): self {
@@ -59,20 +75,22 @@ final class BulkJobMoveFolderParams implements BaseModel
     /**
      * Full path to the destination folder where you want to move the source folder into.
      */
-    public function setDestinationPath(string $destinationPath): self
+    public function withDestinationPath(string $destinationPath): self
     {
-        $this->destinationPath = $destinationPath;
+        $obj = clone $this;
+        $obj->destinationPath = $destinationPath;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The full path to the source folder you want to move.
      */
-    public function setSourceFolderPath(string $sourceFolderPath): self
+    public function withSourceFolderPath(string $sourceFolderPath): self
     {
-        $this->sourceFolderPath = $sourceFolderPath;
+        $obj = clone $this;
+        $obj->sourceFolderPath = $sourceFolderPath;
 
-        return $this;
+        return $obj;
     }
 }

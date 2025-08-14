@@ -37,7 +37,7 @@ final class PurgeStatusResponse implements BaseModel
      *
      * @param null|Status::* $status
      */
-    public static function from(?string $status = null): self
+    public static function with(?string $status = null): self
     {
         $obj = new self;
 
@@ -51,10 +51,11 @@ final class PurgeStatusResponse implements BaseModel
      *
      * @param Status::* $status
      */
-    public function setStatus(string $status): self
+    public function withStatus(string $status): self
     {
-        $this->status = $status;
+        $obj = clone $this;
+        $obj->status = $status;
 
-        return $this;
+        return $obj;
     }
 }

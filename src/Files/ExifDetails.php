@@ -133,7 +133,7 @@ final class ExifDetails implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(
+    public static function with(
         ?float $apertureValue = null,
         ?int $colorSpace = null,
         ?string $createDate = null,
@@ -193,186 +193,214 @@ final class ExifDetails implements BaseModel
         return $obj;
     }
 
-    public function setApertureValue(float $apertureValue): self
+    public function withApertureValue(float $apertureValue): self
     {
-        $this->apertureValue = $apertureValue;
+        $obj = clone $this;
+        $obj->apertureValue = $apertureValue;
 
-        return $this;
+        return $obj;
     }
 
-    public function setColorSpace(int $colorSpace): self
+    public function withColorSpace(int $colorSpace): self
     {
-        $this->colorSpace = $colorSpace;
+        $obj = clone $this;
+        $obj->colorSpace = $colorSpace;
 
-        return $this;
+        return $obj;
     }
 
-    public function setCreateDate(string $createDate): self
+    public function withCreateDate(string $createDate): self
     {
-        $this->createDate = $createDate;
+        $obj = clone $this;
+        $obj->createDate = $createDate;
 
-        return $this;
+        return $obj;
     }
 
-    public function setCustomRendered(int $customRendered): self
+    public function withCustomRendered(int $customRendered): self
     {
-        $this->customRendered = $customRendered;
+        $obj = clone $this;
+        $obj->customRendered = $customRendered;
 
-        return $this;
+        return $obj;
     }
 
-    public function setDateTimeOriginal(string $dateTimeOriginal): self
+    public function withDateTimeOriginal(string $dateTimeOriginal): self
     {
-        $this->dateTimeOriginal = $dateTimeOriginal;
+        $obj = clone $this;
+        $obj->dateTimeOriginal = $dateTimeOriginal;
 
-        return $this;
+        return $obj;
     }
 
-    public function setExifImageHeight(int $exifImageHeight): self
+    public function withExifImageHeight(int $exifImageHeight): self
     {
-        $this->exifImageHeight = $exifImageHeight;
+        $obj = clone $this;
+        $obj->exifImageHeight = $exifImageHeight;
 
-        return $this;
+        return $obj;
     }
 
-    public function setExifImageWidth(int $exifImageWidth): self
+    public function withExifImageWidth(int $exifImageWidth): self
     {
-        $this->exifImageWidth = $exifImageWidth;
+        $obj = clone $this;
+        $obj->exifImageWidth = $exifImageWidth;
 
-        return $this;
+        return $obj;
     }
 
-    public function setExifVersion(string $exifVersion): self
+    public function withExifVersion(string $exifVersion): self
     {
-        $this->exifVersion = $exifVersion;
+        $obj = clone $this;
+        $obj->exifVersion = $exifVersion;
 
-        return $this;
+        return $obj;
     }
 
-    public function setExposureCompensation(float $exposureCompensation): self
+    public function withExposureCompensation(float $exposureCompensation): self
     {
-        $this->exposureCompensation = $exposureCompensation;
+        $obj = clone $this;
+        $obj->exposureCompensation = $exposureCompensation;
 
-        return $this;
+        return $obj;
     }
 
-    public function setExposureMode(int $exposureMode): self
+    public function withExposureMode(int $exposureMode): self
     {
-        $this->exposureMode = $exposureMode;
+        $obj = clone $this;
+        $obj->exposureMode = $exposureMode;
 
-        return $this;
+        return $obj;
     }
 
-    public function setExposureProgram(int $exposureProgram): self
+    public function withExposureProgram(int $exposureProgram): self
     {
-        $this->exposureProgram = $exposureProgram;
+        $obj = clone $this;
+        $obj->exposureProgram = $exposureProgram;
 
-        return $this;
+        return $obj;
     }
 
-    public function setExposureTime(float $exposureTime): self
+    public function withExposureTime(float $exposureTime): self
     {
-        $this->exposureTime = $exposureTime;
+        $obj = clone $this;
+        $obj->exposureTime = $exposureTime;
 
-        return $this;
+        return $obj;
     }
 
-    public function setFlash(int $flash): self
+    public function withFlash(int $flash): self
     {
-        $this->flash = $flash;
+        $obj = clone $this;
+        $obj->flash = $flash;
 
-        return $this;
+        return $obj;
     }
 
-    public function setFlashpixVersion(string $flashpixVersion): self
+    public function withFlashpixVersion(string $flashpixVersion): self
     {
-        $this->flashpixVersion = $flashpixVersion;
+        $obj = clone $this;
+        $obj->flashpixVersion = $flashpixVersion;
 
-        return $this;
+        return $obj;
     }
 
-    public function setFNumber(float $fNumber): self
+    public function withFNumber(float $fNumber): self
     {
-        $this->fNumber = $fNumber;
+        $obj = clone $this;
+        $obj->fNumber = $fNumber;
 
-        return $this;
+        return $obj;
     }
 
-    public function setFocalLength(int $focalLength): self
+    public function withFocalLength(int $focalLength): self
     {
-        $this->focalLength = $focalLength;
+        $obj = clone $this;
+        $obj->focalLength = $focalLength;
 
-        return $this;
+        return $obj;
     }
 
-    public function setFocalPlaneResolutionUnit(
+    public function withFocalPlaneResolutionUnit(
         int $focalPlaneResolutionUnit
     ): self {
-        $this->focalPlaneResolutionUnit = $focalPlaneResolutionUnit;
+        $obj = clone $this;
+        $obj->focalPlaneResolutionUnit = $focalPlaneResolutionUnit;
 
-        return $this;
+        return $obj;
     }
 
-    public function setFocalPlaneXResolution(float $focalPlaneXResolution): self
-    {
-        $this->focalPlaneXResolution = $focalPlaneXResolution;
+    public function withFocalPlaneXResolution(
+        float $focalPlaneXResolution
+    ): self {
+        $obj = clone $this;
+        $obj->focalPlaneXResolution = $focalPlaneXResolution;
 
-        return $this;
+        return $obj;
     }
 
-    public function setFocalPlaneYResolution(float $focalPlaneYResolution): self
-    {
-        $this->focalPlaneYResolution = $focalPlaneYResolution;
+    public function withFocalPlaneYResolution(
+        float $focalPlaneYResolution
+    ): self {
+        $obj = clone $this;
+        $obj->focalPlaneYResolution = $focalPlaneYResolution;
 
-        return $this;
+        return $obj;
     }
 
-    public function setInteropOffset(int $interopOffset): self
+    public function withInteropOffset(int $interopOffset): self
     {
-        $this->interopOffset = $interopOffset;
+        $obj = clone $this;
+        $obj->interopOffset = $interopOffset;
 
-        return $this;
+        return $obj;
     }
 
-    public function setISO(int $iso): self
+    public function withISO(int $iso): self
     {
-        $this->iso = $iso;
+        $obj = clone $this;
+        $obj->iso = $iso;
 
-        return $this;
+        return $obj;
     }
 
-    public function setMeteringMode(int $meteringMode): self
+    public function withMeteringMode(int $meteringMode): self
     {
-        $this->meteringMode = $meteringMode;
+        $obj = clone $this;
+        $obj->meteringMode = $meteringMode;
 
-        return $this;
+        return $obj;
     }
 
-    public function setSceneCaptureType(int $sceneCaptureType): self
+    public function withSceneCaptureType(int $sceneCaptureType): self
     {
-        $this->sceneCaptureType = $sceneCaptureType;
+        $obj = clone $this;
+        $obj->sceneCaptureType = $sceneCaptureType;
 
-        return $this;
+        return $obj;
     }
 
-    public function setShutterSpeedValue(float $shutterSpeedValue): self
+    public function withShutterSpeedValue(float $shutterSpeedValue): self
     {
-        $this->shutterSpeedValue = $shutterSpeedValue;
+        $obj = clone $this;
+        $obj->shutterSpeedValue = $shutterSpeedValue;
 
-        return $this;
+        return $obj;
     }
 
-    public function setSubSecTime(string $subSecTime): self
+    public function withSubSecTime(string $subSecTime): self
     {
-        $this->subSecTime = $subSecTime;
+        $obj = clone $this;
+        $obj->subSecTime = $subSecTime;
 
-        return $this;
+        return $obj;
     }
 
-    public function setWhiteBalance(int $whiteBalance): self
+    public function withWhiteBalance(int $whiteBalance): self
     {
-        $this->whiteBalance = $whiteBalance;
+        $obj = clone $this;
+        $obj->whiteBalance = $whiteBalance;
 
-        return $this;
+        return $obj;
     }
 }

@@ -38,6 +38,20 @@ final class FileRemoveAITagsParams implements BaseModel
     #[Api('fileIds', type: new ListOf('string'))]
     public array $fileIDs;
 
+    /**
+     * `new FileRemoveAITagsParams()` is missing required properties by the API.
+     *
+     * To enforce required parameters use
+     * ```
+     * FileRemoveAITagsParams::with(aiTags: ..., fileIDs: ...)
+     * ```
+     *
+     * Otherwise ensure the following setters are called
+     *
+     * ```
+     * (new FileRemoveAITagsParams)->withAITags(...)->withFileIDs(...)
+     * ```
+     */
     public function __construct()
     {
         self::introspect();
@@ -52,7 +66,7 @@ final class FileRemoveAITagsParams implements BaseModel
      * @param list<string> $aiTags
      * @param list<string> $fileIDs
      */
-    public static function from(array $aiTags, array $fileIDs): self
+    public static function with(array $aiTags, array $fileIDs): self
     {
         $obj = new self;
 
@@ -67,11 +81,12 @@ final class FileRemoveAITagsParams implements BaseModel
      *
      * @param list<string> $aiTags
      */
-    public function setAITags(array $aiTags): self
+    public function withAITags(array $aiTags): self
     {
-        $this->aiTags = $aiTags;
+        $obj = clone $this;
+        $obj->aiTags = $aiTags;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -79,10 +94,11 @@ final class FileRemoveAITagsParams implements BaseModel
      *
      * @param list<string> $fileIDs
      */
-    public function setFileIDs(array $fileIDs): self
+    public function withFileIDs(array $fileIDs): self
     {
-        $this->fileIDs = $fileIDs;
+        $obj = clone $this;
+        $obj->fileIDs = $fileIDs;
 
-        return $this;
+        return $obj;
     }
 }

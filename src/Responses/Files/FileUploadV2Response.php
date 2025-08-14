@@ -214,7 +214,7 @@ final class FileUploadV2Response implements BaseModel
      * @param null|list<AITag> $aiTags
      * @param null|list<string> $tags
      */
-    public static function from(
+    public static function with(
         ?array $aiTags = null,
         ?string $audioCodec = null,
         ?int $bitRate = null,
@@ -273,72 +273,79 @@ final class FileUploadV2Response implements BaseModel
      *
      * @param null|list<AITag> $aiTags
      */
-    public function setAITags(?array $aiTags): self
+    public function withAITags(?array $aiTags): self
     {
-        $this->aiTags = $aiTags;
+        $obj = clone $this;
+        $obj->aiTags = $aiTags;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The audio codec used in the video (only for video).
      */
-    public function setAudioCodec(string $audioCodec): self
+    public function withAudioCodec(string $audioCodec): self
     {
-        $this->audioCodec = $audioCodec;
+        $obj = clone $this;
+        $obj->audioCodec = $audioCodec;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The bit rate of the video in kbps (only for video).
      */
-    public function setBitRate(int $bitRate): self
+    public function withBitRate(int $bitRate): self
     {
-        $this->bitRate = $bitRate;
+        $obj = clone $this;
+        $obj->bitRate = $bitRate;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Value of custom coordinates associated with the image in the format `x,y,width,height`. If `customCoordinates` are not defined, then it is `null`. Send `customCoordinates` in `responseFields` in API request to get the value of this field.
      */
-    public function setCustomCoordinates(?string $customCoordinates): self
+    public function withCustomCoordinates(?string $customCoordinates): self
     {
-        $this->customCoordinates = $customCoordinates;
+        $obj = clone $this;
+        $obj->customCoordinates = $customCoordinates;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * A key-value data associated with the asset. Use `responseField` in API request to get `customMetadata` in the upload API response. Before setting any custom metadata on an asset, you have to create the field using custom metadata fields API. Send `customMetadata` in `responseFields` in API request to get the value of this field.
      */
-    public function setCustomMetadata(mixed $customMetadata): self
+    public function withCustomMetadata(mixed $customMetadata): self
     {
-        $this->customMetadata = $customMetadata;
+        $obj = clone $this;
+        $obj->customMetadata = $customMetadata;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The duration of the video in seconds (only for video).
      */
-    public function setDuration(int $duration): self
+    public function withDuration(int $duration): self
     {
-        $this->duration = $duration;
+        $obj = clone $this;
+        $obj->duration = $duration;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Consolidated embedded metadata associated with the file. It includes exif, iptc, and xmp data. Send `embeddedMetadata` in `responseFields` in API request to get embeddedMetadata in the upload API response.
      */
-    public function setEmbeddedMetadata(
+    public function withEmbeddedMetadata(
         EmbeddedMetadata $embeddedMetadata
     ): self {
-        $this->embeddedMetadata = $embeddedMetadata;
+        $obj = clone $this;
+        $obj->embeddedMetadata = $embeddedMetadata;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -350,101 +357,111 @@ final class FileUploadV2Response implements BaseModel
      *
      * If no extension was requested, then this parameter is not returned.
      */
-    public function setExtensionStatus(ExtensionStatus $extensionStatus): self
+    public function withExtensionStatus(ExtensionStatus $extensionStatus): self
     {
-        $this->extensionStatus = $extensionStatus;
+        $obj = clone $this;
+        $obj->extensionStatus = $extensionStatus;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Unique fileId. Store this fileld in your database, as this will be used to perform update action on this file.
      */
-    public function setFileID(string $fileID): self
+    public function withFileID(string $fileID): self
     {
-        $this->fileID = $fileID;
+        $obj = clone $this;
+        $obj->fileID = $fileID;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The relative path of the file in the media library e.g. `/marketing-assets/new-banner.jpg`.
      */
-    public function setFilePath(string $filePath): self
+    public function withFilePath(string $filePath): self
     {
-        $this->filePath = $filePath;
+        $obj = clone $this;
+        $obj->filePath = $filePath;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Type of the uploaded file. Possible values are `image`, `non-image`.
      */
-    public function setFileType(string $fileType): self
+    public function withFileType(string $fileType): self
     {
-        $this->fileType = $fileType;
+        $obj = clone $this;
+        $obj->fileType = $fileType;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Height of the image in pixels (Only for images).
      */
-    public function setHeight(float $height): self
+    public function withHeight(float $height): self
     {
-        $this->height = $height;
+        $obj = clone $this;
+        $obj->height = $height;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Is the file marked as private. It can be either `true` or `false`. Send `isPrivateFile` in `responseFields` in API request to get the value of this field.
      */
-    public function setIsPrivateFile(bool $isPrivateFile): self
+    public function withIsPrivateFile(bool $isPrivateFile): self
     {
-        $this->isPrivateFile = $isPrivateFile;
+        $obj = clone $this;
+        $obj->isPrivateFile = $isPrivateFile;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Is the file published or in draft state. It can be either `true` or `false`. Send `isPublished` in `responseFields` in API request to get the value of this field.
      */
-    public function setIsPublished(bool $isPublished): self
+    public function withIsPublished(bool $isPublished): self
     {
-        $this->isPublished = $isPublished;
+        $obj = clone $this;
+        $obj->isPublished = $isPublished;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Legacy metadata. Send `metadata` in `responseFields` in API request to get metadata in the upload API response.
      */
-    public function setMetadata(Metadata $metadata): self
+    public function withMetadata(Metadata $metadata): self
     {
-        $this->metadata = $metadata;
+        $obj = clone $this;
+        $obj->metadata = $metadata;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Name of the asset.
      */
-    public function setName(string $name): self
+    public function withName(string $name): self
     {
-        $this->name = $name;
+        $obj = clone $this;
+        $obj->name = $name;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Size of the image file in Bytes.
      */
-    public function setSize(float $size): self
+    public function withSize(float $size): self
     {
-        $this->size = $size;
+        $obj = clone $this;
+        $obj->size = $size;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -452,60 +469,66 @@ final class FileUploadV2Response implements BaseModel
      *
      * @param null|list<string> $tags
      */
-    public function setTags(?array $tags): self
+    public function withTags(?array $tags): self
     {
-        $this->tags = $tags;
+        $obj = clone $this;
+        $obj->tags = $tags;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * In the case of an image, a small thumbnail URL.
      */
-    public function setThumbnailURL(string $thumbnailURL): self
+    public function withThumbnailURL(string $thumbnailURL): self
     {
-        $this->thumbnailURL = $thumbnailURL;
+        $obj = clone $this;
+        $obj->thumbnailURL = $thumbnailURL;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * A publicly accessible URL of the file.
      */
-    public function setURL(string $url): self
+    public function withURL(string $url): self
     {
-        $this->url = $url;
+        $obj = clone $this;
+        $obj->url = $url;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * An object containing the file or file version's `id` (versionId) and `name`.
      */
-    public function setVersionInfo(VersionInfo $versionInfo): self
+    public function withVersionInfo(VersionInfo $versionInfo): self
     {
-        $this->versionInfo = $versionInfo;
+        $obj = clone $this;
+        $obj->versionInfo = $versionInfo;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The video codec used in the video (only for video).
      */
-    public function setVideoCodec(string $videoCodec): self
+    public function withVideoCodec(string $videoCodec): self
     {
-        $this->videoCodec = $videoCodec;
+        $obj = clone $this;
+        $obj->videoCodec = $videoCodec;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Width of the image in pixels (Only for Images).
      */
-    public function setWidth(float $width): self
+    public function withWidth(float $width): self
     {
-        $this->width = $width;
+        $obj = clone $this;
+        $obj->width = $width;
 
-        return $this;
+        return $obj;
     }
 }

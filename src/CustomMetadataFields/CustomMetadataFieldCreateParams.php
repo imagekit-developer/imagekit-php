@@ -35,6 +35,23 @@ final class CustomMetadataFieldCreateParams implements BaseModel
     #[Api]
     public Schema $schema;
 
+    /**
+     * `new CustomMetadataFieldCreateParams()` is missing required properties by the API.
+     *
+     * To enforce required parameters use
+     * ```
+     * CustomMetadataFieldCreateParams::with(label: ..., name: ..., schema: ...)
+     * ```
+     *
+     * Otherwise ensure the following setters are called
+     *
+     * ```
+     * (new CustomMetadataFieldCreateParams)
+     *   ->withLabel(...)
+     *   ->withName(...)
+     *   ->withSchema(...)
+     * ```
+     */
     public function __construct()
     {
         self::introspect();
@@ -46,7 +63,7 @@ final class CustomMetadataFieldCreateParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(
+    public static function with(
         string $label,
         string $name,
         Schema $schema
@@ -63,27 +80,30 @@ final class CustomMetadataFieldCreateParams implements BaseModel
     /**
      * Human readable name of the custom metadata field. This should be unique across all non deleted custom metadata fields. This name is displayed as form field label to the users while setting field value on an asset in the media library UI.
      */
-    public function setLabel(string $label): self
+    public function withLabel(string $label): self
     {
-        $this->label = $label;
+        $obj = clone $this;
+        $obj->label = $label;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * API name of the custom metadata field. This should be unique across all (including deleted) custom metadata fields.
      */
-    public function setName(string $name): self
+    public function withName(string $name): self
     {
-        $this->name = $name;
+        $obj = clone $this;
+        $obj->name = $name;
 
-        return $this;
+        return $obj;
     }
 
-    public function setSchema(Schema $schema): self
+    public function withSchema(Schema $schema): self
     {
-        $this->schema = $schema;
+        $obj = clone $this;
+        $obj->schema = $schema;
 
-        return $this;
+        return $obj;
     }
 }

@@ -62,7 +62,7 @@ final class AccountGetUsageResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(
+    public static function with(
         ?int $bandwidthBytes = null,
         ?int $extensionUnitsCount = null,
         ?int $mediaLibraryStorageBytes = null,
@@ -83,53 +83,58 @@ final class AccountGetUsageResponse implements BaseModel
     /**
      * Amount of bandwidth used in bytes.
      */
-    public function setBandwidthBytes(int $bandwidthBytes): self
+    public function withBandwidthBytes(int $bandwidthBytes): self
     {
-        $this->bandwidthBytes = $bandwidthBytes;
+        $obj = clone $this;
+        $obj->bandwidthBytes = $bandwidthBytes;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Number of extension units used.
      */
-    public function setExtensionUnitsCount(int $extensionUnitsCount): self
+    public function withExtensionUnitsCount(int $extensionUnitsCount): self
     {
-        $this->extensionUnitsCount = $extensionUnitsCount;
+        $obj = clone $this;
+        $obj->extensionUnitsCount = $extensionUnitsCount;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Storage used by media library in bytes.
      */
-    public function setMediaLibraryStorageBytes(
+    public function withMediaLibraryStorageBytes(
         int $mediaLibraryStorageBytes
     ): self {
-        $this->mediaLibraryStorageBytes = $mediaLibraryStorageBytes;
+        $obj = clone $this;
+        $obj->mediaLibraryStorageBytes = $mediaLibraryStorageBytes;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Storage used by the original cache in bytes.
      */
-    public function setOriginalCacheStorageBytes(
+    public function withOriginalCacheStorageBytes(
         int $originalCacheStorageBytes
     ): self {
-        $this->originalCacheStorageBytes = $originalCacheStorageBytes;
+        $obj = clone $this;
+        $obj->originalCacheStorageBytes = $originalCacheStorageBytes;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Number of video processing units used.
      */
-    public function setVideoProcessingUnitsCount(
+    public function withVideoProcessingUnitsCount(
         int $videoProcessingUnitsCount
     ): self {
-        $this->videoProcessingUnitsCount = $videoProcessingUnitsCount;
+        $obj = clone $this;
+        $obj->videoProcessingUnitsCount = $videoProcessingUnitsCount;
 
-        return $this;
+        return $obj;
     }
 }

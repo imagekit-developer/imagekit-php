@@ -36,7 +36,7 @@ final class CustomMetadataFieldListParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(?bool $includeDeleted = null): self
+    public static function with(?bool $includeDeleted = null): self
     {
         $obj = new self;
 
@@ -48,10 +48,11 @@ final class CustomMetadataFieldListParams implements BaseModel
     /**
      * Set it to `true` to include deleted field objects in the API response. Default value is `false`.
      */
-    public function setIncludeDeleted(bool $includeDeleted): self
+    public function withIncludeDeleted(bool $includeDeleted): self
     {
-        $this->includeDeleted = $includeDeleted;
+        $obj = clone $this;
+        $obj->includeDeleted = $includeDeleted;
 
-        return $this;
+        return $obj;
     }
 }

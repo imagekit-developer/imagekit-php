@@ -75,7 +75,7 @@ final class Exif implements BaseModel
      *
      * @param null|array<string, mixed> $makernote
      */
-    public static function from(
+    public static function with(
         ?ExifDetails $exif = null,
         ?Gps $gps = null,
         ?ExifImage $image = null,
@@ -98,61 +98,67 @@ final class Exif implements BaseModel
     /**
      * Object containing Exif details.
      */
-    public function setExif(ExifDetails $exif): self
+    public function withExif(ExifDetails $exif): self
     {
-        $this->exif = $exif;
+        $obj = clone $this;
+        $obj->exif = $exif;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Object containing GPS information.
      */
-    public function setGps(Gps $gps): self
+    public function withGps(Gps $gps): self
     {
-        $this->gps = $gps;
+        $obj = clone $this;
+        $obj->gps = $gps;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Object containing EXIF image information.
      */
-    public function setImage(ExifImage $image): self
+    public function withImage(ExifImage $image): self
     {
-        $this->image = $image;
+        $obj = clone $this;
+        $obj->image = $image;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * JSON object.
      */
-    public function setInteroperability(
+    public function withInteroperability(
         Interoperability $interoperability
     ): self {
-        $this->interoperability = $interoperability;
+        $obj = clone $this;
+        $obj->interoperability = $interoperability;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param array<string, mixed> $makernote
      */
-    public function setMakernote(array $makernote): self
+    public function withMakernote(array $makernote): self
     {
-        $this->makernote = $makernote;
+        $obj = clone $this;
+        $obj->makernote = $makernote;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Object containing Thumbnail information.
      */
-    public function setThumbnail(Thumbnail $thumbnail): self
+    public function withThumbnail(Thumbnail $thumbnail): self
     {
-        $this->thumbnail = $thumbnail;
+        $obj = clone $this;
+        $obj->thumbnail = $thumbnail;
 
-        return $this;
+        return $obj;
     }
 }

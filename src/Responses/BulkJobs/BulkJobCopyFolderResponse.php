@@ -32,7 +32,7 @@ final class BulkJobCopyFolderResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(?string $jobID = null): self
+    public static function with(?string $jobID = null): self
     {
         $obj = new self;
 
@@ -44,10 +44,11 @@ final class BulkJobCopyFolderResponse implements BaseModel
     /**
      * Unique identifier of the bulk job. This can be used to check the status of the bulk job.
      */
-    public function setJobID(string $jobID): self
+    public function withJobID(string $jobID): self
     {
-        $this->jobID = $jobID;
+        $obj = clone $this;
+        $obj->jobID = $jobID;
 
-        return $this;
+        return $obj;
     }
 }

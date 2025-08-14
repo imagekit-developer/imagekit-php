@@ -43,7 +43,7 @@ final class BatchDeleteResponse implements BaseModel
      *
      * @param null|list<string> $successfullyDeletedFileIDs
      */
-    public static function from(?array $successfullyDeletedFileIDs = null): self
+    public static function with(?array $successfullyDeletedFileIDs = null): self
     {
         $obj = new self;
 
@@ -57,11 +57,12 @@ final class BatchDeleteResponse implements BaseModel
      *
      * @param list<string> $successfullyDeletedFileIDs
      */
-    public function setSuccessfullyDeletedFileIDs(
+    public function withSuccessfullyDeletedFileIDs(
         array $successfullyDeletedFileIDs
     ): self {
-        $this->successfullyDeletedFileIDs = $successfullyDeletedFileIDs;
+        $obj = clone $this;
+        $obj->successfullyDeletedFileIDs = $successfullyDeletedFileIDs;
 
-        return $this;
+        return $obj;
     }
 }

@@ -71,7 +71,7 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = FileAddTagsParams::from(
+        $params = FileAddTagsParams::with(
             fileIDs: ['598821f949c0a938d57563bd', '598821f949c0a938d57563be'],
             tags: ['t-shirt', 'round-neck', 'sale2019'],
         );
@@ -87,7 +87,7 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = FileAddTagsParams::from(
+        $params = FileAddTagsParams::with(
             fileIDs: ['598821f949c0a938d57563bd', '598821f949c0a938d57563be'],
             tags: ['t-shirt', 'round-neck', 'sale2019'],
         );
@@ -103,7 +103,7 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = FileCopyParams::from(
+        $params = FileCopyParams::with(
             destinationPath: '/folder/to/copy/into/',
             sourceFilePath: '/path/to/file.jpg',
         );
@@ -119,7 +119,7 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = FileCopyParams::from(
+        $params = FileCopyParams::with(
             destinationPath: '/folder/to/copy/into/',
             sourceFilePath: '/path/to/file.jpg',
             includeFileVersions: false,
@@ -136,7 +136,7 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = FileMoveParams::from(
+        $params = FileMoveParams::with(
             destinationPath: '/folder/to/move/into/',
             sourceFilePath: '/path/to/file.jpg',
         );
@@ -152,7 +152,7 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = FileMoveParams::from(
+        $params = FileMoveParams::with(
             destinationPath: '/folder/to/move/into/',
             sourceFilePath: '/path/to/file.jpg',
         );
@@ -168,7 +168,7 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = FileRemoveAITagsParams::from(
+        $params = FileRemoveAITagsParams::with(
             aiTags: ['t-shirt', 'round-neck', 'sale2019'],
             fileIDs: ['598821f949c0a938d57563bd', '598821f949c0a938d57563be'],
         );
@@ -184,7 +184,7 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = FileRemoveAITagsParams::from(
+        $params = FileRemoveAITagsParams::with(
             aiTags: ['t-shirt', 'round-neck', 'sale2019'],
             fileIDs: ['598821f949c0a938d57563bd', '598821f949c0a938d57563be'],
         );
@@ -200,7 +200,7 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = FileRemoveTagsParams::from(
+        $params = FileRemoveTagsParams::with(
             fileIDs: ['598821f949c0a938d57563bd', '598821f949c0a938d57563be'],
             tags: ['t-shirt', 'round-neck', 'sale2019'],
         );
@@ -216,7 +216,7 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = FileRemoveTagsParams::from(
+        $params = FileRemoveTagsParams::with(
             fileIDs: ['598821f949c0a938d57563bd', '598821f949c0a938d57563be'],
             tags: ['t-shirt', 'round-neck', 'sale2019'],
         );
@@ -232,7 +232,7 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = FileRenameParams::from(
+        $params = FileRenameParams::with(
             filePath: '/path/to/file.jpg',
             newFileName: 'newFileName.jpg'
         );
@@ -248,7 +248,7 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = FileRenameParams::from(
+        $params = FileRenameParams::with(
             filePath: '/path/to/file.jpg',
             newFileName: 'newFileName.jpg',
             purgeCache: true,
@@ -265,7 +265,7 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = FileUploadV1Params::from(
+        $params = FileUploadV1Params::with(
             file: 'https://www.example.com/rest-of-the-image-path.jpg',
             fileName: 'fileName',
         );
@@ -281,7 +281,7 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = FileUploadV1Params::from(
+        $params = FileUploadV1Params::with(
             file: 'https://www.example.com/rest-of-the-image-path.jpg',
             fileName: 'fileName',
             token: 'token',
@@ -317,7 +317,7 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = FileUploadV2Params::from(
+        $params = FileUploadV2Params::with(
             file: 'https://www.example.com/rest-of-the-image-path.jpg',
             fileName: 'fileName',
         );
@@ -333,7 +333,7 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = FileUploadV2Params::from(
+        $params = FileUploadV2Params::with(
             file: 'https://www.example.com/rest-of-the-image-path.jpg',
             fileName: 'fileName',
             token: 'token',

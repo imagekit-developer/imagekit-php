@@ -57,7 +57,7 @@ final class ExtensionStatus implements BaseModel
      * @param null|GoogleAutoTagging::* $googleAutoTagging
      * @param null|RemoveBg::* $removeBg
      */
-    public static function from(
+    public static function with(
         ?string $awsAutoTagging = null,
         ?string $googleAutoTagging = null,
         ?string $removeBg = null,
@@ -74,30 +74,33 @@ final class ExtensionStatus implements BaseModel
     /**
      * @param AwsAutoTagging::* $awsAutoTagging
      */
-    public function setAwsAutoTagging(string $awsAutoTagging): self
+    public function withAwsAutoTagging(string $awsAutoTagging): self
     {
-        $this->awsAutoTagging = $awsAutoTagging;
+        $obj = clone $this;
+        $obj->awsAutoTagging = $awsAutoTagging;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param GoogleAutoTagging::* $googleAutoTagging
      */
-    public function setGoogleAutoTagging(string $googleAutoTagging): self
+    public function withGoogleAutoTagging(string $googleAutoTagging): self
     {
-        $this->googleAutoTagging = $googleAutoTagging;
+        $obj = clone $this;
+        $obj->googleAutoTagging = $googleAutoTagging;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param RemoveBg::* $removeBg
      */
-    public function setRemoveBg(string $removeBg): self
+    public function withRemoveBg(string $removeBg): self
     {
-        $this->removeBg = $removeBg;
+        $obj = clone $this;
+        $obj->removeBg = $removeBg;
 
-        return $this;
+        return $obj;
     }
 }

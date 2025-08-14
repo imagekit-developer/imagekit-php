@@ -38,7 +38,7 @@ final class PurgeTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = PurgeExecuteParams::from(
+        $params = PurgeExecuteParams::with(
             url: 'https://ik.imagekit.io/your_imagekit_id/default-image.jpg'
         );
         $result = $this->client->files->purge->execute($params);
@@ -53,7 +53,7 @@ final class PurgeTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = PurgeExecuteParams::from(
+        $params = PurgeExecuteParams::with(
             url: 'https://ik.imagekit.io/your_imagekit_id/default-image.jpg'
         );
         $result = $this->client->files->purge->execute($params);

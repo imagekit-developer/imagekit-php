@@ -38,6 +38,23 @@ final class AutoTaggingExtension implements BaseModel
     #[Api(enum: Name::class)]
     public string $name;
 
+    /**
+     * `new AutoTaggingExtension()` is missing required properties by the API.
+     *
+     * To enforce required parameters use
+     * ```
+     * AutoTaggingExtension::with(maxTags: ..., minConfidence: ..., name: ...)
+     * ```
+     *
+     * Otherwise ensure the following setters are called
+     *
+     * ```
+     * (new AutoTaggingExtension)
+     *   ->withMaxTags(...)
+     *   ->withMinConfidence(...)
+     *   ->withName(...)
+     * ```
+     */
     public function __construct()
     {
         self::introspect();
@@ -51,7 +68,7 @@ final class AutoTaggingExtension implements BaseModel
      *
      * @param Name::* $name
      */
-    public static function from(
+    public static function with(
         int $maxTags,
         int $minConfidence,
         string $name
@@ -68,21 +85,23 @@ final class AutoTaggingExtension implements BaseModel
     /**
      * Maximum number of tags to attach to the asset.
      */
-    public function setMaxTags(int $maxTags): self
+    public function withMaxTags(int $maxTags): self
     {
-        $this->maxTags = $maxTags;
+        $obj = clone $this;
+        $obj->maxTags = $maxTags;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Minimum confidence level for tags to be considered valid.
      */
-    public function setMinConfidence(int $minConfidence): self
+    public function withMinConfidence(int $minConfidence): self
     {
-        $this->minConfidence = $minConfidence;
+        $obj = clone $this;
+        $obj->minConfidence = $minConfidence;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -90,10 +109,11 @@ final class AutoTaggingExtension implements BaseModel
      *
      * @param Name::* $name
      */
-    public function setName(string $name): self
+    public function withName(string $name): self
     {
-        $this->name = $name;
+        $obj = clone $this;
+        $obj->name = $name;
 
-        return $this;
+        return $obj;
     }
 }

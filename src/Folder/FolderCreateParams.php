@@ -37,6 +37,20 @@ final class FolderCreateParams implements BaseModel
     #[Api]
     public string $parentFolderPath;
 
+    /**
+     * `new FolderCreateParams()` is missing required properties by the API.
+     *
+     * To enforce required parameters use
+     * ```
+     * FolderCreateParams::with(folderName: ..., parentFolderPath: ...)
+     * ```
+     *
+     * Otherwise ensure the following setters are called
+     *
+     * ```
+     * (new FolderCreateParams)->withFolderName(...)->withParentFolderPath(...)
+     * ```
+     */
     public function __construct()
     {
         self::introspect();
@@ -48,7 +62,7 @@ final class FolderCreateParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(
+    public static function with(
         string $folderName,
         string $parentFolderPath
     ): self {
@@ -65,11 +79,12 @@ final class FolderCreateParams implements BaseModel
      *
      * All characters except alphabets and numbers (inclusive of unicode letters, marks, and numerals in other languages) will be replaced by an underscore i.e. `_`.
      */
-    public function setFolderName(string $folderName): self
+    public function withFolderName(string $folderName): self
     {
-        $this->folderName = $folderName;
+        $obj = clone $this;
+        $obj->folderName = $folderName;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -77,10 +92,11 @@ final class FolderCreateParams implements BaseModel
      *
      * Note: If any folder(s) is not present in the parentFolderPath parameter, it will be automatically created. For example, if you pass `/product/images/summer`, then `product`, `images`, and `summer` folders will be created if they don't already exist.
      */
-    public function setParentFolderPath(string $parentFolderPath): self
+    public function withParentFolderPath(string $parentFolderPath): self
     {
-        $this->parentFolderPath = $parentFolderPath;
+        $obj = clone $this;
+        $obj->parentFolderPath = $parentFolderPath;
 
-        return $this;
+        return $obj;
     }
 }

@@ -31,6 +31,20 @@ final class Publish implements BaseModel
     #[Api(optional: true)]
     public ?bool $includeFileVersions;
 
+    /**
+     * `new Publish()` is missing required properties by the API.
+     *
+     * To enforce required parameters use
+     * ```
+     * Publish::with(isPublished: ...)
+     * ```
+     *
+     * Otherwise ensure the following setters are called
+     *
+     * ```
+     * (new Publish)->withIsPublished(...)
+     * ```
+     */
     public function __construct()
     {
         self::introspect();
@@ -42,7 +56,7 @@ final class Publish implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(
+    public static function with(
         bool $isPublished,
         ?bool $includeFileVersions = null
     ): self {
@@ -58,20 +72,22 @@ final class Publish implements BaseModel
     /**
      * Set to `true` to publish the file. Set to `false` to unpublish the file.
      */
-    public function setIsPublished(bool $isPublished): self
+    public function withIsPublished(bool $isPublished): self
     {
-        $this->isPublished = $isPublished;
+        $obj = clone $this;
+        $obj->isPublished = $isPublished;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Set to `true` to publish/unpublish all versions of the file. Set to `false` to publish/unpublish only the current version of the file.
      */
-    public function setIncludeFileVersions(bool $includeFileVersions): self
+    public function withIncludeFileVersions(bool $includeFileVersions): self
     {
-        $this->includeFileVersions = $includeFileVersions;
+        $obj = clone $this;
+        $obj->includeFileVersions = $includeFileVersions;
 
-        return $this;
+        return $obj;
     }
 }

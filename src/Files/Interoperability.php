@@ -36,7 +36,7 @@ final class Interoperability implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(
+    public static function with(
         ?string $interopIndex = null,
         ?string $interopVersion = null
     ): self {
@@ -48,17 +48,19 @@ final class Interoperability implements BaseModel
         return $obj;
     }
 
-    public function setInteropIndex(string $interopIndex): self
+    public function withInteropIndex(string $interopIndex): self
     {
-        $this->interopIndex = $interopIndex;
+        $obj = clone $this;
+        $obj->interopIndex = $interopIndex;
 
-        return $this;
+        return $obj;
     }
 
-    public function setInteropVersion(string $interopVersion): self
+    public function withInteropVersion(string $interopVersion): self
     {
-        $this->interopVersion = $interopVersion;
+        $obj = clone $this;
+        $obj->interopVersion = $interopVersion;
 
-        return $this;
+        return $obj;
     }
 }

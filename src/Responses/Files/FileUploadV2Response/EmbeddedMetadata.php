@@ -929,7 +929,7 @@ final class EmbeddedMetadata implements BaseModel
      * @param null|list<string> $subjectCode
      * @param null|list<string> $subjectReference
      */
-    public static function from(
+    public static function with(
         ?string $aboutCvTermCvID = null,
         ?string $aboutCvTermID = null,
         ?string $aboutCvTermName = null,
@@ -1297,1536 +1297,1717 @@ final class EmbeddedMetadata implements BaseModel
         return $obj;
     }
 
-    public function setAboutCvTermCvID(string $aboutCvTermCvID): self
+    public function withAboutCvTermCvID(string $aboutCvTermCvID): self
     {
-        $this->aboutCvTermCvID = $aboutCvTermCvID;
+        $obj = clone $this;
+        $obj->aboutCvTermCvID = $aboutCvTermCvID;
 
-        return $this;
+        return $obj;
     }
 
-    public function setAboutCvTermID(string $aboutCvTermID): self
+    public function withAboutCvTermID(string $aboutCvTermID): self
     {
-        $this->aboutCvTermID = $aboutCvTermID;
+        $obj = clone $this;
+        $obj->aboutCvTermID = $aboutCvTermID;
 
-        return $this;
+        return $obj;
     }
 
-    public function setAboutCvTermName(string $aboutCvTermName): self
+    public function withAboutCvTermName(string $aboutCvTermName): self
     {
-        $this->aboutCvTermName = $aboutCvTermName;
+        $obj = clone $this;
+        $obj->aboutCvTermName = $aboutCvTermName;
 
-        return $this;
+        return $obj;
     }
 
-    public function setAboutCvTermRefinedAbout(
+    public function withAboutCvTermRefinedAbout(
         string $aboutCvTermRefinedAbout
     ): self {
-        $this->aboutCvTermRefinedAbout = $aboutCvTermRefinedAbout;
+        $obj = clone $this;
+        $obj->aboutCvTermRefinedAbout = $aboutCvTermRefinedAbout;
 
-        return $this;
+        return $obj;
     }
 
-    public function setAdditionalModelInformation(
+    public function withAdditionalModelInformation(
         string $additionalModelInformation
     ): self {
-        $this->additionalModelInformation = $additionalModelInformation;
+        $obj = clone $this;
+        $obj->additionalModelInformation = $additionalModelInformation;
 
-        return $this;
+        return $obj;
     }
 
-    public function setApplicationRecordVersion(
+    public function withApplicationRecordVersion(
         int $applicationRecordVersion
     ): self {
-        $this->applicationRecordVersion = $applicationRecordVersion;
+        $obj = clone $this;
+        $obj->applicationRecordVersion = $applicationRecordVersion;
 
-        return $this;
+        return $obj;
     }
 
-    public function setArtist(string $artist): self
+    public function withArtist(string $artist): self
     {
-        $this->artist = $artist;
+        $obj = clone $this;
+        $obj->artist = $artist;
 
-        return $this;
+        return $obj;
     }
 
-    public function setArtworkCircaDateCreated(
+    public function withArtworkCircaDateCreated(
         string $artworkCircaDateCreated
     ): self {
-        $this->artworkCircaDateCreated = $artworkCircaDateCreated;
+        $obj = clone $this;
+        $obj->artworkCircaDateCreated = $artworkCircaDateCreated;
 
-        return $this;
+        return $obj;
     }
 
-    public function setArtworkContentDescription(
+    public function withArtworkContentDescription(
         string $artworkContentDescription
     ): self {
-        $this->artworkContentDescription = $artworkContentDescription;
+        $obj = clone $this;
+        $obj->artworkContentDescription = $artworkContentDescription;
 
-        return $this;
+        return $obj;
     }
 
-    public function setArtworkContributionDescription(
+    public function withArtworkContributionDescription(
         string $artworkContributionDescription
     ): self {
-        $this->artworkContributionDescription = $artworkContributionDescription;
+        $obj = clone $this;
+        $obj->artworkContributionDescription = $artworkContributionDescription;
 
-        return $this;
+        return $obj;
     }
 
-    public function setArtworkCopyrightNotice(
+    public function withArtworkCopyrightNotice(
         string $artworkCopyrightNotice
     ): self {
-        $this->artworkCopyrightNotice = $artworkCopyrightNotice;
+        $obj = clone $this;
+        $obj->artworkCopyrightNotice = $artworkCopyrightNotice;
 
-        return $this;
+        return $obj;
     }
 
-    public function setArtworkCopyrightOwnerID(
+    public function withArtworkCopyrightOwnerID(
         string $artworkCopyrightOwnerID
     ): self {
-        $this->artworkCopyrightOwnerID = $artworkCopyrightOwnerID;
+        $obj = clone $this;
+        $obj->artworkCopyrightOwnerID = $artworkCopyrightOwnerID;
 
-        return $this;
+        return $obj;
     }
 
-    public function setArtworkCopyrightOwnerName(
+    public function withArtworkCopyrightOwnerName(
         string $artworkCopyrightOwnerName
     ): self {
-        $this->artworkCopyrightOwnerName = $artworkCopyrightOwnerName;
+        $obj = clone $this;
+        $obj->artworkCopyrightOwnerName = $artworkCopyrightOwnerName;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $artworkCreator
      */
-    public function setArtworkCreator(array $artworkCreator): self
+    public function withArtworkCreator(array $artworkCreator): self
     {
-        $this->artworkCreator = $artworkCreator;
+        $obj = clone $this;
+        $obj->artworkCreator = $artworkCreator;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $artworkCreatorID
      */
-    public function setArtworkCreatorID(array $artworkCreatorID): self
+    public function withArtworkCreatorID(array $artworkCreatorID): self
     {
-        $this->artworkCreatorID = $artworkCreatorID;
+        $obj = clone $this;
+        $obj->artworkCreatorID = $artworkCreatorID;
 
-        return $this;
+        return $obj;
     }
 
-    public function setArtworkDateCreated(
+    public function withArtworkDateCreated(
         \DateTimeInterface $artworkDateCreated
     ): self {
-        $this->artworkDateCreated = $artworkDateCreated;
+        $obj = clone $this;
+        $obj->artworkDateCreated = $artworkDateCreated;
 
-        return $this;
+        return $obj;
     }
 
-    public function setArtworkLicensorID(string $artworkLicensorID): self
+    public function withArtworkLicensorID(string $artworkLicensorID): self
     {
-        $this->artworkLicensorID = $artworkLicensorID;
+        $obj = clone $this;
+        $obj->artworkLicensorID = $artworkLicensorID;
 
-        return $this;
+        return $obj;
     }
 
-    public function setArtworkLicensorName(string $artworkLicensorName): self
+    public function withArtworkLicensorName(string $artworkLicensorName): self
     {
-        $this->artworkLicensorName = $artworkLicensorName;
+        $obj = clone $this;
+        $obj->artworkLicensorName = $artworkLicensorName;
 
-        return $this;
+        return $obj;
     }
 
-    public function setArtworkPhysicalDescription(
+    public function withArtworkPhysicalDescription(
         string $artworkPhysicalDescription
     ): self {
-        $this->artworkPhysicalDescription = $artworkPhysicalDescription;
+        $obj = clone $this;
+        $obj->artworkPhysicalDescription = $artworkPhysicalDescription;
 
-        return $this;
+        return $obj;
     }
 
-    public function setArtworkSource(string $artworkSource): self
+    public function withArtworkSource(string $artworkSource): self
     {
-        $this->artworkSource = $artworkSource;
+        $obj = clone $this;
+        $obj->artworkSource = $artworkSource;
 
-        return $this;
+        return $obj;
     }
 
-    public function setArtworkSourceInventoryNo(
+    public function withArtworkSourceInventoryNo(
         string $artworkSourceInventoryNo
     ): self {
-        $this->artworkSourceInventoryNo = $artworkSourceInventoryNo;
+        $obj = clone $this;
+        $obj->artworkSourceInventoryNo = $artworkSourceInventoryNo;
 
-        return $this;
+        return $obj;
     }
 
-    public function setArtworkSourceInvURL(string $artworkSourceInvURL): self
+    public function withArtworkSourceInvURL(string $artworkSourceInvURL): self
     {
-        $this->artworkSourceInvURL = $artworkSourceInvURL;
+        $obj = clone $this;
+        $obj->artworkSourceInvURL = $artworkSourceInvURL;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $artworkStylePeriod
      */
-    public function setArtworkStylePeriod(array $artworkStylePeriod): self
+    public function withArtworkStylePeriod(array $artworkStylePeriod): self
     {
-        $this->artworkStylePeriod = $artworkStylePeriod;
+        $obj = clone $this;
+        $obj->artworkStylePeriod = $artworkStylePeriod;
 
-        return $this;
+        return $obj;
     }
 
-    public function setArtworkTitle(string $artworkTitle): self
+    public function withArtworkTitle(string $artworkTitle): self
     {
-        $this->artworkTitle = $artworkTitle;
+        $obj = clone $this;
+        $obj->artworkTitle = $artworkTitle;
 
-        return $this;
+        return $obj;
     }
 
-    public function setAuthorsPosition(string $authorsPosition): self
+    public function withAuthorsPosition(string $authorsPosition): self
     {
-        $this->authorsPosition = $authorsPosition;
+        $obj = clone $this;
+        $obj->authorsPosition = $authorsPosition;
 
-        return $this;
+        return $obj;
     }
 
-    public function setByline(string $byline): self
+    public function withByline(string $byline): self
     {
-        $this->byline = $byline;
+        $obj = clone $this;
+        $obj->byline = $byline;
 
-        return $this;
+        return $obj;
     }
 
-    public function setBylineTitle(string $bylineTitle): self
+    public function withBylineTitle(string $bylineTitle): self
     {
-        $this->bylineTitle = $bylineTitle;
+        $obj = clone $this;
+        $obj->bylineTitle = $bylineTitle;
 
-        return $this;
+        return $obj;
     }
 
-    public function setCaption(string $caption): self
+    public function withCaption(string $caption): self
     {
-        $this->caption = $caption;
+        $obj = clone $this;
+        $obj->caption = $caption;
 
-        return $this;
+        return $obj;
     }
 
-    public function setCaptionAbstract(string $captionAbstract): self
+    public function withCaptionAbstract(string $captionAbstract): self
     {
-        $this->captionAbstract = $captionAbstract;
+        $obj = clone $this;
+        $obj->captionAbstract = $captionAbstract;
 
-        return $this;
+        return $obj;
     }
 
-    public function setCaptionWriter(string $captionWriter): self
+    public function withCaptionWriter(string $captionWriter): self
     {
-        $this->captionWriter = $captionWriter;
+        $obj = clone $this;
+        $obj->captionWriter = $captionWriter;
 
-        return $this;
+        return $obj;
     }
 
-    public function setCity(string $city): self
+    public function withCity(string $city): self
     {
-        $this->city = $city;
+        $obj = clone $this;
+        $obj->city = $city;
 
-        return $this;
+        return $obj;
     }
 
-    public function setColorSpace(string $colorSpace): self
+    public function withColorSpace(string $colorSpace): self
     {
-        $this->colorSpace = $colorSpace;
+        $obj = clone $this;
+        $obj->colorSpace = $colorSpace;
 
-        return $this;
+        return $obj;
     }
 
-    public function setComponentsConfiguration(
+    public function withComponentsConfiguration(
         string $componentsConfiguration
     ): self {
-        $this->componentsConfiguration = $componentsConfiguration;
+        $obj = clone $this;
+        $obj->componentsConfiguration = $componentsConfiguration;
 
-        return $this;
+        return $obj;
     }
 
-    public function setCopyright(string $copyright): self
+    public function withCopyright(string $copyright): self
     {
-        $this->copyright = $copyright;
+        $obj = clone $this;
+        $obj->copyright = $copyright;
 
-        return $this;
+        return $obj;
     }
 
-    public function setCopyrightNotice(string $copyrightNotice): self
+    public function withCopyrightNotice(string $copyrightNotice): self
     {
-        $this->copyrightNotice = $copyrightNotice;
+        $obj = clone $this;
+        $obj->copyrightNotice = $copyrightNotice;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $copyrightOwnerID
      */
-    public function setCopyrightOwnerID(array $copyrightOwnerID): self
+    public function withCopyrightOwnerID(array $copyrightOwnerID): self
     {
-        $this->copyrightOwnerID = $copyrightOwnerID;
+        $obj = clone $this;
+        $obj->copyrightOwnerID = $copyrightOwnerID;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $copyrightOwnerName
      */
-    public function setCopyrightOwnerName(array $copyrightOwnerName): self
+    public function withCopyrightOwnerName(array $copyrightOwnerName): self
     {
-        $this->copyrightOwnerName = $copyrightOwnerName;
+        $obj = clone $this;
+        $obj->copyrightOwnerName = $copyrightOwnerName;
 
-        return $this;
+        return $obj;
     }
 
-    public function setCountry(string $country): self
+    public function withCountry(string $country): self
     {
-        $this->country = $country;
+        $obj = clone $this;
+        $obj->country = $country;
 
-        return $this;
+        return $obj;
     }
 
-    public function setCountryCode(string $countryCode): self
+    public function withCountryCode(string $countryCode): self
     {
-        $this->countryCode = $countryCode;
+        $obj = clone $this;
+        $obj->countryCode = $countryCode;
 
-        return $this;
+        return $obj;
     }
 
-    public function setCountryPrimaryLocationCode(
+    public function withCountryPrimaryLocationCode(
         string $countryPrimaryLocationCode
     ): self {
-        $this->countryPrimaryLocationCode = $countryPrimaryLocationCode;
+        $obj = clone $this;
+        $obj->countryPrimaryLocationCode = $countryPrimaryLocationCode;
 
-        return $this;
+        return $obj;
     }
 
-    public function setCountryPrimaryLocationName(
+    public function withCountryPrimaryLocationName(
         string $countryPrimaryLocationName
     ): self {
-        $this->countryPrimaryLocationName = $countryPrimaryLocationName;
+        $obj = clone $this;
+        $obj->countryPrimaryLocationName = $countryPrimaryLocationName;
 
-        return $this;
+        return $obj;
     }
 
-    public function setCreator(string $creator): self
+    public function withCreator(string $creator): self
     {
-        $this->creator = $creator;
+        $obj = clone $this;
+        $obj->creator = $creator;
 
-        return $this;
+        return $obj;
     }
 
-    public function setCreatorAddress(string $creatorAddress): self
+    public function withCreatorAddress(string $creatorAddress): self
     {
-        $this->creatorAddress = $creatorAddress;
+        $obj = clone $this;
+        $obj->creatorAddress = $creatorAddress;
 
-        return $this;
+        return $obj;
     }
 
-    public function setCreatorCity(string $creatorCity): self
+    public function withCreatorCity(string $creatorCity): self
     {
-        $this->creatorCity = $creatorCity;
+        $obj = clone $this;
+        $obj->creatorCity = $creatorCity;
 
-        return $this;
+        return $obj;
     }
 
-    public function setCreatorCountry(string $creatorCountry): self
+    public function withCreatorCountry(string $creatorCountry): self
     {
-        $this->creatorCountry = $creatorCountry;
+        $obj = clone $this;
+        $obj->creatorCountry = $creatorCountry;
 
-        return $this;
+        return $obj;
     }
 
-    public function setCreatorPostalCode(string $creatorPostalCode): self
+    public function withCreatorPostalCode(string $creatorPostalCode): self
     {
-        $this->creatorPostalCode = $creatorPostalCode;
+        $obj = clone $this;
+        $obj->creatorPostalCode = $creatorPostalCode;
 
-        return $this;
+        return $obj;
     }
 
-    public function setCreatorRegion(string $creatorRegion): self
+    public function withCreatorRegion(string $creatorRegion): self
     {
-        $this->creatorRegion = $creatorRegion;
+        $obj = clone $this;
+        $obj->creatorRegion = $creatorRegion;
 
-        return $this;
+        return $obj;
     }
 
-    public function setCreatorWorkEmail(string $creatorWorkEmail): self
+    public function withCreatorWorkEmail(string $creatorWorkEmail): self
     {
-        $this->creatorWorkEmail = $creatorWorkEmail;
+        $obj = clone $this;
+        $obj->creatorWorkEmail = $creatorWorkEmail;
 
-        return $this;
+        return $obj;
     }
 
-    public function setCreatorWorkTelephone(string $creatorWorkTelephone): self
+    public function withCreatorWorkTelephone(string $creatorWorkTelephone): self
     {
-        $this->creatorWorkTelephone = $creatorWorkTelephone;
+        $obj = clone $this;
+        $obj->creatorWorkTelephone = $creatorWorkTelephone;
 
-        return $this;
+        return $obj;
     }
 
-    public function setCreatorWorkURL(string $creatorWorkURL): self
+    public function withCreatorWorkURL(string $creatorWorkURL): self
     {
-        $this->creatorWorkURL = $creatorWorkURL;
+        $obj = clone $this;
+        $obj->creatorWorkURL = $creatorWorkURL;
 
-        return $this;
+        return $obj;
     }
 
-    public function setCredit(string $credit): self
+    public function withCredit(string $credit): self
     {
-        $this->credit = $credit;
+        $obj = clone $this;
+        $obj->credit = $credit;
 
-        return $this;
+        return $obj;
     }
 
-    public function setDateCreated(\DateTimeInterface $dateCreated): self
+    public function withDateCreated(\DateTimeInterface $dateCreated): self
     {
-        $this->dateCreated = $dateCreated;
+        $obj = clone $this;
+        $obj->dateCreated = $dateCreated;
 
-        return $this;
+        return $obj;
     }
 
-    public function setDateTimeCreated(
+    public function withDateTimeCreated(
         \DateTimeInterface $dateTimeCreated
     ): self {
-        $this->dateTimeCreated = $dateTimeCreated;
+        $obj = clone $this;
+        $obj->dateTimeCreated = $dateTimeCreated;
 
-        return $this;
+        return $obj;
     }
 
-    public function setDateTimeOriginal(
+    public function withDateTimeOriginal(
         \DateTimeInterface $dateTimeOriginal
     ): self {
-        $this->dateTimeOriginal = $dateTimeOriginal;
+        $obj = clone $this;
+        $obj->dateTimeOriginal = $dateTimeOriginal;
 
-        return $this;
+        return $obj;
     }
 
-    public function setDescription(string $description): self
+    public function withDescription(string $description): self
     {
-        $this->description = $description;
+        $obj = clone $this;
+        $obj->description = $description;
 
-        return $this;
+        return $obj;
     }
 
-    public function setDigitalImageGuid(string $digitalImageGuid): self
+    public function withDigitalImageGuid(string $digitalImageGuid): self
     {
-        $this->digitalImageGuid = $digitalImageGuid;
+        $obj = clone $this;
+        $obj->digitalImageGuid = $digitalImageGuid;
 
-        return $this;
+        return $obj;
     }
 
-    public function setDigitalSourceType(string $digitalSourceType): self
+    public function withDigitalSourceType(string $digitalSourceType): self
     {
-        $this->digitalSourceType = $digitalSourceType;
+        $obj = clone $this;
+        $obj->digitalSourceType = $digitalSourceType;
 
-        return $this;
+        return $obj;
     }
 
-    public function setEmbeddedEncodedRightsExpr(
+    public function withEmbeddedEncodedRightsExpr(
         string $embeddedEncodedRightsExpr
     ): self {
-        $this->embeddedEncodedRightsExpr = $embeddedEncodedRightsExpr;
+        $obj = clone $this;
+        $obj->embeddedEncodedRightsExpr = $embeddedEncodedRightsExpr;
 
-        return $this;
+        return $obj;
     }
 
-    public function setEmbeddedEncodedRightsExprLangID(
+    public function withEmbeddedEncodedRightsExprLangID(
         string $embeddedEncodedRightsExprLangID
     ): self {
-        $this->embeddedEncodedRightsExprLangID = $embeddedEncodedRightsExprLangID;
+        $obj = clone $this;
+        $obj->embeddedEncodedRightsExprLangID = $embeddedEncodedRightsExprLangID;
 
-        return $this;
+        return $obj;
     }
 
-    public function setEmbeddedEncodedRightsExprType(
+    public function withEmbeddedEncodedRightsExprType(
         string $embeddedEncodedRightsExprType
     ): self {
-        $this->embeddedEncodedRightsExprType = $embeddedEncodedRightsExprType;
+        $obj = clone $this;
+        $obj->embeddedEncodedRightsExprType = $embeddedEncodedRightsExprType;
 
-        return $this;
+        return $obj;
     }
 
-    public function setEvent(string $event): self
+    public function withEvent(string $event): self
     {
-        $this->event = $event;
+        $obj = clone $this;
+        $obj->event = $event;
 
-        return $this;
+        return $obj;
     }
 
-    public function setExifVersion(string $exifVersion): self
+    public function withExifVersion(string $exifVersion): self
     {
-        $this->exifVersion = $exifVersion;
+        $obj = clone $this;
+        $obj->exifVersion = $exifVersion;
 
-        return $this;
+        return $obj;
     }
 
-    public function setFlashpixVersion(string $flashpixVersion): self
+    public function withFlashpixVersion(string $flashpixVersion): self
     {
-        $this->flashpixVersion = $flashpixVersion;
+        $obj = clone $this;
+        $obj->flashpixVersion = $flashpixVersion;
 
-        return $this;
+        return $obj;
     }
 
-    public function setGenreCvID(string $genreCvID): self
+    public function withGenreCvID(string $genreCvID): self
     {
-        $this->genreCvID = $genreCvID;
+        $obj = clone $this;
+        $obj->genreCvID = $genreCvID;
 
-        return $this;
+        return $obj;
     }
 
-    public function setGenreCvTermID(string $genreCvTermID): self
+    public function withGenreCvTermID(string $genreCvTermID): self
     {
-        $this->genreCvTermID = $genreCvTermID;
+        $obj = clone $this;
+        $obj->genreCvTermID = $genreCvTermID;
 
-        return $this;
+        return $obj;
     }
 
-    public function setGenreCvTermName(string $genreCvTermName): self
+    public function withGenreCvTermName(string $genreCvTermName): self
     {
-        $this->genreCvTermName = $genreCvTermName;
+        $obj = clone $this;
+        $obj->genreCvTermName = $genreCvTermName;
 
-        return $this;
+        return $obj;
     }
 
-    public function setGenreCvTermRefinedAbout(
+    public function withGenreCvTermRefinedAbout(
         string $genreCvTermRefinedAbout
     ): self {
-        $this->genreCvTermRefinedAbout = $genreCvTermRefinedAbout;
+        $obj = clone $this;
+        $obj->genreCvTermRefinedAbout = $genreCvTermRefinedAbout;
 
-        return $this;
+        return $obj;
     }
 
-    public function setHeadline(string $headline): self
+    public function withHeadline(string $headline): self
     {
-        $this->headline = $headline;
+        $obj = clone $this;
+        $obj->headline = $headline;
 
-        return $this;
+        return $obj;
     }
 
-    public function setImageCreatorID(string $imageCreatorID): self
+    public function withImageCreatorID(string $imageCreatorID): self
     {
-        $this->imageCreatorID = $imageCreatorID;
+        $obj = clone $this;
+        $obj->imageCreatorID = $imageCreatorID;
 
-        return $this;
+        return $obj;
     }
 
-    public function setImageCreatorImageID(string $imageCreatorImageID): self
+    public function withImageCreatorImageID(string $imageCreatorImageID): self
     {
-        $this->imageCreatorImageID = $imageCreatorImageID;
+        $obj = clone $this;
+        $obj->imageCreatorImageID = $imageCreatorImageID;
 
-        return $this;
+        return $obj;
     }
 
-    public function setImageCreatorName(string $imageCreatorName): self
+    public function withImageCreatorName(string $imageCreatorName): self
     {
-        $this->imageCreatorName = $imageCreatorName;
+        $obj = clone $this;
+        $obj->imageCreatorName = $imageCreatorName;
 
-        return $this;
+        return $obj;
     }
 
-    public function setImageDescription(string $imageDescription): self
+    public function withImageDescription(string $imageDescription): self
     {
-        $this->imageDescription = $imageDescription;
+        $obj = clone $this;
+        $obj->imageDescription = $imageDescription;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<float> $imageRegionBoundaryH
      */
-    public function setImageRegionBoundaryH(array $imageRegionBoundaryH): self
+    public function withImageRegionBoundaryH(array $imageRegionBoundaryH): self
     {
-        $this->imageRegionBoundaryH = $imageRegionBoundaryH;
+        $obj = clone $this;
+        $obj->imageRegionBoundaryH = $imageRegionBoundaryH;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<float> $imageRegionBoundaryRx
      */
-    public function setImageRegionBoundaryRx(array $imageRegionBoundaryRx): self
-    {
-        $this->imageRegionBoundaryRx = $imageRegionBoundaryRx;
+    public function withImageRegionBoundaryRx(
+        array $imageRegionBoundaryRx
+    ): self {
+        $obj = clone $this;
+        $obj->imageRegionBoundaryRx = $imageRegionBoundaryRx;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $imageRegionBoundaryShape
      */
-    public function setImageRegionBoundaryShape(
+    public function withImageRegionBoundaryShape(
         array $imageRegionBoundaryShape
     ): self {
-        $this->imageRegionBoundaryShape = $imageRegionBoundaryShape;
+        $obj = clone $this;
+        $obj->imageRegionBoundaryShape = $imageRegionBoundaryShape;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $imageRegionBoundaryUnit
      */
-    public function setImageRegionBoundaryUnit(
+    public function withImageRegionBoundaryUnit(
         array $imageRegionBoundaryUnit
     ): self {
-        $this->imageRegionBoundaryUnit = $imageRegionBoundaryUnit;
+        $obj = clone $this;
+        $obj->imageRegionBoundaryUnit = $imageRegionBoundaryUnit;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<float> $imageRegionBoundaryVerticesX
      */
-    public function setImageRegionBoundaryVerticesX(
+    public function withImageRegionBoundaryVerticesX(
         array $imageRegionBoundaryVerticesX
     ): self {
-        $this->imageRegionBoundaryVerticesX = $imageRegionBoundaryVerticesX;
+        $obj = clone $this;
+        $obj->imageRegionBoundaryVerticesX = $imageRegionBoundaryVerticesX;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<float> $imageRegionBoundaryVerticesY
      */
-    public function setImageRegionBoundaryVerticesY(
+    public function withImageRegionBoundaryVerticesY(
         array $imageRegionBoundaryVerticesY
     ): self {
-        $this->imageRegionBoundaryVerticesY = $imageRegionBoundaryVerticesY;
+        $obj = clone $this;
+        $obj->imageRegionBoundaryVerticesY = $imageRegionBoundaryVerticesY;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<float> $imageRegionBoundaryW
      */
-    public function setImageRegionBoundaryW(array $imageRegionBoundaryW): self
+    public function withImageRegionBoundaryW(array $imageRegionBoundaryW): self
     {
-        $this->imageRegionBoundaryW = $imageRegionBoundaryW;
+        $obj = clone $this;
+        $obj->imageRegionBoundaryW = $imageRegionBoundaryW;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<float> $imageRegionBoundaryX
      */
-    public function setImageRegionBoundaryX(array $imageRegionBoundaryX): self
+    public function withImageRegionBoundaryX(array $imageRegionBoundaryX): self
     {
-        $this->imageRegionBoundaryX = $imageRegionBoundaryX;
+        $obj = clone $this;
+        $obj->imageRegionBoundaryX = $imageRegionBoundaryX;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<float> $imageRegionBoundaryY
      */
-    public function setImageRegionBoundaryY(array $imageRegionBoundaryY): self
+    public function withImageRegionBoundaryY(array $imageRegionBoundaryY): self
     {
-        $this->imageRegionBoundaryY = $imageRegionBoundaryY;
+        $obj = clone $this;
+        $obj->imageRegionBoundaryY = $imageRegionBoundaryY;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $imageRegionCtypeIdentifier
      */
-    public function setImageRegionCtypeIdentifier(
+    public function withImageRegionCtypeIdentifier(
         array $imageRegionCtypeIdentifier
     ): self {
-        $this->imageRegionCtypeIdentifier = $imageRegionCtypeIdentifier;
+        $obj = clone $this;
+        $obj->imageRegionCtypeIdentifier = $imageRegionCtypeIdentifier;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $imageRegionCtypeName
      */
-    public function setImageRegionCtypeName(array $imageRegionCtypeName): self
+    public function withImageRegionCtypeName(array $imageRegionCtypeName): self
     {
-        $this->imageRegionCtypeName = $imageRegionCtypeName;
+        $obj = clone $this;
+        $obj->imageRegionCtypeName = $imageRegionCtypeName;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $imageRegionID
      */
-    public function setImageRegionID(array $imageRegionID): self
+    public function withImageRegionID(array $imageRegionID): self
     {
-        $this->imageRegionID = $imageRegionID;
+        $obj = clone $this;
+        $obj->imageRegionID = $imageRegionID;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $imageRegionName
      */
-    public function setImageRegionName(array $imageRegionName): self
+    public function withImageRegionName(array $imageRegionName): self
     {
-        $this->imageRegionName = $imageRegionName;
+        $obj = clone $this;
+        $obj->imageRegionName = $imageRegionName;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $imageRegionOrganisationInImageName
      */
-    public function setImageRegionOrganisationInImageName(
+    public function withImageRegionOrganisationInImageName(
         array $imageRegionOrganisationInImageName
     ): self {
-        $this
-            ->imageRegionOrganisationInImageName = $imageRegionOrganisationInImageName
-        ;
+        $obj = clone $this;
+        $obj->imageRegionOrganisationInImageName = $imageRegionOrganisationInImageName;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $imageRegionPersonInImage
      */
-    public function setImageRegionPersonInImage(
+    public function withImageRegionPersonInImage(
         array $imageRegionPersonInImage
     ): self {
-        $this->imageRegionPersonInImage = $imageRegionPersonInImage;
+        $obj = clone $this;
+        $obj->imageRegionPersonInImage = $imageRegionPersonInImage;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $imageRegionRoleIdentifier
      */
-    public function setImageRegionRoleIdentifier(
+    public function withImageRegionRoleIdentifier(
         array $imageRegionRoleIdentifier
     ): self {
-        $this->imageRegionRoleIdentifier = $imageRegionRoleIdentifier;
+        $obj = clone $this;
+        $obj->imageRegionRoleIdentifier = $imageRegionRoleIdentifier;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $imageRegionRoleName
      */
-    public function setImageRegionRoleName(array $imageRegionRoleName): self
+    public function withImageRegionRoleName(array $imageRegionRoleName): self
     {
-        $this->imageRegionRoleName = $imageRegionRoleName;
+        $obj = clone $this;
+        $obj->imageRegionRoleName = $imageRegionRoleName;
 
-        return $this;
+        return $obj;
     }
 
-    public function setImageSupplierID(string $imageSupplierID): self
+    public function withImageSupplierID(string $imageSupplierID): self
     {
-        $this->imageSupplierID = $imageSupplierID;
+        $obj = clone $this;
+        $obj->imageSupplierID = $imageSupplierID;
 
-        return $this;
+        return $obj;
     }
 
-    public function setImageSupplierImageID(string $imageSupplierImageID): self
+    public function withImageSupplierImageID(string $imageSupplierImageID): self
     {
-        $this->imageSupplierImageID = $imageSupplierImageID;
+        $obj = clone $this;
+        $obj->imageSupplierImageID = $imageSupplierImageID;
 
-        return $this;
+        return $obj;
     }
 
-    public function setImageSupplierName(string $imageSupplierName): self
+    public function withImageSupplierName(string $imageSupplierName): self
     {
-        $this->imageSupplierName = $imageSupplierName;
+        $obj = clone $this;
+        $obj->imageSupplierName = $imageSupplierName;
 
-        return $this;
+        return $obj;
     }
 
-    public function setInstructions(string $instructions): self
+    public function withInstructions(string $instructions): self
     {
-        $this->instructions = $instructions;
+        $obj = clone $this;
+        $obj->instructions = $instructions;
 
-        return $this;
+        return $obj;
     }
 
-    public function setIntellectualGenre(string $intellectualGenre): self
+    public function withIntellectualGenre(string $intellectualGenre): self
     {
-        $this->intellectualGenre = $intellectualGenre;
+        $obj = clone $this;
+        $obj->intellectualGenre = $intellectualGenre;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $keywords
      */
-    public function setKeywords(array $keywords): self
+    public function withKeywords(array $keywords): self
     {
-        $this->keywords = $keywords;
+        $obj = clone $this;
+        $obj->keywords = $keywords;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $licensorCity
      */
-    public function setLicensorCity(array $licensorCity): self
+    public function withLicensorCity(array $licensorCity): self
     {
-        $this->licensorCity = $licensorCity;
+        $obj = clone $this;
+        $obj->licensorCity = $licensorCity;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $licensorCountry
      */
-    public function setLicensorCountry(array $licensorCountry): self
+    public function withLicensorCountry(array $licensorCountry): self
     {
-        $this->licensorCountry = $licensorCountry;
+        $obj = clone $this;
+        $obj->licensorCountry = $licensorCountry;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $licensorEmail
      */
-    public function setLicensorEmail(array $licensorEmail): self
+    public function withLicensorEmail(array $licensorEmail): self
     {
-        $this->licensorEmail = $licensorEmail;
+        $obj = clone $this;
+        $obj->licensorEmail = $licensorEmail;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $licensorExtendedAddress
      */
-    public function setLicensorExtendedAddress(
+    public function withLicensorExtendedAddress(
         array $licensorExtendedAddress
     ): self {
-        $this->licensorExtendedAddress = $licensorExtendedAddress;
+        $obj = clone $this;
+        $obj->licensorExtendedAddress = $licensorExtendedAddress;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $licensorID
      */
-    public function setLicensorID(array $licensorID): self
+    public function withLicensorID(array $licensorID): self
     {
-        $this->licensorID = $licensorID;
+        $obj = clone $this;
+        $obj->licensorID = $licensorID;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $licensorName
      */
-    public function setLicensorName(array $licensorName): self
+    public function withLicensorName(array $licensorName): self
     {
-        $this->licensorName = $licensorName;
+        $obj = clone $this;
+        $obj->licensorName = $licensorName;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $licensorPostalCode
      */
-    public function setLicensorPostalCode(array $licensorPostalCode): self
+    public function withLicensorPostalCode(array $licensorPostalCode): self
     {
-        $this->licensorPostalCode = $licensorPostalCode;
+        $obj = clone $this;
+        $obj->licensorPostalCode = $licensorPostalCode;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $licensorRegion
      */
-    public function setLicensorRegion(array $licensorRegion): self
+    public function withLicensorRegion(array $licensorRegion): self
     {
-        $this->licensorRegion = $licensorRegion;
+        $obj = clone $this;
+        $obj->licensorRegion = $licensorRegion;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $licensorStreetAddress
      */
-    public function setLicensorStreetAddress(array $licensorStreetAddress): self
-    {
-        $this->licensorStreetAddress = $licensorStreetAddress;
+    public function withLicensorStreetAddress(
+        array $licensorStreetAddress
+    ): self {
+        $obj = clone $this;
+        $obj->licensorStreetAddress = $licensorStreetAddress;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $licensorTelephone1
      */
-    public function setLicensorTelephone1(array $licensorTelephone1): self
+    public function withLicensorTelephone1(array $licensorTelephone1): self
     {
-        $this->licensorTelephone1 = $licensorTelephone1;
+        $obj = clone $this;
+        $obj->licensorTelephone1 = $licensorTelephone1;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $licensorTelephone2
      */
-    public function setLicensorTelephone2(array $licensorTelephone2): self
+    public function withLicensorTelephone2(array $licensorTelephone2): self
     {
-        $this->licensorTelephone2 = $licensorTelephone2;
+        $obj = clone $this;
+        $obj->licensorTelephone2 = $licensorTelephone2;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $licensorURL
      */
-    public function setLicensorURL(array $licensorURL): self
+    public function withLicensorURL(array $licensorURL): self
     {
-        $this->licensorURL = $licensorURL;
+        $obj = clone $this;
+        $obj->licensorURL = $licensorURL;
 
-        return $this;
+        return $obj;
     }
 
-    public function setLinkedEncodedRightsExpr(
+    public function withLinkedEncodedRightsExpr(
         string $linkedEncodedRightsExpr
     ): self {
-        $this->linkedEncodedRightsExpr = $linkedEncodedRightsExpr;
+        $obj = clone $this;
+        $obj->linkedEncodedRightsExpr = $linkedEncodedRightsExpr;
 
-        return $this;
+        return $obj;
     }
 
-    public function setLinkedEncodedRightsExprLangID(
+    public function withLinkedEncodedRightsExprLangID(
         string $linkedEncodedRightsExprLangID
     ): self {
-        $this->linkedEncodedRightsExprLangID = $linkedEncodedRightsExprLangID;
+        $obj = clone $this;
+        $obj->linkedEncodedRightsExprLangID = $linkedEncodedRightsExprLangID;
 
-        return $this;
+        return $obj;
     }
 
-    public function setLinkedEncodedRightsExprType(
+    public function withLinkedEncodedRightsExprType(
         string $linkedEncodedRightsExprType
     ): self {
-        $this->linkedEncodedRightsExprType = $linkedEncodedRightsExprType;
+        $obj = clone $this;
+        $obj->linkedEncodedRightsExprType = $linkedEncodedRightsExprType;
 
-        return $this;
+        return $obj;
     }
 
-    public function setLocation(string $location): self
+    public function withLocation(string $location): self
     {
-        $this->location = $location;
+        $obj = clone $this;
+        $obj->location = $location;
 
-        return $this;
+        return $obj;
     }
 
-    public function setLocationCreatedCity(string $locationCreatedCity): self
+    public function withLocationCreatedCity(string $locationCreatedCity): self
     {
-        $this->locationCreatedCity = $locationCreatedCity;
+        $obj = clone $this;
+        $obj->locationCreatedCity = $locationCreatedCity;
 
-        return $this;
+        return $obj;
     }
 
-    public function setLocationCreatedCountryCode(
+    public function withLocationCreatedCountryCode(
         string $locationCreatedCountryCode
     ): self {
-        $this->locationCreatedCountryCode = $locationCreatedCountryCode;
+        $obj = clone $this;
+        $obj->locationCreatedCountryCode = $locationCreatedCountryCode;
 
-        return $this;
+        return $obj;
     }
 
-    public function setLocationCreatedCountryName(
+    public function withLocationCreatedCountryName(
         string $locationCreatedCountryName
     ): self {
-        $this->locationCreatedCountryName = $locationCreatedCountryName;
+        $obj = clone $this;
+        $obj->locationCreatedCountryName = $locationCreatedCountryName;
 
-        return $this;
+        return $obj;
     }
 
-    public function setLocationCreatedGpsAltitude(
+    public function withLocationCreatedGpsAltitude(
         string $locationCreatedGpsAltitude
     ): self {
-        $this->locationCreatedGpsAltitude = $locationCreatedGpsAltitude;
+        $obj = clone $this;
+        $obj->locationCreatedGpsAltitude = $locationCreatedGpsAltitude;
 
-        return $this;
+        return $obj;
     }
 
-    public function setLocationCreatedGpsLatitude(
+    public function withLocationCreatedGpsLatitude(
         string $locationCreatedGpsLatitude
     ): self {
-        $this->locationCreatedGpsLatitude = $locationCreatedGpsLatitude;
+        $obj = clone $this;
+        $obj->locationCreatedGpsLatitude = $locationCreatedGpsLatitude;
 
-        return $this;
+        return $obj;
     }
 
-    public function setLocationCreatedGpsLongitude(
+    public function withLocationCreatedGpsLongitude(
         string $locationCreatedGpsLongitude
     ): self {
-        $this->locationCreatedGpsLongitude = $locationCreatedGpsLongitude;
+        $obj = clone $this;
+        $obj->locationCreatedGpsLongitude = $locationCreatedGpsLongitude;
 
-        return $this;
+        return $obj;
     }
 
-    public function setLocationCreatedLocationID(
+    public function withLocationCreatedLocationID(
         string $locationCreatedLocationID
     ): self {
-        $this->locationCreatedLocationID = $locationCreatedLocationID;
+        $obj = clone $this;
+        $obj->locationCreatedLocationID = $locationCreatedLocationID;
 
-        return $this;
+        return $obj;
     }
 
-    public function setLocationCreatedLocationName(
+    public function withLocationCreatedLocationName(
         string $locationCreatedLocationName
     ): self {
-        $this->locationCreatedLocationName = $locationCreatedLocationName;
+        $obj = clone $this;
+        $obj->locationCreatedLocationName = $locationCreatedLocationName;
 
-        return $this;
+        return $obj;
     }
 
-    public function setLocationCreatedProvinceState(
+    public function withLocationCreatedProvinceState(
         string $locationCreatedProvinceState
     ): self {
-        $this->locationCreatedProvinceState = $locationCreatedProvinceState;
+        $obj = clone $this;
+        $obj->locationCreatedProvinceState = $locationCreatedProvinceState;
 
-        return $this;
+        return $obj;
     }
 
-    public function setLocationCreatedSublocation(
+    public function withLocationCreatedSublocation(
         string $locationCreatedSublocation
     ): self {
-        $this->locationCreatedSublocation = $locationCreatedSublocation;
+        $obj = clone $this;
+        $obj->locationCreatedSublocation = $locationCreatedSublocation;
 
-        return $this;
+        return $obj;
     }
 
-    public function setLocationCreatedWorldRegion(
+    public function withLocationCreatedWorldRegion(
         string $locationCreatedWorldRegion
     ): self {
-        $this->locationCreatedWorldRegion = $locationCreatedWorldRegion;
+        $obj = clone $this;
+        $obj->locationCreatedWorldRegion = $locationCreatedWorldRegion;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $locationShownCity
      */
-    public function setLocationShownCity(array $locationShownCity): self
+    public function withLocationShownCity(array $locationShownCity): self
     {
-        $this->locationShownCity = $locationShownCity;
+        $obj = clone $this;
+        $obj->locationShownCity = $locationShownCity;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $locationShownCountryCode
      */
-    public function setLocationShownCountryCode(
+    public function withLocationShownCountryCode(
         array $locationShownCountryCode
     ): self {
-        $this->locationShownCountryCode = $locationShownCountryCode;
+        $obj = clone $this;
+        $obj->locationShownCountryCode = $locationShownCountryCode;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $locationShownCountryName
      */
-    public function setLocationShownCountryName(
+    public function withLocationShownCountryName(
         array $locationShownCountryName
     ): self {
-        $this->locationShownCountryName = $locationShownCountryName;
+        $obj = clone $this;
+        $obj->locationShownCountryName = $locationShownCountryName;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $locationShownGpsAltitude
      */
-    public function setLocationShownGpsAltitude(
+    public function withLocationShownGpsAltitude(
         array $locationShownGpsAltitude
     ): self {
-        $this->locationShownGpsAltitude = $locationShownGpsAltitude;
+        $obj = clone $this;
+        $obj->locationShownGpsAltitude = $locationShownGpsAltitude;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $locationShownGpsLatitude
      */
-    public function setLocationShownGpsLatitude(
+    public function withLocationShownGpsLatitude(
         array $locationShownGpsLatitude
     ): self {
-        $this->locationShownGpsLatitude = $locationShownGpsLatitude;
+        $obj = clone $this;
+        $obj->locationShownGpsLatitude = $locationShownGpsLatitude;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $locationShownGpsLongitude
      */
-    public function setLocationShownGpsLongitude(
+    public function withLocationShownGpsLongitude(
         array $locationShownGpsLongitude
     ): self {
-        $this->locationShownGpsLongitude = $locationShownGpsLongitude;
+        $obj = clone $this;
+        $obj->locationShownGpsLongitude = $locationShownGpsLongitude;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $locationShownLocationID
      */
-    public function setLocationShownLocationID(
+    public function withLocationShownLocationID(
         array $locationShownLocationID
     ): self {
-        $this->locationShownLocationID = $locationShownLocationID;
+        $obj = clone $this;
+        $obj->locationShownLocationID = $locationShownLocationID;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $locationShownLocationName
      */
-    public function setLocationShownLocationName(
+    public function withLocationShownLocationName(
         array $locationShownLocationName
     ): self {
-        $this->locationShownLocationName = $locationShownLocationName;
+        $obj = clone $this;
+        $obj->locationShownLocationName = $locationShownLocationName;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $locationShownProvinceState
      */
-    public function setLocationShownProvinceState(
+    public function withLocationShownProvinceState(
         array $locationShownProvinceState
     ): self {
-        $this->locationShownProvinceState = $locationShownProvinceState;
+        $obj = clone $this;
+        $obj->locationShownProvinceState = $locationShownProvinceState;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $locationShownSublocation
      */
-    public function setLocationShownSublocation(
+    public function withLocationShownSublocation(
         array $locationShownSublocation
     ): self {
-        $this->locationShownSublocation = $locationShownSublocation;
+        $obj = clone $this;
+        $obj->locationShownSublocation = $locationShownSublocation;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $locationShownWorldRegion
      */
-    public function setLocationShownWorldRegion(
+    public function withLocationShownWorldRegion(
         array $locationShownWorldRegion
     ): self {
-        $this->locationShownWorldRegion = $locationShownWorldRegion;
+        $obj = clone $this;
+        $obj->locationShownWorldRegion = $locationShownWorldRegion;
 
-        return $this;
+        return $obj;
     }
 
-    public function setMaxAvailHeight(float $maxAvailHeight): self
+    public function withMaxAvailHeight(float $maxAvailHeight): self
     {
-        $this->maxAvailHeight = $maxAvailHeight;
+        $obj = clone $this;
+        $obj->maxAvailHeight = $maxAvailHeight;
 
-        return $this;
+        return $obj;
     }
 
-    public function setMaxAvailWidth(float $maxAvailWidth): self
+    public function withMaxAvailWidth(float $maxAvailWidth): self
     {
-        $this->maxAvailWidth = $maxAvailWidth;
+        $obj = clone $this;
+        $obj->maxAvailWidth = $maxAvailWidth;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<float> $modelAge
      */
-    public function setModelAge(array $modelAge): self
+    public function withModelAge(array $modelAge): self
     {
-        $this->modelAge = $modelAge;
+        $obj = clone $this;
+        $obj->modelAge = $modelAge;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $modelReleaseID
      */
-    public function setModelReleaseID(array $modelReleaseID): self
+    public function withModelReleaseID(array $modelReleaseID): self
     {
-        $this->modelReleaseID = $modelReleaseID;
+        $obj = clone $this;
+        $obj->modelReleaseID = $modelReleaseID;
 
-        return $this;
+        return $obj;
     }
 
-    public function setObjectAttributeReference(
+    public function withObjectAttributeReference(
         string $objectAttributeReference
     ): self {
-        $this->objectAttributeReference = $objectAttributeReference;
+        $obj = clone $this;
+        $obj->objectAttributeReference = $objectAttributeReference;
 
-        return $this;
+        return $obj;
     }
 
-    public function setObjectName(string $objectName): self
+    public function withObjectName(string $objectName): self
     {
-        $this->objectName = $objectName;
+        $obj = clone $this;
+        $obj->objectName = $objectName;
 
-        return $this;
+        return $obj;
     }
 
-    public function setOffsetTimeOriginal(string $offsetTimeOriginal): self
+    public function withOffsetTimeOriginal(string $offsetTimeOriginal): self
     {
-        $this->offsetTimeOriginal = $offsetTimeOriginal;
+        $obj = clone $this;
+        $obj->offsetTimeOriginal = $offsetTimeOriginal;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $organisationInImageCode
      */
-    public function setOrganisationInImageCode(
+    public function withOrganisationInImageCode(
         array $organisationInImageCode
     ): self {
-        $this->organisationInImageCode = $organisationInImageCode;
+        $obj = clone $this;
+        $obj->organisationInImageCode = $organisationInImageCode;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $organisationInImageName
      */
-    public function setOrganisationInImageName(
+    public function withOrganisationInImageName(
         array $organisationInImageName
     ): self {
-        $this->organisationInImageName = $organisationInImageName;
+        $obj = clone $this;
+        $obj->organisationInImageName = $organisationInImageName;
 
-        return $this;
+        return $obj;
     }
 
-    public function setOrientation(string $orientation): self
+    public function withOrientation(string $orientation): self
     {
-        $this->orientation = $orientation;
+        $obj = clone $this;
+        $obj->orientation = $orientation;
 
-        return $this;
+        return $obj;
     }
 
-    public function setOriginalTransmissionReference(
+    public function withOriginalTransmissionReference(
         string $originalTransmissionReference
     ): self {
-        $this->originalTransmissionReference = $originalTransmissionReference;
+        $obj = clone $this;
+        $obj->originalTransmissionReference = $originalTransmissionReference;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $personInImage
      */
-    public function setPersonInImage(array $personInImage): self
+    public function withPersonInImage(array $personInImage): self
     {
-        $this->personInImage = $personInImage;
+        $obj = clone $this;
+        $obj->personInImage = $personInImage;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $personInImageCvTermCvID
      */
-    public function setPersonInImageCvTermCvID(
+    public function withPersonInImageCvTermCvID(
         array $personInImageCvTermCvID
     ): self {
-        $this->personInImageCvTermCvID = $personInImageCvTermCvID;
+        $obj = clone $this;
+        $obj->personInImageCvTermCvID = $personInImageCvTermCvID;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $personInImageCvTermID
      */
-    public function setPersonInImageCvTermID(array $personInImageCvTermID): self
-    {
-        $this->personInImageCvTermID = $personInImageCvTermID;
+    public function withPersonInImageCvTermID(
+        array $personInImageCvTermID
+    ): self {
+        $obj = clone $this;
+        $obj->personInImageCvTermID = $personInImageCvTermID;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $personInImageCvTermName
      */
-    public function setPersonInImageCvTermName(
+    public function withPersonInImageCvTermName(
         array $personInImageCvTermName
     ): self {
-        $this->personInImageCvTermName = $personInImageCvTermName;
+        $obj = clone $this;
+        $obj->personInImageCvTermName = $personInImageCvTermName;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $personInImageCvTermRefinedAbout
      */
-    public function setPersonInImageCvTermRefinedAbout(
+    public function withPersonInImageCvTermRefinedAbout(
         array $personInImageCvTermRefinedAbout
     ): self {
-        $this->personInImageCvTermRefinedAbout = $personInImageCvTermRefinedAbout;
+        $obj = clone $this;
+        $obj->personInImageCvTermRefinedAbout = $personInImageCvTermRefinedAbout;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $personInImageDescription
      */
-    public function setPersonInImageDescription(
+    public function withPersonInImageDescription(
         array $personInImageDescription
     ): self {
-        $this->personInImageDescription = $personInImageDescription;
+        $obj = clone $this;
+        $obj->personInImageDescription = $personInImageDescription;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $personInImageID
      */
-    public function setPersonInImageID(array $personInImageID): self
+    public function withPersonInImageID(array $personInImageID): self
     {
-        $this->personInImageID = $personInImageID;
+        $obj = clone $this;
+        $obj->personInImageID = $personInImageID;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $personInImageName
      */
-    public function setPersonInImageName(array $personInImageName): self
+    public function withPersonInImageName(array $personInImageName): self
     {
-        $this->personInImageName = $personInImageName;
+        $obj = clone $this;
+        $obj->personInImageName = $personInImageName;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $productInImageDescription
      */
-    public function setProductInImageDescription(
+    public function withProductInImageDescription(
         array $productInImageDescription
     ): self {
-        $this->productInImageDescription = $productInImageDescription;
+        $obj = clone $this;
+        $obj->productInImageDescription = $productInImageDescription;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<float> $productInImageGtin
      */
-    public function setProductInImageGtin(array $productInImageGtin): self
+    public function withProductInImageGtin(array $productInImageGtin): self
     {
-        $this->productInImageGtin = $productInImageGtin;
+        $obj = clone $this;
+        $obj->productInImageGtin = $productInImageGtin;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $productInImageName
      */
-    public function setProductInImageName(array $productInImageName): self
+    public function withProductInImageName(array $productInImageName): self
     {
-        $this->productInImageName = $productInImageName;
+        $obj = clone $this;
+        $obj->productInImageName = $productInImageName;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $propertyReleaseID
      */
-    public function setPropertyReleaseID(array $propertyReleaseID): self
+    public function withPropertyReleaseID(array $propertyReleaseID): self
     {
-        $this->propertyReleaseID = $propertyReleaseID;
+        $obj = clone $this;
+        $obj->propertyReleaseID = $propertyReleaseID;
 
-        return $this;
+        return $obj;
     }
 
-    public function setProvinceState(string $provinceState): self
+    public function withProvinceState(string $provinceState): self
     {
-        $this->provinceState = $provinceState;
+        $obj = clone $this;
+        $obj->provinceState = $provinceState;
 
-        return $this;
+        return $obj;
     }
 
-    public function setRating(int $rating): self
+    public function withRating(int $rating): self
     {
-        $this->rating = $rating;
+        $obj = clone $this;
+        $obj->rating = $rating;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $registryEntryRole
      */
-    public function setRegistryEntryRole(array $registryEntryRole): self
+    public function withRegistryEntryRole(array $registryEntryRole): self
     {
-        $this->registryEntryRole = $registryEntryRole;
+        $obj = clone $this;
+        $obj->registryEntryRole = $registryEntryRole;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $registryItemID
      */
-    public function setRegistryItemID(array $registryItemID): self
+    public function withRegistryItemID(array $registryItemID): self
     {
-        $this->registryItemID = $registryItemID;
+        $obj = clone $this;
+        $obj->registryItemID = $registryItemID;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $registryOrganisationID
      */
-    public function setRegistryOrganisationID(
+    public function withRegistryOrganisationID(
         array $registryOrganisationID
     ): self {
-        $this->registryOrganisationID = $registryOrganisationID;
+        $obj = clone $this;
+        $obj->registryOrganisationID = $registryOrganisationID;
 
-        return $this;
+        return $obj;
     }
 
-    public function setResolutionUnit(string $resolutionUnit): self
+    public function withResolutionUnit(string $resolutionUnit): self
     {
-        $this->resolutionUnit = $resolutionUnit;
+        $obj = clone $this;
+        $obj->resolutionUnit = $resolutionUnit;
 
-        return $this;
+        return $obj;
     }
 
-    public function setRights(string $rights): self
+    public function withRights(string $rights): self
     {
-        $this->rights = $rights;
+        $obj = clone $this;
+        $obj->rights = $rights;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $scene
      */
-    public function setScene(array $scene): self
+    public function withScene(array $scene): self
     {
-        $this->scene = $scene;
+        $obj = clone $this;
+        $obj->scene = $scene;
 
-        return $this;
+        return $obj;
     }
 
-    public function setSource(string $source): self
+    public function withSource(string $source): self
     {
-        $this->source = $source;
+        $obj = clone $this;
+        $obj->source = $source;
 
-        return $this;
+        return $obj;
     }
 
-    public function setSpecialInstructions(string $specialInstructions): self
+    public function withSpecialInstructions(string $specialInstructions): self
     {
-        $this->specialInstructions = $specialInstructions;
+        $obj = clone $this;
+        $obj->specialInstructions = $specialInstructions;
 
-        return $this;
+        return $obj;
     }
 
-    public function setState(string $state): self
+    public function withState(string $state): self
     {
-        $this->state = $state;
+        $obj = clone $this;
+        $obj->state = $state;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $subject
      */
-    public function setSubject(array $subject): self
+    public function withSubject(array $subject): self
     {
-        $this->subject = $subject;
+        $obj = clone $this;
+        $obj->subject = $subject;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $subjectCode
      */
-    public function setSubjectCode(array $subjectCode): self
+    public function withSubjectCode(array $subjectCode): self
     {
-        $this->subjectCode = $subjectCode;
+        $obj = clone $this;
+        $obj->subjectCode = $subjectCode;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * @param list<string> $subjectReference
      */
-    public function setSubjectReference(array $subjectReference): self
+    public function withSubjectReference(array $subjectReference): self
     {
-        $this->subjectReference = $subjectReference;
+        $obj = clone $this;
+        $obj->subjectReference = $subjectReference;
 
-        return $this;
+        return $obj;
     }
 
-    public function setSublocation(string $sublocation): self
+    public function withSublocation(string $sublocation): self
     {
-        $this->sublocation = $sublocation;
+        $obj = clone $this;
+        $obj->sublocation = $sublocation;
 
-        return $this;
+        return $obj;
     }
 
-    public function setTimeCreated(string $timeCreated): self
+    public function withTimeCreated(string $timeCreated): self
     {
-        $this->timeCreated = $timeCreated;
+        $obj = clone $this;
+        $obj->timeCreated = $timeCreated;
 
-        return $this;
+        return $obj;
     }
 
-    public function setTitle(string $title): self
+    public function withTitle(string $title): self
     {
-        $this->title = $title;
+        $obj = clone $this;
+        $obj->title = $title;
 
-        return $this;
+        return $obj;
     }
 
-    public function setTransmissionReference(
+    public function withTransmissionReference(
         string $transmissionReference
     ): self {
-        $this->transmissionReference = $transmissionReference;
+        $obj = clone $this;
+        $obj->transmissionReference = $transmissionReference;
 
-        return $this;
+        return $obj;
     }
 
-    public function setUsageTerms(string $usageTerms): self
+    public function withUsageTerms(string $usageTerms): self
     {
-        $this->usageTerms = $usageTerms;
+        $obj = clone $this;
+        $obj->usageTerms = $usageTerms;
 
-        return $this;
+        return $obj;
     }
 
-    public function setWebStatement(string $webStatement): self
+    public function withWebStatement(string $webStatement): self
     {
-        $this->webStatement = $webStatement;
+        $obj = clone $this;
+        $obj->webStatement = $webStatement;
 
-        return $this;
+        return $obj;
     }
 
-    public function setWriter(string $writer): self
+    public function withWriter(string $writer): self
     {
-        $this->writer = $writer;
+        $obj = clone $this;
+        $obj->writer = $writer;
 
-        return $this;
+        return $obj;
     }
 
-    public function setWriterEditor(string $writerEditor): self
+    public function withWriterEditor(string $writerEditor): self
     {
-        $this->writerEditor = $writerEditor;
+        $obj = clone $this;
+        $obj->writerEditor = $writerEditor;
 
-        return $this;
+        return $obj;
     }
 
-    public function setXResolution(float $xResolution): self
+    public function withXResolution(float $xResolution): self
     {
-        $this->xResolution = $xResolution;
+        $obj = clone $this;
+        $obj->xResolution = $xResolution;
 
-        return $this;
+        return $obj;
     }
 
-    public function setYResolution(float $yResolution): self
+    public function withYResolution(float $yResolution): self
     {
-        $this->yResolution = $yResolution;
+        $obj = clone $this;
+        $obj->yResolution = $yResolution;
 
-        return $this;
+        return $obj;
     }
 }

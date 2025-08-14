@@ -84,6 +84,20 @@ final class Schema implements BaseModel
     #[Api(type: new ListOf(union: SelectOption::class), optional: true)]
     public ?array $selectOptions;
 
+    /**
+     * `new Schema()` is missing required properties by the API.
+     *
+     * To enforce required parameters use
+     * ```
+     * Schema::with(type: ...)
+     * ```
+     *
+     * Otherwise ensure the following setters are called
+     *
+     * ```
+     * (new Schema)->withType(...)
+     * ```
+     */
     public function __construct()
     {
         self::introspect();
@@ -99,7 +113,7 @@ final class Schema implements BaseModel
      * @param null|bool|float|list<bool|float|string>|string $defaultValue
      * @param null|list<bool|float|string> $selectOptions
      */
-    public static function from(
+    public static function with(
         string $type,
         null|array|bool|float|string $defaultValue = null,
         ?bool $isValueRequired = null,
@@ -129,11 +143,12 @@ final class Schema implements BaseModel
      *
      * @param Type::* $type
      */
-    public function setType(string $type): self
+    public function withType(string $type): self
     {
-        $this->type = $type;
+        $obj = clone $this;
+        $obj->type = $type;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -141,61 +156,68 @@ final class Schema implements BaseModel
      *
      * @param bool|float|list<bool|float|string>|string $defaultValue
      */
-    public function setDefaultValue(array|bool|float|string $defaultValue): self
-    {
-        $this->defaultValue = $defaultValue;
+    public function withDefaultValue(
+        array|bool|float|string $defaultValue
+    ): self {
+        $obj = clone $this;
+        $obj->defaultValue = $defaultValue;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Specifies if the this custom metadata field is required or not.
      */
-    public function setIsValueRequired(bool $isValueRequired): self
+    public function withIsValueRequired(bool $isValueRequired): self
     {
-        $this->isValueRequired = $isValueRequired;
+        $obj = clone $this;
+        $obj->isValueRequired = $isValueRequired;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Maximum length of string. Only set if `type` is set to `Text` or `Textarea`.
      */
-    public function setMaxLength(float $maxLength): self
+    public function withMaxLength(float $maxLength): self
     {
-        $this->maxLength = $maxLength;
+        $obj = clone $this;
+        $obj->maxLength = $maxLength;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Maximum value of the field. Only set if field type is `Date` or `Number`. For `Date` type field, the value will be in ISO8601 string format. For `Number` type field, it will be a numeric value.
      */
-    public function setMaxValue(float|string $maxValue): self
+    public function withMaxValue(float|string $maxValue): self
     {
-        $this->maxValue = $maxValue;
+        $obj = clone $this;
+        $obj->maxValue = $maxValue;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Minimum length of string. Only set if `type` is set to `Text` or `Textarea`.
      */
-    public function setMinLength(float $minLength): self
+    public function withMinLength(float $minLength): self
     {
-        $this->minLength = $minLength;
+        $obj = clone $this;
+        $obj->minLength = $minLength;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Minimum value of the field. Only set if field type is `Date` or `Number`. For `Date` type field, the value will be in ISO8601 string format. For `Number` type field, it will be a numeric value.
      */
-    public function setMinValue(float|string $minValue): self
+    public function withMinValue(float|string $minValue): self
     {
-        $this->minValue = $minValue;
+        $obj = clone $this;
+        $obj->minValue = $minValue;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -203,10 +225,11 @@ final class Schema implements BaseModel
      *
      * @param list<bool|float|string> $selectOptions
      */
-    public function setSelectOptions(array $selectOptions): self
+    public function withSelectOptions(array $selectOptions): self
     {
-        $this->selectOptions = $selectOptions;
+        $obj = clone $this;
+        $obj->selectOptions = $selectOptions;
 
-        return $this;
+        return $obj;
     }
 }

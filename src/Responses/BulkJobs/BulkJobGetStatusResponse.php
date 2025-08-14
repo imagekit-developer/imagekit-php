@@ -46,7 +46,7 @@ final class BulkJobGetStatusResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(
+    public static function with(
         ?string $jobID = null,
         ?string $status = null,
         ?string $type = null
@@ -63,30 +63,33 @@ final class BulkJobGetStatusResponse implements BaseModel
     /**
      * Unique identifier of the bulk job.
      */
-    public function setJobID(string $jobID): self
+    public function withJobID(string $jobID): self
     {
-        $this->jobID = $jobID;
+        $obj = clone $this;
+        $obj->jobID = $jobID;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Status of the bulk job. Possible values - `Pending`, `Completed`.
      */
-    public function setStatus(string $status): self
+    public function withStatus(string $status): self
     {
-        $this->status = $status;
+        $obj = clone $this;
+        $obj->status = $status;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Type of the bulk job. Possible values - `COPY_FOLDER`, `MOVE_FOLDER`.
      */
-    public function setType(string $type): self
+    public function withType(string $type): self
     {
-        $this->type = $type;
+        $obj = clone $this;
+        $obj->type = $type;
 
-        return $this;
+        return $obj;
     }
 }

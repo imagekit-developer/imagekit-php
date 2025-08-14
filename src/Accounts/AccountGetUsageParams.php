@@ -33,6 +33,20 @@ final class AccountGetUsageParams implements BaseModel
     #[Api]
     public \DateTimeInterface $startDate;
 
+    /**
+     * `new AccountGetUsageParams()` is missing required properties by the API.
+     *
+     * To enforce required parameters use
+     * ```
+     * AccountGetUsageParams::with(endDate: ..., startDate: ...)
+     * ```
+     *
+     * Otherwise ensure the following setters are called
+     *
+     * ```
+     * (new AccountGetUsageParams)->withEndDate(...)->withStartDate(...)
+     * ```
+     */
     public function __construct()
     {
         self::introspect();
@@ -44,7 +58,7 @@ final class AccountGetUsageParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(
+    public static function with(
         \DateTimeInterface $endDate,
         \DateTimeInterface $startDate
     ): self {
@@ -59,20 +73,22 @@ final class AccountGetUsageParams implements BaseModel
     /**
      * Specify a `endDate` in `YYYY-MM-DD` format. It should be after the `startDate`. The difference between `startDate` and `endDate` should be less than 90 days.
      */
-    public function setEndDate(\DateTimeInterface $endDate): self
+    public function withEndDate(\DateTimeInterface $endDate): self
     {
-        $this->endDate = $endDate;
+        $obj = clone $this;
+        $obj->endDate = $endDate;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Specify a `startDate` in `YYYY-MM-DD` format. It should be before the `endDate`. The difference between `startDate` and `endDate` should be less than 90 days.
      */
-    public function setStartDate(\DateTimeInterface $startDate): self
+    public function withStartDate(\DateTimeInterface $startDate): self
     {
-        $this->startDate = $startDate;
+        $obj = clone $this;
+        $obj->startDate = $startDate;
 
-        return $this;
+        return $obj;
     }
 }

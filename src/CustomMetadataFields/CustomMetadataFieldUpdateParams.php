@@ -43,7 +43,7 @@ final class CustomMetadataFieldUpdateParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(
+    public static function with(
         ?string $label = null,
         ?Schema $schema = null
     ): self {
@@ -58,20 +58,22 @@ final class CustomMetadataFieldUpdateParams implements BaseModel
     /**
      * Human readable name of the custom metadata field. This should be unique across all non deleted custom metadata fields. This name is displayed as form field label to the users while setting field value on an asset in the media library UI. This parameter is required if `schema` is not provided.
      */
-    public function setLabel(string $label): self
+    public function withLabel(string $label): self
     {
-        $this->label = $label;
+        $obj = clone $this;
+        $obj->label = $label;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * An object that describes the rules for the custom metadata key. This parameter is required if `label` is not provided. Note: `type` cannot be updated and will be ignored if sent with the `schema`. The schema will be validated as per the existing `type`.
      */
-    public function setSchema(Schema $schema): self
+    public function withSchema(Schema $schema): self
     {
-        $this->schema = $schema;
+        $obj = clone $this;
+        $obj->schema = $schema;
 
-        return $this;
+        return $obj;
     }
 }

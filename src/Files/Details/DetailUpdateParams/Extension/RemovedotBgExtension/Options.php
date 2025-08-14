@@ -55,7 +55,7 @@ final class Options implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(
+    public static function with(
         ?bool $addShadow = null,
         ?string $bgColor = null,
         ?string $bgImageURL = null,
@@ -74,40 +74,44 @@ final class Options implements BaseModel
     /**
      * Whether to add an artificial shadow to the result. Default is false. Note: Adding shadows is currently only supported for car photos.
      */
-    public function setAddShadow(bool $addShadow): self
+    public function withAddShadow(bool $addShadow): self
     {
-        $this->addShadow = $addShadow;
+        $obj = clone $this;
+        $obj->addShadow = $addShadow;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Specifies a solid color background using hex code (e.g., "81d4fa", "fff") or color name (e.g., "green"). If this parameter is set, `bg_image_url` must be empty.
      */
-    public function setBgColor(string $bgColor): self
+    public function withBgColor(string $bgColor): self
     {
-        $this->bgColor = $bgColor;
+        $obj = clone $this;
+        $obj->bgColor = $bgColor;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Sets a background image from a URL. If this parameter is set, `bg_color` must be empty.
      */
-    public function setBgImageURL(string $bgImageURL): self
+    public function withBgImageURL(string $bgImageURL): self
     {
-        $this->bgImageURL = $bgImageURL;
+        $obj = clone $this;
+        $obj->bgImageURL = $bgImageURL;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Allows semi-transparent regions in the result. Default is true. Note: Semitransparency is currently only supported for car windows.
      */
-    public function setSemitransparency(bool $semitransparency): self
+    public function withSemitransparency(bool $semitransparency): self
     {
-        $this->semitransparency = $semitransparency;
+        $obj = clone $this;
+        $obj->semitransparency = $semitransparency;
 
-        return $this;
+        return $obj;
     }
 }

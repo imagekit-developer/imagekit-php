@@ -125,7 +125,7 @@ final class MetadataGetResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(
+    public static function with(
         ?string $audioCodec = null,
         ?int $bitRate = null,
         ?int $density = null,
@@ -164,137 +164,151 @@ final class MetadataGetResponse implements BaseModel
     /**
      * The audio codec used in the video (only for video).
      */
-    public function setAudioCodec(string $audioCodec): self
+    public function withAudioCodec(string $audioCodec): self
     {
-        $this->audioCodec = $audioCodec;
+        $obj = clone $this;
+        $obj->audioCodec = $audioCodec;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The bit rate of the video in kbps (only for video).
      */
-    public function setBitRate(int $bitRate): self
+    public function withBitRate(int $bitRate): self
     {
-        $this->bitRate = $bitRate;
+        $obj = clone $this;
+        $obj->bitRate = $bitRate;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The density of the image in DPI.
      */
-    public function setDensity(int $density): self
+    public function withDensity(int $density): self
     {
-        $this->density = $density;
+        $obj = clone $this;
+        $obj->density = $density;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The duration of the video in seconds (only for video).
      */
-    public function setDuration(int $duration): self
+    public function withDuration(int $duration): self
     {
-        $this->duration = $duration;
+        $obj = clone $this;
+        $obj->duration = $duration;
 
-        return $this;
+        return $obj;
     }
 
-    public function setExif(Exif $exif): self
+    public function withExif(Exif $exif): self
     {
-        $this->exif = $exif;
+        $obj = clone $this;
+        $obj->exif = $exif;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The format of the file (e.g., 'jpg', 'mp4').
      */
-    public function setFormat(string $format): self
+    public function withFormat(string $format): self
     {
-        $this->format = $format;
+        $obj = clone $this;
+        $obj->format = $format;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Indicates if the image has a color profile.
      */
-    public function setHasColorProfile(bool $hasColorProfile): self
+    public function withHasColorProfile(bool $hasColorProfile): self
     {
-        $this->hasColorProfile = $hasColorProfile;
+        $obj = clone $this;
+        $obj->hasColorProfile = $hasColorProfile;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Indicates if the image contains transparent areas.
      */
-    public function setHasTransparency(bool $hasTransparency): self
+    public function withHasTransparency(bool $hasTransparency): self
     {
-        $this->hasTransparency = $hasTransparency;
+        $obj = clone $this;
+        $obj->hasTransparency = $hasTransparency;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The height of the image or video in pixels.
      */
-    public function setHeight(int $height): self
+    public function withHeight(int $height): self
     {
-        $this->height = $height;
+        $obj = clone $this;
+        $obj->height = $height;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Perceptual hash of the image.
      */
-    public function setPHash(string $pHash): self
+    public function withPHash(string $pHash): self
     {
-        $this->pHash = $pHash;
+        $obj = clone $this;
+        $obj->pHash = $pHash;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The quality indicator of the image.
      */
-    public function setQuality(int $quality): self
+    public function withQuality(int $quality): self
     {
-        $this->quality = $quality;
+        $obj = clone $this;
+        $obj->quality = $quality;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The file size in bytes.
      */
-    public function setSize(int $size): self
+    public function withSize(int $size): self
     {
-        $this->size = $size;
+        $obj = clone $this;
+        $obj->size = $size;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The video codec used in the video (only for video).
      */
-    public function setVideoCodec(string $videoCodec): self
+    public function withVideoCodec(string $videoCodec): self
     {
-        $this->videoCodec = $videoCodec;
+        $obj = clone $this;
+        $obj->videoCodec = $videoCodec;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The width of the image or video in pixels.
      */
-    public function setWidth(int $width): self
+    public function withWidth(int $width): self
     {
-        $this->width = $width;
+        $obj = clone $this;
+        $obj->width = $width;
 
-        return $this;
+        return $obj;
     }
 }

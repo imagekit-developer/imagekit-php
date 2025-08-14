@@ -54,6 +54,20 @@ final class FileRenameParams implements BaseModel
     #[Api(optional: true)]
     public ?bool $purgeCache;
 
+    /**
+     * `new FileRenameParams()` is missing required properties by the API.
+     *
+     * To enforce required parameters use
+     * ```
+     * FileRenameParams::with(filePath: ..., newFileName: ...)
+     * ```
+     *
+     * Otherwise ensure the following setters are called
+     *
+     * ```
+     * (new FileRenameParams)->withFilePath(...)->withNewFileName(...)
+     * ```
+     */
     public function __construct()
     {
         self::introspect();
@@ -65,7 +79,7 @@ final class FileRenameParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(
+    public static function with(
         string $filePath,
         string $newFileName,
         ?bool $purgeCache = null
@@ -83,11 +97,12 @@ final class FileRenameParams implements BaseModel
     /**
      * The full path of the file you want to rename.
      */
-    public function setFilePath(string $filePath): self
+    public function withFilePath(string $filePath): self
     {
-        $this->filePath = $filePath;
+        $obj = clone $this;
+        $obj->filePath = $filePath;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -98,11 +113,12 @@ final class FileRenameParams implements BaseModel
      *
      * Any other character, including space, will be replaced by `_`.
      */
-    public function setNewFileName(string $newFileName): self
+    public function withNewFileName(string $newFileName): self
     {
-        $this->newFileName = $newFileName;
+        $obj = clone $this;
+        $obj->newFileName = $newFileName;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -116,10 +132,11 @@ final class FileRenameParams implements BaseModel
      *
      * Default value - `false`
      */
-    public function setPurgeCache(bool $purgeCache): self
+    public function withPurgeCache(bool $purgeCache): self
     {
-        $this->purgeCache = $purgeCache;
+        $obj = clone $this;
+        $obj->purgeCache = $purgeCache;
 
-        return $this;
+        return $obj;
     }
 }

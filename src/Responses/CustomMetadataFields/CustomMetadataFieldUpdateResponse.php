@@ -44,6 +44,26 @@ final class CustomMetadataFieldUpdateResponse implements BaseModel
     #[Api]
     public Schema $schema;
 
+    /**
+     * `new CustomMetadataFieldUpdateResponse()` is missing required properties by the API.
+     *
+     * To enforce required parameters use
+     * ```
+     * CustomMetadataFieldUpdateResponse::with(
+     *   id: ..., label: ..., name: ..., schema: ...
+     * )
+     * ```
+     *
+     * Otherwise ensure the following setters are called
+     *
+     * ```
+     * (new CustomMetadataFieldUpdateResponse)
+     *   ->withID(...)
+     *   ->withLabel(...)
+     *   ->withName(...)
+     *   ->withSchema(...)
+     * ```
+     */
     public function __construct()
     {
         self::introspect();
@@ -55,7 +75,7 @@ final class CustomMetadataFieldUpdateResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(
+    public static function with(
         string $id,
         string $label,
         string $name,
@@ -74,40 +94,44 @@ final class CustomMetadataFieldUpdateResponse implements BaseModel
     /**
      * Unique identifier for the custom metadata field. Use this to update the field.
      */
-    public function setID(string $id): self
+    public function withID(string $id): self
     {
-        $this->id = $id;
+        $obj = clone $this;
+        $obj->id = $id;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Human readable name of the custom metadata field. This name is displayed as form field label to the users while setting field value on the asset in the media library UI.
      */
-    public function setLabel(string $label): self
+    public function withLabel(string $label): self
     {
-        $this->label = $label;
+        $obj = clone $this;
+        $obj->label = $label;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * API name of the custom metadata field. This becomes the key while setting `customMetadata` (key-value object) for an asset using upload or update API.
      */
-    public function setName(string $name): self
+    public function withName(string $name): self
     {
-        $this->name = $name;
+        $obj = clone $this;
+        $obj->name = $name;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * An object that describes the rules for the custom metadata field value.
      */
-    public function setSchema(Schema $schema): self
+    public function withSchema(Schema $schema): self
     {
-        $this->schema = $schema;
+        $obj = clone $this;
+        $obj->schema = $schema;
 
-        return $this;
+        return $obj;
     }
 }

@@ -254,6 +254,20 @@ final class FileUploadV1Params implements BaseModel
     #[Api('webhookUrl', optional: true)]
     public ?string $webhookURL;
 
+    /**
+     * `new FileUploadV1Params()` is missing required properties by the API.
+     *
+     * To enforce required parameters use
+     * ```
+     * FileUploadV1Params::with(file: ..., fileName: ...)
+     * ```
+     *
+     * Otherwise ensure the following setters are called
+     *
+     * ```
+     * (new FileUploadV1Params)->withFile(...)->withFileName(...)
+     * ```
+     */
     public function __construct()
     {
         self::introspect();
@@ -272,7 +286,7 @@ final class FileUploadV1Params implements BaseModel
      * @param null|OverwriteTags::* $overwriteTags
      * @param null|UseUniqueFileName::* $useUniqueFileName
      */
-    public static function from(
+    public static function with(
         string $file,
         string $fileName,
         ?string $token = null,
@@ -328,11 +342,12 @@ final class FileUploadV1Params implements BaseModel
     /**
      * Pass the HTTP URL or base64 string. When passing a URL in the file parameter, please ensure that our servers can access the URL. In case ImageKit is unable to download the file from the specified URL, a `400` error response is returned. This will also result in a `400` error if the file download request is aborted if response headers are not received in 8 seconds.
      */
-    public function setFile(string $file): self
+    public function withFile(string $file): self
     {
-        $this->file = $file;
+        $obj = clone $this;
+        $obj->file = $file;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -344,11 +359,12 @@ final class FileUploadV1Params implements BaseModel
      *
      * Any other character including space will be replaced by `_`
      */
-    public function setFileName(string $fileName): self
+    public function withFileName(string $fileName): self
     {
-        $this->fileName = $fileName;
+        $obj = clone $this;
+        $obj->fileName = $fileName;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -356,22 +372,24 @@ final class FileUploadV1Params implements BaseModel
      *
      * **Note**: Sending a value that has been used in the past will result in a validation error. Even if your previous request resulted in an error, you should always send a new value for this field.
      */
-    public function setToken(string $token): self
+    public function withToken(string $token): self
     {
-        $this->token = $token;
+        $obj = clone $this;
+        $obj->token = $token;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Server-side checks to run on the asset.
      * Read more about [Upload API checks](/docs/api-reference/upload-file/upload-file#upload-api-checks).
      */
-    public function setChecks(string $checks): self
+    public function withChecks(string $checks): self
     {
-        $this->checks = $checks;
+        $obj = clone $this;
+        $obj->checks = $checks;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -381,41 +399,45 @@ final class FileUploadV1Params implements BaseModel
      *   - Can be used with fo-customtransformation.
      *   - If this field is not specified and the file is overwritten, then customCoordinates will be removed.
      */
-    public function setCustomCoordinates(string $customCoordinates): self
+    public function withCustomCoordinates(string $customCoordinates): self
     {
-        $this->customCoordinates = $customCoordinates;
+        $obj = clone $this;
+        $obj->customCoordinates = $customCoordinates;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Stringified JSON key-value data to be associated with the asset.
      */
-    public function setCustomMetadata(string $customMetadata): self
+    public function withCustomMetadata(string $customMetadata): self
     {
-        $this->customMetadata = $customMetadata;
+        $obj = clone $this;
+        $obj->customMetadata = $customMetadata;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The time until your signature is valid. It must be a [Unix time](https://en.wikipedia.org/wiki/Unix_time) in less than 1 hour into the future. It should be in seconds. This field is only required for authentication when uploading a file from the client side.
      */
-    public function setExpire(string $expire): self
+    public function withExpire(string $expire): self
     {
-        $this->expire = $expire;
+        $obj = clone $this;
+        $obj->expire = $expire;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Stringified JSON object with an array of extensions to be applied to the image. Refer to extensions schema in [update file API request body](/docs/api-reference/digital-asset-management-dam/managing-assets/update-file-details#request-body).
      */
-    public function setExtensions(string $extensions): self
+    public function withExtensions(string $extensions): self
     {
-        $this->extensions = $extensions;
+        $obj = clone $this;
+        $obj->extensions = $extensions;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -428,11 +450,12 @@ final class FileUploadV1Params implements BaseModel
      *
      * Using multiple `/` creates a nested folder.
      */
-    public function setFolder(string $folder): self
+    public function withFolder(string $folder): self
     {
-        $this->folder = $folder;
+        $obj = clone $this;
+        $obj->folder = $folder;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -442,11 +465,12 @@ final class FileUploadV1Params implements BaseModel
      *
      * @param IsPrivateFile::* $isPrivateFile
      */
-    public function setIsPrivateFile(string $isPrivateFile): self
+    public function withIsPrivateFile(string $isPrivateFile): self
     {
-        $this->isPrivateFile = $isPrivateFile;
+        $obj = clone $this;
+        $obj->isPrivateFile = $isPrivateFile;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -458,11 +482,12 @@ final class FileUploadV1Params implements BaseModel
      *
      * @param IsPublished::* $isPublished
      */
-    public function setIsPublished(string $isPublished): self
+    public function withIsPublished(string $isPublished): self
     {
-        $this->isPublished = $isPublished;
+        $obj = clone $this;
+        $obj->isPublished = $isPublished;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -470,11 +495,12 @@ final class FileUploadV1Params implements BaseModel
      *
      * @param OverwriteAITags::* $overwriteAITags
      */
-    public function setOverwriteAITags(string $overwriteAITags): self
+    public function withOverwriteAITags(string $overwriteAITags): self
     {
-        $this->overwriteAITags = $overwriteAITags;
+        $obj = clone $this;
+        $obj->overwriteAITags = $overwriteAITags;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -482,22 +508,24 @@ final class FileUploadV1Params implements BaseModel
      *
      * @param OverwriteCustomMetadata::* $overwriteCustomMetadata
      */
-    public function setOverwriteCustomMetadata(
+    public function withOverwriteCustomMetadata(
         string $overwriteCustomMetadata
     ): self {
-        $this->overwriteCustomMetadata = $overwriteCustomMetadata;
+        $obj = clone $this;
+        $obj->overwriteCustomMetadata = $overwriteCustomMetadata;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * If `false` and `useUniqueFileName` is also `false`, and a file already exists at the exact location, upload API will return an error immediately.
      */
-    public function setOverwriteFile(string $overwriteFile): self
+    public function withOverwriteFile(string $overwriteFile): self
     {
-        $this->overwriteFile = $overwriteFile;
+        $obj = clone $this;
+        $obj->overwriteFile = $overwriteFile;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -505,21 +533,23 @@ final class FileUploadV1Params implements BaseModel
      *
      * @param OverwriteTags::* $overwriteTags
      */
-    public function setOverwriteTags(string $overwriteTags): self
+    public function withOverwriteTags(string $overwriteTags): self
     {
-        $this->overwriteTags = $overwriteTags;
+        $obj = clone $this;
+        $obj->overwriteTags = $overwriteTags;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * Your ImageKit.io public key. This field is only required for authentication when uploading a file from the client side.
      */
-    public function setPublicKey(string $publicKey): self
+    public function withPublicKey(string $publicKey): self
     {
-        $this->publicKey = $publicKey;
+        $obj = clone $this;
+        $obj->publicKey = $publicKey;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -529,11 +559,12 @@ final class FileUploadV1Params implements BaseModel
      *
      * Accepts combination of `tags`, `customCoordinates`, `isPrivateFile`, `embeddedMetadata`, `isPublished`, `customMetadata`, and `metadata`.
      */
-    public function setResponseFields(string $responseFields): self
+    public function withResponseFields(string $responseFields): self
     {
-        $this->responseFields = $responseFields;
+        $obj = clone $this;
+        $obj->responseFields = $responseFields;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -541,11 +572,12 @@ final class FileUploadV1Params implements BaseModel
      *
      * Signature must be calculated on the server-side. This field is only required for authentication when uploading a file from the client side.
      */
-    public function setSignature(string $signature): self
+    public function withSignature(string $signature): self
     {
-        $this->signature = $signature;
+        $obj = clone $this;
+        $obj->signature = $signature;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -555,11 +587,12 @@ final class FileUploadV1Params implements BaseModel
      *
      * If this field is not specified and the file is overwritten then the tags will be removed.
      */
-    public function setTags(string $tags): self
+    public function withTags(string $tags): self
     {
-        $this->tags = $tags;
+        $obj = clone $this;
+        $obj->tags = $tags;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -574,11 +607,12 @@ final class FileUploadV1Params implements BaseModel
      *
      * Read more about [Adaptive bitrate streaming (ABS)](/docs/adaptive-bitrate-streaming).
      */
-    public function setTransformation(string $transformation): self
+    public function withTransformation(string $transformation): self
     {
-        $this->transformation = $transformation;
+        $obj = clone $this;
+        $obj->transformation = $transformation;
 
-        return $this;
+        return $obj;
     }
 
     /**
@@ -590,20 +624,22 @@ final class FileUploadV1Params implements BaseModel
      *
      * @param UseUniqueFileName::* $useUniqueFileName
      */
-    public function setUseUniqueFileName(string $useUniqueFileName): self
+    public function withUseUniqueFileName(string $useUniqueFileName): self
     {
-        $this->useUniqueFileName = $useUniqueFileName;
+        $obj = clone $this;
+        $obj->useUniqueFileName = $useUniqueFileName;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The final status of extensions after they have completed execution will be delivered to this endpoint as a POST request. [Learn more](/docs/api-reference/digital-asset-management-dam/managing-assets/update-file-details#webhook-payload-structure) about the webhook payload structure.
      */
-    public function setWebhookURL(string $webhookURL): self
+    public function withWebhookURL(string $webhookURL): self
     {
-        $this->webhookURL = $webhookURL;
+        $obj = clone $this;
+        $obj->webhookURL = $webhookURL;
 
-        return $this;
+        return $obj;
     }
 }

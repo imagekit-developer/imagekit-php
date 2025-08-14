@@ -30,6 +30,20 @@ final class RemovedotBgExtension implements BaseModel
     #[Api(optional: true)]
     public ?Options $options;
 
+    /**
+     * `new RemovedotBgExtension()` is missing required properties by the API.
+     *
+     * To enforce required parameters use
+     * ```
+     * RemovedotBgExtension::with(name: ...)
+     * ```
+     *
+     * Otherwise ensure the following setters are called
+     *
+     * ```
+     * (new RemovedotBgExtension)->withName(...)
+     * ```
+     */
     public function __construct()
     {
         self::introspect();
@@ -43,7 +57,7 @@ final class RemovedotBgExtension implements BaseModel
      *
      * @param Name::* $name
      */
-    public static function from(string $name, ?Options $options = null): self
+    public static function with(string $name, ?Options $options = null): self
     {
         $obj = new self;
 
@@ -59,17 +73,19 @@ final class RemovedotBgExtension implements BaseModel
      *
      * @param Name::* $name
      */
-    public function setName(string $name): self
+    public function withName(string $name): self
     {
-        $this->name = $name;
+        $obj = clone $this;
+        $obj->name = $name;
 
-        return $this;
+        return $obj;
     }
 
-    public function setOptions(Options $options): self
+    public function withOptions(Options $options): self
     {
-        $this->options = $options;
+        $obj = clone $this;
+        $obj->options = $options;
 
-        return $this;
+        return $obj;
     }
 }

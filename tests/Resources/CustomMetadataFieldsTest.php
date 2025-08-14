@@ -41,10 +41,10 @@ final class CustomMetadataFieldsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = CustomMetadataFieldCreateParams::from(
+        $params = CustomMetadataFieldCreateParams::with(
             label: 'price',
             name: 'price',
-            schema: Schema::from(type: 'Number')
+            schema: Schema::with(type: 'Number')
         );
         $result = $this->client->customMetadataFields->create($params);
 
@@ -58,17 +58,17 @@ final class CustomMetadataFieldsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = CustomMetadataFieldCreateParams::from(
+        $params = CustomMetadataFieldCreateParams::with(
             label: 'price',
             name: 'price',
-            schema: Schema::from(type: 'Number')
-                ->setDefaultValue('string')
-                ->setIsValueRequired(true)
-                ->setMaxLength(0)
-                ->setMaxValue(3000)
-                ->setMinLength(0)
-                ->setMinValue(1000)
-                ->setSelectOptions(['small', 'medium', 'large', 30, 40, true]),
+            schema: Schema::with(type: 'Number')
+                ->withDefaultValue('string')
+                ->withIsValueRequired(true)
+                ->withMaxLength(0)
+                ->withMaxValue(3000)
+                ->withMinLength(0)
+                ->withMinValue(1000)
+                ->withSelectOptions(['small', 'medium', 'large', 30, 40, true]),
         );
         $result = $this->client->customMetadataFields->create($params);
 

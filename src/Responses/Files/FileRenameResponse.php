@@ -32,7 +32,7 @@ final class FileRenameResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(?string $purgeRequestID = null): self
+    public static function with(?string $purgeRequestID = null): self
     {
         $obj = new self;
 
@@ -44,10 +44,11 @@ final class FileRenameResponse implements BaseModel
     /**
      * Unique identifier of the purge request. This can be used to check the status of the purge request.
      */
-    public function setPurgeRequestID(string $purgeRequestID): self
+    public function withPurgeRequestID(string $purgeRequestID): self
     {
-        $this->purgeRequestID = $purgeRequestID;
+        $obj = clone $this;
+        $obj->purgeRequestID = $purgeRequestID;
 
-        return $this;
+        return $obj;
     }
 }

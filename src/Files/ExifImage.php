@@ -73,7 +73,7 @@ final class ExifImage implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(
+    public static function with(
         ?int $exifOffset = null,
         ?int $gpsInfo = null,
         ?string $make = null,
@@ -103,80 +103,91 @@ final class ExifImage implements BaseModel
         return $obj;
     }
 
-    public function setExifOffset(int $exifOffset): self
+    public function withExifOffset(int $exifOffset): self
     {
-        $this->exifOffset = $exifOffset;
+        $obj = clone $this;
+        $obj->exifOffset = $exifOffset;
 
-        return $this;
+        return $obj;
     }
 
-    public function setGpsInfo(int $gpsInfo): self
+    public function withGpsInfo(int $gpsInfo): self
     {
-        $this->gpsInfo = $gpsInfo;
+        $obj = clone $this;
+        $obj->gpsInfo = $gpsInfo;
 
-        return $this;
+        return $obj;
     }
 
-    public function setMake(string $make): self
+    public function withMake(string $make): self
     {
-        $this->make = $make;
+        $obj = clone $this;
+        $obj->make = $make;
 
-        return $this;
+        return $obj;
     }
 
-    public function setModel(string $model): self
+    public function withModel(string $model): self
     {
-        $this->model = $model;
+        $obj = clone $this;
+        $obj->model = $model;
 
-        return $this;
+        return $obj;
     }
 
-    public function setModifyDate(string $modifyDate): self
+    public function withModifyDate(string $modifyDate): self
     {
-        $this->modifyDate = $modifyDate;
+        $obj = clone $this;
+        $obj->modifyDate = $modifyDate;
 
-        return $this;
+        return $obj;
     }
 
-    public function setOrientation(int $orientation): self
+    public function withOrientation(int $orientation): self
     {
-        $this->orientation = $orientation;
+        $obj = clone $this;
+        $obj->orientation = $orientation;
 
-        return $this;
+        return $obj;
     }
 
-    public function setResolutionUnit(int $resolutionUnit): self
+    public function withResolutionUnit(int $resolutionUnit): self
     {
-        $this->resolutionUnit = $resolutionUnit;
+        $obj = clone $this;
+        $obj->resolutionUnit = $resolutionUnit;
 
-        return $this;
+        return $obj;
     }
 
-    public function setSoftware(string $software): self
+    public function withSoftware(string $software): self
     {
-        $this->software = $software;
+        $obj = clone $this;
+        $obj->software = $software;
 
-        return $this;
+        return $obj;
     }
 
-    public function setXResolution(int $xResolution): self
+    public function withXResolution(int $xResolution): self
     {
-        $this->xResolution = $xResolution;
+        $obj = clone $this;
+        $obj->xResolution = $xResolution;
 
-        return $this;
+        return $obj;
     }
 
-    public function setYCbCrPositioning(int $yCbCrPositioning): self
+    public function withYCbCrPositioning(int $yCbCrPositioning): self
     {
-        $this->yCbCrPositioning = $yCbCrPositioning;
+        $obj = clone $this;
+        $obj->yCbCrPositioning = $yCbCrPositioning;
 
-        return $this;
+        return $obj;
     }
 
-    public function setYResolution(int $yResolution): self
+    public function withYResolution(int $yResolution): self
     {
-        $this->yResolution = $yResolution;
+        $obj = clone $this;
+        $obj->yResolution = $yResolution;
 
-        return $this;
+        return $obj;
     }
 }

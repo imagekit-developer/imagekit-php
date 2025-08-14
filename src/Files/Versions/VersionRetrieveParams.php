@@ -22,6 +22,20 @@ final class VersionRetrieveParams implements BaseModel
     #[Api]
     public string $fileID;
 
+    /**
+     * `new VersionRetrieveParams()` is missing required properties by the API.
+     *
+     * To enforce required parameters use
+     * ```
+     * VersionRetrieveParams::with(fileID: ...)
+     * ```
+     *
+     * Otherwise ensure the following setters are called
+     *
+     * ```
+     * (new VersionRetrieveParams)->withFileID(...)
+     * ```
+     */
     public function __construct()
     {
         self::introspect();
@@ -33,7 +47,7 @@ final class VersionRetrieveParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(string $fileID): self
+    public static function with(string $fileID): self
     {
         $obj = new self;
 
@@ -42,10 +56,11 @@ final class VersionRetrieveParams implements BaseModel
         return $obj;
     }
 
-    public function setFileID(string $fileID): self
+    public function withFileID(string $fileID): self
     {
-        $this->fileID = $fileID;
+        $obj = clone $this;
+        $obj->fileID = $fileID;
 
-        return $this;
+        return $obj;
     }
 }

@@ -35,6 +35,20 @@ final class FileMoveParams implements BaseModel
     #[Api]
     public string $sourceFilePath;
 
+    /**
+     * `new FileMoveParams()` is missing required properties by the API.
+     *
+     * To enforce required parameters use
+     * ```
+     * FileMoveParams::with(destinationPath: ..., sourceFilePath: ...)
+     * ```
+     *
+     * Otherwise ensure the following setters are called
+     *
+     * ```
+     * (new FileMoveParams)->withDestinationPath(...)->withSourceFilePath(...)
+     * ```
+     */
     public function __construct()
     {
         self::introspect();
@@ -46,7 +60,7 @@ final class FileMoveParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function from(
+    public static function with(
         string $destinationPath,
         string $sourceFilePath
     ): self {
@@ -61,20 +75,22 @@ final class FileMoveParams implements BaseModel
     /**
      * Full path to the folder you want to move the above file into.
      */
-    public function setDestinationPath(string $destinationPath): self
+    public function withDestinationPath(string $destinationPath): self
     {
-        $this->destinationPath = $destinationPath;
+        $obj = clone $this;
+        $obj->destinationPath = $destinationPath;
 
-        return $this;
+        return $obj;
     }
 
     /**
      * The full path of the file you want to move.
      */
-    public function setSourceFilePath(string $sourceFilePath): self
+    public function withSourceFilePath(string $sourceFilePath): self
     {
-        $this->sourceFilePath = $sourceFilePath;
+        $obj = clone $this;
+        $obj->sourceFilePath = $sourceFilePath;
 
-        return $this;
+        return $obj;
     }
 }

@@ -46,7 +46,7 @@ $client = new Client(
   password: getenv("ORG_MY_PASSWORD_TOKEN") ?: "does_not_matter",
 );
 
-$params = FileUploadV1Params::from(
+$params = FileUploadV1Params::with(
   file: "https://www.example.com/rest-of-the-image-path.jpg",
   fileName: "fileName",
 );
@@ -65,12 +65,12 @@ When the library is unable to connect to the API, or if the API returns a non-su
 use ImageKit\Errors\APIConnectionError;
 use ImageKit\Files\FileUploadV1Params;
 
+$params = FileUploadV1Params::with(
+  file: "https://www.example.com/rest-of-the-image-path.jpg",
+  fileName: "fileName",
+);
 try {
-    $params = FileUploadV1Params::from(
-      file: "https://www.example.com/rest-of-the-image-path.jpg",
-      fileName: "fileName",
-    );
-    $Files = $client->files->uploadV1($params);
+  $Files = $client->files->uploadV1($params);
 } catch (APIConnectionError $e) {
     echo "The server could not be reached", PHP_EOL;
     var_dump($e->getPrevious());
@@ -115,13 +115,14 @@ use ImageKit\Files\FileUploadV1Params;
 
 // Configure the default for all requests:
 $client = new Client(maxRetries: 0);
-$params = FileUploadV1Params::from(
+$params = FileUploadV1Params::with(
   file: "https://www.example.com/rest-of-the-image-path.jpg",
   fileName: "fileName",
 );
 
-// Or, configure per-request:
-$result = $client->files->uploadV1($params, new RequestOptions(maxRetries: 5));
+// Or, configure per-request:$result = $client
+  ->files
+  ->uploadV1($params, new RequestOptions(maxRetries: 5));
 ```
 
 ## Advanced concepts
@@ -140,7 +141,7 @@ Note: the `extra_` parameters of the same name overrides the documented paramete
 use ImageKit\RequestOptions;
 use ImageKit\Files\FileUploadV1Params;
 
-$params = FileUploadV1Params::from(
+$params = FileUploadV1Params::with(
   file: "https://www.example.com/rest-of-the-image-path.jpg",
   fileName: "fileName",
 );

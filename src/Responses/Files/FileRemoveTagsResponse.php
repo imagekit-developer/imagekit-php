@@ -43,7 +43,7 @@ final class FileRemoveTagsResponse implements BaseModel
      *
      * @param null|list<string> $successfullyUpdatedFileIDs
      */
-    public static function from(?array $successfullyUpdatedFileIDs = null): self
+    public static function with(?array $successfullyUpdatedFileIDs = null): self
     {
         $obj = new self;
 
@@ -57,11 +57,12 @@ final class FileRemoveTagsResponse implements BaseModel
      *
      * @param list<string> $successfullyUpdatedFileIDs
      */
-    public function setSuccessfullyUpdatedFileIDs(
+    public function withSuccessfullyUpdatedFileIDs(
         array $successfullyUpdatedFileIDs
     ): self {
-        $this->successfullyUpdatedFileIDs = $successfullyUpdatedFileIDs;
+        $obj = clone $this;
+        $obj->successfullyUpdatedFileIDs = $successfullyUpdatedFileIDs;
 
-        return $this;
+        return $obj;
     }
 }

@@ -3,7 +3,7 @@
 namespace Tests\Resources\Files;
 
 use ImageKit\Client;
-use ImageKit\Files\Metadata\MetadataFromURLParams;
+use ImageKit\Files\Metadata\MetadataGetFromURLParams;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
@@ -32,39 +32,39 @@ final class MetadataTest extends TestCase
     }
 
     #[Test]
-    public function testRetrieve(): void
+    public function testGet(): void
     {
         if (UnsupportedMockTests::$skip) {
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->files->metadata->retrieve('fileId');
+        $result = $this->client->files->metadata->get('fileId');
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
 
     #[Test]
-    public function testFromURL(): void
+    public function testGetFromURL(): void
     {
         if (UnsupportedMockTests::$skip) {
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = MetadataFromURLParams::with(url: 'url');
-        $result = $this->client->files->metadata->fromURL($params);
+        $params = MetadataGetFromURLParams::with(url: 'https://example.com');
+        $result = $this->client->files->metadata->getFromURL($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
 
     #[Test]
-    public function testFromURLWithOptionalParams(): void
+    public function testGetFromURLWithOptionalParams(): void
     {
         if (UnsupportedMockTests::$skip) {
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = MetadataFromURLParams::with(url: 'url');
-        $result = $this->client->files->metadata->fromURL($params);
+        $params = MetadataGetFromURLParams::with(url: 'https://example.com');
+        $result = $this->client->files->metadata->getFromURL($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }

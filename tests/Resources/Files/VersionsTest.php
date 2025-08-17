@@ -4,8 +4,8 @@ namespace Tests\Resources\Files;
 
 use ImageKit\Client;
 use ImageKit\Files\Versions\VersionDeleteParams;
+use ImageKit\Files\Versions\VersionGetParams;
 use ImageKit\Files\Versions\VersionRestoreParams;
-use ImageKit\Files\Versions\VersionRetrieveParams;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
@@ -31,32 +31,6 @@ final class VersionsTest extends TestCase
         );
 
         $this->client = $client;
-    }
-
-    #[Test]
-    public function testRetrieve(): void
-    {
-        if (UnsupportedMockTests::$skip) {
-            $this->markTestSkipped('Prism tests are disabled');
-        }
-
-        $params = VersionRetrieveParams::with(fileID: 'fileId');
-        $result = $this->client->files->versions->retrieve('versionId', $params);
-
-        $this->assertTrue(true); // @phpstan-ignore-line
-    }
-
-    #[Test]
-    public function testRetrieveWithOptionalParams(): void
-    {
-        if (UnsupportedMockTests::$skip) {
-            $this->markTestSkipped('Prism tests are disabled');
-        }
-
-        $params = VersionRetrieveParams::with(fileID: 'fileId');
-        $result = $this->client->files->versions->retrieve('versionId', $params);
-
-        $this->assertTrue(true); // @phpstan-ignore-line
     }
 
     #[Test]
@@ -93,6 +67,32 @@ final class VersionsTest extends TestCase
 
         $params = VersionDeleteParams::with(fileID: 'fileId');
         $result = $this->client->files->versions->delete('versionId', $params);
+
+        $this->assertTrue(true); // @phpstan-ignore-line
+    }
+
+    #[Test]
+    public function testGet(): void
+    {
+        if (UnsupportedMockTests::$skip) {
+            $this->markTestSkipped('Prism tests are disabled');
+        }
+
+        $params = VersionGetParams::with(fileID: 'fileId');
+        $result = $this->client->files->versions->get('versionId', $params);
+
+        $this->assertTrue(true); // @phpstan-ignore-line
+    }
+
+    #[Test]
+    public function testGetWithOptionalParams(): void
+    {
+        if (UnsupportedMockTests::$skip) {
+            $this->markTestSkipped('Prism tests are disabled');
+        }
+
+        $params = VersionGetParams::with(fileID: 'fileId');
+        $result = $this->client->files->versions->get('versionId', $params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }

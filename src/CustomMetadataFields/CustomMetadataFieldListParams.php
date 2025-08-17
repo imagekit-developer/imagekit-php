@@ -20,7 +20,7 @@ final class CustomMetadataFieldListParams implements BaseModel
     use Params;
 
     /**
-     * Set it to `true` to include deleted field objects in the API response. Default value is `false`.
+     * Set it to `true` to include deleted field objects in the API response.
      */
     #[Api(optional: true)]
     public ?bool $includeDeleted;
@@ -46,7 +46,7 @@ final class CustomMetadataFieldListParams implements BaseModel
     }
 
     /**
-     * Set it to `true` to include deleted field objects in the API response. Default value is `false`.
+     * Set it to `true` to include deleted field objects in the API response.
      */
     public function withIncludeDeleted(bool $includeDeleted): self
     {

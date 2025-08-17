@@ -18,7 +18,7 @@ final class Type implements ConverterSource
 
     public const TEXT = 'Text';
 
-    public const TEXT_AREA = 'TextArea';
+    public const TEXTAREA = 'Textarea';
 
     public const NUMBER = 'Number';
 

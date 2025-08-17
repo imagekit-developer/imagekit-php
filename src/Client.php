@@ -5,11 +5,13 @@ declare(strict_types=1);
 namespace ImageKit;
 
 use ImageKit\Accounts\AccountsService;
-use ImageKit\BulkJobs\BulkJobsService;
+use ImageKit\Assets\AssetsService;
+use ImageKit\Beta\BetaService;
+use ImageKit\Cache\CacheService;
 use ImageKit\Core\BaseClient;
 use ImageKit\CustomMetadataFields\CustomMetadataFieldsService;
 use ImageKit\Files\FilesService;
-use ImageKit\Folder\FolderService;
+use ImageKit\Folders\FoldersService;
 
 class Client extends BaseClient
 {
@@ -21,11 +23,15 @@ class Client extends BaseClient
 
     public FilesService $files;
 
-    public FolderService $folder;
+    public AssetsService $assets;
 
-    public BulkJobsService $bulkJobs;
+    public CacheService $cache;
+
+    public FoldersService $folders;
 
     public AccountsService $accounts;
+
+    public BetaService $beta;
 
     public bool $baseUrlOverridden;
 
@@ -57,9 +63,11 @@ class Client extends BaseClient
 
         $this->customMetadataFields = new CustomMetadataFieldsService($this);
         $this->files = new FilesService($this);
-        $this->folder = new FolderService($this);
-        $this->bulkJobs = new BulkJobsService($this);
+        $this->assets = new AssetsService($this);
+        $this->cache = new CacheService($this);
+        $this->folders = new FoldersService($this);
         $this->accounts = new AccountsService($this);
+        $this->beta = new BetaService($this);
     }
 
     /** @return array<string, string> */

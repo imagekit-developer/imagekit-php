@@ -18,32 +18,6 @@ final class VersionsService implements VersionsContract
     public function __construct(private Client $client) {}
 
     /**
-     * This API returns an object with details or attributes of a file version.
-     *
-     * @param array{fileID: string}|VersionRetrieveParams $params
-     */
-    public function retrieve(
-        string $versionID,
-        array|VersionRetrieveParams $params,
-        ?RequestOptions $requestOptions = null,
-    ): VersionGetResponse {
-        [$parsed, $options] = VersionRetrieveParams::parseRequest(
-            $params,
-            $requestOptions
-        );
-        $fileID = $parsed['fileID'];
-        unset($parsed['fileID']);
-        $resp = $this->client->request(
-            method: 'get',
-            path: ['v1/files/%1$s/versions/%2$s', $fileID, $versionID],
-            options: $options,
-        );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(VersionGetResponse::class, value: $resp);
-    }
-
-    /**
      * This API returns details of all versions of a file.
      *
      * @return list<VersionListResponseItem>
@@ -91,6 +65,32 @@ final class VersionsService implements VersionsContract
 
         // @phpstan-ignore-next-line;
         return Conversion::coerce('mixed', value: $resp);
+    }
+
+    /**
+     * This API returns an object with details or attributes of a file version.
+     *
+     * @param array{fileID: string}|VersionGetParams $params
+     */
+    public function get(
+        string $versionID,
+        array|VersionGetParams $params,
+        ?RequestOptions $requestOptions = null,
+    ): VersionGetResponse {
+        [$parsed, $options] = VersionGetParams::parseRequest(
+            $params,
+            $requestOptions
+        );
+        $fileID = $parsed['fileID'];
+        unset($parsed['fileID']);
+        $resp = $this->client->request(
+            method: 'get',
+            path: ['v1/files/%1$s/versions/%2$s', $fileID, $versionID],
+            options: $options,
+        );
+
+        // @phpstan-ignore-next-line;
+        return Conversion::coerce(VersionGetResponse::class, value: $resp);
     }
 
     /**

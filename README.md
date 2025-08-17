@@ -39,18 +39,15 @@ To use this package, install via Composer by adding the following to your applic
 <?php
 
 use ImageKit\Client;
-use ImageKit\Files\FileUploadV1Params;
+use ImageKit\Files\FileUploadParams;
 
 $client = new Client(
   privateAPIKey: getenv("IMAGEKIT_PRIVATE_API_KEY") ?: "My Private API Key",
   password: getenv("ORG_MY_PASSWORD_TOKEN") ?: "does_not_matter",
 );
 
-$params = FileUploadV1Params::with(
-  file: "https://www.example.com/rest-of-the-image-path.jpg",
-  fileName: "fileName",
-);
-$response = $client->files->uploadV1($params);
+$params = FileUploadParams::with(fileName: "fileName");
+$response = $client->files->upload($params);
 
 var_dump($response->videoCodec);
 ```
@@ -63,15 +60,10 @@ When the library is unable to connect to the API, or if the API returns a non-su
 <?php
 
 use ImageKit\Errors\APIConnectionError;
-use ImageKit\Files\FileUploadV1Params;
+use ImageKit\Files\FileUploadParams;
 
-$params = FileUploadV1Params::with(
-  file: "https://www.example.com/rest-of-the-image-path.jpg",
-  fileName: "fileName",
-);
-try {
-  $Files = $client->files->uploadV1($params);
-} catch (APIConnectionError $e) {
+$params = FileUploadParams::with(fileName: "fileName");
+try {$Files = $client->files->upload($params);} catch (APIConnectionError $e) {
     echo "The server could not be reached", PHP_EOL;
     var_dump($e->getPrevious());
 } catch (RateLimitError $_) {
@@ -111,18 +103,15 @@ You can use the `max_retries` option to configure or disable this:
 
 use ImageKit\Client;
 use ImageKit\RequestOptions;
-use ImageKit\Files\FileUploadV1Params;
+use ImageKit\Files\FileUploadParams;
 
 // Configure the default for all requests:
 $client = new Client(maxRetries: 0);
-$params = FileUploadV1Params::with(
-  file: "https://www.example.com/rest-of-the-image-path.jpg",
-  fileName: "fileName",
-);
+$params = FileUploadParams::with(fileName: "fileName");
 
 // Or, configure per-request:$result = $client
   ->files
-  ->uploadV1($params, new RequestOptions(maxRetries: 5));
+  ->upload($params, new RequestOptions(maxRetries: 5));
 ```
 
 ## Advanced concepts
@@ -139,15 +128,12 @@ Note: the `extra_` parameters of the same name overrides the documented paramete
 <?php
 
 use ImageKit\RequestOptions;
-use ImageKit\Files\FileUploadV1Params;
+use ImageKit\Files\FileUploadParams;
 
-$params = FileUploadV1Params::with(
-  file: "https://www.example.com/rest-of-the-image-path.jpg",
-  fileName: "fileName",
-);
+$params = FileUploadParams::with(fileName: "fileName");
 $response = $client
   ->files
-  ->uploadV1(
+  ->upload(
   $params,
   new RequestOptions(
     extraQueryParams: ["my_query_parameter" => "value"],

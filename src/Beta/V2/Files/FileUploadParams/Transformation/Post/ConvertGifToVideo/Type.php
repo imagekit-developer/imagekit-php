@@ -1,0 +1,20 @@
+<?php
+
+declare(strict_types=1);
+
+namespace ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post\ConvertGifToVideo;
+
+use ImageKit\Core\Concerns\Enum;
+use ImageKit\Core\Conversion\Contracts\ConverterSource;
+
+/**
+ * Converts an animated GIF into an MP4.
+ *
+ * @phpstan-type type_alias = Type::*
+ */
+final class Type implements ConverterSource
+{
+    use Enum;
+
+    public const GIF_TO_VIDEO = 'gif-to-video';
+}

@@ -4,71 +4,51 @@ declare(strict_types=1);
 
 namespace ImageKit\Contracts;
 
-use ImageKit\Files\FileAddTagsParams;
 use ImageKit\Files\FileCopyParams;
-use ImageKit\Files\FileListParams;
-use ImageKit\Files\FileListParams\Type;
 use ImageKit\Files\FileMoveParams;
-use ImageKit\Files\FileRemoveAITagsParams;
-use ImageKit\Files\FileRemoveTagsParams;
 use ImageKit\Files\FileRenameParams;
-use ImageKit\Files\FileUploadV1Params;
-use ImageKit\Files\FileUploadV1Params\IsPrivateFile;
-use ImageKit\Files\FileUploadV1Params\IsPublished;
-use ImageKit\Files\FileUploadV1Params\OverwriteAITags;
-use ImageKit\Files\FileUploadV1Params\OverwriteCustomMetadata;
-use ImageKit\Files\FileUploadV1Params\OverwriteTags;
-use ImageKit\Files\FileUploadV1Params\UseUniqueFileName;
-use ImageKit\Files\FileUploadV2Params;
-use ImageKit\Files\FileUploadV2Params\IsPrivateFile as IsPrivateFile1;
-use ImageKit\Files\FileUploadV2Params\IsPublished as IsPublished1;
-use ImageKit\Files\FileUploadV2Params\OverwriteAITags as OverwriteAITags1;
-use ImageKit\Files\FileUploadV2Params\OverwriteCustomMetadata as OverwriteCustomMetadata1;
-use ImageKit\Files\FileUploadV2Params\OverwriteTags as OverwriteTags1;
-use ImageKit\Files\FileUploadV2Params\UseUniqueFileName as UseUniqueFileName1;
+use ImageKit\Files\FileUpdateParams;
+use ImageKit\Files\FileUpdateParams\Extension\AutoDescriptionExtension;
+use ImageKit\Files\FileUpdateParams\Extension\AutoTaggingExtension;
+use ImageKit\Files\FileUpdateParams\Extension\RemovedotBgExtension;
+use ImageKit\Files\FileUpdateParams\Publish;
+use ImageKit\Files\FileUpdateParams\RemoveAITags\UnionMember1;
+use ImageKit\Files\FileUploadParams;
+use ImageKit\Files\FileUploadParams\Extension\AutoDescriptionExtension as AutoDescriptionExtension1;
+use ImageKit\Files\FileUploadParams\Extension\AutoTaggingExtension as AutoTaggingExtension1;
+use ImageKit\Files\FileUploadParams\Extension\RemovedotBgExtension as RemovedotBgExtension1;
+use ImageKit\Files\FileUploadParams\ResponseField;
+use ImageKit\Files\FileUploadParams\Transformation;
 use ImageKit\RequestOptions;
-use ImageKit\Responses\Files\FileAddTagsResponse;
-use ImageKit\Responses\Files\FileListResponseItem;
-use ImageKit\Responses\Files\FileRemoveAITagsResponse;
-use ImageKit\Responses\Files\FileRemoveTagsResponse;
+use ImageKit\Responses\Files\FileGetResponse;
 use ImageKit\Responses\Files\FileRenameResponse;
-use ImageKit\Responses\Files\FileUploadV1Response;
-use ImageKit\Responses\Files\FileUploadV2Response;
+use ImageKit\Responses\Files\FileUpdateResponse;
+use ImageKit\Responses\Files\FileUploadResponse;
 
 interface FilesContract
 {
     /**
      * @param array{
-     *   fileType?: string,
-     *   limit?: string,
-     *   path?: string,
-     *   searchQuery?: string,
-     *   skip?: string,
-     *   sort?: string,
-     *   type?: Type::*,
-     * }|FileListParams $params
-     *
-     * @return list<FileListResponseItem>
+     *   customCoordinates?: null|string,
+     *   customMetadata?: mixed,
+     *   description?: string,
+     *   extensions?: list<AutoDescriptionExtension|AutoTaggingExtension|RemovedotBgExtension>,
+     *   removeAITags?: list<string>|UnionMember1::*,
+     *   tags?: null|list<string>,
+     *   webhookURL?: string,
+     *   publish?: Publish,
+     * }|FileUpdateParams $params
      */
-    public function list(
-        array|FileListParams $params,
-        ?RequestOptions $requestOptions = null
-    ): array;
+    public function update(
+        string $fileID,
+        array|FileUpdateParams $params,
+        ?RequestOptions $requestOptions = null,
+    ): FileUpdateResponse;
 
     public function delete(
         string $fileID,
         ?RequestOptions $requestOptions = null
     ): mixed;
-
-    /**
-     * @param array{
-     *   fileIDs: list<string>, tags: list<string>
-     * }|FileAddTagsParams $params
-     */
-    public function addTags(
-        array|FileAddTagsParams $params,
-        ?RequestOptions $requestOptions = null
-    ): FileAddTagsResponse;
 
     /**
      * @param array{
@@ -80,6 +60,11 @@ interface FilesContract
         ?RequestOptions $requestOptions = null
     ): mixed;
 
+    public function get(
+        string $fileID,
+        ?RequestOptions $requestOptions = null
+    ): FileGetResponse;
+
     /**
      * @param array{
      *   destinationPath: string, sourceFilePath: string
@@ -89,26 +74,6 @@ interface FilesContract
         array|FileMoveParams $params,
         ?RequestOptions $requestOptions = null
     ): mixed;
-
-    /**
-     * @param array{
-     *   aiTags: list<string>, fileIDs: list<string>
-     * }|FileRemoveAITagsParams $params
-     */
-    public function removeAITags(
-        array|FileRemoveAITagsParams $params,
-        ?RequestOptions $requestOptions = null,
-    ): FileRemoveAITagsResponse;
-
-    /**
-     * @param array{
-     *   fileIDs: list<string>, tags: list<string>
-     * }|FileRemoveTagsParams $params
-     */
-    public function removeTags(
-        array|FileRemoveTagsParams $params,
-        ?RequestOptions $requestOptions = null,
-    ): FileRemoveTagsResponse;
 
     /**
      * @param array{
@@ -127,55 +92,28 @@ interface FilesContract
      *   token?: string,
      *   checks?: string,
      *   customCoordinates?: string,
-     *   customMetadata?: string,
-     *   expire?: string,
-     *   extensions?: string,
+     *   customMetadata?: array<string, mixed>,
+     *   description?: string,
+     *   expire?: int,
+     *   extensions?: list<AutoDescriptionExtension1|AutoTaggingExtension1|RemovedotBgExtension1>,
      *   folder?: string,
-     *   isPrivateFile?: IsPrivateFile::*,
-     *   isPublished?: IsPublished::*,
-     *   overwriteAITags?: OverwriteAITags::*,
-     *   overwriteCustomMetadata?: OverwriteCustomMetadata::*,
-     *   overwriteFile?: string,
-     *   overwriteTags?: OverwriteTags::*,
+     *   isPrivateFile?: bool,
+     *   isPublished?: bool,
+     *   overwriteAITags?: bool,
+     *   overwriteCustomMetadata?: bool,
+     *   overwriteFile?: bool,
+     *   overwriteTags?: bool,
      *   publicKey?: string,
-     *   responseFields?: string,
+     *   responseFields?: list<ResponseField::*>,
      *   signature?: string,
-     *   tags?: string,
-     *   transformation?: string,
-     *   useUniqueFileName?: UseUniqueFileName::*,
+     *   tags?: list<string>,
+     *   transformation?: Transformation,
+     *   useUniqueFileName?: bool,
      *   webhookURL?: string,
-     * }|FileUploadV1Params $params
+     * }|FileUploadParams $params
      */
-    public function uploadV1(
-        array|FileUploadV1Params $params,
+    public function upload(
+        array|FileUploadParams $params,
         ?RequestOptions $requestOptions = null
-    ): FileUploadV1Response;
-
-    /**
-     * @param array{
-     *   file: string,
-     *   fileName: string,
-     *   token?: string,
-     *   checks?: string,
-     *   customCoordinates?: string,
-     *   customMetadata?: string,
-     *   extensions?: string,
-     *   folder?: string,
-     *   isPrivateFile?: IsPrivateFile1::*,
-     *   isPublished?: IsPublished1::*,
-     *   overwriteAITags?: OverwriteAITags1::*,
-     *   overwriteCustomMetadata?: OverwriteCustomMetadata1::*,
-     *   overwriteFile?: string,
-     *   overwriteTags?: OverwriteTags1::*,
-     *   responseFields?: string,
-     *   tags?: string,
-     *   transformation?: string,
-     *   useUniqueFileName?: UseUniqueFileName1::*,
-     *   webhookURL?: string,
-     * }|FileUploadV2Params $params
-     */
-    public function uploadV2(
-        array|FileUploadV2Params $params,
-        ?RequestOptions $requestOptions = null
-    ): FileUploadV2Response;
+    ): FileUploadResponse;
 }

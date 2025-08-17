@@ -8,17 +8,17 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\Model;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Core\Conversion\MapOf;
-use ImageKit\Responses\Beta\V2\Files\FileUploadResponse\Metadata\Exif\Exif as Exif1;
-use ImageKit\Responses\Beta\V2\Files\FileUploadResponse\Metadata\Exif\Gps;
-use ImageKit\Responses\Beta\V2\Files\FileUploadResponse\Metadata\Exif\Image;
-use ImageKit\Responses\Beta\V2\Files\FileUploadResponse\Metadata\Exif\Interoperability;
-use ImageKit\Responses\Beta\V2\Files\FileUploadResponse\Metadata\Exif\Thumbnail;
+use ImageKit\Shared\ExifDetails;
+use ImageKit\Shared\ExifImage;
+use ImageKit\Shared\Gps;
+use ImageKit\Shared\Interoperability;
+use ImageKit\Shared\Thumbnail;
 
 /**
  * @phpstan-type exif_alias = array{
- *   exif?: Exif1,
+ *   exif?: ExifDetails,
  *   gps?: Gps,
- *   image?: Image,
+ *   image?: ExifImage,
  *   interoperability?: Interoperability,
  *   makernote?: array<string, mixed>,
  *   thumbnail?: Thumbnail,
@@ -32,7 +32,7 @@ final class Exif implements BaseModel
      * Object containing Exif details.
      */
     #[Api(optional: true)]
-    public ?Exif1 $exif;
+    public ?ExifDetails $exif;
 
     /**
      * Object containing GPS information.
@@ -44,7 +44,7 @@ final class Exif implements BaseModel
      * Object containing EXIF image information.
      */
     #[Api(optional: true)]
-    public ?Image $image;
+    public ?ExifImage $image;
 
     /**
      * JSON object.
@@ -76,9 +76,9 @@ final class Exif implements BaseModel
      * @param null|array<string, mixed> $makernote
      */
     public static function with(
-        ?Exif1 $exif = null,
+        ?ExifDetails $exif = null,
         ?Gps $gps = null,
-        ?Image $image = null,
+        ?ExifImage $image = null,
         ?Interoperability $interoperability = null,
         ?array $makernote = null,
         ?Thumbnail $thumbnail = null,
@@ -98,7 +98,7 @@ final class Exif implements BaseModel
     /**
      * Object containing Exif details.
      */
-    public function withExif(Exif1 $exif): self
+    public function withExif(ExifDetails $exif): self
     {
         $obj = clone $this;
         $obj->exif = $exif;
@@ -120,7 +120,7 @@ final class Exif implements BaseModel
     /**
      * Object containing EXIF image information.
      */
-    public function withImage(Image $image): self
+    public function withImage(ExifImage $image): self
     {
         $obj = clone $this;
         $obj->image = $image;

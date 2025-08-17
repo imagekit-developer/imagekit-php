@@ -9,20 +9,21 @@ use ImageKit\Core\Concerns\Model;
 use ImageKit\Core\Concerns\Params;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Core\Conversion\ListOf;
+use ImageKit\Core\Conversion\MapOf;
 use ImageKit\Files\FileUpdateParams\Extension;
-use ImageKit\Files\FileUpdateParams\Extension\AutoDescriptionExtension;
-use ImageKit\Files\FileUpdateParams\Extension\AutoTaggingExtension;
-use ImageKit\Files\FileUpdateParams\Extension\RemovedotBgExtension;
 use ImageKit\Files\FileUpdateParams\Publish;
 use ImageKit\Files\FileUpdateParams\RemoveAITags;
 use ImageKit\Files\FileUpdateParams\RemoveAITags\UnionMember1;
+use ImageKit\Shared\AutoDescriptionExtension;
+use ImageKit\Shared\AutoTaggingExtension;
+use ImageKit\Shared\RemovedotBgExtension;
 
 /**
  * This API updates the details or attributes of the current version of the file. You can update `tags`, `customCoordinates`, `customMetadata`, publication status, remove existing `AITags` and apply extensions using this API.
  *
  * @phpstan-type update_params = array{
  *   customCoordinates?: string|null,
- *   customMetadata?: mixed,
+ *   customMetadata?: array<string, mixed>,
  *   description?: string,
  *   extensions?: list<RemovedotBgExtension|AutoTaggingExtension|AutoDescriptionExtension>,
  *   removeAITags?: list<string>|UnionMember1::*,
@@ -44,9 +45,11 @@ final class FileUpdateParams implements BaseModel
 
     /**
      * A key-value data to be associated with the asset. To unset a key, send `null` value for that key. Before setting any custom metadata on an asset you have to create the field using custom metadata fields API.
+     *
+     * @var null|array<string, mixed> $customMetadata
      */
-    #[Api(optional: true)]
-    public mixed $customMetadata;
+    #[Api(type: new MapOf('string'), optional: true)]
+    public ?array $customMetadata;
 
     /**
      * Optional text to describe the contents of the file.
@@ -105,13 +108,14 @@ final class FileUpdateParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
+     * @param null|array<string, mixed> $customMetadata
      * @param null|list<AutoDescriptionExtension|AutoTaggingExtension|RemovedotBgExtension> $extensions
      * @param null|list<string>|UnionMember1::* $removeAITags
      * @param null|list<string> $tags
      */
     public static function with(
         ?string $customCoordinates = null,
-        mixed $customMetadata = null,
+        ?array $customMetadata = null,
         ?string $description = null,
         ?array $extensions = null,
         null|array|string $removeAITags = null,
@@ -146,8 +150,10 @@ final class FileUpdateParams implements BaseModel
 
     /**
      * A key-value data to be associated with the asset. To unset a key, send `null` value for that key. Before setting any custom metadata on an asset you have to create the field using custom metadata fields API.
+     *
+     * @param array<string, mixed> $customMetadata
      */
-    public function withCustomMetadata(mixed $customMetadata): self
+    public function withCustomMetadata(array $customMetadata): self
     {
         $obj = clone $this;
         $obj->customMetadata = $customMetadata;

@@ -2,40 +2,46 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Beta\V2\Files\FileUploadParams\Extension;
+namespace ImageKit\Shared;
 
-use ImageKit\Beta\V2\Files\FileUploadParams\Extension\AutoDescriptionExtension\Name;
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\Model;
 use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Shared\RemovedotBgExtension\Name;
+use ImageKit\Shared\RemovedotBgExtension\Options;
 
 /**
- * @phpstan-type auto_description_extension_alias = array{name: Name::*}
+ * @phpstan-type removedot_bg_extension_alias = array{
+ *   name: Name::*, options?: Options
+ * }
  */
-final class AutoDescriptionExtension implements BaseModel
+final class RemovedotBgExtension implements BaseModel
 {
     use Model;
 
     /**
-     * Specifies the auto description extension.
+     * Specifies the background removal extension.
      *
      * @var Name::* $name
      */
     #[Api(enum: Name::class)]
     public string $name;
 
+    #[Api(optional: true)]
+    public ?Options $options;
+
     /**
-     * `new AutoDescriptionExtension()` is missing required properties by the API.
+     * `new RemovedotBgExtension()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * AutoDescriptionExtension::with(name: ...)
+     * RemovedotBgExtension::with(name: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
      *
      * ```
-     * (new AutoDescriptionExtension)->withName(...)
+     * (new RemovedotBgExtension)->withName(...)
      * ```
      */
     public function __construct()
@@ -51,17 +57,19 @@ final class AutoDescriptionExtension implements BaseModel
      *
      * @param Name::* $name
      */
-    public static function with(string $name): self
+    public static function with(string $name, ?Options $options = null): self
     {
         $obj = new self;
 
         $obj->name = $name;
 
+        null !== $options && $obj->options = $options;
+
         return $obj;
     }
 
     /**
-     * Specifies the auto description extension.
+     * Specifies the background removal extension.
      *
      * @param Name::* $name
      */
@@ -69,6 +77,14 @@ final class AutoDescriptionExtension implements BaseModel
     {
         $obj = clone $this;
         $obj->name = $name;
+
+        return $obj;
+    }
+
+    public function withOptions(Options $options): self
+    {
+        $obj = clone $this;
+        $obj->options = $options;
 
         return $obj;
     }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files\FileUploadParams\Extension\RemovedotBgExtension;
+namespace ImageKit\Shared\RemovedotBgExtension;
 
 use ImageKit\Core\Concerns\Enum;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;

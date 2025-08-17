@@ -11,6 +11,7 @@ use ImageKit\Core\Conversion\ListOf;
 use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema;
 use ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema as Schema1;
 use ImageKit\RequestOptions;
+use ImageKit\Responses\CustomMetadataFields\CustomMetadataFieldDeleteResponse;
 use ImageKit\Responses\CustomMetadataFields\CustomMetadataFieldListResponseItem;
 use ImageKit\Responses\CustomMetadataFields\CustomMetadataFieldNewResponse;
 use ImageKit\Responses\CustomMetadataFields\CustomMetadataFieldUpdateResponse;
@@ -113,7 +114,7 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
     public function delete(
         string $id,
         ?RequestOptions $requestOptions = null
-    ): mixed {
+    ): CustomMetadataFieldDeleteResponse {
         $resp = $this->client->request(
             method: 'delete',
             path: ['v1/customMetadataFields/%1$s', $id],
@@ -121,6 +122,9 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
         );
 
         // @phpstan-ignore-next-line;
-        return Conversion::coerce('mixed', value: $resp);
+        return Conversion::coerce(
+            CustomMetadataFieldDeleteResponse::class,
+            value: $resp
+        );
     }
 }

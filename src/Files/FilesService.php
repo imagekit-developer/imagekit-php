@@ -8,23 +8,22 @@ use ImageKit\Client;
 use ImageKit\Contracts\FilesContract;
 use ImageKit\Core\Conversion;
 use ImageKit\Files\Bulk\BulkService;
-use ImageKit\Files\FileUpdateParams\Extension\AutoDescriptionExtension;
-use ImageKit\Files\FileUpdateParams\Extension\AutoTaggingExtension;
-use ImageKit\Files\FileUpdateParams\Extension\RemovedotBgExtension;
 use ImageKit\Files\FileUpdateParams\Publish;
 use ImageKit\Files\FileUpdateParams\RemoveAITags\UnionMember1;
-use ImageKit\Files\FileUploadParams\Extension\AutoDescriptionExtension as AutoDescriptionExtension1;
-use ImageKit\Files\FileUploadParams\Extension\AutoTaggingExtension as AutoTaggingExtension1;
-use ImageKit\Files\FileUploadParams\Extension\RemovedotBgExtension as RemovedotBgExtension1;
 use ImageKit\Files\FileUploadParams\ResponseField;
 use ImageKit\Files\FileUploadParams\Transformation;
 use ImageKit\Files\Metadata\MetadataService;
 use ImageKit\Files\Versions\VersionsService;
 use ImageKit\RequestOptions;
+use ImageKit\Responses\Files\FileCopyResponse;
 use ImageKit\Responses\Files\FileGetResponse;
+use ImageKit\Responses\Files\FileMoveResponse;
 use ImageKit\Responses\Files\FileRenameResponse;
 use ImageKit\Responses\Files\FileUpdateResponse;
 use ImageKit\Responses\Files\FileUploadResponse;
+use ImageKit\Shared\AutoDescriptionExtension;
+use ImageKit\Shared\AutoTaggingExtension;
+use ImageKit\Shared\RemovedotBgExtension;
 
 final class FilesService implements FilesContract
 {
@@ -46,7 +45,7 @@ final class FilesService implements FilesContract
      *
      * @param array{
      *   customCoordinates?: null|string,
-     *   customMetadata?: mixed,
+     *   customMetadata?: array<string, mixed>,
      *   description?: string,
      *   extensions?: list<AutoDescriptionExtension|AutoTaggingExtension|RemovedotBgExtension>,
      *   removeAITags?: list<string>|UnionMember1::*,
@@ -103,7 +102,7 @@ final class FilesService implements FilesContract
     public function copy(
         array|FileCopyParams $params,
         ?RequestOptions $requestOptions = null
-    ): mixed {
+    ): FileCopyResponse {
         [$parsed, $options] = FileCopyParams::parseRequest(
             $params,
             $requestOptions
@@ -116,7 +115,7 @@ final class FilesService implements FilesContract
         );
 
         // @phpstan-ignore-next-line;
-        return Conversion::coerce('mixed', value: $resp);
+        return Conversion::coerce(FileCopyResponse::class, value: $resp);
     }
 
     /**
@@ -148,7 +147,7 @@ final class FilesService implements FilesContract
     public function move(
         array|FileMoveParams $params,
         ?RequestOptions $requestOptions = null
-    ): mixed {
+    ): FileMoveResponse {
         [$parsed, $options] = FileMoveParams::parseRequest(
             $params,
             $requestOptions
@@ -161,7 +160,7 @@ final class FilesService implements FilesContract
         );
 
         // @phpstan-ignore-next-line;
-        return Conversion::coerce('mixed', value: $resp);
+        return Conversion::coerce(FileMoveResponse::class, value: $resp);
     }
 
     /**
@@ -217,7 +216,7 @@ final class FilesService implements FilesContract
      *   customMetadata?: array<string, mixed>,
      *   description?: string,
      *   expire?: int,
-     *   extensions?: list<AutoDescriptionExtension1|AutoTaggingExtension1|RemovedotBgExtension1>,
+     *   extensions?: list<AutoDescriptionExtension|AutoTaggingExtension|RemovedotBgExtension>,
      *   folder?: string,
      *   isPrivateFile?: bool,
      *   isPublished?: bool,

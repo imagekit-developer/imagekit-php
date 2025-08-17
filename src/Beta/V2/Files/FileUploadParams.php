@@ -5,9 +5,6 @@ declare(strict_types=1);
 namespace ImageKit\Beta\V2\Files;
 
 use ImageKit\Beta\V2\Files\FileUploadParams\Extension;
-use ImageKit\Beta\V2\Files\FileUploadParams\Extension\AutoDescriptionExtension;
-use ImageKit\Beta\V2\Files\FileUploadParams\Extension\AutoTaggingExtension;
-use ImageKit\Beta\V2\Files\FileUploadParams\Extension\RemovedotBgExtension;
 use ImageKit\Beta\V2\Files\FileUploadParams\ResponseField;
 use ImageKit\Beta\V2\Files\FileUploadParams\Transformation;
 use ImageKit\Core\Attributes\Api;
@@ -16,6 +13,9 @@ use ImageKit\Core\Concerns\Params;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Core\Conversion\ListOf;
 use ImageKit\Core\Conversion\MapOf;
+use ImageKit\Shared\AutoDescriptionExtension;
+use ImageKit\Shared\AutoTaggingExtension;
+use ImageKit\Shared\RemovedotBgExtension;
 
 /**
  * The V2 API enhances security by verifying the entire payload using JWT. This API is in beta.

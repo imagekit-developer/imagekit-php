@@ -10,7 +10,9 @@ use ImageKit\Core\Conversion;
 use ImageKit\Folders\Job\JobService;
 use ImageKit\RequestOptions;
 use ImageKit\Responses\Folders\FolderCopyResponse;
+use ImageKit\Responses\Folders\FolderDeleteResponse;
 use ImageKit\Responses\Folders\FolderMoveResponse;
+use ImageKit\Responses\Folders\FolderNewResponse;
 use ImageKit\Responses\Folders\FolderRenameResponse;
 
 final class FoldersService implements FoldersContract
@@ -32,7 +34,7 @@ final class FoldersService implements FoldersContract
     public function create(
         array|FolderCreateParams $params,
         ?RequestOptions $requestOptions = null
-    ): mixed {
+    ): FolderNewResponse {
         [$parsed, $options] = FolderCreateParams::parseRequest(
             $params,
             $requestOptions
@@ -45,7 +47,7 @@ final class FoldersService implements FoldersContract
         );
 
         // @phpstan-ignore-next-line;
-        return Conversion::coerce('mixed', value: $resp);
+        return Conversion::coerce(FolderNewResponse::class, value: $resp);
     }
 
     /**
@@ -56,7 +58,7 @@ final class FoldersService implements FoldersContract
     public function delete(
         array|FolderDeleteParams $params,
         ?RequestOptions $requestOptions = null
-    ): mixed {
+    ): FolderDeleteResponse {
         [$parsed, $options] = FolderDeleteParams::parseRequest(
             $params,
             $requestOptions
@@ -69,7 +71,7 @@ final class FoldersService implements FoldersContract
         );
 
         // @phpstan-ignore-next-line;
-        return Conversion::coerce('mixed', value: $resp);
+        return Conversion::coerce(FolderDeleteResponse::class, value: $resp);
     }
 
     /**

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files\FileUploadParams\Extension;
+namespace ImageKit\Shared;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\Model;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Files\FileUploadParams\Extension\AutoTaggingExtension\Name;
+use ImageKit\Shared\AutoTaggingExtension\Name;
 
 /**
  * @phpstan-type auto_tagging_extension_alias = array{

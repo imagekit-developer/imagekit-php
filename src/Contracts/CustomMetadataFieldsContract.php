@@ -10,6 +10,7 @@ use ImageKit\CustomMetadataFields\CustomMetadataFieldListParams;
 use ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams;
 use ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema as Schema1;
 use ImageKit\RequestOptions;
+use ImageKit\Responses\CustomMetadataFields\CustomMetadataFieldDeleteResponse;
 use ImageKit\Responses\CustomMetadataFields\CustomMetadataFieldListResponseItem;
 use ImageKit\Responses\CustomMetadataFields\CustomMetadataFieldNewResponse;
 use ImageKit\Responses\CustomMetadataFields\CustomMetadataFieldUpdateResponse;
@@ -50,5 +51,5 @@ interface CustomMetadataFieldsContract
     public function delete(
         string $id,
         ?RequestOptions $requestOptions = null
-    ): mixed;
+    ): CustomMetadataFieldDeleteResponse;
 }

@@ -8,6 +8,7 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\Model;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Core\Conversion\ListOf;
+use ImageKit\Core\Conversion\MapOf;
 use ImageKit\Responses\Files\Versions\VersionListResponseItem\AITag;
 use ImageKit\Responses\Files\Versions\VersionListResponseItem\VersionInfo;
 
@@ -18,7 +19,7 @@ use ImageKit\Responses\Files\Versions\VersionListResponseItem\VersionInfo;
  *   aiTags?: list<AITag>|null,
  *   createdAt?: string,
  *   customCoordinates?: string|null,
- *   customMetadata?: mixed,
+ *   customMetadata?: array<string, mixed>,
  *   fileID?: string,
  *   filePath?: string,
  *   fileType?: string,
@@ -69,9 +70,11 @@ final class VersionListResponseItem implements BaseModel
 
     /**
      * An object with custom metadata for the file.
+     *
+     * @var null|array<string, mixed> $customMetadata
      */
-    #[Api(optional: true)]
-    public mixed $customMetadata;
+    #[Api(type: new MapOf('string'), optional: true)]
+    public ?array $customMetadata;
 
     /**
      * Unique identifier of the asset.
@@ -189,13 +192,14 @@ final class VersionListResponseItem implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param null|list<AITag> $aiTags
+     * @param null|array<string, mixed> $customMetadata
      * @param null|list<string> $tags
      */
     public static function with(
         ?array $aiTags = null,
         ?string $createdAt = null,
         ?string $customCoordinates = null,
-        mixed $customMetadata = null,
+        ?array $customMetadata = null,
         ?string $fileID = null,
         ?string $filePath = null,
         ?string $fileType = null,
@@ -278,8 +282,10 @@ final class VersionListResponseItem implements BaseModel
 
     /**
      * An object with custom metadata for the file.
+     *
+     * @param array<string, mixed> $customMetadata
      */
-    public function withCustomMetadata(mixed $customMetadata): self
+    public function withCustomMetadata(array $customMetadata): self
     {
         $obj = clone $this;
         $obj->customMetadata = $customMetadata;

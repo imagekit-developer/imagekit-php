@@ -8,29 +8,28 @@ use ImageKit\Files\FileCopyParams;
 use ImageKit\Files\FileMoveParams;
 use ImageKit\Files\FileRenameParams;
 use ImageKit\Files\FileUpdateParams;
-use ImageKit\Files\FileUpdateParams\Extension\AutoDescriptionExtension;
-use ImageKit\Files\FileUpdateParams\Extension\AutoTaggingExtension;
-use ImageKit\Files\FileUpdateParams\Extension\RemovedotBgExtension;
 use ImageKit\Files\FileUpdateParams\Publish;
 use ImageKit\Files\FileUpdateParams\RemoveAITags\UnionMember1;
 use ImageKit\Files\FileUploadParams;
-use ImageKit\Files\FileUploadParams\Extension\AutoDescriptionExtension as AutoDescriptionExtension1;
-use ImageKit\Files\FileUploadParams\Extension\AutoTaggingExtension as AutoTaggingExtension1;
-use ImageKit\Files\FileUploadParams\Extension\RemovedotBgExtension as RemovedotBgExtension1;
 use ImageKit\Files\FileUploadParams\ResponseField;
 use ImageKit\Files\FileUploadParams\Transformation;
 use ImageKit\RequestOptions;
+use ImageKit\Responses\Files\FileCopyResponse;
 use ImageKit\Responses\Files\FileGetResponse;
+use ImageKit\Responses\Files\FileMoveResponse;
 use ImageKit\Responses\Files\FileRenameResponse;
 use ImageKit\Responses\Files\FileUpdateResponse;
 use ImageKit\Responses\Files\FileUploadResponse;
+use ImageKit\Shared\AutoDescriptionExtension;
+use ImageKit\Shared\AutoTaggingExtension;
+use ImageKit\Shared\RemovedotBgExtension;
 
 interface FilesContract
 {
     /**
      * @param array{
      *   customCoordinates?: null|string,
-     *   customMetadata?: mixed,
+     *   customMetadata?: array<string, mixed>,
      *   description?: string,
      *   extensions?: list<AutoDescriptionExtension|AutoTaggingExtension|RemovedotBgExtension>,
      *   removeAITags?: list<string>|UnionMember1::*,
@@ -58,7 +57,7 @@ interface FilesContract
     public function copy(
         array|FileCopyParams $params,
         ?RequestOptions $requestOptions = null
-    ): mixed;
+    ): FileCopyResponse;
 
     public function get(
         string $fileID,
@@ -73,7 +72,7 @@ interface FilesContract
     public function move(
         array|FileMoveParams $params,
         ?RequestOptions $requestOptions = null
-    ): mixed;
+    ): FileMoveResponse;
 
     /**
      * @param array{
@@ -95,7 +94,7 @@ interface FilesContract
      *   customMetadata?: array<string, mixed>,
      *   description?: string,
      *   expire?: int,
-     *   extensions?: list<AutoDescriptionExtension1|AutoTaggingExtension1|RemovedotBgExtension1>,
+     *   extensions?: list<AutoDescriptionExtension|AutoTaggingExtension|RemovedotBgExtension>,
      *   folder?: string,
      *   isPrivateFile?: bool,
      *   isPublished?: bool,

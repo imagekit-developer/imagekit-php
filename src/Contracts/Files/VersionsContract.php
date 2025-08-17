@@ -8,6 +8,7 @@ use ImageKit\Files\Versions\VersionDeleteParams;
 use ImageKit\Files\Versions\VersionGetParams;
 use ImageKit\Files\Versions\VersionRestoreParams;
 use ImageKit\RequestOptions;
+use ImageKit\Responses\Files\Versions\VersionDeleteResponse;
 use ImageKit\Responses\Files\Versions\VersionGetResponse;
 use ImageKit\Responses\Files\Versions\VersionListResponseItem;
 use ImageKit\Responses\Files\Versions\VersionRestoreResponse;
@@ -29,7 +30,7 @@ interface VersionsContract
         string $versionID,
         array|VersionDeleteParams $params,
         ?RequestOptions $requestOptions = null,
-    ): mixed;
+    ): VersionDeleteResponse;
 
     /**
      * @param array{fileID: string}|VersionGetParams $params

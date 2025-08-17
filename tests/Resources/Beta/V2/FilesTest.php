@@ -3,13 +3,13 @@
 namespace Tests\Resources\Beta\V2;
 
 use ImageKit\Beta\V2\Files\FileUploadParams;
-use ImageKit\Beta\V2\Files\FileUploadParams\Extension\AutoTaggingExtension;
-use ImageKit\Beta\V2\Files\FileUploadParams\Extension\RemovedotBgExtension;
-use ImageKit\Beta\V2\Files\FileUploadParams\Extension\RemovedotBgExtension\Options;
 use ImageKit\Beta\V2\Files\FileUploadParams\Transformation;
 use ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post\AdaptiveBitrateStreaming;
 use ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post\GenerateAThumbnail;
 use ImageKit\Client;
+use ImageKit\Shared\AutoTaggingExtension;
+use ImageKit\Shared\RemovedotBgExtension;
+use ImageKit\Shared\RemovedotBgExtension\Options;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;

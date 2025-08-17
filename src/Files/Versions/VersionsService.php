@@ -9,6 +9,7 @@ use ImageKit\Contracts\Files\VersionsContract;
 use ImageKit\Core\Conversion;
 use ImageKit\Core\Conversion\ListOf;
 use ImageKit\RequestOptions;
+use ImageKit\Responses\Files\Versions\VersionDeleteResponse;
 use ImageKit\Responses\Files\Versions\VersionGetResponse;
 use ImageKit\Responses\Files\Versions\VersionListResponseItem;
 use ImageKit\Responses\Files\Versions\VersionRestoreResponse;
@@ -50,7 +51,7 @@ final class VersionsService implements VersionsContract
         string $versionID,
         array|VersionDeleteParams $params,
         ?RequestOptions $requestOptions = null,
-    ): mixed {
+    ): VersionDeleteResponse {
         [$parsed, $options] = VersionDeleteParams::parseRequest(
             $params,
             $requestOptions
@@ -64,7 +65,7 @@ final class VersionsService implements VersionsContract
         );
 
         // @phpstan-ignore-next-line;
-        return Conversion::coerce('mixed', value: $resp);
+        return Conversion::coerce(VersionDeleteResponse::class, value: $resp);
     }
 
     /**

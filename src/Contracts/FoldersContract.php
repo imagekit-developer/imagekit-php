@@ -11,7 +11,9 @@ use ImageKit\Folders\FolderMoveParams;
 use ImageKit\Folders\FolderRenameParams;
 use ImageKit\RequestOptions;
 use ImageKit\Responses\Folders\FolderCopyResponse;
+use ImageKit\Responses\Folders\FolderDeleteResponse;
 use ImageKit\Responses\Folders\FolderMoveResponse;
+use ImageKit\Responses\Folders\FolderNewResponse;
 use ImageKit\Responses\Folders\FolderRenameResponse;
 
 interface FoldersContract
@@ -24,7 +26,7 @@ interface FoldersContract
     public function create(
         array|FolderCreateParams $params,
         ?RequestOptions $requestOptions = null
-    ): mixed;
+    ): FolderNewResponse;
 
     /**
      * @param array{folderPath: string}|FolderDeleteParams $params
@@ -32,7 +34,7 @@ interface FoldersContract
     public function delete(
         array|FolderDeleteParams $params,
         ?RequestOptions $requestOptions = null
-    ): mixed;
+    ): FolderDeleteResponse;
 
     /**
      * @param array{

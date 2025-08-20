@@ -63,7 +63,7 @@ final class FilesTest extends TestCase
             token: 'token',
             checks: "\"request.folder\" : \"marketing/\"\n",
             customCoordinates: 'customCoordinates',
-            customMetadata: ['brand' => (object) [], 'color' => (object) []],
+            customMetadata: ['brand' => 'bar', 'color' => 'bar'],
             description: 'Running shoes',
             extensions: [
                 RemovedotBgExtension::with(name: 'remove-bg')

@@ -47,8 +47,8 @@ $client = new Client(
 );
 
 $params = FileUploadParams::with(fileName: "fileName");
-$response = $client->files->upload($params);
 
+$response = $client->files->upload($params);
 var_dump($response->videoCodec);
 ```
 
@@ -70,7 +70,7 @@ try {$Files = $client->files->upload($params);} catch (APIConnectionError $e) {
     echo "A 429 status code was received; we should back off a bit.", PHP_EOL;
 } catch (APIStatusError $e) {
     echo "Another non-200-range status code was received", PHP_EOL;
-    var_dump($e->status);
+    echo $e->getMessage();
 }
 ```
 

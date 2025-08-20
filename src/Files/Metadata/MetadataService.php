@@ -37,14 +37,14 @@ final class MetadataService implements MetadataContract
     /**
      * Get image EXIF, pHash, and other metadata from ImageKit.io powered remote URL using this API.
      *
-     * @param array{url: string}|MetadataGetFromURLParams $params
+     * @param string $url Should be a valid file URL. It should be accessible using your ImageKit.io account.
      */
     public function getFromURL(
-        array|MetadataGetFromURLParams $params,
-        ?RequestOptions $requestOptions = null,
+        $url,
+        ?RequestOptions $requestOptions = null
     ): MetadataGetFromURLResponse {
         [$parsed, $options] = MetadataGetFromURLParams::parseRequest(
-            $params,
+            ['url' => $url],
             $requestOptions
         );
         $resp = $this->client->request(

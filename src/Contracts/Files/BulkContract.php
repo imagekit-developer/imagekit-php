@@ -4,10 +4,6 @@ declare(strict_types=1);
 
 namespace ImageKit\Contracts\Files;
 
-use ImageKit\Files\Bulk\BulkAddTagsParams;
-use ImageKit\Files\Bulk\BulkDeleteParams;
-use ImageKit\Files\Bulk\BulkRemoveAITagsParams;
-use ImageKit\Files\Bulk\BulkRemoveTagsParams;
 use ImageKit\RequestOptions;
 use ImageKit\Responses\Files\Bulk\BulkAddTagsResponse;
 use ImageKit\Responses\Files\Bulk\BulkDeleteResponse;
@@ -17,40 +13,40 @@ use ImageKit\Responses\Files\Bulk\BulkRemoveTagsResponse;
 interface BulkContract
 {
     /**
-     * @param array{fileIDs: list<string>}|BulkDeleteParams $params
+     * @param list<string> $fileIDs an array of fileIds which you want to delete
      */
     public function delete(
-        array|BulkDeleteParams $params,
+        $fileIDs,
         ?RequestOptions $requestOptions = null
     ): BulkDeleteResponse;
 
     /**
-     * @param array{
-     *   fileIDs: list<string>, tags: list<string>
-     * }|BulkAddTagsParams $params
+     * @param list<string> $fileIDs an array of fileIds to which you want to add tags
+     * @param list<string> $tags an array of tags that you want to add to the files
      */
     public function addTags(
-        array|BulkAddTagsParams $params,
+        $fileIDs,
+        $tags,
         ?RequestOptions $requestOptions = null
     ): BulkAddTagsResponse;
 
     /**
-     * @param array{
-     *   aiTags: list<string>, fileIDs: list<string>
-     * }|BulkRemoveAITagsParams $params
+     * @param list<string> $aiTags an array of AITags that you want to remove from the files
+     * @param list<string> $fileIDs an array of fileIds from which you want to remove AITags
      */
     public function removeAITags(
-        array|BulkRemoveAITagsParams $params,
-        ?RequestOptions $requestOptions = null,
+        $aiTags,
+        $fileIDs,
+        ?RequestOptions $requestOptions = null
     ): BulkRemoveAITagsResponse;
 
     /**
-     * @param array{
-     *   fileIDs: list<string>, tags: list<string>
-     * }|BulkRemoveTagsParams $params
+     * @param list<string> $fileIDs an array of fileIds from which you want to remove tags
+     * @param list<string> $tags an array of tags that you want to remove from the files
      */
     public function removeTags(
-        array|BulkRemoveTagsParams $params,
-        ?RequestOptions $requestOptions = null,
+        $fileIDs,
+        $tags,
+        ?RequestOptions $requestOptions = null
     ): BulkRemoveTagsResponse;
 }

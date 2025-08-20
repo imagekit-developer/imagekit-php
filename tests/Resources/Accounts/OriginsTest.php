@@ -2,8 +2,6 @@
 
 namespace Tests\Resources\Accounts;
 
-use ImageKit\Accounts\Origins\OriginCreateParams;
-use ImageKit\Accounts\Origins\OriginUpdateParams;
 use ImageKit\Client;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
@@ -39,7 +37,7 @@ final class OriginsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = OriginCreateParams::with(
+        $result = $this->client->accounts->origins->create(
             accessKey: 'AKIAIOSFODNN7EXAMPLE',
             bucket: 'gcs-media',
             name: 'US S3 Storage',
@@ -57,7 +55,6 @@ final class OriginsTest extends TestCase
             password: 'strongpassword123',
             username: 'integration-user',
         );
-        $result = $this->client->accounts->origins->create($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -69,7 +66,7 @@ final class OriginsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = OriginCreateParams::with(
+        $result = $this->client->accounts->origins->create(
             accessKey: 'AKIAIOSFODNN7EXAMPLE',
             bucket: 'gcs-media',
             name: 'US S3 Storage',
@@ -92,7 +89,6 @@ final class OriginsTest extends TestCase
             password: 'strongpassword123',
             username: 'integration-user',
         );
-        $result = $this->client->accounts->origins->create($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -104,7 +100,8 @@ final class OriginsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = OriginUpdateParams::with(
+        $result = $this->client->accounts->origins->update(
+            'id',
             accessKey: 'AKIAIOSFODNN7EXAMPLE',
             bucket: 'gcs-media',
             name: 'US S3 Storage',
@@ -122,7 +119,6 @@ final class OriginsTest extends TestCase
             password: 'strongpassword123',
             username: 'integration-user',
         );
-        $result = $this->client->accounts->origins->update('id', $params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -134,7 +130,8 @@ final class OriginsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = OriginUpdateParams::with(
+        $result = $this->client->accounts->origins->update(
+            'id',
             accessKey: 'AKIAIOSFODNN7EXAMPLE',
             bucket: 'gcs-media',
             name: 'US S3 Storage',
@@ -157,7 +154,6 @@ final class OriginsTest extends TestCase
             password: 'strongpassword123',
             username: 'integration-user',
         );
-        $result = $this->client->accounts->origins->update('id', $params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }

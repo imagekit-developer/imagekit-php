@@ -2,7 +2,6 @@
 
 namespace Tests\Resources;
 
-use ImageKit\Assets\AssetListParams;
 use ImageKit\Client;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
@@ -38,8 +37,7 @@ final class AssetsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = (new AssetListParams);
-        $result = $this->client->assets->list($params);
+        $result = $this->client->assets->list();
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }

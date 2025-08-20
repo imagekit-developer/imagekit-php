@@ -3,10 +3,6 @@
 namespace Tests\Resources\Files;
 
 use ImageKit\Client;
-use ImageKit\Files\Bulk\BulkAddTagsParams;
-use ImageKit\Files\Bulk\BulkDeleteParams;
-use ImageKit\Files\Bulk\BulkRemoveAITagsParams;
-use ImageKit\Files\Bulk\BulkRemoveTagsParams;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
@@ -41,10 +37,9 @@ final class BulkTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = BulkDeleteParams::with(
-            fileIDs: ['598821f949c0a938d57563bd', '598821f949c0a938d57563be']
+        $result = $this->client->files->bulk->delete(
+            ['598821f949c0a938d57563bd', '598821f949c0a938d57563be']
         );
-        $result = $this->client->files->bulk->delete($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -56,10 +51,9 @@ final class BulkTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = BulkDeleteParams::with(
-            fileIDs: ['598821f949c0a938d57563bd', '598821f949c0a938d57563be']
+        $result = $this->client->files->bulk->delete(
+            ['598821f949c0a938d57563bd', '598821f949c0a938d57563be']
         );
-        $result = $this->client->files->bulk->delete($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -71,11 +65,10 @@ final class BulkTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = BulkAddTagsParams::with(
+        $result = $this->client->files->bulk->addTags(
             fileIDs: ['598821f949c0a938d57563bd', '598821f949c0a938d57563be'],
             tags: ['t-shirt', 'round-neck', 'sale2019'],
         );
-        $result = $this->client->files->bulk->addTags($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -87,11 +80,10 @@ final class BulkTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = BulkAddTagsParams::with(
+        $result = $this->client->files->bulk->addTags(
             fileIDs: ['598821f949c0a938d57563bd', '598821f949c0a938d57563be'],
             tags: ['t-shirt', 'round-neck', 'sale2019'],
         );
-        $result = $this->client->files->bulk->addTags($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -103,11 +95,10 @@ final class BulkTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = BulkRemoveAITagsParams::with(
+        $result = $this->client->files->bulk->removeAITags(
             aiTags: ['t-shirt', 'round-neck', 'sale2019'],
             fileIDs: ['598821f949c0a938d57563bd', '598821f949c0a938d57563be'],
         );
-        $result = $this->client->files->bulk->removeAITags($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -119,11 +110,10 @@ final class BulkTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = BulkRemoveAITagsParams::with(
+        $result = $this->client->files->bulk->removeAITags(
             aiTags: ['t-shirt', 'round-neck', 'sale2019'],
             fileIDs: ['598821f949c0a938d57563bd', '598821f949c0a938d57563be'],
         );
-        $result = $this->client->files->bulk->removeAITags($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -135,11 +125,10 @@ final class BulkTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = BulkRemoveTagsParams::with(
+        $result = $this->client->files->bulk->removeTags(
             fileIDs: ['598821f949c0a938d57563bd', '598821f949c0a938d57563be'],
             tags: ['t-shirt', 'round-neck', 'sale2019'],
         );
-        $result = $this->client->files->bulk->removeTags($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -151,11 +140,10 @@ final class BulkTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = BulkRemoveTagsParams::with(
+        $result = $this->client->files->bulk->removeTags(
             fileIDs: ['598821f949c0a938d57563bd', '598821f949c0a938d57563be'],
             tags: ['t-shirt', 'round-neck', 'sale2019'],
         );
-        $result = $this->client->files->bulk->removeTags($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }

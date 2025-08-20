@@ -3,11 +3,6 @@
 namespace Tests\Resources;
 
 use ImageKit\Client;
-use ImageKit\Files\FileCopyParams;
-use ImageKit\Files\FileMoveParams;
-use ImageKit\Files\FileRenameParams;
-use ImageKit\Files\FileUpdateParams;
-use ImageKit\Files\FileUploadParams;
 use ImageKit\Files\FileUploadParams\Transformation;
 use ImageKit\Files\FileUploadParams\Transformation\Post\AdaptiveBitrateStreaming;
 use ImageKit\Files\FileUploadParams\Transformation\Post\GenerateAThumbnail;
@@ -48,8 +43,7 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = (new FileUpdateParams);
-        $result = $this->client->files->update('fileId', $params);
+        $result = $this->client->files->update('fileId');
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -73,11 +67,10 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = FileCopyParams::with(
+        $result = $this->client->files->copy(
             destinationPath: '/folder/to/copy/into/',
             sourceFilePath: '/path/to/file.jpg',
         );
-        $result = $this->client->files->copy($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -89,12 +82,11 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = FileCopyParams::with(
+        $result = $this->client->files->copy(
             destinationPath: '/folder/to/copy/into/',
             sourceFilePath: '/path/to/file.jpg',
             includeFileVersions: false,
         );
-        $result = $this->client->files->copy($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -118,11 +110,10 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = FileMoveParams::with(
+        $result = $this->client->files->move(
             destinationPath: '/folder/to/move/into/',
             sourceFilePath: '/path/to/file.jpg',
         );
-        $result = $this->client->files->move($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -134,11 +125,10 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = FileMoveParams::with(
+        $result = $this->client->files->move(
             destinationPath: '/folder/to/move/into/',
             sourceFilePath: '/path/to/file.jpg',
         );
-        $result = $this->client->files->move($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -150,11 +140,10 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = FileRenameParams::with(
+        $result = $this->client->files->rename(
             filePath: '/path/to/file.jpg',
             newFileName: 'newFileName.jpg'
         );
-        $result = $this->client->files->rename($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -166,12 +155,11 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = FileRenameParams::with(
+        $result = $this->client->files->rename(
             filePath: '/path/to/file.jpg',
             newFileName: 'newFileName.jpg',
             purgeCache: true,
         );
-        $result = $this->client->files->rename($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -183,8 +171,7 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = FileUploadParams::with(file: 'file', fileName: 'fileName');
-        $result = $this->client->files->upload($params);
+        $result = $this->client->files->upload(file: 'file', fileName: 'fileName');
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -196,7 +183,7 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = FileUploadParams::with(
+        $result = $this->client->files->upload(
             file: 'file',
             fileName: 'fileName',
             token: 'token',
@@ -246,7 +233,6 @@ final class FilesTest extends TestCase
             useUniqueFileName: true,
             webhookURL: 'https://example.com',
         );
-        $result = $this->client->files->upload($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }

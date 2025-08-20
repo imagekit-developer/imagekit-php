@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace ImageKit\Contracts\Files;
 
-use ImageKit\Files\Versions\VersionDeleteParams;
-use ImageKit\Files\Versions\VersionGetParams;
-use ImageKit\Files\Versions\VersionRestoreParams;
 use ImageKit\RequestOptions;
 use ImageKit\Responses\Files\Versions\VersionDeleteResponse;
 use ImageKit\Responses\Files\Versions\VersionGetResponse;
@@ -24,29 +21,29 @@ interface VersionsContract
     ): array;
 
     /**
-     * @param array{fileID: string}|VersionDeleteParams $params
+     * @param string $fileID
      */
     public function delete(
         string $versionID,
-        array|VersionDeleteParams $params,
-        ?RequestOptions $requestOptions = null,
+        $fileID,
+        ?RequestOptions $requestOptions = null
     ): VersionDeleteResponse;
 
     /**
-     * @param array{fileID: string}|VersionGetParams $params
+     * @param string $fileID
      */
     public function get(
         string $versionID,
-        array|VersionGetParams $params,
-        ?RequestOptions $requestOptions = null,
+        $fileID,
+        ?RequestOptions $requestOptions = null
     ): VersionGetResponse;
 
     /**
-     * @param array{fileID: string}|VersionRestoreParams $params
+     * @param string $fileID
      */
     public function restore(
         string $versionID,
-        array|VersionRestoreParams $params,
-        ?RequestOptions $requestOptions = null,
+        $fileID,
+        ?RequestOptions $requestOptions = null
     ): VersionRestoreResponse;
 }

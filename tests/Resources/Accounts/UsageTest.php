@@ -2,7 +2,6 @@
 
 namespace Tests\Resources\Accounts;
 
-use ImageKit\Accounts\Usage\UsageGetParams;
 use ImageKit\Client;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
@@ -38,11 +37,10 @@ final class UsageTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = UsageGetParams::with(
+        $result = $this->client->accounts->usage->get(
             endDate: new \DateTimeImmutable('2019-12-27'),
             startDate: new \DateTimeImmutable('2019-12-27'),
         );
-        $result = $this->client->accounts->usage->get($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -54,11 +52,10 @@ final class UsageTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = UsageGetParams::with(
+        $result = $this->client->accounts->usage->get(
             endDate: new \DateTimeImmutable('2019-12-27'),
             startDate: new \DateTimeImmutable('2019-12-27'),
         );
-        $result = $this->client->accounts->usage->get($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }

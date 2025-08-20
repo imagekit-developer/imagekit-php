@@ -3,9 +3,6 @@
 namespace Tests\Resources\Files;
 
 use ImageKit\Client;
-use ImageKit\Files\Versions\VersionDeleteParams;
-use ImageKit\Files\Versions\VersionGetParams;
-use ImageKit\Files\Versions\VersionRestoreParams;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
@@ -52,8 +49,7 @@ final class VersionsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = VersionDeleteParams::with(fileID: 'fileId');
-        $result = $this->client->files->versions->delete('versionId', $params);
+        $result = $this->client->files->versions->delete('versionId', 'fileId');
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -65,8 +61,7 @@ final class VersionsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = VersionDeleteParams::with(fileID: 'fileId');
-        $result = $this->client->files->versions->delete('versionId', $params);
+        $result = $this->client->files->versions->delete('versionId', 'fileId');
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -78,8 +73,7 @@ final class VersionsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = VersionGetParams::with(fileID: 'fileId');
-        $result = $this->client->files->versions->get('versionId', $params);
+        $result = $this->client->files->versions->get('versionId', 'fileId');
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -91,8 +85,7 @@ final class VersionsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = VersionGetParams::with(fileID: 'fileId');
-        $result = $this->client->files->versions->get('versionId', $params);
+        $result = $this->client->files->versions->get('versionId', 'fileId');
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -104,8 +97,7 @@ final class VersionsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = VersionRestoreParams::with(fileID: 'fileId');
-        $result = $this->client->files->versions->restore('versionId', $params);
+        $result = $this->client->files->versions->restore('versionId', 'fileId');
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -117,8 +109,7 @@ final class VersionsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = VersionRestoreParams::with(fileID: 'fileId');
-        $result = $this->client->files->versions->restore('versionId', $params);
+        $result = $this->client->files->versions->restore('versionId', 'fileId');
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }

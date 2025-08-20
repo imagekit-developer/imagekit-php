@@ -56,37 +56,77 @@ final class OriginsService implements OriginsContract
      * **Note:** This API is currently in beta.
      * Creates a new origin and returns the origin object.
      *
-     * @param array{
-     *   accessKey: string,
-     *   bucket: string,
-     *   name: string,
-     *   secretKey: string,
-     *   type: Type::*,
-     *   baseURLForCanonicalHeader?: string,
-     *   includeCanonicalHeader?: bool,
-     *   prefix?: string,
-     *   endpoint: string,
-     *   s3ForcePathStyle?: bool,
-     *   baseURL: string,
-     *   forwardHostHeaderToOrigin?: bool,
-     *   clientEmail: string,
-     *   privateKey: string,
-     *   accountName: string,
-     *   container: string,
-     *   sasToken: string,
-     *   clientID: string,
-     *   clientSecret: string,
-     *   password: string,
-     *   username: string,
-     * }|OriginCreateParams $params
+     * @param string $accessKey access key for the bucket
+     * @param string $bucket
+     * @param string $name display name of the origin
+     * @param string $secretKey secret key for the bucket
+     * @param Type::* $type
+     * @param string $baseURLForCanonicalHeader URL used in the Canonical header (if enabled)
+     * @param bool $includeCanonicalHeader whether to send a Canonical header
+     * @param string $prefix
+     * @param string $endpoint custom S3-compatible endpoint
+     * @param bool $s3ForcePathStyle Use path-style S3 URLs?
+     * @param string $baseURL akeneo instance base URL
+     * @param bool $forwardHostHeaderToOrigin Forward the Host header to origin?
+     * @param string $clientEmail
+     * @param string $privateKey
+     * @param string $accountName
+     * @param string $container
+     * @param string $sasToken
+     * @param string $clientID akeneo API client ID
+     * @param string $clientSecret akeneo API client secret
+     * @param string $password akeneo API password
+     * @param string $username akeneo API username
      */
     public function create(
-        array|OriginCreateParams $params,
-        ?RequestOptions $requestOptions = null
+        $accessKey,
+        $bucket,
+        $name,
+        $secretKey,
+        $type,
+        $baseURLForCanonicalHeader = null,
+        $includeCanonicalHeader = null,
+        $prefix = null,
+        $endpoint,
+        $s3ForcePathStyle = null,
+        $baseURL,
+        $forwardHostHeaderToOrigin = null,
+        $clientEmail,
+        $privateKey,
+        $accountName,
+        $container,
+        $sasToken,
+        $clientID,
+        $clientSecret,
+        $password,
+        $username,
+        ?RequestOptions $requestOptions = null,
     ): AkeneoPim1|AzureBlobStorage1|CloudinaryBackup1|GoogleCloudStorageGcs1|S31|S3Compatible1|WebFolder1|WebProxy1 {
         [$parsed, $options] = OriginCreateParams::parseRequest(
-            $params,
-            $requestOptions
+            [
+                'accessKey' => $accessKey,
+                'bucket' => $bucket,
+                'name' => $name,
+                'secretKey' => $secretKey,
+                'type' => $type,
+                'baseURLForCanonicalHeader' => $baseURLForCanonicalHeader,
+                'includeCanonicalHeader' => $includeCanonicalHeader,
+                'prefix' => $prefix,
+                'endpoint' => $endpoint,
+                's3ForcePathStyle' => $s3ForcePathStyle,
+                'baseURL' => $baseURL,
+                'forwardHostHeaderToOrigin' => $forwardHostHeaderToOrigin,
+                'clientEmail' => $clientEmail,
+                'privateKey' => $privateKey,
+                'accountName' => $accountName,
+                'container' => $container,
+                'sasToken' => $sasToken,
+                'clientID' => $clientID,
+                'clientSecret' => $clientSecret,
+                'password' => $password,
+                'username' => $username,
+            ],
+            $requestOptions,
         );
         $resp = $this->client->request(
             method: 'post',
@@ -103,38 +143,78 @@ final class OriginsService implements OriginsContract
      * **Note:** This API is currently in beta.
      * Updates the origin identified by `id` and returns the updated origin object.
      *
-     * @param array{
-     *   accessKey: string,
-     *   bucket: string,
-     *   name: string,
-     *   secretKey: string,
-     *   type: Type1::*,
-     *   baseURLForCanonicalHeader?: string,
-     *   includeCanonicalHeader?: bool,
-     *   prefix?: string,
-     *   endpoint: string,
-     *   s3ForcePathStyle?: bool,
-     *   baseURL: string,
-     *   forwardHostHeaderToOrigin?: bool,
-     *   clientEmail: string,
-     *   privateKey: string,
-     *   accountName: string,
-     *   container: string,
-     *   sasToken: string,
-     *   clientID: string,
-     *   clientSecret: string,
-     *   password: string,
-     *   username: string,
-     * }|OriginUpdateParams $params
+     * @param string $accessKey access key for the bucket
+     * @param string $bucket
+     * @param string $name display name of the origin
+     * @param string $secretKey secret key for the bucket
+     * @param Type1::* $type
+     * @param string $baseURLForCanonicalHeader URL used in the Canonical header (if enabled)
+     * @param bool $includeCanonicalHeader whether to send a Canonical header
+     * @param string $prefix
+     * @param string $endpoint custom S3-compatible endpoint
+     * @param bool $s3ForcePathStyle Use path-style S3 URLs?
+     * @param string $baseURL akeneo instance base URL
+     * @param bool $forwardHostHeaderToOrigin Forward the Host header to origin?
+     * @param string $clientEmail
+     * @param string $privateKey
+     * @param string $accountName
+     * @param string $container
+     * @param string $sasToken
+     * @param string $clientID akeneo API client ID
+     * @param string $clientSecret akeneo API client secret
+     * @param string $password akeneo API password
+     * @param string $username akeneo API username
      */
     public function update(
         string $id,
-        array|OriginUpdateParams $params,
+        $accessKey,
+        $bucket,
+        $name,
+        $secretKey,
+        $type,
+        $baseURLForCanonicalHeader = null,
+        $includeCanonicalHeader = null,
+        $prefix = null,
+        $endpoint,
+        $s3ForcePathStyle = null,
+        $baseURL,
+        $forwardHostHeaderToOrigin = null,
+        $clientEmail,
+        $privateKey,
+        $accountName,
+        $container,
+        $sasToken,
+        $clientID,
+        $clientSecret,
+        $password,
+        $username,
         ?RequestOptions $requestOptions = null,
     ): AkeneoPim2|AzureBlobStorage2|CloudinaryBackup2|GoogleCloudStorageGcs2|S32|S3Compatible2|WebFolder2|WebProxy2 {
         [$parsed, $options] = OriginUpdateParams::parseRequest(
-            $params,
-            $requestOptions
+            [
+                'accessKey' => $accessKey,
+                'bucket' => $bucket,
+                'name' => $name,
+                'secretKey' => $secretKey,
+                'type' => $type,
+                'baseURLForCanonicalHeader' => $baseURLForCanonicalHeader,
+                'includeCanonicalHeader' => $includeCanonicalHeader,
+                'prefix' => $prefix,
+                'endpoint' => $endpoint,
+                's3ForcePathStyle' => $s3ForcePathStyle,
+                'baseURL' => $baseURL,
+                'forwardHostHeaderToOrigin' => $forwardHostHeaderToOrigin,
+                'clientEmail' => $clientEmail,
+                'privateKey' => $privateKey,
+                'accountName' => $accountName,
+                'container' => $container,
+                'sasToken' => $sasToken,
+                'clientID' => $clientID,
+                'clientSecret' => $clientSecret,
+                'password' => $password,
+                'username' => $username,
+            ],
+            $requestOptions,
         );
         $resp = $this->client->request(
             method: 'put',

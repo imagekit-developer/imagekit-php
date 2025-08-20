@@ -2,9 +2,7 @@
 
 namespace Tests\Resources\Accounts;
 
-use ImageKit\Accounts\URLEndpoints\URLEndpointCreateParams;
 use ImageKit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\CloudinaryURLRewriter;
-use ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams;
 use ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\CloudinaryURLRewriter as CloudinaryURLRewriter1;
 use ImageKit\Client;
 use PHPUnit\Framework\Attributes\CoversNothing;
@@ -41,10 +39,9 @@ final class URLEndpointsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = URLEndpointCreateParams::with(
+        $result = $this->client->accounts->urlEndpoints->create(
             description: 'My custom URL endpoint'
         );
-        $result = $this->client->accounts->urlEndpoints->create($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -56,14 +53,13 @@ final class URLEndpointsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = URLEndpointCreateParams::with(
+        $result = $this->client->accounts->urlEndpoints->create(
             description: 'My custom URL endpoint',
             origins: ['origin-id-1'],
             urlPrefix: 'product-images',
             urlRewriter: CloudinaryURLRewriter::with(type: 'CLOUDINARY')
                 ->withPreserveAssetDeliveryTypes(true),
         );
-        $result = $this->client->accounts->urlEndpoints->create($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -75,10 +71,10 @@ final class URLEndpointsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = URLEndpointUpdateParams::with(
+        $result = $this->client->accounts->urlEndpoints->update(
+            'id',
             description: 'My custom URL endpoint'
         );
-        $result = $this->client->accounts->urlEndpoints->update('id', $params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -90,14 +86,14 @@ final class URLEndpointsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = URLEndpointUpdateParams::with(
+        $result = $this->client->accounts->urlEndpoints->update(
+            'id',
             description: 'My custom URL endpoint',
             origins: ['origin-id-1'],
             urlPrefix: 'product-images',
             urlRewriter: CloudinaryURLRewriter1::with(type: 'CLOUDINARY')
                 ->withPreserveAssetDeliveryTypes(true),
         );
-        $result = $this->client->accounts->urlEndpoints->update('id', $params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }

@@ -4,19 +4,18 @@ declare(strict_types=1);
 
 namespace ImageKit\Contracts\Accounts;
 
-use ImageKit\Accounts\Usage\UsageGetParams;
 use ImageKit\RequestOptions;
 use ImageKit\Responses\Accounts\Usage\UsageGetResponse;
 
 interface UsageContract
 {
     /**
-     * @param array{
-     *   endDate: \DateTimeInterface, startDate: \DateTimeInterface
-     * }|UsageGetParams $params
+     * @param \DateTimeInterface $endDate Specify a `endDate` in `YYYY-MM-DD` format. It should be after the `startDate`. The difference between `startDate` and `endDate` should be less than 90 days.
+     * @param \DateTimeInterface $startDate Specify a `startDate` in `YYYY-MM-DD` format. It should be before the `endDate`. The difference between `startDate` and `endDate` should be less than 90 days.
      */
     public function get(
-        array|UsageGetParams $params,
+        $endDate,
+        $startDate,
         ?RequestOptions $requestOptions = null
     ): UsageGetResponse;
 }

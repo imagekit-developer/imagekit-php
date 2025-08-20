@@ -2,7 +2,6 @@
 
 namespace Tests\Resources\Cache;
 
-use ImageKit\Cache\Invalidation\InvalidationCreateParams;
 use ImageKit\Client;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
@@ -38,10 +37,9 @@ final class InvalidationTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = InvalidationCreateParams::with(
-            url: 'https://ik.imagekit.io/your_imagekit_id/default-image.jpg'
+        $result = $this->client->cache->invalidation->create(
+            'https://ik.imagekit.io/your_imagekit_id/default-image.jpg'
         );
-        $result = $this->client->cache->invalidation->create($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -53,10 +51,9 @@ final class InvalidationTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = InvalidationCreateParams::with(
-            url: 'https://ik.imagekit.io/your_imagekit_id/default-image.jpg'
+        $result = $this->client->cache->invalidation->create(
+            'https://ik.imagekit.io/your_imagekit_id/default-image.jpg'
         );
-        $result = $this->client->cache->invalidation->create($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }

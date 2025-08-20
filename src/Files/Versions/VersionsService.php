@@ -45,15 +45,15 @@ final class VersionsService implements VersionsContract
      *
      * Note: If you want to delete all versions of a file, use the delete file API.
      *
-     * @param array{fileID: string}|VersionDeleteParams $params
+     * @param string $fileID
      */
     public function delete(
         string $versionID,
-        array|VersionDeleteParams $params,
-        ?RequestOptions $requestOptions = null,
+        $fileID,
+        ?RequestOptions $requestOptions = null
     ): VersionDeleteResponse {
         [$parsed, $options] = VersionDeleteParams::parseRequest(
-            $params,
+            ['fileID' => $fileID],
             $requestOptions
         );
         $fileID = $parsed['fileID'];
@@ -71,15 +71,15 @@ final class VersionsService implements VersionsContract
     /**
      * This API returns an object with details or attributes of a file version.
      *
-     * @param array{fileID: string}|VersionGetParams $params
+     * @param string $fileID
      */
     public function get(
         string $versionID,
-        array|VersionGetParams $params,
-        ?RequestOptions $requestOptions = null,
+        $fileID,
+        ?RequestOptions $requestOptions = null
     ): VersionGetResponse {
         [$parsed, $options] = VersionGetParams::parseRequest(
-            $params,
+            ['fileID' => $fileID],
             $requestOptions
         );
         $fileID = $parsed['fileID'];
@@ -97,15 +97,15 @@ final class VersionsService implements VersionsContract
     /**
      * This API restores a file version as the current file version.
      *
-     * @param array{fileID: string}|VersionRestoreParams $params
+     * @param string $fileID
      */
     public function restore(
         string $versionID,
-        array|VersionRestoreParams $params,
-        ?RequestOptions $requestOptions = null,
+        $fileID,
+        ?RequestOptions $requestOptions = null
     ): VersionRestoreResponse {
         [$parsed, $options] = VersionRestoreParams::parseRequest(
-            $params,
+            ['fileID' => $fileID],
             $requestOptions
         );
         $fileID = $parsed['fileID'];

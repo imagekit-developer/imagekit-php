@@ -2,7 +2,6 @@
 
 namespace Tests\Resources\Beta\V2;
 
-use ImageKit\Beta\V2\Files\FileUploadParams;
 use ImageKit\Beta\V2\Files\FileUploadParams\Transformation;
 use ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post\AdaptiveBitrateStreaming;
 use ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post\GenerateAThumbnail;
@@ -44,8 +43,10 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = FileUploadParams::with(file: 'file', fileName: 'fileName');
-        $result = $this->client->beta->v2->files->upload($params);
+        $result = $this->client->beta->v2->files->upload(
+            file: 'file',
+            fileName: 'fileName'
+        );
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -57,7 +58,7 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = FileUploadParams::with(
+        $result = $this->client->beta->v2->files->upload(
             file: 'file',
             fileName: 'fileName',
             token: 'token',
@@ -104,7 +105,6 @@ final class FilesTest extends TestCase
             useUniqueFileName: true,
             webhookURL: 'https://example.com',
         );
-        $result = $this->client->beta->v2->files->upload($params);
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }

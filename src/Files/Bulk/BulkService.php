@@ -24,14 +24,14 @@ final class BulkService implements BulkContract
      *
      * A maximum of 100 files can be deleted at a time.
      *
-     * @param array{fileIDs: list<string>}|BulkDeleteParams $params
+     * @param list<string> $fileIDs an array of fileIds which you want to delete
      */
     public function delete(
-        array|BulkDeleteParams $params,
+        $fileIDs,
         ?RequestOptions $requestOptions = null
     ): BulkDeleteResponse {
         [$parsed, $options] = BulkDeleteParams::parseRequest(
-            $params,
+            ['fileIDs' => $fileIDs],
             $requestOptions
         );
         $resp = $this->client->request(
@@ -48,16 +48,16 @@ final class BulkService implements BulkContract
     /**
      * This API adds tags to multiple files in bulk. A maximum of 50 files can be specified at a time.
      *
-     * @param array{
-     *   fileIDs: list<string>, tags: list<string>
-     * }|BulkAddTagsParams $params
+     * @param list<string> $fileIDs an array of fileIds to which you want to add tags
+     * @param list<string> $tags an array of tags that you want to add to the files
      */
     public function addTags(
-        array|BulkAddTagsParams $params,
+        $fileIDs,
+        $tags,
         ?RequestOptions $requestOptions = null
     ): BulkAddTagsResponse {
         [$parsed, $options] = BulkAddTagsParams::parseRequest(
-            $params,
+            ['fileIDs' => $fileIDs, 'tags' => $tags],
             $requestOptions
         );
         $resp = $this->client->request(
@@ -74,16 +74,16 @@ final class BulkService implements BulkContract
     /**
      * This API removes AITags from multiple files in bulk. A maximum of 50 files can be specified at a time.
      *
-     * @param array{
-     *   aiTags: list<string>, fileIDs: list<string>
-     * }|BulkRemoveAITagsParams $params
+     * @param list<string> $aiTags an array of AITags that you want to remove from the files
+     * @param list<string> $fileIDs an array of fileIds from which you want to remove AITags
      */
     public function removeAITags(
-        array|BulkRemoveAITagsParams $params,
+        $aiTags,
+        $fileIDs,
         ?RequestOptions $requestOptions = null
     ): BulkRemoveAITagsResponse {
         [$parsed, $options] = BulkRemoveAITagsParams::parseRequest(
-            $params,
+            ['aiTags' => $aiTags, 'fileIDs' => $fileIDs],
             $requestOptions
         );
         $resp = $this->client->request(
@@ -100,16 +100,16 @@ final class BulkService implements BulkContract
     /**
      * This API removes tags from multiple files in bulk. A maximum of 50 files can be specified at a time.
      *
-     * @param array{
-     *   fileIDs: list<string>, tags: list<string>
-     * }|BulkRemoveTagsParams $params
+     * @param list<string> $fileIDs an array of fileIds from which you want to remove tags
+     * @param list<string> $tags an array of tags that you want to remove from the files
      */
     public function removeTags(
-        array|BulkRemoveTagsParams $params,
+        $fileIDs,
+        $tags,
         ?RequestOptions $requestOptions = null
     ): BulkRemoveTagsResponse {
         [$parsed, $options] = BulkRemoveTagsParams::parseRequest(
-            $params,
+            ['fileIDs' => $fileIDs, 'tags' => $tags],
             $requestOptions
         );
         $resp = $this->client->request(

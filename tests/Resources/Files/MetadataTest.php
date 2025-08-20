@@ -3,7 +3,6 @@
 namespace Tests\Resources\Files;
 
 use ImageKit\Client;
-use ImageKit\Files\Metadata\MetadataGetFromURLParams;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
@@ -50,8 +49,7 @@ final class MetadataTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = MetadataGetFromURLParams::with(url: 'https://example.com');
-        $result = $this->client->files->metadata->getFromURL($params);
+        $result = $this->client->files->metadata->getFromURL('https://example.com');
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -63,8 +61,7 @@ final class MetadataTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $params = MetadataGetFromURLParams::with(url: 'https://example.com');
-        $result = $this->client->files->metadata->getFromURL($params);
+        $result = $this->client->files->metadata->getFromURL('https://example.com');
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }

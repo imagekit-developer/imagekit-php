@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ImageKit\Responses\Accounts\URLEndpoints\URLEndpointListResponseItem\URLRewriter;
 
 use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\Model;
+use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Responses\Accounts\URLEndpoints\URLEndpointListResponseItem\URLRewriter\AkamaiURLRewriter\Type;
 
@@ -14,7 +14,7 @@ use ImageKit\Responses\Accounts\URLEndpoints\URLEndpointListResponseItem\URLRewr
  */
 final class AkamaiURLRewriter implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /** @var Type::* $type */
     #[Api(enum: Type::class)]

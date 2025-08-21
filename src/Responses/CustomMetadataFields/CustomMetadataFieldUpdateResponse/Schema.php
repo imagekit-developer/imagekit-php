@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ImageKit\Responses\CustomMetadataFields\CustomMetadataFieldUpdateResponse;
 
 use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\Model;
+use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Core\Conversion\ListOf;
 use ImageKit\Responses\CustomMetadataFields\CustomMetadataFieldUpdateResponse\Schema\DefaultValue;
@@ -28,7 +28,7 @@ use ImageKit\Responses\CustomMetadataFields\CustomMetadataFieldUpdateResponse\Sc
  */
 final class Schema implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * Type of the custom metadata field.

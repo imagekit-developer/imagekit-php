@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ImageKit\Responses\CustomMetadataFields;
 
 use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\Model;
+use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Responses\CustomMetadataFields\CustomMetadataFieldListResponseItem\Schema;
 
@@ -18,7 +18,7 @@ use ImageKit\Responses\CustomMetadataFields\CustomMetadataFieldListResponseItem\
  */
 final class CustomMetadataFieldListResponseItem implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * Unique identifier for the custom metadata field. Use this to update the field.

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ImageKit\Responses\Accounts\URLEndpoints\URLEndpointUpdateResponse\URLRewriter;
 
 use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\Model;
+use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Responses\Accounts\URLEndpoints\URLEndpointUpdateResponse\URLRewriter\ImgixURLRewriter\Type;
 
@@ -14,7 +14,7 @@ use ImageKit\Responses\Accounts\URLEndpoints\URLEndpointUpdateResponse\URLRewrit
  */
 final class ImgixURLRewriter implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /** @var Type::* $type */
     #[Api(enum: Type::class)]

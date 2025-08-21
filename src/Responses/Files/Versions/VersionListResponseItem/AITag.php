@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ImageKit\Responses\Files\Versions\VersionListResponseItem;
 
 use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\Model;
+use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
@@ -15,7 +15,7 @@ use ImageKit\Core\Contracts\BaseModel;
  */
 final class AITag implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * Confidence score of the tag.

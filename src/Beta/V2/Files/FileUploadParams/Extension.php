@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace ImageKit\Beta\V2\Files\FileUploadParams;
 
-use ImageKit\Core\Concerns\Union;
+use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 use ImageKit\Shared\AutoDescriptionExtension;
@@ -16,7 +16,7 @@ use ImageKit\Shared\RemovedotBgExtension;
  */
 final class Extension implements ConverterSource
 {
-    use Union;
+    use SdkUnion;
 
     /**
      * @return array<string,

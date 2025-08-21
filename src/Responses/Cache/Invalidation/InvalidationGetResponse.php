@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ImageKit\Responses\Cache\Invalidation;
 
 use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\Model;
+use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Responses\Cache\Invalidation\InvalidationGetResponse\Status;
 
@@ -14,7 +14,7 @@ use ImageKit\Responses\Cache\Invalidation\InvalidationGetResponse\Status;
  */
 final class InvalidationGetResponse implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * Status of the purge request.

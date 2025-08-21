@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace ImageKit\Files;
 
 use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\Model;
-use ImageKit\Core\Concerns\Params;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Concerns\SdkParams;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
@@ -20,8 +20,8 @@ use ImageKit\Core\Contracts\BaseModel;
  */
 final class FileCopyParams implements BaseModel
 {
-    use Model;
-    use Params;
+    use SdkModel;
+    use SdkParams;
 
     /**
      * Full path to the folder you want to copy the above file into.

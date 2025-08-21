@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ImageKit\Core\Pagination;
 
 use ImageKit\Core\BaseClient;
-use ImageKit\Core\Concerns\Page;
+use ImageKit\Core\Contracts\BasePage;
 use ImageKit\Errors\Error;
 use Psr\Http\Message\ResponseInterface;
 
@@ -16,7 +16,7 @@ use Psr\Http\Message\ResponseInterface;
  *
  * @implements \IteratorAggregate<Item>
  */
-abstract class AbstractPage implements \IteratorAggregate, Page
+abstract class AbstractPage implements \IteratorAggregate, BasePage
 {
     public function __construct(
         protected BaseClient $client,

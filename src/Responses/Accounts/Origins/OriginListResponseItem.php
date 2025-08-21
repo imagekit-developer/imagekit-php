@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace ImageKit\Responses\Accounts\Origins;
 
-use ImageKit\Core\Concerns\Union;
+use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 use ImageKit\Responses\Accounts\Origins\OriginListResponseItem\AkeneoPim;
@@ -23,7 +23,7 @@ use ImageKit\Responses\Accounts\Origins\OriginListResponseItem\WebProxy;
  */
 final class OriginListResponseItem implements ConverterSource
 {
-    use Union;
+    use SdkUnion;
 
     /**
      * @return array<string,

@@ -8,8 +8,8 @@ use ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\AkamaiURL
 use ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\CloudinaryURLRewriter;
 use ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\ImgixURLRewriter;
 use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\Model;
-use ImageKit\Core\Concerns\Params;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Concerns\SdkParams;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Core\Conversion\ListOf;
 
@@ -26,8 +26,8 @@ use ImageKit\Core\Conversion\ListOf;
  */
 final class URLEndpointUpdateParams implements BaseModel
 {
-    use Model;
-    use Params;
+    use SdkModel;
+    use SdkParams;
 
     /**
      * Description of the URL endpoint.

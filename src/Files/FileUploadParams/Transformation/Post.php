@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace ImageKit\Files\FileUploadParams\Transformation;
 
-use ImageKit\Core\Concerns\Union;
+use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 use ImageKit\Files\FileUploadParams\Transformation\Post\AdaptiveBitrateStreaming;
@@ -17,7 +17,7 @@ use ImageKit\Files\FileUploadParams\Transformation\Post\SimplePostTransformation
  */
 final class Post implements ConverterSource
 {
-    use Union;
+    use SdkUnion;
 
     /**
      * @return array<string,

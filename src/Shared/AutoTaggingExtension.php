@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ImageKit\Shared;
 
 use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\Model;
+use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Shared\AutoTaggingExtension\Name;
 
@@ -16,7 +16,7 @@ use ImageKit\Shared\AutoTaggingExtension\Name;
  */
 final class AutoTaggingExtension implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * Maximum number of tags to attach to the asset.

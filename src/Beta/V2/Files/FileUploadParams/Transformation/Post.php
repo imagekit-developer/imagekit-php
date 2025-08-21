@@ -8,7 +8,7 @@ use ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post\AdaptiveBitrateS
 use ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post\ConvertGifToVideo;
 use ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post\GenerateAThumbnail;
 use ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post\SimplePostTransformation;
-use ImageKit\Core\Concerns\Union;
+use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
@@ -17,7 +17,7 @@ use ImageKit\Core\Conversion\Contracts\ConverterSource;
  */
 final class Post implements ConverterSource
 {
-    use Union;
+    use SdkUnion;
 
     /**
      * @return array<string,

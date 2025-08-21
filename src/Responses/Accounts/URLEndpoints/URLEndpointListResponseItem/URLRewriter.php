@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace ImageKit\Responses\Accounts\URLEndpoints\URLEndpointListResponseItem;
 
-use ImageKit\Core\Concerns\Union;
+use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 use ImageKit\Responses\Accounts\URLEndpoints\URLEndpointListResponseItem\URLRewriter\AkamaiURLRewriter;
@@ -18,7 +18,7 @@ use ImageKit\Responses\Accounts\URLEndpoints\URLEndpointListResponseItem\URLRewr
  */
 final class URLRewriter implements ConverterSource
 {
-    use Union;
+    use SdkUnion;
 
     /**
      * @return array<string,

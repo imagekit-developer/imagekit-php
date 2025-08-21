@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ImageKit\Responses\Files\FileUpdateResponse;
 
 use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\Model;
+use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Responses\Files\FileUpdateResponse\ExtensionStatus\AIAutoDescription;
 use ImageKit\Responses\Files\FileUpdateResponse\ExtensionStatus\AwsAutoTagging;
@@ -22,7 +22,7 @@ use ImageKit\Responses\Files\FileUpdateResponse\ExtensionStatus\RemoveBg;
  */
 final class ExtensionStatus implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /** @var null|AIAutoDescription::* $aiAutoDescription */
     #[Api('ai-auto-description', enum: AIAutoDescription::class, optional: true)]

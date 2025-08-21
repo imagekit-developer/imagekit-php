@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ImageKit\Responses\Files;
 
 use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\Model;
+use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Core\Conversion\ListOf;
 use ImageKit\Core\Conversion\MapOf;
@@ -45,7 +45,7 @@ use ImageKit\Responses\Files\FileUploadResponse\VersionInfo;
  */
 final class FileUploadResponse implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * An array of tags assigned to the uploaded file by auto tagging.

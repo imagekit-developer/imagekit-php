@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams;
 
 use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\Model;
+use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Core\Conversion\ListOf;
 use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\DefaultValue;
@@ -26,7 +26,7 @@ use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\Type;
  */
 final class Schema implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * Type of the custom metadata field.

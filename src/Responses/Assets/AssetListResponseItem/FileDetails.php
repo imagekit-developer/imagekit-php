@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ImageKit\Responses\Assets\AssetListResponseItem;
 
 use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\Model;
+use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Core\Conversion\ListOf;
 use ImageKit\Core\Conversion\MapOf;
@@ -41,7 +41,7 @@ use ImageKit\Responses\Assets\AssetListResponseItem\FileDetails\VersionInfo;
  */
 final class FileDetails implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * An array of tags assigned to the file by auto tagging.

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ImageKit\Responses\Assets\AssetListResponseItem;
 
 use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\Model;
+use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Responses\Assets\AssetListResponseItem\FolderDetails\Type;
 
@@ -21,7 +21,7 @@ use ImageKit\Responses\Assets\AssetListResponseItem\FolderDetails\Type;
  */
 final class FolderDetails implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * Date and time when the folder was created. The date and time is in ISO8601 format.

@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace ImageKit\Files;
 
 use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\Model;
-use ImageKit\Core\Concerns\Params;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Concerns\SdkParams;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Core\Conversion\ListOf;
 use ImageKit\Core\Conversion\MapOf;
@@ -61,8 +61,8 @@ use ImageKit\Shared\RemovedotBgExtension;
  */
 final class FileUploadParams implements BaseModel
 {
-    use Model;
-    use Params;
+    use SdkModel;
+    use SdkParams;
 
     /**
      * The API accepts any of the following:

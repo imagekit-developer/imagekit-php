@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ImageKit\Responses\Folders;
 
 use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\Model;
+use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
@@ -13,7 +13,7 @@ use ImageKit\Core\Contracts\BaseModel;
  */
 final class FolderMoveResponse implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * Unique identifier of the bulk job. This can be used to check the status of the bulk job.

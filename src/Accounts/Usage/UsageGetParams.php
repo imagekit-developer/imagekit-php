@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace ImageKit\Accounts\Usage;
 
 use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\Model;
-use ImageKit\Core\Concerns\Params;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Concerns\SdkParams;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
@@ -18,8 +18,8 @@ use ImageKit\Core\Contracts\BaseModel;
  */
 final class UsageGetParams implements BaseModel
 {
-    use Model;
-    use Params;
+    use SdkModel;
+    use SdkParams;
 
     /**
      * Specify a `endDate` in `YYYY-MM-DD` format. It should be after the `startDate`. The difference between `startDate` and `endDate` should be less than 90 days.

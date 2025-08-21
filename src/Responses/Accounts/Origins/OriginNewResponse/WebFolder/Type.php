@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace ImageKit\Responses\Accounts\Origins\OriginNewResponse\WebFolder;
 
-use ImageKit\Core\Concerns\Enum;
+use ImageKit\Core\Concerns\SdkEnum;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
 /**
@@ -12,7 +12,7 @@ use ImageKit\Core\Conversion\Contracts\ConverterSource;
  */
 final class Type implements ConverterSource
 {
-    use Enum;
+    use SdkEnum;
 
     public const WEB_FOLDER = 'WEB_FOLDER';
 }

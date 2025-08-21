@@ -7,7 +7,7 @@ namespace ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post;
 use ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post\AdaptiveBitrateStreaming\Protocol;
 use ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post\AdaptiveBitrateStreaming\Type;
 use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\Model;
+use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
@@ -17,7 +17,7 @@ use ImageKit\Core\Contracts\BaseModel;
  */
 final class AdaptiveBitrateStreaming implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * Streaming protocol to use (`hls` or `dash`).

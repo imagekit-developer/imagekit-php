@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ImageKit\Shared;
 
 use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\Model;
+use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Core\Conversion\ListOf;
 
@@ -16,7 +16,7 @@ use ImageKit\Core\Conversion\ListOf;
  */
 final class Gps implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /** @var null|list<int> $gpsVersionID */
     #[Api('GPSVersionID', type: new ListOf('int'), optional: true)]

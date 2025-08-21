@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ImageKit\Responses\Files\Bulk;
 
 use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\Model;
+use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Core\Conversion\ListOf;
 
@@ -16,7 +16,7 @@ use ImageKit\Core\Conversion\ListOf;
  */
 final class BulkAddTagsResponse implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * An array of fileIds that in which tags were successfully added.

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ImageKit\Shared;
 
 use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\Model;
+use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
@@ -27,7 +27,7 @@ use ImageKit\Core\Contracts\BaseModel;
  */
 final class ExifImage implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     #[Api('ExifOffset', optional: true)]
     public ?int $exifOffset;

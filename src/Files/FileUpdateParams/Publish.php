@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ImageKit\Files\FileUpdateParams;
 
 use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\Model;
+use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
@@ -17,7 +17,7 @@ use ImageKit\Core\Contracts\BaseModel;
  */
 final class Publish implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * Set to `true` to publish the file. Set to `false` to unpublish the file.

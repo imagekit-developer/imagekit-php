@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ImageKit\Files\FileUploadParams\Transformation\Post;
 
 use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\Model;
+use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Files\FileUploadParams\Transformation\Post\SimplePostTransformation\Type;
 
@@ -16,7 +16,7 @@ use ImageKit\Files\FileUploadParams\Transformation\Post\SimplePostTransformation
  */
 final class SimplePostTransformation implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * Transformation type.

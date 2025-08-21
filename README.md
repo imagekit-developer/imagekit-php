@@ -53,7 +53,7 @@ $response = $client->files->upload(fileName: "fileName");
 var_dump($response->videoCodec);
 ```
 
-## Value Objects
+### Value Objects
 
 It is recommended to use the static `with` constructor `AutoDescriptionExtension::with(name: "ai-auto-description", ...)`
 and named parameters to initialize value objects.

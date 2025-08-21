@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace ImageKit\Files\FileUpdateParams\RemoveAITags;
 
-use ImageKit\Core\Concerns\Enum;
+use ImageKit\Core\Concerns\SdkEnum;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
 /**
@@ -12,7 +12,7 @@ use ImageKit\Core\Conversion\Contracts\ConverterSource;
  */
 final class UnionMember1 implements ConverterSource
 {
-    use Enum;
+    use SdkEnum;
 
     public const ALL = 'all';
 }

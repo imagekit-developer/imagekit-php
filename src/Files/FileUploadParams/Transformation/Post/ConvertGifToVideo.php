@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ImageKit\Files\FileUploadParams\Transformation\Post;
 
 use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\Model;
+use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Files\FileUploadParams\Transformation\Post\ConvertGifToVideo\Type;
 
@@ -14,7 +14,7 @@ use ImageKit\Files\FileUploadParams\Transformation\Post\ConvertGifToVideo\Type;
  */
 final class ConvertGifToVideo implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * Converts an animated GIF into an MP4.

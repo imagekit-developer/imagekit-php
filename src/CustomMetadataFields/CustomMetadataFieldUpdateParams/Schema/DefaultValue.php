@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema;
 
-use ImageKit\Core\Concerns\Union;
+use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 use ImageKit\Core\Conversion\ListOf;
@@ -17,7 +17,7 @@ use ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema\Default
  */
 final class DefaultValue implements ConverterSource
 {
-    use Union;
+    use SdkUnion;
 
     /**
      * @return array<string,

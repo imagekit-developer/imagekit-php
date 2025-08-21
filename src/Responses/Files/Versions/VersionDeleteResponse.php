@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace ImageKit\Responses\Files\Versions;
 
-use ImageKit\Core\Concerns\Model;
+use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
@@ -12,7 +12,7 @@ use ImageKit\Core\Contracts\BaseModel;
  */
 final class VersionDeleteResponse implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     public function __construct()
     {

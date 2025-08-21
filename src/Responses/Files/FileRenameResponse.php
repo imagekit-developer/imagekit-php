@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ImageKit\Responses\Files;
 
 use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\Model;
+use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
@@ -13,7 +13,7 @@ use ImageKit\Core\Contracts\BaseModel;
  */
 final class FileRenameResponse implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * Unique identifier of the purge request. This can be used to check the status of the purge request.

@@ -7,7 +7,10 @@ namespace ImageKit\Core\Concerns;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\EnumOf;
 
-trait Enum
+/**
+ * @internal
+ */
+trait SdkEnum
 {
     private static Converter $converter;
 

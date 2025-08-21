@@ -6,8 +6,8 @@ namespace ImageKit\Accounts\Origins;
 
 use ImageKit\Accounts\Origins\OriginUpdateParams\Type;
 use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\Model;
-use ImageKit\Core\Concerns\Params;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Concerns\SdkParams;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
@@ -40,8 +40,8 @@ use ImageKit\Core\Contracts\BaseModel;
  */
 final class OriginUpdateParams implements BaseModel
 {
-    use Model;
-    use Params;
+    use SdkModel;
+    use SdkParams;
 
     /**
      * Access key for the bucket.

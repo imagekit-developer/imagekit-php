@@ -6,7 +6,7 @@ namespace ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post;
 
 use ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post\SimplePostTransformation\Type;
 use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\Model;
+use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
@@ -16,7 +16,7 @@ use ImageKit\Core\Contracts\BaseModel;
  */
 final class SimplePostTransformation implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * Transformation type.

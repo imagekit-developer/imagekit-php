@@ -6,7 +6,7 @@ namespace ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter;
 
 use ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\CloudinaryURLRewriter\Type;
 use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\Model;
+use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
@@ -16,7 +16,7 @@ use ImageKit\Core\Contracts\BaseModel;
  */
 final class CloudinaryURLRewriter implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /** @var Type::* $type */
     #[Api(enum: Type::class)]

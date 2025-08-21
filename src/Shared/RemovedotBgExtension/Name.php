@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace ImageKit\Shared\RemovedotBgExtension;
 
-use ImageKit\Core\Concerns\Enum;
+use ImageKit\Core\Concerns\SdkEnum;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
 /**
@@ -14,7 +14,7 @@ use ImageKit\Core\Conversion\Contracts\ConverterSource;
  */
 final class Name implements ConverterSource
 {
-    use Enum;
+    use SdkEnum;
 
     public const REMOVE_BG = 'remove-bg';
 }

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ImageKit\Responses\Beta\V2\Files\FileUploadResponse;
 
 use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\Model;
+use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Responses\Beta\V2\Files\FileUploadResponse\Metadata\Exif;
 
@@ -31,7 +31,7 @@ use ImageKit\Responses\Beta\V2\Files\FileUploadResponse\Metadata\Exif;
  */
 final class Metadata implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * The audio codec used in the video (only for video).

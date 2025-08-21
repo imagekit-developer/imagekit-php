@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ImageKit\Responses\Files\FileUploadResponse\Metadata;
 
 use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\Model;
+use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Core\Conversion\MapOf;
 use ImageKit\Shared\ExifDetails;
@@ -26,7 +26,7 @@ use ImageKit\Shared\Thumbnail;
  */
 final class Exif implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * Object containing Exif details.

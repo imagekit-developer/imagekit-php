@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ImageKit\Responses\Beta\V2\Files\FileUploadResponse;
 
 use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\Model;
+use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Responses\Beta\V2\Files\FileUploadResponse\ExtensionStatus\AwsAutoTagging;
 use ImageKit\Responses\Beta\V2\Files\FileUploadResponse\ExtensionStatus\GoogleAutoTagging;
@@ -28,7 +28,7 @@ use ImageKit\Responses\Beta\V2\Files\FileUploadResponse\ExtensionStatus\RemoveBg
  */
 final class ExtensionStatus implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /** @var null|AwsAutoTagging::* $awsAutoTagging */
     #[Api('aws-auto-tagging', enum: AwsAutoTagging::class, optional: true)]

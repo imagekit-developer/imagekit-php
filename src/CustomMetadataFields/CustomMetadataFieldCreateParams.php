@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace ImageKit\CustomMetadataFields;
 
 use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\Model;
-use ImageKit\Core\Concerns\Params;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Concerns\SdkParams;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema;
 
@@ -17,8 +17,8 @@ use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema;
  */
 final class CustomMetadataFieldCreateParams implements BaseModel
 {
-    use Model;
-    use Params;
+    use SdkModel;
+    use SdkParams;
 
     /**
      * Human readable name of the custom metadata field. This should be unique across all non deleted custom metadata fields. This name is displayed as form field label to the users while setting field value on an asset in the media library UI.

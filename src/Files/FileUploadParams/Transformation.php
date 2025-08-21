@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ImageKit\Files\FileUploadParams;
 
 use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\Model;
+use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Core\Conversion\ListOf;
 use ImageKit\Files\FileUploadParams\Transformation\Post;
@@ -32,7 +32,7 @@ use ImageKit\Files\FileUploadParams\Transformation\Post\SimplePostTransformation
  */
 final class Transformation implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * List of transformations to apply *after* the file is uploaded.

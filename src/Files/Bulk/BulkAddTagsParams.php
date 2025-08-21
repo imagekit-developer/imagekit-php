@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace ImageKit\Files\Bulk;
 
 use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\Model;
-use ImageKit\Core\Concerns\Params;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Concerns\SdkParams;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Core\Conversion\ListOf;
 
@@ -17,8 +17,8 @@ use ImageKit\Core\Conversion\ListOf;
  */
 final class BulkAddTagsParams implements BaseModel
 {
-    use Model;
-    use Params;
+    use SdkModel;
+    use SdkParams;
 
     /**
      * An array of fileIds to which you want to add tags.

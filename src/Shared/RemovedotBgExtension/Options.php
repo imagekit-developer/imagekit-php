@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ImageKit\Shared\RemovedotBgExtension;
 
 use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\Model;
+use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
@@ -18,7 +18,7 @@ use ImageKit\Core\Contracts\BaseModel;
  */
 final class Options implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * Whether to add an artificial shadow to the result. Default is false. Note: Adding shadows is currently only supported for car photos.

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ImageKit\Shared;
 
 use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\Model;
+use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Shared\RemovedotBgExtension\Name;
 use ImageKit\Shared\RemovedotBgExtension\Options;
@@ -17,7 +17,7 @@ use ImageKit\Shared\RemovedotBgExtension\Options;
  */
 final class RemovedotBgExtension implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * Specifies the background removal extension.

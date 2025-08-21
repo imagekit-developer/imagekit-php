@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams;
 
 use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\Model;
+use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Core\Conversion\ListOf;
 use ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema\DefaultValue;
@@ -26,7 +26,7 @@ use ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema\SelectO
  */
 final class Schema implements BaseModel
 {
-    use Model;
+    use SdkModel;
 
     /**
      * The default value for this custom metadata field. This property is only required if `isValueRequired` property is set to `true`. The value should match the `type` of custom metadata field.

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace ImageKit\Files\FileUpdateParams;
 
-use ImageKit\Core\Concerns\Union;
+use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 use ImageKit\Core\Conversion\ListOf;
@@ -21,7 +21,7 @@ use ImageKit\Files\FileUpdateParams\RemoveAITags\UnionMember1;
  */
 final class RemoveAITags implements ConverterSource
 {
-    use Union;
+    use SdkUnion;
 
     /**
      * @return array<string,

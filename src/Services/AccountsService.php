@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Accounts;
+namespace ImageKit\Services;
 
-use ImageKit\Accounts\Origins\OriginsService;
-use ImageKit\Accounts\URLEndpoints\URLEndpointsService;
-use ImageKit\Accounts\Usage\UsageService;
 use ImageKit\Client;
 use ImageKit\Contracts\AccountsContract;
+use ImageKit\Services\Accounts\OriginsService;
+use ImageKit\Services\Accounts\URLEndpointsService;
+use ImageKit\Services\Accounts\UsageService;
 
 final class AccountsService implements AccountsContract
 {

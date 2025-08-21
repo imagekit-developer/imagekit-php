@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Cache\Invalidation;
+namespace ImageKit\Services\Cache;
 
+use ImageKit\Cache\Invalidation\InvalidationCreateParams;
 use ImageKit\Client;
 use ImageKit\Contracts\Cache\InvalidationContract;
 use ImageKit\Core\Conversion;
@@ -24,8 +25,9 @@ final class InvalidationService implements InvalidationContract
         $url,
         ?RequestOptions $requestOptions = null
     ): InvalidationNewResponse {
+        $args = ['url' => $url];
         [$parsed, $options] = InvalidationCreateParams::parseRequest(
-            ['url' => $url],
+            $args,
             $requestOptions
         );
         $resp = $this->client->request(

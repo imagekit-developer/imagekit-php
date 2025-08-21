@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Beta\V2;
+namespace ImageKit\Services\Beta;
 
-use ImageKit\Beta\V2\Files\FilesService;
 use ImageKit\Client;
 use ImageKit\Contracts\Beta\V2Contract;
+use ImageKit\Services\Beta\V2\FilesService;
 
 final class V2Service implements V2Contract
 {

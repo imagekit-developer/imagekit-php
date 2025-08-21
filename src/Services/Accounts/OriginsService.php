@@ -2,14 +2,17 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Accounts\Origins;
+namespace ImageKit\Services\Accounts;
 
+use ImageKit\Accounts\Origins\OriginCreateParams;
 use ImageKit\Accounts\Origins\OriginCreateParams\Type;
+use ImageKit\Accounts\Origins\OriginUpdateParams;
 use ImageKit\Accounts\Origins\OriginUpdateParams\Type as Type1;
 use ImageKit\Client;
 use ImageKit\Contracts\Accounts\OriginsContract;
 use ImageKit\Core\Conversion;
 use ImageKit\Core\Conversion\ListOf;
+use ImageKit\Core\Util;
 use ImageKit\RequestOptions;
 use ImageKit\Responses\Accounts\Origins\OriginGetResponse;
 use ImageKit\Responses\Accounts\Origins\OriginGetResponse\AkeneoPim as AkeneoPim3;
@@ -102,31 +105,42 @@ final class OriginsService implements OriginsContract
         $username,
         ?RequestOptions $requestOptions = null,
     ): AkeneoPim1|AzureBlobStorage1|CloudinaryBackup1|GoogleCloudStorageGcs1|S31|S3Compatible1|WebFolder1|WebProxy1 {
-        [$parsed, $options] = OriginCreateParams::parseRequest(
+        $args = [
+            'accessKey' => $accessKey,
+            'bucket' => $bucket,
+            'name' => $name,
+            'secretKey' => $secretKey,
+            'type' => $type,
+            'baseURLForCanonicalHeader' => $baseURLForCanonicalHeader,
+            'includeCanonicalHeader' => $includeCanonicalHeader,
+            'prefix' => $prefix,
+            'endpoint' => $endpoint,
+            's3ForcePathStyle' => $s3ForcePathStyle,
+            'baseURL' => $baseURL,
+            'forwardHostHeaderToOrigin' => $forwardHostHeaderToOrigin,
+            'clientEmail' => $clientEmail,
+            'privateKey' => $privateKey,
+            'accountName' => $accountName,
+            'container' => $container,
+            'sasToken' => $sasToken,
+            'clientID' => $clientID,
+            'clientSecret' => $clientSecret,
+            'password' => $password,
+            'username' => $username,
+        ];
+        $args = Util::array_filter_null(
+            $args,
             [
-                'accessKey' => $accessKey,
-                'bucket' => $bucket,
-                'name' => $name,
-                'secretKey' => $secretKey,
-                'type' => $type,
-                'baseURLForCanonicalHeader' => $baseURLForCanonicalHeader,
-                'includeCanonicalHeader' => $includeCanonicalHeader,
-                'prefix' => $prefix,
-                'endpoint' => $endpoint,
-                's3ForcePathStyle' => $s3ForcePathStyle,
-                'baseURL' => $baseURL,
-                'forwardHostHeaderToOrigin' => $forwardHostHeaderToOrigin,
-                'clientEmail' => $clientEmail,
-                'privateKey' => $privateKey,
-                'accountName' => $accountName,
-                'container' => $container,
-                'sasToken' => $sasToken,
-                'clientID' => $clientID,
-                'clientSecret' => $clientSecret,
-                'password' => $password,
-                'username' => $username,
+                'baseURLForCanonicalHeader',
+                'includeCanonicalHeader',
+                'prefix',
+                's3ForcePathStyle',
+                'forwardHostHeaderToOrigin',
             ],
-            $requestOptions,
+        );
+        [$parsed, $options] = OriginCreateParams::parseRequest(
+            $args,
+            $requestOptions
         );
         $resp = $this->client->request(
             method: 'post',
@@ -190,31 +204,42 @@ final class OriginsService implements OriginsContract
         $username,
         ?RequestOptions $requestOptions = null,
     ): AkeneoPim2|AzureBlobStorage2|CloudinaryBackup2|GoogleCloudStorageGcs2|S32|S3Compatible2|WebFolder2|WebProxy2 {
-        [$parsed, $options] = OriginUpdateParams::parseRequest(
+        $args = [
+            'accessKey' => $accessKey,
+            'bucket' => $bucket,
+            'name' => $name,
+            'secretKey' => $secretKey,
+            'type' => $type,
+            'baseURLForCanonicalHeader' => $baseURLForCanonicalHeader,
+            'includeCanonicalHeader' => $includeCanonicalHeader,
+            'prefix' => $prefix,
+            'endpoint' => $endpoint,
+            's3ForcePathStyle' => $s3ForcePathStyle,
+            'baseURL' => $baseURL,
+            'forwardHostHeaderToOrigin' => $forwardHostHeaderToOrigin,
+            'clientEmail' => $clientEmail,
+            'privateKey' => $privateKey,
+            'accountName' => $accountName,
+            'container' => $container,
+            'sasToken' => $sasToken,
+            'clientID' => $clientID,
+            'clientSecret' => $clientSecret,
+            'password' => $password,
+            'username' => $username,
+        ];
+        $args = Util::array_filter_null(
+            $args,
             [
-                'accessKey' => $accessKey,
-                'bucket' => $bucket,
-                'name' => $name,
-                'secretKey' => $secretKey,
-                'type' => $type,
-                'baseURLForCanonicalHeader' => $baseURLForCanonicalHeader,
-                'includeCanonicalHeader' => $includeCanonicalHeader,
-                'prefix' => $prefix,
-                'endpoint' => $endpoint,
-                's3ForcePathStyle' => $s3ForcePathStyle,
-                'baseURL' => $baseURL,
-                'forwardHostHeaderToOrigin' => $forwardHostHeaderToOrigin,
-                'clientEmail' => $clientEmail,
-                'privateKey' => $privateKey,
-                'accountName' => $accountName,
-                'container' => $container,
-                'sasToken' => $sasToken,
-                'clientID' => $clientID,
-                'clientSecret' => $clientSecret,
-                'password' => $password,
-                'username' => $username,
+                'baseURLForCanonicalHeader',
+                'includeCanonicalHeader',
+                'prefix',
+                's3ForcePathStyle',
+                'forwardHostHeaderToOrigin',
             ],
-            $requestOptions,
+        );
+        [$parsed, $options] = OriginUpdateParams::parseRequest(
+            $args,
+            $requestOptions
         );
         $resp = $this->client->request(
             method: 'put',

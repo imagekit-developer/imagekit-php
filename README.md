@@ -49,7 +49,6 @@ $client = new Client(
 );
 
 $response = $client->files->upload(fileName: "fileName");
-
 var_dump($response->videoCodec);
 ```
 

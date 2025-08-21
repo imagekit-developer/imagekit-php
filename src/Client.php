@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace ImageKit;
 
-use ImageKit\Accounts\AccountsService;
-use ImageKit\Assets\AssetsService;
-use ImageKit\Beta\BetaService;
-use ImageKit\Cache\CacheService;
 use ImageKit\Core\BaseClient;
-use ImageKit\CustomMetadataFields\CustomMetadataFieldsService;
-use ImageKit\Files\FilesService;
-use ImageKit\Folders\FoldersService;
+use ImageKit\Services\AccountsService;
+use ImageKit\Services\AssetsService;
+use ImageKit\Services\BetaService;
+use ImageKit\Services\CacheService;
+use ImageKit\Services\CustomMetadataFieldsService;
+use ImageKit\Services\FilesService;
+use ImageKit\Services\FoldersService;
 
 class Client extends BaseClient
 {

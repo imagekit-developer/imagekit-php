@@ -2,18 +2,21 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files;
+namespace ImageKit\Services;
 
 use ImageKit\Client;
 use ImageKit\Contracts\FilesContract;
 use ImageKit\Core\Conversion;
-use ImageKit\Files\Bulk\BulkService;
+use ImageKit\Core\Util;
+use ImageKit\Files\FileCopyParams;
+use ImageKit\Files\FileMoveParams;
+use ImageKit\Files\FileRenameParams;
+use ImageKit\Files\FileUpdateParams;
 use ImageKit\Files\FileUpdateParams\Publish;
 use ImageKit\Files\FileUpdateParams\RemoveAITags\UnionMember1;
+use ImageKit\Files\FileUploadParams;
 use ImageKit\Files\FileUploadParams\ResponseField;
 use ImageKit\Files\FileUploadParams\Transformation;
-use ImageKit\Files\Metadata\MetadataService;
-use ImageKit\Files\Versions\VersionsService;
 use ImageKit\RequestOptions;
 use ImageKit\Responses\Files\FileCopyResponse;
 use ImageKit\Responses\Files\FileGetResponse;
@@ -21,6 +24,9 @@ use ImageKit\Responses\Files\FileMoveResponse;
 use ImageKit\Responses\Files\FileRenameResponse;
 use ImageKit\Responses\Files\FileUpdateResponse;
 use ImageKit\Responses\Files\FileUploadResponse;
+use ImageKit\Services\Files\BulkService;
+use ImageKit\Services\Files\MetadataService;
+use ImageKit\Services\Files\VersionsService;
 use ImageKit\Shared\AutoDescriptionExtension;
 use ImageKit\Shared\AutoTaggingExtension;
 use ImageKit\Shared\RemovedotBgExtension;
@@ -69,18 +75,32 @@ final class FilesService implements FilesContract
         $publish = null,
         ?RequestOptions $requestOptions = null,
     ): FileUpdateResponse {
-        [$parsed, $options] = FileUpdateParams::parseRequest(
+        $args = [
+            'customCoordinates' => $customCoordinates,
+            'customMetadata' => $customMetadata,
+            'description' => $description,
+            'extensions' => $extensions,
+            'removeAITags' => $removeAITags,
+            'tags' => $tags,
+            'webhookURL' => $webhookURL,
+            'publish' => $publish,
+        ];
+        $args = Util::array_filter_null(
+            $args,
             [
-                'customCoordinates' => $customCoordinates,
-                'customMetadata' => $customMetadata,
-                'description' => $description,
-                'extensions' => $extensions,
-                'removeAITags' => $removeAITags,
-                'tags' => $tags,
-                'webhookURL' => $webhookURL,
-                'publish' => $publish,
+                'customCoordinates',
+                'customMetadata',
+                'description',
+                'extensions',
+                'removeAITags',
+                'tags',
+                'webhookURL',
+                'publish',
             ],
-            $requestOptions,
+        );
+        [$parsed, $options] = FileUpdateParams::parseRequest(
+            $args,
+            $requestOptions
         );
         $resp = $this->client->request(
             method: 'patch',
@@ -124,14 +144,13 @@ final class FilesService implements FilesContract
         $includeFileVersions = null,
         ?RequestOptions $requestOptions = null,
     ): FileCopyResponse {
-        [$parsed, $options] = FileCopyParams::parseRequest(
-            [
-                'destinationPath' => $destinationPath,
-                'sourceFilePath' => $sourceFilePath,
-                'includeFileVersions' => $includeFileVersions,
-            ],
-            $requestOptions,
-        );
+        $args = [
+            'destinationPath' => $destinationPath,
+            'sourceFilePath' => $sourceFilePath,
+            'includeFileVersions' => $includeFileVersions,
+        ];
+        $args = Util::array_filter_null($args, ['includeFileVersions']);
+        [$parsed, $options] = FileCopyParams::parseRequest($args, $requestOptions);
         $resp = $this->client->request(
             method: 'post',
             path: 'v1/files/copy',
@@ -173,13 +192,10 @@ final class FilesService implements FilesContract
         $sourceFilePath,
         ?RequestOptions $requestOptions = null
     ): FileMoveResponse {
-        [$parsed, $options] = FileMoveParams::parseRequest(
-            [
-                'destinationPath' => $destinationPath,
-                'sourceFilePath' => $sourceFilePath,
-            ],
-            $requestOptions,
-        );
+        $args = [
+            'destinationPath' => $destinationPath, 'sourceFilePath' => $sourceFilePath,
+        ];
+        [$parsed, $options] = FileMoveParams::parseRequest($args, $requestOptions);
         $resp = $this->client->request(
             method: 'post',
             path: 'v1/files/move',
@@ -217,13 +233,15 @@ final class FilesService implements FilesContract
         $purgeCache = null,
         ?RequestOptions $requestOptions = null,
     ): FileRenameResponse {
+        $args = [
+            'filePath' => $filePath,
+            'newFileName' => $newFileName,
+            'purgeCache' => $purgeCache,
+        ];
+        $args = Util::array_filter_null($args, ['purgeCache']);
         [$parsed, $options] = FileRenameParams::parseRequest(
-            [
-                'filePath' => $filePath,
-                'newFileName' => $newFileName,
-                'purgeCache' => $purgeCache,
-            ],
-            $requestOptions,
+            $args,
+            $requestOptions
         );
         $resp = $this->client->request(
             method: 'put',
@@ -351,33 +369,60 @@ final class FilesService implements FilesContract
         $webhookURL = null,
         ?RequestOptions $requestOptions = null,
     ): FileUploadResponse {
-        [$parsed, $options] = FileUploadParams::parseRequest(
+        $args = [
+            'file' => $file,
+            'fileName' => $fileName,
+            'token' => $token,
+            'checks' => $checks,
+            'customCoordinates' => $customCoordinates,
+            'customMetadata' => $customMetadata,
+            'description' => $description,
+            'expire' => $expire,
+            'extensions' => $extensions,
+            'folder' => $folder,
+            'isPrivateFile' => $isPrivateFile,
+            'isPublished' => $isPublished,
+            'overwriteAITags' => $overwriteAITags,
+            'overwriteCustomMetadata' => $overwriteCustomMetadata,
+            'overwriteFile' => $overwriteFile,
+            'overwriteTags' => $overwriteTags,
+            'publicKey' => $publicKey,
+            'responseFields' => $responseFields,
+            'signature' => $signature,
+            'tags' => $tags,
+            'transformation' => $transformation,
+            'useUniqueFileName' => $useUniqueFileName,
+            'webhookURL' => $webhookURL,
+        ];
+        $args = Util::array_filter_null(
+            $args,
             [
-                'file' => $file,
-                'fileName' => $fileName,
-                'token' => $token,
-                'checks' => $checks,
-                'customCoordinates' => $customCoordinates,
-                'customMetadata' => $customMetadata,
-                'description' => $description,
-                'expire' => $expire,
-                'extensions' => $extensions,
-                'folder' => $folder,
-                'isPrivateFile' => $isPrivateFile,
-                'isPublished' => $isPublished,
-                'overwriteAITags' => $overwriteAITags,
-                'overwriteCustomMetadata' => $overwriteCustomMetadata,
-                'overwriteFile' => $overwriteFile,
-                'overwriteTags' => $overwriteTags,
-                'publicKey' => $publicKey,
-                'responseFields' => $responseFields,
-                'signature' => $signature,
-                'tags' => $tags,
-                'transformation' => $transformation,
-                'useUniqueFileName' => $useUniqueFileName,
-                'webhookURL' => $webhookURL,
+                'token',
+                'checks',
+                'customCoordinates',
+                'customMetadata',
+                'description',
+                'expire',
+                'extensions',
+                'folder',
+                'isPrivateFile',
+                'isPublished',
+                'overwriteAITags',
+                'overwriteCustomMetadata',
+                'overwriteFile',
+                'overwriteTags',
+                'publicKey',
+                'responseFields',
+                'signature',
+                'tags',
+                'transformation',
+                'useUniqueFileName',
+                'webhookURL',
             ],
-            $requestOptions,
+        );
+        [$parsed, $options] = FileUploadParams::parseRequest(
+            $args,
+            $requestOptions
         );
         $path = $this
             ->client

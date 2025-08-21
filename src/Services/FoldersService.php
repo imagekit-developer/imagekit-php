@@ -2,18 +2,24 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Folders;
+namespace ImageKit\Services;
 
 use ImageKit\Client;
 use ImageKit\Contracts\FoldersContract;
 use ImageKit\Core\Conversion;
-use ImageKit\Folders\Job\JobService;
+use ImageKit\Core\Util;
+use ImageKit\Folders\FolderCopyParams;
+use ImageKit\Folders\FolderCreateParams;
+use ImageKit\Folders\FolderDeleteParams;
+use ImageKit\Folders\FolderMoveParams;
+use ImageKit\Folders\FolderRenameParams;
 use ImageKit\RequestOptions;
 use ImageKit\Responses\Folders\FolderCopyResponse;
 use ImageKit\Responses\Folders\FolderDeleteResponse;
 use ImageKit\Responses\Folders\FolderMoveResponse;
 use ImageKit\Responses\Folders\FolderNewResponse;
 use ImageKit\Responses\Folders\FolderRenameResponse;
+use ImageKit\Services\Folders\JobService;
 
 final class FoldersService implements FoldersContract
 {
@@ -39,9 +45,12 @@ final class FoldersService implements FoldersContract
         $parentFolderPath,
         ?RequestOptions $requestOptions = null
     ): FolderNewResponse {
+        $args = [
+            'folderName' => $folderName, 'parentFolderPath' => $parentFolderPath,
+        ];
         [$parsed, $options] = FolderCreateParams::parseRequest(
-            ['folderName' => $folderName, 'parentFolderPath' => $parentFolderPath],
-            $requestOptions,
+            $args,
+            $requestOptions
         );
         $resp = $this->client->request(
             method: 'post',
@@ -63,8 +72,9 @@ final class FoldersService implements FoldersContract
         $folderPath,
         ?RequestOptions $requestOptions = null
     ): FolderDeleteResponse {
+        $args = ['folderPath' => $folderPath];
         [$parsed, $options] = FolderDeleteParams::parseRequest(
-            ['folderPath' => $folderPath],
+            $args,
             $requestOptions
         );
         $resp = $this->client->request(
@@ -91,13 +101,15 @@ final class FoldersService implements FoldersContract
         $includeVersions = null,
         ?RequestOptions $requestOptions = null,
     ): FolderCopyResponse {
+        $args = [
+            'destinationPath' => $destinationPath,
+            'sourceFolderPath' => $sourceFolderPath,
+            'includeVersions' => $includeVersions,
+        ];
+        $args = Util::array_filter_null($args, ['includeVersions']);
         [$parsed, $options] = FolderCopyParams::parseRequest(
-            [
-                'destinationPath' => $destinationPath,
-                'sourceFolderPath' => $sourceFolderPath,
-                'includeVersions' => $includeVersions,
-            ],
-            $requestOptions,
+            $args,
+            $requestOptions
         );
         $resp = $this->client->request(
             method: 'post',
@@ -121,12 +133,13 @@ final class FoldersService implements FoldersContract
         $sourceFolderPath,
         ?RequestOptions $requestOptions = null
     ): FolderMoveResponse {
+        $args = [
+            'destinationPath' => $destinationPath,
+            'sourceFolderPath' => $sourceFolderPath,
+        ];
         [$parsed, $options] = FolderMoveParams::parseRequest(
-            [
-                'destinationPath' => $destinationPath,
-                'sourceFolderPath' => $sourceFolderPath,
-            ],
-            $requestOptions,
+            $args,
+            $requestOptions
         );
         $resp = $this->client->request(
             method: 'post',
@@ -160,13 +173,15 @@ final class FoldersService implements FoldersContract
         $purgeCache = null,
         ?RequestOptions $requestOptions = null,
     ): FolderRenameResponse {
+        $args = [
+            'folderPath' => $folderPath,
+            'newFolderName' => $newFolderName,
+            'purgeCache' => $purgeCache,
+        ];
+        $args = Util::array_filter_null($args, ['purgeCache']);
         [$parsed, $options] = FolderRenameParams::parseRequest(
-            [
-                'folderPath' => $folderPath,
-                'newFolderName' => $newFolderName,
-                'purgeCache' => $purgeCache,
-            ],
-            $requestOptions,
+            $args,
+            $requestOptions
         );
         $resp = $this->client->request(
             method: 'post',

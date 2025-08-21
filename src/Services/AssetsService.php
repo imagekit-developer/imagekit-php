@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Assets;
+namespace ImageKit\Services;
 
+use ImageKit\Assets\AssetListParams;
 use ImageKit\Assets\AssetListParams\FileType;
 use ImageKit\Assets\AssetListParams\Sort;
 use ImageKit\Assets\AssetListParams\Type;
@@ -11,6 +12,7 @@ use ImageKit\Client;
 use ImageKit\Contracts\AssetsContract;
 use ImageKit\Core\Conversion;
 use ImageKit\Core\Conversion\ListOf;
+use ImageKit\Core\Util;
 use ImageKit\RequestOptions;
 use ImageKit\Responses\Assets\AssetListResponseItem;
 use ImageKit\Responses\Assets\AssetListResponseItem\FileDetails;
@@ -63,18 +65,20 @@ final class AssetsService implements AssetsContract
         $type = null,
         ?RequestOptions $requestOptions = null,
     ): array {
-        [$parsed, $options] = AssetListParams::parseRequest(
-            [
-                'fileType' => $fileType,
-                'limit' => $limit,
-                'path' => $path,
-                'searchQuery' => $searchQuery,
-                'skip' => $skip,
-                'sort' => $sort,
-                'type' => $type,
-            ],
-            $requestOptions,
+        $args = [
+            'fileType' => $fileType,
+            'limit' => $limit,
+            'path' => $path,
+            'searchQuery' => $searchQuery,
+            'skip' => $skip,
+            'sort' => $sort,
+            'type' => $type,
+        ];
+        $args = Util::array_filter_null(
+            $args,
+            ['fileType', 'limit', 'path', 'searchQuery', 'skip', 'sort', 'type'],
         );
+        [$parsed, $options] = AssetListParams::parseRequest($args, $requestOptions);
         $resp = $this->client->request(
             method: 'get',
             path: 'v1/files',

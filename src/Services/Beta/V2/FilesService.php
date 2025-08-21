@@ -2,13 +2,15 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Beta\V2\Files;
+namespace ImageKit\Services\Beta\V2;
 
+use ImageKit\Beta\V2\Files\FileUploadParams;
 use ImageKit\Beta\V2\Files\FileUploadParams\ResponseField;
 use ImageKit\Beta\V2\Files\FileUploadParams\Transformation;
 use ImageKit\Client;
 use ImageKit\Contracts\Beta\V2\FilesContract;
 use ImageKit\Core\Conversion;
+use ImageKit\Core\Util;
 use ImageKit\RequestOptions;
 use ImageKit\Responses\Beta\V2\Files\FileUploadResponse;
 use ImageKit\Shared\AutoDescriptionExtension;
@@ -111,30 +113,54 @@ final class FilesService implements FilesContract
         $webhookURL = null,
         ?RequestOptions $requestOptions = null,
     ): FileUploadResponse {
-        [$parsed, $options] = FileUploadParams::parseRequest(
+        $args = [
+            'file' => $file,
+            'fileName' => $fileName,
+            'token' => $token,
+            'checks' => $checks,
+            'customCoordinates' => $customCoordinates,
+            'customMetadata' => $customMetadata,
+            'description' => $description,
+            'extensions' => $extensions,
+            'folder' => $folder,
+            'isPrivateFile' => $isPrivateFile,
+            'isPublished' => $isPublished,
+            'overwriteAITags' => $overwriteAITags,
+            'overwriteCustomMetadata' => $overwriteCustomMetadata,
+            'overwriteFile' => $overwriteFile,
+            'overwriteTags' => $overwriteTags,
+            'responseFields' => $responseFields,
+            'tags' => $tags,
+            'transformation' => $transformation,
+            'useUniqueFileName' => $useUniqueFileName,
+            'webhookURL' => $webhookURL,
+        ];
+        $args = Util::array_filter_null(
+            $args,
             [
-                'file' => $file,
-                'fileName' => $fileName,
-                'token' => $token,
-                'checks' => $checks,
-                'customCoordinates' => $customCoordinates,
-                'customMetadata' => $customMetadata,
-                'description' => $description,
-                'extensions' => $extensions,
-                'folder' => $folder,
-                'isPrivateFile' => $isPrivateFile,
-                'isPublished' => $isPublished,
-                'overwriteAITags' => $overwriteAITags,
-                'overwriteCustomMetadata' => $overwriteCustomMetadata,
-                'overwriteFile' => $overwriteFile,
-                'overwriteTags' => $overwriteTags,
-                'responseFields' => $responseFields,
-                'tags' => $tags,
-                'transformation' => $transformation,
-                'useUniqueFileName' => $useUniqueFileName,
-                'webhookURL' => $webhookURL,
+                'token',
+                'checks',
+                'customCoordinates',
+                'customMetadata',
+                'description',
+                'extensions',
+                'folder',
+                'isPrivateFile',
+                'isPublished',
+                'overwriteAITags',
+                'overwriteCustomMetadata',
+                'overwriteFile',
+                'overwriteTags',
+                'responseFields',
+                'tags',
+                'transformation',
+                'useUniqueFileName',
+                'webhookURL',
             ],
-            $requestOptions,
+        );
+        [$parsed, $options] = FileUploadParams::parseRequest(
+            $args,
+            $requestOptions
         );
         $path = $this
             ->client

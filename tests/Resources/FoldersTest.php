@@ -109,7 +109,6 @@ final class FoldersTest extends TestCase
         $result = $this->client->folders->copy(
             destinationPath: '/path/of/destination/folder',
             sourceFolderPath: '/path/of/source/folder',
-            includeVersions: true,
         );
 
         $this->assertTrue(true); // @phpstan-ignore-line
@@ -169,8 +168,7 @@ final class FoldersTest extends TestCase
 
         $result = $this->client->folders->rename(
             folderPath: '/path/of/folder',
-            newFolderName: 'new-folder-name',
-            purgeCache: true,
+            newFolderName: 'new-folder-name'
         );
 
         $this->assertTrue(true); // @phpstan-ignore-line

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Folders\Job;
+namespace ImageKit\Services\Folders;
 
 use ImageKit\Client;
 use ImageKit\Contracts\Folders\JobContract;

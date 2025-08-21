@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files\Metadata;
+namespace ImageKit\Services\Files;
 
 use ImageKit\Client;
 use ImageKit\Contracts\Files\MetadataContract;
 use ImageKit\Core\Conversion;
+use ImageKit\Files\Metadata\MetadataGetFromURLParams;
 use ImageKit\RequestOptions;
 use ImageKit\Responses\Files\Metadata\MetadataGetFromURLResponse;
 use ImageKit\Responses\Files\Metadata\MetadataGetResponse;
@@ -43,8 +44,9 @@ final class MetadataService implements MetadataContract
         $url,
         ?RequestOptions $requestOptions = null
     ): MetadataGetFromURLResponse {
+        $args = ['url' => $url];
         [$parsed, $options] = MetadataGetFromURLParams::parseRequest(
-            ['url' => $url],
+            $args,
             $requestOptions
         );
         $resp = $this->client->request(

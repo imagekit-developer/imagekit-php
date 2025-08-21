@@ -2,11 +2,15 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files\Bulk;
+namespace ImageKit\Services\Files;
 
 use ImageKit\Client;
 use ImageKit\Contracts\Files\BulkContract;
 use ImageKit\Core\Conversion;
+use ImageKit\Files\Bulk\BulkAddTagsParams;
+use ImageKit\Files\Bulk\BulkDeleteParams;
+use ImageKit\Files\Bulk\BulkRemoveAITagsParams;
+use ImageKit\Files\Bulk\BulkRemoveTagsParams;
 use ImageKit\RequestOptions;
 use ImageKit\Responses\Files\Bulk\BulkAddTagsResponse;
 use ImageKit\Responses\Files\Bulk\BulkDeleteResponse;
@@ -30,8 +34,9 @@ final class BulkService implements BulkContract
         $fileIDs,
         ?RequestOptions $requestOptions = null
     ): BulkDeleteResponse {
+        $args = ['fileIDs' => $fileIDs];
         [$parsed, $options] = BulkDeleteParams::parseRequest(
-            ['fileIDs' => $fileIDs],
+            $args,
             $requestOptions
         );
         $resp = $this->client->request(
@@ -56,8 +61,9 @@ final class BulkService implements BulkContract
         $tags,
         ?RequestOptions $requestOptions = null
     ): BulkAddTagsResponse {
+        $args = ['fileIDs' => $fileIDs, 'tags' => $tags];
         [$parsed, $options] = BulkAddTagsParams::parseRequest(
-            ['fileIDs' => $fileIDs, 'tags' => $tags],
+            $args,
             $requestOptions
         );
         $resp = $this->client->request(
@@ -82,8 +88,9 @@ final class BulkService implements BulkContract
         $fileIDs,
         ?RequestOptions $requestOptions = null
     ): BulkRemoveAITagsResponse {
+        $args = ['aiTags' => $aiTags, 'fileIDs' => $fileIDs];
         [$parsed, $options] = BulkRemoveAITagsParams::parseRequest(
-            ['aiTags' => $aiTags, 'fileIDs' => $fileIDs],
+            $args,
             $requestOptions
         );
         $resp = $this->client->request(
@@ -108,8 +115,9 @@ final class BulkService implements BulkContract
         $tags,
         ?RequestOptions $requestOptions = null
     ): BulkRemoveTagsResponse {
+        $args = ['fileIDs' => $fileIDs, 'tags' => $tags];
         [$parsed, $options] = BulkRemoveTagsParams::parseRequest(
-            ['fileIDs' => $fileIDs, 'tags' => $tags],
+            $args,
             $requestOptions
         );
         $resp = $this->client->request(

@@ -2,11 +2,13 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Accounts\URLEndpoints;
+namespace ImageKit\Services\Accounts;
 
+use ImageKit\Accounts\URLEndpoints\URLEndpointCreateParams;
 use ImageKit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\AkamaiURLRewriter;
 use ImageKit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\CloudinaryURLRewriter;
 use ImageKit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\ImgixURLRewriter;
+use ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams;
 use ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\AkamaiURLRewriter as AkamaiURLRewriter1;
 use ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\CloudinaryURLRewriter as CloudinaryURLRewriter1;
 use ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\ImgixURLRewriter as ImgixURLRewriter1;
@@ -14,6 +16,7 @@ use ImageKit\Client;
 use ImageKit\Contracts\Accounts\URLEndpointsContract;
 use ImageKit\Core\Conversion;
 use ImageKit\Core\Conversion\ListOf;
+use ImageKit\Core\Util;
 use ImageKit\RequestOptions;
 use ImageKit\Responses\Accounts\URLEndpoints\URLEndpointGetResponse;
 use ImageKit\Responses\Accounts\URLEndpoints\URLEndpointListResponseItem;
@@ -40,14 +43,19 @@ final class URLEndpointsService implements URLEndpointsContract
         $urlRewriter = null,
         ?RequestOptions $requestOptions = null,
     ): URLEndpointNewResponse {
+        $args = [
+            'description' => $description,
+            'origins' => $origins,
+            'urlPrefix' => $urlPrefix,
+            'urlRewriter' => $urlRewriter,
+        ];
+        $args = Util::array_filter_null(
+            $args,
+            ['origins', 'urlPrefix', 'urlRewriter']
+        );
         [$parsed, $options] = URLEndpointCreateParams::parseRequest(
-            [
-                'description' => $description,
-                'origins' => $origins,
-                'urlPrefix' => $urlPrefix,
-                'urlRewriter' => $urlRewriter,
-            ],
-            $requestOptions,
+            $args,
+            $requestOptions
         );
         $resp = $this->client->request(
             method: 'post',
@@ -77,14 +85,19 @@ final class URLEndpointsService implements URLEndpointsContract
         $urlRewriter = null,
         ?RequestOptions $requestOptions = null,
     ): URLEndpointUpdateResponse {
+        $args = [
+            'description' => $description,
+            'origins' => $origins,
+            'urlPrefix' => $urlPrefix,
+            'urlRewriter' => $urlRewriter,
+        ];
+        $args = Util::array_filter_null(
+            $args,
+            ['origins', 'urlPrefix', 'urlRewriter']
+        );
         [$parsed, $options] = URLEndpointUpdateParams::parseRequest(
-            [
-                'description' => $description,
-                'origins' => $origins,
-                'urlPrefix' => $urlPrefix,
-                'urlRewriter' => $urlRewriter,
-            ],
-            $requestOptions,
+            $args,
+            $requestOptions
         );
         $resp = $this->client->request(
             method: 'put',

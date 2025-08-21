@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Accounts\Usage;
+namespace ImageKit\Services\Accounts;
 
+use ImageKit\Accounts\Usage\UsageGetParams;
 use ImageKit\Client;
 use ImageKit\Contracts\Accounts\UsageContract;
 use ImageKit\Core\Conversion;
@@ -25,10 +26,8 @@ final class UsageService implements UsageContract
         $startDate,
         ?RequestOptions $requestOptions = null
     ): UsageGetResponse {
-        [$parsed, $options] = UsageGetParams::parseRequest(
-            ['endDate' => $endDate, 'startDate' => $startDate],
-            $requestOptions
-        );
+        $args = ['endDate' => $endDate, 'startDate' => $startDate];
+        [$parsed, $options] = UsageGetParams::parseRequest($args, $requestOptions);
         $resp = $this->client->request(
             method: 'get',
             path: 'v1/accounts/usage',

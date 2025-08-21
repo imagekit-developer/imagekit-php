@@ -2,13 +2,17 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\CustomMetadataFields;
+namespace ImageKit\Services;
 
 use ImageKit\Client;
 use ImageKit\Contracts\CustomMetadataFieldsContract;
 use ImageKit\Core\Conversion;
 use ImageKit\Core\Conversion\ListOf;
+use ImageKit\Core\Util;
+use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams;
 use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema;
+use ImageKit\CustomMetadataFields\CustomMetadataFieldListParams;
+use ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams;
 use ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema as Schema1;
 use ImageKit\RequestOptions;
 use ImageKit\Responses\CustomMetadataFields\CustomMetadataFieldDeleteResponse;
@@ -33,8 +37,9 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
         $schema,
         ?RequestOptions $requestOptions = null
     ): CustomMetadataFieldNewResponse {
+        $args = ['label' => $label, 'name' => $name, 'schema' => $schema];
         [$parsed, $options] = CustomMetadataFieldCreateParams::parseRequest(
-            ['label' => $label, 'name' => $name, 'schema' => $schema],
+            $args,
             $requestOptions
         );
         $resp = $this->client->request(
@@ -63,8 +68,10 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
         $schema = null,
         ?RequestOptions $requestOptions = null,
     ): CustomMetadataFieldUpdateResponse {
+        $args = ['label' => $label, 'schema' => $schema];
+        $args = Util::array_filter_null($args, ['label', 'schema']);
         [$parsed, $options] = CustomMetadataFieldUpdateParams::parseRequest(
-            ['label' => $label, 'schema' => $schema],
+            $args,
             $requestOptions
         );
         $resp = $this->client->request(
@@ -92,8 +99,10 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
         $includeDeleted = null,
         ?RequestOptions $requestOptions = null
     ): array {
+        $args = ['includeDeleted' => $includeDeleted];
+        $args = Util::array_filter_null($args, ['includeDeleted']);
         [$parsed, $options] = CustomMetadataFieldListParams::parseRequest(
-            ['includeDeleted' => $includeDeleted],
+            $args,
             $requestOptions
         );
         $resp = $this->client->request(

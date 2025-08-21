@@ -2,12 +2,15 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files\Versions;
+namespace ImageKit\Services\Files;
 
 use ImageKit\Client;
 use ImageKit\Contracts\Files\VersionsContract;
 use ImageKit\Core\Conversion;
 use ImageKit\Core\Conversion\ListOf;
+use ImageKit\Files\Versions\VersionDeleteParams;
+use ImageKit\Files\Versions\VersionGetParams;
+use ImageKit\Files\Versions\VersionRestoreParams;
 use ImageKit\RequestOptions;
 use ImageKit\Responses\Files\Versions\VersionDeleteResponse;
 use ImageKit\Responses\Files\Versions\VersionGetResponse;
@@ -52,8 +55,9 @@ final class VersionsService implements VersionsContract
         $fileID,
         ?RequestOptions $requestOptions = null
     ): VersionDeleteResponse {
+        $args = ['fileID' => $fileID];
         [$parsed, $options] = VersionDeleteParams::parseRequest(
-            ['fileID' => $fileID],
+            $args,
             $requestOptions
         );
         $fileID = $parsed['fileID'];
@@ -78,8 +82,9 @@ final class VersionsService implements VersionsContract
         $fileID,
         ?RequestOptions $requestOptions = null
     ): VersionGetResponse {
+        $args = ['fileID' => $fileID];
         [$parsed, $options] = VersionGetParams::parseRequest(
-            ['fileID' => $fileID],
+            $args,
             $requestOptions
         );
         $fileID = $parsed['fileID'];
@@ -104,8 +109,9 @@ final class VersionsService implements VersionsContract
         $fileID,
         ?RequestOptions $requestOptions = null
     ): VersionRestoreResponse {
+        $args = ['fileID' => $fileID];
         [$parsed, $options] = VersionRestoreParams::parseRequest(
-            ['fileID' => $fileID],
+            $args,
             $requestOptions
         );
         $fileID = $parsed['fileID'];

@@ -110,7 +110,7 @@ final class FileUploadParams implements BaseModel
     /**
      * JSON key-value pairs to associate with the asset. Create the custom metadata fields before setting these values.
      *
-     * @var null|array<string, mixed> $customMetadata
+     * @var array<string, mixed>|null $customMetadata
      */
     #[Api(type: new MapOf('string'), optional: true)]
     public ?array $customMetadata;
@@ -124,7 +124,7 @@ final class FileUploadParams implements BaseModel
     /**
      * Array of extensions to be applied to the image. Each extension can be configured with specific parameters based on the extension type.
      *
-     * @var null|list<AutoDescriptionExtension|AutoTaggingExtension|RemovedotBgExtension> $extensions
+     * @var list<RemovedotBgExtension|AutoTaggingExtension|AutoDescriptionExtension>|null $extensions
      */
     #[Api(type: new ListOf(union: Extension::class), optional: true)]
     public ?array $extensions;
@@ -180,7 +180,7 @@ final class FileUploadParams implements BaseModel
     /**
      * Array of response field keys to include in the API response body.
      *
-     * @var null|list<ResponseField::*> $responseFields
+     * @var list<ResponseField::*>|null $responseFields
      */
     #[Api(type: new ListOf(enum: ResponseField::class), optional: true)]
     public ?array $responseFields;
@@ -190,7 +190,7 @@ final class FileUploadParams implements BaseModel
      * Provide an array of tag strings (e.g. `["tag1", "tag2", "tag3"]`). The combined length of all tag characters must not exceed 500, and the `%` character is not allowed.
      * If this field is not specified and the file is overwritten, the existing tags will be removed.
      *
-     * @var null|list<string> $tags
+     * @var list<string>|null $tags
      */
     #[Api(type: new ListOf('string'), optional: true)]
     public ?array $tags;
@@ -250,10 +250,10 @@ final class FileUploadParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param null|array<string, mixed> $customMetadata
-     * @param null|list<AutoDescriptionExtension|AutoTaggingExtension|RemovedotBgExtension> $extensions
-     * @param null|list<ResponseField::*> $responseFields
-     * @param null|list<string> $tags
+     * @param array<string, mixed>|null $customMetadata
+     * @param list<RemovedotBgExtension|AutoTaggingExtension|AutoDescriptionExtension>|null $extensions
+     * @param list<ResponseField::*>|null $responseFields
+     * @param list<string>|null $tags
      */
     public static function with(
         string $file,
@@ -402,7 +402,7 @@ final class FileUploadParams implements BaseModel
     /**
      * Array of extensions to be applied to the image. Each extension can be configured with specific parameters based on the extension type.
      *
-     * @param list<AutoDescriptionExtension|AutoTaggingExtension|RemovedotBgExtension> $extensions
+     * @param list<RemovedotBgExtension|AutoTaggingExtension|AutoDescriptionExtension> $extensions
      */
     public function withExtensions(array $extensions): self
     {

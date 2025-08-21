@@ -17,15 +17,15 @@ use ImageKit\Files\FileUpdateParams\RemoveAITags\UnionMember1;
  *
  * Note: The remove operation for `AITags` executes before any of the `extensions` are processed.
  *
- * @phpstan-type remove_ai_tags_alias = list<string>|UnionMember1::*
+ * @phpstan-type remove_ai_tags_alias = UnionMember1::*|list<string>
  */
 final class RemoveAITags implements ConverterSource
 {
     use SdkUnion;
 
     /**
-     * @return array<string,
-     * Converter|ConverterSource|string,>|list<Converter|ConverterSource|string>
+     * @return list<string|Converter|ConverterSource>|array<string,
+     * string|Converter|ConverterSource,>
      */
     public static function variants(): array
     {

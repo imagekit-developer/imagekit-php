@@ -18,7 +18,7 @@ final class Gps implements BaseModel
 {
     use SdkModel;
 
-    /** @var null|list<int> $gpsVersionID */
+    /** @var list<int>|null $gpsVersionID */
     #[Api('GPSVersionID', type: new ListOf('int'), optional: true)]
     public ?array $gpsVersionID;
 
@@ -33,7 +33,7 @@ final class Gps implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param null|list<int> $gpsVersionID
+     * @param list<int>|null $gpsVersionID
      */
     public static function with(?array $gpsVersionID = null): self
     {

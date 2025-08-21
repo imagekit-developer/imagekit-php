@@ -50,7 +50,7 @@ final class FileUploadResponse implements BaseModel
     /**
      * An array of tags assigned to the uploaded file by auto tagging.
      *
-     * @var null|list<AITag> $aiTags
+     * @var list<AITag>|null $aiTags
      */
     #[Api(
         'AITags',
@@ -81,7 +81,7 @@ final class FileUploadResponse implements BaseModel
     /**
      * A key-value data associated with the asset. Use `responseField` in API request to get `customMetadata` in the upload API response. Before setting any custom metadata on an asset, you have to create the field using custom metadata fields API. Send `customMetadata` in `responseFields` in API request to get the value of this field.
      *
-     * @var null|array<string, mixed> $customMetadata
+     * @var array<string, mixed>|null $customMetadata
      */
     #[Api(type: new MapOf('string'), optional: true)]
     public ?array $customMetadata;
@@ -95,7 +95,7 @@ final class FileUploadResponse implements BaseModel
     /**
      * Consolidated embedded metadata associated with the file. It includes exif, iptc, and xmp data. Send `embeddedMetadata` in `responseFields` in API request to get embeddedMetadata in the upload API response.
      *
-     * @var null|array<string, mixed> $embeddedMetadata
+     * @var array<string, mixed>|null $embeddedMetadata
      */
     #[Api(type: new MapOf('string'), optional: true)]
     public ?array $embeddedMetadata;
@@ -169,7 +169,7 @@ final class FileUploadResponse implements BaseModel
     /**
      * The array of tags associated with the asset. If no tags are set, it will be `null`. Send `tags` in `responseFields` in API request to get the value of this field.
      *
-     * @var null|list<string> $tags
+     * @var list<string>|null $tags
      */
     #[Api(type: new ListOf('string'), nullable: true, optional: true)]
     public ?array $tags;
@@ -215,10 +215,10 @@ final class FileUploadResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param null|list<AITag> $aiTags
-     * @param null|array<string, mixed> $customMetadata
-     * @param null|array<string, mixed> $embeddedMetadata
-     * @param null|list<string> $tags
+     * @param list<AITag>|null $aiTags
+     * @param array<string, mixed>|null $customMetadata
+     * @param array<string, mixed>|null $embeddedMetadata
+     * @param list<string>|null $tags
      */
     public static function with(
         ?array $aiTags = null,
@@ -277,7 +277,7 @@ final class FileUploadResponse implements BaseModel
     /**
      * An array of tags assigned to the uploaded file by auto tagging.
      *
-     * @param null|list<AITag> $aiTags
+     * @param list<AITag>|null $aiTags
      */
     public function withAITags(?array $aiTags): self
     {
@@ -476,7 +476,7 @@ final class FileUploadResponse implements BaseModel
     /**
      * The array of tags associated with the asset. If no tags are set, it will be `null`. Send `tags` in `responseFields` in API request to get the value of this field.
      *
-     * @param null|list<string> $tags
+     * @param list<string>|null $tags
      */
     public function withTags(?array $tags): self
     {

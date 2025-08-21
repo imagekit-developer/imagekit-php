@@ -21,7 +21,7 @@ final class BulkDeleteResponse implements BaseModel
     /**
      * An array of fileIds that were successfully deleted.
      *
-     * @var null|list<string> $successfullyDeletedFileIDs
+     * @var list<string>|null $successfullyDeletedFileIDs
      */
     #[Api(
         'successfullyDeletedFileIds',
@@ -41,7 +41,7 @@ final class BulkDeleteResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param null|list<string> $successfullyDeletedFileIDs
+     * @param list<string>|null $successfullyDeletedFileIDs
      */
     public static function with(?array $successfullyDeletedFileIDs = null): self
     {

@@ -30,15 +30,15 @@ final class ExtensionStatus implements BaseModel
 {
     use SdkModel;
 
-    /** @var null|AwsAutoTagging::* $awsAutoTagging */
+    /** @var AwsAutoTagging::*|null $awsAutoTagging */
     #[Api('aws-auto-tagging', enum: AwsAutoTagging::class, optional: true)]
     public ?string $awsAutoTagging;
 
-    /** @var null|GoogleAutoTagging::* $googleAutoTagging */
+    /** @var GoogleAutoTagging::*|null $googleAutoTagging */
     #[Api('google-auto-tagging', enum: GoogleAutoTagging::class, optional: true)]
     public ?string $googleAutoTagging;
 
-    /** @var null|RemoveBg::* $removeBg */
+    /** @var RemoveBg::*|null $removeBg */
     #[Api('remove-bg', enum: RemoveBg::class, optional: true)]
     public ?string $removeBg;
 
@@ -53,9 +53,9 @@ final class ExtensionStatus implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param null|AwsAutoTagging::* $awsAutoTagging
-     * @param null|GoogleAutoTagging::* $googleAutoTagging
-     * @param null|RemoveBg::* $removeBg
+     * @param AwsAutoTagging::*|null $awsAutoTagging
+     * @param GoogleAutoTagging::*|null $googleAutoTagging
+     * @param RemoveBg::*|null $removeBg
      */
     public static function with(
         ?string $awsAutoTagging = null,

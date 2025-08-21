@@ -21,7 +21,7 @@ final class BulkAddTagsResponse implements BaseModel
     /**
      * An array of fileIds that in which tags were successfully added.
      *
-     * @var null|list<string> $successfullyUpdatedFileIDs
+     * @var list<string>|null $successfullyUpdatedFileIDs
      */
     #[Api(
         'successfullyUpdatedFileIds',
@@ -41,7 +41,7 @@ final class BulkAddTagsResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param null|list<string> $successfullyUpdatedFileIDs
+     * @param list<string>|null $successfullyUpdatedFileIDs
      */
     public static function with(?array $successfullyUpdatedFileIDs = null): self
     {

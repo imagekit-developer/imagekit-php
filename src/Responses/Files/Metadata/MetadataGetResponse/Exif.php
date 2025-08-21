@@ -52,7 +52,7 @@ final class Exif implements BaseModel
     #[Api(optional: true)]
     public ?Interoperability $interoperability;
 
-    /** @var null|array<string, mixed> $makernote */
+    /** @var array<string, mixed>|null $makernote */
     #[Api(type: new MapOf('string'), optional: true)]
     public ?array $makernote;
 
@@ -73,7 +73,7 @@ final class Exif implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param null|array<string, mixed> $makernote
+     * @param array<string, mixed>|null $makernote
      */
     public static function with(
         ?ExifDetails $exif = null,

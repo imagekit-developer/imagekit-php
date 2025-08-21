@@ -37,7 +37,7 @@ final class AssetListParams implements BaseModel
      * - `image` — include only image files
      * - `non-image` — include only non-image files (e.g., JS, CSS, video)
      *
-     * @var null|FileType::* $fileType
+     * @var FileType::*|null $fileType
      */
     #[Api(enum: FileType::class, optional: true)]
     public ?string $fileType;
@@ -80,7 +80,7 @@ final class AssetListParams implements BaseModel
     /**
      * Sort the results by one of the supported fields in ascending or descending order.
      *
-     * @var null|Sort::* $sort
+     * @var Sort::*|null $sort
      */
     #[Api(enum: Sort::class, optional: true)]
     public ?string $sort;
@@ -93,7 +93,7 @@ final class AssetListParams implements BaseModel
      * - `folder` — returns only folders
      * - `all` — returns both files and folders (excludes `file-version`)
      *
-     * @var null|Type::* $type
+     * @var Type::*|null $type
      */
     #[Api(enum: Type::class, optional: true)]
     public ?string $type;
@@ -109,9 +109,9 @@ final class AssetListParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param null|FileType::* $fileType
-     * @param null|Sort::* $sort
-     * @param null|Type::* $type
+     * @param FileType::*|null $fileType
+     * @param Sort::*|null $sort
+     * @param Type::*|null $type
      */
     public static function with(
         ?string $fileType = null,

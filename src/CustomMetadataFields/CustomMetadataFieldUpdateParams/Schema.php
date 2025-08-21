@@ -31,10 +31,10 @@ final class Schema implements BaseModel
     /**
      * The default value for this custom metadata field. This property is only required if `isValueRequired` property is set to `true`. The value should match the `type` of custom metadata field.
      *
-     * @var null|bool|float|list<bool|float|string>|string $defaultValue
+     * @var string|float|bool|list<string|float|bool>|null $defaultValue
      */
     #[Api(union: DefaultValue::class, optional: true)]
-    public null|array|bool|float|string $defaultValue;
+    public string|float|bool|array|null $defaultValue;
 
     /**
      * Sets this custom metadata field as required. Setting custom metadata fields on an asset will throw error if the value for all required fields are not present in upload or update asset API request body.
@@ -52,7 +52,7 @@ final class Schema implements BaseModel
      * Maximum value of the field. Only set this property if field type is `Date` or `Number`. For `Date` type field, set the minimum date in ISO8601 string format. For `Number` type field, set the minimum numeric value.
      */
     #[Api(optional: true)]
-    public null|float|string $maxValue;
+    public string|float|null $maxValue;
 
     /**
      * Minimum length of string. Only set this property if `type` is set to `Text` or `Textarea`.
@@ -64,12 +64,12 @@ final class Schema implements BaseModel
      * Minimum value of the field. Only set this property if field type is `Date` or `Number`. For `Date` type field, set the minimum date in ISO8601 string format. For `Number` type field, set the minimum numeric value.
      */
     #[Api(optional: true)]
-    public null|float|string $minValue;
+    public string|float|null $minValue;
 
     /**
      * An array of allowed values. This property is only required if `type` property is set to `SingleSelect` or `MultiSelect`.
      *
-     * @var null|list<bool|float|string> $selectOptions
+     * @var list<string|float|bool>|null $selectOptions
      */
     #[Api(type: new ListOf(union: SelectOption::class), optional: true)]
     public ?array $selectOptions;
@@ -85,16 +85,16 @@ final class Schema implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param null|bool|float|list<bool|float|string>|string $defaultValue
-     * @param null|list<bool|float|string> $selectOptions
+     * @param string|float|bool|list<string|float|bool>|null $defaultValue
+     * @param list<string|float|bool>|null $selectOptions
      */
     public static function with(
-        null|array|bool|float|string $defaultValue = null,
+        string|float|bool|array|null $defaultValue = null,
         ?bool $isValueRequired = null,
         ?float $maxLength = null,
-        null|float|string $maxValue = null,
+        string|float|null $maxValue = null,
         ?float $minLength = null,
-        null|float|string $minValue = null,
+        string|float|null $minValue = null,
         ?array $selectOptions = null,
     ): self {
         $obj = new self;
@@ -113,10 +113,10 @@ final class Schema implements BaseModel
     /**
      * The default value for this custom metadata field. This property is only required if `isValueRequired` property is set to `true`. The value should match the `type` of custom metadata field.
      *
-     * @param bool|float|list<bool|float|string>|string $defaultValue
+     * @param string|float|bool|list<string|float|bool> $defaultValue
      */
     public function withDefaultValue(
-        array|bool|float|string $defaultValue
+        string|float|bool|array $defaultValue
     ): self {
         $obj = clone $this;
         $obj->defaultValue = $defaultValue;
@@ -149,7 +149,7 @@ final class Schema implements BaseModel
     /**
      * Maximum value of the field. Only set this property if field type is `Date` or `Number`. For `Date` type field, set the minimum date in ISO8601 string format. For `Number` type field, set the minimum numeric value.
      */
-    public function withMaxValue(float|string $maxValue): self
+    public function withMaxValue(string|float $maxValue): self
     {
         $obj = clone $this;
         $obj->maxValue = $maxValue;
@@ -171,7 +171,7 @@ final class Schema implements BaseModel
     /**
      * Minimum value of the field. Only set this property if field type is `Date` or `Number`. For `Date` type field, set the minimum date in ISO8601 string format. For `Number` type field, set the minimum numeric value.
      */
-    public function withMinValue(float|string $minValue): self
+    public function withMinValue(string|float $minValue): self
     {
         $obj = clone $this;
         $obj->minValue = $minValue;
@@ -182,7 +182,7 @@ final class Schema implements BaseModel
     /**
      * An array of allowed values. This property is only required if `type` property is set to `SingleSelect` or `MultiSelect`.
      *
-     * @param list<bool|float|string> $selectOptions
+     * @param list<string|float|bool> $selectOptions
      */
     public function withSelectOptions(array $selectOptions): self
     {

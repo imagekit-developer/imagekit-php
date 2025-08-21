@@ -46,7 +46,7 @@ final class FileUpdateResponse implements BaseModel
     /**
      * An array of tags assigned to the file by auto tagging.
      *
-     * @var null|list<AITag> $aiTags
+     * @var list<AITag>|null $aiTags
      */
     #[Api(
         'AITags',
@@ -71,7 +71,7 @@ final class FileUpdateResponse implements BaseModel
     /**
      * An object with custom metadata for the file.
      *
-     * @var null|array<string, mixed> $customMetadata
+     * @var array<string, mixed>|null $customMetadata
      */
     #[Api(type: new MapOf('string'), optional: true)]
     public ?array $customMetadata;
@@ -142,7 +142,7 @@ final class FileUpdateResponse implements BaseModel
     /**
      * An array of tags assigned to the file. Tags are used to search files in the media library.
      *
-     * @var null|list<string> $tags
+     * @var list<string>|null $tags
      */
     #[Api(type: new ListOf('string'), nullable: true, optional: true)]
     public ?array $tags;
@@ -194,9 +194,9 @@ final class FileUpdateResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param null|list<AITag> $aiTags
-     * @param null|array<string, mixed> $customMetadata
-     * @param null|list<string> $tags
+     * @param list<AITag>|null $aiTags
+     * @param array<string, mixed>|null $customMetadata
+     * @param list<string>|null $tags
      */
     public static function with(
         ?array $aiTags = null,
@@ -253,7 +253,7 @@ final class FileUpdateResponse implements BaseModel
     /**
      * An array of tags assigned to the file by auto tagging.
      *
-     * @param null|list<AITag> $aiTags
+     * @param list<AITag>|null $aiTags
      */
     public function withAITags(?array $aiTags): self
     {
@@ -419,7 +419,7 @@ final class FileUpdateResponse implements BaseModel
     /**
      * An array of tags assigned to the file. Tags are used to search files in the media library.
      *
-     * @param null|list<string> $tags
+     * @param list<string>|null $tags
      */
     public function withTags(?array $tags): self
     {

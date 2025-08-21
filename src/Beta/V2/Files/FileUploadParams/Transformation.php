@@ -39,7 +39,7 @@ final class Transformation implements BaseModel
      * Each item must match one of the following types:
      * `transformation`, `gif-to-video`, `thumbnail`, `abs`.
      *
-     * @var null|list<AdaptiveBitrateStreaming|ConvertGifToVideo|GenerateAThumbnail|SimplePostTransformation> $post
+     * @var list<SimplePostTransformation|ConvertGifToVideo|GenerateAThumbnail|AdaptiveBitrateStreaming>|null $post
      */
     #[Api(type: new ListOf(union: Post::class), optional: true)]
     public ?array $post;
@@ -61,7 +61,7 @@ final class Transformation implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param null|list<AdaptiveBitrateStreaming|ConvertGifToVideo|GenerateAThumbnail|SimplePostTransformation> $post
+     * @param list<SimplePostTransformation|ConvertGifToVideo|GenerateAThumbnail|AdaptiveBitrateStreaming>|null $post
      */
     public static function with(?array $post = null, ?string $pre = null): self
     {
@@ -78,7 +78,7 @@ final class Transformation implements BaseModel
      * Each item must match one of the following types:
      * `transformation`, `gif-to-video`, `thumbnail`, `abs`.
      *
-     * @param list<AdaptiveBitrateStreaming|ConvertGifToVideo|GenerateAThumbnail|SimplePostTransformation> $post
+     * @param list<SimplePostTransformation|ConvertGifToVideo|GenerateAThumbnail|AdaptiveBitrateStreaming> $post
      */
     public function withPost(array $post): self
     {

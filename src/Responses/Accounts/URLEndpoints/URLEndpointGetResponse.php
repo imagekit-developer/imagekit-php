@@ -57,7 +57,7 @@ final class URLEndpointGetResponse implements BaseModel
      * Configuration for third-party URL rewriting.
      */
     #[Api(optional: true)]
-    public null|AkamaiURLRewriter|CloudinaryURLRewriter|ImgixURLRewriter $urlRewriter;
+    public CloudinaryURLRewriter|ImgixURLRewriter|AkamaiURLRewriter|null $urlRewriter;
 
     /**
      * `new URLEndpointGetResponse()` is missing required properties by the API.
@@ -97,7 +97,7 @@ final class URLEndpointGetResponse implements BaseModel
         string $description,
         array $origins = [],
         string $urlPrefix = '',
-        null|AkamaiURLRewriter|CloudinaryURLRewriter|ImgixURLRewriter $urlRewriter = null,
+        CloudinaryURLRewriter|ImgixURLRewriter|AkamaiURLRewriter|null $urlRewriter = null,
     ): self {
         $obj = new self;
 
@@ -161,7 +161,7 @@ final class URLEndpointGetResponse implements BaseModel
      * Configuration for third-party URL rewriting.
      */
     public function withURLRewriter(
-        AkamaiURLRewriter|CloudinaryURLRewriter|ImgixURLRewriter $urlRewriter
+        CloudinaryURLRewriter|ImgixURLRewriter|AkamaiURLRewriter $urlRewriter
     ): self {
         $obj = clone $this;
         $obj->urlRewriter = $urlRewriter;

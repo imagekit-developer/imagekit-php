@@ -50,7 +50,7 @@ final class FolderDetails implements BaseModel
     /**
      * Type of the asset.
      *
-     * @var null|Type::* $type
+     * @var Type::*|null $type
      */
     #[Api(enum: Type::class, optional: true)]
     public ?string $type;
@@ -72,7 +72,7 @@ final class FolderDetails implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param null|Type::* $type
+     * @param Type::*|null $type
      */
     public static function with(
         ?string $createdAt = null,

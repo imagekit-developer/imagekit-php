@@ -56,7 +56,7 @@ final class FilesService implements FilesContract
      * @param array<string,
      * mixed,> $customMetadata JSON key-value pairs to associate with the asset. Create the custom metadata fields before setting these values.
      * @param string $description optional text to describe the contents of the file
-     * @param list<AutoDescriptionExtension|AutoTaggingExtension|RemovedotBgExtension> $extensions Array of extensions to be applied to the image. Each extension can be configured with specific parameters based on the extension type.
+     * @param list<RemovedotBgExtension|AutoTaggingExtension|AutoDescriptionExtension> $extensions Array of extensions to be applied to the image. Each extension can be configured with specific parameters based on the extension type.
      * @param string $folder The folder path in which the image has to be uploaded. If the folder(s) didn't exist before, a new folder(s) is created. Using multiple `/` creates a nested folder.
      * @param bool $isPrivateFile Whether to mark the file as private or not.
      *

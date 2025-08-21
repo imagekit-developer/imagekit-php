@@ -38,7 +38,7 @@ final class URLEndpointCreateParams implements BaseModel
     /**
      * Ordered list of origin IDs to try when the file isn’t in the Media Library; ImageKit checks them in the sequence provided. Origin must be created before it can be used in a URL endpoint.
      *
-     * @var null|list<string> $origins
+     * @var list<string>|null $origins
      */
     #[Api(type: new ListOf('string'), optional: true)]
     public ?array $origins;
@@ -53,7 +53,7 @@ final class URLEndpointCreateParams implements BaseModel
      * Configuration for third-party URL rewriting.
      */
     #[Api(optional: true)]
-    public null|AkamaiURLRewriter|CloudinaryURLRewriter|ImgixURLRewriter $urlRewriter;
+    public CloudinaryURLRewriter|ImgixURLRewriter|AkamaiURLRewriter|null $urlRewriter;
 
     /**
      * `new URLEndpointCreateParams()` is missing required properties by the API.
@@ -80,13 +80,13 @@ final class URLEndpointCreateParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param null|list<string> $origins
+     * @param list<string>|null $origins
      */
     public static function with(
         string $description,
         ?array $origins = null,
         ?string $urlPrefix = null,
-        null|AkamaiURLRewriter|CloudinaryURLRewriter|ImgixURLRewriter $urlRewriter = null,
+        CloudinaryURLRewriter|ImgixURLRewriter|AkamaiURLRewriter|null $urlRewriter = null,
     ): self {
         $obj = new self;
 
@@ -138,7 +138,7 @@ final class URLEndpointCreateParams implements BaseModel
      * Configuration for third-party URL rewriting.
      */
     public function withURLRewriter(
-        AkamaiURLRewriter|CloudinaryURLRewriter|ImgixURLRewriter $urlRewriter
+        CloudinaryURLRewriter|ImgixURLRewriter|AkamaiURLRewriter $urlRewriter
     ): self {
         $obj = clone $this;
         $obj->urlRewriter = $urlRewriter;

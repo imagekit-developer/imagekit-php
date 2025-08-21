@@ -88,7 +88,7 @@ interface OriginsContract
         $password,
         $username,
         ?RequestOptions $requestOptions = null,
-    ): AkeneoPim1|AzureBlobStorage1|CloudinaryBackup1|GoogleCloudStorageGcs1|S31|S3Compatible1|WebFolder1|WebProxy1;
+    ): S31|S3Compatible1|CloudinaryBackup1|WebFolder1|WebProxy1|GoogleCloudStorageGcs1|AzureBlobStorage1|AkeneoPim1;
 
     /**
      * @param string $accessKey access key for the bucket
@@ -137,10 +137,10 @@ interface OriginsContract
         $password,
         $username,
         ?RequestOptions $requestOptions = null,
-    ): AkeneoPim2|AzureBlobStorage2|CloudinaryBackup2|GoogleCloudStorageGcs2|S32|S3Compatible2|WebFolder2|WebProxy2;
+    ): S32|S3Compatible2|CloudinaryBackup2|WebFolder2|WebProxy2|GoogleCloudStorageGcs2|AzureBlobStorage2|AkeneoPim2;
 
     /**
-     * @return list<AkeneoPim|AzureBlobStorage|CloudinaryBackup|GoogleCloudStorageGcs|S3|S3Compatible|WebFolder|WebProxy>
+     * @return list<S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|GoogleCloudStorageGcs|AzureBlobStorage|AkeneoPim>
      */
     public function list(
         ?RequestOptions $requestOptions = null
@@ -154,5 +154,5 @@ interface OriginsContract
     public function get(
         string $id,
         ?RequestOptions $requestOptions = null
-    ): AkeneoPim3|AzureBlobStorage3|CloudinaryBackup3|GoogleCloudStorageGcs3|S33|S3Compatible3|WebFolder3|WebProxy3;
+    ): S33|S3Compatible3|CloudinaryBackup3|WebFolder3|WebProxy3|GoogleCloudStorageGcs3|AzureBlobStorage3|AkeneoPim3;
 }

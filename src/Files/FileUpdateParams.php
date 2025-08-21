@@ -26,7 +26,7 @@ use ImageKit\Shared\RemovedotBgExtension;
  *   customMetadata?: array<string, mixed>,
  *   description?: string,
  *   extensions?: list<RemovedotBgExtension|AutoTaggingExtension|AutoDescriptionExtension>,
- *   removeAITags?: list<string>|UnionMember1::*,
+ *   removeAITags?: UnionMember1::*|list<string>,
  *   tags?: list<string>|null,
  *   webhookURL?: string,
  *   publish?: Publish,
@@ -46,7 +46,7 @@ final class FileUpdateParams implements BaseModel
     /**
      * A key-value data to be associated with the asset. To unset a key, send `null` value for that key. Before setting any custom metadata on an asset you have to create the field using custom metadata fields API.
      *
-     * @var null|array<string, mixed> $customMetadata
+     * @var array<string, mixed>|null $customMetadata
      */
     #[Api(type: new MapOf('string'), optional: true)]
     public ?array $customMetadata;
@@ -60,7 +60,7 @@ final class FileUpdateParams implements BaseModel
     /**
      * Array of extensions to be applied to the asset. Each extension can be configured with specific parameters based on the extension type.
      *
-     * @var null|list<AutoDescriptionExtension|AutoTaggingExtension|RemovedotBgExtension> $extensions
+     * @var list<RemovedotBgExtension|AutoTaggingExtension|AutoDescriptionExtension>|null $extensions
      */
     #[Api(type: new ListOf(union: Extension::class), optional: true)]
     public ?array $extensions;
@@ -72,15 +72,15 @@ final class FileUpdateParams implements BaseModel
      *
      * Note: The remove operation for `AITags` executes before any of the `extensions` are processed.
      *
-     * @var null|list<string>|UnionMember1::* $removeAITags
+     * @var UnionMember1::*|list<string>|null $removeAITags
      */
     #[Api(union: RemoveAITags::class, optional: true)]
-    public null|array|string $removeAITags;
+    public string|array|null $removeAITags;
 
     /**
      * An array of tags associated with the file, such as `["tag1", "tag2"]`. Send `null` to unset all tags associated with the file.
      *
-     * @var null|list<string> $tags
+     * @var list<string>|null $tags
      */
     #[Api(type: new ListOf('string'), nullable: true, optional: true)]
     public ?array $tags;
@@ -108,17 +108,17 @@ final class FileUpdateParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param null|array<string, mixed> $customMetadata
-     * @param null|list<AutoDescriptionExtension|AutoTaggingExtension|RemovedotBgExtension> $extensions
-     * @param null|list<string>|UnionMember1::* $removeAITags
-     * @param null|list<string> $tags
+     * @param array<string, mixed>|null $customMetadata
+     * @param list<RemovedotBgExtension|AutoTaggingExtension|AutoDescriptionExtension>|null $extensions
+     * @param UnionMember1::*|list<string>|null $removeAITags
+     * @param list<string>|null $tags
      */
     public static function with(
         ?string $customCoordinates = null,
         ?array $customMetadata = null,
         ?string $description = null,
         ?array $extensions = null,
-        null|array|string $removeAITags = null,
+        string|array|null $removeAITags = null,
         ?array $tags = null,
         ?string $webhookURL = null,
         ?Publish $publish = null,
@@ -175,7 +175,7 @@ final class FileUpdateParams implements BaseModel
     /**
      * Array of extensions to be applied to the asset. Each extension can be configured with specific parameters based on the extension type.
      *
-     * @param list<AutoDescriptionExtension|AutoTaggingExtension|RemovedotBgExtension> $extensions
+     * @param list<RemovedotBgExtension|AutoTaggingExtension|AutoDescriptionExtension> $extensions
      */
     public function withExtensions(array $extensions): self
     {
@@ -192,9 +192,9 @@ final class FileUpdateParams implements BaseModel
      *
      * Note: The remove operation for `AITags` executes before any of the `extensions` are processed.
      *
-     * @param list<string>|UnionMember1::* $removeAITags
+     * @param UnionMember1::*|list<string> $removeAITags
      */
-    public function withRemoveAITags(array|string $removeAITags): self
+    public function withRemoveAITags(string|array $removeAITags): self
     {
         $obj = clone $this;
         $obj->removeAITags = $removeAITags;
@@ -205,7 +205,7 @@ final class FileUpdateParams implements BaseModel
     /**
      * An array of tags associated with the file, such as `["tag1", "tag2"]`. Send `null` to unset all tags associated with the file.
      *
-     * @param null|list<string> $tags
+     * @param list<string>|null $tags
      */
     public function withTags(?array $tags): self
     {

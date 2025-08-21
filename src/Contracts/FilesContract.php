@@ -22,17 +22,17 @@ use ImageKit\Shared\RemovedotBgExtension;
 interface FilesContract
 {
     /**
-     * @param null|string $customCoordinates Define an important area in the image in the format `x,y,width,height` e.g. `10,10,100,100`. Send `null` to unset this value.
+     * @param string|null $customCoordinates Define an important area in the image in the format `x,y,width,height` e.g. `10,10,100,100`. Send `null` to unset this value.
      * @param array<string,
      * mixed,> $customMetadata A key-value data to be associated with the asset. To unset a key, send `null` value for that key. Before setting any custom metadata on an asset you have to create the field using custom metadata fields API.
      * @param string $description optional text to describe the contents of the file
-     * @param list<AutoDescriptionExtension|AutoTaggingExtension|RemovedotBgExtension> $extensions Array of extensions to be applied to the asset. Each extension can be configured with specific parameters based on the extension type.
-     * @param list<string>|UnionMember1::* $removeAITags An array of AITags associated with the file that you want to remove, e.g. `["car", "vehicle", "motorsports"]`.
+     * @param list<RemovedotBgExtension|AutoTaggingExtension|AutoDescriptionExtension> $extensions Array of extensions to be applied to the asset. Each extension can be configured with specific parameters based on the extension type.
+     * @param UnionMember1::*|list<string> $removeAITags An array of AITags associated with the file that you want to remove, e.g. `["car", "vehicle", "motorsports"]`.
      *
      * If you want to remove all AITags associated with the file, send a string - "all".
      *
      * Note: The remove operation for `AITags` executes before any of the `extensions` are processed.
-     * @param null|list<string> $tags An array of tags associated with the file, such as `["tag1", "tag2"]`. Send `null` to unset all tags associated with the file.
+     * @param list<string>|null $tags An array of tags associated with the file, such as `["tag1", "tag2"]`. Send `null` to unset all tags associated with the file.
      * @param string $webhookURL The final status of extensions after they have completed execution will be delivered to this endpoint as a POST request. [Learn more](/docs/api-reference/digital-asset-management-dam/managing-assets/update-file-details#webhook-payload-structure) about the webhook payload structure.
      * @param Publish $publish configure the publication status of a file and its versions
      */
@@ -133,7 +133,7 @@ interface FilesContract
      * mixed,> $customMetadata JSON key-value pairs to associate with the asset. Create the custom metadata fields before setting these values.
      * @param string $description optional text to describe the contents of the file
      * @param int $expire The time until your signature is valid. It must be a [Unix time](https://en.wikipedia.org/wiki/Unix_time) in less than 1 hour into the future. It should be in seconds. This field is only required for authentication when uploading a file from the client side.
-     * @param list<AutoDescriptionExtension|AutoTaggingExtension|RemovedotBgExtension> $extensions Array of extensions to be applied to the image. Each extension can be configured with specific parameters based on the extension type.
+     * @param list<RemovedotBgExtension|AutoTaggingExtension|AutoDescriptionExtension> $extensions Array of extensions to be applied to the image. Each extension can be configured with specific parameters based on the extension type.
      * @param string $folder The folder path in which the image has to be uploaded. If the folder(s) didn't exist before, a new folder(s) is created.
      *
      * The folder name can contain:

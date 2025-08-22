@@ -10,7 +10,6 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Webhooks\VideoTransformationReadyWebhookEvent\Data;
 use ImageKit\Webhooks\VideoTransformationReadyWebhookEvent\Request;
 use ImageKit\Webhooks\VideoTransformationReadyWebhookEvent\Timings;
-use ImageKit\Webhooks\VideoTransformationReadyWebhookEvent\Type;
 
 /**
  * @phpstan-type video_transformation_ready_webhook_event_alias = array{
@@ -18,13 +17,16 @@ use ImageKit\Webhooks\VideoTransformationReadyWebhookEvent\Type;
  *   createdAt: \DateTimeInterface,
  *   data: Data,
  *   request: Request,
- *   type: Type::*,
+ *   type: string,
  *   timings?: Timings,
  * }
  */
 final class VideoTransformationReadyWebhookEvent implements BaseModel
 {
     use SdkModel;
+
+    #[Api]
+    public string $type = 'video.transformation.ready';
 
     /**
      * Unique identifier for the event.
@@ -41,10 +43,6 @@ final class VideoTransformationReadyWebhookEvent implements BaseModel
     #[Api]
     public Request $request;
 
-    /** @var Type::* $type */
-    #[Api(enum: Type::class)]
-    public string $type;
-
     #[Api(optional: true)]
     public ?Timings $timings;
 
@@ -54,7 +52,7 @@ final class VideoTransformationReadyWebhookEvent implements BaseModel
      * To enforce required parameters use
      * ```
      * VideoTransformationReadyWebhookEvent::with(
-     *   id: ..., createdAt: ..., data: ..., request: ..., type: ...
+     *   id: ..., createdAt: ..., data: ..., request: ...
      * )
      * ```
      *
@@ -66,7 +64,6 @@ final class VideoTransformationReadyWebhookEvent implements BaseModel
      *   ->withCreatedAt(...)
      *   ->withData(...)
      *   ->withRequest(...)
-     *   ->withType(...)
      * ```
      */
     public function __construct()
@@ -79,15 +76,12 @@ final class VideoTransformationReadyWebhookEvent implements BaseModel
      * Construct an instance from the required parameters.
      *
      * You must use named parameters to construct any parameters with a default value.
-     *
-     * @param Type::* $type
      */
     public static function with(
         string $id,
         \DateTimeInterface $createdAt,
         Data $data,
         Request $request,
-        string $type,
         ?Timings $timings = null,
     ): self {
         $obj = new self;
@@ -96,7 +90,6 @@ final class VideoTransformationReadyWebhookEvent implements BaseModel
         $obj->createdAt = $createdAt;
         $obj->data = $data;
         $obj->request = $request;
-        $obj->type = $type;
 
         null !== $timings && $obj->timings = $timings;
 
@@ -134,17 +127,6 @@ final class VideoTransformationReadyWebhookEvent implements BaseModel
     {
         $obj = clone $this;
         $obj->request = $request;
-
-        return $obj;
-    }
-
-    /**
-     * @param Type::* $type
-     */
-    public function withType(string $type): self
-    {
-        $obj = clone $this;
-        $obj->type = $type;
 
         return $obj;
     }

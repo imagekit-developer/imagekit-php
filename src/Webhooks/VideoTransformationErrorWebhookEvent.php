@@ -9,7 +9,6 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Webhooks\VideoTransformationErrorWebhookEvent\Data;
 use ImageKit\Webhooks\VideoTransformationErrorWebhookEvent\Request;
-use ImageKit\Webhooks\VideoTransformationErrorWebhookEvent\Type;
 
 /**
  * @phpstan-type video_transformation_error_webhook_event_alias = array{
@@ -17,12 +16,15 @@ use ImageKit\Webhooks\VideoTransformationErrorWebhookEvent\Type;
  *   createdAt: \DateTimeInterface,
  *   data: Data,
  *   request: Request,
- *   type: Type::*,
+ *   type: string,
  * }
  */
 final class VideoTransformationErrorWebhookEvent implements BaseModel
 {
     use SdkModel;
+
+    #[Api]
+    public string $type = 'video.transformation.error';
 
     /**
      * Unique identifier for the event.
@@ -39,17 +41,13 @@ final class VideoTransformationErrorWebhookEvent implements BaseModel
     #[Api]
     public Request $request;
 
-    /** @var Type::* $type */
-    #[Api(enum: Type::class)]
-    public string $type;
-
     /**
      * `new VideoTransformationErrorWebhookEvent()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
      * VideoTransformationErrorWebhookEvent::with(
-     *   id: ..., createdAt: ..., data: ..., request: ..., type: ...
+     *   id: ..., createdAt: ..., data: ..., request: ...
      * )
      * ```
      *
@@ -61,7 +59,6 @@ final class VideoTransformationErrorWebhookEvent implements BaseModel
      *   ->withCreatedAt(...)
      *   ->withData(...)
      *   ->withRequest(...)
-     *   ->withType(...)
      * ```
      */
     public function __construct()
@@ -74,15 +71,12 @@ final class VideoTransformationErrorWebhookEvent implements BaseModel
      * Construct an instance from the required parameters.
      *
      * You must use named parameters to construct any parameters with a default value.
-     *
-     * @param Type::* $type
      */
     public static function with(
         string $id,
         \DateTimeInterface $createdAt,
         Data $data,
-        Request $request,
-        string $type,
+        Request $request
     ): self {
         $obj = new self;
 
@@ -90,7 +84,6 @@ final class VideoTransformationErrorWebhookEvent implements BaseModel
         $obj->createdAt = $createdAt;
         $obj->data = $data;
         $obj->request = $request;
-        $obj->type = $type;
 
         return $obj;
     }
@@ -126,17 +119,6 @@ final class VideoTransformationErrorWebhookEvent implements BaseModel
     {
         $obj = clone $this;
         $obj->request = $request;
-
-        return $obj;
-    }
-
-    /**
-     * @param Type::* $type
-     */
-    public function withType(string $type): self
-    {
-        $obj = clone $this;
-        $obj->type = $type;
 
         return $obj;
     }

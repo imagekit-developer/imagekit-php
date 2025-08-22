@@ -16,7 +16,6 @@ use ImageKit\Files\FileUpdateParams\Extension\AutoTaggingExtension;
 use ImageKit\Files\FileUpdateParams\Extension\RemoveBg;
 use ImageKit\Files\FileUpdateParams\Publish;
 use ImageKit\Files\FileUpdateParams\RemoveAITags;
-use ImageKit\Files\FileUpdateParams\RemoveAITags\UnionMember1;
 
 /**
  * This API updates the details or attributes of the current version of the file. You can update `tags`, `customCoordinates`, `customMetadata`, publication status, remove existing `AITags` and apply extensions using this API.
@@ -26,7 +25,7 @@ use ImageKit\Files\FileUpdateParams\RemoveAITags\UnionMember1;
  *   customMetadata?: array<string, mixed>,
  *   description?: string,
  *   extensions?: list<RemoveBg|AutoTaggingExtension|AIAutoDescription>,
- *   removeAITags?: UnionMember1::*|list<string>,
+ *   removeAITags?: string|list<string>,
  *   tags?: list<string>|null,
  *   webhookURL?: string,
  *   publish?: Publish,
@@ -72,7 +71,7 @@ final class FileUpdateParams implements BaseModel
      *
      * Note: The remove operation for `AITags` executes before any of the `extensions` are processed.
      *
-     * @var UnionMember1::*|list<string>|null $removeAITags
+     * @var string|list<string>|null $removeAITags
      */
     #[Api(union: RemoveAITags::class, optional: true)]
     public string|array|null $removeAITags;
@@ -110,7 +109,7 @@ final class FileUpdateParams implements BaseModel
      *
      * @param array<string, mixed>|null $customMetadata
      * @param list<RemoveBg|AutoTaggingExtension|AIAutoDescription>|null $extensions
-     * @param UnionMember1::*|list<string>|null $removeAITags
+     * @param string|list<string>|null $removeAITags
      * @param list<string>|null $tags
      */
     public static function with(
@@ -192,7 +191,7 @@ final class FileUpdateParams implements BaseModel
      *
      * Note: The remove operation for `AITags` executes before any of the `extensions` are processed.
      *
-     * @param UnionMember1::*|list<string> $removeAITags
+     * @param string|list<string> $removeAITags
      */
     public function withRemoveAITags(string|array $removeAITags): self
     {

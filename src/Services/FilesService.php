@@ -16,7 +16,6 @@ use ImageKit\Files\FileUpdateParams\Extension\AIAutoDescription;
 use ImageKit\Files\FileUpdateParams\Extension\AutoTaggingExtension;
 use ImageKit\Files\FileUpdateParams\Extension\RemoveBg;
 use ImageKit\Files\FileUpdateParams\Publish;
-use ImageKit\Files\FileUpdateParams\RemoveAITags\UnionMember1;
 use ImageKit\Files\FileUploadParams;
 use ImageKit\Files\FileUploadParams\Extension\AIAutoDescription as AIAutoDescription1;
 use ImageKit\Files\FileUploadParams\Extension\AutoTaggingExtension as AutoTaggingExtension1;
@@ -57,7 +56,7 @@ final class FilesService implements FilesContract
      * mixed,> $customMetadata A key-value data to be associated with the asset. To unset a key, send `null` value for that key. Before setting any custom metadata on an asset you have to create the field using custom metadata fields API.
      * @param string $description optional text to describe the contents of the file
      * @param list<RemoveBg|AutoTaggingExtension|AIAutoDescription> $extensions Array of extensions to be applied to the asset. Each extension can be configured with specific parameters based on the extension type.
-     * @param UnionMember1::*|list<string> $removeAITags An array of AITags associated with the file that you want to remove, e.g. `["car", "vehicle", "motorsports"]`.
+     * @param string|list<string> $removeAITags An array of AITags associated with the file that you want to remove, e.g. `["car", "vehicle", "motorsports"]`.
      *
      * If you want to remove all AITags associated with the file, send a string - "all".
      *

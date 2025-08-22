@@ -7,33 +7,17 @@ namespace ImageKit\Responses\Accounts\URLEndpoints\URLEndpointGetResponse\URLRew
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Responses\Accounts\URLEndpoints\URLEndpointGetResponse\URLRewriter\AkamaiURLRewriter\Type;
 
 /**
- * @phpstan-type akamai_url_rewriter_alias = array{type: Type::*}
+ * @phpstan-type akamai_url_rewriter_alias = array{type: string}
  */
 final class AkamaiURLRewriter implements BaseModel
 {
     use SdkModel;
 
-    /** @var Type::* $type */
-    #[Api(enum: Type::class)]
-    public string $type;
+    #[Api]
+    public string $type = 'AKAMAI';
 
-    /**
-     * `new AkamaiURLRewriter()` is missing required properties by the API.
-     *
-     * To enforce required parameters use
-     * ```
-     * AkamaiURLRewriter::with(type: ...)
-     * ```
-     *
-     * Otherwise ensure the following setters are called
-     *
-     * ```
-     * (new AkamaiURLRewriter)->withType(...)
-     * ```
-     */
     public function __construct()
     {
         self::introspect();
@@ -44,26 +28,9 @@ final class AkamaiURLRewriter implements BaseModel
      * Construct an instance from the required parameters.
      *
      * You must use named parameters to construct any parameters with a default value.
-     *
-     * @param Type::* $type
      */
-    public static function with(string $type): self
+    public static function with(): self
     {
-        $obj = new self;
-
-        $obj->type = $type;
-
-        return $obj;
-    }
-
-    /**
-     * @param Type::* $type
-     */
-    public function withType(string $type): self
-    {
-        $obj = clone $this;
-        $obj->type = $type;
-
-        return $obj;
+        return new self;
     }
 }

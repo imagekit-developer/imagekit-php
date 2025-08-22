@@ -8,7 +8,6 @@ use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 use ImageKit\Core\Conversion\ListOf;
-use ImageKit\Files\FileUpdateParams\RemoveAITags\UnionMember1;
 
 /**
  * An array of AITags associated with the file that you want to remove, e.g. `["car", "vehicle", "motorsports"]`.
@@ -17,7 +16,7 @@ use ImageKit\Files\FileUpdateParams\RemoveAITags\UnionMember1;
  *
  * Note: The remove operation for `AITags` executes before any of the `extensions` are processed.
  *
- * @phpstan-type remove_ai_tags_alias = UnionMember1::*|list<string>
+ * @phpstan-type remove_ai_tags_alias = string|list<string>
  */
 final class RemoveAITags implements ConverterSource
 {
@@ -29,6 +28,6 @@ final class RemoveAITags implements ConverterSource
      */
     public static function variants(): array
     {
-        return [new ListOf('string'), UnionMember1::class];
+        return [new ListOf('string'), 'string'];
     }
 }

@@ -5,9 +5,7 @@ declare(strict_types=1);
 namespace ImageKit\Services\Accounts;
 
 use ImageKit\Accounts\Origins\OriginCreateParams;
-use ImageKit\Accounts\Origins\OriginCreateParams\Type;
 use ImageKit\Accounts\Origins\OriginUpdateParams;
-use ImageKit\Accounts\Origins\OriginUpdateParams\Type as Type1;
 use ImageKit\Client;
 use ImageKit\Contracts\Accounts\OriginsContract;
 use ImageKit\Core\Conversion;
@@ -63,7 +61,7 @@ final class OriginsService implements OriginsContract
      * @param string $bucket
      * @param string $name display name of the origin
      * @param string $secretKey secret key for the bucket
-     * @param Type::* $type
+     * @param string $type
      * @param string $baseURLForCanonicalHeader URL used in the Canonical header (if enabled)
      * @param bool $includeCanonicalHeader whether to send a Canonical header
      * @param string $prefix
@@ -161,7 +159,7 @@ final class OriginsService implements OriginsContract
      * @param string $bucket
      * @param string $name display name of the origin
      * @param string $secretKey secret key for the bucket
-     * @param Type1::* $type
+     * @param string $type
      * @param string $baseURLForCanonicalHeader URL used in the Canonical header (if enabled)
      * @param bool $includeCanonicalHeader whether to send a Canonical header
      * @param string $prefix

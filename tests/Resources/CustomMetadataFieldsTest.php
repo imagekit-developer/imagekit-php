@@ -58,7 +58,7 @@ final class CustomMetadataFieldsTest extends TestCase
             label: 'price',
             name: 'price',
             schema: Schema::with(type: 'Number')
-                ->withDefaultValue('Hello')
+                ->withDefaultValue('string')
                 ->withIsValueRequired(true)
                 ->withMaxLength(0)
                 ->withMaxValue(3000)

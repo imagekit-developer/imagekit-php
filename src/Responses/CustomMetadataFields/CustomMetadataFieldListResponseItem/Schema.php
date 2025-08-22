@@ -17,7 +17,7 @@ use ImageKit\Responses\CustomMetadataFields\CustomMetadataFieldListResponseItem\
  *
  * @phpstan-type schema_alias = array{
  *   type: Type::*,
- *   defaultValue?: list<string|float|bool>|string|float|bool,
+ *   defaultValue?: string|float|bool|list<string|float|bool>,
  *   isValueRequired?: bool,
  *   maxLength?: float,
  *   maxValue?: string|float,
@@ -41,10 +41,10 @@ final class Schema implements BaseModel
     /**
      * The default value for this custom metadata field. Date type of default value depends on the field type.
      *
-     * @var list<string|float|bool>|string|float|bool|null $defaultValue
+     * @var string|float|bool|list<string|float|bool>|null $defaultValue
      */
     #[Api(union: DefaultValue::class, optional: true)]
-    public array|string|float|bool|null $defaultValue;
+    public string|float|bool|array|null $defaultValue;
 
     /**
      * Specifies if the this custom metadata field is required or not.
@@ -110,12 +110,12 @@ final class Schema implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param Type::* $type
-     * @param list<string|float|bool>|string|float|bool|null $defaultValue
+     * @param string|float|bool|list<string|float|bool>|null $defaultValue
      * @param list<string|float|bool>|null $selectOptions
      */
     public static function with(
         string $type,
-        array|string|float|bool|null $defaultValue = null,
+        string|float|bool|array|null $defaultValue = null,
         ?bool $isValueRequired = null,
         ?float $maxLength = null,
         string|float|null $maxValue = null,
@@ -154,10 +154,10 @@ final class Schema implements BaseModel
     /**
      * The default value for this custom metadata field. Date type of default value depends on the field type.
      *
-     * @param list<string|float|bool>|string|float|bool $defaultValue
+     * @param string|float|bool|list<string|float|bool> $defaultValue
      */
     public function withDefaultValue(
-        array|string|float|bool $defaultValue
+        string|float|bool|array $defaultValue
     ): self {
         $obj = clone $this;
         $obj->defaultValue = $defaultValue;

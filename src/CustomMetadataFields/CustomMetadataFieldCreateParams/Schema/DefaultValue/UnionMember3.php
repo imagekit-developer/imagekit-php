@@ -2,18 +2,16 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Responses\CustomMetadataFields\CustomMetadataFieldNewResponse\Schema\DefaultValue;
+namespace ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\DefaultValue;
 
 use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
 /**
- * Primitive JSON scalar.
- *
- * @phpstan-type union_member0_alias = string|float|bool
+ * @phpstan-type union_member3_alias = string|float|bool
  */
-final class UnionMember0 implements ConverterSource
+final class UnionMember3 implements ConverterSource
 {
     use SdkUnion;
 

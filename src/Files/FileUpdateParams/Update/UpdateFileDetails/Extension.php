@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files\FileUpdateParams;
+namespace ImageKit\Files\FileUpdateParams\Update\UpdateFileDetails;
 
 use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
-use ImageKit\Files\FileUpdateParams\Extension\AutoDescriptionExtension;
-use ImageKit\Files\FileUpdateParams\Extension\AutoTaggingExtension;
-use ImageKit\Files\FileUpdateParams\Extension\RemovedotBgExtension;
+use ImageKit\Files\FileUpdateParams\Update\UpdateFileDetails\Extension\AutoDescriptionExtension;
+use ImageKit\Files\FileUpdateParams\Update\UpdateFileDetails\Extension\AutoTaggingExtension;
+use ImageKit\Files\FileUpdateParams\Update\UpdateFileDetails\Extension\RemovedotBgExtension;
 
 /**
  * @phpstan-type extension_alias = RemovedotBgExtension|AutoTaggingExtension|AutoDescriptionExtension

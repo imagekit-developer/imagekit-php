@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files\FileUpdateParams\Extension\RemovedotBgExtension;
+namespace ImageKit\Files\FileUpdateParams\Update\UpdateFileDetails\Extension\RemovedotBgExtension;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;

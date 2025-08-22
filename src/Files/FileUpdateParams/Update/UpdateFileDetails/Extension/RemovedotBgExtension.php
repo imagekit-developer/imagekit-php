@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files\FileUpdateParams\Extension;
+namespace ImageKit\Files\FileUpdateParams\Update\UpdateFileDetails\Extension;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Files\FileUpdateParams\Extension\RemovedotBgExtension\Name;
-use ImageKit\Files\FileUpdateParams\Extension\RemovedotBgExtension\Options;
+use ImageKit\Files\FileUpdateParams\Update\UpdateFileDetails\Extension\RemovedotBgExtension\Name;
+use ImageKit\Files\FileUpdateParams\Update\UpdateFileDetails\Extension\RemovedotBgExtension\Options;
 
 /**
  * @phpstan-type removedot_bg_extension_alias = array{

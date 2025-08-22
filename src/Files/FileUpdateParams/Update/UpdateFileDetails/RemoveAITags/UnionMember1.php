@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files\FileUpdateParams\RemoveAITags;
+namespace ImageKit\Files\FileUpdateParams\Update\UpdateFileDetails\RemoveAITags;
 
 use ImageKit\Core\Concerns\SdkEnum;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;

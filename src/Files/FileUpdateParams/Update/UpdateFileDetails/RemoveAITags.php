@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files\FileUpdateParams;
+namespace ImageKit\Files\FileUpdateParams\Update\UpdateFileDetails;
 
 use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 use ImageKit\Core\Conversion\ListOf;
-use ImageKit\Files\FileUpdateParams\RemoveAITags\UnionMember1;
+use ImageKit\Files\FileUpdateParams\Update\UpdateFileDetails\RemoveAITags\UnionMember1;
 
 /**
  * An array of AITags associated with the file that you want to remove, e.g. `["car", "vehicle", "motorsports"]`.

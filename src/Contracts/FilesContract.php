@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace ImageKit\Contracts;
 
-use ImageKit\Files\FileUpdateParams\Extension\AIAutoDescription;
-use ImageKit\Files\FileUpdateParams\Extension\AutoTaggingExtension;
-use ImageKit\Files\FileUpdateParams\Extension\RemoveBg;
-use ImageKit\Files\FileUpdateParams\Publish;
-use ImageKit\Files\FileUploadParams\Extension\AIAutoDescription as AIAutoDescription1;
-use ImageKit\Files\FileUploadParams\Extension\AutoTaggingExtension as AutoTaggingExtension1;
-use ImageKit\Files\FileUploadParams\Extension\RemoveBg as RemoveBg1;
+use ImageKit\Files\FileUpdateParams\Update\ChangePublicationStatus;
+use ImageKit\Files\FileUpdateParams\Update\UpdateFileDetails;
+use ImageKit\Files\FileUploadParams\Extension\AIAutoDescription;
+use ImageKit\Files\FileUploadParams\Extension\AutoTaggingExtension;
+use ImageKit\Files\FileUploadParams\Extension\RemoveBg;
 use ImageKit\Files\FileUploadParams\ResponseField;
 use ImageKit\Files\FileUploadParams\Transformation;
 use ImageKit\RequestOptions;
@@ -24,31 +22,12 @@ use ImageKit\Responses\Files\FileUploadResponse;
 interface FilesContract
 {
     /**
-     * @param string|null $customCoordinates Define an important area in the image in the format `x,y,width,height` e.g. `10,10,100,100`. Send `null` to unset this value.
-     * @param array<string,
-     * mixed,> $customMetadata A key-value data to be associated with the asset. To unset a key, send `null` value for that key. Before setting any custom metadata on an asset you have to create the field using custom metadata fields API.
-     * @param string $description optional text to describe the contents of the file
-     * @param list<RemoveBg|AutoTaggingExtension|AIAutoDescription> $extensions Array of extensions to be applied to the asset. Each extension can be configured with specific parameters based on the extension type.
-     * @param string|list<string> $removeAITags An array of AITags associated with the file that you want to remove, e.g. `["car", "vehicle", "motorsports"]`.
-     *
-     * If you want to remove all AITags associated with the file, send a string - "all".
-     *
-     * Note: The remove operation for `AITags` executes before any of the `extensions` are processed.
-     * @param list<string>|null $tags An array of tags associated with the file, such as `["tag1", "tag2"]`. Send `null` to unset all tags associated with the file.
-     * @param string $webhookURL The final status of extensions after they have completed execution will be delivered to this endpoint as a POST request. [Learn more](/docs/api-reference/digital-asset-management-dam/managing-assets/update-file-details#webhook-payload-structure) about the webhook payload structure.
-     * @param Publish $publish configure the publication status of a file and its versions
+     * @param UpdateFileDetails|ChangePublicationStatus $update
      */
     public function update(
         string $fileID,
-        $customCoordinates = null,
-        $customMetadata = null,
-        $description = null,
-        $extensions = null,
-        $removeAITags = null,
-        $tags = null,
-        $webhookURL = null,
-        $publish = null,
-        ?RequestOptions $requestOptions = null,
+        $update = null,
+        ?RequestOptions $requestOptions = null
     ): FileUpdateResponse;
 
     public function delete(
@@ -135,7 +114,7 @@ interface FilesContract
      * mixed,> $customMetadata JSON key-value pairs to associate with the asset. Create the custom metadata fields before setting these values.
      * @param string $description optional text to describe the contents of the file
      * @param int $expire The time until your signature is valid. It must be a [Unix time](https://en.wikipedia.org/wiki/Unix_time) in less than 1 hour into the future. It should be in seconds. This field is only required for authentication when uploading a file from the client side.
-     * @param list<RemoveBg1|AutoTaggingExtension1|AIAutoDescription1> $extensions Array of extensions to be applied to the image. Each extension can be configured with specific parameters based on the extension type.
+     * @param list<RemoveBg|AutoTaggingExtension|AIAutoDescription> $extensions Array of extensions to be applied to the image. Each extension can be configured with specific parameters based on the extension type.
      * @param string $folder The folder path in which the image has to be uploaded. If the folder(s) didn't exist before, a new folder(s) is created.
      *
      * The folder name can contain:

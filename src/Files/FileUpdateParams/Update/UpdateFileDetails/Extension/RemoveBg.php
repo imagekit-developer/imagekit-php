@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files\FileUpdateParams\Extension;
+namespace ImageKit\Files\FileUpdateParams\Update\UpdateFileDetails\Extension;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Files\FileUpdateParams\Extension\RemoveBg\Options;
+use ImageKit\Files\FileUpdateParams\Update\UpdateFileDetails\Extension\RemoveBg\Options;
 
 /**
  * @phpstan-type remove_bg_alias = array{name: string, options?: Options}

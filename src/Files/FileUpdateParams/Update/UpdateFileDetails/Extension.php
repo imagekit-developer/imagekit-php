@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files\FileUpdateParams;
+namespace ImageKit\Files\FileUpdateParams\Update\UpdateFileDetails;
 
 use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
-use ImageKit\Files\FileUpdateParams\Extension\AIAutoDescription;
-use ImageKit\Files\FileUpdateParams\Extension\AutoTaggingExtension;
-use ImageKit\Files\FileUpdateParams\Extension\RemoveBg;
+use ImageKit\Files\FileUpdateParams\Update\UpdateFileDetails\Extension\AIAutoDescription;
+use ImageKit\Files\FileUpdateParams\Update\UpdateFileDetails\Extension\AutoTaggingExtension;
+use ImageKit\Files\FileUpdateParams\Update\UpdateFileDetails\Extension\RemoveBg;
 
 /**
  * @phpstan-type extension_alias = RemoveBg|AutoTaggingExtension|AIAutoDescription

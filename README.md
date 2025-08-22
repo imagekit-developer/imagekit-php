@@ -48,7 +48,7 @@ $client = new Client(
   password: getenv("ORG_MY_PASSWORD_TOKEN") ?: "does_not_matter",
 );
 
-$response = $client->files->upload(fileName: "fileName");
+$response = $client->files->upload(file: 'file', fileName: "file-name.jpg");
 var_dump($response->videoCodec);
 ```
 
@@ -69,7 +69,7 @@ When the library is unable to connect to the API, or if the API returns a non-su
 use ImageKit\Errors\APIConnectionError;
 
 try {
-  $response = $client->files->upload(fileName: "fileName");
+  $response = $client->files->upload(file: 'file', fileName: "file-name.jpg");
 } catch (APIConnectionError $e) {
   echo "The server could not be reached", PHP_EOL;
   var_dump($e->getPrevious());
@@ -116,7 +116,7 @@ $client = new Client(maxRetries: 0);
 
 // Or, configure per-request:
 $result = $client->files->upload(
-  fileName: "fileName", new RequestOptions(maxRetries: 5)
+  file: 'file', fileName: "file-name.jpg", new RequestOptions(maxRetries: 5)
 );
 ```
 
@@ -136,7 +136,8 @@ Note: the `extra_` parameters of the same name overrides the documented paramete
 use ImageKit\RequestOptions;
 
 $response = $client->files->upload(
-  fileName: "fileName",
+  file: 'file',
+  fileName: "file-name.jpg",
   new RequestOptions(
     extraQueryParams: ["my_query_parameter" => "value"],
     extraBodyParams: ["my_body_parameter" => "value"],

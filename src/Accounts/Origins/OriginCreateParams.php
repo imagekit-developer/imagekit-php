@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ImageKit\Accounts\Origins;
 
+use ImageKit\Accounts\Origins\OriginCreateParams\Type;
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Concerns\SdkParams;
@@ -18,7 +19,7 @@ use ImageKit\Core\Contracts\BaseModel;
  *   bucket: string,
  *   name: string,
  *   secretKey: string,
- *   type: string,
+ *   type: Type::*,
  *   baseURLForCanonicalHeader?: string,
  *   includeCanonicalHeader?: bool,
  *   prefix?: string,
@@ -42,9 +43,6 @@ final class OriginCreateParams implements BaseModel
     use SdkModel;
     use SdkParams;
 
-    #[Api]
-    public string $type = 'AKENEO_PIM';
-
     /**
      * Access key for the bucket.
      */
@@ -65,6 +63,10 @@ final class OriginCreateParams implements BaseModel
      */
     #[Api]
     public string $secretKey;
+
+    /** @var Type::* $type */
+    #[Api(enum: Type::class)]
+    public string $type;
 
     /**
      * URL used in the Canonical header (if enabled).
@@ -154,6 +156,7 @@ final class OriginCreateParams implements BaseModel
      *   bucket: ...,
      *   name: ...,
      *   secretKey: ...,
+     *   type: ...,
      *   endpoint: ...,
      *   baseURL: ...,
      *   clientEmail: ...,
@@ -176,6 +179,7 @@ final class OriginCreateParams implements BaseModel
      *   ->withBucket(...)
      *   ->withName(...)
      *   ->withSecretKey(...)
+     *   ->withType(...)
      *   ->withEndpoint(...)
      *   ->withBaseURL(...)
      *   ->withClientEmail(...)
@@ -199,12 +203,15 @@ final class OriginCreateParams implements BaseModel
      * Construct an instance from the required parameters.
      *
      * You must use named parameters to construct any parameters with a default value.
+     *
+     * @param Type::* $type
      */
     public static function with(
         string $accessKey,
         string $bucket,
         string $name,
         string $secretKey,
+        string $type,
         string $endpoint,
         string $baseURL,
         string $clientEmail,
@@ -228,6 +235,7 @@ final class OriginCreateParams implements BaseModel
         $obj->bucket = $bucket;
         $obj->name = $name;
         $obj->secretKey = $secretKey;
+        $obj->type = $type;
         $obj->endpoint = $endpoint;
         $obj->baseURL = $baseURL;
         $obj->clientEmail = $clientEmail;
@@ -286,6 +294,17 @@ final class OriginCreateParams implements BaseModel
     {
         $obj = clone $this;
         $obj->secretKey = $secretKey;
+
+        return $obj;
+    }
+
+    /**
+     * @param Type::* $type
+     */
+    public function withType(string $type): self
+    {
+        $obj = clone $this;
+        $obj->type = $type;
 
         return $obj;
     }

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace ImageKit\Contracts\Accounts;
 
+use ImageKit\Accounts\Origins\OriginCreateParams\Type;
+use ImageKit\Accounts\Origins\OriginUpdateParams\Type as Type1;
 use ImageKit\RequestOptions;
 use ImageKit\Responses\Accounts\Origins\OriginGetResponse\AkeneoPim as AkeneoPim3;
 use ImageKit\Responses\Accounts\Origins\OriginGetResponse\AzureBlobStorage as AzureBlobStorage3;
@@ -45,7 +47,7 @@ interface OriginsContract
      * @param string $bucket
      * @param string $name display name of the origin
      * @param string $secretKey secret key for the bucket
-     * @param string $type
+     * @param Type::* $type
      * @param string $baseURLForCanonicalHeader URL used in the Canonical header (if enabled)
      * @param bool $includeCanonicalHeader whether to send a Canonical header
      * @param string $prefix
@@ -93,7 +95,7 @@ interface OriginsContract
      * @param string $bucket
      * @param string $name display name of the origin
      * @param string $secretKey secret key for the bucket
-     * @param string $type
+     * @param Type1::* $type
      * @param string $baseURLForCanonicalHeader URL used in the Canonical header (if enabled)
      * @param bool $includeCanonicalHeader whether to send a Canonical header
      * @param string $prefix

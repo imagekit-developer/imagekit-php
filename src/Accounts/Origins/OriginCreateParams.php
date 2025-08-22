@@ -4,7 +4,14 @@ declare(strict_types=1);
 
 namespace ImageKit\Accounts\Origins;
 
-use ImageKit\Accounts\Origins\OriginCreateParams\Body;
+use ImageKit\Accounts\Origins\OriginCreateParams\Origin\AkeneoPim;
+use ImageKit\Accounts\Origins\OriginCreateParams\Origin\AzureBlobStorage;
+use ImageKit\Accounts\Origins\OriginCreateParams\Origin\CloudinaryBackup;
+use ImageKit\Accounts\Origins\OriginCreateParams\Origin\GoogleCloudStorageGcs;
+use ImageKit\Accounts\Origins\OriginCreateParams\Origin\S3;
+use ImageKit\Accounts\Origins\OriginCreateParams\Origin\S3Compatible;
+use ImageKit\Accounts\Origins\OriginCreateParams\Origin\WebFolder;
+use ImageKit\Accounts\Origins\OriginCreateParams\Origin\WebProxy;
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Concerns\SdkParams;
@@ -14,28 +21,33 @@ use ImageKit\Core\Contracts\BaseModel;
  * **Note:** This API is currently in beta.
  * Creates a new origin and returns the origin object.
  *
- * @phpstan-type create_params = array{body: Body}
+ * @phpstan-type create_params = array{
+ *   origin: S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|GoogleCloudStorageGcs|AzureBlobStorage|AkeneoPim,
+ * }
  */
 final class OriginCreateParams implements BaseModel
 {
     use SdkModel;
     use SdkParams;
 
+    /**
+     * Schema for origin resources.
+     */
     #[Api]
-    public Body $body;
+    public S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|GoogleCloudStorageGcs|AzureBlobStorage|AkeneoPim $origin;
 
     /**
      * `new OriginCreateParams()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * OriginCreateParams::with(body: ...)
+     * OriginCreateParams::with(origin: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
      *
      * ```
-     * (new OriginCreateParams)->withBody(...)
+     * (new OriginCreateParams)->withOrigin(...)
      * ```
      */
     public function __construct()
@@ -49,19 +61,24 @@ final class OriginCreateParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function with(Body $body): self
-    {
+    public static function with(
+        S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|GoogleCloudStorageGcs|AzureBlobStorage|AkeneoPim $origin,
+    ): self {
         $obj = new self;
 
-        $obj->body = $body;
+        $obj->origin = $origin;
 
         return $obj;
     }
 
-    public function withBody(Body $body): self
-    {
+    /**
+     * Schema for origin resources.
+     */
+    public function withOrigin(
+        S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|GoogleCloudStorageGcs|AzureBlobStorage|AkeneoPim $origin,
+    ): self {
         $obj = clone $this;
-        $obj->body = $body;
+        $obj->origin = $origin;
 
         return $obj;
     }

@@ -2,8 +2,7 @@
 
 namespace Tests\Resources\Accounts;
 
-use ImageKit\Accounts\Origins\OriginCreateParams\Body;
-use ImageKit\Accounts\Origins\OriginUpdateParams\Body as Body1;
+use ImageKit\Accounts\Origins\OriginCreateParams\Origin\S3;
 use ImageKit\Client;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
@@ -40,7 +39,12 @@ final class OriginsTest extends TestCase
         }
 
         $result = $this->client->accounts->origins->create(
-            Body::with(STAINLESS_FIXME_name: 'name', STAINLESS_FIXME_type: 'S3')
+            S3::with(
+                accessKey: 'AKIATEST123',
+                bucket: 'test-bucket',
+                name: 'My S3 Origin',
+                secretKey: 'secrettest123',
+            ),
         );
 
         $this->assertTrue(true); // @phpstan-ignore-line
@@ -54,26 +58,15 @@ final class OriginsTest extends TestCase
         }
 
         $result = $this->client->accounts->origins->create(
-            Body::with(STAINLESS_FIXME_name: 'name', STAINLESS_FIXME_type: 'S3')
-                ->STAINLESS_FIXME_withAccessKey('x')
-                ->STAINLESS_FIXME_withAccountName('x')
-                ->STAINLESS_FIXME_withBaseURL('https://example.com')
-                ->STAINLESS_FIXME_withBaseURLForCanonicalHeader('https://example.com')
-                ->STAINLESS_FIXME_withBucket('x')
-                ->STAINLESS_FIXME_withClientEmail('dev@stainless.com')
-                ->STAINLESS_FIXME_withClientID('x')
-                ->STAINLESS_FIXME_withClientSecret('x')
-                ->STAINLESS_FIXME_withContainer('x')
-                ->STAINLESS_FIXME_withEndpoint('https://example.com')
-                ->STAINLESS_FIXME_withForwardHostHeaderToOrigin(true)
-                ->STAINLESS_FIXME_withIncludeCanonicalHeader(true)
-                ->STAINLESS_FIXME_withPassword('x')
-                ->STAINLESS_FIXME_withPrefix('prefix')
-                ->STAINLESS_FIXME_withPrivateKey('x')
-                ->STAINLESS_FIXME_withS3ForcePathStyle(true)
-                ->STAINLESS_FIXME_withSasToken('x')
-                ->STAINLESS_FIXME_withSecretKey('x')
-                ->STAINLESS_FIXME_withUsername('x'),
+            S3::with(
+                accessKey: 'AKIATEST123',
+                bucket: 'test-bucket',
+                name: 'My S3 Origin',
+                secretKey: 'secrettest123',
+            )
+                ->withBaseURLForCanonicalHeader('https://cdn.example.com')
+                ->withIncludeCanonicalHeader(false)
+                ->withPrefix('images'),
         );
 
         $this->assertTrue(true); // @phpstan-ignore-line
@@ -88,7 +81,22 @@ final class OriginsTest extends TestCase
 
         $result = $this->client->accounts->origins->update(
             'id',
-            Body1::with(STAINLESS_FIXME_name: 'name', STAINLESS_FIXME_type: 'S3'),
+            accessKey: 'AKIAIOSFODNN7EXAMPLE',
+            bucket: 'gcs-media',
+            name: 'US S3 Storage',
+            secretKey: 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY',
+            type: 'AKENEO_PIM',
+            endpoint: 'https://s3.eu-central-1.wasabisys.com',
+            baseURL: 'https://akeneo.company.com',
+            clientEmail: 'service-account@project.iam.gserviceaccount.com',
+            privateKey: '-----BEGIN PRIVATE KEY-----\\nMIIEv...',
+            accountName: 'account123',
+            container: 'images',
+            sasToken: '?sv=2023-01-03&sr=c&sig=abc123',
+            clientID: 'akeneo-client-id',
+            clientSecret: 'akeneo-client-secret',
+            password: 'strongpassword123',
+            username: 'integration-user',
         );
 
         $this->assertTrue(true); // @phpstan-ignore-line
@@ -103,26 +111,22 @@ final class OriginsTest extends TestCase
 
         $result = $this->client->accounts->origins->update(
             'id',
-            Body1::with(STAINLESS_FIXME_name: 'name', STAINLESS_FIXME_type: 'S3')
-                ->STAINLESS_FIXME_withAccessKey('x')
-                ->STAINLESS_FIXME_withAccountName('x')
-                ->STAINLESS_FIXME_withBaseURL('https://example.com')
-                ->STAINLESS_FIXME_withBaseURLForCanonicalHeader('https://example.com')
-                ->STAINLESS_FIXME_withBucket('x')
-                ->STAINLESS_FIXME_withClientEmail('dev@stainless.com')
-                ->STAINLESS_FIXME_withClientID('x')
-                ->STAINLESS_FIXME_withClientSecret('x')
-                ->STAINLESS_FIXME_withContainer('x')
-                ->STAINLESS_FIXME_withEndpoint('https://example.com')
-                ->STAINLESS_FIXME_withForwardHostHeaderToOrigin(true)
-                ->STAINLESS_FIXME_withIncludeCanonicalHeader(true)
-                ->STAINLESS_FIXME_withPassword('x')
-                ->STAINLESS_FIXME_withPrefix('prefix')
-                ->STAINLESS_FIXME_withPrivateKey('x')
-                ->STAINLESS_FIXME_withS3ForcePathStyle(true)
-                ->STAINLESS_FIXME_withSasToken('x')
-                ->STAINLESS_FIXME_withSecretKey('x')
-                ->STAINLESS_FIXME_withUsername('x'),
+            accessKey: 'AKIAIOSFODNN7EXAMPLE',
+            bucket: 'gcs-media',
+            name: 'US S3 Storage',
+            secretKey: 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY',
+            type: 'AKENEO_PIM',
+            endpoint: 'https://s3.eu-central-1.wasabisys.com',
+            baseURL: 'https://akeneo.company.com',
+            clientEmail: 'service-account@project.iam.gserviceaccount.com',
+            privateKey: '-----BEGIN PRIVATE KEY-----\\nMIIEv...',
+            accountName: 'account123',
+            container: 'images',
+            sasToken: '?sv=2023-01-03&sr=c&sig=abc123',
+            clientID: 'akeneo-client-id',
+            clientSecret: 'akeneo-client-secret',
+            password: 'strongpassword123',
+            username: 'integration-user',
         );
 
         $this->assertTrue(true); // @phpstan-ignore-line

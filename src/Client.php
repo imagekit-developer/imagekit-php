@@ -12,6 +12,7 @@ use ImageKit\Services\CacheService;
 use ImageKit\Services\CustomMetadataFieldsService;
 use ImageKit\Services\FilesService;
 use ImageKit\Services\FoldersService;
+use ImageKit\Services\WebhooksService;
 
 class Client extends BaseClient
 {
@@ -32,6 +33,8 @@ class Client extends BaseClient
     public AccountsService $accounts;
 
     public BetaService $beta;
+
+    public WebhooksService $webhooks;
 
     public bool $baseUrlOverridden;
 
@@ -68,6 +71,7 @@ class Client extends BaseClient
         $this->folders = new FoldersService($this);
         $this->accounts = new AccountsService($this);
         $this->beta = new BetaService($this);
+        $this->webhooks = new WebhooksService($this);
     }
 
     /** @return array<string, string> */

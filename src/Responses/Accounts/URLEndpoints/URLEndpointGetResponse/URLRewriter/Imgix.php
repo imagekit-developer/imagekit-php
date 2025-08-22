@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Responses\Accounts\URLEndpoints\URLEndpointListResponseItem\URLRewriter;
+namespace ImageKit\Responses\Accounts\URLEndpoints\URLEndpointGetResponse\URLRewriter;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type imgix_url_rewriter_alias = array{type: string}
+ * @phpstan-type imgix_alias = array{type: string}
  */
-final class ImgixURLRewriter implements BaseModel
+final class Imgix implements BaseModel
 {
     use SdkModel;
 

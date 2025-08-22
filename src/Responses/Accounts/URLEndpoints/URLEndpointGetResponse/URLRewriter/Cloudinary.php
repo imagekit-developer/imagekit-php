@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Responses\Accounts\URLEndpoints\URLEndpointUpdateResponse\URLRewriter;
+namespace ImageKit\Responses\Accounts\URLEndpoints\URLEndpointGetResponse\URLRewriter;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type cloudinary_url_rewriter_alias = array{
+ * @phpstan-type cloudinary_alias = array{
  *   preserveAssetDeliveryTypes: bool, type: string
  * }
  */
-final class CloudinaryURLRewriter implements BaseModel
+final class Cloudinary implements BaseModel
 {
     use SdkModel;
 
@@ -27,17 +27,17 @@ final class CloudinaryURLRewriter implements BaseModel
     public bool $preserveAssetDeliveryTypes;
 
     /**
-     * `new CloudinaryURLRewriter()` is missing required properties by the API.
+     * `new Cloudinary()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * CloudinaryURLRewriter::with(preserveAssetDeliveryTypes: ...)
+     * Cloudinary::with(preserveAssetDeliveryTypes: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
      *
      * ```
-     * (new CloudinaryURLRewriter)->withPreserveAssetDeliveryTypes(...)
+     * (new Cloudinary)->withPreserveAssetDeliveryTypes(...)
      * ```
      */
     public function __construct()

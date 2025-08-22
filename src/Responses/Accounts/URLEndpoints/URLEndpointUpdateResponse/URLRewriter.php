@@ -7,18 +7,23 @@ namespace ImageKit\Responses\Accounts\URLEndpoints\URLEndpointUpdateResponse;
 use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
-use ImageKit\Responses\Accounts\URLEndpoints\URLEndpointUpdateResponse\URLRewriter\AkamaiURLRewriter;
-use ImageKit\Responses\Accounts\URLEndpoints\URLEndpointUpdateResponse\URLRewriter\CloudinaryURLRewriter;
-use ImageKit\Responses\Accounts\URLEndpoints\URLEndpointUpdateResponse\URLRewriter\ImgixURLRewriter;
+use ImageKit\Responses\Accounts\URLEndpoints\URLEndpointUpdateResponse\URLRewriter\Akamai;
+use ImageKit\Responses\Accounts\URLEndpoints\URLEndpointUpdateResponse\URLRewriter\Cloudinary;
+use ImageKit\Responses\Accounts\URLEndpoints\URLEndpointUpdateResponse\URLRewriter\Imgix;
 
 /**
  * Configuration for third-party URL rewriting.
  *
- * @phpstan-type url_rewriter_alias = CloudinaryURLRewriter|ImgixURLRewriter|AkamaiURLRewriter
+ * @phpstan-type url_rewriter_alias = Cloudinary|Imgix|Akamai
  */
 final class URLRewriter implements ConverterSource
 {
     use SdkUnion;
+
+    public static function discriminator(): string
+    {
+        return 'type';
+    }
 
     /**
      * @return list<string|Converter|ConverterSource>|array<string,
@@ -27,9 +32,9 @@ final class URLRewriter implements ConverterSource
     public static function variants(): array
     {
         return [
-            CloudinaryURLRewriter::class,
-            ImgixURLRewriter::class,
-            AkamaiURLRewriter::class,
+            'CLOUDINARY' => Cloudinary::class,
+            'IMGIX' => Imgix::class,
+            'AKAMAI' => Akamai::class,
         ];
     }
 }

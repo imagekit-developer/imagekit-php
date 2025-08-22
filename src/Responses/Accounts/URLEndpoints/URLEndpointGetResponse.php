@@ -8,9 +8,10 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Core\Conversion\ListOf;
-use ImageKit\Responses\Accounts\URLEndpoints\URLEndpointGetResponse\URLRewriter\AkamaiURLRewriter;
-use ImageKit\Responses\Accounts\URLEndpoints\URLEndpointGetResponse\URLRewriter\CloudinaryURLRewriter;
-use ImageKit\Responses\Accounts\URLEndpoints\URLEndpointGetResponse\URLRewriter\ImgixURLRewriter;
+use ImageKit\Responses\Accounts\URLEndpoints\URLEndpointGetResponse\URLRewriter;
+use ImageKit\Responses\Accounts\URLEndpoints\URLEndpointGetResponse\URLRewriter\Akamai;
+use ImageKit\Responses\Accounts\URLEndpoints\URLEndpointGetResponse\URLRewriter\Cloudinary;
+use ImageKit\Responses\Accounts\URLEndpoints\URLEndpointGetResponse\URLRewriter\Imgix;
 
 /**
  * URL‑endpoint object as returned by the API.
@@ -20,7 +21,7 @@ use ImageKit\Responses\Accounts\URLEndpoints\URLEndpointGetResponse\URLRewriter\
  *   description: string,
  *   origins: list<string>,
  *   urlPrefix: string,
- *   urlRewriter?: CloudinaryURLRewriter|ImgixURLRewriter|AkamaiURLRewriter,
+ *   urlRewriter?: Cloudinary|Imgix|Akamai,
  * }
  */
 final class URLEndpointGetResponse implements BaseModel
@@ -56,8 +57,8 @@ final class URLEndpointGetResponse implements BaseModel
     /**
      * Configuration for third-party URL rewriting.
      */
-    #[Api(optional: true)]
-    public CloudinaryURLRewriter|ImgixURLRewriter|AkamaiURLRewriter|null $urlRewriter;
+    #[Api(union: URLRewriter::class, optional: true)]
+    public Cloudinary|Imgix|Akamai|null $urlRewriter;
 
     /**
      * `new URLEndpointGetResponse()` is missing required properties by the API.
@@ -97,7 +98,7 @@ final class URLEndpointGetResponse implements BaseModel
         string $description,
         array $origins = [],
         string $urlPrefix = '',
-        CloudinaryURLRewriter|ImgixURLRewriter|AkamaiURLRewriter|null $urlRewriter = null,
+        Cloudinary|Imgix|Akamai|null $urlRewriter = null,
     ): self {
         $obj = new self;
 
@@ -160,9 +161,8 @@ final class URLEndpointGetResponse implements BaseModel
     /**
      * Configuration for third-party URL rewriting.
      */
-    public function withURLRewriter(
-        CloudinaryURLRewriter|ImgixURLRewriter|AkamaiURLRewriter $urlRewriter
-    ): self {
+    public function withURLRewriter(Cloudinary|Imgix|Akamai $urlRewriter): self
+    {
         $obj = clone $this;
         $obj->urlRewriter = $urlRewriter;
 

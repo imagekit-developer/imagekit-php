@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Responses\Accounts\URLEndpoints\URLEndpointUpdateResponse\URLRewriter;
+namespace ImageKit\Responses\Accounts\URLEndpoints\URLEndpointGetResponse\URLRewriter;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type akamai_url_rewriter_alias = array{type: string}
+ * @phpstan-type akamai_alias = array{type: string}
  */
-final class AkamaiURLRewriter implements BaseModel
+final class Akamai implements BaseModel
 {
     use SdkModel;
 

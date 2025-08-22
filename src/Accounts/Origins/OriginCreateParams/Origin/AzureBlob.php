@@ -9,7 +9,7 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type azure_blob_storage_alias = array{
+ * @phpstan-type azure_blob_alias = array{
  *   accountName: string,
  *   container: string,
  *   name: string,
@@ -20,7 +20,7 @@ use ImageKit\Core\Contracts\BaseModel;
  *   prefix?: string,
  * }
  */
-final class AzureBlobStorage implements BaseModel
+final class AzureBlob implements BaseModel
 {
     use SdkModel;
 
@@ -58,19 +58,17 @@ final class AzureBlobStorage implements BaseModel
     public ?string $prefix;
 
     /**
-     * `new AzureBlobStorage()` is missing required properties by the API.
+     * `new AzureBlob()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * AzureBlobStorage::with(
-     *   accountName: ..., container: ..., name: ..., sasToken: ...
-     * )
+     * AzureBlob::with(accountName: ..., container: ..., name: ..., sasToken: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
      *
      * ```
-     * (new AzureBlobStorage)
+     * (new AzureBlob)
      *   ->withAccountName(...)
      *   ->withContainer(...)
      *   ->withName(...)

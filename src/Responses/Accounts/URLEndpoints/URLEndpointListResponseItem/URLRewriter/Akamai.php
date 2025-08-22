@@ -9,9 +9,9 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type akamai_url_rewriter_alias = array{type: string}
+ * @phpstan-type akamai_alias = array{type: string}
  */
-final class AkamaiURLRewriter implements BaseModel
+final class Akamai implements BaseModel
 {
     use SdkModel;
 

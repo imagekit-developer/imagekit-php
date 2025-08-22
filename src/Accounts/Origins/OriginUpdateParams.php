@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace ImageKit\Accounts\Origins;
 
+use ImageKit\Accounts\Origins\OriginUpdateParams\Origin;
 use ImageKit\Accounts\Origins\OriginUpdateParams\Origin\AkeneoPim;
-use ImageKit\Accounts\Origins\OriginUpdateParams\Origin\AzureBlobStorage;
+use ImageKit\Accounts\Origins\OriginUpdateParams\Origin\AzureBlob;
 use ImageKit\Accounts\Origins\OriginUpdateParams\Origin\CloudinaryBackup;
-use ImageKit\Accounts\Origins\OriginUpdateParams\Origin\GoogleCloudStorageGcs;
+use ImageKit\Accounts\Origins\OriginUpdateParams\Origin\Gcs;
 use ImageKit\Accounts\Origins\OriginUpdateParams\Origin\S3;
 use ImageKit\Accounts\Origins\OriginUpdateParams\Origin\S3Compatible;
 use ImageKit\Accounts\Origins\OriginUpdateParams\Origin\WebFolder;
@@ -22,7 +23,7 @@ use ImageKit\Core\Contracts\BaseModel;
  * Updates the origin identified by `id` and returns the updated origin object.
  *
  * @phpstan-type update_params = array{
- *   origin: S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|GoogleCloudStorageGcs|AzureBlobStorage|AkeneoPim,
+ *   origin: S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim,
  * }
  */
 final class OriginUpdateParams implements BaseModel
@@ -33,8 +34,8 @@ final class OriginUpdateParams implements BaseModel
     /**
      * Schema for origin resources.
      */
-    #[Api]
-    public S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|GoogleCloudStorageGcs|AzureBlobStorage|AkeneoPim $origin;
+    #[Api(union: Origin::class)]
+    public S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim $origin;
 
     /**
      * `new OriginUpdateParams()` is missing required properties by the API.
@@ -62,7 +63,7 @@ final class OriginUpdateParams implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      */
     public static function with(
-        S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|GoogleCloudStorageGcs|AzureBlobStorage|AkeneoPim $origin,
+        S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim $origin,
     ): self {
         $obj = new self;
 
@@ -75,7 +76,7 @@ final class OriginUpdateParams implements BaseModel
      * Schema for origin resources.
      */
     public function withOrigin(
-        S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|GoogleCloudStorageGcs|AzureBlobStorage|AkeneoPim $origin,
+        S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim $origin,
     ): self {
         $obj = clone $this;
         $obj->origin = $origin;

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Responses\Accounts\Origins\OriginNewResponse;
+namespace ImageKit\Responses\Accounts\Origins\OriginListResponseItem;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type azure_blob_storage_alias = array{
+ * @phpstan-type azure_blob_alias = array{
  *   id: string,
  *   accountName: string,
  *   container: string,
@@ -20,7 +20,7 @@ use ImageKit\Core\Contracts\BaseModel;
  *   baseURLForCanonicalHeader?: string,
  * }
  */
-final class AzureBlobStorage implements BaseModel
+final class AzureBlob implements BaseModel
 {
     use SdkModel;
 
@@ -61,11 +61,11 @@ final class AzureBlobStorage implements BaseModel
     public ?string $baseURLForCanonicalHeader;
 
     /**
-     * `new AzureBlobStorage()` is missing required properties by the API.
+     * `new AzureBlob()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * AzureBlobStorage::with(
+     * AzureBlob::with(
      *   id: ...,
      *   accountName: ...,
      *   container: ...,
@@ -78,7 +78,7 @@ final class AzureBlobStorage implements BaseModel
      * Otherwise ensure the following setters are called
      *
      * ```
-     * (new AzureBlobStorage)
+     * (new AzureBlob)
      *   ->withID(...)
      *   ->withAccountName(...)
      *   ->withContainer(...)

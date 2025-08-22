@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Responses\Accounts\Origins\OriginUpdateResponse;
+namespace ImageKit\Responses\Accounts\Origins\OriginListResponseItem;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type google_cloud_storage_gcs_alias = array{
+ * @phpstan-type gcs_alias = array{
  *   id: string,
  *   bucket: string,
  *   clientEmail: string,
@@ -20,7 +20,7 @@ use ImageKit\Core\Contracts\BaseModel;
  *   baseURLForCanonicalHeader?: string,
  * }
  */
-final class GoogleCloudStorageGcs implements BaseModel
+final class Gcs implements BaseModel
 {
     use SdkModel;
 
@@ -61,11 +61,11 @@ final class GoogleCloudStorageGcs implements BaseModel
     public ?string $baseURLForCanonicalHeader;
 
     /**
-     * `new GoogleCloudStorageGcs()` is missing required properties by the API.
+     * `new Gcs()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * GoogleCloudStorageGcs::with(
+     * Gcs::with(
      *   id: ...,
      *   bucket: ...,
      *   clientEmail: ...,
@@ -78,7 +78,7 @@ final class GoogleCloudStorageGcs implements BaseModel
      * Otherwise ensure the following setters are called
      *
      * ```
-     * (new GoogleCloudStorageGcs)
+     * (new Gcs)
      *   ->withID(...)
      *   ->withBucket(...)
      *   ->withClientEmail(...)

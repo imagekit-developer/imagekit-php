@@ -9,9 +9,9 @@ use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
 /**
- * @phpstan-type union_member3_alias = string|float|bool
+ * @phpstan-type array_for_multi_select_type_field_alias = string|float|bool
  */
-final class UnionMember3 implements ConverterSource
+final class ArrayForMultiSelectTypeField implements ConverterSource
 {
     use SdkUnion;
 

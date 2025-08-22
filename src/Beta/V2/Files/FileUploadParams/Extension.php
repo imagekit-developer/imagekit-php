@@ -4,19 +4,24 @@ declare(strict_types=1);
 
 namespace ImageKit\Beta\V2\Files\FileUploadParams;
 
-use ImageKit\Beta\V2\Files\FileUploadParams\Extension\AutoDescriptionExtension;
+use ImageKit\Beta\V2\Files\FileUploadParams\Extension\AIAutoDescription;
 use ImageKit\Beta\V2\Files\FileUploadParams\Extension\AutoTaggingExtension;
-use ImageKit\Beta\V2\Files\FileUploadParams\Extension\RemovedotBgExtension;
+use ImageKit\Beta\V2\Files\FileUploadParams\Extension\RemoveBg;
 use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
 /**
- * @phpstan-type extension_alias = RemovedotBgExtension|AutoTaggingExtension|AutoDescriptionExtension
+ * @phpstan-type extension_alias = RemoveBg|AutoTaggingExtension|AIAutoDescription
  */
 final class Extension implements ConverterSource
 {
     use SdkUnion;
+
+    public static function discriminator(): string
+    {
+        return 'name';
+    }
 
     /**
      * @return list<string|Converter|ConverterSource>|array<string,
@@ -25,9 +30,9 @@ final class Extension implements ConverterSource
     public static function variants(): array
     {
         return [
-            RemovedotBgExtension::class,
             AutoTaggingExtension::class,
-            AutoDescriptionExtension::class,
+            'remove-bg' => RemoveBg::class,
+            'ai-auto-description' => AIAutoDescription::class,
         ];
     }
 }

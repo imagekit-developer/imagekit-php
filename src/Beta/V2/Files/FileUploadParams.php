@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace ImageKit\Beta\V2\Files;
 
 use ImageKit\Beta\V2\Files\FileUploadParams\Extension;
-use ImageKit\Beta\V2\Files\FileUploadParams\Extension\AutoDescriptionExtension;
+use ImageKit\Beta\V2\Files\FileUploadParams\Extension\AIAutoDescription;
 use ImageKit\Beta\V2\Files\FileUploadParams\Extension\AutoTaggingExtension;
-use ImageKit\Beta\V2\Files\FileUploadParams\Extension\RemovedotBgExtension;
+use ImageKit\Beta\V2\Files\FileUploadParams\Extension\RemoveBg;
 use ImageKit\Beta\V2\Files\FileUploadParams\ResponseField;
 use ImageKit\Beta\V2\Files\FileUploadParams\Transformation;
 use ImageKit\Core\Attributes\Api;
@@ -41,7 +41,7 @@ use ImageKit\Core\Conversion\MapOf;
  *   customCoordinates?: string,
  *   customMetadata?: array<string, mixed>,
  *   description?: string,
- *   extensions?: list<RemovedotBgExtension|AutoTaggingExtension|AutoDescriptionExtension>,
+ *   extensions?: list<RemoveBg|AutoTaggingExtension|AIAutoDescription>,
  *   folder?: string,
  *   isPrivateFile?: bool,
  *   isPublished?: bool,
@@ -124,7 +124,7 @@ final class FileUploadParams implements BaseModel
     /**
      * Array of extensions to be applied to the image. Each extension can be configured with specific parameters based on the extension type.
      *
-     * @var list<RemovedotBgExtension|AutoTaggingExtension|AutoDescriptionExtension>|null $extensions
+     * @var list<RemoveBg|AutoTaggingExtension|AIAutoDescription>|null $extensions
      */
     #[Api(type: new ListOf(union: Extension::class), optional: true)]
     public ?array $extensions;
@@ -251,7 +251,7 @@ final class FileUploadParams implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param array<string, mixed>|null $customMetadata
-     * @param list<RemovedotBgExtension|AutoTaggingExtension|AutoDescriptionExtension>|null $extensions
+     * @param list<RemoveBg|AutoTaggingExtension|AIAutoDescription>|null $extensions
      * @param list<ResponseField::*>|null $responseFields
      * @param list<string>|null $tags
      */
@@ -402,7 +402,7 @@ final class FileUploadParams implements BaseModel
     /**
      * Array of extensions to be applied to the image. Each extension can be configured with specific parameters based on the extension type.
      *
-     * @param list<RemovedotBgExtension|AutoTaggingExtension|AutoDescriptionExtension> $extensions
+     * @param list<RemoveBg|AutoTaggingExtension|AIAutoDescription> $extensions
      */
     public function withExtensions(array $extensions): self
     {

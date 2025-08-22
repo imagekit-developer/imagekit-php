@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace ImageKit\Beta\V2\Files\FileUploadParams;
 
 use ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post;
-use ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post\AdaptiveBitrateStreaming;
-use ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post\ConvertGifToVideo;
-use ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post\GenerateAThumbnail;
-use ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post\SimplePostTransformation;
+use ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post\Abs;
+use ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post\GifToVideo;
+use ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post\Thumbnail;
+use ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post\Transformation as Transformation1;
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
@@ -26,8 +26,7 @@ use ImageKit\Core\Conversion\ListOf;
  * You can mix and match any combination of post-processing types.
  *
  * @phpstan-type transformation_alias = array{
- *   post?: list<SimplePostTransformation|ConvertGifToVideo|GenerateAThumbnail|AdaptiveBitrateStreaming>,
- *   pre?: string,
+ *   post?: list<Transformation1|GifToVideo|Thumbnail|Abs>, pre?: string
  * }
  */
 final class Transformation implements BaseModel
@@ -39,7 +38,7 @@ final class Transformation implements BaseModel
      * Each item must match one of the following types:
      * `transformation`, `gif-to-video`, `thumbnail`, `abs`.
      *
-     * @var list<SimplePostTransformation|ConvertGifToVideo|GenerateAThumbnail|AdaptiveBitrateStreaming>|null $post
+     * @var list<Transformation1|GifToVideo|Thumbnail|Abs>|null $post
      */
     #[Api(type: new ListOf(union: Post::class), optional: true)]
     public ?array $post;
@@ -61,7 +60,7 @@ final class Transformation implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<SimplePostTransformation|ConvertGifToVideo|GenerateAThumbnail|AdaptiveBitrateStreaming>|null $post
+     * @param list<Transformation1|GifToVideo|Thumbnail|Abs>|null $post
      */
     public static function with(?array $post = null, ?string $pre = null): self
     {
@@ -78,7 +77,7 @@ final class Transformation implements BaseModel
      * Each item must match one of the following types:
      * `transformation`, `gif-to-video`, `thumbnail`, `abs`.
      *
-     * @param list<SimplePostTransformation|ConvertGifToVideo|GenerateAThumbnail|AdaptiveBitrateStreaming> $post
+     * @param list<Transformation1|GifToVideo|Thumbnail|Abs> $post
      */
     public function withPost(array $post): self
     {

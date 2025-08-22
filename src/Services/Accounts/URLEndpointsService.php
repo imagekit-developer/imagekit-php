@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace ImageKit\Services\Accounts;
 
 use ImageKit\Accounts\URLEndpoints\URLEndpointCreateParams;
-use ImageKit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\AkamaiURLRewriter;
-use ImageKit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\CloudinaryURLRewriter;
-use ImageKit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\ImgixURLRewriter;
+use ImageKit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\Akamai;
+use ImageKit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\Cloudinary;
+use ImageKit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\Imgix;
 use ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams;
-use ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\AkamaiURLRewriter as AkamaiURLRewriter1;
-use ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\CloudinaryURLRewriter as CloudinaryURLRewriter1;
-use ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\ImgixURLRewriter as ImgixURLRewriter1;
+use ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\Akamai as Akamai1;
+use ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\Cloudinary as Cloudinary1;
+use ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\Imgix as Imgix1;
 use ImageKit\Client;
 use ImageKit\Contracts\Accounts\URLEndpointsContract;
 use ImageKit\Core\Conversion;
@@ -34,7 +34,7 @@ final class URLEndpointsService implements URLEndpointsContract
      * @param string $description description of the URL endpoint
      * @param list<string> $origins Ordered list of origin IDs to try when the file isn’t in the Media Library; ImageKit checks them in the sequence provided. Origin must be created before it can be used in a URL endpoint.
      * @param string $urlPrefix path segment appended to your base URL to form the endpoint (letters, digits, and hyphens only — or empty for the default endpoint)
-     * @param CloudinaryURLRewriter|ImgixURLRewriter|AkamaiURLRewriter $urlRewriter configuration for third-party URL rewriting
+     * @param Cloudinary|Imgix|Akamai $urlRewriter configuration for third-party URL rewriting
      */
     public function create(
         $description,
@@ -75,7 +75,7 @@ final class URLEndpointsService implements URLEndpointsContract
      * @param string $description description of the URL endpoint
      * @param list<string> $origins Ordered list of origin IDs to try when the file isn’t in the Media Library; ImageKit checks them in the sequence provided. Origin must be created before it can be used in a URL endpoint.
      * @param string $urlPrefix path segment appended to your base URL to form the endpoint (letters, digits, and hyphens only — or empty for the default endpoint)
-     * @param CloudinaryURLRewriter1|ImgixURLRewriter1|AkamaiURLRewriter1 $urlRewriter configuration for third-party URL rewriting
+     * @param Cloudinary1|Imgix1|Akamai1 $urlRewriter configuration for third-party URL rewriting
      */
     public function update(
         string $id,

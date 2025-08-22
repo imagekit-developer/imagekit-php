@@ -4,20 +4,25 @@ declare(strict_types=1);
 
 namespace ImageKit\Beta\V2\Files\FileUploadParams\Transformation;
 
-use ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post\AdaptiveBitrateStreaming;
-use ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post\ConvertGifToVideo;
-use ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post\GenerateAThumbnail;
-use ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post\SimplePostTransformation;
+use ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post\Abs;
+use ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post\GifToVideo;
+use ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post\Thumbnail;
+use ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post\Transformation;
 use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
 /**
- * @phpstan-type post_alias = SimplePostTransformation|ConvertGifToVideo|GenerateAThumbnail|AdaptiveBitrateStreaming
+ * @phpstan-type post_alias = Transformation|GifToVideo|Thumbnail|Abs
  */
 final class Post implements ConverterSource
 {
     use SdkUnion;
+
+    public static function discriminator(): string
+    {
+        return 'type';
+    }
 
     /**
      * @return list<string|Converter|ConverterSource>|array<string,
@@ -26,10 +31,10 @@ final class Post implements ConverterSource
     public static function variants(): array
     {
         return [
-            SimplePostTransformation::class,
-            ConvertGifToVideo::class,
-            GenerateAThumbnail::class,
-            AdaptiveBitrateStreaming::class,
+            'transformation' => Transformation::class,
+            'gif-to-video' => GifToVideo::class,
+            'thumbnail' => Thumbnail::class,
+            'abs' => Abs::class,
         ];
     }
 }

@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace ImageKit\Accounts\URLEndpoints;
 
-use ImageKit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\AkamaiURLRewriter;
-use ImageKit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\CloudinaryURLRewriter;
-use ImageKit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\ImgixURLRewriter;
+use ImageKit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter;
+use ImageKit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\Akamai;
+use ImageKit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\Cloudinary;
+use ImageKit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\Imgix;
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Concerns\SdkParams;
@@ -21,7 +22,7 @@ use ImageKit\Core\Conversion\ListOf;
  *   description: string,
  *   origins?: list<string>,
  *   urlPrefix?: string,
- *   urlRewriter?: CloudinaryURLRewriter|ImgixURLRewriter|AkamaiURLRewriter,
+ *   urlRewriter?: Cloudinary|Imgix|Akamai,
  * }
  */
 final class URLEndpointCreateParams implements BaseModel
@@ -52,8 +53,8 @@ final class URLEndpointCreateParams implements BaseModel
     /**
      * Configuration for third-party URL rewriting.
      */
-    #[Api(optional: true)]
-    public CloudinaryURLRewriter|ImgixURLRewriter|AkamaiURLRewriter|null $urlRewriter;
+    #[Api(union: URLRewriter::class, optional: true)]
+    public Cloudinary|Imgix|Akamai|null $urlRewriter;
 
     /**
      * `new URLEndpointCreateParams()` is missing required properties by the API.
@@ -86,7 +87,7 @@ final class URLEndpointCreateParams implements BaseModel
         string $description,
         ?array $origins = null,
         ?string $urlPrefix = null,
-        CloudinaryURLRewriter|ImgixURLRewriter|AkamaiURLRewriter|null $urlRewriter = null,
+        Cloudinary|Imgix|Akamai|null $urlRewriter = null,
     ): self {
         $obj = new self;
 
@@ -137,9 +138,8 @@ final class URLEndpointCreateParams implements BaseModel
     /**
      * Configuration for third-party URL rewriting.
      */
-    public function withURLRewriter(
-        CloudinaryURLRewriter|ImgixURLRewriter|AkamaiURLRewriter $urlRewriter
-    ): self {
+    public function withURLRewriter(Cloudinary|Imgix|Akamai $urlRewriter): self
+    {
         $obj = clone $this;
         $obj->urlRewriter = $urlRewriter;
 

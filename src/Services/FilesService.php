@@ -12,12 +12,15 @@ use ImageKit\Files\FileCopyParams;
 use ImageKit\Files\FileMoveParams;
 use ImageKit\Files\FileRenameParams;
 use ImageKit\Files\FileUpdateParams;
-use ImageKit\Files\FileUpdateParams\Update\ChangePublicationStatus;
-use ImageKit\Files\FileUpdateParams\Update\UpdateFileDetails;
+use ImageKit\Files\FileUpdateParams\Extension\AutoDescriptionExtension;
+use ImageKit\Files\FileUpdateParams\Extension\AutoTaggingExtension;
+use ImageKit\Files\FileUpdateParams\Extension\RemovedotBgExtension;
+use ImageKit\Files\FileUpdateParams\Publish;
+use ImageKit\Files\FileUpdateParams\RemoveAITags\UnionMember1;
 use ImageKit\Files\FileUploadParams;
-use ImageKit\Files\FileUploadParams\Extension\AutoDescriptionExtension;
-use ImageKit\Files\FileUploadParams\Extension\AutoTaggingExtension;
-use ImageKit\Files\FileUploadParams\Extension\RemovedotBgExtension;
+use ImageKit\Files\FileUploadParams\Extension\AutoDescriptionExtension as AutoDescriptionExtension1;
+use ImageKit\Files\FileUploadParams\Extension\AutoTaggingExtension as AutoTaggingExtension1;
+use ImageKit\Files\FileUploadParams\Extension\RemovedotBgExtension as RemovedotBgExtension1;
 use ImageKit\Files\FileUploadParams\ResponseField;
 use ImageKit\Files\FileUploadParams\Transformation;
 use ImageKit\RequestOptions;
@@ -49,15 +52,55 @@ final class FilesService implements FilesContract
     /**
      * This API updates the details or attributes of the current version of the file. You can update `tags`, `customCoordinates`, `customMetadata`, publication status, remove existing `AITags` and apply extensions using this API.
      *
-     * @param UpdateFileDetails|ChangePublicationStatus $update
+     * @param string|null $customCoordinates Define an important area in the image in the format `x,y,width,height` e.g. `10,10,100,100`. Send `null` to unset this value.
+     * @param array<string,
+     * mixed,> $customMetadata A key-value data to be associated with the asset. To unset a key, send `null` value for that key. Before setting any custom metadata on an asset you have to create the field using custom metadata fields API.
+     * @param string $description optional text to describe the contents of the file
+     * @param list<RemovedotBgExtension|AutoTaggingExtension|AutoDescriptionExtension> $extensions Array of extensions to be applied to the asset. Each extension can be configured with specific parameters based on the extension type.
+     * @param UnionMember1::*|list<string> $removeAITags An array of AITags associated with the file that you want to remove, e.g. `["car", "vehicle", "motorsports"]`.
+     *
+     * If you want to remove all AITags associated with the file, send a string - "all".
+     *
+     * Note: The remove operation for `AITags` executes before any of the `extensions` are processed.
+     * @param list<string>|null $tags An array of tags associated with the file, such as `["tag1", "tag2"]`. Send `null` to unset all tags associated with the file.
+     * @param string $webhookURL The final status of extensions after they have completed execution will be delivered to this endpoint as a POST request. [Learn more](/docs/api-reference/digital-asset-management-dam/managing-assets/update-file-details#webhook-payload-structure) about the webhook payload structure.
+     * @param Publish $publish configure the publication status of a file and its versions
      */
     public function update(
         string $fileID,
-        $update = null,
-        ?RequestOptions $requestOptions = null
+        $customCoordinates = null,
+        $customMetadata = null,
+        $description = null,
+        $extensions = null,
+        $removeAITags = null,
+        $tags = null,
+        $webhookURL = null,
+        $publish = null,
+        ?RequestOptions $requestOptions = null,
     ): FileUpdateResponse {
-        $args = ['update' => $update];
-        $args = Util::array_filter_null($args, ['update']);
+        $args = [
+            'customCoordinates' => $customCoordinates,
+            'customMetadata' => $customMetadata,
+            'description' => $description,
+            'extensions' => $extensions,
+            'removeAITags' => $removeAITags,
+            'tags' => $tags,
+            'webhookURL' => $webhookURL,
+            'publish' => $publish,
+        ];
+        $args = Util::array_filter_null(
+            $args,
+            [
+                'customCoordinates',
+                'customMetadata',
+                'description',
+                'extensions',
+                'removeAITags',
+                'tags',
+                'webhookURL',
+                'publish',
+            ],
+        );
         [$parsed, $options] = FileUpdateParams::parseRequest(
             $args,
             $requestOptions
@@ -65,7 +108,7 @@ final class FilesService implements FilesContract
         $resp = $this->client->request(
             method: 'patch',
             path: ['v1/files/%1$s/details', $fileID],
-            body: (object) $parsed['update'],
+            body: (object) $parsed,
             options: $options,
         );
 
@@ -258,7 +301,7 @@ final class FilesService implements FilesContract
      * mixed,> $customMetadata JSON key-value pairs to associate with the asset. Create the custom metadata fields before setting these values.
      * @param string $description optional text to describe the contents of the file
      * @param int $expire The time until your signature is valid. It must be a [Unix time](https://en.wikipedia.org/wiki/Unix_time) in less than 1 hour into the future. It should be in seconds. This field is only required for authentication when uploading a file from the client side.
-     * @param list<RemovedotBgExtension|AutoTaggingExtension|AutoDescriptionExtension> $extensions Array of extensions to be applied to the image. Each extension can be configured with specific parameters based on the extension type.
+     * @param list<RemovedotBgExtension1|AutoTaggingExtension1|AutoDescriptionExtension1> $extensions Array of extensions to be applied to the image. Each extension can be configured with specific parameters based on the extension type.
      * @param string $folder The folder path in which the image has to be uploaded. If the folder(s) didn't exist before, a new folder(s) is created.
      *
      * The folder name can contain:

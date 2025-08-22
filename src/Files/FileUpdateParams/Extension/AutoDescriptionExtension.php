@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files\FileUpdateParams\Update\UpdateFileDetails\Extension;
+namespace ImageKit\Files\FileUpdateParams\Extension;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Files\FileUpdateParams\Update\UpdateFileDetails\Extension\AutoDescriptionExtension\Name;
+use ImageKit\Files\FileUpdateParams\Extension\AutoDescriptionExtension\Name;
 
 /**
  * @phpstan-type auto_description_extension_alias = array{name: Name::*}

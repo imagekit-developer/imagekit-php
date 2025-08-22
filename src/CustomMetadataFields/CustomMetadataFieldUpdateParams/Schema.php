@@ -15,7 +15,7 @@ use ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema\SelectO
  * An object that describes the rules for the custom metadata key. This parameter is required if `label` is not provided. Note: `type` cannot be updated and will be ignored if sent with the `schema`. The schema will be validated as per the existing `type`.
  *
  * @phpstan-type schema_alias = array{
- *   defaultValue?: string|float|bool|list<string|float|bool>,
+ *   defaultValue?: list<string|float|bool>|string|float|bool,
  *   isValueRequired?: bool,
  *   maxLength?: float,
  *   maxValue?: string|float,
@@ -31,10 +31,10 @@ final class Schema implements BaseModel
     /**
      * The default value for this custom metadata field. This property is only required if `isValueRequired` property is set to `true`. The value should match the `type` of custom metadata field.
      *
-     * @var string|float|bool|list<string|float|bool>|null $defaultValue
+     * @var list<string|float|bool>|string|float|bool|null $defaultValue
      */
     #[Api(union: DefaultValue::class, optional: true)]
-    public string|float|bool|array|null $defaultValue;
+    public array|string|float|bool|null $defaultValue;
 
     /**
      * Sets this custom metadata field as required. Setting custom metadata fields on an asset will throw error if the value for all required fields are not present in upload or update asset API request body.
@@ -85,11 +85,11 @@ final class Schema implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param string|float|bool|list<string|float|bool>|null $defaultValue
+     * @param list<string|float|bool>|string|float|bool|null $defaultValue
      * @param list<string|float|bool>|null $selectOptions
      */
     public static function with(
-        string|float|bool|array|null $defaultValue = null,
+        array|string|float|bool|null $defaultValue = null,
         ?bool $isValueRequired = null,
         ?float $maxLength = null,
         string|float|null $maxValue = null,
@@ -113,10 +113,10 @@ final class Schema implements BaseModel
     /**
      * The default value for this custom metadata field. This property is only required if `isValueRequired` property is set to `true`. The value should match the `type` of custom metadata field.
      *
-     * @param string|float|bool|list<string|float|bool> $defaultValue
+     * @param list<string|float|bool>|string|float|bool $defaultValue
      */
     public function withDefaultValue(
-        string|float|bool|array $defaultValue
+        array|string|float|bool $defaultValue
     ): self {
         $obj = clone $this;
         $obj->defaultValue = $defaultValue;

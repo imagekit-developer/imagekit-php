@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Shared;
+namespace ImageKit\Responses\Files\FileUploadResponse\Metadata\Exif;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
@@ -11,7 +11,7 @@ use ImageKit\Core\Contracts\BaseModel;
 /**
  * Object containing EXIF image information.
  *
- * @phpstan-type exif_image_alias = array{
+ * @phpstan-type image_alias = array{
  *   exifOffset?: int,
  *   gpsInfo?: int,
  *   make?: string,
@@ -25,7 +25,7 @@ use ImageKit\Core\Contracts\BaseModel;
  *   yResolution?: int,
  * }
  */
-final class ExifImage implements BaseModel
+final class Image implements BaseModel
 {
     use SdkModel;
 

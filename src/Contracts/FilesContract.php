@@ -4,8 +4,14 @@ declare(strict_types=1);
 
 namespace ImageKit\Contracts;
 
+use ImageKit\Files\FileUpdateParams\Extension\AutoDescriptionExtension;
+use ImageKit\Files\FileUpdateParams\Extension\AutoTaggingExtension;
+use ImageKit\Files\FileUpdateParams\Extension\RemovedotBgExtension;
 use ImageKit\Files\FileUpdateParams\Publish;
 use ImageKit\Files\FileUpdateParams\RemoveAITags\UnionMember1;
+use ImageKit\Files\FileUploadParams\Extension\AutoDescriptionExtension as AutoDescriptionExtension1;
+use ImageKit\Files\FileUploadParams\Extension\AutoTaggingExtension as AutoTaggingExtension1;
+use ImageKit\Files\FileUploadParams\Extension\RemovedotBgExtension as RemovedotBgExtension1;
 use ImageKit\Files\FileUploadParams\ResponseField;
 use ImageKit\Files\FileUploadParams\Transformation;
 use ImageKit\RequestOptions;
@@ -15,9 +21,6 @@ use ImageKit\Responses\Files\FileMoveResponse;
 use ImageKit\Responses\Files\FileRenameResponse;
 use ImageKit\Responses\Files\FileUpdateResponse;
 use ImageKit\Responses\Files\FileUploadResponse;
-use ImageKit\Shared\AutoDescriptionExtension;
-use ImageKit\Shared\AutoTaggingExtension;
-use ImageKit\Shared\RemovedotBgExtension;
 
 interface FilesContract
 {
@@ -133,7 +136,7 @@ interface FilesContract
      * mixed,> $customMetadata JSON key-value pairs to associate with the asset. Create the custom metadata fields before setting these values.
      * @param string $description optional text to describe the contents of the file
      * @param int $expire The time until your signature is valid. It must be a [Unix time](https://en.wikipedia.org/wiki/Unix_time) in less than 1 hour into the future. It should be in seconds. This field is only required for authentication when uploading a file from the client side.
-     * @param list<RemovedotBgExtension|AutoTaggingExtension|AutoDescriptionExtension> $extensions Array of extensions to be applied to the image. Each extension can be configured with specific parameters based on the extension type.
+     * @param list<RemovedotBgExtension1|AutoTaggingExtension1|AutoDescriptionExtension1> $extensions Array of extensions to be applied to the image. Each extension can be configured with specific parameters based on the extension type.
      * @param string $folder The folder path in which the image has to be uploaded. If the folder(s) didn't exist before, a new folder(s) is created.
      *
      * The folder name can contain:

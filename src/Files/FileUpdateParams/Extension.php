@@ -7,9 +7,9 @@ namespace ImageKit\Files\FileUpdateParams;
 use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
-use ImageKit\Shared\AutoDescriptionExtension;
-use ImageKit\Shared\AutoTaggingExtension;
-use ImageKit\Shared\RemovedotBgExtension;
+use ImageKit\Files\FileUpdateParams\Extension\AutoDescriptionExtension;
+use ImageKit\Files\FileUpdateParams\Extension\AutoTaggingExtension;
+use ImageKit\Files\FileUpdateParams\Extension\RemovedotBgExtension;
 
 /**
  * @phpstan-type extension_alias = RemovedotBgExtension|AutoTaggingExtension|AutoDescriptionExtension

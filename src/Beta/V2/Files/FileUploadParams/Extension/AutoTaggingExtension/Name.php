@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Shared\AutoTaggingExtension;
+namespace ImageKit\Beta\V2\Files\FileUploadParams\Extension\AutoTaggingExtension;
 
 use ImageKit\Core\Concerns\SdkEnum;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;

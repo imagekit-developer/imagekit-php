@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace ImageKit\Beta\V2\Files\FileUploadParams;
 
+use ImageKit\Beta\V2\Files\FileUploadParams\Extension\AutoDescriptionExtension;
+use ImageKit\Beta\V2\Files\FileUploadParams\Extension\AutoTaggingExtension;
+use ImageKit\Beta\V2\Files\FileUploadParams\Extension\RemovedotBgExtension;
 use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
-use ImageKit\Shared\AutoDescriptionExtension;
-use ImageKit\Shared\AutoTaggingExtension;
-use ImageKit\Shared\RemovedotBgExtension;
 
 /**
  * @phpstan-type extension_alias = RemovedotBgExtension|AutoTaggingExtension|AutoDescriptionExtension

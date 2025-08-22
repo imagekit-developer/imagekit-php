@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Shared;
+namespace ImageKit\Beta\V2\Files\FileUploadParams\Extension;
 
+use ImageKit\Beta\V2\Files\FileUploadParams\Extension\AutoDescriptionExtension\Name;
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Shared\AutoDescriptionExtension\Name;
 
 /**
  * @phpstan-type auto_description_extension_alias = array{name: Name::*}

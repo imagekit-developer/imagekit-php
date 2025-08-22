@@ -7,9 +7,9 @@ namespace ImageKit\Files\FileUploadParams;
 use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
-use ImageKit\Shared\AutoDescriptionExtension;
-use ImageKit\Shared\AutoTaggingExtension;
-use ImageKit\Shared\RemovedotBgExtension;
+use ImageKit\Files\FileUploadParams\Extension\AutoDescriptionExtension;
+use ImageKit\Files\FileUploadParams\Extension\AutoTaggingExtension;
+use ImageKit\Files\FileUploadParams\Extension\RemovedotBgExtension;
 
 /**
  * @phpstan-type extension_alias = RemovedotBgExtension|AutoTaggingExtension|AutoDescriptionExtension

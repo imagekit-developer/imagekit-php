@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace ImageKit\Contracts\Beta\V2;
 
+use ImageKit\Beta\V2\Files\FileUploadParams\Extension\AutoDescriptionExtension;
+use ImageKit\Beta\V2\Files\FileUploadParams\Extension\AutoTaggingExtension;
+use ImageKit\Beta\V2\Files\FileUploadParams\Extension\RemovedotBgExtension;
 use ImageKit\Beta\V2\Files\FileUploadParams\ResponseField;
 use ImageKit\Beta\V2\Files\FileUploadParams\Transformation;
 use ImageKit\RequestOptions;
 use ImageKit\Responses\Beta\V2\Files\FileUploadResponse;
-use ImageKit\Shared\AutoDescriptionExtension;
-use ImageKit\Shared\AutoTaggingExtension;
-use ImageKit\Shared\RemovedotBgExtension;
 
 interface FilesContract
 {

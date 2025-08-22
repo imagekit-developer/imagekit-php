@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Shared;
+namespace ImageKit\Responses\Beta\V2\Files\FileUploadResponse\Metadata\Exif;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;

@@ -11,11 +11,11 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Core\Conversion\ListOf;
 use ImageKit\Core\Conversion\MapOf;
 use ImageKit\Files\FileUploadParams\Extension;
+use ImageKit\Files\FileUploadParams\Extension\AutoDescriptionExtension;
+use ImageKit\Files\FileUploadParams\Extension\AutoTaggingExtension;
+use ImageKit\Files\FileUploadParams\Extension\RemovedotBgExtension;
 use ImageKit\Files\FileUploadParams\ResponseField;
 use ImageKit\Files\FileUploadParams\Transformation;
-use ImageKit\Shared\AutoDescriptionExtension;
-use ImageKit\Shared\AutoTaggingExtension;
-use ImageKit\Shared\RemovedotBgExtension;
 
 /**
  * ImageKit.io allows you to upload files directly from both the server and client sides. For server-side uploads, private API key authentication is used. For client-side uploads, generate a one-time `token`, `signature`, and `expiration` from your secure backend using private API. [Learn more](/docs/api-reference/upload-file/upload-file#how-to-implement-client-side-file-upload) about how to implement client-side file upload.

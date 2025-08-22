@@ -11,12 +11,12 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Core\Conversion\ListOf;
 use ImageKit\Core\Conversion\MapOf;
 use ImageKit\Files\FileUpdateParams\Extension;
+use ImageKit\Files\FileUpdateParams\Extension\AutoDescriptionExtension;
+use ImageKit\Files\FileUpdateParams\Extension\AutoTaggingExtension;
+use ImageKit\Files\FileUpdateParams\Extension\RemovedotBgExtension;
 use ImageKit\Files\FileUpdateParams\Publish;
 use ImageKit\Files\FileUpdateParams\RemoveAITags;
 use ImageKit\Files\FileUpdateParams\RemoveAITags\UnionMember1;
-use ImageKit\Shared\AutoDescriptionExtension;
-use ImageKit\Shared\AutoTaggingExtension;
-use ImageKit\Shared\RemovedotBgExtension;
 
 /**
  * This API updates the details or attributes of the current version of the file. You can update `tags`, `customCoordinates`, `customMetadata`, publication status, remove existing `AITags` and apply extensions using this API.

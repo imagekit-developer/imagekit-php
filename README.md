@@ -54,10 +54,10 @@ var_dump($response->videoCodec);
 
 ### Value Objects
 
-It is recommended to use the static `with` constructor `AutoDescriptionExtension::with(name: "ai-auto-description", ...)`
+It is recommended to use the static `with` constructor `Dog::with(name: "Joey")`
 and named parameters to initialize value objects.
 
-However, builders are also provided `(new AutoDescriptionExtension)->withName("ai-auto-description")`.
+However, builders are also provided `(new Dog)->withName("Joey")`.
 
 ### Handling errors
 

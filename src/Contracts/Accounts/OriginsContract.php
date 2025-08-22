@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace ImageKit\Contracts\Accounts;
 
-use ImageKit\Accounts\Origins\OriginCreateParams\Type;
-use ImageKit\Accounts\Origins\OriginUpdateParams\Type as Type1;
+use ImageKit\Accounts\Origins\OriginCreateParams\Body;
+use ImageKit\Accounts\Origins\OriginUpdateParams\Body as Body1;
 use ImageKit\RequestOptions;
 use ImageKit\Responses\Accounts\Origins\OriginGetResponse\AkeneoPim as AkeneoPim3;
 use ImageKit\Responses\Accounts\Origins\OriginGetResponse\AzureBlobStorage as AzureBlobStorage3;
@@ -43,100 +43,20 @@ use ImageKit\Responses\Accounts\Origins\OriginUpdateResponse\WebProxy as WebProx
 interface OriginsContract
 {
     /**
-     * @param string $accessKey access key for the bucket
-     * @param string $bucket
-     * @param string $name display name of the origin
-     * @param string $secretKey secret key for the bucket
-     * @param Type::* $type
-     * @param string $baseURLForCanonicalHeader URL used in the Canonical header (if enabled)
-     * @param bool $includeCanonicalHeader whether to send a Canonical header
-     * @param string $prefix
-     * @param string $endpoint custom S3-compatible endpoint
-     * @param bool $s3ForcePathStyle Use path-style S3 URLs?
-     * @param string $baseURL akeneo instance base URL
-     * @param bool $forwardHostHeaderToOrigin Forward the Host header to origin?
-     * @param string $clientEmail
-     * @param string $privateKey
-     * @param string $accountName
-     * @param string $container
-     * @param string $sasToken
-     * @param string $clientID akeneo API client ID
-     * @param string $clientSecret akeneo API client secret
-     * @param string $password akeneo API password
-     * @param string $username akeneo API username
+     * @param Body $body
      */
     public function create(
-        $accessKey,
-        $bucket,
-        $name,
-        $secretKey,
-        $type,
-        $baseURLForCanonicalHeader = null,
-        $includeCanonicalHeader = null,
-        $prefix = null,
-        $endpoint,
-        $s3ForcePathStyle = null,
-        $baseURL,
-        $forwardHostHeaderToOrigin = null,
-        $clientEmail,
-        $privateKey,
-        $accountName,
-        $container,
-        $sasToken,
-        $clientID,
-        $clientSecret,
-        $password,
-        $username,
-        ?RequestOptions $requestOptions = null,
+        $body,
+        ?RequestOptions $requestOptions = null
     ): S31|S3Compatible1|CloudinaryBackup1|WebFolder1|WebProxy1|GoogleCloudStorageGcs1|AzureBlobStorage1|AkeneoPim1;
 
     /**
-     * @param string $accessKey access key for the bucket
-     * @param string $bucket
-     * @param string $name display name of the origin
-     * @param string $secretKey secret key for the bucket
-     * @param Type1::* $type
-     * @param string $baseURLForCanonicalHeader URL used in the Canonical header (if enabled)
-     * @param bool $includeCanonicalHeader whether to send a Canonical header
-     * @param string $prefix
-     * @param string $endpoint custom S3-compatible endpoint
-     * @param bool $s3ForcePathStyle Use path-style S3 URLs?
-     * @param string $baseURL akeneo instance base URL
-     * @param bool $forwardHostHeaderToOrigin Forward the Host header to origin?
-     * @param string $clientEmail
-     * @param string $privateKey
-     * @param string $accountName
-     * @param string $container
-     * @param string $sasToken
-     * @param string $clientID akeneo API client ID
-     * @param string $clientSecret akeneo API client secret
-     * @param string $password akeneo API password
-     * @param string $username akeneo API username
+     * @param Body1 $body
      */
     public function update(
         string $id,
-        $accessKey,
-        $bucket,
-        $name,
-        $secretKey,
-        $type,
-        $baseURLForCanonicalHeader = null,
-        $includeCanonicalHeader = null,
-        $prefix = null,
-        $endpoint,
-        $s3ForcePathStyle = null,
-        $baseURL,
-        $forwardHostHeaderToOrigin = null,
-        $clientEmail,
-        $privateKey,
-        $accountName,
-        $container,
-        $sasToken,
-        $clientID,
-        $clientSecret,
-        $password,
-        $username,
-        ?RequestOptions $requestOptions = null,
+        $body,
+        ?RequestOptions $requestOptions = null
     ): S32|S3Compatible2|CloudinaryBackup2|WebFolder2|WebProxy2|GoogleCloudStorageGcs2|AzureBlobStorage2|AkeneoPim2;
 
     /**

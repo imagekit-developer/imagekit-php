@@ -12,7 +12,7 @@ use ImageKit\Responses\Accounts\Origins\OriginListResponseItem\AkeneoPim\Type;
 /**
  * @phpstan-type akeneo_pim_alias = array{
  *   id: string,
- *   baseURL: mixed,
+ *   baseURL: string,
  *   includeCanonicalHeader: bool,
  *   name: string,
  *   type: Type::*,
@@ -33,7 +33,7 @@ final class AkeneoPim implements BaseModel
      * Akeneo instance base URL.
      */
     #[Api('baseUrl')]
-    public mixed $baseURL;
+    public string $baseURL;
 
     /**
      * Whether to send a Canonical header.
@@ -93,7 +93,7 @@ final class AkeneoPim implements BaseModel
      */
     public static function with(
         string $id,
-        mixed $baseURL,
+        string $baseURL,
         string $name,
         string $type,
         bool $includeCanonicalHeader = false,
@@ -126,7 +126,7 @@ final class AkeneoPim implements BaseModel
     /**
      * Akeneo instance base URL.
      */
-    public function withBaseURL(mixed $baseURL): self
+    public function withBaseURL(string $baseURL): self
     {
         $obj = clone $this;
         $obj->baseURL = $baseURL;

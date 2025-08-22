@@ -12,7 +12,7 @@ use ImageKit\Responses\Accounts\Origins\OriginGetResponse\WebFolder\Type;
 /**
  * @phpstan-type web_folder_alias = array{
  *   id: string,
- *   baseURL: mixed,
+ *   baseURL: string,
  *   forwardHostHeaderToOrigin: bool,
  *   includeCanonicalHeader: bool,
  *   name: string,
@@ -34,7 +34,7 @@ final class WebFolder implements BaseModel
      * Root URL for the web folder origin.
      */
     #[Api('baseUrl')]
-    public mixed $baseURL;
+    public string $baseURL;
 
     /**
      * Forward the Host header to origin?
@@ -106,7 +106,7 @@ final class WebFolder implements BaseModel
      */
     public static function with(
         string $id,
-        mixed $baseURL,
+        string $baseURL,
         string $name,
         string $type,
         bool $forwardHostHeaderToOrigin = false,
@@ -141,7 +141,7 @@ final class WebFolder implements BaseModel
     /**
      * Root URL for the web folder origin.
      */
-    public function withBaseURL(mixed $baseURL): self
+    public function withBaseURL(string $baseURL): self
     {
         $obj = clone $this;
         $obj->baseURL = $baseURL;

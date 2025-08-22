@@ -15,7 +15,7 @@ use ImageKit\Responses\Accounts\Origins\OriginListResponseItem\CloudinaryBackup\
  *   bucket: string,
  *   includeCanonicalHeader: bool,
  *   name: string,
- *   prefix: mixed,
+ *   prefix: string,
  *   type: Type::*,
  *   baseURLForCanonicalHeader?: string,
  * }
@@ -52,7 +52,7 @@ final class CloudinaryBackup implements BaseModel
      * Path prefix inside the bucket.
      */
     #[Api]
-    public mixed $prefix;
+    public string $prefix;
 
     /** @var Type::* $type */
     #[Api(enum: Type::class)]
@@ -108,7 +108,7 @@ final class CloudinaryBackup implements BaseModel
         string $id,
         string $bucket,
         string $name,
-        mixed $prefix,
+        string $prefix,
         string $type,
         bool $includeCanonicalHeader = false,
         ?string $baseURLForCanonicalHeader = null,
@@ -175,7 +175,7 @@ final class CloudinaryBackup implements BaseModel
     /**
      * Path prefix inside the bucket.
      */
-    public function withPrefix(mixed $prefix): self
+    public function withPrefix(string $prefix): self
     {
         $obj = clone $this;
         $obj->prefix = $prefix;

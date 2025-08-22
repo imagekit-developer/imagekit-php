@@ -16,7 +16,7 @@ use ImageKit\Responses\Accounts\Origins\OriginGetResponse\S3Compatible\Type;
  *   endpoint: string,
  *   includeCanonicalHeader: bool,
  *   name: string,
- *   prefix: mixed,
+ *   prefix: string,
  *   s3ForcePathStyle: bool,
  *   type: Type::*,
  *   baseURLForCanonicalHeader?: string,
@@ -60,7 +60,7 @@ final class S3Compatible implements BaseModel
      * Path prefix inside the bucket.
      */
     #[Api]
-    public mixed $prefix;
+    public string $prefix;
 
     /**
      * Use path-style S3 URLs?
@@ -127,7 +127,7 @@ final class S3Compatible implements BaseModel
         string $bucket,
         string $endpoint,
         string $name,
-        mixed $prefix,
+        string $prefix,
         string $type,
         bool $includeCanonicalHeader = false,
         bool $s3ForcePathStyle = false,
@@ -208,7 +208,7 @@ final class S3Compatible implements BaseModel
     /**
      * Path prefix inside the bucket.
      */
-    public function withPrefix(mixed $prefix): self
+    public function withPrefix(string $prefix): self
     {
         $obj = clone $this;
         $obj->prefix = $prefix;

@@ -16,7 +16,7 @@ use ImageKit\Responses\Accounts\Origins\OriginNewResponse\GoogleCloudStorageGcs\
  *   clientEmail: string,
  *   includeCanonicalHeader: bool,
  *   name: string,
- *   prefix: mixed,
+ *   prefix: string,
  *   type: Type::*,
  *   baseURLForCanonicalHeader?: string,
  * }
@@ -50,7 +50,7 @@ final class GoogleCloudStorageGcs implements BaseModel
     public string $name;
 
     #[Api]
-    public mixed $prefix;
+    public string $prefix;
 
     /** @var Type::* $type */
     #[Api(enum: Type::class)]
@@ -109,7 +109,7 @@ final class GoogleCloudStorageGcs implements BaseModel
         string $bucket,
         string $clientEmail,
         string $name,
-        mixed $prefix,
+        string $prefix,
         string $type,
         bool $includeCanonicalHeader = false,
         ?string $baseURLForCanonicalHeader = null,
@@ -179,7 +179,7 @@ final class GoogleCloudStorageGcs implements BaseModel
         return $obj;
     }
 
-    public function withPrefix(mixed $prefix): self
+    public function withPrefix(string $prefix): self
     {
         $obj = clone $this;
         $obj->prefix = $prefix;

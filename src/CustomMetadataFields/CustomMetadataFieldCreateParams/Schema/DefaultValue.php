@@ -8,7 +8,7 @@ use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 use ImageKit\Core\Conversion\ListOf;
-use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\DefaultValue\ArrayForMultiSelectTypeField;
+use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\DefaultValue\Mixed;
 
 /**
  * The default value for this custom metadata field. This property is only required if `isValueRequired` property is set to `true`. The value should match the `type` of custom metadata field.
@@ -25,8 +25,6 @@ final class DefaultValue implements ConverterSource
      */
     public static function variants(): array
     {
-        return [
-            'string', 'float', 'bool', new ListOf(ArrayForMultiSelectTypeField::class),
-        ];
+        return ['string', 'float', 'bool', new ListOf(Mixed::class)];
     }
 }

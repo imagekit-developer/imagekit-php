@@ -11,9 +11,9 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Core\Conversion\ListOf;
 use ImageKit\Core\Conversion\MapOf;
 use ImageKit\Files\FileUpdateParams\Extension;
-use ImageKit\Files\FileUpdateParams\Extension\AutoDescriptionExtension;
+use ImageKit\Files\FileUpdateParams\Extension\AIAutoDescription;
 use ImageKit\Files\FileUpdateParams\Extension\AutoTaggingExtension;
-use ImageKit\Files\FileUpdateParams\Extension\RemovedotBgExtension;
+use ImageKit\Files\FileUpdateParams\Extension\RemoveBg;
 use ImageKit\Files\FileUpdateParams\Publish;
 use ImageKit\Files\FileUpdateParams\RemoveAITags;
 use ImageKit\Files\FileUpdateParams\RemoveAITags\UnionMember1;
@@ -25,7 +25,7 @@ use ImageKit\Files\FileUpdateParams\RemoveAITags\UnionMember1;
  *   customCoordinates?: string|null,
  *   customMetadata?: array<string, mixed>,
  *   description?: string,
- *   extensions?: list<RemovedotBgExtension|AutoTaggingExtension|AutoDescriptionExtension>,
+ *   extensions?: list<RemoveBg|AutoTaggingExtension|AIAutoDescription>,
  *   removeAITags?: UnionMember1::*|list<string>,
  *   tags?: list<string>|null,
  *   webhookURL?: string,
@@ -60,7 +60,7 @@ final class FileUpdateParams implements BaseModel
     /**
      * Array of extensions to be applied to the asset. Each extension can be configured with specific parameters based on the extension type.
      *
-     * @var list<RemovedotBgExtension|AutoTaggingExtension|AutoDescriptionExtension>|null $extensions
+     * @var list<RemoveBg|AutoTaggingExtension|AIAutoDescription>|null $extensions
      */
     #[Api(type: new ListOf(union: Extension::class), optional: true)]
     public ?array $extensions;
@@ -109,7 +109,7 @@ final class FileUpdateParams implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param array<string, mixed>|null $customMetadata
-     * @param list<RemovedotBgExtension|AutoTaggingExtension|AutoDescriptionExtension>|null $extensions
+     * @param list<RemoveBg|AutoTaggingExtension|AIAutoDescription>|null $extensions
      * @param UnionMember1::*|list<string>|null $removeAITags
      * @param list<string>|null $tags
      */
@@ -175,7 +175,7 @@ final class FileUpdateParams implements BaseModel
     /**
      * Array of extensions to be applied to the asset. Each extension can be configured with specific parameters based on the extension type.
      *
-     * @param list<RemovedotBgExtension|AutoTaggingExtension|AutoDescriptionExtension> $extensions
+     * @param list<RemoveBg|AutoTaggingExtension|AIAutoDescription> $extensions
      */
     public function withExtensions(array $extensions): self
     {

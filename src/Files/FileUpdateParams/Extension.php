@@ -7,16 +7,21 @@ namespace ImageKit\Files\FileUpdateParams;
 use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
-use ImageKit\Files\FileUpdateParams\Extension\AutoDescriptionExtension;
+use ImageKit\Files\FileUpdateParams\Extension\AIAutoDescription;
 use ImageKit\Files\FileUpdateParams\Extension\AutoTaggingExtension;
-use ImageKit\Files\FileUpdateParams\Extension\RemovedotBgExtension;
+use ImageKit\Files\FileUpdateParams\Extension\RemoveBg;
 
 /**
- * @phpstan-type extension_alias = RemovedotBgExtension|AutoTaggingExtension|AutoDescriptionExtension
+ * @phpstan-type extension_alias = RemoveBg|AutoTaggingExtension|AIAutoDescription
  */
 final class Extension implements ConverterSource
 {
     use SdkUnion;
+
+    public static function discriminator(): string
+    {
+        return 'name';
+    }
 
     /**
      * @return list<string|Converter|ConverterSource>|array<string,
@@ -25,9 +30,9 @@ final class Extension implements ConverterSource
     public static function variants(): array
     {
         return [
-            RemovedotBgExtension::class,
             AutoTaggingExtension::class,
-            AutoDescriptionExtension::class,
+            'remove-bg' => RemoveBg::class,
+            'ai-auto-description' => AIAutoDescription::class,
         ];
     }
 }

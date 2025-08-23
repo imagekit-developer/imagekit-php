@@ -8,9 +8,6 @@ use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
-/**
- * @phpstan-type unwrap_webhook_event_alias = VideoTransformationAcceptedWebhookEvent|VideoTransformationReadyWebhookEvent|VideoTransformationErrorWebhookEvent
- */
 final class UnwrapWebhookEvent implements ConverterSource
 {
     use SdkUnion;

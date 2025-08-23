@@ -10,10 +10,6 @@ use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * Configure the publication status of a file and its versions.
- *
- * @phpstan-type publish_alias = array{
- *   isPublished: bool, includeFileVersions?: bool
- * }
  */
 final class Publish implements BaseModel
 {

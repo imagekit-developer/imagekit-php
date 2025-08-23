@@ -13,10 +13,6 @@ use ImageKit\Core\Contracts\BaseModel;
  * This will move a file and all its versions from one folder to another.
  *
  * Note: If any file at the destination has the same name as the source file, then the source file and its versions will be appended to the destination file.
- *
- * @phpstan-type move_params = array{
- *   destinationPath: string, sourceFilePath: string
- * }
  */
 final class FileMoveParams implements BaseModel
 {

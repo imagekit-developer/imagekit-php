@@ -13,8 +13,6 @@ use ImageKit\Responses\Accounts\URLEndpoints\URLEndpointNewResponse\URLRewriter\
 
 /**
  * Configuration for third-party URL rewriting.
- *
- * @phpstan-type url_rewriter_alias = Cloudinary|Imgix|Akamai
  */
 final class URLRewriter implements ConverterSource
 {

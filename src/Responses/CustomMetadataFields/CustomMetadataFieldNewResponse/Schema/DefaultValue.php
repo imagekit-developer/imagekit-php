@@ -12,8 +12,6 @@ use ImageKit\Responses\CustomMetadataFields\CustomMetadataFieldNewResponse\Schem
 
 /**
  * The default value for this custom metadata field. Date type of default value depends on the field type.
- *
- * @phpstan-type default_value_alias = string|float|bool|list<string|float|bool>
  */
 final class DefaultValue implements ConverterSource
 {

@@ -8,18 +8,6 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
-/**
- * @phpstan-type gcs_alias = array{
- *   id: string,
- *   bucket: string,
- *   clientEmail: string,
- *   includeCanonicalHeader: bool,
- *   name: string,
- *   prefix: string,
- *   type: string,
- *   baseURLForCanonicalHeader?: string,
- * }
- */
 final class Gcs implements BaseModel
 {
     use SdkModel;

@@ -9,11 +9,6 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Files\FileUploadParams\Transformation\Post\Abs\Protocol;
 
-/**
- * @phpstan-type abs_alias = array{
- *   protocol: Protocol::*, type: string, value: string
- * }
- */
 final class Abs implements BaseModel
 {
     use SdkModel;

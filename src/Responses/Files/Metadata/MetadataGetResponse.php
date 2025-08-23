@@ -11,23 +11,6 @@ use ImageKit\Responses\Files\Metadata\MetadataGetResponse\Exif;
 
 /**
  * JSON object containing metadata.
- *
- * @phpstan-type metadata_get_response_alias = array{
- *   audioCodec?: string,
- *   bitRate?: int,
- *   density?: int,
- *   duration?: int,
- *   exif?: Exif,
- *   format?: string,
- *   hasColorProfile?: bool,
- *   hasTransparency?: bool,
- *   height?: int,
- *   pHash?: string,
- *   quality?: int,
- *   size?: int,
- *   videoCodec?: string,
- *   width?: int,
- * }
  */
 final class MetadataGetResponse implements BaseModel
 {

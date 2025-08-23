@@ -12,18 +12,6 @@ use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\Default
 use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\SelectOption;
 use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\Type;
 
-/**
- * @phpstan-type schema_alias = array{
- *   type: Type::*,
- *   defaultValue?: string|float|bool|list<string|float|bool>,
- *   isValueRequired?: bool,
- *   maxLength?: float,
- *   maxValue?: string|float,
- *   minLength?: float,
- *   minValue?: string|float,
- *   selectOptions?: list<string|float|bool>,
- * }
- */
 final class Schema implements BaseModel
 {
     use SdkModel;

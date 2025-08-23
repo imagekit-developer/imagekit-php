@@ -8,9 +8,6 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
-/**
- * @phpstan-type file_rename_response_alias = array{purgeRequestID?: string}
- */
 final class FileRenameResponse implements BaseModel
 {
     use SdkModel;

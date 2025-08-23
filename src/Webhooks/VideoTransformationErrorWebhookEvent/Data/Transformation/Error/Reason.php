@@ -7,9 +7,6 @@ namespace ImageKit\Webhooks\VideoTransformationErrorWebhookEvent\Data\Transforma
 use ImageKit\Core\Concerns\SdkEnum;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
-/**
- * @phpstan-type reason_alias = Reason::*
- */
 final class Reason implements ConverterSource
 {
     use SdkEnum;

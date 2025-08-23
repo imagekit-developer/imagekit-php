@@ -9,11 +9,6 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Core\Conversion\ListOf;
 
-/**
- * @phpstan-type bulk_remove_tags_response_alias = array{
- *   successfullyUpdatedFileIDs?: list<string>
- * }
- */
 final class BulkRemoveTagsResponse implements BaseModel
 {
     use SdkModel;

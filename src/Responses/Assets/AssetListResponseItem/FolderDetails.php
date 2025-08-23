@@ -9,16 +9,6 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Responses\Assets\AssetListResponseItem\FolderDetails\Type;
 
-/**
- * @phpstan-type folder_details_alias = array{
- *   createdAt?: string,
- *   folderID?: string,
- *   folderPath?: string,
- *   name?: string,
- *   type?: Type::*,
- *   updatedAt?: string,
- * }
- */
 final class FolderDetails implements BaseModel
 {
     use SdkModel;

@@ -8,14 +8,6 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
-/**
- * @phpstan-type options_alias = array{
- *   addShadow?: bool,
- *   bgColor?: string,
- *   bgImageURL?: string,
- *   semitransparency?: bool,
- * }
- */
 final class Options implements BaseModel
 {
     use SdkModel;

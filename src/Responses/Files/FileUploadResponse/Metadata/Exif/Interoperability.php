@@ -10,10 +10,6 @@ use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * JSON object.
- *
- * @phpstan-type interoperability_alias = array{
- *   interopIndex?: string, interopVersion?: string
- * }
  */
 final class Interoperability implements BaseModel
 {

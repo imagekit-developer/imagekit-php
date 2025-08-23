@@ -11,9 +11,6 @@ use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
-/**
- * @phpstan-type extension_alias = RemoveBg|AutoTaggingExtension|AIAutoDescription
- */
 final class Extension implements ConverterSource
 {
     use SdkUnion;

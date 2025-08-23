@@ -14,16 +14,6 @@ use ImageKit\Responses\Files\FileUploadResponse\Metadata\Exif\Image;
 use ImageKit\Responses\Files\FileUploadResponse\Metadata\Exif\Interoperability;
 use ImageKit\Responses\Files\FileUploadResponse\Metadata\Exif\Thumbnail;
 
-/**
- * @phpstan-type exif_alias = array{
- *   exif?: Exif1,
- *   gps?: Gps,
- *   image?: Image,
- *   interoperability?: Interoperability,
- *   makernote?: array<string, mixed>,
- *   thumbnail?: Thumbnail,
- * }
- */
 final class Exif implements BaseModel
 {
     use SdkModel;

@@ -9,9 +9,6 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Webhooks\VideoTransformationErrorWebhookEvent\Data\Transformation\Error\Reason;
 
-/**
- * @phpstan-type error_alias = array{reason: Reason::*}
- */
 final class Error implements BaseModel
 {
     use SdkModel;

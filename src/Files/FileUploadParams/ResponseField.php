@@ -7,9 +7,6 @@ namespace ImageKit\Files\FileUploadParams;
 use ImageKit\Core\Concerns\SdkEnum;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
-/**
- * @phpstan-type response_field_alias = ResponseField::*
- */
 final class ResponseField implements ConverterSource
 {
     use SdkEnum;

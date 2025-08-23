@@ -11,8 +11,6 @@ use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * This API restores a file version as the current file version.
- *
- * @phpstan-type restore_params = array{fileID: string}
  */
 final class VersionRestoreParams implements BaseModel
 {

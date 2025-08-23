@@ -7,9 +7,6 @@ namespace ImageKit\Responses\Files\Versions;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
-/**
- * @phpstan-type version_delete_response_alias = array{}
- */
 final class VersionDeleteResponse implements BaseModel
 {
     use SdkModel;

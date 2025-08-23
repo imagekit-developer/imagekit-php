@@ -10,9 +10,6 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Webhooks\VideoTransformationErrorWebhookEvent\Data\Asset;
 use ImageKit\Webhooks\VideoTransformationErrorWebhookEvent\Data\Transformation;
 
-/**
- * @phpstan-type data_alias = array{asset: Asset, transformation: Transformation}
- */
 final class Data implements BaseModel
 {
     use SdkModel;

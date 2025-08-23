@@ -8,9 +8,6 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
-/**
- * @phpstan-type invalidation_new_response_alias = array{requestID?: string}
- */
 final class InvalidationNewResponse implements BaseModel
 {
     use SdkModel;

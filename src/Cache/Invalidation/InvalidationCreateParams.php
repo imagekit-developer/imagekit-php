@@ -11,8 +11,6 @@ use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * This API will purge CDN cache and ImageKit.io's internal cache for a file.  Note: Purge cache is an asynchronous process and it may take some time to reflect the changes.
- *
- * @phpstan-type create_params = array{url: string}
  */
 final class InvalidationCreateParams implements BaseModel
 {

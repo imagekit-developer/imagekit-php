@@ -18,8 +18,6 @@ use ImageKit\Responses\Accounts\Origins\OriginUpdateResponse\WebProxy;
 
 /**
  * Origin object as returned by the API (sensitive fields removed).
- *
- * @phpstan-type origin_update_response_alias = S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim
  */
 final class OriginUpdateResponse implements ConverterSource
 {

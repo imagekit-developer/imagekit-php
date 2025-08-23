@@ -13,8 +13,6 @@ use ImageKit\Core\Conversion\Contracts\ConverterSource;
  * - `all` — include all file types
  * - `image` — include only image files
  * - `non-image` — include only non-image files (e.g., JS, CSS, video)
- *
- * @phpstan-type file_type_alias = FileType::*
  */
 final class FileType implements ConverterSource
 {

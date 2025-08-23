@@ -13,10 +13,6 @@ use ImageKit\Core\Contracts\BaseModel;
  * You can rename an already existing file in the media library using rename file API. This operation would rename all file versions of the file.
  *
  * Note: The old URLs will stop working. The file/file version URLs cached on CDN will continue to work unless a purge is requested.
- *
- * @phpstan-type rename_params = array{
- *   filePath: string, newFileName: string, purgeCache?: bool
- * }
  */
 final class FileRenameParams implements BaseModel
 {

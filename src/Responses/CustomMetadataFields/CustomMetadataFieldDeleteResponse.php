@@ -7,9 +7,6 @@ namespace ImageKit\Responses\CustomMetadataFields;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
-/**
- * @phpstan-type custom_metadata_field_delete_response_alias = array{}
- */
 final class CustomMetadataFieldDeleteResponse implements BaseModel
 {
     use SdkModel;

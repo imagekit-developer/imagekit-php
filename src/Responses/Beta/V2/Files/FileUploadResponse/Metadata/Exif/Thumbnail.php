@@ -10,15 +10,6 @@ use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * Object containing Thumbnail information.
- *
- * @phpstan-type thumbnail_alias = array{
- *   compression?: int,
- *   resolutionUnit?: int,
- *   thumbnailLength?: int,
- *   thumbnailOffset?: int,
- *   xResolution?: int,
- *   yResolution?: int,
- * }
  */
 final class Thumbnail implements BaseModel
 {

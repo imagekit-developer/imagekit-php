@@ -10,8 +10,6 @@ use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * An object with details of the file version.
- *
- * @phpstan-type version_info_alias = array{id?: string, name?: string}
  */
 final class VersionInfo implements BaseModel
 {

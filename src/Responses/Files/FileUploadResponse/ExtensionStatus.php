@@ -19,12 +19,6 @@ use ImageKit\Responses\Files\FileUploadResponse\ExtensionStatus\RemoveBg;
  * `pending`: The extension will finish processing in some time. On completion, the final status (success / failed) will be sent to the `webhookUrl` provided.
  *
  * If no extension was requested, then this parameter is not returned.
- *
- * @phpstan-type extension_status_alias = array{
- *   awsAutoTagging?: AwsAutoTagging::*,
- *   googleAutoTagging?: GoogleAutoTagging::*,
- *   removeBg?: RemoveBg::*,
- * }
  */
 final class ExtensionStatus implements BaseModel
 {

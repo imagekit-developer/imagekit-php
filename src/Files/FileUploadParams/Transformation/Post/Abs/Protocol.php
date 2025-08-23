@@ -9,8 +9,6 @@ use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
 /**
  * Streaming protocol to use (`hls` or `dash`).
- *
- * @phpstan-type protocol_alias = Protocol::*
  */
 final class Protocol implements ConverterSource
 {

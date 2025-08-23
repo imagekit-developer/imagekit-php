@@ -11,8 +11,6 @@ use ImageKit\Core\Conversion\ListOf;
 
 /**
  * Object containing GPS information.
- *
- * @phpstan-type gps_alias = array{gpsVersionID?: list<int>}
  */
 final class Gps implements BaseModel
 {

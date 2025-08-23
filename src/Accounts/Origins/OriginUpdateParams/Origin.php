@@ -18,8 +18,6 @@ use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
 /**
  * Schema for origin resources.
- *
- * @phpstan-type origin_alias = S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim
  */
 final class Origin implements ConverterSource
 {

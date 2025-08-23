@@ -9,8 +9,6 @@ use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
 /**
  * Type of the asset.
- *
- * @phpstan-type type_alias = Type::*
  */
 final class Type implements ConverterSource
 {

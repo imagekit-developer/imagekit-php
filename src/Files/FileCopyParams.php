@@ -13,10 +13,6 @@ use ImageKit\Core\Contracts\BaseModel;
  * This will copy a file from one folder to another.
  *
  * Note: If any file at the destination has the same name as the source file, then the source file and its versions (if `includeFileVersions` is set to true) will be appended to the destination file version history.
- *
- * @phpstan-type copy_params = array{
- *   destinationPath: string, sourceFilePath: string, includeFileVersions?: bool
- * }
  */
 final class FileCopyParams implements BaseModel
 {

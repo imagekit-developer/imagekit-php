@@ -14,8 +14,6 @@ use ImageKit\Core\Conversion\Contracts\ConverterSource;
  * - `file-version` — returns specific file versions
  * - `folder` — returns only folders
  * - `all` — returns both files and folders (excludes `file-version`)
- *
- * @phpstan-type type_alias = Type::*
  */
 final class Type implements ConverterSource
 {

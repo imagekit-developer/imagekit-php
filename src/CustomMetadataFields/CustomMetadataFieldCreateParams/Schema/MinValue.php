@@ -10,8 +10,6 @@ use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
 /**
  * Minimum value of the field. Only set this property if field type is `Date` or `Number`. For `Date` type field, set the minimum date in ISO8601 string format. For `Number` type field, set the minimum numeric value.
- *
- * @phpstan-type min_value_alias = string|float
  */
 final class MinValue implements ConverterSource
 {

@@ -10,15 +10,6 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Webhooks\VideoTransformationErrorWebhookEvent\Data;
 use ImageKit\Webhooks\VideoTransformationErrorWebhookEvent\Request;
 
-/**
- * @phpstan-type video_transformation_error_webhook_event_alias = array{
- *   id: string,
- *   createdAt: \DateTimeInterface,
- *   data: Data,
- *   request: Request,
- *   type: string,
- * }
- */
 final class VideoTransformationErrorWebhookEvent implements BaseModel
 {
     use SdkModel;

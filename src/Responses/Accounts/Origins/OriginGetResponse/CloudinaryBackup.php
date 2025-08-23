@@ -8,17 +8,6 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
-/**
- * @phpstan-type cloudinary_backup_alias = array{
- *   id: string,
- *   bucket: string,
- *   includeCanonicalHeader: bool,
- *   name: string,
- *   prefix: string,
- *   type: string,
- *   baseURLForCanonicalHeader?: string,
- * }
- */
 final class CloudinaryBackup implements BaseModel
 {
     use SdkModel;

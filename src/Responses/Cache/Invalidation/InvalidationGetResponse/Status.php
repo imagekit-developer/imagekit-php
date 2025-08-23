@@ -9,8 +9,6 @@ use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
 /**
  * Status of the purge request.
- *
- * @phpstan-type status_alias = Status::*
  */
 final class Status implements ConverterSource
 {

@@ -8,9 +8,6 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
-/**
- * @phpstan-type folder_rename_response_alias = array{jobID?: string}
- */
 final class FolderRenameResponse implements BaseModel
 {
     use SdkModel;

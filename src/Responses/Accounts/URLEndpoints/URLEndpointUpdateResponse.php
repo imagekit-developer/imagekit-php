@@ -15,14 +15,6 @@ use ImageKit\Responses\Accounts\URLEndpoints\URLEndpointUpdateResponse\URLRewrit
 
 /**
  * URL‑endpoint object as returned by the API.
- *
- * @phpstan-type url_endpoint_update_response_alias = array{
- *   id: string,
- *   description: string,
- *   origins: list<string>,
- *   urlPrefix: string,
- *   urlRewriter?: Cloudinary|Imgix|Akamai,
- * }
  */
 final class URLEndpointUpdateResponse implements BaseModel
 {

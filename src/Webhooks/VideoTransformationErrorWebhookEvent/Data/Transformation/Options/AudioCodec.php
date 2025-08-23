@@ -7,9 +7,6 @@ namespace ImageKit\Webhooks\VideoTransformationErrorWebhookEvent\Data\Transforma
 use ImageKit\Core\Concerns\SdkEnum;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
-/**
- * @phpstan-type audio_codec_alias = AudioCodec::*
- */
 final class AudioCodec implements ConverterSource
 {
     use SdkEnum;

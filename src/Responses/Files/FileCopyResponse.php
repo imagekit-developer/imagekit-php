@@ -7,9 +7,6 @@ namespace ImageKit\Responses\Files;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
-/**
- * @phpstan-type file_copy_response_alias = array{}
- */
 final class FileCopyResponse implements BaseModel
 {
     use SdkModel;

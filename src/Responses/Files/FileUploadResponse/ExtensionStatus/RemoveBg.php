@@ -7,9 +7,6 @@ namespace ImageKit\Responses\Files\FileUploadResponse\ExtensionStatus;
 use ImageKit\Core\Concerns\SdkEnum;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
-/**
- * @phpstan-type remove_bg_alias = RemoveBg::*
- */
 final class RemoveBg implements ConverterSource
 {
     use SdkEnum;

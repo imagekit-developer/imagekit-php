@@ -7,9 +7,6 @@ namespace ImageKit\Responses\Beta\V2\Files\FileUploadResponse\ExtensionStatus;
 use ImageKit\Core\Concerns\SdkEnum;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
-/**
- * @phpstan-type aws_auto_tagging_alias = AwsAutoTagging::*
- */
 final class AwsAutoTagging implements ConverterSource
 {
     use SdkEnum;

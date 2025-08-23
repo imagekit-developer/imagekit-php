@@ -12,9 +12,6 @@ use ImageKit\Files\FileUploadParams\Transformation\Post\GifToVideo;
 use ImageKit\Files\FileUploadParams\Transformation\Post\Thumbnail;
 use ImageKit\Files\FileUploadParams\Transformation\Post\Transformation;
 
-/**
- * @phpstan-type post_alias = Transformation|GifToVideo|Thumbnail|Abs
- */
 final class Post implements ConverterSource
 {
     use SdkUnion;

@@ -9,9 +9,6 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Files\FileUpdateParams\Update\ChangePublicationStatus\Publish;
 
-/**
- * @phpstan-type change_publication_status_alias = array{publish?: Publish}
- */
 final class ChangePublicationStatus implements BaseModel
 {
     use SdkModel;

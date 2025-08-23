@@ -17,13 +17,6 @@ use ImageKit\Core\Conversion\ListOf;
 /**
  * **Note:** This API is currently in beta.
  * Creates a new URL‑endpoint and returns the resulting object.
- *
- * @phpstan-type create_params = array{
- *   description: string,
- *   origins?: list<string>,
- *   urlPrefix?: string,
- *   urlRewriter?: Cloudinary|Imgix|Akamai,
- * }
  */
 final class URLEndpointCreateParams implements BaseModel
 {

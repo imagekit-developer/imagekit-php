@@ -12,8 +12,6 @@ use ImageKit\Core\Conversion\ListOf;
 
 /**
  * This API adds tags to multiple files in bulk. A maximum of 50 files can be specified at a time.
- *
- * @phpstan-type add_tags_params = array{fileIDs: list<string>, tags: list<string>}
  */
 final class BulkAddTagsParams implements BaseModel
 {

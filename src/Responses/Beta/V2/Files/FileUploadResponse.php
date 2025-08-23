@@ -16,32 +16,6 @@ use ImageKit\Responses\Beta\V2\Files\FileUploadResponse\VersionInfo;
 
 /**
  * Object containing details of a successful upload.
- *
- * @phpstan-type file_upload_response_alias = array{
- *   aiTags?: list<AITag>|null,
- *   audioCodec?: string,
- *   bitRate?: int,
- *   customCoordinates?: string|null,
- *   customMetadata?: array<string, mixed>,
- *   duration?: int,
- *   embeddedMetadata?: array<string, mixed>,
- *   extensionStatus?: ExtensionStatus,
- *   fileID?: string,
- *   filePath?: string,
- *   fileType?: string,
- *   height?: float,
- *   isPrivateFile?: bool,
- *   isPublished?: bool,
- *   metadata?: Metadata,
- *   name?: string,
- *   size?: float,
- *   tags?: list<string>|null,
- *   thumbnailURL?: string,
- *   url?: string,
- *   versionInfo?: VersionInfo,
- *   videoCodec?: string,
- *   width?: float,
- * }
  */
 final class FileUploadResponse implements BaseModel
 {

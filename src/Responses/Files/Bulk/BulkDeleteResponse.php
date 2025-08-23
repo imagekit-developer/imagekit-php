@@ -9,11 +9,6 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Core\Conversion\ListOf;
 
-/**
- * @phpstan-type bulk_delete_response_alias = array{
- *   successfullyDeletedFileIDs?: list<string>
- * }
- */
 final class BulkDeleteResponse implements BaseModel
 {
     use SdkModel;

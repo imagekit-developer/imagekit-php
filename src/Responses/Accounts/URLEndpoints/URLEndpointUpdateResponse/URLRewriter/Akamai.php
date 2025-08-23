@@ -8,9 +8,6 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
-/**
- * @phpstan-type akamai_alias = array{type: string}
- */
 final class Akamai implements BaseModel
 {
     use SdkModel;

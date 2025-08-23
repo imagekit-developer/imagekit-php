@@ -7,9 +7,6 @@ namespace ImageKit\Webhooks\VideoTransformationAcceptedWebhookEvent\Data\Transfo
 use ImageKit\Core\Concerns\SdkEnum;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
-/**
- * @phpstan-type type_alias = Type::*
- */
 final class Type implements ConverterSource
 {
     use SdkEnum;

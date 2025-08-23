@@ -11,23 +11,6 @@ use ImageKit\Responses\Beta\V2\Files\FileUploadResponse\Metadata\Exif;
 
 /**
  * Legacy metadata. Send `metadata` in `responseFields` in API request to get metadata in the upload API response.
- *
- * @phpstan-type metadata_alias = array{
- *   audioCodec?: string,
- *   bitRate?: int,
- *   density?: int,
- *   duration?: int,
- *   exif?: Exif,
- *   format?: string,
- *   hasColorProfile?: bool,
- *   hasTransparency?: bool,
- *   height?: int,
- *   pHash?: string,
- *   quality?: int,
- *   size?: int,
- *   videoCodec?: string,
- *   width?: int,
- * }
  */
 final class Metadata implements BaseModel
 {

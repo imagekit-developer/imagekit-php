@@ -14,17 +14,6 @@ use ImageKit\Responses\CustomMetadataFields\CustomMetadataFieldUpdateResponse\Sc
 
 /**
  * An object that describes the rules for the custom metadata field value.
- *
- * @phpstan-type schema_alias = array{
- *   type: Type::*,
- *   defaultValue?: string|float|bool|list<string|float|bool>,
- *   isValueRequired?: bool,
- *   maxLength?: float,
- *   maxValue?: string|float,
- *   minLength?: float,
- *   minValue?: string|float,
- *   selectOptions?: list<string|float|bool>,
- * }
  */
 final class Schema implements BaseModel
 {

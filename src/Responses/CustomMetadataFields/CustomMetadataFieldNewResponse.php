@@ -11,10 +11,6 @@ use ImageKit\Responses\CustomMetadataFields\CustomMetadataFieldNewResponse\Schem
 
 /**
  * Object containing details of a custom metadata field.
- *
- * @phpstan-type custom_metadata_field_new_response_alias = array{
- *   id: string, label: string, name: string, schema: Schema
- * }
  */
 final class CustomMetadataFieldNewResponse implements BaseModel
 {

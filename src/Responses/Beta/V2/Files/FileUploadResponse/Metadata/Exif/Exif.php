@@ -10,35 +10,6 @@ use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * Object containing Exif details.
- *
- * @phpstan-type exif_alias = array{
- *   apertureValue?: float,
- *   colorSpace?: int,
- *   createDate?: string,
- *   customRendered?: int,
- *   dateTimeOriginal?: string,
- *   exifImageHeight?: int,
- *   exifImageWidth?: int,
- *   exifVersion?: string,
- *   exposureCompensation?: float,
- *   exposureMode?: int,
- *   exposureProgram?: int,
- *   exposureTime?: float,
- *   flash?: int,
- *   flashpixVersion?: string,
- *   fNumber?: float,
- *   focalLength?: int,
- *   focalPlaneResolutionUnit?: int,
- *   focalPlaneXResolution?: float,
- *   focalPlaneYResolution?: float,
- *   interopOffset?: int,
- *   iso?: int,
- *   meteringMode?: int,
- *   sceneCaptureType?: int,
- *   shutterSpeedValue?: float,
- *   subSecTime?: string,
- *   whiteBalance?: int,
- * }
  */
 final class Exif implements BaseModel
 {

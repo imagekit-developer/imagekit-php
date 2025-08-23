@@ -8,11 +8,6 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
-/**
- * @phpstan-type timings_alias = array{
- *   downloadDuration?: int, encodingDuration?: int
- * }
- */
 final class Timings implements BaseModel
 {
     use SdkModel;

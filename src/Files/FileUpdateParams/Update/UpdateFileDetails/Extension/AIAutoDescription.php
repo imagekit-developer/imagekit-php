@@ -8,9 +8,6 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
-/**
- * @phpstan-type ai_auto_description_alias = array{name: string}
- */
 final class AIAutoDescription implements BaseModel
 {
     use SdkModel;

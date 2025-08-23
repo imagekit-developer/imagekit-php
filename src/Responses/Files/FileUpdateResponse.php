@@ -13,32 +13,6 @@ use ImageKit\Responses\Files\FileUpdateResponse\AITag;
 use ImageKit\Responses\Files\FileUpdateResponse\ExtensionStatus;
 use ImageKit\Responses\Files\FileUpdateResponse\VersionInfo;
 
-/**
- * @phpstan-type file_update_response_alias = array{
- *   aiTags?: list<AITag>|null,
- *   createdAt?: string,
- *   customCoordinates?: string|null,
- *   customMetadata?: array<string, mixed>,
- *   extensionStatus?: ExtensionStatus,
- *   fileID?: string,
- *   filePath?: string,
- *   fileType?: string,
- *   hasAlpha?: bool,
- *   height?: float,
- *   isPrivateFile?: bool,
- *   isPublished?: bool,
- *   mime?: string,
- *   name?: string,
- *   size?: float,
- *   tags?: list<string>|null,
- *   thumbnail?: string,
- *   type?: string,
- *   updatedAt?: string,
- *   url?: string,
- *   versionInfo?: VersionInfo,
- *   width?: float,
- * }
- */
 final class FileUpdateResponse implements BaseModel
 {
     use SdkModel;

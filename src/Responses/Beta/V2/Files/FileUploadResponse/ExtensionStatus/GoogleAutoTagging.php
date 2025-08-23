@@ -7,9 +7,6 @@ namespace ImageKit\Responses\Beta\V2\Files\FileUploadResponse\ExtensionStatus;
 use ImageKit\Core\Concerns\SdkEnum;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
-/**
- * @phpstan-type google_auto_tagging_alias = GoogleAutoTagging::*
- */
 final class GoogleAutoTagging implements ConverterSource
 {
     use SdkEnum;

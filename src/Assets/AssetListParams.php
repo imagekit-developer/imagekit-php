@@ -14,16 +14,6 @@ use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * This API can list all the uploaded files and folders in your ImageKit.io media library. In addition, you can fine-tune your query by specifying various filters by generating a query string in a Lucene-like syntax and provide this generated string as the value of the `searchQuery`.
- *
- * @phpstan-type list_params = array{
- *   fileType?: FileType::*,
- *   limit?: int,
- *   path?: string,
- *   searchQuery?: string,
- *   skip?: int,
- *   sort?: Sort::*,
- *   type?: Type::*,
- * }
  */
 final class AssetListParams implements BaseModel
 {

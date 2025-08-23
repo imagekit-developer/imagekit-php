@@ -10,20 +10,6 @@ use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * Object containing EXIF image information.
- *
- * @phpstan-type image_alias = array{
- *   exifOffset?: int,
- *   gpsInfo?: int,
- *   make?: string,
- *   model?: string,
- *   modifyDate?: string,
- *   orientation?: int,
- *   resolutionUnit?: int,
- *   software?: string,
- *   xResolution?: int,
- *   yCbCrPositioning?: int,
- *   yResolution?: int,
- * }
  */
 final class Image implements BaseModel
 {

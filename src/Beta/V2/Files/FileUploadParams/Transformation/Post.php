@@ -12,9 +12,6 @@ use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
-/**
- * @phpstan-type post_alias = Transformation|GifToVideo|Thumbnail|Abs
- */
 final class Post implements ConverterSource
 {
     use SdkUnion;

@@ -9,8 +9,6 @@ use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
 /**
  * Specifies the auto-tagging extension used.
- *
- * @phpstan-type name_alias = Name::*
  */
 final class Name implements ConverterSource
 {

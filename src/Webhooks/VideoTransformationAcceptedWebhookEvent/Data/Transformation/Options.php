@@ -13,17 +13,6 @@ use ImageKit\Webhooks\VideoTransformationAcceptedWebhookEvent\Data\Transformatio
 use ImageKit\Webhooks\VideoTransformationAcceptedWebhookEvent\Data\Transformation\Options\StreamProtocol;
 use ImageKit\Webhooks\VideoTransformationAcceptedWebhookEvent\Data\Transformation\Options\VideoCodec;
 
-/**
- * @phpstan-type options_alias = array{
- *   audioCodec?: AudioCodec::*,
- *   autoRotate?: bool,
- *   format?: Format::*,
- *   quality?: int,
- *   streamProtocol?: StreamProtocol::*,
- *   variants?: list<string>,
- *   videoCodec?: VideoCodec::*,
- * }
- */
 final class Options implements BaseModel
 {
     use SdkModel;

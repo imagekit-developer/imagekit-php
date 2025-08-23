@@ -9,8 +9,6 @@ use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
 /**
  * Sort the results by one of the supported fields in ascending or descending order.
- *
- * @phpstan-type sort_alias = Sort::*
  */
 final class Sort implements ConverterSource
 {

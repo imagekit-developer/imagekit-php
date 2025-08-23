@@ -21,10 +21,6 @@ use ImageKit\Core\Contracts\BaseModel;
 /**
  * **Note:** This API is currently in beta.
  * Updates the origin identified by `id` and returns the updated origin object.
- *
- * @phpstan-type update_params = array{
- *   origin: S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim,
- * }
  */
 final class OriginUpdateParams implements BaseModel
 {

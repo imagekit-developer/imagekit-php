@@ -14,30 +14,6 @@ use ImageKit\Responses\Files\Versions\VersionRestoreResponse\VersionInfo;
 
 /**
  * Object containing details of a file or file version.
- *
- * @phpstan-type version_restore_response_alias = array{
- *   aiTags?: list<AITag>|null,
- *   createdAt?: string,
- *   customCoordinates?: string|null,
- *   customMetadata?: array<string, mixed>,
- *   fileID?: string,
- *   filePath?: string,
- *   fileType?: string,
- *   hasAlpha?: bool,
- *   height?: float,
- *   isPrivateFile?: bool,
- *   isPublished?: bool,
- *   mime?: string,
- *   name?: string,
- *   size?: float,
- *   tags?: list<string>|null,
- *   thumbnail?: string,
- *   type?: string,
- *   updatedAt?: string,
- *   url?: string,
- *   versionInfo?: VersionInfo,
- *   width?: float,
- * }
  */
 final class VersionRestoreResponse implements BaseModel
 {

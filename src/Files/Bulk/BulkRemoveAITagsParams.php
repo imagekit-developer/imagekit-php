@@ -12,10 +12,6 @@ use ImageKit\Core\Conversion\ListOf;
 
 /**
  * This API removes AITags from multiple files in bulk. A maximum of 50 files can be specified at a time.
- *
- * @phpstan-type remove_ai_tags_params = array{
- *   aiTags: list<string>, fileIDs: list<string>
- * }
  */
 final class BulkRemoveAITagsParams implements BaseModel
 {

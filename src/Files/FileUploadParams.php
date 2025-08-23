@@ -32,32 +32,6 @@ use ImageKit\Files\FileUploadParams\Transformation;
  *
  * - A full-fledged [upload widget using Uppy](https://github.com/imagekit-samples/uppy-uploader), supporting file selections from local storage, URL, Dropbox, Google Drive, Instagram, and more.
  * - [Quick start guides](/docs/quick-start-guides) for various frameworks and technologies.
- *
- * @phpstan-type upload_params = array{
- *   file: string,
- *   fileName: string,
- *   token?: string,
- *   checks?: string,
- *   customCoordinates?: string,
- *   customMetadata?: array<string, mixed>,
- *   description?: string,
- *   expire?: int,
- *   extensions?: list<RemoveBg|AutoTaggingExtension|AIAutoDescription>,
- *   folder?: string,
- *   isPrivateFile?: bool,
- *   isPublished?: bool,
- *   overwriteAITags?: bool,
- *   overwriteCustomMetadata?: bool,
- *   overwriteFile?: bool,
- *   overwriteTags?: bool,
- *   publicKey?: string,
- *   responseFields?: list<ResponseField::*>,
- *   signature?: string,
- *   tags?: list<string>,
- *   transformation?: Transformation,
- *   useUniqueFileName?: bool,
- *   webhookURL?: string,
- * }
  */
 final class FileUploadParams implements BaseModel
 {

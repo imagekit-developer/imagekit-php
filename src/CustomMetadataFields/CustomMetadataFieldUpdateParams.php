@@ -12,8 +12,6 @@ use ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema;
 
 /**
  * This API updates the label or schema of an existing custom metadata field.
- *
- * @phpstan-type update_params = array{label?: string, schema?: Schema}
  */
 final class CustomMetadataFieldUpdateParams implements BaseModel
 {

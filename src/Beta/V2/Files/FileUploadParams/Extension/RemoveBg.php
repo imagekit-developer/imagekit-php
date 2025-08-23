@@ -9,9 +9,6 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
-/**
- * @phpstan-type remove_bg_alias = array{name: string, options?: Options}
- */
 final class RemoveBg implements BaseModel
 {
     use SdkModel;

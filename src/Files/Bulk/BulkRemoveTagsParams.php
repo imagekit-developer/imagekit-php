@@ -12,10 +12,6 @@ use ImageKit\Core\Conversion\ListOf;
 
 /**
  * This API removes tags from multiple files in bulk. A maximum of 50 files can be specified at a time.
- *
- * @phpstan-type remove_tags_params = array{
- *   fileIDs: list<string>, tags: list<string>
- * }
  */
 final class BulkRemoveTagsParams implements BaseModel
 {

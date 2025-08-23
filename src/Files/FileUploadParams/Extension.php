@@ -11,9 +11,6 @@ use ImageKit\Files\FileUploadParams\Extension\AIAutoDescription;
 use ImageKit\Files\FileUploadParams\Extension\AutoTaggingExtension;
 use ImageKit\Files\FileUploadParams\Extension\RemoveBg;
 
-/**
- * @phpstan-type extension_alias = RemoveBg|AutoTaggingExtension|AIAutoDescription
- */
 final class Extension implements ConverterSource
 {
     use SdkUnion;

@@ -13,10 +13,6 @@ use ImageKit\Files\FileUpdateParams\Update\UpdateFileDetails;
 
 /**
  * This API updates the details or attributes of the current version of the file. You can update `tags`, `customCoordinates`, `customMetadata`, publication status, remove existing `AITags` and apply extensions using this API.
- *
- * @phpstan-type update_params = array{
- *   update?: UpdateFileDetails|ChangePublicationStatus
- * }
  */
 final class FileUpdateParams implements BaseModel
 {

@@ -8,9 +8,6 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
-/**
- * @phpstan-type folder_move_response_alias = array{jobID?: string}
- */
 final class FolderMoveResponse implements BaseModel
 {
     use SdkModel;

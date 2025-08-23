@@ -12,8 +12,6 @@ use ImageKit\Responses\Assets\AssetListResponseItem\FolderDetails;
 
 /**
  * Object containing details of a file or file version.
- *
- * @phpstan-type asset_list_response_item_alias = FileDetails|FolderDetails
  */
 final class AssetListResponseItem implements ConverterSource
 {

@@ -7,9 +7,6 @@ namespace ImageKit\Responses\Folders;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
-/**
- * @phpstan-type folder_new_response_alias = array{}
- */
 final class FolderNewResponse implements BaseModel
 {
     use SdkModel;

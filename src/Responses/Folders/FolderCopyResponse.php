@@ -8,9 +8,6 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
-/**
- * @phpstan-type folder_copy_response_alias = array{jobID?: string}
- */
 final class FolderCopyResponse implements BaseModel
 {
     use SdkModel;

@@ -8,11 +8,6 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
-/**
- * @phpstan-type job_get_response_alias = array{
- *   jobID?: string, purgeRequestID?: string, status?: string, type?: string
- * }
- */
 final class JobGetResponse implements BaseModel
 {
     use SdkModel;

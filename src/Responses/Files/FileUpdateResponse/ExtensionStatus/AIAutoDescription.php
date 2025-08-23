@@ -7,9 +7,6 @@ namespace ImageKit\Responses\Files\FileUpdateResponse\ExtensionStatus;
 use ImageKit\Core\Concerns\SdkEnum;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
-/**
- * @phpstan-type ai_auto_description_alias = AIAutoDescription::*
- */
 final class AIAutoDescription implements ConverterSource
 {
     use SdkEnum;

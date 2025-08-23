@@ -12,8 +12,6 @@ use ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema\Default
 
 /**
  * The default value for this custom metadata field. This property is only required if `isValueRequired` property is set to `true`. The value should match the `type` of custom metadata field.
- *
- * @phpstan-type default_value_alias = string|float|bool|list<string|float|bool>
  */
 final class DefaultValue implements ConverterSource
 {

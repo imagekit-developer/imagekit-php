@@ -8,15 +8,6 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
-/**
- * @phpstan-type usage_get_response_alias = array{
- *   bandwidthBytes?: int,
- *   extensionUnitsCount?: int,
- *   mediaLibraryStorageBytes?: int,
- *   originalCacheStorageBytes?: int,
- *   videoProcessingUnitsCount?: int,
- * }
- */
 final class UsageGetResponse implements BaseModel
 {
     use SdkModel;

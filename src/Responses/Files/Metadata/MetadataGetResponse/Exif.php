@@ -7,7 +7,6 @@ namespace ImageKit\Responses\Files\Metadata\MetadataGetResponse;
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Core\Conversion\MapOf;
 use ImageKit\Responses\Files\Metadata\MetadataGetResponse\Exif\Exif as Exif1;
 use ImageKit\Responses\Files\Metadata\MetadataGetResponse\Exif\Gps;
 use ImageKit\Responses\Files\Metadata\MetadataGetResponse\Exif\Image;
@@ -43,7 +42,7 @@ final class Exif implements BaseModel
     public ?Interoperability $interoperability;
 
     /** @var array<string, mixed>|null $makernote */
-    #[Api(type: new MapOf('string'), optional: true)]
+    #[Api(map: 'mixed', optional: true)]
     public ?array $makernote;
 
     /**
@@ -63,7 +62,7 @@ final class Exif implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param array<string, mixed>|null $makernote
+     * @param array<string, mixed> $makernote
      */
     public static function with(
         ?Exif1 $exif = null,

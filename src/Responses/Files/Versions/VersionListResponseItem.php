@@ -7,8 +7,6 @@ namespace ImageKit\Responses\Files\Versions;
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Core\Conversion\ListOf;
-use ImageKit\Core\Conversion\MapOf;
 use ImageKit\Responses\Files\Versions\VersionListResponseItem\AITag;
 use ImageKit\Responses\Files\Versions\VersionListResponseItem\VersionInfo;
 
@@ -24,12 +22,7 @@ final class VersionListResponseItem implements BaseModel
      *
      * @var list<AITag>|null $aiTags
      */
-    #[Api(
-        'AITags',
-        type: new ListOf(AITag::class),
-        nullable: true,
-        optional: true
-    )]
+    #[Api('AITags', list: AITag::class, nullable: true, optional: true)]
     public ?array $aiTags;
 
     /**
@@ -41,7 +34,7 @@ final class VersionListResponseItem implements BaseModel
     /**
      * An string with custom coordinates of the file.
      */
-    #[Api(optional: true)]
+    #[Api(nullable: true, optional: true)]
     public ?string $customCoordinates;
 
     /**
@@ -49,7 +42,7 @@ final class VersionListResponseItem implements BaseModel
      *
      * @var array<string, mixed>|null $customMetadata
      */
-    #[Api(type: new MapOf('string'), optional: true)]
+    #[Api(map: 'mixed', optional: true)]
     public ?array $customMetadata;
 
     /**
@@ -117,7 +110,7 @@ final class VersionListResponseItem implements BaseModel
      *
      * @var list<string>|null $tags
      */
-    #[Api(type: new ListOf('string'), nullable: true, optional: true)]
+    #[Api(list: 'string', nullable: true, optional: true)]
     public ?array $tags;
 
     /**
@@ -168,7 +161,7 @@ final class VersionListResponseItem implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param list<AITag>|null $aiTags
-     * @param array<string, mixed>|null $customMetadata
+     * @param array<string, mixed> $customMetadata
      * @param list<string>|null $tags
      */
     public static function with(

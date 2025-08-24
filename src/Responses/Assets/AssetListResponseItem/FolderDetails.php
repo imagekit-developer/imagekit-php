@@ -62,7 +62,7 @@ final class FolderDetails implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Type::*|null $type
+     * @param Type::* $type
      */
     public static function with(
         ?string $createdAt = null,

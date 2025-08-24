@@ -8,7 +8,6 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Concerns\SdkParams;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Core\Conversion\ListOf;
 
 /**
  * This API removes tags from multiple files in bulk. A maximum of 50 files can be specified at a time.
@@ -23,7 +22,7 @@ final class BulkRemoveTagsParams implements BaseModel
      *
      * @var list<string> $fileIDs
      */
-    #[Api('fileIds', type: new ListOf('string'))]
+    #[Api('fileIds', list: 'string')]
     public array $fileIDs;
 
     /**
@@ -31,7 +30,7 @@ final class BulkRemoveTagsParams implements BaseModel
      *
      * @var list<string> $tags
      */
-    #[Api(type: new ListOf('string'))]
+    #[Api(list: 'string')]
     public array $tags;
 
     /**

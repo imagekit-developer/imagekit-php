@@ -7,8 +7,6 @@ namespace ImageKit\Files\FileUpdateParams\Update;
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Core\Conversion\ListOf;
-use ImageKit\Core\Conversion\MapOf;
 use ImageKit\Files\FileUpdateParams\Update\UpdateFileDetails\Extension;
 use ImageKit\Files\FileUpdateParams\Update\UpdateFileDetails\Extension\AIAutoDescription;
 use ImageKit\Files\FileUpdateParams\Update\UpdateFileDetails\Extension\AutoTaggingExtension;
@@ -22,7 +20,7 @@ final class UpdateFileDetails implements BaseModel
     /**
      * Define an important area in the image in the format `x,y,width,height` e.g. `10,10,100,100`. Send `null` to unset this value.
      */
-    #[Api(optional: true)]
+    #[Api(nullable: true, optional: true)]
     public ?string $customCoordinates;
 
     /**
@@ -30,7 +28,7 @@ final class UpdateFileDetails implements BaseModel
      *
      * @var array<string, mixed>|null $customMetadata
      */
-    #[Api(type: new MapOf('string'), optional: true)]
+    #[Api(map: 'mixed', optional: true)]
     public ?array $customMetadata;
 
     /**
@@ -44,7 +42,7 @@ final class UpdateFileDetails implements BaseModel
      *
      * @var list<RemoveBg|AutoTaggingExtension|AIAutoDescription>|null $extensions
      */
-    #[Api(type: new ListOf(union: Extension::class), optional: true)]
+    #[Api(list: Extension::class, optional: true)]
     public ?array $extensions;
 
     /**
@@ -64,7 +62,7 @@ final class UpdateFileDetails implements BaseModel
      *
      * @var list<string>|null $tags
      */
-    #[Api(type: new ListOf('string'), nullable: true, optional: true)]
+    #[Api(list: 'string', nullable: true, optional: true)]
     public ?array $tags;
 
     /**
@@ -84,9 +82,9 @@ final class UpdateFileDetails implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param array<string, mixed>|null $customMetadata
-     * @param list<RemoveBg|AutoTaggingExtension|AIAutoDescription>|null $extensions
-     * @param string|list<string>|null $removeAITags
+     * @param array<string, mixed> $customMetadata
+     * @param list<RemoveBg|AutoTaggingExtension|AIAutoDescription> $extensions
+     * @param string|list<string> $removeAITags
      * @param list<string>|null $tags
      */
     public static function with(

@@ -7,7 +7,6 @@ namespace ImageKit\Responses\Files\FileUploadResponse\Metadata\Exif;
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Core\Conversion\ListOf;
 
 /**
  * Object containing GPS information.
@@ -17,7 +16,7 @@ final class Gps implements BaseModel
     use SdkModel;
 
     /** @var list<int>|null $gpsVersionID */
-    #[Api('GPSVersionID', type: new ListOf('int'), optional: true)]
+    #[Api('GPSVersionID', list: 'int', optional: true)]
     public ?array $gpsVersionID;
 
     public function __construct()
@@ -31,7 +30,7 @@ final class Gps implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<int>|null $gpsVersionID
+     * @param list<int> $gpsVersionID
      */
     public static function with(?array $gpsVersionID = null): self
     {

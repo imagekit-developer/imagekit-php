@@ -12,7 +12,6 @@ use ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post\Transformation a
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Core\Conversion\ListOf;
 
 /**
  * Configure pre-processing (`pre`) and post-processing (`post`) transformations.
@@ -36,7 +35,7 @@ final class Transformation implements BaseModel
      *
      * @var list<Transformation1|GifToVideo|Thumbnail|Abs>|null $post
      */
-    #[Api(type: new ListOf(union: Post::class), optional: true)]
+    #[Api(list: Post::class, optional: true)]
     public ?array $post;
 
     /**
@@ -56,7 +55,7 @@ final class Transformation implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<Transformation1|GifToVideo|Thumbnail|Abs>|null $post
+     * @param list<Transformation1|GifToVideo|Thumbnail|Abs> $post
      */
     public static function with(?array $post = null, ?string $pre = null): self
     {

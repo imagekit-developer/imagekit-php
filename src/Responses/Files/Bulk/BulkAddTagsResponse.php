@@ -7,7 +7,6 @@ namespace ImageKit\Responses\Files\Bulk;
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Core\Conversion\ListOf;
 
 final class BulkAddTagsResponse implements BaseModel
 {
@@ -18,11 +17,7 @@ final class BulkAddTagsResponse implements BaseModel
      *
      * @var list<string>|null $successfullyUpdatedFileIDs
      */
-    #[Api(
-        'successfullyUpdatedFileIds',
-        type: new ListOf('string'),
-        optional: true
-    )]
+    #[Api('successfullyUpdatedFileIds', list: 'string', optional: true)]
     public ?array $successfullyUpdatedFileIDs;
 
     public function __construct()
@@ -36,7 +31,7 @@ final class BulkAddTagsResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<string>|null $successfullyUpdatedFileIDs
+     * @param list<string> $successfullyUpdatedFileIDs
      */
     public static function with(?array $successfullyUpdatedFileIDs = null): self
     {

@@ -8,8 +8,6 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Concerns\SdkParams;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Core\Conversion\ListOf;
-use ImageKit\Core\Conversion\MapOf;
 use ImageKit\Files\FileUploadParams\Extension;
 use ImageKit\Files\FileUploadParams\Extension\AIAutoDescription;
 use ImageKit\Files\FileUploadParams\Extension\AutoTaggingExtension;
@@ -92,7 +90,7 @@ final class FileUploadParams implements BaseModel
      *
      * @var array<string, mixed>|null $customMetadata
      */
-    #[Api(type: new MapOf('string'), optional: true)]
+    #[Api(map: 'mixed', optional: true)]
     public ?array $customMetadata;
 
     /**
@@ -112,7 +110,7 @@ final class FileUploadParams implements BaseModel
      *
      * @var list<RemoveBg|AutoTaggingExtension|AIAutoDescription>|null $extensions
      */
-    #[Api(type: new ListOf(union: Extension::class), optional: true)]
+    #[Api(list: Extension::class, optional: true)]
     public ?array $extensions;
 
     /**
@@ -181,7 +179,7 @@ final class FileUploadParams implements BaseModel
      *
      * @var list<ResponseField::*>|null $responseFields
      */
-    #[Api(type: new ListOf(enum: ResponseField::class), optional: true)]
+    #[Api(list: ResponseField::class, optional: true)]
     public ?array $responseFields;
 
     /**
@@ -199,7 +197,7 @@ final class FileUploadParams implements BaseModel
      *
      * @var list<string>|null $tags
      */
-    #[Api(type: new ListOf('string'), optional: true)]
+    #[Api(list: 'string', optional: true)]
     public ?array $tags;
 
     /**
@@ -257,10 +255,10 @@ final class FileUploadParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param array<string, mixed>|null $customMetadata
-     * @param list<RemoveBg|AutoTaggingExtension|AIAutoDescription>|null $extensions
-     * @param list<ResponseField::*>|null $responseFields
-     * @param list<string>|null $tags
+     * @param array<string, mixed> $customMetadata
+     * @param list<RemoveBg|AutoTaggingExtension|AIAutoDescription> $extensions
+     * @param list<ResponseField::*> $responseFields
+     * @param list<string> $tags
      */
     public static function with(
         string $file,

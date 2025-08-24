@@ -7,7 +7,6 @@ namespace ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams;
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Core\Conversion\ListOf;
 use ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema\DefaultValue;
 use ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema\SelectOption;
 
@@ -61,7 +60,7 @@ final class Schema implements BaseModel
      *
      * @var list<string|float|bool>|null $selectOptions
      */
-    #[Api(type: new ListOf(union: SelectOption::class), optional: true)]
+    #[Api(list: SelectOption::class, optional: true)]
     public ?array $selectOptions;
 
     public function __construct()
@@ -75,8 +74,8 @@ final class Schema implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param string|float|bool|list<string|float|bool>|null $defaultValue
-     * @param list<string|float|bool>|null $selectOptions
+     * @param string|float|bool|list<string|float|bool> $defaultValue
+     * @param list<string|float|bool> $selectOptions
      */
     public static function with(
         string|float|bool|array|null $defaultValue = null,

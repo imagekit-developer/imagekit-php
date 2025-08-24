@@ -12,7 +12,6 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Concerns\SdkParams;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Core\Conversion\ListOf;
 
 /**
  * **Note:** This API is currently in beta.
@@ -34,7 +33,7 @@ final class URLEndpointCreateParams implements BaseModel
      *
      * @var list<string>|null $origins
      */
-    #[Api(type: new ListOf('string'), optional: true)]
+    #[Api(list: 'string', optional: true)]
     public ?array $origins;
 
     /**
@@ -74,7 +73,7 @@ final class URLEndpointCreateParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<string>|null $origins
+     * @param list<string> $origins
      */
     public static function with(
         string $description,

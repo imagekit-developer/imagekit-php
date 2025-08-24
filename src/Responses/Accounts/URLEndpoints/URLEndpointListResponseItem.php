@@ -7,7 +7,6 @@ namespace ImageKit\Responses\Accounts\URLEndpoints;
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Core\Conversion\ListOf;
 use ImageKit\Responses\Accounts\URLEndpoints\URLEndpointListResponseItem\URLRewriter;
 use ImageKit\Responses\Accounts\URLEndpoints\URLEndpointListResponseItem\URLRewriter\Akamai;
 use ImageKit\Responses\Accounts\URLEndpoints\URLEndpointListResponseItem\URLRewriter\Cloudinary;
@@ -37,7 +36,7 @@ final class URLEndpointListResponseItem implements BaseModel
      *
      * @var list<string> $origins
      */
-    #[Api(type: new ListOf('string'))]
+    #[Api(list: 'string')]
     public array $origins;
 
     /**

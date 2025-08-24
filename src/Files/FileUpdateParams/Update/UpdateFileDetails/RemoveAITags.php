@@ -26,6 +26,6 @@ final class RemoveAITags implements ConverterSource
      */
     public static function variants(): array
     {
-        return [new ListOf('string'), 'string'];
+        return [new ListOf('string'), STAINLESS_FIXME_::class];
     }
 }

@@ -8,7 +8,6 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Concerns\SdkParams;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Core\Conversion\ListOf;
 
 /**
  * This API deletes multiple files and all their file versions permanently.
@@ -27,7 +26,7 @@ final class BulkDeleteParams implements BaseModel
      *
      * @var list<string> $fileIDs
      */
-    #[Api('fileIds', type: new ListOf('string'))]
+    #[Api('fileIds', list: 'string')]
     public array $fileIDs;
 
     /**

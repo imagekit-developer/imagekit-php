@@ -7,8 +7,6 @@ namespace ImageKit\Responses\Files;
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Core\Conversion\ListOf;
-use ImageKit\Core\Conversion\MapOf;
 use ImageKit\Responses\Files\FileUploadResponse\AITag;
 use ImageKit\Responses\Files\FileUploadResponse\ExtensionStatus;
 use ImageKit\Responses\Files\FileUploadResponse\Metadata;
@@ -26,12 +24,7 @@ final class FileUploadResponse implements BaseModel
      *
      * @var list<AITag>|null $aiTags
      */
-    #[Api(
-        'AITags',
-        type: new ListOf(AITag::class),
-        nullable: true,
-        optional: true
-    )]
+    #[Api('AITags', list: AITag::class, nullable: true, optional: true)]
     public ?array $aiTags;
 
     /**
@@ -49,7 +42,7 @@ final class FileUploadResponse implements BaseModel
     /**
      * Value of custom coordinates associated with the image in the format `x,y,width,height`. If `customCoordinates` are not defined, then it is `null`. Send `customCoordinates` in `responseFields` in API request to get the value of this field.
      */
-    #[Api(optional: true)]
+    #[Api(nullable: true, optional: true)]
     public ?string $customCoordinates;
 
     /**
@@ -57,7 +50,7 @@ final class FileUploadResponse implements BaseModel
      *
      * @var array<string, mixed>|null $customMetadata
      */
-    #[Api(type: new MapOf('string'), optional: true)]
+    #[Api(map: 'mixed', optional: true)]
     public ?array $customMetadata;
 
     /**
@@ -71,7 +64,7 @@ final class FileUploadResponse implements BaseModel
      *
      * @var array<string, mixed>|null $embeddedMetadata
      */
-    #[Api(type: new MapOf('string'), optional: true)]
+    #[Api(map: 'mixed', optional: true)]
     public ?array $embeddedMetadata;
 
     /**
@@ -145,7 +138,7 @@ final class FileUploadResponse implements BaseModel
      *
      * @var list<string>|null $tags
      */
-    #[Api(type: new ListOf('string'), nullable: true, optional: true)]
+    #[Api(list: 'string', nullable: true, optional: true)]
     public ?array $tags;
 
     /**
@@ -190,8 +183,8 @@ final class FileUploadResponse implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param list<AITag>|null $aiTags
-     * @param array<string, mixed>|null $customMetadata
-     * @param array<string, mixed>|null $embeddedMetadata
+     * @param array<string, mixed> $customMetadata
+     * @param array<string, mixed> $embeddedMetadata
      * @param list<string>|null $tags
      */
     public static function with(

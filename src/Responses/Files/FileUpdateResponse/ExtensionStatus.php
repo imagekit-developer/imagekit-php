@@ -43,10 +43,10 @@ final class ExtensionStatus implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param AIAutoDescription::*|null $aiAutoDescription
-     * @param AwsAutoTagging::*|null $awsAutoTagging
-     * @param GoogleAutoTagging::*|null $googleAutoTagging
-     * @param RemoveBg::*|null $removeBg
+     * @param AIAutoDescription::* $aiAutoDescription
+     * @param AwsAutoTagging::* $awsAutoTagging
+     * @param GoogleAutoTagging::* $googleAutoTagging
+     * @param RemoveBg::* $removeBg
      */
     public static function with(
         ?string $aiAutoDescription = null,

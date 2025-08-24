@@ -7,7 +7,6 @@ namespace ImageKit\Responses\Files\Bulk;
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Core\Conversion\ListOf;
 
 final class BulkDeleteResponse implements BaseModel
 {
@@ -18,11 +17,7 @@ final class BulkDeleteResponse implements BaseModel
      *
      * @var list<string>|null $successfullyDeletedFileIDs
      */
-    #[Api(
-        'successfullyDeletedFileIds',
-        type: new ListOf('string'),
-        optional: true
-    )]
+    #[Api('successfullyDeletedFileIds', list: 'string', optional: true)]
     public ?array $successfullyDeletedFileIDs;
 
     public function __construct()
@@ -36,7 +31,7 @@ final class BulkDeleteResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<string>|null $successfullyDeletedFileIDs
+     * @param list<string> $successfullyDeletedFileIDs
      */
     public static function with(?array $successfullyDeletedFileIDs = null): self
     {

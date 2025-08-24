@@ -7,7 +7,6 @@ namespace ImageKit\Webhooks\VideoTransformationAcceptedWebhookEvent\Data\Transfo
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Core\Conversion\ListOf;
 use ImageKit\Webhooks\VideoTransformationAcceptedWebhookEvent\Data\Transformation\Options\AudioCodec;
 use ImageKit\Webhooks\VideoTransformationAcceptedWebhookEvent\Data\Transformation\Options\Format;
 use ImageKit\Webhooks\VideoTransformationAcceptedWebhookEvent\Data\Transformation\Options\StreamProtocol;
@@ -36,7 +35,7 @@ final class Options implements BaseModel
     public ?string $streamProtocol;
 
     /** @var list<string>|null $variants */
-    #[Api(type: new ListOf('string'), optional: true)]
+    #[Api(list: 'string', optional: true)]
     public ?array $variants;
 
     /** @var VideoCodec::*|null $videoCodec */
@@ -54,11 +53,11 @@ final class Options implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param AudioCodec::*|null $audioCodec
-     * @param Format::*|null $format
-     * @param StreamProtocol::*|null $streamProtocol
-     * @param list<string>|null $variants
-     * @param VideoCodec::*|null $videoCodec
+     * @param AudioCodec::* $audioCodec
+     * @param Format::* $format
+     * @param StreamProtocol::* $streamProtocol
+     * @param list<string> $variants
+     * @param VideoCodec::* $videoCodec
      */
     public static function with(
         ?string $audioCodec = null,

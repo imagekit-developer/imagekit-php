@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace ImageKit\Services;
 
+use ImageKit\Assets\File;
 use ImageKit\Client;
 use ImageKit\Contracts\FilesContract;
 use ImageKit\Core\Conversion;
 use ImageKit\Core\Util;
-use ImageKit\Files\File;
 use ImageKit\Files\FileCopyParams;
 use ImageKit\Files\FileMoveParams;
 use ImageKit\Files\FileRenameParams;

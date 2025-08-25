@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace ImageKit\Services\Files;
 
+use ImageKit\Assets\File;
 use ImageKit\Client;
 use ImageKit\Contracts\Files\VersionsContract;
 use ImageKit\Core\Conversion;
 use ImageKit\Core\Conversion\ListOf;
-use ImageKit\Files\File;
 use ImageKit\Files\Versions\VersionDeleteParams;
 use ImageKit\Files\Versions\VersionGetParams;
 use ImageKit\Files\Versions\VersionRestoreParams;

@@ -47,6 +47,12 @@ final class File implements BaseModel
     public ?array $customMetadata;
 
     /**
+     * Optional text to describe the contents of the file. Can be set by the user or the ai-auto-description extension.
+     */
+    #[Api(optional: true)]
+    public ?string $description;
+
+    /**
      * Unique identifier of the asset.
      */
     #[Api('fileId', optional: true)]
@@ -173,6 +179,7 @@ final class File implements BaseModel
         ?\DateTimeInterface $createdAt = null,
         ?string $customCoordinates = null,
         ?array $customMetadata = null,
+        ?string $description = null,
         ?string $fileID = null,
         ?string $filePath = null,
         ?string $fileType = null,
@@ -197,6 +204,7 @@ final class File implements BaseModel
         null !== $createdAt && $obj->createdAt = $createdAt;
         null !== $customCoordinates && $obj->customCoordinates = $customCoordinates;
         null !== $customMetadata && $obj->customMetadata = $customMetadata;
+        null !== $description && $obj->description = $description;
         null !== $fileID && $obj->fileID = $fileID;
         null !== $filePath && $obj->filePath = $filePath;
         null !== $fileType && $obj->fileType = $fileType;
@@ -262,6 +270,17 @@ final class File implements BaseModel
     {
         $obj = clone $this;
         $obj->customMetadata = $customMetadata;
+
+        return $obj;
+    }
+
+    /**
+     * Optional text to describe the contents of the file. Can be set by the user or the ai-auto-description extension.
+     */
+    public function withDescription(string $description): self
+    {
+        $obj = clone $this;
+        $obj->description = $description;
 
         return $obj;
     }

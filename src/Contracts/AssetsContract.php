@@ -7,9 +7,9 @@ namespace ImageKit\Contracts;
 use ImageKit\Assets\AssetListParams\FileType;
 use ImageKit\Assets\AssetListParams\Sort;
 use ImageKit\Assets\AssetListParams\Type;
+use ImageKit\Files\File;
+use ImageKit\Files\Folder;
 use ImageKit\RequestOptions;
-use ImageKit\Shared\File;
-use ImageKit\Shared\Folder;
 
 interface AssetsContract
 {

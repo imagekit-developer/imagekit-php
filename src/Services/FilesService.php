@@ -8,6 +8,7 @@ use ImageKit\Client;
 use ImageKit\Contracts\FilesContract;
 use ImageKit\Core\Conversion;
 use ImageKit\Core\Util;
+use ImageKit\Files\File;
 use ImageKit\Files\FileCopyParams;
 use ImageKit\Files\FileMoveParams;
 use ImageKit\Files\FileRenameParams;
@@ -29,7 +30,6 @@ use ImageKit\Responses\Files\FileUploadResponse;
 use ImageKit\Services\Files\BulkService;
 use ImageKit\Services\Files\MetadataService;
 use ImageKit\Services\Files\VersionsService;
-use ImageKit\Shared\File;
 
 final class FilesService implements FilesContract
 {

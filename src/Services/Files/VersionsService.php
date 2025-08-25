@@ -8,12 +8,12 @@ use ImageKit\Client;
 use ImageKit\Contracts\Files\VersionsContract;
 use ImageKit\Core\Conversion;
 use ImageKit\Core\Conversion\ListOf;
+use ImageKit\Files\File;
 use ImageKit\Files\Versions\VersionDeleteParams;
 use ImageKit\Files\Versions\VersionGetParams;
 use ImageKit\Files\Versions\VersionRestoreParams;
 use ImageKit\RequestOptions;
 use ImageKit\Responses\Files\Versions\VersionDeleteResponse;
-use ImageKit\Shared\File;
 
 final class VersionsService implements VersionsContract
 {

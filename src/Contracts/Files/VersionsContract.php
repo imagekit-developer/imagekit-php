@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace ImageKit\Contracts\Files;
 
+use ImageKit\Files\File;
 use ImageKit\RequestOptions;
 use ImageKit\Responses\Files\Versions\VersionDeleteResponse;
-use ImageKit\Shared\File;
 
 interface VersionsContract
 {

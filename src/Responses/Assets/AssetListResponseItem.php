@@ -7,8 +7,8 @@ namespace ImageKit\Responses\Assets;
 use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
-use ImageKit\Shared\File;
-use ImageKit\Shared\Folder;
+use ImageKit\Files\File;
+use ImageKit\Files\Folder;
 
 /**
  * Object containing details of a file or file version.

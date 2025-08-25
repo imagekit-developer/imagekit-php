@@ -2,36 +2,24 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Accounts\Origins\OriginCreateParams\Origin;
+namespace ImageKit\Responses\Accounts\Origins\OriginUpdateResponse;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
-final class AkeneoPim implements BaseModel
+final class GoogleCloudStorageGcs implements BaseModel
 {
     use SdkModel;
 
     #[Api]
-    public string $type = 'AKENEO_PIM';
+    public string $type = 'GCS';
 
-    /**
-     * Akeneo instance base URL.
-     */
-    #[Api('baseUrl')]
-    public string $baseURL;
-
-    /**
-     * Akeneo API client ID.
-     */
-    #[Api('clientId')]
-    public string $clientID;
-
-    /**
-     * Akeneo API client secret.
-     */
     #[Api]
-    public string $clientSecret;
+    public string $bucket;
+
+    #[Api]
+    public string $clientEmail;
 
     /**
      * Display name of the origin.
@@ -39,17 +27,11 @@ final class AkeneoPim implements BaseModel
     #[Api]
     public string $name;
 
-    /**
-     * Akeneo API password.
-     */
     #[Api]
-    public string $password;
+    public string $privateKey;
 
-    /**
-     * Akeneo API username.
-     */
-    #[Api]
-    public string $username;
+    #[Api(optional: true)]
+    public ?string $id;
 
     /**
      * URL used in the Canonical header (if enabled).
@@ -63,31 +45,27 @@ final class AkeneoPim implements BaseModel
     #[Api(optional: true)]
     public ?bool $includeCanonicalHeader;
 
+    #[Api(optional: true)]
+    public ?string $prefix;
+
     /**
-     * `new AkeneoPim()` is missing required properties by the API.
+     * `new GoogleCloudStorageGcs()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * AkeneoPim::with(
-     *   baseURL: ...,
-     *   clientID: ...,
-     *   clientSecret: ...,
-     *   name: ...,
-     *   password: ...,
-     *   username: ...,
+     * GoogleCloudStorageGcs::with(
+     *   bucket: ..., clientEmail: ..., name: ..., privateKey: ...
      * )
      * ```
      *
      * Otherwise ensure the following setters are called
      *
      * ```
-     * (new AkeneoPim)
-     *   ->withBaseURL(...)
-     *   ->withClientID(...)
-     *   ->withClientSecret(...)
+     * (new GoogleCloudStorageGcs)
+     *   ->withBucket(...)
+     *   ->withClientEmail(...)
      *   ->withName(...)
-     *   ->withPassword(...)
-     *   ->withUsername(...)
+     *   ->withPrivateKey(...)
      * ```
      */
     public function __construct()
@@ -102,59 +80,42 @@ final class AkeneoPim implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      */
     public static function with(
-        string $baseURL,
-        string $clientID,
-        string $clientSecret,
+        string $bucket,
+        string $clientEmail,
         string $name,
-        string $password,
-        string $username,
+        string $privateKey,
+        ?string $id = null,
         ?string $baseURLForCanonicalHeader = null,
         ?bool $includeCanonicalHeader = null,
+        ?string $prefix = null,
     ): self {
         $obj = new self;
 
-        $obj->baseURL = $baseURL;
-        $obj->clientID = $clientID;
-        $obj->clientSecret = $clientSecret;
+        $obj->bucket = $bucket;
+        $obj->clientEmail = $clientEmail;
         $obj->name = $name;
-        $obj->password = $password;
-        $obj->username = $username;
+        $obj->privateKey = $privateKey;
 
+        null !== $id && $obj->id = $id;
         null !== $baseURLForCanonicalHeader && $obj->baseURLForCanonicalHeader = $baseURLForCanonicalHeader;
         null !== $includeCanonicalHeader && $obj->includeCanonicalHeader = $includeCanonicalHeader;
+        null !== $prefix && $obj->prefix = $prefix;
 
         return $obj;
     }
 
-    /**
-     * Akeneo instance base URL.
-     */
-    public function withBaseURL(string $baseURL): self
+    public function withBucket(string $bucket): self
     {
         $obj = clone $this;
-        $obj->baseURL = $baseURL;
+        $obj->bucket = $bucket;
 
         return $obj;
     }
 
-    /**
-     * Akeneo API client ID.
-     */
-    public function withClientID(string $clientID): self
+    public function withClientEmail(string $clientEmail): self
     {
         $obj = clone $this;
-        $obj->clientID = $clientID;
-
-        return $obj;
-    }
-
-    /**
-     * Akeneo API client secret.
-     */
-    public function withClientSecret(string $clientSecret): self
-    {
-        $obj = clone $this;
-        $obj->clientSecret = $clientSecret;
+        $obj->clientEmail = $clientEmail;
 
         return $obj;
     }
@@ -170,24 +131,18 @@ final class AkeneoPim implements BaseModel
         return $obj;
     }
 
-    /**
-     * Akeneo API password.
-     */
-    public function withPassword(string $password): self
+    public function withPrivateKey(string $privateKey): self
     {
         $obj = clone $this;
-        $obj->password = $password;
+        $obj->privateKey = $privateKey;
 
         return $obj;
     }
 
-    /**
-     * Akeneo API username.
-     */
-    public function withUsername(string $username): self
+    public function withID(string $id): self
     {
         $obj = clone $this;
-        $obj->username = $username;
+        $obj->id = $id;
 
         return $obj;
     }
@@ -212,6 +167,14 @@ final class AkeneoPim implements BaseModel
     ): self {
         $obj = clone $this;
         $obj->includeCanonicalHeader = $includeCanonicalHeader;
+
+        return $obj;
+    }
+
+    public function withPrefix(string $prefix): self
+    {
+        $obj = clone $this;
+        $obj->prefix = $prefix;
 
         return $obj;
     }

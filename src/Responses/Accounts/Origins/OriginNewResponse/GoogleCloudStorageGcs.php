@@ -2,30 +2,24 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Accounts\Origins\OriginUpdateParams\Origin;
+namespace ImageKit\Responses\Accounts\Origins\OriginNewResponse;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
-final class CloudinaryBackup implements BaseModel
+final class GoogleCloudStorageGcs implements BaseModel
 {
     use SdkModel;
 
     #[Api]
-    public string $type = 'CLOUDINARY_BACKUP';
+    public string $type = 'GCS';
 
-    /**
-     * Access key for the bucket.
-     */
-    #[Api]
-    public string $accessKey;
-
-    /**
-     * S3 bucket name.
-     */
     #[Api]
     public string $bucket;
+
+    #[Api]
+    public string $clientEmail;
 
     /**
      * Display name of the origin.
@@ -33,11 +27,11 @@ final class CloudinaryBackup implements BaseModel
     #[Api]
     public string $name;
 
-    /**
-     * Secret key for the bucket.
-     */
     #[Api]
-    public string $secretKey;
+    public string $privateKey;
+
+    #[Api(optional: true)]
+    public ?string $id;
 
     /**
      * URL used in the Canonical header (if enabled).
@@ -51,28 +45,27 @@ final class CloudinaryBackup implements BaseModel
     #[Api(optional: true)]
     public ?bool $includeCanonicalHeader;
 
-    /**
-     * Path prefix inside the bucket.
-     */
     #[Api(optional: true)]
     public ?string $prefix;
 
     /**
-     * `new CloudinaryBackup()` is missing required properties by the API.
+     * `new GoogleCloudStorageGcs()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * CloudinaryBackup::with(accessKey: ..., bucket: ..., name: ..., secretKey: ...)
+     * GoogleCloudStorageGcs::with(
+     *   bucket: ..., clientEmail: ..., name: ..., privateKey: ...
+     * )
      * ```
      *
      * Otherwise ensure the following setters are called
      *
      * ```
-     * (new CloudinaryBackup)
-     *   ->withAccessKey(...)
+     * (new GoogleCloudStorageGcs)
      *   ->withBucket(...)
+     *   ->withClientEmail(...)
      *   ->withName(...)
-     *   ->withSecretKey(...)
+     *   ->withPrivateKey(...)
      * ```
      */
     public function __construct()
@@ -87,21 +80,23 @@ final class CloudinaryBackup implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      */
     public static function with(
-        string $accessKey,
         string $bucket,
+        string $clientEmail,
         string $name,
-        string $secretKey,
+        string $privateKey,
+        ?string $id = null,
         ?string $baseURLForCanonicalHeader = null,
         ?bool $includeCanonicalHeader = null,
         ?string $prefix = null,
     ): self {
         $obj = new self;
 
-        $obj->accessKey = $accessKey;
         $obj->bucket = $bucket;
+        $obj->clientEmail = $clientEmail;
         $obj->name = $name;
-        $obj->secretKey = $secretKey;
+        $obj->privateKey = $privateKey;
 
+        null !== $id && $obj->id = $id;
         null !== $baseURLForCanonicalHeader && $obj->baseURLForCanonicalHeader = $baseURLForCanonicalHeader;
         null !== $includeCanonicalHeader && $obj->includeCanonicalHeader = $includeCanonicalHeader;
         null !== $prefix && $obj->prefix = $prefix;
@@ -109,24 +104,18 @@ final class CloudinaryBackup implements BaseModel
         return $obj;
     }
 
-    /**
-     * Access key for the bucket.
-     */
-    public function withAccessKey(string $accessKey): self
-    {
-        $obj = clone $this;
-        $obj->accessKey = $accessKey;
-
-        return $obj;
-    }
-
-    /**
-     * S3 bucket name.
-     */
     public function withBucket(string $bucket): self
     {
         $obj = clone $this;
         $obj->bucket = $bucket;
+
+        return $obj;
+    }
+
+    public function withClientEmail(string $clientEmail): self
+    {
+        $obj = clone $this;
+        $obj->clientEmail = $clientEmail;
 
         return $obj;
     }
@@ -142,13 +131,18 @@ final class CloudinaryBackup implements BaseModel
         return $obj;
     }
 
-    /**
-     * Secret key for the bucket.
-     */
-    public function withSecretKey(string $secretKey): self
+    public function withPrivateKey(string $privateKey): self
     {
         $obj = clone $this;
-        $obj->secretKey = $secretKey;
+        $obj->privateKey = $privateKey;
+
+        return $obj;
+    }
+
+    public function withID(string $id): self
+    {
+        $obj = clone $this;
+        $obj->id = $id;
 
         return $obj;
     }
@@ -177,9 +171,6 @@ final class CloudinaryBackup implements BaseModel
         return $obj;
     }
 
-    /**
-     * Path prefix inside the bucket.
-     */
     public function withPrefix(string $prefix): self
     {
         $obj = clone $this;

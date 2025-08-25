@@ -2,36 +2,30 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Accounts\Origins\OriginUpdateParams\Origin;
+namespace ImageKit\Accounts\Origins\Origin;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
-final class AkeneoPim implements BaseModel
+final class CloudinaryBackup implements BaseModel
 {
     use SdkModel;
 
     #[Api]
-    public string $type = 'AKENEO_PIM';
+    public string $type = 'CLOUDINARY_BACKUP';
 
     /**
-     * Akeneo instance base URL.
-     */
-    #[Api('baseUrl')]
-    public string $baseURL;
-
-    /**
-     * Akeneo API client ID.
-     */
-    #[Api('clientId')]
-    public string $clientID;
-
-    /**
-     * Akeneo API client secret.
+     * Access key for the bucket.
      */
     #[Api]
-    public string $clientSecret;
+    public string $accessKey;
+
+    /**
+     * S3 bucket name.
+     */
+    #[Api]
+    public string $bucket;
 
     /**
      * Display name of the origin.
@@ -40,16 +34,10 @@ final class AkeneoPim implements BaseModel
     public string $name;
 
     /**
-     * Akeneo API password.
+     * Secret key for the bucket.
      */
     #[Api]
-    public string $password;
-
-    /**
-     * Akeneo API username.
-     */
-    #[Api]
-    public string $username;
+    public string $secretKey;
 
     /**
      * URL used in the Canonical header (if enabled).
@@ -64,30 +52,27 @@ final class AkeneoPim implements BaseModel
     public ?bool $includeCanonicalHeader;
 
     /**
-     * `new AkeneoPim()` is missing required properties by the API.
+     * Path prefix inside the bucket.
+     */
+    #[Api(optional: true)]
+    public ?string $prefix;
+
+    /**
+     * `new CloudinaryBackup()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * AkeneoPim::with(
-     *   baseURL: ...,
-     *   clientID: ...,
-     *   clientSecret: ...,
-     *   name: ...,
-     *   password: ...,
-     *   username: ...,
-     * )
+     * CloudinaryBackup::with(accessKey: ..., bucket: ..., name: ..., secretKey: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
      *
      * ```
-     * (new AkeneoPim)
-     *   ->withBaseURL(...)
-     *   ->withClientID(...)
-     *   ->withClientSecret(...)
+     * (new CloudinaryBackup)
+     *   ->withAccessKey(...)
+     *   ->withBucket(...)
      *   ->withName(...)
-     *   ->withPassword(...)
-     *   ->withUsername(...)
+     *   ->withSecretKey(...)
      * ```
      */
     public function __construct()
@@ -102,59 +87,46 @@ final class AkeneoPim implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      */
     public static function with(
-        string $baseURL,
-        string $clientID,
-        string $clientSecret,
+        string $accessKey,
+        string $bucket,
         string $name,
-        string $password,
-        string $username,
+        string $secretKey,
         ?string $baseURLForCanonicalHeader = null,
         ?bool $includeCanonicalHeader = null,
+        ?string $prefix = null,
     ): self {
         $obj = new self;
 
-        $obj->baseURL = $baseURL;
-        $obj->clientID = $clientID;
-        $obj->clientSecret = $clientSecret;
+        $obj->accessKey = $accessKey;
+        $obj->bucket = $bucket;
         $obj->name = $name;
-        $obj->password = $password;
-        $obj->username = $username;
+        $obj->secretKey = $secretKey;
 
         null !== $baseURLForCanonicalHeader && $obj->baseURLForCanonicalHeader = $baseURLForCanonicalHeader;
         null !== $includeCanonicalHeader && $obj->includeCanonicalHeader = $includeCanonicalHeader;
+        null !== $prefix && $obj->prefix = $prefix;
 
         return $obj;
     }
 
     /**
-     * Akeneo instance base URL.
+     * Access key for the bucket.
      */
-    public function withBaseURL(string $baseURL): self
+    public function withAccessKey(string $accessKey): self
     {
         $obj = clone $this;
-        $obj->baseURL = $baseURL;
+        $obj->accessKey = $accessKey;
 
         return $obj;
     }
 
     /**
-     * Akeneo API client ID.
+     * S3 bucket name.
      */
-    public function withClientID(string $clientID): self
+    public function withBucket(string $bucket): self
     {
         $obj = clone $this;
-        $obj->clientID = $clientID;
-
-        return $obj;
-    }
-
-    /**
-     * Akeneo API client secret.
-     */
-    public function withClientSecret(string $clientSecret): self
-    {
-        $obj = clone $this;
-        $obj->clientSecret = $clientSecret;
+        $obj->bucket = $bucket;
 
         return $obj;
     }
@@ -171,23 +143,12 @@ final class AkeneoPim implements BaseModel
     }
 
     /**
-     * Akeneo API password.
+     * Secret key for the bucket.
      */
-    public function withPassword(string $password): self
+    public function withSecretKey(string $secretKey): self
     {
         $obj = clone $this;
-        $obj->password = $password;
-
-        return $obj;
-    }
-
-    /**
-     * Akeneo API username.
-     */
-    public function withUsername(string $username): self
-    {
-        $obj = clone $this;
-        $obj->username = $username;
+        $obj->secretKey = $secretKey;
 
         return $obj;
     }
@@ -212,6 +173,17 @@ final class AkeneoPim implements BaseModel
     ): self {
         $obj = clone $this;
         $obj->includeCanonicalHeader = $includeCanonicalHeader;
+
+        return $obj;
+    }
+
+    /**
+     * Path prefix inside the bucket.
+     */
+    public function withPrefix(string $prefix): self
+    {
+        $obj = clone $this;
+        $obj->prefix = $prefix;
 
         return $obj;
     }

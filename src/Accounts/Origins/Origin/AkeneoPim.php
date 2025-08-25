@@ -2,36 +2,36 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Accounts\Origins\OriginUpdateParams\Origin;
+namespace ImageKit\Accounts\Origins\Origin;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
-final class S3Compatible implements BaseModel
+final class AkeneoPim implements BaseModel
 {
     use SdkModel;
 
     #[Api]
-    public string $type = 'S3_COMPATIBLE';
+    public string $type = 'AKENEO_PIM';
 
     /**
-     * Access key for the bucket.
+     * Akeneo instance base URL.
      */
-    #[Api]
-    public string $accessKey;
+    #[Api('baseUrl')]
+    public string $baseURL;
 
     /**
-     * S3 bucket name.
+     * Akeneo API client ID.
      */
-    #[Api]
-    public string $bucket;
+    #[Api('clientId')]
+    public string $clientID;
 
     /**
-     * Custom S3-compatible endpoint.
+     * Akeneo API client secret.
      */
     #[Api]
-    public string $endpoint;
+    public string $clientSecret;
 
     /**
      * Display name of the origin.
@@ -40,10 +40,16 @@ final class S3Compatible implements BaseModel
     public string $name;
 
     /**
-     * Secret key for the bucket.
+     * Akeneo API password.
      */
     #[Api]
-    public string $secretKey;
+    public string $password;
+
+    /**
+     * Akeneo API username.
+     */
+    #[Api]
+    public string $username;
 
     /**
      * URL used in the Canonical header (if enabled).
@@ -58,36 +64,30 @@ final class S3Compatible implements BaseModel
     public ?bool $includeCanonicalHeader;
 
     /**
-     * Path prefix inside the bucket.
-     */
-    #[Api(optional: true)]
-    public ?string $prefix;
-
-    /**
-     * Use path-style S3 URLs?
-     */
-    #[Api(optional: true)]
-    public ?bool $s3ForcePathStyle;
-
-    /**
-     * `new S3Compatible()` is missing required properties by the API.
+     * `new AkeneoPim()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * S3Compatible::with(
-     *   accessKey: ..., bucket: ..., endpoint: ..., name: ..., secretKey: ...
+     * AkeneoPim::with(
+     *   baseURL: ...,
+     *   clientID: ...,
+     *   clientSecret: ...,
+     *   name: ...,
+     *   password: ...,
+     *   username: ...,
      * )
      * ```
      *
      * Otherwise ensure the following setters are called
      *
      * ```
-     * (new S3Compatible)
-     *   ->withAccessKey(...)
-     *   ->withBucket(...)
-     *   ->withEndpoint(...)
+     * (new AkeneoPim)
+     *   ->withBaseURL(...)
+     *   ->withClientID(...)
+     *   ->withClientSecret(...)
      *   ->withName(...)
-     *   ->withSecretKey(...)
+     *   ->withPassword(...)
+     *   ->withUsername(...)
      * ```
      */
     public function __construct()
@@ -102,61 +102,59 @@ final class S3Compatible implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      */
     public static function with(
-        string $accessKey,
-        string $bucket,
-        string $endpoint,
+        string $baseURL,
+        string $clientID,
+        string $clientSecret,
         string $name,
-        string $secretKey,
+        string $password,
+        string $username,
         ?string $baseURLForCanonicalHeader = null,
         ?bool $includeCanonicalHeader = null,
-        ?string $prefix = null,
-        ?bool $s3ForcePathStyle = null,
     ): self {
         $obj = new self;
 
-        $obj->accessKey = $accessKey;
-        $obj->bucket = $bucket;
-        $obj->endpoint = $endpoint;
+        $obj->baseURL = $baseURL;
+        $obj->clientID = $clientID;
+        $obj->clientSecret = $clientSecret;
         $obj->name = $name;
-        $obj->secretKey = $secretKey;
+        $obj->password = $password;
+        $obj->username = $username;
 
         null !== $baseURLForCanonicalHeader && $obj->baseURLForCanonicalHeader = $baseURLForCanonicalHeader;
         null !== $includeCanonicalHeader && $obj->includeCanonicalHeader = $includeCanonicalHeader;
-        null !== $prefix && $obj->prefix = $prefix;
-        null !== $s3ForcePathStyle && $obj->s3ForcePathStyle = $s3ForcePathStyle;
 
         return $obj;
     }
 
     /**
-     * Access key for the bucket.
+     * Akeneo instance base URL.
      */
-    public function withAccessKey(string $accessKey): self
+    public function withBaseURL(string $baseURL): self
     {
         $obj = clone $this;
-        $obj->accessKey = $accessKey;
+        $obj->baseURL = $baseURL;
 
         return $obj;
     }
 
     /**
-     * S3 bucket name.
+     * Akeneo API client ID.
      */
-    public function withBucket(string $bucket): self
+    public function withClientID(string $clientID): self
     {
         $obj = clone $this;
-        $obj->bucket = $bucket;
+        $obj->clientID = $clientID;
 
         return $obj;
     }
 
     /**
-     * Custom S3-compatible endpoint.
+     * Akeneo API client secret.
      */
-    public function withEndpoint(string $endpoint): self
+    public function withClientSecret(string $clientSecret): self
     {
         $obj = clone $this;
-        $obj->endpoint = $endpoint;
+        $obj->clientSecret = $clientSecret;
 
         return $obj;
     }
@@ -173,12 +171,23 @@ final class S3Compatible implements BaseModel
     }
 
     /**
-     * Secret key for the bucket.
+     * Akeneo API password.
      */
-    public function withSecretKey(string $secretKey): self
+    public function withPassword(string $password): self
     {
         $obj = clone $this;
-        $obj->secretKey = $secretKey;
+        $obj->password = $password;
+
+        return $obj;
+    }
+
+    /**
+     * Akeneo API username.
+     */
+    public function withUsername(string $username): self
+    {
+        $obj = clone $this;
+        $obj->username = $username;
 
         return $obj;
     }
@@ -203,28 +212,6 @@ final class S3Compatible implements BaseModel
     ): self {
         $obj = clone $this;
         $obj->includeCanonicalHeader = $includeCanonicalHeader;
-
-        return $obj;
-    }
-
-    /**
-     * Path prefix inside the bucket.
-     */
-    public function withPrefix(string $prefix): self
-    {
-        $obj = clone $this;
-        $obj->prefix = $prefix;
-
-        return $obj;
-    }
-
-    /**
-     * Use path-style S3 URLs?
-     */
-    public function withS3ForcePathStyle(bool $s3ForcePathStyle): self
-    {
-        $obj = clone $this;
-        $obj->s3ForcePathStyle = $s3ForcePathStyle;
 
         return $obj;
     }

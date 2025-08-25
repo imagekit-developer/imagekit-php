@@ -2,18 +2,24 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Accounts\Origins\OriginCreateParams\Origin;
+namespace ImageKit\Accounts\Origins\Origin;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
-final class WebProxy implements BaseModel
+final class WebFolder implements BaseModel
 {
     use SdkModel;
 
     #[Api]
-    public string $type = 'WEB_PROXY';
+    public string $type = 'WEB_FOLDER';
+
+    /**
+     * Root URL for the web folder origin.
+     */
+    #[Api('baseUrl')]
+    public string $baseURL;
 
     /**
      * Display name of the origin.
@@ -28,23 +34,29 @@ final class WebProxy implements BaseModel
     public ?string $baseURLForCanonicalHeader;
 
     /**
+     * Forward the Host header to origin?
+     */
+    #[Api(optional: true)]
+    public ?bool $forwardHostHeaderToOrigin;
+
+    /**
      * Whether to send a Canonical header.
      */
     #[Api(optional: true)]
     public ?bool $includeCanonicalHeader;
 
     /**
-     * `new WebProxy()` is missing required properties by the API.
+     * `new WebFolder()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * WebProxy::with(name: ...)
+     * WebFolder::with(baseURL: ..., name: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
      *
      * ```
-     * (new WebProxy)->withName(...)
+     * (new WebFolder)->withBaseURL(...)->withName(...)
      * ```
      */
     public function __construct()
@@ -59,16 +71,31 @@ final class WebProxy implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      */
     public static function with(
+        string $baseURL,
         string $name,
         ?string $baseURLForCanonicalHeader = null,
+        ?bool $forwardHostHeaderToOrigin = null,
         ?bool $includeCanonicalHeader = null,
     ): self {
         $obj = new self;
 
+        $obj->baseURL = $baseURL;
         $obj->name = $name;
 
         null !== $baseURLForCanonicalHeader && $obj->baseURLForCanonicalHeader = $baseURLForCanonicalHeader;
+        null !== $forwardHostHeaderToOrigin && $obj->forwardHostHeaderToOrigin = $forwardHostHeaderToOrigin;
         null !== $includeCanonicalHeader && $obj->includeCanonicalHeader = $includeCanonicalHeader;
+
+        return $obj;
+    }
+
+    /**
+     * Root URL for the web folder origin.
+     */
+    public function withBaseURL(string $baseURL): self
+    {
+        $obj = clone $this;
+        $obj->baseURL = $baseURL;
 
         return $obj;
     }
@@ -92,6 +119,18 @@ final class WebProxy implements BaseModel
     ): self {
         $obj = clone $this;
         $obj->baseURLForCanonicalHeader = $baseURLForCanonicalHeader;
+
+        return $obj;
+    }
+
+    /**
+     * Forward the Host header to origin?
+     */
+    public function withForwardHostHeaderToOrigin(
+        bool $forwardHostHeaderToOrigin
+    ): self {
+        $obj = clone $this;
+        $obj->forwardHostHeaderToOrigin = $forwardHostHeaderToOrigin;
 
         return $obj;
     }

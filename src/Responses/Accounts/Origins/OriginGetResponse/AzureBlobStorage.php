@@ -2,30 +2,24 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Accounts\Origins\OriginUpdateParams\Origin;
+namespace ImageKit\Responses\Accounts\Origins\OriginGetResponse;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
-final class S3 implements BaseModel
+final class AzureBlobStorage implements BaseModel
 {
     use SdkModel;
 
     #[Api]
-    public string $type = 'S3';
+    public string $type = 'AZURE_BLOB';
 
-    /**
-     * Access key for the bucket.
-     */
     #[Api]
-    public string $accessKey;
+    public string $accountName;
 
-    /**
-     * S3 bucket name.
-     */
     #[Api]
-    public string $bucket;
+    public string $container;
 
     /**
      * Display name of the origin.
@@ -33,11 +27,11 @@ final class S3 implements BaseModel
     #[Api]
     public string $name;
 
-    /**
-     * Secret key for the bucket.
-     */
     #[Api]
-    public string $secretKey;
+    public string $sasToken;
+
+    #[Api(optional: true)]
+    public ?string $id;
 
     /**
      * URL used in the Canonical header (if enabled).
@@ -51,24 +45,27 @@ final class S3 implements BaseModel
     #[Api(optional: true)]
     public ?bool $includeCanonicalHeader;
 
-    /**
-     * Path prefix inside the bucket.
-     */
     #[Api(optional: true)]
     public ?string $prefix;
 
     /**
-     * `new S3()` is missing required properties by the API.
+     * `new AzureBlobStorage()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * S3::with(accessKey: ..., bucket: ..., name: ..., secretKey: ...)
+     * AzureBlobStorage::with(
+     *   accountName: ..., container: ..., name: ..., sasToken: ...
+     * )
      * ```
      *
      * Otherwise ensure the following setters are called
      *
      * ```
-     * (new S3)->withAccessKey(...)->withBucket(...)->withName(...)->withSecretKey(...)
+     * (new AzureBlobStorage)
+     *   ->withAccountName(...)
+     *   ->withContainer(...)
+     *   ->withName(...)
+     *   ->withSasToken(...)
      * ```
      */
     public function __construct()
@@ -83,21 +80,23 @@ final class S3 implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      */
     public static function with(
-        string $accessKey,
-        string $bucket,
+        string $accountName,
+        string $container,
         string $name,
-        string $secretKey,
+        string $sasToken,
+        ?string $id = null,
         ?string $baseURLForCanonicalHeader = null,
         ?bool $includeCanonicalHeader = null,
         ?string $prefix = null,
     ): self {
         $obj = new self;
 
-        $obj->accessKey = $accessKey;
-        $obj->bucket = $bucket;
+        $obj->accountName = $accountName;
+        $obj->container = $container;
         $obj->name = $name;
-        $obj->secretKey = $secretKey;
+        $obj->sasToken = $sasToken;
 
+        null !== $id && $obj->id = $id;
         null !== $baseURLForCanonicalHeader && $obj->baseURLForCanonicalHeader = $baseURLForCanonicalHeader;
         null !== $includeCanonicalHeader && $obj->includeCanonicalHeader = $includeCanonicalHeader;
         null !== $prefix && $obj->prefix = $prefix;
@@ -105,24 +104,18 @@ final class S3 implements BaseModel
         return $obj;
     }
 
-    /**
-     * Access key for the bucket.
-     */
-    public function withAccessKey(string $accessKey): self
+    public function withAccountName(string $accountName): self
     {
         $obj = clone $this;
-        $obj->accessKey = $accessKey;
+        $obj->accountName = $accountName;
 
         return $obj;
     }
 
-    /**
-     * S3 bucket name.
-     */
-    public function withBucket(string $bucket): self
+    public function withContainer(string $container): self
     {
         $obj = clone $this;
-        $obj->bucket = $bucket;
+        $obj->container = $container;
 
         return $obj;
     }
@@ -138,13 +131,18 @@ final class S3 implements BaseModel
         return $obj;
     }
 
-    /**
-     * Secret key for the bucket.
-     */
-    public function withSecretKey(string $secretKey): self
+    public function withSasToken(string $sasToken): self
     {
         $obj = clone $this;
-        $obj->secretKey = $secretKey;
+        $obj->sasToken = $sasToken;
+
+        return $obj;
+    }
+
+    public function withID(string $id): self
+    {
+        $obj = clone $this;
+        $obj->id = $id;
 
         return $obj;
     }
@@ -173,9 +171,6 @@ final class S3 implements BaseModel
         return $obj;
     }
 
-    /**
-     * Path prefix inside the bucket.
-     */
     public function withPrefix(string $prefix): self
     {
         $obj = clone $this;

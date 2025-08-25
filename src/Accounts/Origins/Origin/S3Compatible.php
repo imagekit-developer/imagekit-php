@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Accounts\Origins\OriginCreateParams\Origin;
+namespace ImageKit\Accounts\Origins\Origin;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
-final class CloudinaryBackup implements BaseModel
+final class S3Compatible implements BaseModel
 {
     use SdkModel;
 
     #[Api]
-    public string $type = 'CLOUDINARY_BACKUP';
+    public string $type = 'S3_COMPATIBLE';
 
     /**
      * Access key for the bucket.
@@ -26,6 +26,12 @@ final class CloudinaryBackup implements BaseModel
      */
     #[Api]
     public string $bucket;
+
+    /**
+     * Custom S3-compatible endpoint.
+     */
+    #[Api]
+    public string $endpoint;
 
     /**
      * Display name of the origin.
@@ -58,19 +64,28 @@ final class CloudinaryBackup implements BaseModel
     public ?string $prefix;
 
     /**
-     * `new CloudinaryBackup()` is missing required properties by the API.
+     * Use path-style S3 URLs?
+     */
+    #[Api(optional: true)]
+    public ?bool $s3ForcePathStyle;
+
+    /**
+     * `new S3Compatible()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * CloudinaryBackup::with(accessKey: ..., bucket: ..., name: ..., secretKey: ...)
+     * S3Compatible::with(
+     *   accessKey: ..., bucket: ..., endpoint: ..., name: ..., secretKey: ...
+     * )
      * ```
      *
      * Otherwise ensure the following setters are called
      *
      * ```
-     * (new CloudinaryBackup)
+     * (new S3Compatible)
      *   ->withAccessKey(...)
      *   ->withBucket(...)
+     *   ->withEndpoint(...)
      *   ->withName(...)
      *   ->withSecretKey(...)
      * ```
@@ -89,22 +104,26 @@ final class CloudinaryBackup implements BaseModel
     public static function with(
         string $accessKey,
         string $bucket,
+        string $endpoint,
         string $name,
         string $secretKey,
         ?string $baseURLForCanonicalHeader = null,
         ?bool $includeCanonicalHeader = null,
         ?string $prefix = null,
+        ?bool $s3ForcePathStyle = null,
     ): self {
         $obj = new self;
 
         $obj->accessKey = $accessKey;
         $obj->bucket = $bucket;
+        $obj->endpoint = $endpoint;
         $obj->name = $name;
         $obj->secretKey = $secretKey;
 
         null !== $baseURLForCanonicalHeader && $obj->baseURLForCanonicalHeader = $baseURLForCanonicalHeader;
         null !== $includeCanonicalHeader && $obj->includeCanonicalHeader = $includeCanonicalHeader;
         null !== $prefix && $obj->prefix = $prefix;
+        null !== $s3ForcePathStyle && $obj->s3ForcePathStyle = $s3ForcePathStyle;
 
         return $obj;
     }
@@ -127,6 +146,17 @@ final class CloudinaryBackup implements BaseModel
     {
         $obj = clone $this;
         $obj->bucket = $bucket;
+
+        return $obj;
+    }
+
+    /**
+     * Custom S3-compatible endpoint.
+     */
+    public function withEndpoint(string $endpoint): self
+    {
+        $obj = clone $this;
+        $obj->endpoint = $endpoint;
 
         return $obj;
     }
@@ -184,6 +214,17 @@ final class CloudinaryBackup implements BaseModel
     {
         $obj = clone $this;
         $obj->prefix = $prefix;
+
+        return $obj;
+    }
+
+    /**
+     * Use path-style S3 URLs?
+     */
+    public function withS3ForcePathStyle(bool $s3ForcePathStyle): self
+    {
+        $obj = clone $this;
+        $obj->s3ForcePathStyle = $s3ForcePathStyle;
 
         return $obj;
     }

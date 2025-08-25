@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Accounts\Origins\OriginUpdateParams\Origin;
+namespace ImageKit\Responses\Accounts\Origins\OriginListResponseItem;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
-final class Gcs implements BaseModel
+final class GoogleCloudStorageGcs implements BaseModel
 {
     use SdkModel;
 
@@ -30,6 +30,9 @@ final class Gcs implements BaseModel
     #[Api]
     public string $privateKey;
 
+    #[Api(optional: true)]
+    public ?string $id;
+
     /**
      * URL used in the Canonical header (if enabled).
      */
@@ -46,17 +49,19 @@ final class Gcs implements BaseModel
     public ?string $prefix;
 
     /**
-     * `new Gcs()` is missing required properties by the API.
+     * `new GoogleCloudStorageGcs()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * Gcs::with(bucket: ..., clientEmail: ..., name: ..., privateKey: ...)
+     * GoogleCloudStorageGcs::with(
+     *   bucket: ..., clientEmail: ..., name: ..., privateKey: ...
+     * )
      * ```
      *
      * Otherwise ensure the following setters are called
      *
      * ```
-     * (new Gcs)
+     * (new GoogleCloudStorageGcs)
      *   ->withBucket(...)
      *   ->withClientEmail(...)
      *   ->withName(...)
@@ -79,6 +84,7 @@ final class Gcs implements BaseModel
         string $clientEmail,
         string $name,
         string $privateKey,
+        ?string $id = null,
         ?string $baseURLForCanonicalHeader = null,
         ?bool $includeCanonicalHeader = null,
         ?string $prefix = null,
@@ -90,6 +96,7 @@ final class Gcs implements BaseModel
         $obj->name = $name;
         $obj->privateKey = $privateKey;
 
+        null !== $id && $obj->id = $id;
         null !== $baseURLForCanonicalHeader && $obj->baseURLForCanonicalHeader = $baseURLForCanonicalHeader;
         null !== $includeCanonicalHeader && $obj->includeCanonicalHeader = $includeCanonicalHeader;
         null !== $prefix && $obj->prefix = $prefix;
@@ -128,6 +135,14 @@ final class Gcs implements BaseModel
     {
         $obj = clone $this;
         $obj->privateKey = $privateKey;
+
+        return $obj;
+    }
+
+    public function withID(string $id): self
+    {
+        $obj = clone $this;
+        $obj->id = $id;
 
         return $obj;
     }

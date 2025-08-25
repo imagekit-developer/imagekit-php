@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace ImageKit\Accounts\Origins;
 
-use ImageKit\Accounts\Origins\OriginUpdateParams\Origin;
-use ImageKit\Accounts\Origins\OriginUpdateParams\Origin\AkeneoPim;
-use ImageKit\Accounts\Origins\OriginUpdateParams\Origin\AzureBlob;
-use ImageKit\Accounts\Origins\OriginUpdateParams\Origin\CloudinaryBackup;
-use ImageKit\Accounts\Origins\OriginUpdateParams\Origin\Gcs;
-use ImageKit\Accounts\Origins\OriginUpdateParams\Origin\S3;
-use ImageKit\Accounts\Origins\OriginUpdateParams\Origin\S3Compatible;
-use ImageKit\Accounts\Origins\OriginUpdateParams\Origin\WebFolder;
-use ImageKit\Accounts\Origins\OriginUpdateParams\Origin\WebProxy;
+use ImageKit\Accounts\Origins\Origin\AkeneoPim;
+use ImageKit\Accounts\Origins\Origin\AzureBlob;
+use ImageKit\Accounts\Origins\Origin\CloudinaryBackup;
+use ImageKit\Accounts\Origins\Origin\Gcs;
+use ImageKit\Accounts\Origins\Origin\S3;
+use ImageKit\Accounts\Origins\Origin\S3Compatible;
+use ImageKit\Accounts\Origins\Origin\WebFolder;
+use ImageKit\Accounts\Origins\Origin\WebProxy;
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Concerns\SdkParams;

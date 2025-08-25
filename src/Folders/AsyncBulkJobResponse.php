@@ -2,22 +2,39 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Responses\Folders;
+namespace ImageKit\Folders;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
-final class FolderRenameResponse implements BaseModel
+/**
+ * Job submitted successfully. A `jobId` will be returned.
+ */
+final class AsyncBulkJobResponse implements BaseModel
 {
     use SdkModel;
 
     /**
      * Unique identifier of the bulk job. This can be used to check the status of the bulk job.
      */
-    #[Api('jobId', optional: true)]
-    public ?string $jobID;
+    #[Api('jobId')]
+    public string $jobID;
 
+    /**
+     * `new AsyncBulkJobResponse()` is missing required properties by the API.
+     *
+     * To enforce required parameters use
+     * ```
+     * AsyncBulkJobResponse::with(jobID: ...)
+     * ```
+     *
+     * Otherwise ensure the following setters are called
+     *
+     * ```
+     * (new AsyncBulkJobResponse)->withJobID(...)
+     * ```
+     */
     public function __construct()
     {
         self::introspect();
@@ -29,11 +46,11 @@ final class FolderRenameResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function with(?string $jobID = null): self
+    public static function with(string $jobID): self
     {
         $obj = new self;
 
-        null !== $jobID && $obj->jobID = $jobID;
+        $obj->jobID = $jobID;
 
         return $obj;
     }

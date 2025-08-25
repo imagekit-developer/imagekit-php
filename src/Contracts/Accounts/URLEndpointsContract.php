@@ -7,14 +7,11 @@ namespace ImageKit\Contracts\Accounts;
 use ImageKit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\Akamai;
 use ImageKit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\Cloudinary;
 use ImageKit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\Imgix;
+use ImageKit\Accounts\URLEndpoints\URLEndpointResponse;
 use ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\Akamai as Akamai1;
 use ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\Cloudinary as Cloudinary1;
 use ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\Imgix as Imgix1;
 use ImageKit\RequestOptions;
-use ImageKit\Responses\Accounts\URLEndpoints\URLEndpointGetResponse;
-use ImageKit\Responses\Accounts\URLEndpoints\URLEndpointListResponseItem;
-use ImageKit\Responses\Accounts\URLEndpoints\URLEndpointNewResponse;
-use ImageKit\Responses\Accounts\URLEndpoints\URLEndpointUpdateResponse;
 
 interface URLEndpointsContract
 {
@@ -30,7 +27,7 @@ interface URLEndpointsContract
         $urlPrefix = null,
         $urlRewriter = null,
         ?RequestOptions $requestOptions = null,
-    ): URLEndpointNewResponse;
+    ): URLEndpointResponse;
 
     /**
      * @param string $description description of the URL endpoint
@@ -45,10 +42,10 @@ interface URLEndpointsContract
         $urlPrefix = null,
         $urlRewriter = null,
         ?RequestOptions $requestOptions = null,
-    ): URLEndpointUpdateResponse;
+    ): URLEndpointResponse;
 
     /**
-     * @return list<URLEndpointListResponseItem>
+     * @return list<URLEndpointResponse>
      */
     public function list(
         ?RequestOptions $requestOptions = null
@@ -62,5 +59,5 @@ interface URLEndpointsContract
     public function get(
         string $id,
         ?RequestOptions $requestOptions = null
-    ): URLEndpointGetResponse;
+    ): URLEndpointResponse;
 }

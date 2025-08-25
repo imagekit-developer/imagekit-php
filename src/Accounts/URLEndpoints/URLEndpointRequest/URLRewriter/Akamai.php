@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Responses\Accounts\URLEndpoints\URLEndpointNewResponse\URLRewriter;
+namespace ImageKit\Accounts\URLEndpoints\URLEndpointRequest\URLRewriter;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;

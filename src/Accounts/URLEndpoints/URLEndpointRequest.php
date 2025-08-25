@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace ImageKit\Accounts\URLEndpoints;
 
-use ImageKit\Accounts\URLEndpoints\URLEndpoint\URLRewriter;
-use ImageKit\Accounts\URLEndpoints\URLEndpoint\URLRewriter\Akamai;
-use ImageKit\Accounts\URLEndpoints\URLEndpoint\URLRewriter\Cloudinary;
-use ImageKit\Accounts\URLEndpoints\URLEndpoint\URLRewriter\Imgix;
+use ImageKit\Accounts\URLEndpoints\URLEndpointRequest\URLRewriter;
+use ImageKit\Accounts\URLEndpoints\URLEndpointRequest\URLRewriter\Akamai;
+use ImageKit\Accounts\URLEndpoints\URLEndpointRequest\URLRewriter\Cloudinary;
+use ImageKit\Accounts\URLEndpoints\URLEndpointRequest\URLRewriter\Imgix;
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
@@ -15,7 +15,7 @@ use ImageKit\Core\Contracts\BaseModel;
 /**
  * Schema for URL endpoint resource.
  */
-final class URLEndpoint implements BaseModel
+final class URLEndpointRequest implements BaseModel
 {
     use SdkModel;
 
@@ -46,17 +46,17 @@ final class URLEndpoint implements BaseModel
     public Cloudinary|Imgix|Akamai|null $urlRewriter;
 
     /**
-     * `new URLEndpoint()` is missing required properties by the API.
+     * `new URLEndpointRequest()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * URLEndpoint::with(description: ...)
+     * URLEndpointRequest::with(description: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
      *
      * ```
-     * (new URLEndpoint)->withDescription(...)
+     * (new URLEndpointRequest)->withDescription(...)
      * ```
      */
     public function __construct()

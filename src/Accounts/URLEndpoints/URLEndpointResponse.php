@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Responses\Accounts\URLEndpoints;
+namespace ImageKit\Accounts\URLEndpoints;
 
+use ImageKit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriter;
+use ImageKit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriter\Akamai;
+use ImageKit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriter\Cloudinary;
+use ImageKit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriter\Imgix;
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Responses\Accounts\URLEndpoints\URLEndpointNewResponse\URLRewriter;
-use ImageKit\Responses\Accounts\URLEndpoints\URLEndpointNewResponse\URLRewriter\Akamai;
-use ImageKit\Responses\Accounts\URLEndpoints\URLEndpointNewResponse\URLRewriter\Cloudinary;
-use ImageKit\Responses\Accounts\URLEndpoints\URLEndpointNewResponse\URLRewriter\Imgix;
 
 /**
  * URL‑endpoint object as returned by the API.
  */
-final class URLEndpointNewResponse implements BaseModel
+final class URLEndpointResponse implements BaseModel
 {
     use SdkModel;
 
@@ -52,11 +52,11 @@ final class URLEndpointNewResponse implements BaseModel
     public Cloudinary|Imgix|Akamai|null $urlRewriter;
 
     /**
-     * `new URLEndpointNewResponse()` is missing required properties by the API.
+     * `new URLEndpointResponse()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * URLEndpointNewResponse::with(
+     * URLEndpointResponse::with(
      *   id: ..., description: ..., origins: ..., urlPrefix: ...
      * )
      * ```
@@ -64,7 +64,7 @@ final class URLEndpointNewResponse implements BaseModel
      * Otherwise ensure the following setters are called
      *
      * ```
-     * (new URLEndpointNewResponse)
+     * (new URLEndpointResponse)
      *   ->withID(...)
      *   ->withDescription(...)
      *   ->withOrigins(...)

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Responses\Accounts\URLEndpoints\URLEndpointUpdateResponse;
+namespace ImageKit\Accounts\URLEndpoints\URLEndpointResponse;
 
+use ImageKit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriter\Akamai;
+use ImageKit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriter\Cloudinary;
+use ImageKit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriter\Imgix;
 use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
-use ImageKit\Responses\Accounts\URLEndpoints\URLEndpointUpdateResponse\URLRewriter\Akamai;
-use ImageKit\Responses\Accounts\URLEndpoints\URLEndpointUpdateResponse\URLRewriter\Cloudinary;
-use ImageKit\Responses\Accounts\URLEndpoints\URLEndpointUpdateResponse\URLRewriter\Imgix;
 
 /**
  * Configuration for third-party URL rewriting.

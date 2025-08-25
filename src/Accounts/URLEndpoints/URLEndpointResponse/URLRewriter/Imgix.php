@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Responses\Accounts\URLEndpoints\URLEndpointGetResponse\URLRewriter;
+namespace ImageKit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriter;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
-final class Akamai implements BaseModel
+final class Imgix implements BaseModel
 {
     use SdkModel;
 
     #[Api]
-    public string $type = 'AKAMAI';
+    public string $type = 'IMGIX';
 
     public function __construct()
     {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Responses\Accounts\URLEndpoints\URLEndpointUpdateResponse\URLRewriter;
+namespace ImageKit\Accounts\URLEndpoints\URLEndpointRequest\URLRewriter;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
@@ -18,23 +18,9 @@ final class Cloudinary implements BaseModel
     /**
      * Whether to preserve `<asset_type>/<delivery_type>` in the rewritten URL.
      */
-    #[Api]
-    public bool $preserveAssetDeliveryTypes;
+    #[Api(optional: true)]
+    public ?bool $preserveAssetDeliveryTypes;
 
-    /**
-     * `new Cloudinary()` is missing required properties by the API.
-     *
-     * To enforce required parameters use
-     * ```
-     * Cloudinary::with(preserveAssetDeliveryTypes: ...)
-     * ```
-     *
-     * Otherwise ensure the following setters are called
-     *
-     * ```
-     * (new Cloudinary)->withPreserveAssetDeliveryTypes(...)
-     * ```
-     */
     public function __construct()
     {
         self::introspect();
@@ -46,11 +32,11 @@ final class Cloudinary implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function with(bool $preserveAssetDeliveryTypes = false): self
+    public static function with(?bool $preserveAssetDeliveryTypes = null): self
     {
         $obj = new self;
 
-        $obj->preserveAssetDeliveryTypes = $preserveAssetDeliveryTypes;
+        null !== $preserveAssetDeliveryTypes && $obj->preserveAssetDeliveryTypes = $preserveAssetDeliveryTypes;
 
         return $obj;
     }

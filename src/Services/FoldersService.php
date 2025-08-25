@@ -8,12 +8,12 @@ use ImageKit\Client;
 use ImageKit\Contracts\FoldersContract;
 use ImageKit\Core\Conversion;
 use ImageKit\Core\Util;
-use ImageKit\Folders\AsyncBulkJobResponse;
 use ImageKit\Folders\FolderCopyParams;
 use ImageKit\Folders\FolderCreateParams;
 use ImageKit\Folders\FolderDeleteParams;
 use ImageKit\Folders\FolderMoveParams;
 use ImageKit\Folders\FolderRenameParams;
+use ImageKit\Folders\JobResponse;
 use ImageKit\RequestOptions;
 use ImageKit\Responses\Folders\FolderDeleteResponse;
 use ImageKit\Responses\Folders\FolderNewResponse;
@@ -98,7 +98,7 @@ final class FoldersService implements FoldersContract
         $sourceFolderPath,
         $includeVersions = null,
         ?RequestOptions $requestOptions = null,
-    ): AsyncBulkJobResponse {
+    ): JobResponse {
         $args = [
             'destinationPath' => $destinationPath,
             'sourceFolderPath' => $sourceFolderPath,
@@ -117,7 +117,7 @@ final class FoldersService implements FoldersContract
         );
 
         // @phpstan-ignore-next-line;
-        return Conversion::coerce(AsyncBulkJobResponse::class, value: $resp);
+        return Conversion::coerce(JobResponse::class, value: $resp);
     }
 
     /**
@@ -130,7 +130,7 @@ final class FoldersService implements FoldersContract
         $destinationPath,
         $sourceFolderPath,
         ?RequestOptions $requestOptions = null
-    ): AsyncBulkJobResponse {
+    ): JobResponse {
         $args = [
             'destinationPath' => $destinationPath,
             'sourceFolderPath' => $sourceFolderPath,
@@ -147,7 +147,7 @@ final class FoldersService implements FoldersContract
         );
 
         // @phpstan-ignore-next-line;
-        return Conversion::coerce(AsyncBulkJobResponse::class, value: $resp);
+        return Conversion::coerce(JobResponse::class, value: $resp);
     }
 
     /**
@@ -170,7 +170,7 @@ final class FoldersService implements FoldersContract
         $newFolderName,
         $purgeCache = null,
         ?RequestOptions $requestOptions = null,
-    ): AsyncBulkJobResponse {
+    ): JobResponse {
         $args = [
             'folderPath' => $folderPath,
             'newFolderName' => $newFolderName,
@@ -189,6 +189,6 @@ final class FoldersService implements FoldersContract
         );
 
         // @phpstan-ignore-next-line;
-        return Conversion::coerce(AsyncBulkJobResponse::class, value: $resp);
+        return Conversion::coerce(JobResponse::class, value: $resp);
     }
 }

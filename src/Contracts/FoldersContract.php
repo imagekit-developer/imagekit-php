@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace ImageKit\Contracts;
 
-use ImageKit\Folders\AsyncBulkJobResponse;
+use ImageKit\Folders\JobResponse;
 use ImageKit\RequestOptions;
 use ImageKit\Responses\Folders\FolderDeleteResponse;
 use ImageKit\Responses\Folders\FolderNewResponse;
@@ -43,7 +43,7 @@ interface FoldersContract
         $sourceFolderPath,
         $includeVersions = null,
         ?RequestOptions $requestOptions = null,
-    ): AsyncBulkJobResponse;
+    ): JobResponse;
 
     /**
      * @param string $destinationPath full path to the destination folder where you want to move the source folder into
@@ -53,7 +53,7 @@ interface FoldersContract
         $destinationPath,
         $sourceFolderPath,
         ?RequestOptions $requestOptions = null,
-    ): AsyncBulkJobResponse;
+    ): JobResponse;
 
     /**
      * @param string $folderPath the full path to the folder you want to rename
@@ -73,5 +73,5 @@ interface FoldersContract
         $newFolderName,
         $purgeCache = null,
         ?RequestOptions $requestOptions = null,
-    ): AsyncBulkJobResponse;
+    ): JobResponse;
 }

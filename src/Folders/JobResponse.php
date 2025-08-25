@@ -11,7 +11,7 @@ use ImageKit\Core\Contracts\BaseModel;
 /**
  * Job submitted successfully. A `jobId` will be returned.
  */
-final class AsyncBulkJobResponse implements BaseModel
+final class JobResponse implements BaseModel
 {
     use SdkModel;
 
@@ -22,17 +22,17 @@ final class AsyncBulkJobResponse implements BaseModel
     public string $jobID;
 
     /**
-     * `new AsyncBulkJobResponse()` is missing required properties by the API.
+     * `new JobResponse()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * AsyncBulkJobResponse::with(jobID: ...)
+     * JobResponse::with(jobID: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
      *
      * ```
-     * (new AsyncBulkJobResponse)->withJobID(...)
+     * (new JobResponse)->withJobID(...)
      * ```
      */
     public function __construct()

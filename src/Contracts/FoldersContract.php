@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace ImageKit\Contracts;
 
-use ImageKit\Folders\JobResponse;
 use ImageKit\RequestOptions;
+use ImageKit\Responses\Folders\FolderCopyResponse;
 use ImageKit\Responses\Folders\FolderDeleteResponse;
+use ImageKit\Responses\Folders\FolderMoveResponse;
 use ImageKit\Responses\Folders\FolderNewResponse;
+use ImageKit\Responses\Folders\FolderRenameResponse;
 
 interface FoldersContract
 {
@@ -43,7 +45,7 @@ interface FoldersContract
         $sourceFolderPath,
         $includeVersions = null,
         ?RequestOptions $requestOptions = null,
-    ): JobResponse;
+    ): FolderCopyResponse;
 
     /**
      * @param string $destinationPath full path to the destination folder where you want to move the source folder into
@@ -53,7 +55,7 @@ interface FoldersContract
         $destinationPath,
         $sourceFolderPath,
         ?RequestOptions $requestOptions = null,
-    ): JobResponse;
+    ): FolderMoveResponse;
 
     /**
      * @param string $folderPath the full path to the folder you want to rename
@@ -73,5 +75,5 @@ interface FoldersContract
         $newFolderName,
         $purgeCache = null,
         ?RequestOptions $requestOptions = null,
-    ): JobResponse;
+    ): FolderRenameResponse;
 }

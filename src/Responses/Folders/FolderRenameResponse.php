@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Folders;
+namespace ImageKit\Responses\Folders;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
@@ -11,7 +11,7 @@ use ImageKit\Core\Contracts\BaseModel;
 /**
  * Job submitted successfully. A `jobId` will be returned.
  */
-final class JobResponse implements BaseModel
+final class FolderRenameResponse implements BaseModel
 {
     use SdkModel;
 
@@ -22,17 +22,17 @@ final class JobResponse implements BaseModel
     public string $jobID;
 
     /**
-     * `new JobResponse()` is missing required properties by the API.
+     * `new FolderRenameResponse()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * JobResponse::with(jobID: ...)
+     * FolderRenameResponse::with(jobID: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
      *
      * ```
-     * (new JobResponse)->withJobID(...)
+     * (new FolderRenameResponse)->withJobID(...)
      * ```
      */
     public function __construct()

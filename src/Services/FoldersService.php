@@ -13,10 +13,12 @@ use ImageKit\Folders\FolderCreateParams;
 use ImageKit\Folders\FolderDeleteParams;
 use ImageKit\Folders\FolderMoveParams;
 use ImageKit\Folders\FolderRenameParams;
-use ImageKit\Folders\JobResponse;
 use ImageKit\RequestOptions;
+use ImageKit\Responses\Folders\FolderCopyResponse;
 use ImageKit\Responses\Folders\FolderDeleteResponse;
+use ImageKit\Responses\Folders\FolderMoveResponse;
 use ImageKit\Responses\Folders\FolderNewResponse;
+use ImageKit\Responses\Folders\FolderRenameResponse;
 use ImageKit\Services\Folders\JobService;
 
 final class FoldersService implements FoldersContract
@@ -98,7 +100,7 @@ final class FoldersService implements FoldersContract
         $sourceFolderPath,
         $includeVersions = null,
         ?RequestOptions $requestOptions = null,
-    ): JobResponse {
+    ): FolderCopyResponse {
         $args = [
             'destinationPath' => $destinationPath,
             'sourceFolderPath' => $sourceFolderPath,
@@ -117,7 +119,7 @@ final class FoldersService implements FoldersContract
         );
 
         // @phpstan-ignore-next-line;
-        return Conversion::coerce(JobResponse::class, value: $resp);
+        return Conversion::coerce(FolderCopyResponse::class, value: $resp);
     }
 
     /**
@@ -130,7 +132,7 @@ final class FoldersService implements FoldersContract
         $destinationPath,
         $sourceFolderPath,
         ?RequestOptions $requestOptions = null
-    ): JobResponse {
+    ): FolderMoveResponse {
         $args = [
             'destinationPath' => $destinationPath,
             'sourceFolderPath' => $sourceFolderPath,
@@ -147,7 +149,7 @@ final class FoldersService implements FoldersContract
         );
 
         // @phpstan-ignore-next-line;
-        return Conversion::coerce(JobResponse::class, value: $resp);
+        return Conversion::coerce(FolderMoveResponse::class, value: $resp);
     }
 
     /**
@@ -170,7 +172,7 @@ final class FoldersService implements FoldersContract
         $newFolderName,
         $purgeCache = null,
         ?RequestOptions $requestOptions = null,
-    ): JobResponse {
+    ): FolderRenameResponse {
         $args = [
             'folderPath' => $folderPath,
             'newFolderName' => $newFolderName,
@@ -189,6 +191,6 @@ final class FoldersService implements FoldersContract
         );
 
         // @phpstan-ignore-next-line;
-        return Conversion::coerce(JobResponse::class, value: $resp);
+        return Conversion::coerce(FolderRenameResponse::class, value: $resp);
     }
 }

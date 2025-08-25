@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Responses\Accounts\Origins\OriginNewResponse;
+namespace ImageKit\Accounts\Origins\OriginResponse;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;

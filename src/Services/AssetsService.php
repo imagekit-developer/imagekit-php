@@ -13,10 +13,10 @@ use ImageKit\Contracts\AssetsContract;
 use ImageKit\Core\Conversion;
 use ImageKit\Core\Conversion\ListOf;
 use ImageKit\Core\Util;
-use ImageKit\Files\File;
-use ImageKit\Files\Folder;
 use ImageKit\RequestOptions;
 use ImageKit\Responses\Assets\AssetListResponseItem;
+use ImageKit\Shared\File;
+use ImageKit\Shared\Folder;
 
 final class AssetsService implements AssetsContract
 {

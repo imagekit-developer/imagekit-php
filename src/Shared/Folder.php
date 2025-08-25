@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files;
+namespace ImageKit\Shared;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Files\Folder\Type;
+use ImageKit\Shared\Folder\Type;
 
 final class Folder implements BaseModel
 {

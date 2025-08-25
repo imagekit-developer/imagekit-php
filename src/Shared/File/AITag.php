@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files\File;
+namespace ImageKit\Shared\File;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;

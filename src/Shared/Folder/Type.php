@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files\Folder;
+namespace ImageKit\Shared\Folder;
 
 use ImageKit\Core\Concerns\SdkEnum;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;

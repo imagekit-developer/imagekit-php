@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Responses\Assets\AssetListResponseItem;
+namespace ImageKit\Files;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Responses\Assets\AssetListResponseItem\Folder\Type;
+use ImageKit\Files\Folder\Type;
 
 final class Folder implements BaseModel
 {

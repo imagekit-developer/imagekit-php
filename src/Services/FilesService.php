@@ -8,6 +8,7 @@ use ImageKit\Client;
 use ImageKit\Contracts\FilesContract;
 use ImageKit\Core\Conversion;
 use ImageKit\Core\Util;
+use ImageKit\Files\File;
 use ImageKit\Files\FileCopyParams;
 use ImageKit\Files\FileMoveParams;
 use ImageKit\Files\FileRenameParams;
@@ -22,7 +23,6 @@ use ImageKit\Files\FileUploadParams\ResponseField;
 use ImageKit\Files\FileUploadParams\Transformation;
 use ImageKit\RequestOptions;
 use ImageKit\Responses\Files\FileCopyResponse;
-use ImageKit\Responses\Files\FileGetResponse;
 use ImageKit\Responses\Files\FileMoveResponse;
 use ImageKit\Responses\Files\FileRenameResponse;
 use ImageKit\Responses\Files\FileUpdateResponse;
@@ -128,7 +128,7 @@ final class FilesService implements FilesContract
     public function get(
         string $fileID,
         ?RequestOptions $requestOptions = null
-    ): FileGetResponse {
+    ): File {
         $resp = $this->client->request(
             method: 'get',
             path: ['v1/files/%1$s/details', $fileID],
@@ -136,7 +136,7 @@ final class FilesService implements FilesContract
         );
 
         // @phpstan-ignore-next-line;
-        return Conversion::coerce(FileGetResponse::class, value: $resp);
+        return Conversion::coerce(File::class, value: $resp);
     }
 
     /**

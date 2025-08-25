@@ -7,8 +7,8 @@ namespace ImageKit\Responses\Assets;
 use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
-use ImageKit\Responses\Assets\AssetListResponseItem\FileDetails;
-use ImageKit\Responses\Assets\AssetListResponseItem\Folder;
+use ImageKit\Files\File;
+use ImageKit\Files\Folder;
 
 /**
  * Object containing details of a file or file version.
@@ -28,6 +28,6 @@ final class AssetListResponseItem implements ConverterSource
      */
     public static function variants(): array
     {
-        return [FileDetails::class, 'folder' => Folder::class];
+        return [File::class, 'folder' => Folder::class];
     }
 }

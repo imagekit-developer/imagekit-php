@@ -7,9 +7,9 @@ namespace ImageKit\Contracts;
 use ImageKit\Assets\AssetListParams\FileType;
 use ImageKit\Assets\AssetListParams\Sort;
 use ImageKit\Assets\AssetListParams\Type;
+use ImageKit\Files\File;
+use ImageKit\Files\Folder;
 use ImageKit\RequestOptions;
-use ImageKit\Responses\Assets\AssetListResponseItem\FileDetails;
-use ImageKit\Responses\Assets\AssetListResponseItem\Folder;
 
 interface AssetsContract
 {
@@ -42,7 +42,7 @@ interface AssetsContract
      * - `folder` — returns only folders
      * - `all` — returns both files and folders (excludes `file-version`)
      *
-     * @return list<FileDetails|Folder>
+     * @return list<File|Folder>
      */
     public function list(
         $fileType = null,

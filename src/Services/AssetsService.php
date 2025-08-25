@@ -13,10 +13,10 @@ use ImageKit\Contracts\AssetsContract;
 use ImageKit\Core\Conversion;
 use ImageKit\Core\Conversion\ListOf;
 use ImageKit\Core\Util;
+use ImageKit\Files\File;
+use ImageKit\Files\Folder;
 use ImageKit\RequestOptions;
 use ImageKit\Responses\Assets\AssetListResponseItem;
-use ImageKit\Responses\Assets\AssetListResponseItem\FileDetails;
-use ImageKit\Responses\Assets\AssetListResponseItem\Folder;
 
 final class AssetsService implements AssetsContract
 {
@@ -53,7 +53,7 @@ final class AssetsService implements AssetsContract
      * - `folder` — returns only folders
      * - `all` — returns both files and folders (excludes `file-version`)
      *
-     * @return list<FileDetails|Folder>
+     * @return list<File|Folder>
      */
     public function list(
         $fileType = null,

@@ -4,16 +4,14 @@ declare(strict_types=1);
 
 namespace ImageKit\Contracts\Files;
 
+use ImageKit\Files\File;
 use ImageKit\RequestOptions;
 use ImageKit\Responses\Files\Versions\VersionDeleteResponse;
-use ImageKit\Responses\Files\Versions\VersionGetResponse;
-use ImageKit\Responses\Files\Versions\VersionListResponseItem;
-use ImageKit\Responses\Files\Versions\VersionRestoreResponse;
 
 interface VersionsContract
 {
     /**
-     * @return list<VersionListResponseItem>
+     * @return list<File>
      */
     public function list(
         string $fileID,
@@ -36,7 +34,7 @@ interface VersionsContract
         string $versionID,
         $fileID,
         ?RequestOptions $requestOptions = null
-    ): VersionGetResponse;
+    ): File;
 
     /**
      * @param string $fileID
@@ -45,5 +43,5 @@ interface VersionsContract
         string $versionID,
         $fileID,
         ?RequestOptions $requestOptions = null
-    ): VersionRestoreResponse;
+    ): File;
 }

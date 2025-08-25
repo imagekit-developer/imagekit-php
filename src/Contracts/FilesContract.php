@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ImageKit\Contracts;
 
+use ImageKit\Files\File;
 use ImageKit\Files\FileUpdateParams\Update\ChangePublicationStatus;
 use ImageKit\Files\FileUpdateParams\Update\UpdateFileDetails;
 use ImageKit\Files\FileUploadParams\Extension\AIAutoDescription;
@@ -13,7 +14,6 @@ use ImageKit\Files\FileUploadParams\ResponseField;
 use ImageKit\Files\FileUploadParams\Transformation;
 use ImageKit\RequestOptions;
 use ImageKit\Responses\Files\FileCopyResponse;
-use ImageKit\Responses\Files\FileGetResponse;
 use ImageKit\Responses\Files\FileMoveResponse;
 use ImageKit\Responses\Files\FileRenameResponse;
 use ImageKit\Responses\Files\FileUpdateResponse;
@@ -50,7 +50,7 @@ interface FilesContract
     public function get(
         string $fileID,
         ?RequestOptions $requestOptions = null
-    ): FileGetResponse;
+    ): File;
 
     /**
      * @param string $destinationPath full path to the folder you want to move the above file into

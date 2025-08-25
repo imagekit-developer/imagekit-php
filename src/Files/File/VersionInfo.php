@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Responses\Files\FileUpdateResponse;
+namespace ImageKit\Files\File;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;

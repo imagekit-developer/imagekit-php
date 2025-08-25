@@ -8,14 +8,12 @@ use ImageKit\Client;
 use ImageKit\Contracts\Files\VersionsContract;
 use ImageKit\Core\Conversion;
 use ImageKit\Core\Conversion\ListOf;
+use ImageKit\Files\File;
 use ImageKit\Files\Versions\VersionDeleteParams;
 use ImageKit\Files\Versions\VersionGetParams;
 use ImageKit\Files\Versions\VersionRestoreParams;
 use ImageKit\RequestOptions;
 use ImageKit\Responses\Files\Versions\VersionDeleteResponse;
-use ImageKit\Responses\Files\Versions\VersionGetResponse;
-use ImageKit\Responses\Files\Versions\VersionListResponseItem;
-use ImageKit\Responses\Files\Versions\VersionRestoreResponse;
 
 final class VersionsService implements VersionsContract
 {
@@ -24,7 +22,7 @@ final class VersionsService implements VersionsContract
     /**
      * This API returns details of all versions of a file.
      *
-     * @return list<VersionListResponseItem>
+     * @return list<File>
      */
     public function list(
         string $fileID,
@@ -37,10 +35,7 @@ final class VersionsService implements VersionsContract
         );
 
         // @phpstan-ignore-next-line;
-        return Conversion::coerce(
-            new ListOf(VersionListResponseItem::class),
-            value: $resp
-        );
+        return Conversion::coerce(new ListOf(File::class), value: $resp);
     }
 
     /**
@@ -81,7 +76,7 @@ final class VersionsService implements VersionsContract
         string $versionID,
         $fileID,
         ?RequestOptions $requestOptions = null
-    ): VersionGetResponse {
+    ): File {
         $args = ['fileID' => $fileID];
         [$parsed, $options] = VersionGetParams::parseRequest(
             $args,
@@ -96,7 +91,7 @@ final class VersionsService implements VersionsContract
         );
 
         // @phpstan-ignore-next-line;
-        return Conversion::coerce(VersionGetResponse::class, value: $resp);
+        return Conversion::coerce(File::class, value: $resp);
     }
 
     /**
@@ -108,7 +103,7 @@ final class VersionsService implements VersionsContract
         string $versionID,
         $fileID,
         ?RequestOptions $requestOptions = null
-    ): VersionRestoreResponse {
+    ): File {
         $args = ['fileID' => $fileID];
         [$parsed, $options] = VersionRestoreParams::parseRequest(
             $args,
@@ -123,6 +118,6 @@ final class VersionsService implements VersionsContract
         );
 
         // @phpstan-ignore-next-line;
-        return Conversion::coerce(VersionRestoreResponse::class, value: $resp);
+        return Conversion::coerce(File::class, value: $resp);
     }
 }

@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Responses\Files\Versions;
+namespace ImageKit\Files;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Responses\Files\Versions\VersionGetResponse\AITag;
-use ImageKit\Responses\Files\Versions\VersionGetResponse\Type;
-use ImageKit\Responses\Files\Versions\VersionGetResponse\VersionInfo;
+use ImageKit\Files\File\AITag;
+use ImageKit\Files\File\Type;
+use ImageKit\Files\File\VersionInfo;
 
 /**
  * Object containing details of a file or file version.
  */
-final class VersionGetResponse implements BaseModel
+final class File implements BaseModel
 {
     use SdkModel;
 

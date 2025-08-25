@@ -9,6 +9,7 @@ use ImageKit\Contracts\CustomMetadataFieldsContract;
 use ImageKit\Core\Conversion;
 use ImageKit\Core\Conversion\ListOf;
 use ImageKit\Core\Util;
+use ImageKit\CustomMetadataFields\CustomMetadataField;
 use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams;
 use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema;
 use ImageKit\CustomMetadataFields\CustomMetadataFieldListParams;
@@ -16,9 +17,6 @@ use ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams;
 use ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema as Schema1;
 use ImageKit\RequestOptions;
 use ImageKit\Responses\CustomMetadataFields\CustomMetadataFieldDeleteResponse;
-use ImageKit\Responses\CustomMetadataFields\CustomMetadataFieldListResponseItem;
-use ImageKit\Responses\CustomMetadataFields\CustomMetadataFieldNewResponse;
-use ImageKit\Responses\CustomMetadataFields\CustomMetadataFieldUpdateResponse;
 
 final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
 {
@@ -36,7 +34,7 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
         $name,
         $schema,
         ?RequestOptions $requestOptions = null
-    ): CustomMetadataFieldNewResponse {
+    ): CustomMetadataField {
         $args = ['label' => $label, 'name' => $name, 'schema' => $schema];
         [$parsed, $options] = CustomMetadataFieldCreateParams::parseRequest(
             $args,
@@ -50,10 +48,7 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
         );
 
         // @phpstan-ignore-next-line;
-        return Conversion::coerce(
-            CustomMetadataFieldNewResponse::class,
-            value: $resp
-        );
+        return Conversion::coerce(CustomMetadataField::class, value: $resp);
     }
 
     /**
@@ -67,7 +62,7 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
         $label = null,
         $schema = null,
         ?RequestOptions $requestOptions = null,
-    ): CustomMetadataFieldUpdateResponse {
+    ): CustomMetadataField {
         $args = ['label' => $label, 'schema' => $schema];
         $args = Util::array_filter_null($args, ['label', 'schema']);
         [$parsed, $options] = CustomMetadataFieldUpdateParams::parseRequest(
@@ -82,10 +77,7 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
         );
 
         // @phpstan-ignore-next-line;
-        return Conversion::coerce(
-            CustomMetadataFieldUpdateResponse::class,
-            value: $resp
-        );
+        return Conversion::coerce(CustomMetadataField::class, value: $resp);
     }
 
     /**
@@ -93,7 +85,7 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
      *
      * @param bool $includeDeleted set it to `true` to include deleted field objects in the API response
      *
-     * @return list<CustomMetadataFieldListResponseItem>
+     * @return list<CustomMetadataField>
      */
     public function list(
         $includeDeleted = null,
@@ -114,7 +106,7 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
 
         // @phpstan-ignore-next-line;
         return Conversion::coerce(
-            new ListOf(CustomMetadataFieldListResponseItem::class),
+            new ListOf(CustomMetadataField::class),
             value: $resp
         );
     }

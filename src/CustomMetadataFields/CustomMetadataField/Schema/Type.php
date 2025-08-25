@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Responses\CustomMetadataFields\CustomMetadataFieldListResponseItem\Schema;
+namespace ImageKit\CustomMetadataFields\CustomMetadataField\Schema;
 
 use ImageKit\Core\Concerns\SdkEnum;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;

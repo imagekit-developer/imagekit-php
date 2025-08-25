@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Responses\CustomMetadataFields\CustomMetadataFieldListResponseItem\Schema;
+namespace ImageKit\CustomMetadataFields\CustomMetadataField\Schema;
 
 use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 use ImageKit\Core\Conversion\ListOf;
-use ImageKit\Responses\CustomMetadataFields\CustomMetadataFieldListResponseItem\Schema\DefaultValue\Mixed;
+use ImageKit\CustomMetadataFields\CustomMetadataField\Schema\DefaultValue\Mixed;
 
 /**
  * The default value for this custom metadata field. Date type of default value depends on the field type.

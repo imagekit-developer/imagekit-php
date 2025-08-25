@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Responses\CustomMetadataFields\CustomMetadataFieldListResponseItem;
+namespace ImageKit\CustomMetadataFields\CustomMetadataField;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Responses\CustomMetadataFields\CustomMetadataFieldListResponseItem\Schema\DefaultValue;
-use ImageKit\Responses\CustomMetadataFields\CustomMetadataFieldListResponseItem\Schema\SelectOption;
-use ImageKit\Responses\CustomMetadataFields\CustomMetadataFieldListResponseItem\Schema\Type;
+use ImageKit\CustomMetadataFields\CustomMetadataField\Schema\DefaultValue;
+use ImageKit\CustomMetadataFields\CustomMetadataField\Schema\SelectOption;
+use ImageKit\CustomMetadataFields\CustomMetadataField\Schema\Type;
 
 /**
  * An object that describes the rules for the custom metadata field value.

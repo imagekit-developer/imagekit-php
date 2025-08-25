@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Responses\CustomMetadataFields;
+namespace ImageKit\CustomMetadataFields;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Responses\CustomMetadataFields\CustomMetadataFieldUpdateResponse\Schema;
+use ImageKit\CustomMetadataFields\CustomMetadataField\Schema;
 
 /**
  * Object containing details of a custom metadata field.
  */
-final class CustomMetadataFieldUpdateResponse implements BaseModel
+final class CustomMetadataField implements BaseModel
 {
     use SdkModel;
 
@@ -41,19 +41,17 @@ final class CustomMetadataFieldUpdateResponse implements BaseModel
     public Schema $schema;
 
     /**
-     * `new CustomMetadataFieldUpdateResponse()` is missing required properties by the API.
+     * `new CustomMetadataField()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * CustomMetadataFieldUpdateResponse::with(
-     *   id: ..., label: ..., name: ..., schema: ...
-     * )
+     * CustomMetadataField::with(id: ..., label: ..., name: ..., schema: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
      *
      * ```
-     * (new CustomMetadataFieldUpdateResponse)
+     * (new CustomMetadataField)
      *   ->withID(...)
      *   ->withLabel(...)
      *   ->withName(...)

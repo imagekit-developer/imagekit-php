@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace ImageKit\Contracts;
 
+use ImageKit\CustomMetadataFields\CustomMetadataField;
 use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema;
 use ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema as Schema1;
 use ImageKit\RequestOptions;
 use ImageKit\Responses\CustomMetadataFields\CustomMetadataFieldDeleteResponse;
-use ImageKit\Responses\CustomMetadataFields\CustomMetadataFieldListResponseItem;
-use ImageKit\Responses\CustomMetadataFields\CustomMetadataFieldNewResponse;
-use ImageKit\Responses\CustomMetadataFields\CustomMetadataFieldUpdateResponse;
 
 interface CustomMetadataFieldsContract
 {
@@ -24,7 +22,7 @@ interface CustomMetadataFieldsContract
         $name,
         $schema,
         ?RequestOptions $requestOptions = null
-    ): CustomMetadataFieldNewResponse;
+    ): CustomMetadataField;
 
     /**
      * @param string $label Human readable name of the custom metadata field. This should be unique across all non deleted custom metadata fields. This name is displayed as form field label to the users while setting field value on an asset in the media library UI. This parameter is required if `schema` is not provided.
@@ -35,12 +33,12 @@ interface CustomMetadataFieldsContract
         $label = null,
         $schema = null,
         ?RequestOptions $requestOptions = null,
-    ): CustomMetadataFieldUpdateResponse;
+    ): CustomMetadataField;
 
     /**
      * @param bool $includeDeleted set it to `true` to include deleted field objects in the API response
      *
-     * @return list<CustomMetadataFieldListResponseItem>
+     * @return list<CustomMetadataField>
      */
     public function list(
         $includeDeleted = null,

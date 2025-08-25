@@ -2,7 +2,8 @@
 
 namespace Tests\Resources\Accounts;
 
-use ImageKit\Accounts\Origins\Origin\S3;
+use ImageKit\Accounts\Origins\OriginCreateParams\Origin\S3;
+use ImageKit\Accounts\Origins\OriginUpdateParams\Origin\S3 as S31;
 use ImageKit\Client;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
@@ -81,7 +82,7 @@ final class OriginsTest extends TestCase
 
         $result = $this->client->accounts->origins->update(
             'id',
-            S3::with(
+            S31::with(
                 accessKey: 'AKIATEST123',
                 bucket: 'test-bucket',
                 name: 'My S3 Origin',
@@ -101,7 +102,7 @@ final class OriginsTest extends TestCase
 
         $result = $this->client->accounts->origins->update(
             'id',
-            S3::with(
+            S31::with(
                 accessKey: 'AKIATEST123',
                 bucket: 'test-bucket',
                 name: 'My S3 Origin',

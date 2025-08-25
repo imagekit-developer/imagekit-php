@@ -7,6 +7,8 @@ namespace ImageKit\Responses\Folders\Job;
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Responses\Folders\Job\JobGetResponse\Status;
+use ImageKit\Responses\Folders\Job\JobGetResponse\Type;
 
 final class JobGetResponse implements BaseModel
 {
@@ -25,15 +27,19 @@ final class JobGetResponse implements BaseModel
     public ?string $purgeRequestID;
 
     /**
-     * Status of the bulk job. Possible values - `Pending`, `Completed`.
+     * Status of the bulk job.
+     *
+     * @var Status::*|null $status
      */
-    #[Api(optional: true)]
+    #[Api(enum: Status::class, optional: true)]
     public ?string $status;
 
     /**
-     * Type of the bulk job. Possible values - `COPY_FOLDER`, `MOVE_FOLDER`, `RENAME_FOLDER`.
+     * Type of the bulk job.
+     *
+     * @var Type::*|null $type
      */
-    #[Api(optional: true)]
+    #[Api(enum: Type::class, optional: true)]
     public ?string $type;
 
     public function __construct()
@@ -46,6 +52,9 @@ final class JobGetResponse implements BaseModel
      * Construct an instance from the required parameters.
      *
      * You must use named parameters to construct any parameters with a default value.
+     *
+     * @param Status::* $status
+     * @param Type::* $type
      */
     public static function with(
         ?string $jobID = null,
@@ -86,7 +95,9 @@ final class JobGetResponse implements BaseModel
     }
 
     /**
-     * Status of the bulk job. Possible values - `Pending`, `Completed`.
+     * Status of the bulk job.
+     *
+     * @param Status::* $status
      */
     public function withStatus(string $status): self
     {
@@ -97,7 +108,9 @@ final class JobGetResponse implements BaseModel
     }
 
     /**
-     * Type of the bulk job. Possible values - `COPY_FOLDER`, `MOVE_FOLDER`, `RENAME_FOLDER`.
+     * Type of the bulk job.
+     *
+     * @param Type::* $type
      */
     public function withType(string $type): self
     {

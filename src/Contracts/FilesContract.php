@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace ImageKit\Contracts;
 
-use ImageKit\Assets\File;
+use ImageKit\Files\File;
 use ImageKit\Files\FileUpdateParams\Update\ChangePublicationStatus;
 use ImageKit\Files\FileUpdateParams\Update\UpdateFileDetails;
 use ImageKit\Files\FileUploadParams\Extension\AIAutoDescription;

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace ImageKit\Contracts\Files;
 
-use ImageKit\Assets\File;
+use ImageKit\Files\File;
 use ImageKit\RequestOptions;
 use ImageKit\Responses\Files\Versions\VersionDeleteResponse;
 

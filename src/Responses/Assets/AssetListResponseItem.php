@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace ImageKit\Responses\Assets;
 
-use ImageKit\Assets\File;
-use ImageKit\Assets\Folder;
 use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
+use ImageKit\Files\File;
+use ImageKit\Files\Folder;
 
 /**
  * Object containing details of a file or file version.

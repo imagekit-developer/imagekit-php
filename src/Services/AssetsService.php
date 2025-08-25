@@ -8,13 +8,13 @@ use ImageKit\Assets\AssetListParams;
 use ImageKit\Assets\AssetListParams\FileType;
 use ImageKit\Assets\AssetListParams\Sort;
 use ImageKit\Assets\AssetListParams\Type;
-use ImageKit\Assets\File;
-use ImageKit\Assets\Folder;
 use ImageKit\Client;
 use ImageKit\Contracts\AssetsContract;
 use ImageKit\Core\Conversion;
 use ImageKit\Core\Conversion\ListOf;
 use ImageKit\Core\Util;
+use ImageKit\Files\File;
+use ImageKit\Files\Folder;
 use ImageKit\RequestOptions;
 use ImageKit\Responses\Assets\AssetListResponseItem;
 

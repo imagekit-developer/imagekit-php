@@ -9,7 +9,7 @@ use ImageKit\Assets\AssetListParams\Sort;
 use ImageKit\Assets\AssetListParams\Type;
 use ImageKit\RequestOptions;
 use ImageKit\Responses\Assets\AssetListResponseItem\FileDetails;
-use ImageKit\Responses\Assets\AssetListResponseItem\FolderDetails;
+use ImageKit\Responses\Assets\AssetListResponseItem\Folder;
 
 interface AssetsContract
 {
@@ -42,7 +42,7 @@ interface AssetsContract
      * - `folder` — returns only folders
      * - `all` — returns both files and folders (excludes `file-version`)
      *
-     * @return list<FileDetails|FolderDetails>
+     * @return list<FileDetails|Folder>
      */
     public function list(
         $fileType = null,

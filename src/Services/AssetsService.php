@@ -16,7 +16,7 @@ use ImageKit\Core\Util;
 use ImageKit\RequestOptions;
 use ImageKit\Responses\Assets\AssetListResponseItem;
 use ImageKit\Responses\Assets\AssetListResponseItem\FileDetails;
-use ImageKit\Responses\Assets\AssetListResponseItem\FolderDetails;
+use ImageKit\Responses\Assets\AssetListResponseItem\Folder;
 
 final class AssetsService implements AssetsContract
 {
@@ -53,7 +53,7 @@ final class AssetsService implements AssetsContract
      * - `folder` — returns only folders
      * - `all` — returns both files and folders (excludes `file-version`)
      *
-     * @return list<FileDetails|FolderDetails>
+     * @return list<FileDetails|Folder>
      */
     public function list(
         $fileType = null,

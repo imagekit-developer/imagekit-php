@@ -7,9 +7,9 @@ namespace ImageKit\Responses\Assets\AssetListResponseItem;
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Responses\Assets\AssetListResponseItem\FolderDetails\Type;
+use ImageKit\Responses\Assets\AssetListResponseItem\Folder\Type;
 
-final class FolderDetails implements BaseModel
+final class Folder implements BaseModel
 {
     use SdkModel;
 
@@ -17,7 +17,7 @@ final class FolderDetails implements BaseModel
      * Date and time when the folder was created. The date and time is in ISO8601 format.
      */
     #[Api(optional: true)]
-    public ?string $createdAt;
+    public ?\DateTimeInterface $createdAt;
 
     /**
      * Unique identifier of the asset.
@@ -49,7 +49,7 @@ final class FolderDetails implements BaseModel
      * Date and time when the folder was last updated. The date and time is in ISO8601 format.
      */
     #[Api(optional: true)]
-    public ?string $updatedAt;
+    public ?\DateTimeInterface $updatedAt;
 
     public function __construct()
     {
@@ -65,12 +65,12 @@ final class FolderDetails implements BaseModel
      * @param Type::* $type
      */
     public static function with(
-        ?string $createdAt = null,
+        ?\DateTimeInterface $createdAt = null,
         ?string $folderID = null,
         ?string $folderPath = null,
         ?string $name = null,
         ?string $type = null,
-        ?string $updatedAt = null,
+        ?\DateTimeInterface $updatedAt = null,
     ): self {
         $obj = new self;
 
@@ -87,7 +87,7 @@ final class FolderDetails implements BaseModel
     /**
      * Date and time when the folder was created. The date and time is in ISO8601 format.
      */
-    public function withCreatedAt(string $createdAt): self
+    public function withCreatedAt(\DateTimeInterface $createdAt): self
     {
         $obj = clone $this;
         $obj->createdAt = $createdAt;
@@ -144,7 +144,7 @@ final class FolderDetails implements BaseModel
     /**
      * Date and time when the folder was last updated. The date and time is in ISO8601 format.
      */
-    public function withUpdatedAt(string $updatedAt): self
+    public function withUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $obj = clone $this;
         $obj->updatedAt = $updatedAt;

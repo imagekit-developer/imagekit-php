@@ -9,6 +9,7 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Responses\Files\FileUpdateResponse\AITag;
 use ImageKit\Responses\Files\FileUpdateResponse\ExtensionStatus;
+use ImageKit\Responses\Files\FileUpdateResponse\Type;
 use ImageKit\Responses\Files\FileUpdateResponse\VersionInfo;
 
 final class FileUpdateResponse implements BaseModel
@@ -27,7 +28,7 @@ final class FileUpdateResponse implements BaseModel
      * Date and time when the file was uploaded. The date and time is in ISO8601 format.
      */
     #[Api(optional: true)]
-    public ?string $createdAt;
+    public ?\DateTimeInterface $createdAt;
 
     /**
      * An string with custom coordinates of the file.
@@ -122,15 +123,17 @@ final class FileUpdateResponse implements BaseModel
 
     /**
      * Type of the asset.
+     *
+     * @var Type::*|null $type
      */
-    #[Api(optional: true)]
+    #[Api(enum: Type::class, optional: true)]
     public ?string $type;
 
     /**
      * Date and time when the file was last updated. The date and time is in ISO8601 format.
      */
     #[Api(optional: true)]
-    public ?string $updatedAt;
+    public ?\DateTimeInterface $updatedAt;
 
     /**
      * URL of the file.
@@ -164,10 +167,11 @@ final class FileUpdateResponse implements BaseModel
      * @param list<AITag>|null $aiTags
      * @param array<string, mixed> $customMetadata
      * @param list<string>|null $tags
+     * @param Type::* $type
      */
     public static function with(
         ?array $aiTags = null,
-        ?string $createdAt = null,
+        ?\DateTimeInterface $createdAt = null,
         ?string $customCoordinates = null,
         ?array $customMetadata = null,
         ?ExtensionStatus $extensionStatus = null,
@@ -184,7 +188,7 @@ final class FileUpdateResponse implements BaseModel
         ?array $tags = null,
         ?string $thumbnail = null,
         ?string $type = null,
-        ?string $updatedAt = null,
+        ?\DateTimeInterface $updatedAt = null,
         ?string $url = null,
         ?VersionInfo $versionInfo = null,
         ?float $width = null,
@@ -233,7 +237,7 @@ final class FileUpdateResponse implements BaseModel
     /**
      * Date and time when the file was uploaded. The date and time is in ISO8601 format.
      */
-    public function withCreatedAt(string $createdAt): self
+    public function withCreatedAt(\DateTimeInterface $createdAt): self
     {
         $obj = clone $this;
         $obj->createdAt = $createdAt;
@@ -409,6 +413,8 @@ final class FileUpdateResponse implements BaseModel
 
     /**
      * Type of the asset.
+     *
+     * @param Type::* $type
      */
     public function withType(string $type): self
     {
@@ -421,7 +427,7 @@ final class FileUpdateResponse implements BaseModel
     /**
      * Date and time when the file was last updated. The date and time is in ISO8601 format.
      */
-    public function withUpdatedAt(string $updatedAt): self
+    public function withUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $obj = clone $this;
         $obj->updatedAt = $updatedAt;

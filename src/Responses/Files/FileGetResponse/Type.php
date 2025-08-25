@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Responses\Assets\AssetListResponseItem\FolderDetails;
+namespace ImageKit\Responses\Files\FileGetResponse;
 
 use ImageKit\Core\Concerns\SdkEnum;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
@@ -14,5 +14,7 @@ final class Type implements ConverterSource
 {
     use SdkEnum;
 
-    public const FOLDER = 'folder';
+    public const FILE = 'file';
+
+    public const FILE_VERSION = 'file-version';
 }

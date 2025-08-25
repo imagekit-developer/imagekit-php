@@ -2,30 +2,24 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Accounts\Origins\OriginCreateParams\Origin;
+namespace ImageKit\Accounts\Origins\OriginRequest;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
-final class CloudinaryBackup implements BaseModel
+final class WebFolder implements BaseModel
 {
     use SdkModel;
 
     #[Api]
-    public string $type = 'CLOUDINARY_BACKUP';
+    public string $type = 'WEB_FOLDER';
 
     /**
-     * Access key for the bucket.
+     * Root URL for the web folder origin.
      */
-    #[Api]
-    public string $accessKey;
-
-    /**
-     * S3 bucket name.
-     */
-    #[Api]
-    public string $bucket;
+    #[Api('baseUrl')]
+    public string $baseURL;
 
     /**
      * Display name of the origin.
@@ -34,16 +28,16 @@ final class CloudinaryBackup implements BaseModel
     public string $name;
 
     /**
-     * Secret key for the bucket.
-     */
-    #[Api]
-    public string $secretKey;
-
-    /**
      * URL used in the Canonical header (if enabled).
      */
     #[Api('baseUrlForCanonicalHeader', optional: true)]
     public ?string $baseURLForCanonicalHeader;
+
+    /**
+     * Forward the Host header to origin?
+     */
+    #[Api(optional: true)]
+    public ?bool $forwardHostHeaderToOrigin;
 
     /**
      * Whether to send a Canonical header.
@@ -52,27 +46,17 @@ final class CloudinaryBackup implements BaseModel
     public ?bool $includeCanonicalHeader;
 
     /**
-     * Path prefix inside the bucket.
-     */
-    #[Api(optional: true)]
-    public ?string $prefix;
-
-    /**
-     * `new CloudinaryBackup()` is missing required properties by the API.
+     * `new WebFolder()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * CloudinaryBackup::with(accessKey: ..., bucket: ..., name: ..., secretKey: ...)
+     * WebFolder::with(baseURL: ..., name: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
      *
      * ```
-     * (new CloudinaryBackup)
-     *   ->withAccessKey(...)
-     *   ->withBucket(...)
-     *   ->withName(...)
-     *   ->withSecretKey(...)
+     * (new WebFolder)->withBaseURL(...)->withName(...)
      * ```
      */
     public function __construct()
@@ -87,46 +71,31 @@ final class CloudinaryBackup implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      */
     public static function with(
-        string $accessKey,
-        string $bucket,
+        string $baseURL,
         string $name,
-        string $secretKey,
         ?string $baseURLForCanonicalHeader = null,
+        ?bool $forwardHostHeaderToOrigin = null,
         ?bool $includeCanonicalHeader = null,
-        ?string $prefix = null,
     ): self {
         $obj = new self;
 
-        $obj->accessKey = $accessKey;
-        $obj->bucket = $bucket;
+        $obj->baseURL = $baseURL;
         $obj->name = $name;
-        $obj->secretKey = $secretKey;
 
         null !== $baseURLForCanonicalHeader && $obj->baseURLForCanonicalHeader = $baseURLForCanonicalHeader;
+        null !== $forwardHostHeaderToOrigin && $obj->forwardHostHeaderToOrigin = $forwardHostHeaderToOrigin;
         null !== $includeCanonicalHeader && $obj->includeCanonicalHeader = $includeCanonicalHeader;
-        null !== $prefix && $obj->prefix = $prefix;
 
         return $obj;
     }
 
     /**
-     * Access key for the bucket.
+     * Root URL for the web folder origin.
      */
-    public function withAccessKey(string $accessKey): self
+    public function withBaseURL(string $baseURL): self
     {
         $obj = clone $this;
-        $obj->accessKey = $accessKey;
-
-        return $obj;
-    }
-
-    /**
-     * S3 bucket name.
-     */
-    public function withBucket(string $bucket): self
-    {
-        $obj = clone $this;
-        $obj->bucket = $bucket;
+        $obj->baseURL = $baseURL;
 
         return $obj;
     }
@@ -138,17 +107,6 @@ final class CloudinaryBackup implements BaseModel
     {
         $obj = clone $this;
         $obj->name = $name;
-
-        return $obj;
-    }
-
-    /**
-     * Secret key for the bucket.
-     */
-    public function withSecretKey(string $secretKey): self
-    {
-        $obj = clone $this;
-        $obj->secretKey = $secretKey;
 
         return $obj;
     }
@@ -166,6 +124,18 @@ final class CloudinaryBackup implements BaseModel
     }
 
     /**
+     * Forward the Host header to origin?
+     */
+    public function withForwardHostHeaderToOrigin(
+        bool $forwardHostHeaderToOrigin
+    ): self {
+        $obj = clone $this;
+        $obj->forwardHostHeaderToOrigin = $forwardHostHeaderToOrigin;
+
+        return $obj;
+    }
+
+    /**
      * Whether to send a Canonical header.
      */
     public function withIncludeCanonicalHeader(
@@ -173,17 +143,6 @@ final class CloudinaryBackup implements BaseModel
     ): self {
         $obj = clone $this;
         $obj->includeCanonicalHeader = $includeCanonicalHeader;
-
-        return $obj;
-    }
-
-    /**
-     * Path prefix inside the bucket.
-     */
-    public function withPrefix(string $prefix): self
-    {
-        $obj = clone $this;
-        $obj->prefix = $prefix;
 
         return $obj;
     }

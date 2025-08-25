@@ -2,24 +2,24 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Accounts\Origins\OriginUpdateParams\Origin;
+namespace ImageKit\Accounts\Origins\OriginRequest;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
-final class Gcs implements BaseModel
+final class AzureBlob implements BaseModel
 {
     use SdkModel;
 
     #[Api]
-    public string $type = 'GCS';
+    public string $type = 'AZURE_BLOB';
 
     #[Api]
-    public string $bucket;
+    public string $accountName;
 
     #[Api]
-    public string $clientEmail;
+    public string $container;
 
     /**
      * Display name of the origin.
@@ -28,7 +28,7 @@ final class Gcs implements BaseModel
     public string $name;
 
     #[Api]
-    public string $privateKey;
+    public string $sasToken;
 
     /**
      * URL used in the Canonical header (if enabled).
@@ -46,21 +46,21 @@ final class Gcs implements BaseModel
     public ?string $prefix;
 
     /**
-     * `new Gcs()` is missing required properties by the API.
+     * `new AzureBlob()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * Gcs::with(bucket: ..., clientEmail: ..., name: ..., privateKey: ...)
+     * AzureBlob::with(accountName: ..., container: ..., name: ..., sasToken: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
      *
      * ```
-     * (new Gcs)
-     *   ->withBucket(...)
-     *   ->withClientEmail(...)
+     * (new AzureBlob)
+     *   ->withAccountName(...)
+     *   ->withContainer(...)
      *   ->withName(...)
-     *   ->withPrivateKey(...)
+     *   ->withSasToken(...)
      * ```
      */
     public function __construct()
@@ -75,20 +75,20 @@ final class Gcs implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      */
     public static function with(
-        string $bucket,
-        string $clientEmail,
+        string $accountName,
+        string $container,
         string $name,
-        string $privateKey,
+        string $sasToken,
         ?string $baseURLForCanonicalHeader = null,
         ?bool $includeCanonicalHeader = null,
         ?string $prefix = null,
     ): self {
         $obj = new self;
 
-        $obj->bucket = $bucket;
-        $obj->clientEmail = $clientEmail;
+        $obj->accountName = $accountName;
+        $obj->container = $container;
         $obj->name = $name;
-        $obj->privateKey = $privateKey;
+        $obj->sasToken = $sasToken;
 
         null !== $baseURLForCanonicalHeader && $obj->baseURLForCanonicalHeader = $baseURLForCanonicalHeader;
         null !== $includeCanonicalHeader && $obj->includeCanonicalHeader = $includeCanonicalHeader;
@@ -97,18 +97,18 @@ final class Gcs implements BaseModel
         return $obj;
     }
 
-    public function withBucket(string $bucket): self
+    public function withAccountName(string $accountName): self
     {
         $obj = clone $this;
-        $obj->bucket = $bucket;
+        $obj->accountName = $accountName;
 
         return $obj;
     }
 
-    public function withClientEmail(string $clientEmail): self
+    public function withContainer(string $container): self
     {
         $obj = clone $this;
-        $obj->clientEmail = $clientEmail;
+        $obj->container = $container;
 
         return $obj;
     }
@@ -124,10 +124,10 @@ final class Gcs implements BaseModel
         return $obj;
     }
 
-    public function withPrivateKey(string $privateKey): self
+    public function withSasToken(string $sasToken): self
     {
         $obj = clone $this;
-        $obj->privateKey = $privateKey;
+        $obj->sasToken = $sasToken;
 
         return $obj;
     }

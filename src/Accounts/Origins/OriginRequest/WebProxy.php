@@ -2,42 +2,24 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Accounts\Origins\OriginUpdateParams\Origin;
+namespace ImageKit\Accounts\Origins\OriginRequest;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
-final class S3 implements BaseModel
+final class WebProxy implements BaseModel
 {
     use SdkModel;
 
     #[Api]
-    public string $type = 'S3';
-
-    /**
-     * Access key for the bucket.
-     */
-    #[Api]
-    public string $accessKey;
-
-    /**
-     * S3 bucket name.
-     */
-    #[Api]
-    public string $bucket;
+    public string $type = 'WEB_PROXY';
 
     /**
      * Display name of the origin.
      */
     #[Api]
     public string $name;
-
-    /**
-     * Secret key for the bucket.
-     */
-    #[Api]
-    public string $secretKey;
 
     /**
      * URL used in the Canonical header (if enabled).
@@ -52,23 +34,17 @@ final class S3 implements BaseModel
     public ?bool $includeCanonicalHeader;
 
     /**
-     * Path prefix inside the bucket.
-     */
-    #[Api(optional: true)]
-    public ?string $prefix;
-
-    /**
-     * `new S3()` is missing required properties by the API.
+     * `new WebProxy()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * S3::with(accessKey: ..., bucket: ..., name: ..., secretKey: ...)
+     * WebProxy::with(name: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
      *
      * ```
-     * (new S3)->withAccessKey(...)->withBucket(...)->withName(...)->withSecretKey(...)
+     * (new WebProxy)->withName(...)
      * ```
      */
     public function __construct()
@@ -83,46 +59,16 @@ final class S3 implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      */
     public static function with(
-        string $accessKey,
-        string $bucket,
         string $name,
-        string $secretKey,
         ?string $baseURLForCanonicalHeader = null,
         ?bool $includeCanonicalHeader = null,
-        ?string $prefix = null,
     ): self {
         $obj = new self;
 
-        $obj->accessKey = $accessKey;
-        $obj->bucket = $bucket;
         $obj->name = $name;
-        $obj->secretKey = $secretKey;
 
         null !== $baseURLForCanonicalHeader && $obj->baseURLForCanonicalHeader = $baseURLForCanonicalHeader;
         null !== $includeCanonicalHeader && $obj->includeCanonicalHeader = $includeCanonicalHeader;
-        null !== $prefix && $obj->prefix = $prefix;
-
-        return $obj;
-    }
-
-    /**
-     * Access key for the bucket.
-     */
-    public function withAccessKey(string $accessKey): self
-    {
-        $obj = clone $this;
-        $obj->accessKey = $accessKey;
-
-        return $obj;
-    }
-
-    /**
-     * S3 bucket name.
-     */
-    public function withBucket(string $bucket): self
-    {
-        $obj = clone $this;
-        $obj->bucket = $bucket;
 
         return $obj;
     }
@@ -134,17 +80,6 @@ final class S3 implements BaseModel
     {
         $obj = clone $this;
         $obj->name = $name;
-
-        return $obj;
-    }
-
-    /**
-     * Secret key for the bucket.
-     */
-    public function withSecretKey(string $secretKey): self
-    {
-        $obj = clone $this;
-        $obj->secretKey = $secretKey;
 
         return $obj;
     }
@@ -169,17 +104,6 @@ final class S3 implements BaseModel
     ): self {
         $obj = clone $this;
         $obj->includeCanonicalHeader = $includeCanonicalHeader;
-
-        return $obj;
-    }
-
-    /**
-     * Path prefix inside the bucket.
-     */
-    public function withPrefix(string $prefix): self
-    {
-        $obj = clone $this;
-        $obj->prefix = $prefix;
 
         return $obj;
     }

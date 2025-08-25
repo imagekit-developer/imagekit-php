@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace ImageKit\Accounts\Origins;
 
-use ImageKit\Accounts\Origins\OriginCreateParams\Origin;
-use ImageKit\Accounts\Origins\OriginCreateParams\Origin\AkeneoPim;
-use ImageKit\Accounts\Origins\OriginCreateParams\Origin\AzureBlob;
-use ImageKit\Accounts\Origins\OriginCreateParams\Origin\CloudinaryBackup;
-use ImageKit\Accounts\Origins\OriginCreateParams\Origin\Gcs;
-use ImageKit\Accounts\Origins\OriginCreateParams\Origin\S3;
-use ImageKit\Accounts\Origins\OriginCreateParams\Origin\S3Compatible;
-use ImageKit\Accounts\Origins\OriginCreateParams\Origin\WebFolder;
-use ImageKit\Accounts\Origins\OriginCreateParams\Origin\WebProxy;
+use ImageKit\Accounts\Origins\OriginRequest\AkeneoPim;
+use ImageKit\Accounts\Origins\OriginRequest\AzureBlob;
+use ImageKit\Accounts\Origins\OriginRequest\CloudinaryBackup;
+use ImageKit\Accounts\Origins\OriginRequest\Gcs;
+use ImageKit\Accounts\Origins\OriginRequest\S3;
+use ImageKit\Accounts\Origins\OriginRequest\S3Compatible;
+use ImageKit\Accounts\Origins\OriginRequest\WebFolder;
+use ImageKit\Accounts\Origins\OriginRequest\WebProxy;
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Concerns\SdkParams;
@@ -30,7 +29,7 @@ final class OriginCreateParams implements BaseModel
     /**
      * Schema for origin request resources.
      */
-    #[Api(union: Origin::class)]
+    #[Api(union: OriginRequest::class)]
     public S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim $origin;
 
     /**

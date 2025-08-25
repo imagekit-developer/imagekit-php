@@ -5,32 +5,24 @@ declare(strict_types=1);
 namespace ImageKit\Services\Accounts;
 
 use ImageKit\Accounts\Origins\OriginCreateParams;
-use ImageKit\Accounts\Origins\OriginCreateParams\Origin\AkeneoPim;
-use ImageKit\Accounts\Origins\OriginCreateParams\Origin\AzureBlob;
-use ImageKit\Accounts\Origins\OriginCreateParams\Origin\CloudinaryBackup;
-use ImageKit\Accounts\Origins\OriginCreateParams\Origin\Gcs;
-use ImageKit\Accounts\Origins\OriginCreateParams\Origin\S3;
-use ImageKit\Accounts\Origins\OriginCreateParams\Origin\S3Compatible;
-use ImageKit\Accounts\Origins\OriginCreateParams\Origin\WebFolder;
-use ImageKit\Accounts\Origins\OriginCreateParams\Origin\WebProxy;
+use ImageKit\Accounts\Origins\OriginRequest\AkeneoPim;
+use ImageKit\Accounts\Origins\OriginRequest\AzureBlob;
+use ImageKit\Accounts\Origins\OriginRequest\CloudinaryBackup;
+use ImageKit\Accounts\Origins\OriginRequest\Gcs;
+use ImageKit\Accounts\Origins\OriginRequest\S3;
+use ImageKit\Accounts\Origins\OriginRequest\S3Compatible;
+use ImageKit\Accounts\Origins\OriginRequest\WebFolder;
+use ImageKit\Accounts\Origins\OriginRequest\WebProxy;
 use ImageKit\Accounts\Origins\OriginResponse;
-use ImageKit\Accounts\Origins\OriginResponse\AkeneoPim as AkeneoPim2;
-use ImageKit\Accounts\Origins\OriginResponse\AzureBlob as AzureBlob2;
-use ImageKit\Accounts\Origins\OriginResponse\CloudinaryBackup as CloudinaryBackup2;
-use ImageKit\Accounts\Origins\OriginResponse\Gcs as Gcs2;
-use ImageKit\Accounts\Origins\OriginResponse\S3 as S32;
-use ImageKit\Accounts\Origins\OriginResponse\S3Compatible as S3Compatible2;
-use ImageKit\Accounts\Origins\OriginResponse\WebFolder as WebFolder2;
-use ImageKit\Accounts\Origins\OriginResponse\WebProxy as WebProxy2;
+use ImageKit\Accounts\Origins\OriginResponse\AkeneoPim as AkeneoPim1;
+use ImageKit\Accounts\Origins\OriginResponse\AzureBlob as AzureBlob1;
+use ImageKit\Accounts\Origins\OriginResponse\CloudinaryBackup as CloudinaryBackup1;
+use ImageKit\Accounts\Origins\OriginResponse\Gcs as Gcs1;
+use ImageKit\Accounts\Origins\OriginResponse\S3 as S31;
+use ImageKit\Accounts\Origins\OriginResponse\S3Compatible as S3Compatible1;
+use ImageKit\Accounts\Origins\OriginResponse\WebFolder as WebFolder1;
+use ImageKit\Accounts\Origins\OriginResponse\WebProxy as WebProxy1;
 use ImageKit\Accounts\Origins\OriginUpdateParams;
-use ImageKit\Accounts\Origins\OriginUpdateParams\Origin\AkeneoPim as AkeneoPim1;
-use ImageKit\Accounts\Origins\OriginUpdateParams\Origin\AzureBlob as AzureBlob1;
-use ImageKit\Accounts\Origins\OriginUpdateParams\Origin\CloudinaryBackup as CloudinaryBackup1;
-use ImageKit\Accounts\Origins\OriginUpdateParams\Origin\Gcs as Gcs1;
-use ImageKit\Accounts\Origins\OriginUpdateParams\Origin\S3 as S31;
-use ImageKit\Accounts\Origins\OriginUpdateParams\Origin\S3Compatible as S3Compatible1;
-use ImageKit\Accounts\Origins\OriginUpdateParams\Origin\WebFolder as WebFolder1;
-use ImageKit\Accounts\Origins\OriginUpdateParams\Origin\WebProxy as WebProxy1;
 use ImageKit\Client;
 use ImageKit\Contracts\Accounts\OriginsContract;
 use ImageKit\Core\Conversion;
@@ -50,7 +42,7 @@ final class OriginsService implements OriginsContract
     public function create(
         $origin,
         ?RequestOptions $requestOptions = null
-    ): S32|S3Compatible2|CloudinaryBackup2|WebFolder2|WebProxy2|Gcs2|AzureBlob2|AkeneoPim2 {
+    ): S31|S3Compatible1|CloudinaryBackup1|WebFolder1|WebProxy1|Gcs1|AzureBlob1|AkeneoPim1 {
         $args = ['origin' => $origin];
         [$parsed, $options] = OriginCreateParams::parseRequest(
             $args,
@@ -71,13 +63,13 @@ final class OriginsService implements OriginsContract
      * **Note:** This API is currently in beta.
      * Updates the origin identified by `id` and returns the updated origin object.
      *
-     * @param S31|S3Compatible1|CloudinaryBackup1|WebFolder1|WebProxy1|Gcs1|AzureBlob1|AkeneoPim1 $origin schema for origin request resources
+     * @param S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim $origin schema for origin request resources
      */
     public function update(
         string $id,
         $origin,
         ?RequestOptions $requestOptions = null
-    ): S32|S3Compatible2|CloudinaryBackup2|WebFolder2|WebProxy2|Gcs2|AzureBlob2|AkeneoPim2 {
+    ): S31|S3Compatible1|CloudinaryBackup1|WebFolder1|WebProxy1|Gcs1|AzureBlob1|AkeneoPim1 {
         $args = ['origin' => $origin];
         [$parsed, $options] = OriginUpdateParams::parseRequest(
             $args,
@@ -98,7 +90,7 @@ final class OriginsService implements OriginsContract
      * **Note:** This API is currently in beta.
      * Returns an array of all configured origins for the current account.
      *
-     * @return list<S32|S3Compatible2|CloudinaryBackup2|WebFolder2|WebProxy2|Gcs2|AzureBlob2|AkeneoPim2>
+     * @return list<S31|S3Compatible1|CloudinaryBackup1|WebFolder1|WebProxy1|Gcs1|AzureBlob1|AkeneoPim1>
      */
     public function list(?RequestOptions $requestOptions = null): array
     {
@@ -134,7 +126,7 @@ final class OriginsService implements OriginsContract
     public function get(
         string $id,
         ?RequestOptions $requestOptions = null
-    ): S32|S3Compatible2|CloudinaryBackup2|WebFolder2|WebProxy2|Gcs2|AzureBlob2|AkeneoPim2 {
+    ): S31|S3Compatible1|CloudinaryBackup1|WebFolder1|WebProxy1|Gcs1|AzureBlob1|AkeneoPim1 {
         $resp = $this->client->request(
             method: 'get',
             path: ['v1/accounts/origins/%1$s', $id],

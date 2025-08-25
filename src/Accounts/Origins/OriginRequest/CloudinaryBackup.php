@@ -2,24 +2,42 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Accounts\Origins\OriginCreateParams\Origin;
+namespace ImageKit\Accounts\Origins\OriginRequest;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
-final class WebProxy implements BaseModel
+final class CloudinaryBackup implements BaseModel
 {
     use SdkModel;
 
     #[Api]
-    public string $type = 'WEB_PROXY';
+    public string $type = 'CLOUDINARY_BACKUP';
+
+    /**
+     * Access key for the bucket.
+     */
+    #[Api]
+    public string $accessKey;
+
+    /**
+     * S3 bucket name.
+     */
+    #[Api]
+    public string $bucket;
 
     /**
      * Display name of the origin.
      */
     #[Api]
     public string $name;
+
+    /**
+     * Secret key for the bucket.
+     */
+    #[Api]
+    public string $secretKey;
 
     /**
      * URL used in the Canonical header (if enabled).
@@ -34,17 +52,27 @@ final class WebProxy implements BaseModel
     public ?bool $includeCanonicalHeader;
 
     /**
-     * `new WebProxy()` is missing required properties by the API.
+     * Path prefix inside the bucket.
+     */
+    #[Api(optional: true)]
+    public ?string $prefix;
+
+    /**
+     * `new CloudinaryBackup()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * WebProxy::with(name: ...)
+     * CloudinaryBackup::with(accessKey: ..., bucket: ..., name: ..., secretKey: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
      *
      * ```
-     * (new WebProxy)->withName(...)
+     * (new CloudinaryBackup)
+     *   ->withAccessKey(...)
+     *   ->withBucket(...)
+     *   ->withName(...)
+     *   ->withSecretKey(...)
      * ```
      */
     public function __construct()
@@ -59,16 +87,46 @@ final class WebProxy implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      */
     public static function with(
+        string $accessKey,
+        string $bucket,
         string $name,
+        string $secretKey,
         ?string $baseURLForCanonicalHeader = null,
         ?bool $includeCanonicalHeader = null,
+        ?string $prefix = null,
     ): self {
         $obj = new self;
 
+        $obj->accessKey = $accessKey;
+        $obj->bucket = $bucket;
         $obj->name = $name;
+        $obj->secretKey = $secretKey;
 
         null !== $baseURLForCanonicalHeader && $obj->baseURLForCanonicalHeader = $baseURLForCanonicalHeader;
         null !== $includeCanonicalHeader && $obj->includeCanonicalHeader = $includeCanonicalHeader;
+        null !== $prefix && $obj->prefix = $prefix;
+
+        return $obj;
+    }
+
+    /**
+     * Access key for the bucket.
+     */
+    public function withAccessKey(string $accessKey): self
+    {
+        $obj = clone $this;
+        $obj->accessKey = $accessKey;
+
+        return $obj;
+    }
+
+    /**
+     * S3 bucket name.
+     */
+    public function withBucket(string $bucket): self
+    {
+        $obj = clone $this;
+        $obj->bucket = $bucket;
 
         return $obj;
     }
@@ -80,6 +138,17 @@ final class WebProxy implements BaseModel
     {
         $obj = clone $this;
         $obj->name = $name;
+
+        return $obj;
+    }
+
+    /**
+     * Secret key for the bucket.
+     */
+    public function withSecretKey(string $secretKey): self
+    {
+        $obj = clone $this;
+        $obj->secretKey = $secretKey;
 
         return $obj;
     }
@@ -104,6 +173,17 @@ final class WebProxy implements BaseModel
     ): self {
         $obj = clone $this;
         $obj->includeCanonicalHeader = $includeCanonicalHeader;
+
+        return $obj;
+    }
+
+    /**
+     * Path prefix inside the bucket.
+     */
+    public function withPrefix(string $prefix): self
+    {
+        $obj = clone $this;
+        $obj->prefix = $prefix;
 
         return $obj;
     }

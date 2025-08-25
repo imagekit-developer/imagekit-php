@@ -2,24 +2,36 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Accounts\Origins\OriginCreateParams\Origin;
+namespace ImageKit\Accounts\Origins\OriginRequest;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
-final class AzureBlob implements BaseModel
+final class AkeneoPim implements BaseModel
 {
     use SdkModel;
 
     #[Api]
-    public string $type = 'AZURE_BLOB';
+    public string $type = 'AKENEO_PIM';
 
-    #[Api]
-    public string $accountName;
+    /**
+     * Akeneo instance base URL.
+     */
+    #[Api('baseUrl')]
+    public string $baseURL;
 
+    /**
+     * Akeneo API client ID.
+     */
+    #[Api('clientId')]
+    public string $clientID;
+
+    /**
+     * Akeneo API client secret.
+     */
     #[Api]
-    public string $container;
+    public string $clientSecret;
 
     /**
      * Display name of the origin.
@@ -27,8 +39,17 @@ final class AzureBlob implements BaseModel
     #[Api]
     public string $name;
 
+    /**
+     * Akeneo API password.
+     */
     #[Api]
-    public string $sasToken;
+    public string $password;
+
+    /**
+     * Akeneo API username.
+     */
+    #[Api]
+    public string $username;
 
     /**
      * URL used in the Canonical header (if enabled).
@@ -42,25 +63,31 @@ final class AzureBlob implements BaseModel
     #[Api(optional: true)]
     public ?bool $includeCanonicalHeader;
 
-    #[Api(optional: true)]
-    public ?string $prefix;
-
     /**
-     * `new AzureBlob()` is missing required properties by the API.
+     * `new AkeneoPim()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * AzureBlob::with(accountName: ..., container: ..., name: ..., sasToken: ...)
+     * AkeneoPim::with(
+     *   baseURL: ...,
+     *   clientID: ...,
+     *   clientSecret: ...,
+     *   name: ...,
+     *   password: ...,
+     *   username: ...,
+     * )
      * ```
      *
      * Otherwise ensure the following setters are called
      *
      * ```
-     * (new AzureBlob)
-     *   ->withAccountName(...)
-     *   ->withContainer(...)
+     * (new AkeneoPim)
+     *   ->withBaseURL(...)
+     *   ->withClientID(...)
+     *   ->withClientSecret(...)
      *   ->withName(...)
-     *   ->withSasToken(...)
+     *   ->withPassword(...)
+     *   ->withUsername(...)
      * ```
      */
     public function __construct()
@@ -75,40 +102,59 @@ final class AzureBlob implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      */
     public static function with(
-        string $accountName,
-        string $container,
+        string $baseURL,
+        string $clientID,
+        string $clientSecret,
         string $name,
-        string $sasToken,
+        string $password,
+        string $username,
         ?string $baseURLForCanonicalHeader = null,
         ?bool $includeCanonicalHeader = null,
-        ?string $prefix = null,
     ): self {
         $obj = new self;
 
-        $obj->accountName = $accountName;
-        $obj->container = $container;
+        $obj->baseURL = $baseURL;
+        $obj->clientID = $clientID;
+        $obj->clientSecret = $clientSecret;
         $obj->name = $name;
-        $obj->sasToken = $sasToken;
+        $obj->password = $password;
+        $obj->username = $username;
 
         null !== $baseURLForCanonicalHeader && $obj->baseURLForCanonicalHeader = $baseURLForCanonicalHeader;
         null !== $includeCanonicalHeader && $obj->includeCanonicalHeader = $includeCanonicalHeader;
-        null !== $prefix && $obj->prefix = $prefix;
 
         return $obj;
     }
 
-    public function withAccountName(string $accountName): self
+    /**
+     * Akeneo instance base URL.
+     */
+    public function withBaseURL(string $baseURL): self
     {
         $obj = clone $this;
-        $obj->accountName = $accountName;
+        $obj->baseURL = $baseURL;
 
         return $obj;
     }
 
-    public function withContainer(string $container): self
+    /**
+     * Akeneo API client ID.
+     */
+    public function withClientID(string $clientID): self
     {
         $obj = clone $this;
-        $obj->container = $container;
+        $obj->clientID = $clientID;
+
+        return $obj;
+    }
+
+    /**
+     * Akeneo API client secret.
+     */
+    public function withClientSecret(string $clientSecret): self
+    {
+        $obj = clone $this;
+        $obj->clientSecret = $clientSecret;
 
         return $obj;
     }
@@ -124,10 +170,24 @@ final class AzureBlob implements BaseModel
         return $obj;
     }
 
-    public function withSasToken(string $sasToken): self
+    /**
+     * Akeneo API password.
+     */
+    public function withPassword(string $password): self
     {
         $obj = clone $this;
-        $obj->sasToken = $sasToken;
+        $obj->password = $password;
+
+        return $obj;
+    }
+
+    /**
+     * Akeneo API username.
+     */
+    public function withUsername(string $username): self
+    {
+        $obj = clone $this;
+        $obj->username = $username;
 
         return $obj;
     }
@@ -152,14 +212,6 @@ final class AzureBlob implements BaseModel
     ): self {
         $obj = clone $this;
         $obj->includeCanonicalHeader = $includeCanonicalHeader;
-
-        return $obj;
-    }
-
-    public function withPrefix(string $prefix): self
-    {
-        $obj = clone $this;
-        $obj->prefix = $prefix;
 
         return $obj;
     }

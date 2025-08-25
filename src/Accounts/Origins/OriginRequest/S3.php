@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Accounts\Origins\OriginCreateParams\Origin;
+namespace ImageKit\Accounts\Origins\OriginRequest;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;

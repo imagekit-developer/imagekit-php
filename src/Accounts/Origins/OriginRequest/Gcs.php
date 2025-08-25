@@ -2,36 +2,24 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Accounts\Origins\OriginUpdateParams\Origin;
+namespace ImageKit\Accounts\Origins\OriginRequest;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
-final class S3Compatible implements BaseModel
+final class Gcs implements BaseModel
 {
     use SdkModel;
 
     #[Api]
-    public string $type = 'S3_COMPATIBLE';
+    public string $type = 'GCS';
 
-    /**
-     * Access key for the bucket.
-     */
-    #[Api]
-    public string $accessKey;
-
-    /**
-     * S3 bucket name.
-     */
     #[Api]
     public string $bucket;
 
-    /**
-     * Custom S3-compatible endpoint.
-     */
     #[Api]
-    public string $endpoint;
+    public string $clientEmail;
 
     /**
      * Display name of the origin.
@@ -39,11 +27,8 @@ final class S3Compatible implements BaseModel
     #[Api]
     public string $name;
 
-    /**
-     * Secret key for the bucket.
-     */
     #[Api]
-    public string $secretKey;
+    public string $privateKey;
 
     /**
      * URL used in the Canonical header (if enabled).
@@ -57,37 +42,25 @@ final class S3Compatible implements BaseModel
     #[Api(optional: true)]
     public ?bool $includeCanonicalHeader;
 
-    /**
-     * Path prefix inside the bucket.
-     */
     #[Api(optional: true)]
     public ?string $prefix;
 
     /**
-     * Use path-style S3 URLs?
-     */
-    #[Api(optional: true)]
-    public ?bool $s3ForcePathStyle;
-
-    /**
-     * `new S3Compatible()` is missing required properties by the API.
+     * `new Gcs()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * S3Compatible::with(
-     *   accessKey: ..., bucket: ..., endpoint: ..., name: ..., secretKey: ...
-     * )
+     * Gcs::with(bucket: ..., clientEmail: ..., name: ..., privateKey: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
      *
      * ```
-     * (new S3Compatible)
-     *   ->withAccessKey(...)
+     * (new Gcs)
      *   ->withBucket(...)
-     *   ->withEndpoint(...)
+     *   ->withClientEmail(...)
      *   ->withName(...)
-     *   ->withSecretKey(...)
+     *   ->withPrivateKey(...)
      * ```
      */
     public function __construct()
@@ -102,46 +75,28 @@ final class S3Compatible implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      */
     public static function with(
-        string $accessKey,
         string $bucket,
-        string $endpoint,
+        string $clientEmail,
         string $name,
-        string $secretKey,
+        string $privateKey,
         ?string $baseURLForCanonicalHeader = null,
         ?bool $includeCanonicalHeader = null,
         ?string $prefix = null,
-        ?bool $s3ForcePathStyle = null,
     ): self {
         $obj = new self;
 
-        $obj->accessKey = $accessKey;
         $obj->bucket = $bucket;
-        $obj->endpoint = $endpoint;
+        $obj->clientEmail = $clientEmail;
         $obj->name = $name;
-        $obj->secretKey = $secretKey;
+        $obj->privateKey = $privateKey;
 
         null !== $baseURLForCanonicalHeader && $obj->baseURLForCanonicalHeader = $baseURLForCanonicalHeader;
         null !== $includeCanonicalHeader && $obj->includeCanonicalHeader = $includeCanonicalHeader;
         null !== $prefix && $obj->prefix = $prefix;
-        null !== $s3ForcePathStyle && $obj->s3ForcePathStyle = $s3ForcePathStyle;
 
         return $obj;
     }
 
-    /**
-     * Access key for the bucket.
-     */
-    public function withAccessKey(string $accessKey): self
-    {
-        $obj = clone $this;
-        $obj->accessKey = $accessKey;
-
-        return $obj;
-    }
-
-    /**
-     * S3 bucket name.
-     */
     public function withBucket(string $bucket): self
     {
         $obj = clone $this;
@@ -150,13 +105,10 @@ final class S3Compatible implements BaseModel
         return $obj;
     }
 
-    /**
-     * Custom S3-compatible endpoint.
-     */
-    public function withEndpoint(string $endpoint): self
+    public function withClientEmail(string $clientEmail): self
     {
         $obj = clone $this;
-        $obj->endpoint = $endpoint;
+        $obj->clientEmail = $clientEmail;
 
         return $obj;
     }
@@ -172,13 +124,10 @@ final class S3Compatible implements BaseModel
         return $obj;
     }
 
-    /**
-     * Secret key for the bucket.
-     */
-    public function withSecretKey(string $secretKey): self
+    public function withPrivateKey(string $privateKey): self
     {
         $obj = clone $this;
-        $obj->secretKey = $secretKey;
+        $obj->privateKey = $privateKey;
 
         return $obj;
     }
@@ -207,24 +156,10 @@ final class S3Compatible implements BaseModel
         return $obj;
     }
 
-    /**
-     * Path prefix inside the bucket.
-     */
     public function withPrefix(string $prefix): self
     {
         $obj = clone $this;
         $obj->prefix = $prefix;
-
-        return $obj;
-    }
-
-    /**
-     * Use path-style S3 URLs?
-     */
-    public function withS3ForcePathStyle(bool $s3ForcePathStyle): self
-    {
-        $obj = clone $this;
-        $obj->s3ForcePathStyle = $s3ForcePathStyle;
 
         return $obj;
     }

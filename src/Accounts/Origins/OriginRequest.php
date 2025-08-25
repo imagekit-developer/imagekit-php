@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Accounts\Origins\OriginCreateParams;
+namespace ImageKit\Accounts\Origins;
 
-use ImageKit\Accounts\Origins\OriginCreateParams\Origin\AkeneoPim;
-use ImageKit\Accounts\Origins\OriginCreateParams\Origin\AzureBlob;
-use ImageKit\Accounts\Origins\OriginCreateParams\Origin\CloudinaryBackup;
-use ImageKit\Accounts\Origins\OriginCreateParams\Origin\Gcs;
-use ImageKit\Accounts\Origins\OriginCreateParams\Origin\S3;
-use ImageKit\Accounts\Origins\OriginCreateParams\Origin\S3Compatible;
-use ImageKit\Accounts\Origins\OriginCreateParams\Origin\WebFolder;
-use ImageKit\Accounts\Origins\OriginCreateParams\Origin\WebProxy;
+use ImageKit\Accounts\Origins\OriginRequest\AkeneoPim;
+use ImageKit\Accounts\Origins\OriginRequest\AzureBlob;
+use ImageKit\Accounts\Origins\OriginRequest\CloudinaryBackup;
+use ImageKit\Accounts\Origins\OriginRequest\Gcs;
+use ImageKit\Accounts\Origins\OriginRequest\S3;
+use ImageKit\Accounts\Origins\OriginRequest\S3Compatible;
+use ImageKit\Accounts\Origins\OriginRequest\WebFolder;
+use ImageKit\Accounts\Origins\OriginRequest\WebProxy;
 use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
@@ -19,7 +19,7 @@ use ImageKit\Core\Conversion\Contracts\ConverterSource;
 /**
  * Schema for origin request resources.
  */
-final class Origin implements ConverterSource
+final class OriginRequest implements ConverterSource
 {
     use SdkUnion;
 

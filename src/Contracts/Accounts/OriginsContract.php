@@ -12,14 +12,6 @@ use ImageKit\Accounts\Origins\Origin\S3;
 use ImageKit\Accounts\Origins\Origin\S3Compatible;
 use ImageKit\Accounts\Origins\Origin\WebFolder;
 use ImageKit\Accounts\Origins\Origin\WebProxy;
-use ImageKit\Accounts\Origins\OriginResponse\AkeneoPim as AkeneoPim1;
-use ImageKit\Accounts\Origins\OriginResponse\AzureBlob as AzureBlob1;
-use ImageKit\Accounts\Origins\OriginResponse\CloudinaryBackup as CloudinaryBackup1;
-use ImageKit\Accounts\Origins\OriginResponse\Gcs as Gcs1;
-use ImageKit\Accounts\Origins\OriginResponse\S3 as S31;
-use ImageKit\Accounts\Origins\OriginResponse\S3Compatible as S3Compatible1;
-use ImageKit\Accounts\Origins\OriginResponse\WebFolder as WebFolder1;
-use ImageKit\Accounts\Origins\OriginResponse\WebProxy as WebProxy1;
 use ImageKit\RequestOptions;
 
 interface OriginsContract
@@ -30,7 +22,7 @@ interface OriginsContract
     public function create(
         $origin,
         ?RequestOptions $requestOptions = null
-    ): S31|S3Compatible1|CloudinaryBackup1|WebFolder1|WebProxy1|Gcs1|AzureBlob1|AkeneoPim1;
+    ): S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim;
 
     /**
      * @param S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim $origin schema for origin resources
@@ -39,10 +31,10 @@ interface OriginsContract
         string $id,
         $origin,
         ?RequestOptions $requestOptions = null
-    ): S31|S3Compatible1|CloudinaryBackup1|WebFolder1|WebProxy1|Gcs1|AzureBlob1|AkeneoPim1;
+    ): S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim;
 
     /**
-     * @return list<S31|S3Compatible1|CloudinaryBackup1|WebFolder1|WebProxy1|Gcs1|AzureBlob1|AkeneoPim1>
+     * @return list<S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim>
      */
     public function list(
         ?RequestOptions $requestOptions = null
@@ -56,5 +48,5 @@ interface OriginsContract
     public function get(
         string $id,
         ?RequestOptions $requestOptions = null
-    ): S31|S3Compatible1|CloudinaryBackup1|WebFolder1|WebProxy1|Gcs1|AzureBlob1|AkeneoPim1;
+    ): S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim;
 }

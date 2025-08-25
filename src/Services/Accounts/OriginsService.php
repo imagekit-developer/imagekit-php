@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ImageKit\Services\Accounts;
 
+use ImageKit\Accounts\Origins\Origin;
 use ImageKit\Accounts\Origins\Origin\AkeneoPim;
 use ImageKit\Accounts\Origins\Origin\AzureBlob;
 use ImageKit\Accounts\Origins\Origin\CloudinaryBackup;
@@ -13,15 +14,6 @@ use ImageKit\Accounts\Origins\Origin\S3Compatible;
 use ImageKit\Accounts\Origins\Origin\WebFolder;
 use ImageKit\Accounts\Origins\Origin\WebProxy;
 use ImageKit\Accounts\Origins\OriginCreateParams;
-use ImageKit\Accounts\Origins\OriginResponse;
-use ImageKit\Accounts\Origins\OriginResponse\AkeneoPim as AkeneoPim1;
-use ImageKit\Accounts\Origins\OriginResponse\AzureBlob as AzureBlob1;
-use ImageKit\Accounts\Origins\OriginResponse\CloudinaryBackup as CloudinaryBackup1;
-use ImageKit\Accounts\Origins\OriginResponse\Gcs as Gcs1;
-use ImageKit\Accounts\Origins\OriginResponse\S3 as S31;
-use ImageKit\Accounts\Origins\OriginResponse\S3Compatible as S3Compatible1;
-use ImageKit\Accounts\Origins\OriginResponse\WebFolder as WebFolder1;
-use ImageKit\Accounts\Origins\OriginResponse\WebProxy as WebProxy1;
 use ImageKit\Accounts\Origins\OriginUpdateParams;
 use ImageKit\Client;
 use ImageKit\Contracts\Accounts\OriginsContract;
@@ -42,7 +34,7 @@ final class OriginsService implements OriginsContract
     public function create(
         $origin,
         ?RequestOptions $requestOptions = null
-    ): S31|S3Compatible1|CloudinaryBackup1|WebFolder1|WebProxy1|Gcs1|AzureBlob1|AkeneoPim1 {
+    ): S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim {
         $args = ['origin' => $origin];
         [$parsed, $options] = OriginCreateParams::parseRequest(
             $args,
@@ -56,7 +48,7 @@ final class OriginsService implements OriginsContract
         );
 
         // @phpstan-ignore-next-line;
-        return Conversion::coerce(OriginResponse::class, value: $resp);
+        return Conversion::coerce(Origin::class, value: $resp);
     }
 
     /**
@@ -69,7 +61,7 @@ final class OriginsService implements OriginsContract
         string $id,
         $origin,
         ?RequestOptions $requestOptions = null
-    ): S31|S3Compatible1|CloudinaryBackup1|WebFolder1|WebProxy1|Gcs1|AzureBlob1|AkeneoPim1 {
+    ): S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim {
         $args = ['origin' => $origin];
         [$parsed, $options] = OriginUpdateParams::parseRequest(
             $args,
@@ -83,14 +75,14 @@ final class OriginsService implements OriginsContract
         );
 
         // @phpstan-ignore-next-line;
-        return Conversion::coerce(OriginResponse::class, value: $resp);
+        return Conversion::coerce(Origin::class, value: $resp);
     }
 
     /**
      * **Note:** This API is currently in beta.
      * Returns an array of all configured origins for the current account.
      *
-     * @return list<S31|S3Compatible1|CloudinaryBackup1|WebFolder1|WebProxy1|Gcs1|AzureBlob1|AkeneoPim1>
+     * @return list<S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim>
      */
     public function list(?RequestOptions $requestOptions = null): array
     {
@@ -101,7 +93,7 @@ final class OriginsService implements OriginsContract
         );
 
         // @phpstan-ignore-next-line;
-        return Conversion::coerce(new ListOf(OriginResponse::class), value: $resp);
+        return Conversion::coerce(new ListOf(Origin::class), value: $resp);
     }
 
     /**
@@ -126,7 +118,7 @@ final class OriginsService implements OriginsContract
     public function get(
         string $id,
         ?RequestOptions $requestOptions = null
-    ): S31|S3Compatible1|CloudinaryBackup1|WebFolder1|WebProxy1|Gcs1|AzureBlob1|AkeneoPim1 {
+    ): S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim {
         $resp = $this->client->request(
             method: 'get',
             path: ['v1/accounts/origins/%1$s', $id],
@@ -134,6 +126,6 @@ final class OriginsService implements OriginsContract
         );
 
         // @phpstan-ignore-next-line;
-        return Conversion::coerce(OriginResponse::class, value: $resp);
+        return Conversion::coerce(Origin::class, value: $resp);
     }
 }

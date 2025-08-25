@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Responses\Beta\V2\Files\FileUploadResponse\Metadata;
+namespace ImageKit\Files\Metadata;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Responses\Beta\V2\Files\FileUploadResponse\Metadata\Exif\Exif as Exif1;
-use ImageKit\Responses\Beta\V2\Files\FileUploadResponse\Metadata\Exif\Gps;
-use ImageKit\Responses\Beta\V2\Files\FileUploadResponse\Metadata\Exif\Image;
-use ImageKit\Responses\Beta\V2\Files\FileUploadResponse\Metadata\Exif\Interoperability;
-use ImageKit\Responses\Beta\V2\Files\FileUploadResponse\Metadata\Exif\Thumbnail;
+use ImageKit\Files\Metadata\Exif\Exif as Exif1;
+use ImageKit\Files\Metadata\Exif\Gps;
+use ImageKit\Files\Metadata\Exif\Image;
+use ImageKit\Files\Metadata\Exif\Interoperability;
+use ImageKit\Files\Metadata\Exif\Thumbnail;
 
 final class Exif implements BaseModel
 {

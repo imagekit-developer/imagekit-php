@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Responses\Files\Metadata;
+namespace ImageKit\Files;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Responses\Files\Metadata\MetadataGetResponse\Exif;
+use ImageKit\Files\Metadata\Exif;
 
 /**
  * JSON object containing metadata.
  */
-final class MetadataGetResponse implements BaseModel
+final class Metadata implements BaseModel
 {
     use SdkModel;
 

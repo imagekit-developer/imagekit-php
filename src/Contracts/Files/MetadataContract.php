@@ -4,16 +4,15 @@ declare(strict_types=1);
 
 namespace ImageKit\Contracts\Files;
 
+use ImageKit\Files\Metadata;
 use ImageKit\RequestOptions;
-use ImageKit\Responses\Files\Metadata\MetadataGetFromURLResponse;
-use ImageKit\Responses\Files\Metadata\MetadataGetResponse;
 
 interface MetadataContract
 {
     public function get(
         string $fileID,
         ?RequestOptions $requestOptions = null
-    ): MetadataGetResponse;
+    ): Metadata;
 
     /**
      * @param string $url Should be a valid file URL. It should be accessible using your ImageKit.io account.
@@ -21,5 +20,5 @@ interface MetadataContract
     public function getFromURL(
         $url,
         ?RequestOptions $requestOptions = null
-    ): MetadataGetFromURLResponse;
+    ): Metadata;
 }

@@ -7,9 +7,9 @@ namespace ImageKit\Responses\Beta\V2\Files;
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Files\Metadata;
 use ImageKit\Responses\Beta\V2\Files\FileUploadResponse\AITag;
 use ImageKit\Responses\Beta\V2\Files\FileUploadResponse\ExtensionStatus;
-use ImageKit\Responses\Beta\V2\Files\FileUploadResponse\Metadata;
 use ImageKit\Responses\Beta\V2\Files\FileUploadResponse\VersionInfo;
 
 /**

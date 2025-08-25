@@ -7,10 +7,9 @@ namespace ImageKit\Services\Files;
 use ImageKit\Client;
 use ImageKit\Contracts\Files\MetadataContract;
 use ImageKit\Core\Conversion;
+use ImageKit\Files\Metadata;
 use ImageKit\Files\Metadata\MetadataGetFromURLParams;
 use ImageKit\RequestOptions;
-use ImageKit\Responses\Files\Metadata\MetadataGetFromURLResponse;
-use ImageKit\Responses\Files\Metadata\MetadataGetResponse;
 
 final class MetadataService implements MetadataContract
 {
@@ -24,7 +23,7 @@ final class MetadataService implements MetadataContract
     public function get(
         string $fileID,
         ?RequestOptions $requestOptions = null
-    ): MetadataGetResponse {
+    ): Metadata {
         $resp = $this->client->request(
             method: 'get',
             path: ['v1/files/%1$s/metadata', $fileID],
@@ -32,7 +31,7 @@ final class MetadataService implements MetadataContract
         );
 
         // @phpstan-ignore-next-line;
-        return Conversion::coerce(MetadataGetResponse::class, value: $resp);
+        return Conversion::coerce(Metadata::class, value: $resp);
     }
 
     /**
@@ -43,7 +42,7 @@ final class MetadataService implements MetadataContract
     public function getFromURL(
         $url,
         ?RequestOptions $requestOptions = null
-    ): MetadataGetFromURLResponse {
+    ): Metadata {
         $args = ['url' => $url];
         [$parsed, $options] = MetadataGetFromURLParams::parseRequest(
             $args,
@@ -57,6 +56,6 @@ final class MetadataService implements MetadataContract
         );
 
         // @phpstan-ignore-next-line;
-        return Conversion::coerce(MetadataGetFromURLResponse::class, value: $resp);
+        return Conversion::coerce(Metadata::class, value: $resp);
     }
 }

@@ -12,7 +12,6 @@ use ImageKit\Client;
 use ImageKit\Contracts\AssetsContract;
 use ImageKit\Core\Conversion;
 use ImageKit\Core\Conversion\ListOf;
-use ImageKit\Core\Util;
 use ImageKit\Files\File;
 use ImageKit\Files\Folder;
 use ImageKit\RequestOptions;
@@ -67,7 +66,7 @@ final class AssetsService implements AssetsContract
         $type = omit,
         ?RequestOptions $requestOptions = null,
     ): array {
-        $args = Util::array_filter_omit(
+        [$parsed, $options] = AssetListParams::parseRequest(
             [
                 'fileType' => $fileType,
                 'limit' => $limit,
@@ -77,8 +76,8 @@ final class AssetsService implements AssetsContract
                 'sort' => $sort,
                 'type' => $type,
             ],
+            $requestOptions,
         );
-        [$parsed, $options] = AssetListParams::parseRequest($args, $requestOptions);
         $resp = $this->client->request(
             method: 'get',
             path: 'v1/files',

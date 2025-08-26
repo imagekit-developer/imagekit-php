@@ -17,7 +17,6 @@ use ImageKit\Client;
 use ImageKit\Contracts\Accounts\URLEndpointsContract;
 use ImageKit\Core\Conversion;
 use ImageKit\Core\Conversion\ListOf;
-use ImageKit\Core\Util;
 use ImageKit\RequestOptions;
 
 use const ImageKit\Core\OMIT as omit;
@@ -42,17 +41,14 @@ final class URLEndpointsService implements URLEndpointsContract
         $urlRewriter = omit,
         ?RequestOptions $requestOptions = null,
     ): URLEndpointResponse {
-        $args = Util::array_filter_omit(
+        [$parsed, $options] = URLEndpointCreateParams::parseRequest(
             [
                 'description' => $description,
                 'origins' => $origins,
                 'urlPrefix' => $urlPrefix,
                 'urlRewriter' => $urlRewriter,
             ],
-        );
-        [$parsed, $options] = URLEndpointCreateParams::parseRequest(
-            $args,
-            $requestOptions
+            $requestOptions,
         );
         $resp = $this->client->request(
             method: 'post',
@@ -82,17 +78,14 @@ final class URLEndpointsService implements URLEndpointsContract
         $urlRewriter = omit,
         ?RequestOptions $requestOptions = null,
     ): URLEndpointResponse {
-        $args = Util::array_filter_omit(
+        [$parsed, $options] = URLEndpointUpdateParams::parseRequest(
             [
                 'description' => $description,
                 'origins' => $origins,
                 'urlPrefix' => $urlPrefix,
                 'urlRewriter' => $urlRewriter,
             ],
-        );
-        [$parsed, $options] = URLEndpointUpdateParams::parseRequest(
-            $args,
-            $requestOptions
+            $requestOptions,
         );
         $resp = $this->client->request(
             method: 'put',

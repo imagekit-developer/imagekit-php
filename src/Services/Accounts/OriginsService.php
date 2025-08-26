@@ -43,9 +43,8 @@ final class OriginsService implements OriginsContract
         $origin,
         ?RequestOptions $requestOptions = null
     ): S31|S3Compatible1|CloudinaryBackup1|WebFolder1|WebProxy1|Gcs1|AzureBlob1|AkeneoPim1 {
-        $args = ['origin' => $origin];
         [$parsed, $options] = OriginCreateParams::parseRequest(
-            $args,
+            ['origin' => $origin],
             $requestOptions
         );
         $resp = $this->client->request(
@@ -70,9 +69,8 @@ final class OriginsService implements OriginsContract
         $origin,
         ?RequestOptions $requestOptions = null
     ): S31|S3Compatible1|CloudinaryBackup1|WebFolder1|WebProxy1|Gcs1|AzureBlob1|AkeneoPim1 {
-        $args = ['origin' => $origin];
         [$parsed, $options] = OriginUpdateParams::parseRequest(
-            $args,
+            ['origin' => $origin],
             $requestOptions
         );
         $resp = $this->client->request(

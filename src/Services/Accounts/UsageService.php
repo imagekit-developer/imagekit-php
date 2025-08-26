@@ -26,8 +26,10 @@ final class UsageService implements UsageContract
         $startDate,
         ?RequestOptions $requestOptions = null
     ): UsageGetResponse {
-        $args = ['endDate' => $endDate, 'startDate' => $startDate];
-        [$parsed, $options] = UsageGetParams::parseRequest($args, $requestOptions);
+        [$parsed, $options] = UsageGetParams::parseRequest(
+            ['endDate' => $endDate, 'startDate' => $startDate],
+            $requestOptions
+        );
         $resp = $this->client->request(
             method: 'get',
             path: 'v1/accounts/usage',

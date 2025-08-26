@@ -7,7 +7,6 @@ namespace ImageKit\Services;
 use ImageKit\Client;
 use ImageKit\Contracts\FilesContract;
 use ImageKit\Core\Conversion;
-use ImageKit\Core\Util;
 use ImageKit\Files\File;
 use ImageKit\Files\FileCopyParams;
 use ImageKit\Files\FileMoveParams;
@@ -58,9 +57,8 @@ final class FilesService implements FilesContract
         $update = omit,
         ?RequestOptions $requestOptions = null
     ): FileUpdateResponse {
-        $args = Util::array_filter_omit(['update' => $update]);
         [$parsed, $options] = FileUpdateParams::parseRequest(
-            $args,
+            ['update' => $update],
             $requestOptions
         );
         $resp = $this->client->request(
@@ -105,14 +103,14 @@ final class FilesService implements FilesContract
         $includeFileVersions = omit,
         ?RequestOptions $requestOptions = null,
     ): FileCopyResponse {
-        $args = Util::array_filter_omit(
+        [$parsed, $options] = FileCopyParams::parseRequest(
             [
                 'destinationPath' => $destinationPath,
                 'sourceFilePath' => $sourceFilePath,
                 'includeFileVersions' => $includeFileVersions,
             ],
+            $requestOptions,
         );
-        [$parsed, $options] = FileCopyParams::parseRequest($args, $requestOptions);
         $resp = $this->client->request(
             method: 'post',
             path: 'v1/files/copy',
@@ -154,10 +152,13 @@ final class FilesService implements FilesContract
         $sourceFilePath,
         ?RequestOptions $requestOptions = null
     ): FileMoveResponse {
-        $args = [
-            'destinationPath' => $destinationPath, 'sourceFilePath' => $sourceFilePath,
-        ];
-        [$parsed, $options] = FileMoveParams::parseRequest($args, $requestOptions);
+        [$parsed, $options] = FileMoveParams::parseRequest(
+            [
+                'destinationPath' => $destinationPath,
+                'sourceFilePath' => $sourceFilePath,
+            ],
+            $requestOptions,
+        );
         $resp = $this->client->request(
             method: 'post',
             path: 'v1/files/move',
@@ -195,16 +196,13 @@ final class FilesService implements FilesContract
         $purgeCache = omit,
         ?RequestOptions $requestOptions = null,
     ): FileRenameResponse {
-        $args = Util::array_filter_omit(
+        [$parsed, $options] = FileRenameParams::parseRequest(
             [
                 'filePath' => $filePath,
                 'newFileName' => $newFileName,
                 'purgeCache' => $purgeCache,
             ],
-        );
-        [$parsed, $options] = FileRenameParams::parseRequest(
-            $args,
-            $requestOptions
+            $requestOptions,
         );
         $resp = $this->client->request(
             method: 'put',
@@ -332,7 +330,7 @@ final class FilesService implements FilesContract
         $webhookURL = omit,
         ?RequestOptions $requestOptions = null,
     ): FileUploadResponse {
-        $args = Util::array_filter_omit(
+        [$parsed, $options] = FileUploadParams::parseRequest(
             [
                 'file' => $file,
                 'fileName' => $fileName,
@@ -358,10 +356,7 @@ final class FilesService implements FilesContract
                 'useUniqueFileName' => $useUniqueFileName,
                 'webhookURL' => $webhookURL,
             ],
-        );
-        [$parsed, $options] = FileUploadParams::parseRequest(
-            $args,
-            $requestOptions
+            $requestOptions,
         );
         $path = $this
             ->client

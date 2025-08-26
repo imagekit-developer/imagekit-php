@@ -7,7 +7,6 @@ namespace ImageKit\Services;
 use ImageKit\Client;
 use ImageKit\Contracts\FoldersContract;
 use ImageKit\Core\Conversion;
-use ImageKit\Core\Util;
 use ImageKit\Folders\FolderCopyParams;
 use ImageKit\Folders\FolderCreateParams;
 use ImageKit\Folders\FolderDeleteParams;
@@ -47,12 +46,9 @@ final class FoldersService implements FoldersContract
         $parentFolderPath,
         ?RequestOptions $requestOptions = null
     ): FolderNewResponse {
-        $args = [
-            'folderName' => $folderName, 'parentFolderPath' => $parentFolderPath,
-        ];
         [$parsed, $options] = FolderCreateParams::parseRequest(
-            $args,
-            $requestOptions
+            ['folderName' => $folderName, 'parentFolderPath' => $parentFolderPath],
+            $requestOptions,
         );
         $resp = $this->client->request(
             method: 'post',
@@ -74,9 +70,8 @@ final class FoldersService implements FoldersContract
         $folderPath,
         ?RequestOptions $requestOptions = null
     ): FolderDeleteResponse {
-        $args = ['folderPath' => $folderPath];
         [$parsed, $options] = FolderDeleteParams::parseRequest(
-            $args,
+            ['folderPath' => $folderPath],
             $requestOptions
         );
         $resp = $this->client->request(
@@ -103,16 +98,13 @@ final class FoldersService implements FoldersContract
         $includeVersions = omit,
         ?RequestOptions $requestOptions = null,
     ): FolderCopyResponse {
-        $args = Util::array_filter_omit(
+        [$parsed, $options] = FolderCopyParams::parseRequest(
             [
                 'destinationPath' => $destinationPath,
                 'sourceFolderPath' => $sourceFolderPath,
                 'includeVersions' => $includeVersions,
             ],
-        );
-        [$parsed, $options] = FolderCopyParams::parseRequest(
-            $args,
-            $requestOptions
+            $requestOptions,
         );
         $resp = $this->client->request(
             method: 'post',
@@ -136,13 +128,12 @@ final class FoldersService implements FoldersContract
         $sourceFolderPath,
         ?RequestOptions $requestOptions = null
     ): FolderMoveResponse {
-        $args = [
-            'destinationPath' => $destinationPath,
-            'sourceFolderPath' => $sourceFolderPath,
-        ];
         [$parsed, $options] = FolderMoveParams::parseRequest(
-            $args,
-            $requestOptions
+            [
+                'destinationPath' => $destinationPath,
+                'sourceFolderPath' => $sourceFolderPath,
+            ],
+            $requestOptions,
         );
         $resp = $this->client->request(
             method: 'post',
@@ -176,16 +167,13 @@ final class FoldersService implements FoldersContract
         $purgeCache = omit,
         ?RequestOptions $requestOptions = null,
     ): FolderRenameResponse {
-        $args = Util::array_filter_omit(
+        [$parsed, $options] = FolderRenameParams::parseRequest(
             [
                 'folderPath' => $folderPath,
                 'newFolderName' => $newFolderName,
                 'purgeCache' => $purgeCache,
             ],
-        );
-        [$parsed, $options] = FolderRenameParams::parseRequest(
-            $args,
-            $requestOptions
+            $requestOptions,
         );
         $resp = $this->client->request(
             method: 'post',

@@ -13,7 +13,6 @@ use ImageKit\Beta\V2\Files\FileUploadParams\Transformation;
 use ImageKit\Client;
 use ImageKit\Contracts\Beta\V2\FilesContract;
 use ImageKit\Core\Conversion;
-use ImageKit\Core\Util;
 use ImageKit\RequestOptions;
 use ImageKit\Responses\Beta\V2\Files\FileUploadResponse;
 
@@ -115,7 +114,7 @@ final class FilesService implements FilesContract
         $webhookURL = omit,
         ?RequestOptions $requestOptions = null,
     ): FileUploadResponse {
-        $args = Util::array_filter_omit(
+        [$parsed, $options] = FileUploadParams::parseRequest(
             [
                 'file' => $file,
                 'fileName' => $fileName,
@@ -138,10 +137,7 @@ final class FilesService implements FilesContract
                 'useUniqueFileName' => $useUniqueFileName,
                 'webhookURL' => $webhookURL,
             ],
-        );
-        [$parsed, $options] = FileUploadParams::parseRequest(
-            $args,
-            $requestOptions
+            $requestOptions,
         );
         $path = $this
             ->client

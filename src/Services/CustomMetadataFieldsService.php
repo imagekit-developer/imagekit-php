@@ -8,7 +8,6 @@ use ImageKit\Client;
 use ImageKit\Contracts\CustomMetadataFieldsContract;
 use ImageKit\Core\Conversion;
 use ImageKit\Core\Conversion\ListOf;
-use ImageKit\Core\Util;
 use ImageKit\CustomMetadataFields\CustomMetadataField;
 use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams;
 use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema;
@@ -37,9 +36,8 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
         $schema,
         ?RequestOptions $requestOptions = null
     ): CustomMetadataField {
-        $args = ['label' => $label, 'name' => $name, 'schema' => $schema];
         [$parsed, $options] = CustomMetadataFieldCreateParams::parseRequest(
-            $args,
+            ['label' => $label, 'name' => $name, 'schema' => $schema],
             $requestOptions
         );
         $resp = $this->client->request(
@@ -65,9 +63,8 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
         $schema = omit,
         ?RequestOptions $requestOptions = null,
     ): CustomMetadataField {
-        $args = Util::array_filter_omit(['label' => $label, 'schema' => $schema]);
         [$parsed, $options] = CustomMetadataFieldUpdateParams::parseRequest(
-            $args,
+            ['label' => $label, 'schema' => $schema],
             $requestOptions
         );
         $resp = $this->client->request(
@@ -92,9 +89,8 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
         $includeDeleted = omit,
         ?RequestOptions $requestOptions = null
     ): array {
-        $args = Util::array_filter_omit(['includeDeleted' => $includeDeleted]);
         [$parsed, $options] = CustomMetadataFieldListParams::parseRequest(
-            $args,
+            ['includeDeleted' => $includeDeleted],
             $requestOptions
         );
         $resp = $this->client->request(

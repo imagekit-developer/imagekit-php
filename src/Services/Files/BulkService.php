@@ -34,9 +34,8 @@ final class BulkService implements BulkContract
         $fileIDs,
         ?RequestOptions $requestOptions = null
     ): BulkDeleteResponse {
-        $args = ['fileIDs' => $fileIDs];
         [$parsed, $options] = BulkDeleteParams::parseRequest(
-            $args,
+            ['fileIDs' => $fileIDs],
             $requestOptions
         );
         $resp = $this->client->request(
@@ -61,9 +60,8 @@ final class BulkService implements BulkContract
         $tags,
         ?RequestOptions $requestOptions = null
     ): BulkAddTagsResponse {
-        $args = ['fileIDs' => $fileIDs, 'tags' => $tags];
         [$parsed, $options] = BulkAddTagsParams::parseRequest(
-            $args,
+            ['fileIDs' => $fileIDs, 'tags' => $tags],
             $requestOptions
         );
         $resp = $this->client->request(
@@ -88,9 +86,8 @@ final class BulkService implements BulkContract
         $fileIDs,
         ?RequestOptions $requestOptions = null
     ): BulkRemoveAITagsResponse {
-        $args = ['aiTags' => $aiTags, 'fileIDs' => $fileIDs];
         [$parsed, $options] = BulkRemoveAITagsParams::parseRequest(
-            $args,
+            ['aiTags' => $aiTags, 'fileIDs' => $fileIDs],
             $requestOptions
         );
         $resp = $this->client->request(
@@ -115,9 +112,8 @@ final class BulkService implements BulkContract
         $tags,
         ?RequestOptions $requestOptions = null
     ): BulkRemoveTagsResponse {
-        $args = ['fileIDs' => $fileIDs, 'tags' => $tags];
         [$parsed, $options] = BulkRemoveTagsParams::parseRequest(
-            $args,
+            ['fileIDs' => $fileIDs, 'tags' => $tags],
             $requestOptions
         );
         $resp = $this->client->request(

@@ -25,9 +25,8 @@ final class InvalidationService implements InvalidationContract
         $url,
         ?RequestOptions $requestOptions = null
     ): InvalidationNewResponse {
-        $args = ['url' => $url];
         [$parsed, $options] = InvalidationCreateParams::parseRequest(
-            $args,
+            ['url' => $url],
             $requestOptions
         );
         $resp = $this->client->request(

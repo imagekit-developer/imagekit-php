@@ -43,9 +43,8 @@ final class MetadataService implements MetadataContract
         $url,
         ?RequestOptions $requestOptions = null
     ): Metadata {
-        $args = ['url' => $url];
         [$parsed, $options] = MetadataGetFromURLParams::parseRequest(
-            $args,
+            ['url' => $url],
             $requestOptions
         );
         $resp = $this->client->request(

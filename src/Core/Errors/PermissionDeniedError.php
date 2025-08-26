@@ -1,6 +1,6 @@
 <?php
 
-namespace ImageKit\Errors;
+namespace ImageKit\Core\Errors;
 
 class PermissionDeniedError extends APIStatusError
 {

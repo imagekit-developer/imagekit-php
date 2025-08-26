@@ -66,7 +66,7 @@ When the library is unable to connect to the API, or if the API returns a non-su
 ```php
 <?php
 
-use ImageKit\Errors\APIConnectionError;
+use ImageKit\Core\Errors\APIConnectionError;
 
 try {
   $response = $client->files->upload(file: 'file', fileName: "file-name.jpg");

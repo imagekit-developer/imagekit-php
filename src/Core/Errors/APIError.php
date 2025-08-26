@@ -1,11 +1,11 @@
 <?php
 
-namespace ImageKit\Errors;
+namespace ImageKit\Core\Errors;
 
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
-class APIError extends Error
+class APIError extends ImageKitError
 {
     public ?int $status = null;
 

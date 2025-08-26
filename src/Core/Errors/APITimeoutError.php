@@ -1,6 +1,6 @@
 <?php
 
-namespace ImageKit\Errors;
+namespace ImageKit\Core\Errors;
 
 use Psr\Http\Message\RequestInterface;
 

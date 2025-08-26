@@ -50,9 +50,8 @@ final class VersionsService implements VersionsContract
         $fileID,
         ?RequestOptions $requestOptions = null
     ): VersionDeleteResponse {
-        $args = ['fileID' => $fileID];
         [$parsed, $options] = VersionDeleteParams::parseRequest(
-            $args,
+            ['fileID' => $fileID],
             $requestOptions
         );
         $fileID = $parsed['fileID'];
@@ -77,9 +76,8 @@ final class VersionsService implements VersionsContract
         $fileID,
         ?RequestOptions $requestOptions = null
     ): File {
-        $args = ['fileID' => $fileID];
         [$parsed, $options] = VersionGetParams::parseRequest(
-            $args,
+            ['fileID' => $fileID],
             $requestOptions
         );
         $fileID = $parsed['fileID'];
@@ -104,9 +102,8 @@ final class VersionsService implements VersionsContract
         $fileID,
         ?RequestOptions $requestOptions = null
     ): File {
-        $args = ['fileID' => $fileID];
         [$parsed, $options] = VersionRestoreParams::parseRequest(
-            $args,
+            ['fileID' => $fileID],
             $requestOptions
         );
         $fileID = $parsed['fileID'];

@@ -6,7 +6,7 @@ namespace ImageKit\Core;
 
 use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Discovery\Psr18ClientDiscovery;
-use ImageKit\Errors\APIStatusError;
+use ImageKit\Core\Errors\APIStatusError;
 use ImageKit\RequestOptions;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;

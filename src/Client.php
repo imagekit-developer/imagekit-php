@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace ImageKit;
 
 use ImageKit\Core\BaseClient;
-use ImageKit\Services\AccountsService;
-use ImageKit\Services\AssetsService;
-use ImageKit\Services\BetaService;
-use ImageKit\Services\CacheService;
-use ImageKit\Services\CustomMetadataFieldsService;
-use ImageKit\Services\FilesService;
-use ImageKit\Services\FoldersService;
-use ImageKit\Services\WebhooksService;
+use ImageKit\Core\Services\AccountsService;
+use ImageKit\Core\Services\AssetsService;
+use ImageKit\Core\Services\BetaService;
+use ImageKit\Core\Services\CacheService;
+use ImageKit\Core\Services\CustomMetadataFieldsService;
+use ImageKit\Core\Services\FilesService;
+use ImageKit\Core\Services\FoldersService;
+use ImageKit\Core\Services\WebhooksService;
 
 class Client extends BaseClient
 {

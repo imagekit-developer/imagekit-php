@@ -13,6 +13,8 @@ use ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\Cloudinar
 use ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\Imgix as Imgix1;
 use ImageKit\RequestOptions;
 
+use const ImageKit\Core\OMIT as omit;
+
 interface URLEndpointsContract
 {
     /**
@@ -23,9 +25,9 @@ interface URLEndpointsContract
      */
     public function create(
         $description,
-        $origins = null,
-        $urlPrefix = null,
-        $urlRewriter = null,
+        $origins = omit,
+        $urlPrefix = omit,
+        $urlRewriter = omit,
         ?RequestOptions $requestOptions = null,
     ): URLEndpointResponse;
 
@@ -38,9 +40,9 @@ interface URLEndpointsContract
     public function update(
         string $id,
         $description,
-        $origins = null,
-        $urlPrefix = null,
-        $urlRewriter = null,
+        $origins = omit,
+        $urlPrefix = omit,
+        $urlRewriter = omit,
         ?RequestOptions $requestOptions = null,
     ): URLEndpointResponse;
 

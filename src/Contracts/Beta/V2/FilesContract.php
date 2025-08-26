@@ -12,6 +12,8 @@ use ImageKit\Beta\V2\Files\FileUploadParams\Transformation;
 use ImageKit\RequestOptions;
 use ImageKit\Responses\Beta\V2\Files\FileUploadResponse;
 
+use const ImageKit\Core\OMIT as omit;
+
 interface FilesContract
 {
     /**
@@ -71,24 +73,24 @@ interface FilesContract
     public function upload(
         $file,
         $fileName,
-        $token = null,
-        $checks = null,
-        $customCoordinates = null,
-        $customMetadata = null,
-        $description = null,
-        $extensions = null,
-        $folder = null,
-        $isPrivateFile = null,
-        $isPublished = null,
-        $overwriteAITags = null,
-        $overwriteCustomMetadata = null,
-        $overwriteFile = null,
-        $overwriteTags = null,
-        $responseFields = null,
-        $tags = null,
-        $transformation = null,
-        $useUniqueFileName = null,
-        $webhookURL = null,
+        $token = omit,
+        $checks = omit,
+        $customCoordinates = omit,
+        $customMetadata = omit,
+        $description = omit,
+        $extensions = omit,
+        $folder = omit,
+        $isPrivateFile = omit,
+        $isPublished = omit,
+        $overwriteAITags = omit,
+        $overwriteCustomMetadata = omit,
+        $overwriteFile = omit,
+        $overwriteTags = omit,
+        $responseFields = omit,
+        $tags = omit,
+        $transformation = omit,
+        $useUniqueFileName = omit,
+        $webhookURL = omit,
         ?RequestOptions $requestOptions = null,
     ): FileUploadResponse;
 }

@@ -19,6 +19,8 @@ use ImageKit\Responses\Files\FileRenameResponse;
 use ImageKit\Responses\Files\FileUpdateResponse;
 use ImageKit\Responses\Files\FileUploadResponse;
 
+use const ImageKit\Core\OMIT as omit;
+
 interface FilesContract
 {
     /**
@@ -26,7 +28,7 @@ interface FilesContract
      */
     public function update(
         string $fileID,
-        $update = null,
+        $update = omit,
         ?RequestOptions $requestOptions = null
     ): FileUpdateResponse;
 
@@ -43,7 +45,7 @@ interface FilesContract
     public function copy(
         $destinationPath,
         $sourceFilePath,
-        $includeFileVersions = null,
+        $includeFileVersions = omit,
         ?RequestOptions $requestOptions = null,
     ): FileCopyResponse;
 
@@ -81,7 +83,7 @@ interface FilesContract
     public function rename(
         $filePath,
         $newFileName,
-        $purgeCache = null,
+        $purgeCache = omit,
         ?RequestOptions $requestOptions = null,
     ): FileRenameResponse;
 
@@ -162,27 +164,27 @@ interface FilesContract
     public function upload(
         $file,
         $fileName,
-        $token = null,
-        $checks = null,
-        $customCoordinates = null,
-        $customMetadata = null,
-        $description = null,
-        $expire = null,
-        $extensions = null,
-        $folder = null,
-        $isPrivateFile = null,
-        $isPublished = null,
-        $overwriteAITags = null,
-        $overwriteCustomMetadata = null,
-        $overwriteFile = null,
-        $overwriteTags = null,
-        $publicKey = null,
-        $responseFields = null,
-        $signature = null,
-        $tags = null,
-        $transformation = null,
-        $useUniqueFileName = null,
-        $webhookURL = null,
+        $token = omit,
+        $checks = omit,
+        $customCoordinates = omit,
+        $customMetadata = omit,
+        $description = omit,
+        $expire = omit,
+        $extensions = omit,
+        $folder = omit,
+        $isPrivateFile = omit,
+        $isPublished = omit,
+        $overwriteAITags = omit,
+        $overwriteCustomMetadata = omit,
+        $overwriteFile = omit,
+        $overwriteTags = omit,
+        $publicKey = omit,
+        $responseFields = omit,
+        $signature = omit,
+        $tags = omit,
+        $transformation = omit,
+        $useUniqueFileName = omit,
+        $webhookURL = omit,
         ?RequestOptions $requestOptions = null,
     ): FileUploadResponse;
 }

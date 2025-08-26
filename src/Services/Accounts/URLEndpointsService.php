@@ -20,6 +20,8 @@ use ImageKit\Core\Conversion\ListOf;
 use ImageKit\Core\Util;
 use ImageKit\RequestOptions;
 
+use const ImageKit\Core\OMIT as omit;
+
 final class URLEndpointsService implements URLEndpointsContract
 {
     public function __construct(private Client $client) {}
@@ -35,20 +37,18 @@ final class URLEndpointsService implements URLEndpointsContract
      */
     public function create(
         $description,
-        $origins = null,
-        $urlPrefix = null,
-        $urlRewriter = null,
+        $origins = omit,
+        $urlPrefix = omit,
+        $urlRewriter = omit,
         ?RequestOptions $requestOptions = null,
     ): URLEndpointResponse {
-        $args = [
-            'description' => $description,
-            'origins' => $origins,
-            'urlPrefix' => $urlPrefix,
-            'urlRewriter' => $urlRewriter,
-        ];
-        $args = Util::array_filter_null(
-            $args,
-            ['origins', 'urlPrefix', 'urlRewriter']
+        $args = Util::array_filter_omit(
+            [
+                'description' => $description,
+                'origins' => $origins,
+                'urlPrefix' => $urlPrefix,
+                'urlRewriter' => $urlRewriter,
+            ],
         );
         [$parsed, $options] = URLEndpointCreateParams::parseRequest(
             $args,
@@ -77,20 +77,18 @@ final class URLEndpointsService implements URLEndpointsContract
     public function update(
         string $id,
         $description,
-        $origins = null,
-        $urlPrefix = null,
-        $urlRewriter = null,
+        $origins = omit,
+        $urlPrefix = omit,
+        $urlRewriter = omit,
         ?RequestOptions $requestOptions = null,
     ): URLEndpointResponse {
-        $args = [
-            'description' => $description,
-            'origins' => $origins,
-            'urlPrefix' => $urlPrefix,
-            'urlRewriter' => $urlRewriter,
-        ];
-        $args = Util::array_filter_null(
-            $args,
-            ['origins', 'urlPrefix', 'urlRewriter']
+        $args = Util::array_filter_omit(
+            [
+                'description' => $description,
+                'origins' => $origins,
+                'urlPrefix' => $urlPrefix,
+                'urlRewriter' => $urlRewriter,
+            ],
         );
         [$parsed, $options] = URLEndpointUpdateParams::parseRequest(
             $args,

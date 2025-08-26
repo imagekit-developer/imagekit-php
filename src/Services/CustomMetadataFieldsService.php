@@ -18,6 +18,8 @@ use ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema as Sche
 use ImageKit\RequestOptions;
 use ImageKit\Responses\CustomMetadataFields\CustomMetadataFieldDeleteResponse;
 
+use const ImageKit\Core\OMIT as omit;
+
 final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
 {
     public function __construct(private Client $client) {}
@@ -59,12 +61,11 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
      */
     public function update(
         string $id,
-        $label = null,
-        $schema = null,
+        $label = omit,
+        $schema = omit,
         ?RequestOptions $requestOptions = null,
     ): CustomMetadataField {
-        $args = ['label' => $label, 'schema' => $schema];
-        $args = Util::array_filter_null($args, ['label', 'schema']);
+        $args = Util::array_filter_omit(['label' => $label, 'schema' => $schema]);
         [$parsed, $options] = CustomMetadataFieldUpdateParams::parseRequest(
             $args,
             $requestOptions
@@ -88,11 +89,10 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
      * @return list<CustomMetadataField>
      */
     public function list(
-        $includeDeleted = null,
+        $includeDeleted = omit,
         ?RequestOptions $requestOptions = null
     ): array {
-        $args = ['includeDeleted' => $includeDeleted];
-        $args = Util::array_filter_null($args, ['includeDeleted']);
+        $args = Util::array_filter_omit(['includeDeleted' => $includeDeleted]);
         [$parsed, $options] = CustomMetadataFieldListParams::parseRequest(
             $args,
             $requestOptions

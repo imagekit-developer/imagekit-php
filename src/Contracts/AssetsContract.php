@@ -11,6 +11,8 @@ use ImageKit\Files\File;
 use ImageKit\Files\Folder;
 use ImageKit\RequestOptions;
 
+use const ImageKit\Core\OMIT as omit;
+
 interface AssetsContract
 {
     /**
@@ -45,13 +47,13 @@ interface AssetsContract
      * @return list<File|Folder>
      */
     public function list(
-        $fileType = null,
-        $limit = null,
-        $path = null,
-        $searchQuery = null,
-        $skip = null,
-        $sort = null,
-        $type = null,
+        $fileType = omit,
+        $limit = omit,
+        $path = omit,
+        $searchQuery = omit,
+        $skip = omit,
+        $sort = omit,
+        $type = omit,
         ?RequestOptions $requestOptions = null,
     ): array;
 }

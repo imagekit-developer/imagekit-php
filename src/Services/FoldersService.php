@@ -21,6 +21,8 @@ use ImageKit\Responses\Folders\FolderNewResponse;
 use ImageKit\Responses\Folders\FolderRenameResponse;
 use ImageKit\Services\Folders\JobService;
 
+use const ImageKit\Core\OMIT as omit;
+
 final class FoldersService implements FoldersContract
 {
     public JobService $job;
@@ -98,15 +100,16 @@ final class FoldersService implements FoldersContract
     public function copy(
         $destinationPath,
         $sourceFolderPath,
-        $includeVersions = null,
+        $includeVersions = omit,
         ?RequestOptions $requestOptions = null,
     ): FolderCopyResponse {
-        $args = [
-            'destinationPath' => $destinationPath,
-            'sourceFolderPath' => $sourceFolderPath,
-            'includeVersions' => $includeVersions,
-        ];
-        $args = Util::array_filter_null($args, ['includeVersions']);
+        $args = Util::array_filter_omit(
+            [
+                'destinationPath' => $destinationPath,
+                'sourceFolderPath' => $sourceFolderPath,
+                'includeVersions' => $includeVersions,
+            ],
+        );
         [$parsed, $options] = FolderCopyParams::parseRequest(
             $args,
             $requestOptions
@@ -170,15 +173,16 @@ final class FoldersService implements FoldersContract
     public function rename(
         $folderPath,
         $newFolderName,
-        $purgeCache = null,
+        $purgeCache = omit,
         ?RequestOptions $requestOptions = null,
     ): FolderRenameResponse {
-        $args = [
-            'folderPath' => $folderPath,
-            'newFolderName' => $newFolderName,
-            'purgeCache' => $purgeCache,
-        ];
-        $args = Util::array_filter_null($args, ['purgeCache']);
+        $args = Util::array_filter_omit(
+            [
+                'folderPath' => $folderPath,
+                'newFolderName' => $newFolderName,
+                'purgeCache' => $purgeCache,
+            ],
+        );
         [$parsed, $options] = FolderRenameParams::parseRequest(
             $args,
             $requestOptions

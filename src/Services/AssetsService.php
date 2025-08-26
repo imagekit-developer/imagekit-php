@@ -18,6 +18,8 @@ use ImageKit\Files\Folder;
 use ImageKit\RequestOptions;
 use ImageKit\Responses\Assets\AssetListResponseItem;
 
+use const ImageKit\Core\OMIT as omit;
+
 final class AssetsService implements AssetsContract
 {
     public function __construct(private Client $client) {}
@@ -56,27 +58,25 @@ final class AssetsService implements AssetsContract
      * @return list<File|Folder>
      */
     public function list(
-        $fileType = null,
-        $limit = null,
-        $path = null,
-        $searchQuery = null,
-        $skip = null,
-        $sort = null,
-        $type = null,
+        $fileType = omit,
+        $limit = omit,
+        $path = omit,
+        $searchQuery = omit,
+        $skip = omit,
+        $sort = omit,
+        $type = omit,
         ?RequestOptions $requestOptions = null,
     ): array {
-        $args = [
-            'fileType' => $fileType,
-            'limit' => $limit,
-            'path' => $path,
-            'searchQuery' => $searchQuery,
-            'skip' => $skip,
-            'sort' => $sort,
-            'type' => $type,
-        ];
-        $args = Util::array_filter_null(
-            $args,
-            ['fileType', 'limit', 'path', 'searchQuery', 'skip', 'sort', 'type'],
+        $args = Util::array_filter_omit(
+            [
+                'fileType' => $fileType,
+                'limit' => $limit,
+                'path' => $path,
+                'searchQuery' => $searchQuery,
+                'skip' => $skip,
+                'sort' => $sort,
+                'type' => $type,
+            ],
         );
         [$parsed, $options] = AssetListParams::parseRequest($args, $requestOptions);
         $resp = $this->client->request(

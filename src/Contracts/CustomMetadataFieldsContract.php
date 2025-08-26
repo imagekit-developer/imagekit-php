@@ -10,6 +10,8 @@ use ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema as Sche
 use ImageKit\RequestOptions;
 use ImageKit\Responses\CustomMetadataFields\CustomMetadataFieldDeleteResponse;
 
+use const ImageKit\Core\OMIT as omit;
+
 interface CustomMetadataFieldsContract
 {
     /**
@@ -30,8 +32,8 @@ interface CustomMetadataFieldsContract
      */
     public function update(
         string $id,
-        $label = null,
-        $schema = null,
+        $label = omit,
+        $schema = omit,
         ?RequestOptions $requestOptions = null,
     ): CustomMetadataField;
 
@@ -41,7 +43,7 @@ interface CustomMetadataFieldsContract
      * @return list<CustomMetadataField>
      */
     public function list(
-        $includeDeleted = null,
+        $includeDeleted = omit,
         ?RequestOptions $requestOptions = null
     ): array;
 

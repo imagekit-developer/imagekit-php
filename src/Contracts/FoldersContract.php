@@ -11,6 +11,8 @@ use ImageKit\Responses\Folders\FolderMoveResponse;
 use ImageKit\Responses\Folders\FolderNewResponse;
 use ImageKit\Responses\Folders\FolderRenameResponse;
 
+use const ImageKit\Core\OMIT as omit;
+
 interface FoldersContract
 {
     /**
@@ -43,7 +45,7 @@ interface FoldersContract
     public function copy(
         $destinationPath,
         $sourceFolderPath,
-        $includeVersions = null,
+        $includeVersions = omit,
         ?RequestOptions $requestOptions = null,
     ): FolderCopyResponse;
 
@@ -73,7 +75,7 @@ interface FoldersContract
     public function rename(
         $folderPath,
         $newFolderName,
-        $purgeCache = null,
+        $purgeCache = omit,
         ?RequestOptions $requestOptions = null,
     ): FolderRenameResponse;
 }

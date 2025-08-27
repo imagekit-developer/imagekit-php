@@ -10,7 +10,7 @@ use ImageKit\Core\Contracts\BasePage;
 use ImageKit\Core\Contracts\BaseStream;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
-use ImageKit\Core\Errors\APIStatusError;
+use ImageKit\Core\Exceptions\APIStatusException;
 use ImageKit\RequestOptions;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
@@ -203,7 +203,7 @@ class BaseClient
         }
 
         if ($code >= 400 && $code < 500) {
-            throw APIStatusError::from(request: $req, response: $rsp);
+            throw APIStatusException::from(request: $req, response: $rsp);
         }
 
         if ($code >= 500 && $retryCount < $opts->maxRetries) {

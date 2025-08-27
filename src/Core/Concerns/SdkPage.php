@@ -7,7 +7,7 @@ namespace ImageKit\Core\Concerns;
 use ImageKit\Client;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
-use ImageKit\Core\Errors\APIStatusError;
+use ImageKit\Core\Exceptions\APIStatusException;
 use ImageKit\RequestOptions;
 
 /**
@@ -52,7 +52,7 @@ trait SdkPage
      *
      * @return static of static<Item>
      *
-     * @throws APIStatusError
+     * @throws APIStatusException
      */
     public function getNextPage(): static
     {

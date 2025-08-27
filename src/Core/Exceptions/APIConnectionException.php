@@ -1,8 +1,8 @@
 <?php
 
-namespace ImageKit\Core\Errors;
+namespace ImageKit\Core\Exceptions;
 
-class APIConnectionError extends APIError
+class APIConnectionException extends APIException
 {
     /** @var string */
     protected const DESC = 'ImageKit API Connection Error';

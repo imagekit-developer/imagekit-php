@@ -1,8 +1,8 @@
 <?php
 
-namespace ImageKit\Core\Errors;
+namespace ImageKit\Core\Exceptions;
 
-class ImageKitError extends \Exception
+class ImageKitException extends \Exception
 {
     /** @var string */
     protected const DESC = 'ImageKit Error';

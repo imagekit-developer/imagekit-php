@@ -19,9 +19,9 @@ final class UnwrapWebhookEvent implements ConverterSource
     public static function variants(): array
     {
         return [
-            VideoTransformationAcceptedWebhookEvent::class,
-            VideoTransformationReadyWebhookEvent::class,
-            VideoTransformationErrorWebhookEvent::class,
+            VideoTransformationAcceptedEvent::class,
+            VideoTransformationReadyEvent::class,
+            VideoTransformationErrorEvent::class,
         ];
     }
 }

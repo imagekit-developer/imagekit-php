@@ -49,6 +49,7 @@ $client = new Client(
 );
 
 $response = $client->files->upload(file: 'file', fileName: "file-name.jpg");
+
 var_dump($response->videoCodec);
 ```
 
@@ -115,6 +116,7 @@ use ImageKit\RequestOptions;
 $client = new Client(maxRetries: 0);
 
 // Or, configure per-request:
+
 $result = $client->files->upload(
   file: 'file', fileName: "file-name.jpg", new RequestOptions(maxRetries: 5)
 );

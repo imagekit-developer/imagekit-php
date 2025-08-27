@@ -8,8 +8,12 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
+/**
+ * @phpstan-type thumbnail_alias = array{type: string, value?: string|null}
+ */
 final class Thumbnail implements BaseModel
 {
+    /** @use SdkModel<thumbnail_alias> */
     use SdkModel;
 
     /**

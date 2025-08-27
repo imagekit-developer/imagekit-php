@@ -8,8 +8,14 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
+/**
+ * @phpstan-type bulk_delete_response = array{
+ *   successfullyDeletedFileIDs?: list<string>|null
+ * }
+ */
 final class BulkDeleteResponse implements BaseModel
 {
+    /** @use SdkModel<bulk_delete_response> */
     use SdkModel;
 
     /**

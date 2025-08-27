@@ -11,9 +11,14 @@ use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * Get the account usage information between two dates. Note that the API response includes data from the start date while excluding data from the end date. In other words, the data covers the period starting from the specified start date up to, but not including, the end date.
+ *
+ * @phpstan-type usage_get_params = array{
+ *   endDate: \DateTimeInterface, startDate: \DateTimeInterface
+ * }
  */
 final class UsageGetParams implements BaseModel
 {
+    /** @use SdkModel<usage_get_params> */
     use SdkModel;
     use SdkParams;
 

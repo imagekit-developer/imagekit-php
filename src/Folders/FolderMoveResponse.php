@@ -10,9 +10,12 @@ use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * Job submitted successfully. A `jobId` will be returned.
+ *
+ * @phpstan-type folder_move_response = array{jobID: string}
  */
 final class FolderMoveResponse implements BaseModel
 {
+    /** @use SdkModel<folder_move_response> */
     use SdkModel;
 
     /**

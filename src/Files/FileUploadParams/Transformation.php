@@ -23,9 +23,14 @@ use ImageKit\Files\FileUploadParams\Transformation\Post\Transformation as Transf
  *   Ideal for generating transformed versions (like video encodes or thumbnails) in advance, so they're ready for delivery without delay.
  *
  * You can mix and match any combination of post-processing types.
+ *
+ * @phpstan-type transformation_alias = array{
+ *   post?: list<Transformation1|GifToVideo|Thumbnail|Abs>|null, pre?: string|null
+ * }
  */
 final class Transformation implements BaseModel
 {
+    /** @use SdkModel<transformation_alias> */
     use SdkModel;
 
     /**

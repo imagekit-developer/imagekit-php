@@ -9,8 +9,14 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Webhooks\VideoTransformationReadyWebhookEvent\Data\Transformation\Output\VideoMetadata;
 
+/**
+ * @phpstan-type output_alias = array{
+ *   url: string, videoMetadata?: VideoMetadata|null
+ * }
+ */
 final class Output implements BaseModel
 {
+    /** @use SdkModel<output_alias> */
     use SdkModel;
 
     #[Api]

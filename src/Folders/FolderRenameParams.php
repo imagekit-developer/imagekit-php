@@ -11,9 +11,14 @@ use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * This API allows you to rename an existing folder. The folder and all its nested assets and sub-folders will remain unchanged, but their paths will be updated to reflect the new folder name.
+ *
+ * @phpstan-type folder_rename_params = array{
+ *   folderPath: string, newFolderName: string, purgeCache?: bool
+ * }
  */
 final class FolderRenameParams implements BaseModel
 {
+    /** @use SdkModel<folder_rename_params> */
     use SdkModel;
     use SdkParams;
 

@@ -9,8 +9,12 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
+/**
+ * @phpstan-type invalidation_get_response = array{status?: Status::*|null}
+ */
 final class InvalidationGetResponse implements BaseModel
 {
+    /** @use SdkModel<invalidation_get_response> */
     use SdkModel;
 
     /**

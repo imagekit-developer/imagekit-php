@@ -8,8 +8,12 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
+/**
+ * @phpstan-type imgix_alias = array{type: string}
+ */
 final class Imgix implements BaseModel
 {
+    /** @use SdkModel<imgix_alias> */
     use SdkModel;
 
     #[Api]

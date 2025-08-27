@@ -11,8 +11,19 @@ use ImageKit\Webhooks\VideoTransformationReadyWebhookEvent\Data;
 use ImageKit\Webhooks\VideoTransformationReadyWebhookEvent\Request;
 use ImageKit\Webhooks\VideoTransformationReadyWebhookEvent\Timings;
 
+/**
+ * @phpstan-type video_transformation_ready_webhook_event = array{
+ *   id: string,
+ *   createdAt: \DateTimeInterface,
+ *   data: Data,
+ *   request: Request,
+ *   type: string,
+ *   timings?: Timings|null,
+ * }
+ */
 final class VideoTransformationReadyWebhookEvent implements BaseModel
 {
+    /** @use SdkModel<video_transformation_ready_webhook_event> */
     use SdkModel;
 
     #[Api]

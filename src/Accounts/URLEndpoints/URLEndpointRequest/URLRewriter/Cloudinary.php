@@ -8,8 +8,14 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
+/**
+ * @phpstan-type cloudinary_alias = array{
+ *   type: string, preserveAssetDeliveryTypes?: bool|null
+ * }
+ */
 final class Cloudinary implements BaseModel
 {
+    /** @use SdkModel<cloudinary_alias> */
     use SdkModel;
 
     #[Api]

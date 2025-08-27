@@ -13,9 +13,21 @@ use ImageKit\CustomMetadataFields\CustomMetadataField\Schema\Type;
 
 /**
  * An object that describes the rules for the custom metadata field value.
+ *
+ * @phpstan-type schema_alias = array{
+ *   type: Type::*,
+ *   defaultValue?: string|float|bool|null|list<string|float|bool>,
+ *   isValueRequired?: bool|null,
+ *   maxLength?: float|null,
+ *   maxValue?: string|float|null,
+ *   minLength?: float|null,
+ *   minValue?: string|float|null,
+ *   selectOptions?: list<string|float|bool>|null,
+ * }
  */
 final class Schema implements BaseModel
 {
+    /** @use SdkModel<schema_alias> */
     use SdkModel;
 
     /**

@@ -11,9 +11,14 @@ use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * This API adds tags to multiple files in bulk. A maximum of 50 files can be specified at a time.
+ *
+ * @phpstan-type bulk_add_tags_params = array{
+ *   fileIDs: list<string>, tags: list<string>
+ * }
  */
 final class BulkAddTagsParams implements BaseModel
 {
+    /** @use SdkModel<bulk_add_tags_params> */
     use SdkModel;
     use SdkParams;
 

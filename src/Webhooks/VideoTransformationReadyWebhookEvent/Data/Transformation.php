@@ -11,8 +11,14 @@ use ImageKit\Webhooks\VideoTransformationReadyWebhookEvent\Data\Transformation\O
 use ImageKit\Webhooks\VideoTransformationReadyWebhookEvent\Data\Transformation\Output;
 use ImageKit\Webhooks\VideoTransformationReadyWebhookEvent\Data\Transformation\Type;
 
+/**
+ * @phpstan-type transformation_alias = array{
+ *   type: Type::*, options?: Options|null, output?: Output|null
+ * }
+ */
 final class Transformation implements BaseModel
 {
+    /** @use SdkModel<transformation_alias> */
     use SdkModel;
 
     /** @var Type::* $type */

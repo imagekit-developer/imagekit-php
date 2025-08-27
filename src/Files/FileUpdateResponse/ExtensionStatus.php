@@ -12,8 +12,17 @@ use ImageKit\Files\FileUpdateResponse\ExtensionStatus\AwsAutoTagging;
 use ImageKit\Files\FileUpdateResponse\ExtensionStatus\GoogleAutoTagging;
 use ImageKit\Files\FileUpdateResponse\ExtensionStatus\RemoveBg;
 
+/**
+ * @phpstan-type extension_status = array{
+ *   aiAutoDescription?: AIAutoDescription::*|null,
+ *   awsAutoTagging?: AwsAutoTagging::*|null,
+ *   googleAutoTagging?: GoogleAutoTagging::*|null,
+ *   removeBg?: RemoveBg::*|null,
+ * }
+ */
 final class ExtensionStatus implements BaseModel
 {
+    /** @use SdkModel<extension_status> */
     use SdkModel;
 
     /** @var AIAutoDescription::*|null $aiAutoDescription */

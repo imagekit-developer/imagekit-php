@@ -11,9 +11,12 @@ use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * This API returns the array of created custom metadata field objects. By default the API returns only non deleted field objects, but you can include deleted fields in the API response.
+ *
+ * @phpstan-type custom_metadata_field_list_params = array{includeDeleted?: bool}
  */
 final class CustomMetadataFieldListParams implements BaseModel
 {
+    /** @use SdkModel<custom_metadata_field_list_params> */
     use SdkModel;
     use SdkParams;
 

@@ -7,8 +7,12 @@ namespace ImageKit\Folders;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
+/**
+ * @phpstan-type folder_delete_response = array{}
+ */
 final class FolderDeleteResponse implements BaseModel
 {
+    /** @use SdkModel<folder_delete_response> */
     use SdkModel;
 
     public function __construct()

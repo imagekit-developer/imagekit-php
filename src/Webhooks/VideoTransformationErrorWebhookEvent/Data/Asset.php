@@ -8,8 +8,12 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
+/**
+ * @phpstan-type asset_alias = array{url: string}
+ */
 final class Asset implements BaseModel
 {
+    /** @use SdkModel<asset_alias> */
     use SdkModel;
 
     /**

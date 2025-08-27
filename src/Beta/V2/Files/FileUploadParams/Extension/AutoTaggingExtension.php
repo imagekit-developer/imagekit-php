@@ -9,8 +9,14 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
+/**
+ * @phpstan-type auto_tagging_extension = array{
+ *   maxTags: int, minConfidence: int, name: Name::*
+ * }
+ */
 final class AutoTaggingExtension implements BaseModel
 {
+    /** @use SdkModel<auto_tagging_extension> */
     use SdkModel;
 
     /**

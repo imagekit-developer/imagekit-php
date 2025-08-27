@@ -8,8 +8,14 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
+/**
+ * @phpstan-type request_alias = array{
+ *   url: string, xRequestID: string, userAgent?: string|null
+ * }
+ */
 final class Request implements BaseModel
 {
+    /** @use SdkModel<request_alias> */
     use SdkModel;
 
     /**

@@ -8,8 +8,14 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
+/**
+ * @phpstan-type video_metadata = array{
+ *   bitrate: int, duration: float, height: int, width: int
+ * }
+ */
 final class VideoMetadata implements BaseModel
 {
+    /** @use SdkModel<video_metadata> */
     use SdkModel;
 
     #[Api]

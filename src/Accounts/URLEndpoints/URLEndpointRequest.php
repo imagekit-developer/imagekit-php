@@ -14,9 +14,17 @@ use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * Schema for URL endpoint resource.
+ *
+ * @phpstan-type url_endpoint_request = array{
+ *   description: string,
+ *   origins?: list<string>|null,
+ *   urlPrefix?: string|null,
+ *   urlRewriter?: null|Cloudinary|Imgix|Akamai,
+ * }
  */
 final class URLEndpointRequest implements BaseModel
 {
+    /** @use SdkModel<url_endpoint_request> */
     use SdkModel;
 
     /**

@@ -10,9 +10,12 @@ use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * An object containing the file or file version's `id` (versionId) and `name`.
+ *
+ * @phpstan-type version_info = array{id?: string|null, name?: string|null}
  */
 final class VersionInfo implements BaseModel
 {
+    /** @use SdkModel<version_info> */
     use SdkModel;
 
     /**

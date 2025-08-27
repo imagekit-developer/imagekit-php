@@ -10,8 +10,17 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Folders\Job\JobGetResponse\Status;
 use ImageKit\Folders\Job\JobGetResponse\Type;
 
+/**
+ * @phpstan-type job_get_response = array{
+ *   jobID?: string|null,
+ *   purgeRequestID?: string|null,
+ *   status?: Status::*|null,
+ *   type?: Type::*|null,
+ * }
+ */
 final class JobGetResponse implements BaseModel
 {
+    /** @use SdkModel<job_get_response> */
     use SdkModel;
 
     /**

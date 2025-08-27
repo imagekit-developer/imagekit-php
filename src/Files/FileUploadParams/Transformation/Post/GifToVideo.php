@@ -8,8 +8,12 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
+/**
+ * @phpstan-type gif_to_video = array{type: string, value?: string|null}
+ */
 final class GifToVideo implements BaseModel
 {
+    /** @use SdkModel<gif_to_video> */
     use SdkModel;
 
     /**

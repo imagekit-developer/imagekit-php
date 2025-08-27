@@ -13,9 +13,12 @@ use ImageKit\Core\Contracts\BaseModel;
  * This API deletes a non-current file version permanently. The API returns an empty response.
  *
  * Note: If you want to delete all versions of a file, use the delete file API.
+ *
+ * @phpstan-type version_delete_params = array{fileID: string}
  */
 final class VersionDeleteParams implements BaseModel
 {
+    /** @use SdkModel<version_delete_params> */
     use SdkModel;
     use SdkParams;
 

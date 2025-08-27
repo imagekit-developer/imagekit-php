@@ -11,9 +11,12 @@ use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * This API will purge CDN cache and ImageKit.io's internal cache for a file.  Note: Purge cache is an asynchronous process and it may take some time to reflect the changes.
+ *
+ * @phpstan-type invalidation_create_params = array{url: string}
  */
 final class InvalidationCreateParams implements BaseModel
 {
+    /** @use SdkModel<invalidation_create_params> */
     use SdkModel;
     use SdkParams;
 

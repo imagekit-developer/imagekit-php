@@ -8,8 +8,14 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
+/**
+ * @phpstan-type bulk_remove_tags_response = array{
+ *   successfullyUpdatedFileIDs?: list<string>|null
+ * }
+ */
 final class BulkRemoveTagsResponse implements BaseModel
 {
+    /** @use SdkModel<bulk_remove_tags_response> */
     use SdkModel;
 
     /**

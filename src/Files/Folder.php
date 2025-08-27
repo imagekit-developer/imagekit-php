@@ -9,8 +9,19 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Files\Folder\Type;
 
+/**
+ * @phpstan-type folder_alias = array{
+ *   createdAt?: \DateTimeInterface|null,
+ *   folderID?: string|null,
+ *   folderPath?: string|null,
+ *   name?: string|null,
+ *   type?: Type::*|null,
+ *   updatedAt?: \DateTimeInterface|null,
+ * }
+ */
 final class Folder implements BaseModel
 {
+    /** @use SdkModel<folder_alias> */
     use SdkModel;
 
     /**

@@ -12,9 +12,14 @@ use ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema;
 
 /**
  * This API updates the label or schema of an existing custom metadata field.
+ *
+ * @phpstan-type custom_metadata_field_update_params = array{
+ *   label?: string, schema?: Schema
+ * }
  */
 final class CustomMetadataFieldUpdateParams implements BaseModel
 {
+    /** @use SdkModel<custom_metadata_field_update_params> */
     use SdkModel;
     use SdkParams;
 

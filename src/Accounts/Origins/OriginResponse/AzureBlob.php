@@ -8,8 +8,21 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
+/**
+ * @phpstan-type azure_blob = array{
+ *   id: string,
+ *   accountName: string,
+ *   container: string,
+ *   includeCanonicalHeader: bool,
+ *   name: string,
+ *   prefix: string,
+ *   type: string,
+ *   baseURLForCanonicalHeader?: string|null,
+ * }
+ */
 final class AzureBlob implements BaseModel
 {
+    /** @use SdkModel<azure_blob> */
     use SdkModel;
 
     #[Api]

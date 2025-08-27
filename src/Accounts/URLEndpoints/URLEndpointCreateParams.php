@@ -16,9 +16,17 @@ use ImageKit\Core\Contracts\BaseModel;
 /**
  * **Note:** This API is currently in beta.
  * Creates a new URL‑endpoint and returns the resulting object.
+ *
+ * @phpstan-type url_endpoint_create_params = array{
+ *   description: string,
+ *   origins?: list<string>,
+ *   urlPrefix?: string,
+ *   urlRewriter?: Cloudinary|Imgix|Akamai,
+ * }
  */
 final class URLEndpointCreateParams implements BaseModel
 {
+    /** @use SdkModel<url_endpoint_create_params> */
     use SdkModel;
     use SdkParams;
 

@@ -10,9 +10,12 @@ use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * Object containing GPS information.
+ *
+ * @phpstan-type gps_alias = array{gpsVersionID?: list<int>|null}
  */
 final class Gps implements BaseModel
 {
+    /** @use SdkModel<gps_alias> */
     use SdkModel;
 
     /** @var list<int>|null $gpsVersionID */

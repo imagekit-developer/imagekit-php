@@ -10,9 +10,39 @@ use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * Object containing Exif details.
+ *
+ * @phpstan-type exif_alias = array{
+ *   apertureValue?: float|null,
+ *   colorSpace?: int|null,
+ *   createDate?: string|null,
+ *   customRendered?: int|null,
+ *   dateTimeOriginal?: string|null,
+ *   exifImageHeight?: int|null,
+ *   exifImageWidth?: int|null,
+ *   exifVersion?: string|null,
+ *   exposureCompensation?: float|null,
+ *   exposureMode?: int|null,
+ *   exposureProgram?: int|null,
+ *   exposureTime?: float|null,
+ *   flash?: int|null,
+ *   flashpixVersion?: string|null,
+ *   fNumber?: float|null,
+ *   focalLength?: int|null,
+ *   focalPlaneResolutionUnit?: int|null,
+ *   focalPlaneXResolution?: float|null,
+ *   focalPlaneYResolution?: float|null,
+ *   interopOffset?: int|null,
+ *   iso?: int|null,
+ *   meteringMode?: int|null,
+ *   sceneCaptureType?: int|null,
+ *   shutterSpeedValue?: float|null,
+ *   subSecTime?: string|null,
+ *   whiteBalance?: int|null,
+ * }
  */
 final class Exif implements BaseModel
 {
+    /** @use SdkModel<exif_alias> */
     use SdkModel;
 
     #[Api('ApertureValue', optional: true)]

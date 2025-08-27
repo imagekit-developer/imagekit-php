@@ -10,9 +10,24 @@ use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * Object containing EXIF image information.
+ *
+ * @phpstan-type image_alias = array{
+ *   exifOffset?: int|null,
+ *   gpsInfo?: int|null,
+ *   make?: string|null,
+ *   model?: string|null,
+ *   modifyDate?: string|null,
+ *   orientation?: int|null,
+ *   resolutionUnit?: int|null,
+ *   software?: string|null,
+ *   xResolution?: int|null,
+ *   yCbCrPositioning?: int|null,
+ *   yResolution?: int|null,
+ * }
  */
 final class Image implements BaseModel
 {
+    /** @use SdkModel<image_alias> */
     use SdkModel;
 
     #[Api('ExifOffset', optional: true)]

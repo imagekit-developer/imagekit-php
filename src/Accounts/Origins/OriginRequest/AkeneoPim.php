@@ -8,8 +8,22 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
+/**
+ * @phpstan-type akeneo_pim = array{
+ *   baseURL: string,
+ *   clientID: string,
+ *   clientSecret: string,
+ *   name: string,
+ *   password: string,
+ *   type: string,
+ *   username: string,
+ *   baseURLForCanonicalHeader?: string|null,
+ *   includeCanonicalHeader?: bool|null,
+ * }
+ */
 final class AkeneoPim implements BaseModel
 {
+    /** @use SdkModel<akeneo_pim> */
     use SdkModel;
 
     #[Api]

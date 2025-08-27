@@ -9,8 +9,12 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Files\FileUploadParams\Extension\RemoveBg\Options;
 
+/**
+ * @phpstan-type remove_bg = array{name: string, options?: Options|null}
+ */
 final class RemoveBg implements BaseModel
 {
+    /** @use SdkModel<remove_bg> */
     use SdkModel;
 
     /**

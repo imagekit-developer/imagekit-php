@@ -8,8 +8,14 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
+/**
+ * @phpstan-type bulk_add_tags_response = array{
+ *   successfullyUpdatedFileIDs?: list<string>|null
+ * }
+ */
 final class BulkAddTagsResponse implements BaseModel
 {
+    /** @use SdkModel<bulk_add_tags_response> */
     use SdkModel;
 
     /**

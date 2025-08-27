@@ -8,8 +8,21 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
+/**
+ * @phpstan-type s3_alias = array{
+ *   accessKey: string,
+ *   bucket: string,
+ *   name: string,
+ *   secretKey: string,
+ *   type: string,
+ *   baseURLForCanonicalHeader?: string|null,
+ *   includeCanonicalHeader?: bool|null,
+ *   prefix?: string|null,
+ * }
+ */
 final class S3 implements BaseModel
 {
+    /** @use SdkModel<s3_alias> */
     use SdkModel;
 
     #[Api]

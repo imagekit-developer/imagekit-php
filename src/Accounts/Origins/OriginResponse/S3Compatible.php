@@ -8,8 +8,22 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
+/**
+ * @phpstan-type s3_compatible = array{
+ *   id: string,
+ *   bucket: string,
+ *   endpoint: string,
+ *   includeCanonicalHeader: bool,
+ *   name: string,
+ *   prefix: string,
+ *   s3ForcePathStyle: bool,
+ *   type: string,
+ *   baseURLForCanonicalHeader?: string|null,
+ * }
+ */
 final class S3Compatible implements BaseModel
 {
+    /** @use SdkModel<s3_compatible> */
     use SdkModel;
 
     #[Api]

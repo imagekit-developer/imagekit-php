@@ -13,8 +13,20 @@ use ImageKit\Files\FileUpdateParams\Update\UpdateFileDetails\Extension\AutoTaggi
 use ImageKit\Files\FileUpdateParams\Update\UpdateFileDetails\Extension\RemoveBg;
 use ImageKit\Files\FileUpdateParams\Update\UpdateFileDetails\RemoveAITags;
 
+/**
+ * @phpstan-type update_file_details = array{
+ *   customCoordinates?: string|null,
+ *   customMetadata?: array<string, mixed>|null,
+ *   description?: string|null,
+ *   extensions?: list<RemoveBg|AutoTaggingExtension|AIAutoDescription>|null,
+ *   removeAITags?: string|null|list<string>,
+ *   tags?: list<string>|null,
+ *   webhookURL?: string|null,
+ * }
+ */
 final class UpdateFileDetails implements BaseModel
 {
+    /** @use SdkModel<update_file_details> */
     use SdkModel;
 
     /**

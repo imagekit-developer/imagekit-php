@@ -11,9 +11,14 @@ use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * This will create a new folder. You can specify the folder name and location of the parent folder where this new folder should be created.
+ *
+ * @phpstan-type folder_create_params = array{
+ *   folderName: string, parentFolderPath: string
+ * }
  */
 final class FolderCreateParams implements BaseModel
 {
+    /** @use SdkModel<folder_create_params> */
     use SdkModel;
     use SdkParams;
 

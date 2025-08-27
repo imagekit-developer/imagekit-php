@@ -11,9 +11,12 @@ use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * This API returns an object with details or attributes of a file version.
+ *
+ * @phpstan-type version_get_params = array{fileID: string}
  */
 final class VersionGetParams implements BaseModel
 {
+    /** @use SdkModel<version_get_params> */
     use SdkModel;
     use SdkParams;
 

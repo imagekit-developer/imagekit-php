@@ -8,8 +8,14 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
+/**
+ * @phpstan-type ai_tag = array{
+ *   confidence?: float|null, name?: string|null, source?: string|null
+ * }
+ */
 final class AITag implements BaseModel
 {
+    /** @use SdkModel<ai_tag> */
     use SdkModel;
 
     /**

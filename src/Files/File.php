@@ -13,9 +13,35 @@ use ImageKit\Files\File\VersionInfo;
 
 /**
  * Object containing details of a file or file version.
+ *
+ * @phpstan-type file_alias = array{
+ *   aiTags?: list<AITag>|null,
+ *   createdAt?: \DateTimeInterface|null,
+ *   customCoordinates?: string|null,
+ *   customMetadata?: array<string, mixed>|null,
+ *   description?: string|null,
+ *   fileID?: string|null,
+ *   filePath?: string|null,
+ *   fileType?: string|null,
+ *   hasAlpha?: bool|null,
+ *   height?: float|null,
+ *   isPrivateFile?: bool|null,
+ *   isPublished?: bool|null,
+ *   mime?: string|null,
+ *   name?: string|null,
+ *   size?: float|null,
+ *   tags?: list<string>|null,
+ *   thumbnail?: string|null,
+ *   type?: Type::*|null,
+ *   updatedAt?: \DateTimeInterface|null,
+ *   url?: string|null,
+ *   versionInfo?: VersionInfo|null,
+ *   width?: float|null,
+ * }
  */
 final class File implements BaseModel
 {
+    /** @use SdkModel<file_alias> */
     use SdkModel;
 
     /**

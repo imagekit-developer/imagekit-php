@@ -16,9 +16,17 @@ use ImageKit\Core\Contracts\BaseModel;
 /**
  * **Note:** This API is currently in beta.
  * Updates the URL‑endpoint identified by `id` and returns the updated object.
+ *
+ * @phpstan-type url_endpoint_update_params = array{
+ *   description: string,
+ *   origins?: list<string>,
+ *   urlPrefix?: string,
+ *   urlRewriter?: Cloudinary|Imgix|Akamai,
+ * }
  */
 final class URLEndpointUpdateParams implements BaseModel
 {
+    /** @use SdkModel<url_endpoint_update_params> */
     use SdkModel;
     use SdkParams;
 

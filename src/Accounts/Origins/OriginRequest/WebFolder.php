@@ -8,8 +8,19 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
+/**
+ * @phpstan-type web_folder = array{
+ *   baseURL: string,
+ *   name: string,
+ *   type: string,
+ *   baseURLForCanonicalHeader?: string|null,
+ *   forwardHostHeaderToOrigin?: bool|null,
+ *   includeCanonicalHeader?: bool|null,
+ * }
+ */
 final class WebFolder implements BaseModel
 {
+    /** @use SdkModel<web_folder> */
     use SdkModel;
 
     #[Api]

@@ -15,9 +15,12 @@ use ImageKit\Core\Contracts\BaseModel;
  * Note: If a file or specific transformation has been requested in the past, then the response is cached. Deleting a file does not purge the cache. You can purge the cache using purge cache API.
  *
  * A maximum of 100 files can be deleted at a time.
+ *
+ * @phpstan-type bulk_delete_params = array{fileIDs: list<string>}
  */
 final class BulkDeleteParams implements BaseModel
 {
+    /** @use SdkModel<bulk_delete_params> */
     use SdkModel;
     use SdkParams;
 

@@ -11,9 +11,14 @@ use ImageKit\Files\FileUpdateResponse\ExtensionStatus;
 
 /**
  * Object containing details of a file or file version.
+ *
+ * @phpstan-type file_update_response = array{
+ *   extensionStatus?: ExtensionStatus|null
+ * }
  */
 final class FileUpdateResponse implements BaseModel
 {
+    /** @use SdkModel<file_update_response> */
     use SdkModel;
 
     #[Api(optional: true)]

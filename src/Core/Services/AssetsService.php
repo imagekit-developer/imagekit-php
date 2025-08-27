@@ -10,7 +10,6 @@ use ImageKit\Assets\AssetListParams\Sort;
 use ImageKit\Assets\AssetListParams\Type;
 use ImageKit\Assets\AssetListResponseItem;
 use ImageKit\Client;
-use ImageKit\Core\Conversion;
 use ImageKit\Core\Conversion\ListOf;
 use ImageKit\Core\ServiceContracts\AssetsContract;
 use ImageKit\Files\File;
@@ -78,17 +77,14 @@ final class AssetsService implements AssetsContract
             ],
             $requestOptions,
         );
-        $resp = $this->client->request(
+
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'get',
             path: 'v1/files',
             query: $parsed,
-            options: $options
-        );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(
-            new ListOf(AssetListResponseItem::class),
-            value: $resp
+            options: $options,
+            convert: new ListOf(AssetListResponseItem::class),
         );
     }
 }

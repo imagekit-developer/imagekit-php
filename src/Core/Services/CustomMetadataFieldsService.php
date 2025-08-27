@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace ImageKit\Core\Services;
 
 use ImageKit\Client;
-use ImageKit\Core\Conversion;
 use ImageKit\Core\Conversion\ListOf;
 use ImageKit\Core\ServiceContracts\CustomMetadataFieldsContract;
 use ImageKit\CustomMetadataFields\CustomMetadataField;
@@ -40,15 +39,15 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
             ['label' => $label, 'name' => $name, 'schema' => $schema],
             $requestOptions
         );
-        $resp = $this->client->request(
+
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'post',
             path: 'v1/customMetadataFields',
             body: (object) $parsed,
             options: $options,
+            convert: CustomMetadataField::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(CustomMetadataField::class, value: $resp);
     }
 
     /**
@@ -67,15 +66,15 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
             ['label' => $label, 'schema' => $schema],
             $requestOptions
         );
-        $resp = $this->client->request(
+
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'patch',
             path: ['v1/customMetadataFields/%1$s', $id],
             body: (object) $parsed,
             options: $options,
+            convert: CustomMetadataField::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(CustomMetadataField::class, value: $resp);
     }
 
     /**
@@ -93,17 +92,14 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
             ['includeDeleted' => $includeDeleted],
             $requestOptions
         );
-        $resp = $this->client->request(
+
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'get',
             path: 'v1/customMetadataFields',
             query: $parsed,
             options: $options,
-        );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(
-            new ListOf(CustomMetadataField::class),
-            value: $resp
+            convert: new ListOf(CustomMetadataField::class),
         );
     }
 
@@ -114,16 +110,12 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
         string $id,
         ?RequestOptions $requestOptions = null
     ): CustomMetadataFieldDeleteResponse {
-        $resp = $this->client->request(
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'delete',
             path: ['v1/customMetadataFields/%1$s', $id],
             options: $requestOptions,
-        );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(
-            CustomMetadataFieldDeleteResponse::class,
-            value: $resp
+            convert: CustomMetadataFieldDeleteResponse::class,
         );
     }
 }

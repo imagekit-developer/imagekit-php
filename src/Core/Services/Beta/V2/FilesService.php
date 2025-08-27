@@ -12,7 +12,6 @@ use ImageKit\Beta\V2\Files\FileUploadParams\ResponseField;
 use ImageKit\Beta\V2\Files\FileUploadParams\Transformation;
 use ImageKit\Beta\V2\Files\FileUploadResponse;
 use ImageKit\Client;
-use ImageKit\Core\Conversion;
 use ImageKit\Core\ServiceContracts\Beta\V2\FilesContract;
 use ImageKit\RequestOptions;
 
@@ -142,15 +141,15 @@ final class FilesService implements FilesContract
         $path = $this
             ->client
             ->baseUrlOverridden ? 'api/v2/files/upload' : 'https://upload.imagekit.io/api/v2/files/upload';
-        $resp = $this->client->request(
+
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'post',
             path: $path,
             headers: ['Content-Type' => 'multipart/form-data'],
             body: (object) $parsed,
             options: $options,
+            convert: FileUploadResponse::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(FileUploadResponse::class, value: $resp);
     }
 }

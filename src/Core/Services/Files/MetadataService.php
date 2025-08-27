@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace ImageKit\Core\Services\Files;
 
 use ImageKit\Client;
-use ImageKit\Core\Conversion;
 use ImageKit\Core\ServiceContracts\Files\MetadataContract;
 use ImageKit\Files\Metadata;
 use ImageKit\Files\Metadata\MetadataGetFromURLParams;
@@ -24,14 +23,13 @@ final class MetadataService implements MetadataContract
         string $fileID,
         ?RequestOptions $requestOptions = null
     ): Metadata {
-        $resp = $this->client->request(
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'get',
             path: ['v1/files/%1$s/metadata', $fileID],
             options: $requestOptions,
+            convert: Metadata::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(Metadata::class, value: $resp);
     }
 
     /**
@@ -47,14 +45,14 @@ final class MetadataService implements MetadataContract
             ['url' => $url],
             $requestOptions
         );
-        $resp = $this->client->request(
+
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'get',
             path: 'v1/files/metadata',
             query: $parsed,
             options: $options,
+            convert: Metadata::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(Metadata::class, value: $resp);
     }
 }

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace ImageKit\Core\Services\Folders;
 
 use ImageKit\Client;
-use ImageKit\Core\Conversion;
 use ImageKit\Core\ServiceContracts\Folders\JobContract;
 use ImageKit\Folders\Job\JobGetResponse;
 use ImageKit\RequestOptions;
@@ -21,13 +20,12 @@ final class JobService implements JobContract
         string $jobID,
         ?RequestOptions $requestOptions = null
     ): JobGetResponse {
-        $resp = $this->client->request(
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'get',
             path: ['v1/bulkJobs/%1$s', $jobID],
             options: $requestOptions,
+            convert: JobGetResponse::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(JobGetResponse::class, value: $resp);
     }
 }

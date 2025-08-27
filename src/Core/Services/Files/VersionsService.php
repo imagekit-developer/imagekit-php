@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace ImageKit\Core\Services\Files;
 
 use ImageKit\Client;
-use ImageKit\Core\Conversion;
 use ImageKit\Core\Conversion\ListOf;
 use ImageKit\Core\ServiceContracts\Files\VersionsContract;
 use ImageKit\Files\File;
@@ -28,14 +27,13 @@ final class VersionsService implements VersionsContract
         string $fileID,
         ?RequestOptions $requestOptions = null
     ): array {
-        $resp = $this->client->request(
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'get',
             path: ['v1/files/%1$s/versions', $fileID],
             options: $requestOptions,
+            convert: new ListOf(File::class),
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(new ListOf(File::class), value: $resp);
     }
 
     /**
@@ -56,14 +54,14 @@ final class VersionsService implements VersionsContract
         );
         $fileID = $parsed['fileID'];
         unset($parsed['fileID']);
-        $resp = $this->client->request(
+
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'delete',
             path: ['v1/files/%1$s/versions/%2$s', $fileID, $versionID],
             options: $options,
+            convert: VersionDeleteResponse::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(VersionDeleteResponse::class, value: $resp);
     }
 
     /**
@@ -82,14 +80,14 @@ final class VersionsService implements VersionsContract
         );
         $fileID = $parsed['fileID'];
         unset($parsed['fileID']);
-        $resp = $this->client->request(
+
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'get',
             path: ['v1/files/%1$s/versions/%2$s', $fileID, $versionID],
             options: $options,
+            convert: File::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(File::class, value: $resp);
     }
 
     /**
@@ -108,13 +106,13 @@ final class VersionsService implements VersionsContract
         );
         $fileID = $parsed['fileID'];
         unset($parsed['fileID']);
-        $resp = $this->client->request(
+
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'put',
             path: ['v1/files/%1$s/versions/%2$s/restore', $fileID, $versionID],
             options: $options,
+            convert: File::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(File::class, value: $resp);
     }
 }

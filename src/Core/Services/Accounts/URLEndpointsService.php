@@ -14,7 +14,6 @@ use ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\Akamai as
 use ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\Cloudinary as Cloudinary1;
 use ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\Imgix as Imgix1;
 use ImageKit\Client;
-use ImageKit\Core\Conversion;
 use ImageKit\Core\Conversion\ListOf;
 use ImageKit\Core\ServiceContracts\Accounts\URLEndpointsContract;
 use ImageKit\RequestOptions;
@@ -50,15 +49,15 @@ final class URLEndpointsService implements URLEndpointsContract
             ],
             $requestOptions,
         );
-        $resp = $this->client->request(
+
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'post',
             path: 'v1/accounts/url-endpoints',
             body: (object) $parsed,
             options: $options,
+            convert: URLEndpointResponse::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(URLEndpointResponse::class, value: $resp);
     }
 
     /**
@@ -87,15 +86,15 @@ final class URLEndpointsService implements URLEndpointsContract
             ],
             $requestOptions,
         );
-        $resp = $this->client->request(
+
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'put',
             path: ['v1/accounts/url-endpoints/%1$s', $id],
             body: (object) $parsed,
             options: $options,
+            convert: URLEndpointResponse::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(URLEndpointResponse::class, value: $resp);
     }
 
     /**
@@ -106,16 +105,12 @@ final class URLEndpointsService implements URLEndpointsContract
      */
     public function list(?RequestOptions $requestOptions = null): array
     {
-        $resp = $this->client->request(
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'get',
             path: 'v1/accounts/url-endpoints',
-            options: $requestOptions
-        );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(
-            new ListOf(URLEndpointResponse::class),
-            value: $resp
+            options: $requestOptions,
+            convert: new ListOf(URLEndpointResponse::class),
         );
     }
 
@@ -127,10 +122,12 @@ final class URLEndpointsService implements URLEndpointsContract
         string $id,
         ?RequestOptions $requestOptions = null
     ): mixed {
+        // @phpstan-ignore-next-line;
         return $this->client->request(
             method: 'delete',
             path: ['v1/accounts/url-endpoints/%1$s', $id],
             options: $requestOptions,
+            convert: null,
         );
     }
 
@@ -142,13 +139,12 @@ final class URLEndpointsService implements URLEndpointsContract
         string $id,
         ?RequestOptions $requestOptions = null
     ): URLEndpointResponse {
-        $resp = $this->client->request(
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'get',
             path: ['v1/accounts/url-endpoints/%1$s', $id],
             options: $requestOptions,
+            convert: URLEndpointResponse::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(URLEndpointResponse::class, value: $resp);
     }
 }

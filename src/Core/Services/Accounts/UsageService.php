@@ -7,7 +7,6 @@ namespace ImageKit\Core\Services\Accounts;
 use ImageKit\Accounts\Usage\UsageGetParams;
 use ImageKit\Accounts\Usage\UsageGetResponse;
 use ImageKit\Client;
-use ImageKit\Core\Conversion;
 use ImageKit\Core\ServiceContracts\Accounts\UsageContract;
 use ImageKit\RequestOptions;
 
@@ -30,14 +29,14 @@ final class UsageService implements UsageContract
             ['endDate' => $endDate, 'startDate' => $startDate],
             $requestOptions
         );
-        $resp = $this->client->request(
+
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'get',
             path: 'v1/accounts/usage',
             query: $parsed,
             options: $options,
+            convert: UsageGetResponse::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(UsageGetResponse::class, value: $resp);
     }
 }

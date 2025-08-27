@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace ImageKit\Core\Services\Files;
 
 use ImageKit\Client;
-use ImageKit\Core\Conversion;
 use ImageKit\Core\ServiceContracts\Files\BulkContract;
 use ImageKit\Files\Bulk\BulkAddTagsParams;
 use ImageKit\Files\Bulk\BulkAddTagsResponse;
@@ -38,15 +37,15 @@ final class BulkService implements BulkContract
             ['fileIDs' => $fileIDs],
             $requestOptions
         );
-        $resp = $this->client->request(
+
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'post',
             path: 'v1/files/batch/deleteByFileIds',
             body: (object) $parsed,
             options: $options,
+            convert: BulkDeleteResponse::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(BulkDeleteResponse::class, value: $resp);
     }
 
     /**
@@ -64,15 +63,15 @@ final class BulkService implements BulkContract
             ['fileIDs' => $fileIDs, 'tags' => $tags],
             $requestOptions
         );
-        $resp = $this->client->request(
+
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'post',
             path: 'v1/files/addTags',
             body: (object) $parsed,
             options: $options,
+            convert: BulkAddTagsResponse::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(BulkAddTagsResponse::class, value: $resp);
     }
 
     /**
@@ -90,15 +89,15 @@ final class BulkService implements BulkContract
             ['aiTags' => $aiTags, 'fileIDs' => $fileIDs],
             $requestOptions
         );
-        $resp = $this->client->request(
+
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'post',
             path: 'v1/files/removeAITags',
             body: (object) $parsed,
             options: $options,
+            convert: BulkRemoveAITagsResponse::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(BulkRemoveAITagsResponse::class, value: $resp);
     }
 
     /**
@@ -116,14 +115,14 @@ final class BulkService implements BulkContract
             ['fileIDs' => $fileIDs, 'tags' => $tags],
             $requestOptions
         );
-        $resp = $this->client->request(
+
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'post',
             path: 'v1/files/removeTags',
             body: (object) $parsed,
             options: $options,
+            convert: BulkRemoveTagsResponse::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(BulkRemoveTagsResponse::class, value: $resp);
     }
 }

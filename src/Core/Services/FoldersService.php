@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace ImageKit\Core\Services;
 
 use ImageKit\Client;
-use ImageKit\Core\Conversion;
 use ImageKit\Core\ServiceContracts\FoldersContract;
 use ImageKit\Core\Services\Folders\JobService;
 use ImageKit\Folders\FolderCopyParams;
@@ -50,15 +49,15 @@ final class FoldersService implements FoldersContract
             ['folderName' => $folderName, 'parentFolderPath' => $parentFolderPath],
             $requestOptions,
         );
-        $resp = $this->client->request(
+
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'post',
             path: 'v1/folder',
             body: (object) $parsed,
             options: $options,
+            convert: FolderNewResponse::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(FolderNewResponse::class, value: $resp);
     }
 
     /**
@@ -74,15 +73,15 @@ final class FoldersService implements FoldersContract
             ['folderPath' => $folderPath],
             $requestOptions
         );
-        $resp = $this->client->request(
+
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'delete',
             path: 'v1/folder',
             body: (object) $parsed,
             options: $options,
+            convert: FolderDeleteResponse::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(FolderDeleteResponse::class, value: $resp);
     }
 
     /**
@@ -106,15 +105,15 @@ final class FoldersService implements FoldersContract
             ],
             $requestOptions,
         );
-        $resp = $this->client->request(
+
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'post',
             path: 'v1/bulkJobs/copyFolder',
             body: (object) $parsed,
             options: $options,
+            convert: FolderCopyResponse::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(FolderCopyResponse::class, value: $resp);
     }
 
     /**
@@ -135,15 +134,15 @@ final class FoldersService implements FoldersContract
             ],
             $requestOptions,
         );
-        $resp = $this->client->request(
+
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'post',
             path: 'v1/bulkJobs/moveFolder',
             body: (object) $parsed,
             options: $options,
+            convert: FolderMoveResponse::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(FolderMoveResponse::class, value: $resp);
     }
 
     /**
@@ -175,14 +174,14 @@ final class FoldersService implements FoldersContract
             ],
             $requestOptions,
         );
-        $resp = $this->client->request(
+
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'post',
             path: 'v1/bulkJobs/renameFolder',
             body: (object) $parsed,
             options: $options,
+            convert: FolderRenameResponse::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(FolderRenameResponse::class, value: $resp);
     }
 }

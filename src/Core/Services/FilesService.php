@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace ImageKit\Core\Services;
 
 use ImageKit\Client;
-use ImageKit\Core\Conversion;
 use ImageKit\Core\ServiceContracts\FilesContract;
 use ImageKit\Core\Services\Files\BulkService;
 use ImageKit\Core\Services\Files\MetadataService;
@@ -61,15 +60,15 @@ final class FilesService implements FilesContract
             ['update' => $update],
             $requestOptions
         );
-        $resp = $this->client->request(
+
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'patch',
             path: ['v1/files/%1$s/details', $fileID],
             body: (object) $parsed['update'],
             options: $options,
+            convert: FileUpdateResponse::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(FileUpdateResponse::class, value: $resp);
     }
 
     /**
@@ -81,10 +80,12 @@ final class FilesService implements FilesContract
         string $fileID,
         ?RequestOptions $requestOptions = null
     ): mixed {
+        // @phpstan-ignore-next-line;
         return $this->client->request(
             method: 'delete',
             path: ['v1/files/%1$s', $fileID],
             options: $requestOptions,
+            convert: null,
         );
     }
 
@@ -111,15 +112,15 @@ final class FilesService implements FilesContract
             ],
             $requestOptions,
         );
-        $resp = $this->client->request(
+
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'post',
             path: 'v1/files/copy',
             body: (object) $parsed,
             options: $options,
+            convert: FileCopyResponse::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(FileCopyResponse::class, value: $resp);
     }
 
     /**
@@ -129,14 +130,13 @@ final class FilesService implements FilesContract
         string $fileID,
         ?RequestOptions $requestOptions = null
     ): File {
-        $resp = $this->client->request(
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'get',
             path: ['v1/files/%1$s/details', $fileID],
             options: $requestOptions,
+            convert: File::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(File::class, value: $resp);
     }
 
     /**
@@ -159,15 +159,15 @@ final class FilesService implements FilesContract
             ],
             $requestOptions,
         );
-        $resp = $this->client->request(
+
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'post',
             path: 'v1/files/move',
             body: (object) $parsed,
             options: $options,
+            convert: FileMoveResponse::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(FileMoveResponse::class, value: $resp);
     }
 
     /**
@@ -204,15 +204,15 @@ final class FilesService implements FilesContract
             ],
             $requestOptions,
         );
-        $resp = $this->client->request(
+
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'put',
             path: 'v1/files/rename',
             body: (object) $parsed,
             options: $options,
+            convert: FileRenameResponse::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(FileRenameResponse::class, value: $resp);
     }
 
     /**
@@ -361,15 +361,15 @@ final class FilesService implements FilesContract
         $path = $this
             ->client
             ->baseUrlOverridden ? 'api/v1/files/upload' : 'https://upload.imagekit.io/api/v1/files/upload';
-        $resp = $this->client->request(
+
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'post',
             path: $path,
             headers: ['Content-Type' => 'multipart/form-data'],
             body: (object) $parsed,
             options: $options,
+            convert: FileUploadResponse::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(FileUploadResponse::class, value: $resp);
     }
 }

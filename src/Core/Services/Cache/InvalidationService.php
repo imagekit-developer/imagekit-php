@@ -8,7 +8,6 @@ use ImageKit\Cache\Invalidation\InvalidationCreateParams;
 use ImageKit\Cache\Invalidation\InvalidationGetResponse;
 use ImageKit\Cache\Invalidation\InvalidationNewResponse;
 use ImageKit\Client;
-use ImageKit\Core\Conversion;
 use ImageKit\Core\ServiceContracts\Cache\InvalidationContract;
 use ImageKit\RequestOptions;
 
@@ -29,15 +28,15 @@ final class InvalidationService implements InvalidationContract
             ['url' => $url],
             $requestOptions
         );
-        $resp = $this->client->request(
+
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'post',
             path: 'v1/files/purge',
             body: (object) $parsed,
             options: $options,
+            convert: InvalidationNewResponse::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(InvalidationNewResponse::class, value: $resp);
     }
 
     /**
@@ -47,13 +46,12 @@ final class InvalidationService implements InvalidationContract
         string $requestID,
         ?RequestOptions $requestOptions = null
     ): InvalidationGetResponse {
-        $resp = $this->client->request(
+        // @phpstan-ignore-next-line;
+        return $this->client->request(
             method: 'get',
             path: ['v1/files/purge/%1$s', $requestID],
             options: $requestOptions,
+            convert: InvalidationGetResponse::class,
         );
-
-        // @phpstan-ignore-next-line;
-        return Conversion::coerce(InvalidationGetResponse::class, value: $resp);
     }
 }

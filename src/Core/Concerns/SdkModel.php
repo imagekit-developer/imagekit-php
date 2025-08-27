@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ImageKit\Core\Concerns;
 
 use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Core\Contracts\BasePage;
 use ImageKit\Core\Conversion;
 use ImageKit\Core\Conversion\CoerceState;
 use ImageKit\Core\Conversion\Contracts\Converter;
@@ -244,7 +245,7 @@ trait SdkModel
      */
     private static function serialize(mixed $value): mixed
     {
-        if ($value instanceof BaseModel) {
+        if ($value instanceof BaseModel || $value instanceof BasePage) {
             return $value->toArray();
         }
 

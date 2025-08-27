@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Core\Pagination;
+namespace ImageKit\Core\Concerns;
 
 use ImageKit\Client;
-use ImageKit\Core\Contracts\BasePage;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 use ImageKit\Core\Errors\APIStatusError;
@@ -16,19 +15,20 @@ use ImageKit\RequestOptions;
  *
  * @template Item
  *
- * @implements BasePage<Item>
- *
  * @phpstan-import-type normalized_request from \ImageKit\Core\BaseClient
  */
-abstract class AbstractPage implements BasePage
+trait SdkPage
 {
-    public function __construct(
-        protected Converter|ConverterSource|string $convert,
-        protected Client $client,
-        protected array $request,
-        protected RequestOptions $options,
-        protected mixed $data,
-    ) {}
+    private Converter|ConverterSource|string $convert;
+
+    private Client $client;
+
+    /**
+     * normalized_request $request.
+     */
+    private array $request;
+
+    private RequestOptions $options;
 
     /**
      * @return list<Item>

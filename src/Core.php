@@ -4,12 +4,6 @@ declare(strict_types=1);
 
 namespace ImageKit\Core;
 
-/**
- * @internal
- */
-enum Omittable
-{
-    case OMIT;
-}
+use ImageKit\Core\Implementation\Omittable;
 
 const OMIT = Omittable::OMIT;

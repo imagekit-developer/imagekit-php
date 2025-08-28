@@ -6,7 +6,6 @@ namespace ImageKit\Core\Conversion;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Core\Contracts\BasePage;
 use ImageKit\Core\Conversion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 
@@ -21,7 +20,7 @@ final class ModelOf implements Converter
     public readonly array $properties;
 
     /**
-     * @param \ReflectionClass<BaseModel|BasePage<mixed>> $class
+     * @param \ReflectionClass<BaseModel> $class
      */
     public function __construct(public readonly \ReflectionClass $class)
     {
@@ -89,15 +88,13 @@ final class ModelOf implements Converter
             $acc[$name] = $item;
         }
 
-        return $this->from($acc);
+        return $this->from($acc); // @phpstan-ignore-line
     }
 
     /**
-     * @param array<mixed> $data
-     *
-     * @return BaseModel|BasePage<mixed>
+     * @param array<string, mixed> $data
      */
-    public function from(array $data): BaseModel|BasePage
+    public function from(array $data): BaseModel
     {
         $instance = $this->class->newInstanceWithoutConstructor();
         $instance->__unserialize($data); // @phpstan-ignore-line
@@ -107,7 +104,7 @@ final class ModelOf implements Converter
 
     public function dump(mixed $value, DumpState $state): mixed
     {
-        if ($value instanceof BaseModel || $value instanceof BasePage) {
+        if ($value instanceof BaseModel) {
             $value = $value->toArray();
         }
 

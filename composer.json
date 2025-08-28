@@ -24,7 +24,6 @@
     "sort-packages": true
   },
   "description": "Image Kit PHP SDK",
-  "license": "APACHE-2.0",
   "name": "imagekit/imagekit",
   "require": {
     "php": "^8.1",

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace ImageKit;
 
+use Http\Discovery\Psr17FactoryDiscovery;
+use Http\Discovery\Psr18ClientDiscovery;
 use ImageKit\Core\BaseClient;
 use ImageKit\Core\Services\AccountsService;
 use ImageKit\Core\Services\AssetsService;
@@ -80,12 +82,19 @@ class Client extends BaseClient
             'IMAGE_KIT_BASE_URL'
         ) ?: 'https://api.imagekit.io';
 
+        $options = new RequestOptions(
+            uriFactory: Psr17FactoryDiscovery::findUriFactory(),
+            streamFactory: Psr17FactoryDiscovery::findStreamFactory(),
+            requestFactory: Psr17FactoryDiscovery::findRequestFactory(),
+            transporter: Psr18ClientDiscovery::find(),
+        );
+
         parent::__construct(
             headers: [
                 'Content-Type' => 'application/json', 'Accept' => 'application/json',
             ],
             baseUrl: $base,
-            options: new RequestOptions,
+            options: $options,
         );
 
         $this->customMetadataFields = new CustomMetadataFieldsService($this);

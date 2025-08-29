@@ -7,7 +7,6 @@ namespace ImageKit;
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\SrcOptions\QueryParameter;
 
 /**
  * Options for generating ImageKit URLs with transformations.
@@ -15,7 +14,7 @@ use ImageKit\SrcOptions\QueryParameter;
  * @phpstan-type src_options = array{
  *   src: string,
  *   urlEndpoint: string,
- *   queryParameters?: array<string, string|float>|null,
+ *   queryParameters?: array<string, string>|null,
  *   transformation?: list<Transformation>|null,
  *   transformationPosition?: TransformationPosition::*|null,
  * }
@@ -43,9 +42,9 @@ final class SrcOptions implements BaseModel
      * They can be any query parameters and not necessarily related to ImageKit.
      * This is especially useful if you want to add a versioning parameter to your URLs.
      *
-     * @var array<string, string|float>|null $queryParameters
+     * @var array<string, string>|null $queryParameters
      */
-    #[Api(map: QueryParameter::class, optional: true)]
+    #[Api(map: 'string', optional: true)]
     public ?array $queryParameters;
 
     /**
@@ -90,7 +89,7 @@ final class SrcOptions implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param array<string, string|float> $queryParameters
+     * @param array<string, string> $queryParameters
      * @param list<Transformation> $transformation
      * @param TransformationPosition::* $transformationPosition
      */
@@ -141,7 +140,7 @@ final class SrcOptions implements BaseModel
      * They can be any query parameters and not necessarily related to ImageKit.
      * This is especially useful if you want to add a versioning parameter to your URLs.
      *
-     * @param array<string, string|float> $queryParameters
+     * @param array<string, string> $queryParameters
      */
     public function withQueryParameters(array $queryParameters): self
     {

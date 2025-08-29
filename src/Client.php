@@ -82,7 +82,7 @@ class Client extends BaseClient
             'IMAGE_KIT_BASE_URL'
         ) ?: 'https://api.imagekit.io';
 
-        $options = new RequestOptions(
+        $options = RequestOptions::with(
             uriFactory: Psr17FactoryDiscovery::findUriFactory(),
             streamFactory: Psr17FactoryDiscovery::findStreamFactory(),
             requestFactory: Psr17FactoryDiscovery::findRequestFactory(),

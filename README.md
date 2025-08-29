@@ -104,7 +104,7 @@ Certain errors will be automatically retried 2 times by default, with a short ex
 
 Connection errors (for example, due to a network connectivity problem), 408 Request Timeout, 409 Conflict, 429 Rate Limit, >=500 Internal errors, and timeouts will all be retried by default.
 
-You can use the `max_retries` option to configure or disable this:
+You can use the `maxRetries` option to configure or disable this:
 
 ```php
 <?php
@@ -118,7 +118,9 @@ $client = new Client(maxRetries: 0);
 // Or, configure per-request:
 
 $result = $client->files->upload(
-  file: 'file', fileName: "file-name.jpg", new RequestOptions(maxRetries: 5)
+  file: 'file',
+  fileName: "file-name.jpg",
+  requestOptions: RequestOptions::with(maxRetries: 5),
 );
 ```
 
@@ -130,7 +132,7 @@ $result = $client->files->upload(
 
 You can send undocumented parameters to any endpoint, and read undocumented response properties, like so:
 
-Note: the `extra_` parameters of the same name overrides the documented parameters.
+Note: the `extra*` parameters of the same name overrides the documented parameters.
 
 ```php
 <?php
@@ -140,7 +142,7 @@ use ImageKit\RequestOptions;
 $response = $client->files->upload(
   file: 'file',
   fileName: "file-name.jpg",
-  new RequestOptions(
+  requestOptions: RequestOptions::with(
     extraQueryParams: ["my_query_parameter" => "value"],
     extraBodyParams: ["my_body_parameter" => "value"],
     extraHeaders: ["my-header" => "value"],

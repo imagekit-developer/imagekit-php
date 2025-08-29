@@ -30,6 +30,9 @@ use ImageKit\RequestOptions;
 
 final class OriginsService implements OriginsContract
 {
+    /**
+     * @internal
+     */
     public function __construct(private Client $client) {}
 
     /**

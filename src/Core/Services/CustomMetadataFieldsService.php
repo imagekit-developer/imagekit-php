@@ -20,6 +20,9 @@ use const ImageKit\Core\OMIT as omit;
 
 final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
 {
+    /**
+     * @internal
+     */
     public function __construct(private Client $client) {}
 
     /**

@@ -48,6 +48,9 @@ final class FilesService implements FilesContract
      */
     public MetadataService $metadata;
 
+    /**
+     * @internal
+     */
     public function __construct(private Client $client)
     {
         $this->bulk = new BulkService($this->client);

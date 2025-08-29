@@ -11,6 +11,9 @@ use ImageKit\RequestOptions;
 
 final class JobService implements JobContract
 {
+    /**
+     * @internal
+     */
     public function __construct(private Client $client) {}
 
     /**

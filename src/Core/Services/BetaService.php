@@ -15,6 +15,9 @@ final class BetaService implements BetaContract
      */
     public V2Service $v2;
 
+    /**
+     * @internal
+     */
     public function __construct(private Client $client)
     {
         $this->v2 = new V2Service($this->client);

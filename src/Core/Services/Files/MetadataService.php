@@ -12,6 +12,9 @@ use ImageKit\RequestOptions;
 
 final class MetadataService implements MetadataContract
 {
+    /**
+     * @internal
+     */
     public function __construct(private Client $client) {}
 
     /**

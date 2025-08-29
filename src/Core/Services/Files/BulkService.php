@@ -18,6 +18,9 @@ use ImageKit\RequestOptions;
 
 final class BulkService implements BulkContract
 {
+    /**
+     * @internal
+     */
     public function __construct(private Client $client) {}
 
     /**

@@ -9,5 +9,8 @@ use ImageKit\Core\ServiceContracts\WebhooksContract;
 
 final class WebhooksService implements WebhooksContract
 {
+    /**
+     * @internal
+     */
     public function __construct(private Client $client) {}
 }

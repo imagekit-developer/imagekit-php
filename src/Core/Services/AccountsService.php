@@ -27,6 +27,9 @@ final class AccountsService implements AccountsContract
      */
     public URLEndpointsService $urlEndpoints;
 
+    /**
+     * @internal
+     */
     public function __construct(private Client $client)
     {
         $this->usage = new UsageService($this->client);

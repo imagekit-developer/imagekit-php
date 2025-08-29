@@ -28,6 +28,9 @@ final class FoldersService implements FoldersContract
      */
     public JobService $job;
 
+    /**
+     * @internal
+     */
     public function __construct(private Client $client)
     {
         $this->job = new JobService($this->client);

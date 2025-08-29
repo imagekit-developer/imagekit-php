@@ -28,8 +28,7 @@ final class BulkDeleteResponse implements BaseModel
 
     public function __construct()
     {
-        self::introspect();
-        $this->unsetOptionalProperties();
+        $this->initialize();
     }
 
     /**

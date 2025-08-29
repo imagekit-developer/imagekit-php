@@ -20,6 +20,9 @@ use const ImageKit\Core\OMIT as omit;
 
 final class AssetsService implements AssetsContract
 {
+    /**
+     * @internal
+     */
     public function __construct(private Client $client) {}
 
     /**

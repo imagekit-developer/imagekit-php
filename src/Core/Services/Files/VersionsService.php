@@ -16,6 +16,9 @@ use ImageKit\RequestOptions;
 
 final class VersionsService implements VersionsContract
 {
+    /**
+     * @internal
+     */
     public function __construct(private Client $client) {}
 
     /**

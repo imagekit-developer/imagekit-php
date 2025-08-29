@@ -12,6 +12,9 @@ use ImageKit\RequestOptions;
 
 final class UsageService implements UsageContract
 {
+    /**
+     * @internal
+     */
     public function __construct(private Client $client) {}
 
     /**

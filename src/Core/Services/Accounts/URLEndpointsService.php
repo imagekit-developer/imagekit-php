@@ -22,6 +22,9 @@ use const ImageKit\Core\OMIT as omit;
 
 final class URLEndpointsService implements URLEndpointsContract
 {
+    /**
+     * @internal
+     */
     public function __construct(private Client $client) {}
 
     /**

@@ -15,6 +15,9 @@ final class V2Service implements V2Contract
      */
     public FilesService $files;
 
+    /**
+     * @internal
+     */
     public function __construct(private Client $client)
     {
         $this->files = new FilesService($this->client);

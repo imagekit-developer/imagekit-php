@@ -15,6 +15,9 @@ final class CacheService implements CacheContract
      */
     public InvalidationService $invalidation;
 
+    /**
+     * @internal
+     */
     public function __construct(private Client $client)
     {
         $this->invalidation = new InvalidationService($this->client);

@@ -23,6 +23,8 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
     public function __construct(private Client $client) {}
 
     /**
+     * @api
+     *
      * This API creates a new custom metadata field. Once a custom metadata field is created either through this API or using the dashboard UI, its value can be set on the assets. The value of a field for an asset can be set using the media library UI or programmatically through upload or update assets API.
      *
      * @param string $label Human readable name of the custom metadata field. This should be unique across all non deleted custom metadata fields. This name is displayed as form field label to the users while setting field value on an asset in the media library UI.
@@ -51,6 +53,8 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
     }
 
     /**
+     * @api
+     *
      * This API updates the label or schema of an existing custom metadata field.
      *
      * @param string $label Human readable name of the custom metadata field. This should be unique across all non deleted custom metadata fields. This name is displayed as form field label to the users while setting field value on an asset in the media library UI. This parameter is required if `schema` is not provided.
@@ -78,6 +82,8 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
     }
 
     /**
+     * @api
+     *
      * This API returns the array of created custom metadata field objects. By default the API returns only non deleted field objects, but you can include deleted fields in the API response.
      *
      * @param bool $includeDeleted set it to `true` to include deleted field objects in the API response
@@ -104,6 +110,8 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
     }
 
     /**
+     * @api
+     *
      * This API deletes a custom metadata field. Even after deleting a custom metadata field, you cannot create any new custom metadata field with the same name.
      */
     public function delete(

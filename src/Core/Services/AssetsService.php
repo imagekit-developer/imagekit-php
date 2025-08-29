@@ -23,6 +23,8 @@ final class AssetsService implements AssetsContract
     public function __construct(private Client $client) {}
 
     /**
+     * @api
+     *
      * This API can list all the uploaded files and folders in your ImageKit.io media library. In addition, you can fine-tune your query by specifying various filters by generating a query string in a Lucene-like syntax and provide this generated string as the value of the `searchQuery`.
      *
      * @param FileType::* $fileType Filter results by file type.

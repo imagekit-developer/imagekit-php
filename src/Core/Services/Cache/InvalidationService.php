@@ -16,6 +16,8 @@ final class InvalidationService implements InvalidationContract
     public function __construct(private Client $client) {}
 
     /**
+     * @api
+     *
      * This API will purge CDN cache and ImageKit.io's internal cache for a file.  Note: Purge cache is an asynchronous process and it may take some time to reflect the changes.
      *
      * @param string $url the full URL of the file to be purged
@@ -40,6 +42,8 @@ final class InvalidationService implements InvalidationContract
     }
 
     /**
+     * @api
+     *
      * This API returns the status of a purge cache request.
      */
     public function get(

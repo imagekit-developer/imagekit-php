@@ -24,6 +24,8 @@ use const ImageKit\Core\OMIT as omit;
 interface FilesContract
 {
     /**
+     * @api
+     *
      * @param UpdateFileDetails|ChangePublicationStatus $update
      */
     public function update(
@@ -32,12 +34,17 @@ interface FilesContract
         ?RequestOptions $requestOptions = null
     ): FileUpdateResponse;
 
+    /**
+     * @api
+     */
     public function delete(
         string $fileID,
         ?RequestOptions $requestOptions = null
     ): mixed;
 
     /**
+     * @api
+     *
      * @param string $destinationPath full path to the folder you want to copy the above file into
      * @param string $sourceFilePath the full path of the file you want to copy
      * @param bool $includeFileVersions Option to copy all versions of a file. By default, only the current version of the file is copied. When set to true, all versions of the file will be copied. Default value - `false`.
@@ -49,12 +56,17 @@ interface FilesContract
         ?RequestOptions $requestOptions = null,
     ): FileCopyResponse;
 
+    /**
+     * @api
+     */
     public function get(
         string $fileID,
         ?RequestOptions $requestOptions = null
     ): File;
 
     /**
+     * @api
+     *
      * @param string $destinationPath full path to the folder you want to move the above file into
      * @param string $sourceFilePath the full path of the file you want to move
      */
@@ -65,6 +77,8 @@ interface FilesContract
     ): FileMoveResponse;
 
     /**
+     * @api
+     *
      * @param string $filePath the full path of the file you want to rename
      * @param string $newFileName The new name of the file. A filename can contain:
      *
@@ -88,6 +102,8 @@ interface FilesContract
     ): FileRenameResponse;
 
     /**
+     * @api
+     *
      * @param string $file The API accepts any of the following:
      *
      * - **Binary data** – send the raw bytes as `multipart/form-data`.

@@ -21,6 +21,8 @@ final class BulkService implements BulkContract
     public function __construct(private Client $client) {}
 
     /**
+     * @api
+     *
      * This API deletes multiple files and all their file versions permanently.
      *
      * Note: If a file or specific transformation has been requested in the past, then the response is cached. Deleting a file does not purge the cache. You can purge the cache using purge cache API.
@@ -49,6 +51,8 @@ final class BulkService implements BulkContract
     }
 
     /**
+     * @api
+     *
      * This API adds tags to multiple files in bulk. A maximum of 50 files can be specified at a time.
      *
      * @param list<string> $fileIDs an array of fileIds to which you want to add tags
@@ -75,6 +79,8 @@ final class BulkService implements BulkContract
     }
 
     /**
+     * @api
+     *
      * This API removes AITags from multiple files in bulk. A maximum of 50 files can be specified at a time.
      *
      * @param list<string> $aiTags an array of AITags that you want to remove from the files
@@ -101,6 +107,8 @@ final class BulkService implements BulkContract
     }
 
     /**
+     * @api
+     *
      * This API removes tags from multiple files in bulk. A maximum of 50 files can be specified at a time.
      *
      * @param list<string> $fileIDs an array of fileIds from which you want to remove tags

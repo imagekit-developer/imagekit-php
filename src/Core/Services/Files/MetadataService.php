@@ -15,6 +15,8 @@ final class MetadataService implements MetadataContract
     public function __construct(private Client $client) {}
 
     /**
+     * @api
+     *
      * You can programmatically get image EXIF, pHash, and other metadata for uploaded files in the ImageKit.io media library using this API.
      *
      * You can also get the metadata in upload API response by passing `metadata` in `responseFields` parameter.
@@ -33,6 +35,8 @@ final class MetadataService implements MetadataContract
     }
 
     /**
+     * @api
+     *
      * Get image EXIF, pHash, and other metadata from ImageKit.io powered remote URL using this API.
      *
      * @param string $url Should be a valid file URL. It should be accessible using your ImageKit.io account.

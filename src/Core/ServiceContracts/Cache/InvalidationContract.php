@@ -11,6 +11,8 @@ use ImageKit\RequestOptions;
 interface InvalidationContract
 {
     /**
+     * @api
+     *
      * @param string $url the full URL of the file to be purged
      */
     public function create(
@@ -18,6 +20,9 @@ interface InvalidationContract
         ?RequestOptions $requestOptions = null
     ): InvalidationNewResponse;
 
+    /**
+     * @api
+     */
     public function get(
         string $requestID,
         ?RequestOptions $requestOptions = null

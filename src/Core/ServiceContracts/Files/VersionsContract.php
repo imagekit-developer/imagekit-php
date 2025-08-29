@@ -11,6 +11,8 @@ use ImageKit\RequestOptions;
 interface VersionsContract
 {
     /**
+     * @api
+     *
      * @return list<File>
      */
     public function list(
@@ -19,6 +21,8 @@ interface VersionsContract
     ): array;
 
     /**
+     * @api
+     *
      * @param string $fileID
      */
     public function delete(
@@ -28,6 +32,8 @@ interface VersionsContract
     ): VersionDeleteResponse;
 
     /**
+     * @api
+     *
      * @param string $fileID
      */
     public function get(
@@ -37,6 +43,8 @@ interface VersionsContract
     ): File;
 
     /**
+     * @api
+     *
      * @param string $fileID
      */
     public function restore(

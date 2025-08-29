@@ -17,6 +17,8 @@ use const ImageKit\Core\OMIT as omit;
 interface FilesContract
 {
     /**
+     * @api
+     *
      * @param string $file The API accepts any of the following:
      *
      * - **Binary data** – send the raw bytes as `multipart/form-data`.

@@ -10,6 +10,9 @@ use ImageKit\Core\Services\Beta\V2\FilesService;
 
 final class V2Service implements V2Contract
 {
+    /**
+     * @@api
+     */
     public FilesService $files;
 
     public function __construct(private Client $client)

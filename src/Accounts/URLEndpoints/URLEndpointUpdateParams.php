@@ -17,6 +17,8 @@ use ImageKit\Core\Contracts\BaseModel;
  * **Note:** This API is currently in beta.
  * Updates the URL‑endpoint identified by `id` and returns the updated object.
  *
+ * @see ImageKit\Accounts\URLEndpoints->update
+ *
  * @phpstan-type url_endpoint_update_params = array{
  *   description: string,
  *   origins?: list<string>,

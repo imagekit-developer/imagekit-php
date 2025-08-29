@@ -17,6 +17,8 @@ use ImageKit\Core\Contracts\BaseModel;
  * **Note:** This API is currently in beta.
  * Creates a new URL‑endpoint and returns the resulting object.
  *
+ * @see ImageKit\Accounts\URLEndpoints->create
+ *
  * @phpstan-type url_endpoint_create_params = array{
  *   description: string,
  *   origins?: list<string>,

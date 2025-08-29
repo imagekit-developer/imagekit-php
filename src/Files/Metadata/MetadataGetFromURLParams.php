@@ -12,6 +12,8 @@ use ImageKit\Core\Contracts\BaseModel;
 /**
  * Get image EXIF, pHash, and other metadata from ImageKit.io powered remote URL using this API.
  *
+ * @see ImageKit\Files\Metadata->getFromURL
+ *
  * @phpstan-type metadata_get_from_url_params = array{url: string}
  */
 final class MetadataGetFromURLParams implements BaseModel

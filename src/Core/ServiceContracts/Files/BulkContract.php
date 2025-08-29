@@ -13,6 +13,8 @@ use ImageKit\RequestOptions;
 interface BulkContract
 {
     /**
+     * @api
+     *
      * @param list<string> $fileIDs an array of fileIds which you want to delete
      */
     public function delete(
@@ -21,6 +23,8 @@ interface BulkContract
     ): BulkDeleteResponse;
 
     /**
+     * @api
+     *
      * @param list<string> $fileIDs an array of fileIds to which you want to add tags
      * @param list<string> $tags an array of tags that you want to add to the files
      */
@@ -31,6 +35,8 @@ interface BulkContract
     ): BulkAddTagsResponse;
 
     /**
+     * @api
+     *
      * @param list<string> $aiTags an array of AITags that you want to remove from the files
      * @param list<string> $fileIDs an array of fileIds from which you want to remove AITags
      */
@@ -41,6 +47,8 @@ interface BulkContract
     ): BulkRemoveAITagsResponse;
 
     /**
+     * @api
+     *
      * @param list<string> $fileIDs an array of fileIds from which you want to remove tags
      * @param list<string> $tags an array of tags that you want to remove from the files
      */

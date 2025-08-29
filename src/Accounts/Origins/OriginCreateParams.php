@@ -21,6 +21,8 @@ use ImageKit\Core\Contracts\BaseModel;
  * **Note:** This API is currently in beta.
  * Creates a new origin and returns the origin object.
  *
+ * @see ImageKit\Accounts\Origins->create
+ *
  * @phpstan-type origin_create_params = array{
  *   origin: S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim,
  * }

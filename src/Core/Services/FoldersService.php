@@ -23,6 +23,9 @@ use const ImageKit\Core\OMIT as omit;
 
 final class FoldersService implements FoldersContract
 {
+    /**
+     * @@api
+     */
     public JobService $job;
 
     public function __construct(private Client $client)
@@ -31,6 +34,8 @@ final class FoldersService implements FoldersContract
     }
 
     /**
+     * @api
+     *
      * This will create a new folder. You can specify the folder name and location of the parent folder where this new folder should be created.
      *
      * @param string $folderName The folder will be created with this name.
@@ -61,6 +66,8 @@ final class FoldersService implements FoldersContract
     }
 
     /**
+     * @api
+     *
      * This will delete a folder and all its contents permanently. The API returns an empty response.
      *
      * @param string $folderPath Full path to the folder you want to delete. For example `/folder/to/delete/`.
@@ -85,6 +92,8 @@ final class FoldersService implements FoldersContract
     }
 
     /**
+     * @api
+     *
      * This will copy one folder into another. The selected folder, its nested folders, files, and their versions (in `includeVersions` is set to true) are copied in this operation. Note: If any file at the destination has the same name as the source file, then the source file and its versions will be appended to the destination file version history.
      *
      * @param string $destinationPath full path to the destination folder where you want to copy the source folder into
@@ -117,6 +126,8 @@ final class FoldersService implements FoldersContract
     }
 
     /**
+     * @api
+     *
      * This will move one folder into another. The selected folder, its nested folders, files, and their versions are moved in this operation. Note: If any file at the destination has the same name as the source file, then the source file and its versions will be appended to the destination file version history.
      *
      * @param string $destinationPath full path to the destination folder where you want to move the source folder into
@@ -146,6 +157,8 @@ final class FoldersService implements FoldersContract
     }
 
     /**
+     * @api
+     *
      * This API allows you to rename an existing folder. The folder and all its nested assets and sub-folders will remain unchanged, but their paths will be updated to reflect the new folder name.
      *
      * @param string $folderPath the full path to the folder you want to rename

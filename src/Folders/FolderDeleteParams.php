@@ -12,6 +12,8 @@ use ImageKit\Core\Contracts\BaseModel;
 /**
  * This will delete a folder and all its contents permanently. The API returns an empty response.
  *
+ * @see ImageKit\Folders->delete
+ *
  * @phpstan-type folder_delete_params = array{folderPath: string}
  */
 final class FolderDeleteParams implements BaseModel

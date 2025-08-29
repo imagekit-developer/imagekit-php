@@ -14,6 +14,8 @@ use ImageKit\Core\Contracts\BaseModel;
  *
  * Note: If you want to delete all versions of a file, use the delete file API.
  *
+ * @see ImageKit\Files\Versions->delete
+ *
  * @phpstan-type version_delete_params = array{fileID: string}
  */
 final class VersionDeleteParams implements BaseModel

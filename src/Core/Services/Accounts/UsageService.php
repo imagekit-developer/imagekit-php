@@ -15,6 +15,8 @@ final class UsageService implements UsageContract
     public function __construct(private Client $client) {}
 
     /**
+     * @api
+     *
      * Get the account usage information between two dates. Note that the API response includes data from the start date while excluding data from the end date. In other words, the data covers the period starting from the specified start date up to, but not including, the end date.
      *
      * @param \DateTimeInterface $endDate Specify a `endDate` in `YYYY-MM-DD` format. It should be after the `startDate`. The difference between `startDate` and `endDate` should be less than 90 days.

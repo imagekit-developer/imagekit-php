@@ -14,6 +14,8 @@ use ImageKit\Core\Contracts\BaseModel;
  *
  * Note: If any file at the destination has the same name as the source file, then the source file and its versions will be appended to the destination file.
  *
+ * @see ImageKit\Files->move
+ *
  * @phpstan-type file_move_params = array{
  *   destinationPath: string, sourceFilePath: string
  * }

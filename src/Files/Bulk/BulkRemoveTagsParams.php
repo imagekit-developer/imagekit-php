@@ -12,6 +12,8 @@ use ImageKit\Core\Contracts\BaseModel;
 /**
  * This API removes tags from multiple files in bulk. A maximum of 50 files can be specified at a time.
  *
+ * @see ImageKit\Files\Bulk->removeTags
+ *
  * @phpstan-type bulk_remove_tags_params = array{
  *   fileIDs: list<string>, tags: list<string>
  * }

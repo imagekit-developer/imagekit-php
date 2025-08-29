@@ -25,6 +25,8 @@ use ImageKit\RequestOptions;
 interface OriginsContract
 {
     /**
+     * @api
+     *
      * @param S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim $origin schema for origin request resources
      */
     public function create(
@@ -33,6 +35,8 @@ interface OriginsContract
     ): S31|S3Compatible1|CloudinaryBackup1|WebFolder1|WebProxy1|Gcs1|AzureBlob1|AkeneoPim1;
 
     /**
+     * @api
+     *
      * @param S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim $origin schema for origin request resources
      */
     public function update(
@@ -42,17 +46,25 @@ interface OriginsContract
     ): S31|S3Compatible1|CloudinaryBackup1|WebFolder1|WebProxy1|Gcs1|AzureBlob1|AkeneoPim1;
 
     /**
+     * @api
+     *
      * @return list<S31|S3Compatible1|CloudinaryBackup1|WebFolder1|WebProxy1|Gcs1|AzureBlob1|AkeneoPim1>
      */
     public function list(
         ?RequestOptions $requestOptions = null
     ): array;
 
+    /**
+     * @api
+     */
     public function delete(
         string $id,
         ?RequestOptions $requestOptions = null
     ): mixed;
 
+    /**
+     * @api
+     */
     public function get(
         string $id,
         ?RequestOptions $requestOptions = null

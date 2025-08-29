@@ -18,6 +18,8 @@ use const ImageKit\Core\OMIT as omit;
 interface URLEndpointsContract
 {
     /**
+     * @api
+     *
      * @param string $description description of the URL endpoint
      * @param list<string> $origins Ordered list of origin IDs to try when the file isn’t in the Media Library; ImageKit checks them in the sequence provided. Origin must be created before it can be used in a URL endpoint.
      * @param string $urlPrefix path segment appended to your base URL to form the endpoint (letters, digits, and hyphens only — or empty for the default endpoint)
@@ -32,6 +34,8 @@ interface URLEndpointsContract
     ): URLEndpointResponse;
 
     /**
+     * @api
+     *
      * @param string $description description of the URL endpoint
      * @param list<string> $origins Ordered list of origin IDs to try when the file isn’t in the Media Library; ImageKit checks them in the sequence provided. Origin must be created before it can be used in a URL endpoint.
      * @param string $urlPrefix path segment appended to your base URL to form the endpoint (letters, digits, and hyphens only — or empty for the default endpoint)
@@ -47,17 +51,25 @@ interface URLEndpointsContract
     ): URLEndpointResponse;
 
     /**
+     * @api
+     *
      * @return list<URLEndpointResponse>
      */
     public function list(
         ?RequestOptions $requestOptions = null
     ): array;
 
+    /**
+     * @api
+     */
     public function delete(
         string $id,
         ?RequestOptions $requestOptions = null
     ): mixed;
 
+    /**
+     * @api
+     */
     public function get(
         string $id,
         ?RequestOptions $requestOptions = null

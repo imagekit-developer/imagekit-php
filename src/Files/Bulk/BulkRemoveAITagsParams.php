@@ -12,6 +12,8 @@ use ImageKit\Core\Contracts\BaseModel;
 /**
  * This API removes AITags from multiple files in bulk. A maximum of 50 files can be specified at a time.
  *
+ * @see ImageKit\Files\Bulk->removeAITags
+ *
  * @phpstan-type bulk_remove_ai_tags_params = array{
  *   aiTags: list<string>, fileIDs: list<string>
  * }

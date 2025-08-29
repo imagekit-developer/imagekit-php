@@ -9,6 +9,9 @@ use ImageKit\RequestOptions;
 
 interface JobContract
 {
+    /**
+     * @api
+     */
     public function get(
         string $jobID,
         ?RequestOptions $requestOptions = null

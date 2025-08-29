@@ -33,6 +33,8 @@ final class OriginsService implements OriginsContract
     public function __construct(private Client $client) {}
 
     /**
+     * @api
+     *
      * **Note:** This API is currently in beta.
      * Creates a new origin and returns the origin object.
      *
@@ -58,6 +60,8 @@ final class OriginsService implements OriginsContract
     }
 
     /**
+     * @api
+     *
      * **Note:** This API is currently in beta.
      * Updates the origin identified by `id` and returns the updated origin object.
      *
@@ -84,6 +88,8 @@ final class OriginsService implements OriginsContract
     }
 
     /**
+     * @api
+     *
      * **Note:** This API is currently in beta.
      * Returns an array of all configured origins for the current account.
      *
@@ -101,6 +107,8 @@ final class OriginsService implements OriginsContract
     }
 
     /**
+     * @api
+     *
      * **Note:** This API is currently in beta.
      * Permanently removes the origin identified by `id`. If the origin is in use by any URL‑endpoints, the API will return an error.
      */
@@ -118,6 +126,8 @@ final class OriginsService implements OriginsContract
     }
 
     /**
+     * @api
+     *
      * **Note:** This API is currently in beta.
      * Retrieves the origin identified by `id`.
      */

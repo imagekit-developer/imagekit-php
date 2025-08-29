@@ -12,10 +12,19 @@ use ImageKit\Core\Services\Accounts\UsageService;
 
 final class AccountsService implements AccountsContract
 {
+    /**
+     * @@api
+     */
     public UsageService $usage;
 
+    /**
+     * @@api
+     */
     public OriginsService $origins;
 
+    /**
+     * @@api
+     */
     public URLEndpointsService $urlEndpoints;
 
     public function __construct(private Client $client)

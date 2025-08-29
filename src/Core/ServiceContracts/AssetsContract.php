@@ -16,6 +16,8 @@ use const ImageKit\Core\OMIT as omit;
 interface AssetsContract
 {
     /**
+     * @api
+     *
      * @param FileType::* $fileType Filter results by file type.
      *
      * - `all` — include all file types

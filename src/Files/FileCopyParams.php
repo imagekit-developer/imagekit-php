@@ -14,6 +14,8 @@ use ImageKit\Core\Contracts\BaseModel;
  *
  * Note: If any file at the destination has the same name as the source file, then the source file and its versions (if `includeFileVersions` is set to true) will be appended to the destination file version history.
  *
+ * @see ImageKit\Files->copy
+ *
  * @phpstan-type file_copy_params = array{
  *   destinationPath: string, sourceFilePath: string, includeFileVersions?: bool
  * }

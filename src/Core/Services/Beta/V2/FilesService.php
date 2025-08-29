@@ -22,6 +22,8 @@ final class FilesService implements FilesContract
     public function __construct(private Client $client) {}
 
     /**
+     * @api
+     *
      * The V2 API enhances security by verifying the entire payload using JWT. This API is in beta.
      *
      * ImageKit.io allows you to upload files directly from both the server and client sides. For server-side uploads, private API key authentication is used. For client-side uploads, generate a one-time `token` from your secure backend using private API. [Learn more](/docs/api-reference/upload-file/upload-file-v2#how-to-implement-secure-client-side-file-upload) about how to implement secure client-side file upload.

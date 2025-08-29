@@ -31,6 +31,8 @@ use ImageKit\Core\Contracts\BaseModel;
  * - A full-fledged [upload widget using Uppy](https://github.com/imagekit-samples/uppy-uploader), supporting file selections from local storage, URL, Dropbox, Google Drive, Instagram, and more.
  * - [Quick start guides](/docs/quick-start-guides) for various frameworks and technologies.
  *
+ * @see ImageKit\Beta\V2\Files->upload
+ *
  * @phpstan-type file_upload_params = array{
  *   file: string,
  *   fileName: string,

@@ -20,23 +20,47 @@ class Client extends BaseClient
 
     public string $password;
 
+    public bool $baseUrlOverridden;
+
+    /**
+     * @api
+     */
     public CustomMetadataFieldsService $customMetadataFields;
 
+    /**
+     * @api
+     */
     public FilesService $files;
 
+    /**
+     * @api
+     */
     public AssetsService $assets;
 
+    /**
+     * @api
+     */
     public CacheService $cache;
 
+    /**
+     * @api
+     */
     public FoldersService $folders;
 
+    /**
+     * @api
+     */
     public AccountsService $accounts;
 
+    /**
+     * @api
+     */
     public BetaService $beta;
 
+    /**
+     * @api
+     */
     public WebhooksService $webhooks;
-
-    public bool $baseUrlOverridden;
 
     public function __construct(
         ?string $privateAPIKey = null,

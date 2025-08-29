@@ -19,6 +19,8 @@ final class VersionsService implements VersionsContract
     public function __construct(private Client $client) {}
 
     /**
+     * @api
+     *
      * This API returns details of all versions of a file.
      *
      * @return list<File>
@@ -37,6 +39,8 @@ final class VersionsService implements VersionsContract
     }
 
     /**
+     * @api
+     *
      * This API deletes a non-current file version permanently. The API returns an empty response.
      *
      * Note: If you want to delete all versions of a file, use the delete file API.
@@ -65,6 +69,8 @@ final class VersionsService implements VersionsContract
     }
 
     /**
+     * @api
+     *
      * This API returns an object with details or attributes of a file version.
      *
      * @param string $fileID
@@ -91,6 +97,8 @@ final class VersionsService implements VersionsContract
     }
 
     /**
+     * @api
+     *
      * This API restores a file version as the current file version.
      *
      * @param string $fileID

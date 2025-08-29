@@ -16,6 +16,8 @@ use const ImageKit\Core\OMIT as omit;
 interface FoldersContract
 {
     /**
+     * @api
+     *
      * @param string $folderName The folder will be created with this name.
      *
      * All characters except alphabets and numbers (inclusive of unicode letters, marks, and numerals in other languages) will be replaced by an underscore i.e. `_`.
@@ -30,6 +32,8 @@ interface FoldersContract
     ): FolderNewResponse;
 
     /**
+     * @api
+     *
      * @param string $folderPath Full path to the folder you want to delete. For example `/folder/to/delete/`.
      */
     public function delete(
@@ -38,6 +42,8 @@ interface FoldersContract
     ): FolderDeleteResponse;
 
     /**
+     * @api
+     *
      * @param string $destinationPath full path to the destination folder where you want to copy the source folder into
      * @param string $sourceFolderPath the full path to the source folder you want to copy
      * @param bool $includeVersions Option to copy all versions of files that are nested inside the selected folder. By default, only the current version of each file will be copied. When set to true, all versions of each file will be copied. Default value - `false`.
@@ -50,6 +56,8 @@ interface FoldersContract
     ): FolderCopyResponse;
 
     /**
+     * @api
+     *
      * @param string $destinationPath full path to the destination folder where you want to move the source folder into
      * @param string $sourceFolderPath the full path to the source folder you want to move
      */
@@ -60,6 +68,8 @@ interface FoldersContract
     ): FolderMoveResponse;
 
     /**
+     * @api
+     *
      * @param string $folderPath the full path to the folder you want to rename
      * @param string $newFolderName The new name for the folder.
      *

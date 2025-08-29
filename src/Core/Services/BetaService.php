@@ -10,6 +10,9 @@ use ImageKit\Core\Services\Beta\V2Service;
 
 final class BetaService implements BetaContract
 {
+    /**
+     * @@api
+     */
     public V2Service $v2;
 
     public function __construct(private Client $client)

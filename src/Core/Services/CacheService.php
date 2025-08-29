@@ -10,6 +10,9 @@ use ImageKit\Core\Services\Cache\InvalidationService;
 
 final class CacheService implements CacheContract
 {
+    /**
+     * @@api
+     */
     public InvalidationService $invalidation;
 
     public function __construct(private Client $client)

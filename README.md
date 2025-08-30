@@ -13,7 +13,7 @@ It is generated with [Stainless](https://www.stainless.com/).
 
 ## Documentation
 
-The REST API documentation can be found on [imagekit.io](https://imagekit.io).
+The REST API documentation can be found on [imagekit.io](https://imagekit.io/docs).
 
 ## Installation
 

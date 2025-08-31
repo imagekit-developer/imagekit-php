@@ -10,13 +10,15 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\SubtitleOverlayTransformation\Typography;
 
 /**
+ * Subtitle styling options. [Learn more](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer) from the docs.
+ *
  * @phpstan-type subtitle_overlay_transformation = array{
  *   background?: string|null,
  *   color?: string|null,
  *   fontFamily?: string|null,
  *   fontOutline?: string|null,
  *   fontShadow?: string|null,
- *   fontSize?: float|string|null,
+ *   fontSize?: float|null,
  *   typography?: Typography::*|null,
  * }
  */
@@ -26,43 +28,59 @@ final class SubtitleOverlayTransformation implements BaseModel
     use SdkModel;
 
     /**
-     * Background color for subtitles.
+     * Specifies the subtitle background color using a standard color name, an RGB color code (e.g., FF0000), or an RGBA color code (e.g., FFAABB50).
+     *
+     * [Subtitle styling options](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer)
      */
     #[Api(optional: true)]
     public ?string $background;
 
     /**
-     * Text color for subtitles.
+     * Sets the font color of the subtitle text using a standard color name, an RGB color code (e.g., FF0000), or an RGBA color code (e.g., FFAABB50).
+     *
+     * [Subtitle styling options](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer)
      */
     #[Api(optional: true)]
     public ?string $color;
 
     /**
-     * Font family for subtitles.
+     * Font family for subtitles. Refer to the [supported fonts](https://imagekit.io/docs/add-overlays-on-images#supported-text-font-list).
      */
     #[Api(optional: true)]
     public ?string $fontFamily;
 
     /**
-     * Font outline for subtitles.
+     * Sets the font outline of the subtitle text.
+     * Requires the outline width (an integer) and the outline color (as an RGB color code, RGBA color code, or standard web color name) separated by an underscore.
+     * Example: `fol-2_blue` (outline width of 2px and outline color blue), `fol-2_A1CCDD` (outline width of 2px and outline color `#A1CCDD`) and `fol-2_A1CCDD50` (outline width of 2px and outline color `#A1CCDD` at 50% opacity).
+     *
+     * [Subtitle styling options](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer)
      */
     #[Api(optional: true)]
     public ?string $fontOutline;
 
     /**
-     * Font shadow for subtitles.
+     * Sets the font shadow for the subtitle text.
+     * Requires the shadow color (as an RGB color code, RGBA color code, or standard web color name) and shadow indent (an integer) separated by an underscore.
+     * Example: `fsh-blue_2` (shadow color blue, indent of 2px), `fsh-A1CCDD_3` (shadow color `#A1CCDD`, indent of 3px), `fsh-A1CCDD50_3` (shadow color `#A1CCDD` at 50% opacity, indent of 3px).
+     *
+     * [Subtitle styling options](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer)
      */
     #[Api(optional: true)]
     public ?string $fontShadow;
 
     /**
-     * Font size for subtitles.
+     * Sets the font size of subtitle text.
+     *
+     * [Subtitle styling options](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer)
      */
     #[Api(optional: true)]
-    public float|string|null $fontSize;
+    public ?float $fontSize;
 
     /**
-     * Typography style for subtitles.
+     * Sets the typography style of the subtitle text. Supports values are `b` for bold, `i` for italics, and `b_i` for bold with italics.
+     *
+     * [Subtitle styling options](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer)
      *
      * @var Typography::*|null $typography
      */
@@ -87,7 +105,7 @@ final class SubtitleOverlayTransformation implements BaseModel
         ?string $fontFamily = null,
         ?string $fontOutline = null,
         ?string $fontShadow = null,
-        float|string|null $fontSize = null,
+        ?float $fontSize = null,
         ?string $typography = null,
     ): self {
         $obj = new self;
@@ -104,7 +122,9 @@ final class SubtitleOverlayTransformation implements BaseModel
     }
 
     /**
-     * Background color for subtitles.
+     * Specifies the subtitle background color using a standard color name, an RGB color code (e.g., FF0000), or an RGBA color code (e.g., FFAABB50).
+     *
+     * [Subtitle styling options](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer)
      */
     public function withBackground(string $background): self
     {
@@ -115,7 +135,9 @@ final class SubtitleOverlayTransformation implements BaseModel
     }
 
     /**
-     * Text color for subtitles.
+     * Sets the font color of the subtitle text using a standard color name, an RGB color code (e.g., FF0000), or an RGBA color code (e.g., FFAABB50).
+     *
+     * [Subtitle styling options](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer)
      */
     public function withColor(string $color): self
     {
@@ -126,7 +148,7 @@ final class SubtitleOverlayTransformation implements BaseModel
     }
 
     /**
-     * Font family for subtitles.
+     * Font family for subtitles. Refer to the [supported fonts](https://imagekit.io/docs/add-overlays-on-images#supported-text-font-list).
      */
     public function withFontFamily(string $fontFamily): self
     {
@@ -137,7 +159,11 @@ final class SubtitleOverlayTransformation implements BaseModel
     }
 
     /**
-     * Font outline for subtitles.
+     * Sets the font outline of the subtitle text.
+     * Requires the outline width (an integer) and the outline color (as an RGB color code, RGBA color code, or standard web color name) separated by an underscore.
+     * Example: `fol-2_blue` (outline width of 2px and outline color blue), `fol-2_A1CCDD` (outline width of 2px and outline color `#A1CCDD`) and `fol-2_A1CCDD50` (outline width of 2px and outline color `#A1CCDD` at 50% opacity).
+     *
+     * [Subtitle styling options](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer)
      */
     public function withFontOutline(string $fontOutline): self
     {
@@ -148,7 +174,11 @@ final class SubtitleOverlayTransformation implements BaseModel
     }
 
     /**
-     * Font shadow for subtitles.
+     * Sets the font shadow for the subtitle text.
+     * Requires the shadow color (as an RGB color code, RGBA color code, or standard web color name) and shadow indent (an integer) separated by an underscore.
+     * Example: `fsh-blue_2` (shadow color blue, indent of 2px), `fsh-A1CCDD_3` (shadow color `#A1CCDD`, indent of 3px), `fsh-A1CCDD50_3` (shadow color `#A1CCDD` at 50% opacity, indent of 3px).
+     *
+     * [Subtitle styling options](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer)
      */
     public function withFontShadow(string $fontShadow): self
     {
@@ -159,9 +189,11 @@ final class SubtitleOverlayTransformation implements BaseModel
     }
 
     /**
-     * Font size for subtitles.
+     * Sets the font size of subtitle text.
+     *
+     * [Subtitle styling options](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer)
      */
-    public function withFontSize(float|string $fontSize): self
+    public function withFontSize(float $fontSize): self
     {
         $obj = clone $this;
         $obj->fontSize = $fontSize;
@@ -170,7 +202,9 @@ final class SubtitleOverlayTransformation implements BaseModel
     }
 
     /**
-     * Typography style for subtitles.
+     * Sets the typography style of the subtitle text. Supports values are `b` for bold, `i` for italics, and `b_i` for bold with italics.
+     *
+     * [Subtitle styling options](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer)
      *
      * @param Typography::* $typography
      */

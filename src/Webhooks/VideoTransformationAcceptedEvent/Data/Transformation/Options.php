@@ -13,6 +13,8 @@ use ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation\Optio
 use ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation\Options\VideoCodec;
 
 /**
+ * Configuration options for video transformations.
+ *
  * @phpstan-type options_alias = array{
  *   audioCodec?: AudioCodec::*|null,
  *   autoRotate?: bool|null,
@@ -28,29 +30,55 @@ final class Options implements BaseModel
     /** @use SdkModel<options_alias> */
     use SdkModel;
 
-    /** @var AudioCodec::*|null $audioCodec */
+    /**
+     * Audio codec used for encoding (aac or opus).
+     *
+     * @var AudioCodec::*|null $audioCodec
+     */
     #[Api('audio_codec', enum: AudioCodec::class, optional: true)]
     public ?string $audioCodec;
 
+    /**
+     * Whether to automatically rotate the video based on metadata.
+     */
     #[Api('auto_rotate', optional: true)]
     public ?bool $autoRotate;
 
-    /** @var Format::*|null $format */
+    /**
+     * Output format for the transformed video or thumbnail.
+     *
+     * @var Format::*|null $format
+     */
     #[Api(enum: Format::class, optional: true)]
     public ?string $format;
 
+    /**
+     * Quality setting for the output video.
+     */
     #[Api(optional: true)]
     public ?int $quality;
 
-    /** @var StreamProtocol::*|null $streamProtocol */
+    /**
+     * Streaming protocol for adaptive bitrate streaming.
+     *
+     * @var StreamProtocol::*|null $streamProtocol
+     */
     #[Api('stream_protocol', enum: StreamProtocol::class, optional: true)]
     public ?string $streamProtocol;
 
-    /** @var list<string>|null $variants */
+    /**
+     * Array of quality representations for adaptive bitrate streaming.
+     *
+     * @var list<string>|null $variants
+     */
     #[Api(list: 'string', optional: true)]
     public ?array $variants;
 
-    /** @var VideoCodec::*|null $videoCodec */
+    /**
+     * Video codec used for encoding (h264 or vp9).
+     *
+     * @var VideoCodec::*|null $videoCodec
+     */
     #[Api('video_codec', enum: VideoCodec::class, optional: true)]
     public ?string $videoCodec;
 
@@ -93,6 +121,8 @@ final class Options implements BaseModel
     }
 
     /**
+     * Audio codec used for encoding (aac or opus).
+     *
      * @param AudioCodec::* $audioCodec
      */
     public function withAudioCodec(string $audioCodec): self
@@ -103,6 +133,9 @@ final class Options implements BaseModel
         return $obj;
     }
 
+    /**
+     * Whether to automatically rotate the video based on metadata.
+     */
     public function withAutoRotate(bool $autoRotate): self
     {
         $obj = clone $this;
@@ -112,6 +145,8 @@ final class Options implements BaseModel
     }
 
     /**
+     * Output format for the transformed video or thumbnail.
+     *
      * @param Format::* $format
      */
     public function withFormat(string $format): self
@@ -122,6 +157,9 @@ final class Options implements BaseModel
         return $obj;
     }
 
+    /**
+     * Quality setting for the output video.
+     */
     public function withQuality(int $quality): self
     {
         $obj = clone $this;
@@ -131,6 +169,8 @@ final class Options implements BaseModel
     }
 
     /**
+     * Streaming protocol for adaptive bitrate streaming.
+     *
      * @param StreamProtocol::* $streamProtocol
      */
     public function withStreamProtocol(string $streamProtocol): self
@@ -142,6 +182,8 @@ final class Options implements BaseModel
     }
 
     /**
+     * Array of quality representations for adaptive bitrate streaming.
+     *
      * @param list<string> $variants
      */
     public function withVariants(array $variants): self
@@ -153,6 +195,8 @@ final class Options implements BaseModel
     }
 
     /**
+     * Video codec used for encoding (h264 or vp9).
+     *
      * @param VideoCodec::* $videoCodec
      */
     public function withVideoCodec(string $videoCodec): self

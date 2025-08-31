@@ -9,6 +9,8 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
+ * Metadata of the output video file.
+ *
  * @phpstan-type video_metadata = array{
  *   bitrate: int, duration: float, height: int, width: int
  * }
@@ -18,15 +20,27 @@ final class VideoMetadata implements BaseModel
     /** @use SdkModel<video_metadata> */
     use SdkModel;
 
+    /**
+     * Bitrate of the output video in bits per second.
+     */
     #[Api]
     public int $bitrate;
 
+    /**
+     * Duration of the output video in seconds.
+     */
     #[Api]
     public float $duration;
 
+    /**
+     * Height of the output video in pixels.
+     */
     #[Api]
     public int $height;
 
+    /**
+     * Width of the output video in pixels.
+     */
     #[Api]
     public int $width;
 
@@ -74,6 +88,9 @@ final class VideoMetadata implements BaseModel
         return $obj;
     }
 
+    /**
+     * Bitrate of the output video in bits per second.
+     */
     public function withBitrate(int $bitrate): self
     {
         $obj = clone $this;
@@ -82,6 +99,9 @@ final class VideoMetadata implements BaseModel
         return $obj;
     }
 
+    /**
+     * Duration of the output video in seconds.
+     */
     public function withDuration(float $duration): self
     {
         $obj = clone $this;
@@ -90,6 +110,9 @@ final class VideoMetadata implements BaseModel
         return $obj;
     }
 
+    /**
+     * Height of the output video in pixels.
+     */
     public function withHeight(int $height): self
     {
         $obj = clone $this;
@@ -98,6 +121,9 @@ final class VideoMetadata implements BaseModel
         return $obj;
     }
 
+    /**
+     * Width of the output video in pixels.
+     */
     public function withWidth(int $width): self
     {
         $obj = clone $this;

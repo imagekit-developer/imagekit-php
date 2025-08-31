@@ -9,6 +9,8 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
+ * Information about the source video asset being transformed.
+ *
  * @phpstan-type asset_alias = array{url: string}
  */
 final class Asset implements BaseModel
@@ -17,7 +19,7 @@ final class Asset implements BaseModel
     use SdkModel;
 
     /**
-     * Source asset URL.
+     * URL to download or access the source video file.
      */
     #[Api]
     public string $url;
@@ -56,7 +58,7 @@ final class Asset implements BaseModel
     }
 
     /**
-     * Source asset URL.
+     * URL to download or access the source video file.
      */
     public function withURL(string $url): self
     {

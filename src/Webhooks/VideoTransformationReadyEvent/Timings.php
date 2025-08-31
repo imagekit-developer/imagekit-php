@@ -9,6 +9,8 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
+ * Performance metrics for the transformation process.
+ *
  * @phpstan-type timings_alias = array{
  *   downloadDuration?: int|null, encodingDuration?: int|null
  * }
@@ -19,13 +21,13 @@ final class Timings implements BaseModel
     use SdkModel;
 
     /**
-     * Milliseconds spent downloading the source.
+     * Time spent downloading the source video from your origin or media library, in milliseconds.
      */
     #[Api('download_duration', optional: true)]
     public ?int $downloadDuration;
 
     /**
-     * Milliseconds spent encoding.
+     * Time spent encoding the video, in milliseconds.
      */
     #[Api('encoding_duration', optional: true)]
     public ?int $encodingDuration;
@@ -53,7 +55,7 @@ final class Timings implements BaseModel
     }
 
     /**
-     * Milliseconds spent downloading the source.
+     * Time spent downloading the source video from your origin or media library, in milliseconds.
      */
     public function withDownloadDuration(int $downloadDuration): self
     {
@@ -64,7 +66,7 @@ final class Timings implements BaseModel
     }
 
     /**
-     * Milliseconds spent encoding.
+     * Time spent encoding the video, in milliseconds.
      */
     public function withEncodingDuration(int $encodingDuration): self
     {

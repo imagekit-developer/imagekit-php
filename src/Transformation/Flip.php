@@ -10,6 +10,7 @@ use ImageKit\Core\Conversion\Contracts\ConverterSource;
 /**
  * Flips or mirrors an image either horizontally, vertically, or both.
  * Acceptable values: `h` (horizontal), `v` (vertical), `h_v` (horizontal and vertical), or `v_h`.
+ * See [Flip](https://imagekit.io/docs/effects-and-enhancements#flip---fl).
  */
 final class Flip implements ConverterSource
 {

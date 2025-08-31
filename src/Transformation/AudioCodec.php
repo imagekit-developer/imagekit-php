@@ -8,7 +8,7 @@ use ImageKit\Core\Concerns\SdkEnum;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
 /**
- * Specifies the audio codec, e.g., `aac`, `opus`, or `none`.
+ * Specifies the audio codec, e.g., `aac`, `opus`, or `none`. See [Audio codec](https://imagekit.io/docs/video-optimization#audio-codec---ac).
  */
 final class AudioCodec implements ConverterSource
 {

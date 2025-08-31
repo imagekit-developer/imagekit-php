@@ -18,6 +18,9 @@ final class Data implements BaseModel
     /** @use SdkModel<data_alias> */
     use SdkModel;
 
+    /**
+     * Information about the source video asset being transformed.
+     */
     #[Api]
     public Asset $asset;
 
@@ -60,6 +63,9 @@ final class Data implements BaseModel
         return $obj;
     }
 
+    /**
+     * Information about the source video asset being transformed.
+     */
     public function withAsset(Asset $asset): self
     {
         $obj = clone $this;

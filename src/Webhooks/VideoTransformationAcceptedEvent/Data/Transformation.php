@@ -11,6 +11,8 @@ use ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation\Optio
 use ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation\Type;
 
 /**
+ * Base information about a video transformation request.
+ *
  * @phpstan-type transformation_alias = array{
  *   type: Type::*, options?: Options|null
  * }
@@ -20,10 +22,20 @@ final class Transformation implements BaseModel
     /** @use SdkModel<transformation_alias> */
     use SdkModel;
 
-    /** @var Type::* $type */
+    /**
+     * Type of video transformation:
+     * - `video-transformation`: Standard video processing (resize, format conversion, etc.)
+     * - `gif-to-video`: Convert animated GIF to video format
+     * - `video-thumbnail`: Generate thumbnail image from video
+     *
+     * @var Type::* $type
+     */
     #[Api(enum: Type::class)]
     public string $type;
 
+    /**
+     * Configuration options for video transformations.
+     */
     #[Api(optional: true)]
     public ?Options $options;
 
@@ -65,6 +77,11 @@ final class Transformation implements BaseModel
     }
 
     /**
+     * Type of video transformation:
+     * - `video-transformation`: Standard video processing (resize, format conversion, etc.)
+     * - `gif-to-video`: Convert animated GIF to video format
+     * - `video-thumbnail`: Generate thumbnail image from video
+     *
      * @param Type::* $type
      */
     public function withType(string $type): self
@@ -75,6 +92,9 @@ final class Transformation implements BaseModel
         return $obj;
     }
 
+    /**
+     * Configuration options for video transformations.
+     */
     public function withOptions(Options $options): self
     {
         $obj = clone $this;

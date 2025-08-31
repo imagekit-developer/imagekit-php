@@ -8,7 +8,7 @@ use ImageKit\Core\Concerns\SdkEnum;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
 /**
- * Available streaming resolutions for adaptive bitrate streaming.
+ * Available streaming resolutions for [adaptive bitrate streaming](https://imagekit.io/docs/adaptive-bitrate-streaming).
  */
 final class StreamingResolution implements ConverterSource
 {

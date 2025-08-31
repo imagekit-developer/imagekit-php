@@ -10,6 +10,8 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Error\Reason;
 
 /**
+ * Details about the transformation error.
+ *
  * @phpstan-type error_alias = array{reason: Reason::*}
  */
 final class Error implements BaseModel
@@ -17,7 +19,14 @@ final class Error implements BaseModel
     /** @use SdkModel<error_alias> */
     use SdkModel;
 
-    /** @var Reason::* $reason */
+    /**
+     * Specific reason for the transformation failure:
+     * - `encoding_failed`: Error during video encoding process
+     * - `download_failed`: Could not download source video
+     * - `internal_server_error`: Unexpected server error
+     *
+     * @var Reason::* $reason
+     */
     #[Api(enum: Reason::class)]
     public string $reason;
 
@@ -57,6 +66,11 @@ final class Error implements BaseModel
     }
 
     /**
+     * Specific reason for the transformation failure:
+     * - `encoding_failed`: Error during video encoding process
+     * - `download_failed`: Could not download source video
+     * - `internal_server_error`: Unexpected server error
+     *
      * @param Reason::* $reason
      */
     public function withReason(string $reason): self

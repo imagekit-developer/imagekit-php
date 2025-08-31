@@ -7,10 +7,10 @@ namespace ImageKit\Transformation;
 use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
-use ImageKit\Transformation\Radius\UnionMember1;
 
 /**
- * Specifies the corner radius for rounded corners (e.g., 20) or `max` for circular/oval shapes.
+ * Specifies the corner radius for rounded corners (e.g., 20) or `max` for circular or oval shape.
+ * See [Radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
  */
 final class Radius implements ConverterSource
 {
@@ -22,6 +22,6 @@ final class Radius implements ConverterSource
      */
     public static function variants(): array
     {
-        return ['float', UnionMember1::class];
+        return ['float', STAINLESS_FIXME_::class];
     }
 }

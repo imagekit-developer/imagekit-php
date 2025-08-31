@@ -7,6 +7,9 @@ namespace ImageKit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Op
 use ImageKit\Core\Concerns\SdkEnum;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
+/**
+ * Streaming protocol for adaptive bitrate streaming.
+ */
 final class StreamProtocol implements ConverterSource
 {
     use SdkEnum;

@@ -7,6 +7,12 @@ namespace ImageKit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Er
 use ImageKit\Core\Concerns\SdkEnum;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
+/**
+ * Specific reason for the transformation failure:
+ * - `encoding_failed`: Error during video encoding process
+ * - `download_failed`: Could not download source video
+ * - `internal_server_error`: Unexpected server error
+ */
 final class Reason implements ConverterSource
 {
     use SdkEnum;

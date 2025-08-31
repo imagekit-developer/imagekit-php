@@ -8,7 +8,7 @@ use ImageKit\Core\Concerns\SdkEnum;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
 /**
- * Additional crop modes for image resizing.
+ * Additional crop modes for image resizing. See [Crop modes & focus](https://imagekit.io/docs/image-resize-and-crop#crop-crop-modes--focus).
  */
 final class CropMode implements ConverterSource
 {

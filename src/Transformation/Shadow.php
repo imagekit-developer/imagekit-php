@@ -7,12 +7,12 @@ namespace ImageKit\Transformation;
 use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
-use ImageKit\Transformation\Shadow\UnionMember0;
 
 /**
  * Adds a shadow beneath solid objects in an image with a transparent background.
  * For AI-based drop shadows, refer to aiDropShadow.
  * Pass `true` for a default shadow, or provide a string for a custom shadow.
+ * See [Shadow](https://imagekit.io/docs/effects-and-enhancements#shadow---e-shadow).
  */
 final class Shadow implements ConverterSource
 {
@@ -24,6 +24,6 @@ final class Shadow implements ConverterSource
      */
     public static function variants(): array
     {
-        return [UnionMember0::class, 'string'];
+        return [STAINLESS_FIXME_::class, 'string'];
     }
 }

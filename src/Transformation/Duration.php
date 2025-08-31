@@ -11,6 +11,7 @@ use ImageKit\Core\Conversion\Contracts\ConverterSource;
 /**
  * Specifies the duration (in seconds) for trimming videos, e.g., `5` or `10.5`.
  * Typically used with startOffset to indicate the length from the start offset. Arithmetic expressions are supported.
+ * See [Trim videos – Duration](https://imagekit.io/docs/trim-videos#duration---du).
  */
 final class Duration implements ConverterSource
 {

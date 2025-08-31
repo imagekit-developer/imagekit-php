@@ -9,7 +9,7 @@ use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
 /**
- * Focus using cropped image coordinates - Y center coordinate.
+ * Focus using cropped image coordinates - Y center coordinate. See [Focus using cropped coordinates](https://imagekit.io/docs/image-resize-and-crop#example---focus-using-cropped-image-coordinates).
  */
 final class YCenter implements ConverterSource
 {

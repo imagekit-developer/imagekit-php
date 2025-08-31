@@ -8,7 +8,7 @@ use ImageKit\Core\Concerns\SdkEnum;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
 /**
- * Enables a grayscale effect for images.
+ * Enables a grayscale effect for images. See [Grayscale](https://imagekit.io/docs/effects-and-enhancements#grayscale---e-grayscale).
  */
 final class Grayscale implements ConverterSource
 {

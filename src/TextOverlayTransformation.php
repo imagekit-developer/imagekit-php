@@ -9,9 +9,6 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\TextOverlayTransformation\Flip;
 use ImageKit\TextOverlayTransformation\InnerAlignment;
-use ImageKit\TextOverlayTransformation\Radius;
-use ImageKit\TextOverlayTransformation\Radius\UnionMember1;
-use ImageKit\TextOverlayTransformation\Typography;
 
 /**
  * @phpstan-type text_overlay_transformation = array{
@@ -24,9 +21,9 @@ use ImageKit\TextOverlayTransformation\Typography;
  *   innerAlignment?: InnerAlignment::*|null,
  *   lineHeight?: float|string|null,
  *   padding?: float|string|null,
- *   radius?: UnionMember1::*|float|null,
+ *   radius?: float|string|null,
  *   rotation?: float|string|null,
- *   typography?: Typography::*|null,
+ *   typography?: string|null,
  *   width?: float|string|null,
  * }
  */
@@ -64,6 +61,7 @@ final class TextOverlayTransformation implements BaseModel
 
     /**
      * Specifies the font family of the overlaid text. Choose from the supported fonts list or use a custom font.
+     * See [Supported fonts](https://imagekit.io/docs/add-overlays-on-images#supported-text-font-list) and [Custom font](https://imagekit.io/docs/add-overlays-on-images#change-font-family-in-text-overlay).
      */
     #[Api(optional: true)]
     public ?string $fontFamily;
@@ -84,6 +82,7 @@ final class TextOverlayTransformation implements BaseModel
 
     /**
      * Specifies the line height of the text overlay.
+     * Accepts integer values representing line height in points. It can also accept [arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations) such as `bw_mul_0.2`, or `bh_div_20`.
      */
     #[Api(optional: true)]
     public float|string|null $lineHeight;
@@ -99,11 +98,9 @@ final class TextOverlayTransformation implements BaseModel
     /**
      * Specifies the corner radius of the text overlay.
      * Set to `max` to achieve a circular or oval shape.
-     *
-     * @var UnionMember1::*|float|null $radius
      */
-    #[Api(union: Radius::class, optional: true)]
-    public string|float|null $radius;
+    #[Api(optional: true)]
+    public float|string|null $radius;
 
     /**
      * Specifies the rotation angle of the text overlay.
@@ -114,15 +111,16 @@ final class TextOverlayTransformation implements BaseModel
 
     /**
      * Specifies the typography style of the text.
-     * Supported values: `b` for bold, `i` for italics, and `b_i` for bold with italics.
-     *
-     * @var Typography::*|null $typography
+     * Supported values:
+     *   - Single styles: `b` (bold), `i` (italic), `strikethrough`.
+     *   - Combinations: Any combination separated by underscores, e.g., `b_i`, `b_i_strikethrough`.
      */
-    #[Api(enum: Typography::class, optional: true)]
+    #[Api(optional: true)]
     public ?string $typography;
 
     /**
      * Specifies the maximum width (in pixels) of the overlaid text. The text wraps automatically, and arithmetic expressions (e.g., `bw_mul_0.2` or `bh_div_2`) are supported. Useful when used in conjunction with the `background`.
+     * Learn about [Arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
      */
     #[Api(optional: true)]
     public float|string|null $width;
@@ -139,8 +137,6 @@ final class TextOverlayTransformation implements BaseModel
      *
      * @param Flip::* $flip
      * @param InnerAlignment::* $innerAlignment
-     * @param UnionMember1::*|float $radius
-     * @param Typography::* $typography
      */
     public static function with(
         ?float $alpha = null,
@@ -152,7 +148,7 @@ final class TextOverlayTransformation implements BaseModel
         ?string $innerAlignment = null,
         float|string|null $lineHeight = null,
         float|string|null $padding = null,
-        string|float|null $radius = null,
+        float|string|null $radius = null,
         float|string|null $rotation = null,
         ?string $typography = null,
         float|string|null $width = null,
@@ -225,6 +221,7 @@ final class TextOverlayTransformation implements BaseModel
 
     /**
      * Specifies the font family of the overlaid text. Choose from the supported fonts list or use a custom font.
+     * See [Supported fonts](https://imagekit.io/docs/add-overlays-on-images#supported-text-font-list) and [Custom font](https://imagekit.io/docs/add-overlays-on-images#change-font-family-in-text-overlay).
      */
     public function withFontFamily(string $fontFamily): self
     {
@@ -260,6 +257,7 @@ final class TextOverlayTransformation implements BaseModel
 
     /**
      * Specifies the line height of the text overlay.
+     * Accepts integer values representing line height in points. It can also accept [arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations) such as `bw_mul_0.2`, or `bh_div_20`.
      */
     public function withLineHeight(float|string $lineHeight): self
     {
@@ -285,10 +283,8 @@ final class TextOverlayTransformation implements BaseModel
     /**
      * Specifies the corner radius of the text overlay.
      * Set to `max` to achieve a circular or oval shape.
-     *
-     * @param UnionMember1::*|float $radius
      */
-    public function withRadius(string|float $radius): self
+    public function withRadius(float|string $radius): self
     {
         $obj = clone $this;
         $obj->radius = $radius;
@@ -310,9 +306,9 @@ final class TextOverlayTransformation implements BaseModel
 
     /**
      * Specifies the typography style of the text.
-     * Supported values: `b` for bold, `i` for italics, and `b_i` for bold with italics.
-     *
-     * @param Typography::* $typography
+     * Supported values:
+     *   - Single styles: `b` (bold), `i` (italic), `strikethrough`.
+     *   - Combinations: Any combination separated by underscores, e.g., `b_i`, `b_i_strikethrough`.
      */
     public function withTypography(string $typography): self
     {
@@ -324,6 +320,7 @@ final class TextOverlayTransformation implements BaseModel
 
     /**
      * Specifies the maximum width (in pixels) of the overlaid text. The text wraps automatically, and arithmetic expressions (e.g., `bw_mul_0.2` or `bh_div_2`) are supported. Useful when used in conjunction with the `background`.
+     * Learn about [Arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
      */
     public function withWidth(float|string $width): self
     {

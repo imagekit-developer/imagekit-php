@@ -7,18 +7,14 @@ namespace ImageKit;
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\SolidColorOverlayTransformation\Gradient;
-use ImageKit\SolidColorOverlayTransformation\Gradient\UnionMember0;
-use ImageKit\SolidColorOverlayTransformation\Radius;
-use ImageKit\SolidColorOverlayTransformation\Radius\UnionMember1;
 
 /**
  * @phpstan-type solid_color_overlay_transformation = array{
  *   alpha?: float|null,
  *   background?: string|null,
- *   gradient?: UnionMember0::*|string|null,
+ *   gradient?: bool|string|null,
  *   height?: float|string|null,
- *   radius?: UnionMember1::*|float|null,
+ *   radius?: float|string|null,
  *   width?: float|string|null,
  * }
  */
@@ -28,41 +24,41 @@ final class SolidColorOverlayTransformation implements BaseModel
     use SdkModel;
 
     /**
-     * Alpha transparency level.
+     * Specifies the transparency level of the solid color overlay. Accepts integers from `1` to `9`.
      */
     #[Api(optional: true)]
     public ?float $alpha;
 
     /**
-     * Background color.
+     * Specifies the background color of the solid color overlay. Accepts an RGB hex code (e.g., `FF0000`), an RGBA code (e.g., `FFAABB50`), or a color name.
      */
     #[Api(optional: true)]
     public ?string $background;
 
     /**
-     * Gradient effect for the overlay.
-     *
-     * @var UnionMember0::*|string|null $gradient
+     * Creates a linear gradient with two colors. Pass `true` for a default gradient, or provide a string for a custom gradient.
+     * Only works if the base asset is an image. See [gradient](https://imagekit.io/docs/effects-and-enhancements#gradient---e-gradient).
      */
-    #[Api(union: Gradient::class, optional: true)]
+    #[Api(optional: true)]
     public bool|string|null $gradient;
 
     /**
-     * Height of the solid color overlay.
+     * Controls the height of the solid color overlay. Accepts a numeric value or an arithmetic expression.
+     * Learn about [arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
      */
     #[Api(optional: true)]
     public float|string|null $height;
 
     /**
-     * Corner radius of the solid color overlay.
-     *
-     * @var UnionMember1::*|float|null $radius
+     * Specifies the corner radius of the solid color overlay. Set to `max` for circular or oval shape.
+     * See [radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
      */
-    #[Api(union: Radius::class, optional: true)]
-    public string|float|null $radius;
+    #[Api(optional: true)]
+    public float|string|null $radius;
 
     /**
-     * Width of the solid color overlay.
+     * Controls the width of the solid color overlay. Accepts a numeric value or an arithmetic expression (e.g., `bw_mul_0.2` or `bh_div_2`).
+     * Learn about [arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
      */
     #[Api(optional: true)]
     public float|string|null $width;
@@ -76,16 +72,13 @@ final class SolidColorOverlayTransformation implements BaseModel
      * Construct an instance from the required parameters.
      *
      * You must use named parameters to construct any parameters with a default value.
-     *
-     * @param UnionMember0::*|string $gradient
-     * @param UnionMember1::*|float $radius
      */
     public static function with(
         ?float $alpha = null,
         ?string $background = null,
         bool|string|null $gradient = null,
         float|string|null $height = null,
-        string|float|null $radius = null,
+        float|string|null $radius = null,
         float|string|null $width = null,
     ): self {
         $obj = new self;
@@ -101,7 +94,7 @@ final class SolidColorOverlayTransformation implements BaseModel
     }
 
     /**
-     * Alpha transparency level.
+     * Specifies the transparency level of the solid color overlay. Accepts integers from `1` to `9`.
      */
     public function withAlpha(float $alpha): self
     {
@@ -112,7 +105,7 @@ final class SolidColorOverlayTransformation implements BaseModel
     }
 
     /**
-     * Background color.
+     * Specifies the background color of the solid color overlay. Accepts an RGB hex code (e.g., `FF0000`), an RGBA code (e.g., `FFAABB50`), or a color name.
      */
     public function withBackground(string $background): self
     {
@@ -123,9 +116,8 @@ final class SolidColorOverlayTransformation implements BaseModel
     }
 
     /**
-     * Gradient effect for the overlay.
-     *
-     * @param UnionMember0::*|string $gradient
+     * Creates a linear gradient with two colors. Pass `true` for a default gradient, or provide a string for a custom gradient.
+     * Only works if the base asset is an image. See [gradient](https://imagekit.io/docs/effects-and-enhancements#gradient---e-gradient).
      */
     public function withGradient(bool|string $gradient): self
     {
@@ -136,7 +128,8 @@ final class SolidColorOverlayTransformation implements BaseModel
     }
 
     /**
-     * Height of the solid color overlay.
+     * Controls the height of the solid color overlay. Accepts a numeric value or an arithmetic expression.
+     * Learn about [arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
      */
     public function withHeight(float|string $height): self
     {
@@ -147,11 +140,10 @@ final class SolidColorOverlayTransformation implements BaseModel
     }
 
     /**
-     * Corner radius of the solid color overlay.
-     *
-     * @param UnionMember1::*|float $radius
+     * Specifies the corner radius of the solid color overlay. Set to `max` for circular or oval shape.
+     * See [radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
      */
-    public function withRadius(string|float $radius): self
+    public function withRadius(float|string $radius): self
     {
         $obj = clone $this;
         $obj->radius = $radius;
@@ -160,7 +152,8 @@ final class SolidColorOverlayTransformation implements BaseModel
     }
 
     /**
-     * Width of the solid color overlay.
+     * Controls the width of the solid color overlay. Accepts a numeric value or an arithmetic expression (e.g., `bw_mul_0.2` or `bh_div_2`).
+     * Learn about [arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
      */
     public function withWidth(float|string $width): self
     {

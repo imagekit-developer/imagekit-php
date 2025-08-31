@@ -7,10 +7,10 @@ namespace ImageKit\SolidColorOverlayTransformation;
 use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
-use ImageKit\SolidColorOverlayTransformation\Radius\UnionMember1;
 
 /**
- * Corner radius of the solid color overlay.
+ * Specifies the corner radius of the solid color overlay. Set to `max` for circular or oval shape.
+ * See [radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
  */
 final class Radius implements ConverterSource
 {
@@ -22,6 +22,6 @@ final class Radius implements ConverterSource
      */
     public static function variants(): array
     {
-        return ['float', UnionMember1::class];
+        return ['float', STAINLESS_FIXME_::class];
     }
 }

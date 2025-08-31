@@ -7,6 +7,9 @@ namespace ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation
 use ImageKit\Core\Concerns\SdkEnum;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
+/**
+ * Video codec used for encoding (h264 or vp9).
+ */
 final class VideoCodec implements ConverterSource
 {
     use SdkEnum;

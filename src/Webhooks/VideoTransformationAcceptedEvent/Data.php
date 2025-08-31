@@ -18,9 +18,15 @@ final class Data implements BaseModel
     /** @use SdkModel<data_alias> */
     use SdkModel;
 
+    /**
+     * Information about the source video asset being transformed.
+     */
     #[Api]
     public Asset $asset;
 
+    /**
+     * Base information about a video transformation request.
+     */
     #[Api]
     public Transformation $transformation;
 
@@ -60,6 +66,9 @@ final class Data implements BaseModel
         return $obj;
     }
 
+    /**
+     * Information about the source video asset being transformed.
+     */
     public function withAsset(Asset $asset): self
     {
         $obj = clone $this;
@@ -68,6 +77,9 @@ final class Data implements BaseModel
         return $obj;
     }
 
+    /**
+     * Base information about a video transformation request.
+     */
     public function withTransformation(Transformation $transformation): self
     {
         $obj = clone $this;

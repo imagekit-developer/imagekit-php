@@ -11,6 +11,8 @@ use ImageKit\Webhooks\VideoTransformationErrorEvent\Data;
 use ImageKit\Webhooks\VideoTransformationErrorEvent\Request;
 
 /**
+ * Triggered when an error occurs during video encoding. Listen to this webhook to log error reasons and debug issues. Check your origin and URL endpoint settings if the reason is related to download failure. For other errors, contact ImageKit support.
+ *
  * @phpstan-type video_transformation_error_event = array{
  *   id: string,
  *   createdAt: \DateTimeInterface,
@@ -33,12 +35,18 @@ final class VideoTransformationErrorEvent implements BaseModel
     #[Api]
     public string $id;
 
+    /**
+     * Timestamp when the event was created in ISO8601 format.
+     */
     #[Api('created_at')]
     public \DateTimeInterface $createdAt;
 
     #[Api]
     public Data $data;
 
+    /**
+     * Information about the original request that triggered the video transformation.
+     */
     #[Api]
     public Request $request;
 
@@ -99,6 +107,9 @@ final class VideoTransformationErrorEvent implements BaseModel
         return $obj;
     }
 
+    /**
+     * Timestamp when the event was created in ISO8601 format.
+     */
     public function withCreatedAt(\DateTimeInterface $createdAt): self
     {
         $obj = clone $this;
@@ -115,6 +126,9 @@ final class VideoTransformationErrorEvent implements BaseModel
         return $obj;
     }
 
+    /**
+     * Information about the original request that triggered the video transformation.
+     */
     public function withRequest(Request $request): self
     {
         $obj = clone $this;

@@ -21,13 +21,26 @@ final class Transformation implements BaseModel
     /** @use SdkModel<transformation_alias> */
     use SdkModel;
 
-    /** @var Type::* $type */
+    /**
+     * Type of video transformation:
+     * - `video-transformation`: Standard video processing (resize, format conversion, etc.)
+     * - `gif-to-video`: Convert animated GIF to video format
+     * - `video-thumbnail`: Generate thumbnail image from video
+     *
+     * @var Type::* $type
+     */
     #[Api(enum: Type::class)]
     public string $type;
 
+    /**
+     * Configuration options for video transformations.
+     */
     #[Api(optional: true)]
     public ?Options $options;
 
+    /**
+     * Information about the transformed output video.
+     */
     #[Api(optional: true)]
     public ?Output $output;
 
@@ -73,6 +86,11 @@ final class Transformation implements BaseModel
     }
 
     /**
+     * Type of video transformation:
+     * - `video-transformation`: Standard video processing (resize, format conversion, etc.)
+     * - `gif-to-video`: Convert animated GIF to video format
+     * - `video-thumbnail`: Generate thumbnail image from video
+     *
      * @param Type::* $type
      */
     public function withType(string $type): self
@@ -83,6 +101,9 @@ final class Transformation implements BaseModel
         return $obj;
     }
 
+    /**
+     * Configuration options for video transformations.
+     */
     public function withOptions(Options $options): self
     {
         $obj = clone $this;
@@ -91,6 +112,9 @@ final class Transformation implements BaseModel
         return $obj;
     }
 
+    /**
+     * Information about the transformed output video.
+     */
     public function withOutput(Output $output): self
     {
         $obj = clone $this;

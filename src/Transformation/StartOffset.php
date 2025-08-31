@@ -11,6 +11,7 @@ use ImageKit\Core\Conversion\Contracts\ConverterSource;
 /**
  * Specifies the start offset (in seconds) for trimming videos, e.g., `5` or `10.5`.
  * Arithmetic expressions are also supported.
+ * See [Trim videos – Start offset](https://imagekit.io/docs/trim-videos#start-offset---so).
  */
 final class StartOffset implements ConverterSource
 {

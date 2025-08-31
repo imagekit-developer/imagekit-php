@@ -7,10 +7,10 @@ namespace ImageKit\SolidColorOverlayTransformation;
 use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
-use ImageKit\SolidColorOverlayTransformation\Gradient\UnionMember0;
 
 /**
- * Gradient effect for the overlay.
+ * Creates a linear gradient with two colors. Pass `true` for a default gradient, or provide a string for a custom gradient.
+ * Only works if the base asset is an image. See [gradient](https://imagekit.io/docs/effects-and-enhancements#gradient---e-gradient).
  */
 final class Gradient implements ConverterSource
 {
@@ -22,6 +22,6 @@ final class Gradient implements ConverterSource
      */
     public static function variants(): array
     {
-        return [UnionMember0::class, 'string'];
+        return [STAINLESS_FIXME_::class, 'string'];
     }
 }

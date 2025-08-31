@@ -7,6 +7,12 @@ namespace ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation
 use ImageKit\Core\Concerns\SdkEnum;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
+/**
+ * Type of video transformation:
+ * - `video-transformation`: Standard video processing (resize, format conversion, etc.)
+ * - `gif-to-video`: Convert animated GIF to video format
+ * - `video-thumbnail`: Generate thumbnail image from video
+ */
 final class Type implements ConverterSource
 {
     use SdkEnum;

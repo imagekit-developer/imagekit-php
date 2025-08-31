@@ -9,6 +9,8 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
+ * Information about the original request that triggered the video transformation.
+ *
  * @phpstan-type request_alias = array{
  *   url: string, xRequestID: string, userAgent?: string|null
  * }
@@ -19,19 +21,19 @@ final class Request implements BaseModel
     use SdkModel;
 
     /**
-     * URL of the submitted request.
+     * Full URL of the transformation request that was submitted.
      */
     #[Api]
     public string $url;
 
     /**
-     * Unique ID for the originating request.
+     * Unique identifier for the originating transformation request.
      */
     #[Api('x_request_id')]
     public string $xRequestID;
 
     /**
-     * User-Agent header of the originating request.
+     * User-Agent header from the original request that triggered the transformation.
      */
     #[Api('user_agent', optional: true)]
     public ?string $userAgent;
@@ -76,7 +78,7 @@ final class Request implements BaseModel
     }
 
     /**
-     * URL of the submitted request.
+     * Full URL of the transformation request that was submitted.
      */
     public function withURL(string $url): self
     {
@@ -87,7 +89,7 @@ final class Request implements BaseModel
     }
 
     /**
-     * Unique ID for the originating request.
+     * Unique identifier for the originating transformation request.
      */
     public function withXRequestID(string $xRequestID): self
     {
@@ -98,7 +100,7 @@ final class Request implements BaseModel
     }
 
     /**
-     * User-Agent header of the originating request.
+     * User-Agent header from the original request that triggered the transformation.
      */
     public function withUserAgent(string $userAgent): self
     {

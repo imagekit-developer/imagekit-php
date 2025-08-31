@@ -9,7 +9,8 @@ use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
 /**
- * Height of the solid color overlay.
+ * Controls the height of the solid color overlay. Accepts a numeric value or an arithmetic expression.
+ * Learn about [arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
  */
 final class Height implements ConverterSource
 {

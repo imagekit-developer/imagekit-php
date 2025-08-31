@@ -9,7 +9,7 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * Options for generating ImageKit URLs with transformations.
+ * Options for generating ImageKit URLs with transformations. See the [Transformations guide](https://imagekit.io/docs/transformations).
  *
  * @phpstan-type src_options = array{
  *   src: string,
@@ -49,6 +49,7 @@ final class SrcOptions implements BaseModel
 
     /**
      * An array of objects specifying the transformations to be applied in the URL. If more than one transformation is specified, they are applied in the order they are specified as chained transformations.
+     * See [Chained transformations](https://imagekit.io/docs/transformations#chained-transformations).
      *
      * @var list<Transformation>|null $transformation
      */
@@ -58,6 +59,7 @@ final class SrcOptions implements BaseModel
     /**
      * By default, the transformation string is added as a query parameter in the URL, e.g., `?tr=w-100,h-100`.
      * If you want to add the transformation string in the path of the URL, set this to `path`.
+     * Learn more in the [Transformations guide](https://imagekit.io/docs/transformations).
      *
      * @var TransformationPosition::*|null $transformationPosition
      */
@@ -151,6 +153,7 @@ final class SrcOptions implements BaseModel
 
     /**
      * An array of objects specifying the transformations to be applied in the URL. If more than one transformation is specified, they are applied in the order they are specified as chained transformations.
+     * See [Chained transformations](https://imagekit.io/docs/transformations#chained-transformations).
      *
      * @param list<Transformation> $transformation
      */
@@ -165,6 +168,7 @@ final class SrcOptions implements BaseModel
     /**
      * By default, the transformation string is added as a query parameter in the URL, e.g., `?tr=w-100,h-100`.
      * If you want to add the transformation string in the path of the URL, set this to `path`.
+     * Learn more in the [Transformations guide](https://imagekit.io/docs/transformations).
      *
      * @param TransformationPosition::* $transformationPosition
      */

@@ -12,6 +12,7 @@ use ImageKit\Core\Conversion\Contracts\ConverterSource;
  * Extracts a specific page or frame from multi-page or layered files (PDF, PSD, AI).
  * For example, specify by number (e.g., `2`), a range (e.g., `3-4` for the 2nd and 3rd layers),
  * or by name (e.g., `name-layer-4` for a PSD layer).
+ * See [Thumbnail extraction](https://imagekit.io/docs/vector-and-animated-images#get-thumbnail-from-psd-pdf-ai-eps-and-animated-files).
  */
 final class Page implements ConverterSource
 {

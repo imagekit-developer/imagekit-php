@@ -7,6 +7,9 @@ namespace ImageKit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Op
 use ImageKit\Core\Concerns\SdkEnum;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
+/**
+ * Output format for the transformed video or thumbnail.
+ */
 final class Format implements ConverterSource
 {
     use SdkEnum;

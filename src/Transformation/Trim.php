@@ -7,11 +7,11 @@ namespace ImageKit\Transformation;
 use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
-use ImageKit\Transformation\Trim\UnionMember0;
 
 /**
  * Useful for images with a solid or nearly solid background and a central object. This parameter trims the background,
  * leaving only the central object in the output image.
+ * See [Trim edges](https://imagekit.io/docs/effects-and-enhancements#trim-edges---t).
  */
 final class Trim implements ConverterSource
 {
@@ -23,6 +23,6 @@ final class Trim implements ConverterSource
      */
     public static function variants(): array
     {
-        return [UnionMember0::class, 'float'];
+        return [STAINLESS_FIXME_::class, 'float'];
     }
 }

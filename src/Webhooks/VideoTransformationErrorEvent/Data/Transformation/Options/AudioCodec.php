@@ -7,6 +7,9 @@ namespace ImageKit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Op
 use ImageKit\Core\Concerns\SdkEnum;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
+/**
+ * Audio codec used for encoding (aac or opus).
+ */
 final class AudioCodec implements ConverterSource
 {
     use SdkEnum;

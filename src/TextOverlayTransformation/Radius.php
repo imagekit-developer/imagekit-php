@@ -7,7 +7,6 @@ namespace ImageKit\TextOverlayTransformation;
 use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
-use ImageKit\TextOverlayTransformation\Radius\UnionMember1;
 
 /**
  * Specifies the corner radius of the text overlay.
@@ -23,6 +22,6 @@ final class Radius implements ConverterSource
      */
     public static function variants(): array
     {
-        return ['float', UnionMember1::class];
+        return ['float', STAINLESS_FIXME_::class];
     }
 }

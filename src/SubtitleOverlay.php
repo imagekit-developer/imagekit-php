@@ -8,12 +8,11 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\SubtitleOverlay\Encoding;
-use ImageKit\SubtitleOverlay\Type;
 
 /**
  * @phpstan-type subtitle_overlay = array{
  *   input: string,
- *   type: Type::*,
+ *   type: string,
  *   encoding?: Encoding::*|null,
  *   transformation?: list<SubtitleOverlayTransformation>|null,
  * }
@@ -23,15 +22,14 @@ final class SubtitleOverlay implements BaseModel
     /** @use SdkModel<subtitle_overlay> */
     use SdkModel;
 
+    #[Api]
+    public string $type = 'subtitle';
+
     /**
      * Specifies the relative path to the subtitle file used as an overlay.
      */
     #[Api]
     public string $input;
-
-    /** @var Type::* $type */
-    #[Api(enum: Type::class)]
-    public string $type;
 
     /**
      * The input path can be included in the layer as either `i-{input}` or `ie-{base64_encoded_input}`.
@@ -45,7 +43,7 @@ final class SubtitleOverlay implements BaseModel
     public ?string $encoding;
 
     /**
-     * Control styling of the subtitle.
+     * Control styling of the subtitle. See [Styling subtitles](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer).
      *
      * @var list<SubtitleOverlayTransformation>|null $transformation
      */
@@ -57,13 +55,13 @@ final class SubtitleOverlay implements BaseModel
      *
      * To enforce required parameters use
      * ```
-     * SubtitleOverlay::with(input: ..., type: ...)
+     * SubtitleOverlay::with(input: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
      *
      * ```
-     * (new SubtitleOverlay)->withInput(...)->withType(...)
+     * (new SubtitleOverlay)->withInput(...)
      * ```
      */
     public function __construct()
@@ -76,20 +74,17 @@ final class SubtitleOverlay implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Type::* $type
      * @param Encoding::* $encoding
      * @param list<SubtitleOverlayTransformation> $transformation
      */
     public static function with(
         string $input,
-        string $type,
         ?string $encoding = null,
-        ?array $transformation = null,
+        ?array $transformation = null
     ): self {
         $obj = new self;
 
         $obj->input = $input;
-        $obj->type = $type;
 
         null !== $encoding && $obj->encoding = $encoding;
         null !== $transformation && $obj->transformation = $transformation;
@@ -104,17 +99,6 @@ final class SubtitleOverlay implements BaseModel
     {
         $obj = clone $this;
         $obj->input = $input;
-
-        return $obj;
-    }
-
-    /**
-     * @param Type::* $type
-     */
-    public function withType(string $type): self
-    {
-        $obj = clone $this;
-        $obj->type = $type;
 
         return $obj;
     }
@@ -136,7 +120,7 @@ final class SubtitleOverlay implements BaseModel
     }
 
     /**
-     * Control styling of the subtitle.
+     * Control styling of the subtitle. See [Styling subtitles](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer).
      *
      * @param list<SubtitleOverlayTransformation> $transformation
      */

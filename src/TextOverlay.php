@@ -8,12 +8,11 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\TextOverlay\Encoding;
-use ImageKit\TextOverlay\Type;
 
 /**
  * @phpstan-type text_overlay = array{
  *   text: string,
- *   type: Type::*,
+ *   type: string,
  *   encoding?: Encoding::*|null,
  *   transformation?: list<TextOverlayTransformation>|null,
  * }
@@ -23,15 +22,14 @@ final class TextOverlay implements BaseModel
     /** @use SdkModel<text_overlay> */
     use SdkModel;
 
+    #[Api]
+    public string $type = 'text';
+
     /**
      * Specifies the text to be displayed in the overlay. The SDK automatically handles special characters and encoding.
      */
     #[Api]
     public string $text;
-
-    /** @var Type::* $type */
-    #[Api(enum: Type::class)]
-    public string $type;
 
     /**
      * Text can be included in the layer as either `i-{input}` (plain text) or `ie-{base64_encoded_input}` (base64).
@@ -45,7 +43,7 @@ final class TextOverlay implements BaseModel
     public ?string $encoding;
 
     /**
-     * Control styling of the text overlay.
+     * Control styling of the text overlay. See [Text overlays](https://imagekit.io/docs/add-overlays-on-images#text-overlay).
      *
      * @var list<TextOverlayTransformation>|null $transformation
      */
@@ -57,13 +55,13 @@ final class TextOverlay implements BaseModel
      *
      * To enforce required parameters use
      * ```
-     * TextOverlay::with(text: ..., type: ...)
+     * TextOverlay::with(text: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
      *
      * ```
-     * (new TextOverlay)->withText(...)->withType(...)
+     * (new TextOverlay)->withText(...)
      * ```
      */
     public function __construct()
@@ -76,20 +74,17 @@ final class TextOverlay implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Type::* $type
      * @param Encoding::* $encoding
      * @param list<TextOverlayTransformation> $transformation
      */
     public static function with(
         string $text,
-        string $type,
         ?string $encoding = null,
-        ?array $transformation = null,
+        ?array $transformation = null
     ): self {
         $obj = new self;
 
         $obj->text = $text;
-        $obj->type = $type;
 
         null !== $encoding && $obj->encoding = $encoding;
         null !== $transformation && $obj->transformation = $transformation;
@@ -104,17 +99,6 @@ final class TextOverlay implements BaseModel
     {
         $obj = clone $this;
         $obj->text = $text;
-
-        return $obj;
-    }
-
-    /**
-     * @param Type::* $type
-     */
-    public function withType(string $type): self
-    {
-        $obj = clone $this;
-        $obj->type = $type;
 
         return $obj;
     }
@@ -136,7 +120,7 @@ final class TextOverlay implements BaseModel
     }
 
     /**
-     * Control styling of the text overlay.
+     * Control styling of the text overlay. See [Text overlays](https://imagekit.io/docs/add-overlays-on-images#text-overlay).
      *
      * @param list<TextOverlayTransformation> $transformation
      */

@@ -8,12 +8,11 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\ImageOverlay\Encoding;
-use ImageKit\ImageOverlay\Type;
 
 /**
  * @phpstan-type image_overlay = array{
  *   input: string,
- *   type: Type::*,
+ *   type: string,
  *   encoding?: Encoding::*|null,
  *   transformation?: list<Transformation>|null,
  * }
@@ -23,15 +22,14 @@ final class ImageOverlay implements BaseModel
     /** @use SdkModel<image_overlay> */
     use SdkModel;
 
+    #[Api]
+    public string $type = 'image';
+
     /**
      * Specifies the relative path to the image used as an overlay.
      */
     #[Api]
     public string $input;
-
-    /** @var Type::* $type */
-    #[Api(enum: Type::class)]
-    public string $type;
 
     /**
      * The input path can be included in the layer as either `i-{input}` or `ie-{base64_encoded_input}`.
@@ -46,6 +44,7 @@ final class ImageOverlay implements BaseModel
 
     /**
      * Array of transformations to be applied to the overlay image. Supported transformations depends on the base/parent asset.
+     * See overlays on [Images](https://imagekit.io/docs/add-overlays-on-images#list-of-supported-image-transformations-in-image-layers) and [Videos](https://imagekit.io/docs/add-overlays-on-videos#list-of-transformations-supported-on-image-overlay).
      *
      * @var list<Transformation>|null $transformation
      */
@@ -57,13 +56,13 @@ final class ImageOverlay implements BaseModel
      *
      * To enforce required parameters use
      * ```
-     * ImageOverlay::with(input: ..., type: ...)
+     * ImageOverlay::with(input: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
      *
      * ```
-     * (new ImageOverlay)->withInput(...)->withType(...)
+     * (new ImageOverlay)->withInput(...)
      * ```
      */
     public function __construct()
@@ -76,20 +75,17 @@ final class ImageOverlay implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Type::* $type
      * @param Encoding::* $encoding
      * @param list<Transformation> $transformation
      */
     public static function with(
         string $input,
-        string $type,
         ?string $encoding = null,
-        ?array $transformation = null,
+        ?array $transformation = null
     ): self {
         $obj = new self;
 
         $obj->input = $input;
-        $obj->type = $type;
 
         null !== $encoding && $obj->encoding = $encoding;
         null !== $transformation && $obj->transformation = $transformation;
@@ -104,17 +100,6 @@ final class ImageOverlay implements BaseModel
     {
         $obj = clone $this;
         $obj->input = $input;
-
-        return $obj;
-    }
-
-    /**
-     * @param Type::* $type
-     */
-    public function withType(string $type): self
-    {
-        $obj = clone $this;
-        $obj->type = $type;
 
         return $obj;
     }
@@ -137,6 +122,7 @@ final class ImageOverlay implements BaseModel
 
     /**
      * Array of transformations to be applied to the overlay image. Supported transformations depends on the base/parent asset.
+     * See overlays on [Images](https://imagekit.io/docs/add-overlays-on-images#list-of-supported-image-transformations-in-image-layers) and [Videos](https://imagekit.io/docs/add-overlays-on-videos#list-of-transformations-supported-on-image-overlay).
      *
      * @param list<Transformation> $transformation
      */

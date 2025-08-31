@@ -75,7 +75,7 @@ final class Options implements BaseModel
     public ?array $variants;
 
     /**
-     * Video codec used for encoding (h264 or vp9).
+     * Video codec used for encoding (h264, vp9, or av1).
      *
      * @var VideoCodec::*|null $videoCodec
      */
@@ -195,7 +195,7 @@ final class Options implements BaseModel
     }
 
     /**
-     * Video codec used for encoding (h264 or vp9).
+     * Video codec used for encoding (h264, vp9, or av1).
      *
      * @param VideoCodec::* $videoCodec
      */

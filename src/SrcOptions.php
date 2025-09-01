@@ -14,7 +14,9 @@ use ImageKit\Core\Contracts\BaseModel;
  * @phpstan-type src_options = array{
  *   src: string,
  *   urlEndpoint: string,
+ *   expiresIn?: float|null,
  *   queryParameters?: array<string, string>|null,
+ *   signed?: bool|null,
  *   transformation?: list<Transformation>|null,
  *   transformationPosition?: TransformationPosition::*|null,
  * }
@@ -38,6 +40,19 @@ final class SrcOptions implements BaseModel
     public string $urlEndpoint;
 
     /**
+     * When you want the signed URL to expire, specified in seconds. If `expiresIn` is anything above 0,
+     * the URL will always be signed even if `signed` is set to false. If not specified and `signed` is `true`,
+     * the signed URL will not expire (valid indefinitely).
+     *
+     * Example: Setting `expiresIn: 3600` will make the URL expire 1 hour from generation time. After the expiry time, the signed URL will no longer be valid and ImageKit will return
+     * a 401 Unauthorized status code.
+     *
+     * [Learn more](https://imagekit.io/docs/media-delivery-basic-security#how-to-generate-signed-urls).
+     */
+    #[Api(optional: true)]
+    public ?float $expiresIn;
+
+    /**
      * These are additional query parameters that you want to add to the final URL.
      * They can be any query parameters and not necessarily related to ImageKit.
      * This is especially useful if you want to add a versioning parameter to your URLs.
@@ -46,6 +61,15 @@ final class SrcOptions implements BaseModel
      */
     #[Api(map: 'string', optional: true)]
     public ?array $queryParameters;
+
+    /**
+     * Whether to sign the URL or not. Set this to `true` if you want to generate a signed URL.
+     * If `signed` is `true` and `expiresIn` is not specified, the signed URL will not expire (valid indefinitely).
+     * Note: If `expiresIn` is set to any value above 0, the URL will always be signed regardless of this setting.
+     * [Learn more](https://imagekit.io/docs/media-delivery-basic-security#how-to-generate-signed-urls).
+     */
+    #[Api(optional: true)]
+    public ?bool $signed;
 
     /**
      * An array of objects specifying the transformations to be applied in the URL. If more than one transformation is specified, they are applied in the order they are specified as chained transformations.
@@ -97,7 +121,9 @@ final class SrcOptions implements BaseModel
     public static function with(
         string $src,
         string $urlEndpoint,
+        ?float $expiresIn = null,
         ?array $queryParameters = null,
+        ?bool $signed = null,
         ?array $transformation = null,
         ?string $transformationPosition = null,
     ): self {
@@ -106,7 +132,9 @@ final class SrcOptions implements BaseModel
         $obj->src = $src;
         $obj->urlEndpoint = $urlEndpoint;
 
+        null !== $expiresIn && $obj->expiresIn = $expiresIn;
         null !== $queryParameters && $obj->queryParameters = $queryParameters;
+        null !== $signed && $obj->signed = $signed;
         null !== $transformation && $obj->transformation = $transformation;
         null !== $transformationPosition && $obj->transformationPosition = $transformationPosition;
 
@@ -137,6 +165,24 @@ final class SrcOptions implements BaseModel
     }
 
     /**
+     * When you want the signed URL to expire, specified in seconds. If `expiresIn` is anything above 0,
+     * the URL will always be signed even if `signed` is set to false. If not specified and `signed` is `true`,
+     * the signed URL will not expire (valid indefinitely).
+     *
+     * Example: Setting `expiresIn: 3600` will make the URL expire 1 hour from generation time. After the expiry time, the signed URL will no longer be valid and ImageKit will return
+     * a 401 Unauthorized status code.
+     *
+     * [Learn more](https://imagekit.io/docs/media-delivery-basic-security#how-to-generate-signed-urls).
+     */
+    public function withExpiresIn(float $expiresIn): self
+    {
+        $obj = clone $this;
+        $obj->expiresIn = $expiresIn;
+
+        return $obj;
+    }
+
+    /**
      * These are additional query parameters that you want to add to the final URL.
      * They can be any query parameters and not necessarily related to ImageKit.
      * This is especially useful if you want to add a versioning parameter to your URLs.
@@ -147,6 +193,20 @@ final class SrcOptions implements BaseModel
     {
         $obj = clone $this;
         $obj->queryParameters = $queryParameters;
+
+        return $obj;
+    }
+
+    /**
+     * Whether to sign the URL or not. Set this to `true` if you want to generate a signed URL.
+     * If `signed` is `true` and `expiresIn` is not specified, the signed URL will not expire (valid indefinitely).
+     * Note: If `expiresIn` is set to any value above 0, the URL will always be signed regardless of this setting.
+     * [Learn more](https://imagekit.io/docs/media-delivery-basic-security#how-to-generate-signed-urls).
+     */
+    public function withSigned(bool $signed): self
+    {
+        $obj = clone $this;
+        $obj->signed = $signed;
 
         return $obj;
     }

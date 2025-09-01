@@ -45,7 +45,7 @@ use ImageKit\Client;
 
 $client = new Client(
   privateAPIKey: getenv("IMAGEKIT_PRIVATE_API_KEY") ?: "My Private API Key",
-  password: getenv("ORG_MY_PASSWORD_TOKEN") ?: "does_not_matter",
+  password: getenv("OPTIONAL_IMAGEKIT_IGNORES_THIS") ?: "do_not_set",
 );
 
 $response = $client->files->upload(file: 'file', fileName: "file-name.jpg");

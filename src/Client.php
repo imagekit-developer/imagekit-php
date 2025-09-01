@@ -73,7 +73,7 @@ class Client extends BaseClient
             $privateAPIKey ?? getenv('IMAGEKIT_PRIVATE_API_KEY')
         );
         $this->password = (string) (
-            $password ?? getenv('ORG_MY_PASSWORD_TOKEN') ?: 'does_not_matter'
+            $password ?? getenv('OPTIONAL_IMAGEKIT_IGNORES_THIS') ?: 'do_not_set'
         );
 
         $this->baseUrlOverridden = !is_null($baseUrl);

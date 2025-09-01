@@ -7,6 +7,7 @@ namespace ImageKit\Files\FileUploadResponse;
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Files\FileUploadResponse\ExtensionStatus\AIAutoDescription;
 use ImageKit\Files\FileUploadResponse\ExtensionStatus\AwsAutoTagging;
 use ImageKit\Files\FileUploadResponse\ExtensionStatus\GoogleAutoTagging;
 use ImageKit\Files\FileUploadResponse\ExtensionStatus\RemoveBg;
@@ -21,6 +22,7 @@ use ImageKit\Files\FileUploadResponse\ExtensionStatus\RemoveBg;
  * If no extension was requested, then this parameter is not returned.
  *
  * @phpstan-type extension_status = array{
+ *   aiAutoDescription?: AIAutoDescription::*|null,
  *   awsAutoTagging?: AwsAutoTagging::*|null,
  *   googleAutoTagging?: GoogleAutoTagging::*|null,
  *   removeBg?: RemoveBg::*|null,
@@ -30,6 +32,10 @@ final class ExtensionStatus implements BaseModel
 {
     /** @use SdkModel<extension_status> */
     use SdkModel;
+
+    /** @var AIAutoDescription::*|null $aiAutoDescription */
+    #[Api('ai-auto-description', enum: AIAutoDescription::class, optional: true)]
+    public ?string $aiAutoDescription;
 
     /** @var AwsAutoTagging::*|null $awsAutoTagging */
     #[Api('aws-auto-tagging', enum: AwsAutoTagging::class, optional: true)]
@@ -53,20 +59,34 @@ final class ExtensionStatus implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
+     * @param AIAutoDescription::* $aiAutoDescription
      * @param AwsAutoTagging::* $awsAutoTagging
      * @param GoogleAutoTagging::* $googleAutoTagging
      * @param RemoveBg::* $removeBg
      */
     public static function with(
+        ?string $aiAutoDescription = null,
         ?string $awsAutoTagging = null,
         ?string $googleAutoTagging = null,
         ?string $removeBg = null,
     ): self {
         $obj = new self;
 
+        null !== $aiAutoDescription && $obj->aiAutoDescription = $aiAutoDescription;
         null !== $awsAutoTagging && $obj->awsAutoTagging = $awsAutoTagging;
         null !== $googleAutoTagging && $obj->googleAutoTagging = $googleAutoTagging;
         null !== $removeBg && $obj->removeBg = $removeBg;
+
+        return $obj;
+    }
+
+    /**
+     * @param AIAutoDescription::* $aiAutoDescription
+     */
+    public function withAIAutoDescription(string $aiAutoDescription): self
+    {
+        $obj = clone $this;
+        $obj->aiAutoDescription = $aiAutoDescription;
 
         return $obj;
     }

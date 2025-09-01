@@ -25,10 +25,10 @@ final class UnsafeUnwrapWebhookEvent implements ConverterSource
             VideoTransformationAcceptedEvent::class,
             VideoTransformationReadyEvent::class,
             VideoTransformationErrorEvent::class,
-            UploadPreTransformSuccessWebhookEvent::class,
-            UploadPreTransformErrorWebhookEvent::class,
-            UploadPostTransformSuccessWebhookEvent::class,
-            UploadPostTransformErrorWebhookEvent::class,
+            UploadPreTransformSuccessEvent::class,
+            UploadPreTransformErrorEvent::class,
+            UploadPostTransformSuccessEvent::class,
+            UploadPostTransformErrorEvent::class,
         ];
     }
 }

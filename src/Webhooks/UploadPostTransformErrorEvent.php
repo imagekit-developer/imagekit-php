@@ -11,8 +11,6 @@ use ImageKit\Webhooks\UploadPostTransformErrorEvent\Data;
 use ImageKit\Webhooks\UploadPostTransformErrorEvent\Request;
 
 /**
- * Triggered when a post-transformation fails. The original file remains available, but the requested transformation could not be generated.
- *
  * @phpstan-type upload_post_transform_error_event = array{
  *   id: string,
  *   createdAt: \DateTimeInterface,

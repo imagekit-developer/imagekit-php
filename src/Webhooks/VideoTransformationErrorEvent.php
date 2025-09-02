@@ -11,12 +11,10 @@ use ImageKit\Webhooks\VideoTransformationErrorEvent\Data;
 use ImageKit\Webhooks\VideoTransformationErrorEvent\Request;
 
 /**
+ * Triggered when an error occurs during video encoding. Listen to this webhook to log error reasons and debug issues. Check your origin and URL endpoint settings if the reason is related to download failure. For other errors, contact ImageKit support.
+ *
  * @phpstan-type video_transformation_error_event = array{
- *   id: string,
- *   createdAt: \DateTimeInterface,
- *   data: Data,
- *   request: Request,
- *   type: string,
+ *   createdAt: \DateTimeInterface, data: Data, request: Request, type: string
  * }
  */
 final class VideoTransformationErrorEvent implements BaseModel
@@ -26,12 +24,6 @@ final class VideoTransformationErrorEvent implements BaseModel
 
     #[Api]
     public string $type = 'video.transformation.error';
-
-    /**
-     * Unique identifier for the event.
-     */
-    #[Api]
-    public string $id;
 
     /**
      * Timestamp when the event was created in ISO8601 format.
@@ -53,16 +45,13 @@ final class VideoTransformationErrorEvent implements BaseModel
      *
      * To enforce required parameters use
      * ```
-     * VideoTransformationErrorEvent::with(
-     *   id: ..., createdAt: ..., data: ..., request: ...
-     * )
+     * VideoTransformationErrorEvent::with(createdAt: ..., data: ..., request: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
      *
      * ```
      * (new VideoTransformationErrorEvent)
-     *   ->withID(...)
      *   ->withCreatedAt(...)
      *   ->withData(...)
      *   ->withRequest(...)
@@ -79,28 +68,15 @@ final class VideoTransformationErrorEvent implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      */
     public static function with(
-        string $id,
         \DateTimeInterface $createdAt,
         Data $data,
         Request $request
     ): self {
         $obj = new self;
 
-        $obj->id = $id;
         $obj->createdAt = $createdAt;
         $obj->data = $data;
         $obj->request = $request;
-
-        return $obj;
-    }
-
-    /**
-     * Unique identifier for the event.
-     */
-    public function withID(string $id): self
-    {
-        $obj = clone $this;
-        $obj->id = $id;
 
         return $obj;
     }

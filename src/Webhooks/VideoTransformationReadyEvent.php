@@ -12,8 +12,9 @@ use ImageKit\Webhooks\VideoTransformationReadyEvent\Request;
 use ImageKit\Webhooks\VideoTransformationReadyEvent\Timings;
 
 /**
+ * Triggered when video encoding is finished and the transformed resource is ready to be served. This is the key event to listen for - update your database or CMS flags when you receive this so your application can start showing the transformed video to users.
+ *
  * @phpstan-type video_transformation_ready_event = array{
- *   id: string,
  *   createdAt: \DateTimeInterface,
  *   data: Data,
  *   request: Request,
@@ -28,12 +29,6 @@ final class VideoTransformationReadyEvent implements BaseModel
 
     #[Api]
     public string $type = 'video.transformation.ready';
-
-    /**
-     * Unique identifier for the event.
-     */
-    #[Api]
-    public string $id;
 
     /**
      * Timestamp when the event was created in ISO8601 format.
@@ -61,16 +56,13 @@ final class VideoTransformationReadyEvent implements BaseModel
      *
      * To enforce required parameters use
      * ```
-     * VideoTransformationReadyEvent::with(
-     *   id: ..., createdAt: ..., data: ..., request: ...
-     * )
+     * VideoTransformationReadyEvent::with(createdAt: ..., data: ..., request: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
      *
      * ```
      * (new VideoTransformationReadyEvent)
-     *   ->withID(...)
      *   ->withCreatedAt(...)
      *   ->withData(...)
      *   ->withRequest(...)
@@ -87,7 +79,6 @@ final class VideoTransformationReadyEvent implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      */
     public static function with(
-        string $id,
         \DateTimeInterface $createdAt,
         Data $data,
         Request $request,
@@ -95,23 +86,11 @@ final class VideoTransformationReadyEvent implements BaseModel
     ): self {
         $obj = new self;
 
-        $obj->id = $id;
         $obj->createdAt = $createdAt;
         $obj->data = $data;
         $obj->request = $request;
 
         null !== $timings && $obj->timings = $timings;
-
-        return $obj;
-    }
-
-    /**
-     * Unique identifier for the event.
-     */
-    public function withID(string $id): self
-    {
-        $obj = clone $this;
-        $obj->id = $id;
 
         return $obj;
     }

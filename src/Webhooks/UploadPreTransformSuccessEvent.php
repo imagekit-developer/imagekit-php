@@ -11,12 +11,10 @@ use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data;
 use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Request;
 
 /**
+ * Triggered when a pre-transformation completes successfully. The file has been processed with the requested transformation and is now available in the Media Library.
+ *
  * @phpstan-type upload_pre_transform_success_event = array{
- *   id: string,
- *   createdAt: \DateTimeInterface,
- *   data: Data,
- *   request: Request,
- *   type: string,
+ *   createdAt: \DateTimeInterface, data: Data, request: Request, type: string
  * }
  */
 final class UploadPreTransformSuccessEvent implements BaseModel
@@ -26,12 +24,6 @@ final class UploadPreTransformSuccessEvent implements BaseModel
 
     #[Api]
     public string $type = 'upload.pre-transform.success';
-
-    /**
-     * Unique identifier for the event.
-     */
-    #[Api]
-    public string $id;
 
     /**
      * Timestamp of when the event occurred in ISO8601 format.
@@ -53,16 +45,13 @@ final class UploadPreTransformSuccessEvent implements BaseModel
      *
      * To enforce required parameters use
      * ```
-     * UploadPreTransformSuccessEvent::with(
-     *   id: ..., createdAt: ..., data: ..., request: ...
-     * )
+     * UploadPreTransformSuccessEvent::with(createdAt: ..., data: ..., request: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
      *
      * ```
      * (new UploadPreTransformSuccessEvent)
-     *   ->withID(...)
      *   ->withCreatedAt(...)
      *   ->withData(...)
      *   ->withRequest(...)
@@ -79,28 +68,15 @@ final class UploadPreTransformSuccessEvent implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      */
     public static function with(
-        string $id,
         \DateTimeInterface $createdAt,
         Data $data,
         Request $request
     ): self {
         $obj = new self;
 
-        $obj->id = $id;
         $obj->createdAt = $createdAt;
         $obj->data = $data;
         $obj->request = $request;
-
-        return $obj;
-    }
-
-    /**
-     * Unique identifier for the event.
-     */
-    public function withID(string $id): self
-    {
-        $obj = clone $this;
-        $obj->id = $id;
 
         return $obj;
     }

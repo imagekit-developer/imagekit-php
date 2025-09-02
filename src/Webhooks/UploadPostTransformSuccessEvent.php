@@ -11,8 +11,6 @@ use ImageKit\Webhooks\UploadPostTransformSuccessEvent\Data;
 use ImageKit\Webhooks\UploadPostTransformSuccessEvent\Request;
 
 /**
- * Triggered when a post-transformation completes successfully. The transformed version of the file is now ready and can be accessed via the provided URL. Note that each post-transformation generates a separate webhook event.
- *
  * @phpstan-type upload_post_transform_success_event = array{
  *   id: string,
  *   createdAt: \DateTimeInterface,

@@ -11,8 +11,6 @@ use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data;
 use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Request;
 
 /**
- * Triggered when a pre-transformation completes successfully. The file has been processed with the requested transformation and is now available in the Media Library.
- *
  * @phpstan-type upload_pre_transform_success_event = array{
  *   id: string,
  *   createdAt: \DateTimeInterface,

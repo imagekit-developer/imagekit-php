@@ -11,8 +11,6 @@ use ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data;
 use ImageKit\Webhooks\VideoTransformationAcceptedEvent\Request;
 
 /**
- * Triggered when a new video transformation request is accepted for processing. This event confirms that ImageKit has received and queued your transformation request. Use this for debugging and tracking transformation lifecycle.
- *
  * @phpstan-type video_transformation_accepted_event = array{
  *   id: string,
  *   createdAt: \DateTimeInterface,

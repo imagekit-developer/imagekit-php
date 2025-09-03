@@ -66,13 +66,8 @@ final class FileUploadParams implements BaseModel
     use SdkParams;
 
     /**
-     * The API accepts any of the following:
-     *
-     * - **Binary data** – send the raw bytes as `multipart/form-data`.
-     * - **HTTP / HTTPS URL** – a publicly reachable URL that ImageKit’s servers can fetch.
-     * - **Base64 string** – the file encoded as a Base64 data URI or plain Base64.
-     *
-     * When supplying a URL, the server must receive the response headers within 8 seconds; otherwise the request fails with 400 Bad Request.
+     * The URL of the file to upload. A publicly reachable URL that ImageKit servers can fetch.
+     * The server must receive the response headers within 8 seconds; otherwise the request fails with 400 Bad Request.
      */
     #[Api]
     public string $file;
@@ -344,13 +339,8 @@ final class FileUploadParams implements BaseModel
     }
 
     /**
-     * The API accepts any of the following:
-     *
-     * - **Binary data** – send the raw bytes as `multipart/form-data`.
-     * - **HTTP / HTTPS URL** – a publicly reachable URL that ImageKit’s servers can fetch.
-     * - **Base64 string** – the file encoded as a Base64 data URI or plain Base64.
-     *
-     * When supplying a URL, the server must receive the response headers within 8 seconds; otherwise the request fails with 400 Bad Request.
+     * The URL of the file to upload. A publicly reachable URL that ImageKit servers can fetch.
+     * The server must receive the response headers within 8 seconds; otherwise the request fails with 400 Bad Request.
      */
     public function withFile(string $file): self
     {

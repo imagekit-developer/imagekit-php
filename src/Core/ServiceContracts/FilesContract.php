@@ -104,13 +104,8 @@ interface FilesContract
     /**
      * @api
      *
-     * @param string $file The API accepts any of the following:
-     *
-     * - **Binary data** – send the raw bytes as `multipart/form-data`.
-     * - **HTTP / HTTPS URL** – a publicly reachable URL that ImageKit’s servers can fetch.
-     * - **Base64 string** – the file encoded as a Base64 data URI or plain Base64.
-     *
-     * When supplying a URL, the server must receive the response headers within 8 seconds; otherwise the request fails with 400 Bad Request.
+     * @param string $file The URL of the file to upload. A publicly reachable URL that ImageKit servers can fetch.
+     * The server must receive the response headers within 8 seconds; otherwise the request fails with 400 Bad Request.
      * @param string $fileName The name with which the file has to be uploaded.
      * The file name can contain:
      *

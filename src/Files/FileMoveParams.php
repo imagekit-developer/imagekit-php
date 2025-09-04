@@ -10,9 +10,20 @@ use ImageKit\Core\Concerns\SdkParams;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
+ * An object containing the method's parameters.
+ * Example usage:
+ * ```
+ * $params = (new FileMoveParams); // set properties as needed
+ * $client->files->move(...$params->toArray());
+ * ```
  * This will move a file and all its versions from one folder to another.
  *
  * Note: If any file at the destination has the same name as the source file, then the source file and its versions will be appended to the destination file.
+ *
+ * @method toArray()
+ *   Returns the parameters as an associative array suitable for passing to the client method.
+ *
+ *   `$client->files->move(...$params->toArray());`
  *
  * @see ImageKit\Files->move
  *

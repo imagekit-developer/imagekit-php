@@ -10,9 +10,20 @@ use ImageKit\Core\Concerns\SdkParams;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
+ * An object containing the method's parameters.
+ * Example usage:
+ * ```
+ * $params = (new FileRenameParams); // set properties as needed
+ * $client->files->rename(...$params->toArray());
+ * ```
  * You can rename an already existing file in the media library using rename file API. This operation would rename all file versions of the file.
  *
  * Note: The old URLs will stop working. The file/file version URLs cached on CDN will continue to work unless a purge is requested.
+ *
+ * @method toArray()
+ *   Returns the parameters as an associative array suitable for passing to the client method.
+ *
+ *   `$client->files->rename(...$params->toArray());`
  *
  * @see ImageKit\Files->rename
  *

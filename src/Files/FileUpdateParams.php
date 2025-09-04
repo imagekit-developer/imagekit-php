@@ -12,7 +12,18 @@ use ImageKit\Files\FileUpdateParams\Update\ChangePublicationStatus;
 use ImageKit\Files\FileUpdateParams\Update\UpdateFileDetails;
 
 /**
+ * An object containing the method's parameters.
+ * Example usage:
+ * ```
+ * $params = (new FileUpdateParams); // set properties as needed
+ * $client->files->update(...$params->toArray());
+ * ```
  * This API updates the details or attributes of the current version of the file. You can update `tags`, `customCoordinates`, `customMetadata`, publication status, remove existing `AITags` and apply extensions using this API.
+ *
+ * @method toArray()
+ *   Returns the parameters as an associative array suitable for passing to the client method.
+ *
+ *   `$client->files->update(...$params->toArray());`
  *
  * @see ImageKit\Files->update
  *

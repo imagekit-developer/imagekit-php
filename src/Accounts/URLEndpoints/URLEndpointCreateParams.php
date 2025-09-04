@@ -14,8 +14,19 @@ use ImageKit\Core\Concerns\SdkParams;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
+ * An object containing the method's parameters.
+ * Example usage:
+ * ```
+ * $params = (new URLEndpointCreateParams); // set properties as needed
+ * $client->accounts.urlEndpoints->create(...$params->toArray());
+ * ```
  * **Note:** This API is currently in beta.
  * Creates a new URL‑endpoint and returns the resulting object.
+ *
+ * @method toArray()
+ *   Returns the parameters as an associative array suitable for passing to the client method.
+ *
+ *   `$client->accounts.urlEndpoints->create(...$params->toArray());`
  *
  * @see ImageKit\Accounts\URLEndpoints->create
  *

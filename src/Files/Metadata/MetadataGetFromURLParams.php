@@ -10,7 +10,18 @@ use ImageKit\Core\Concerns\SdkParams;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
+ * An object containing the method's parameters.
+ * Example usage:
+ * ```
+ * $params = (new MetadataGetFromURLParams); // set properties as needed
+ * $client->files.metadata->getFromURL(...$params->toArray());
+ * ```
  * Get image EXIF, pHash, and other metadata from ImageKit.io powered remote URL using this API.
+ *
+ * @method toArray()
+ *   Returns the parameters as an associative array suitable for passing to the client method.
+ *
+ *   `$client->files.metadata->getFromURL(...$params->toArray());`
  *
  * @see ImageKit\Files\Metadata->getFromURL
  *

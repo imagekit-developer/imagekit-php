@@ -10,7 +10,18 @@ use ImageKit\Core\Concerns\SdkParams;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
+ * An object containing the method's parameters.
+ * Example usage:
+ * ```
+ * $params = (new VersionGetParams); // set properties as needed
+ * $client->files.versions->get(...$params->toArray());
+ * ```
  * This API returns an object with details or attributes of a file version.
+ *
+ * @method toArray()
+ *   Returns the parameters as an associative array suitable for passing to the client method.
+ *
+ *   `$client->files.versions->get(...$params->toArray());`
  *
  * @see ImageKit\Files\Versions->get
  *

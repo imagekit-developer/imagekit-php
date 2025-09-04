@@ -18,8 +18,19 @@ use ImageKit\Core\Concerns\SdkParams;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
+ * An object containing the method's parameters.
+ * Example usage:
+ * ```
+ * $params = (new OriginCreateParams); // set properties as needed
+ * $client->accounts.origins->create(...$params->toArray());
+ * ```
  * **Note:** This API is currently in beta.
  * Creates a new origin and returns the origin object.
+ *
+ * @method toArray()
+ *   Returns the parameters as an associative array suitable for passing to the client method.
+ *
+ *   `$client->accounts.origins->create(...$params->toArray());`
  *
  * @see ImageKit\Accounts\Origins->create
  *

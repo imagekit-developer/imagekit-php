@@ -16,6 +16,12 @@ use ImageKit\Core\Concerns\SdkParams;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
+ * An object containing the method's parameters.
+ * Example usage:
+ * ```
+ * $params = (new FileUploadParams); // set properties as needed
+ * $client->beta.v2.files->upload(...$params->toArray());
+ * ```
  * The V2 API enhances security by verifying the entire payload using JWT. This API is in beta.
  *
  * ImageKit.io allows you to upload files directly from both the server and client sides. For server-side uploads, private API key authentication is used. For client-side uploads, generate a one-time `token` from your secure backend using private API. [Learn more](/docs/api-reference/upload-file/upload-file-v2#how-to-implement-secure-client-side-file-upload) about how to implement secure client-side file upload.
@@ -30,6 +36,11 @@ use ImageKit\Core\Contracts\BaseModel;
  *
  * - A full-fledged [upload widget using Uppy](https://github.com/imagekit-samples/uppy-uploader), supporting file selections from local storage, URL, Dropbox, Google Drive, Instagram, and more.
  * - [Quick start guides](/docs/quick-start-guides) for various frameworks and technologies.
+ *
+ * @method toArray()
+ *   Returns the parameters as an associative array suitable for passing to the client method.
+ *
+ *   `$client->beta.v2.files->upload(...$params->toArray());`
  *
  * @see ImageKit\Beta\V2\Files->upload
  *

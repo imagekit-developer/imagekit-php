@@ -10,7 +10,18 @@ use ImageKit\Core\Concerns\SdkParams;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
+ * An object containing the method's parameters.
+ * Example usage:
+ * ```
+ * $params = (new BulkAddTagsParams); // set properties as needed
+ * $client->files.bulk->addTags(...$params->toArray());
+ * ```
  * This API adds tags to multiple files in bulk. A maximum of 50 files can be specified at a time.
+ *
+ * @method toArray()
+ *   Returns the parameters as an associative array suitable for passing to the client method.
+ *
+ *   `$client->files.bulk->addTags(...$params->toArray());`
  *
  * @see ImageKit\Files\Bulk->addTags
  *

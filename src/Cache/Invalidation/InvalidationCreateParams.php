@@ -10,7 +10,18 @@ use ImageKit\Core\Concerns\SdkParams;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
+ * An object containing the method's parameters.
+ * Example usage:
+ * ```
+ * $params = (new InvalidationCreateParams); // set properties as needed
+ * $client->cache.invalidation->create(...$params->toArray());
+ * ```
  * This API will purge CDN cache and ImageKit.io's internal cache for a file.  Note: Purge cache is an asynchronous process and it may take some time to reflect the changes.
+ *
+ * @method toArray()
+ *   Returns the parameters as an associative array suitable for passing to the client method.
+ *
+ *   `$client->cache.invalidation->create(...$params->toArray());`
  *
  * @see ImageKit\Cache\Invalidation->create
  *

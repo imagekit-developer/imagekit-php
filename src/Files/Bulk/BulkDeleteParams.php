@@ -10,11 +10,22 @@ use ImageKit\Core\Concerns\SdkParams;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
+ * An object containing the method's parameters.
+ * Example usage:
+ * ```
+ * $params = (new BulkDeleteParams); // set properties as needed
+ * $client->files.bulk->delete(...$params->toArray());
+ * ```
  * This API deletes multiple files and all their file versions permanently.
  *
  * Note: If a file or specific transformation has been requested in the past, then the response is cached. Deleting a file does not purge the cache. You can purge the cache using purge cache API.
  *
  * A maximum of 100 files can be deleted at a time.
+ *
+ * @method toArray()
+ *   Returns the parameters as an associative array suitable for passing to the client method.
+ *
+ *   `$client->files.bulk->delete(...$params->toArray());`
  *
  * @see ImageKit\Files\Bulk->delete
  *

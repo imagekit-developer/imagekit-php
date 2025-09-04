@@ -10,7 +10,18 @@ use ImageKit\Core\Concerns\SdkParams;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
+ * An object containing the method's parameters.
+ * Example usage:
+ * ```
+ * $params = (new FolderCreateParams); // set properties as needed
+ * $client->folders->create(...$params->toArray());
+ * ```
  * This will create a new folder. You can specify the folder name and location of the parent folder where this new folder should be created.
+ *
+ * @method toArray()
+ *   Returns the parameters as an associative array suitable for passing to the client method.
+ *
+ *   `$client->folders->create(...$params->toArray());`
  *
  * @see ImageKit\Folders->create
  *

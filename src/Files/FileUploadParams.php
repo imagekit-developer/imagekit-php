@@ -8,10 +8,10 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Concerns\SdkParams;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Files\FileUploadParams\Extension;
-use ImageKit\Files\FileUploadParams\Extension\AIAutoDescription;
-use ImageKit\Files\FileUploadParams\Extension\AutoTaggingExtension;
-use ImageKit\Files\FileUploadParams\Extension\RemoveBg;
+use ImageKit\ExtensionItem;
+use ImageKit\ExtensionItem\AIAutoDescription;
+use ImageKit\ExtensionItem\AutoTaggingExtension;
+use ImageKit\ExtensionItem\RemoveBg;
 use ImageKit\Files\FileUploadParams\ResponseField;
 use ImageKit\Files\FileUploadParams\Transformation;
 
@@ -150,7 +150,7 @@ final class FileUploadParams implements BaseModel
      *
      * @var list<RemoveBg|AutoTaggingExtension|AIAutoDescription>|null $extensions
      */
-    #[Api(list: Extension::class, optional: true)]
+    #[Api(list: ExtensionItem::class, optional: true)]
     public ?array $extensions;
 
     /**

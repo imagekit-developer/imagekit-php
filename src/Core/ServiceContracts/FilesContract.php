@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace ImageKit\Core\ServiceContracts;
 
+use ImageKit\ExtensionItem\AIAutoDescription;
+use ImageKit\ExtensionItem\AutoTaggingExtension;
+use ImageKit\ExtensionItem\RemoveBg;
 use ImageKit\Files\File;
 use ImageKit\Files\FileCopyResponse;
 use ImageKit\Files\FileMoveResponse;
@@ -11,9 +14,6 @@ use ImageKit\Files\FileRenameResponse;
 use ImageKit\Files\FileUpdateParams\Update\ChangePublicationStatus;
 use ImageKit\Files\FileUpdateParams\Update\UpdateFileDetails;
 use ImageKit\Files\FileUpdateResponse;
-use ImageKit\Files\FileUploadParams\Extension\AIAutoDescription;
-use ImageKit\Files\FileUploadParams\Extension\AutoTaggingExtension;
-use ImageKit\Files\FileUploadParams\Extension\RemoveBg;
 use ImageKit\Files\FileUploadParams\ResponseField;
 use ImageKit\Files\FileUploadParams\Transformation;
 use ImageKit\Files\FileUploadResponse;

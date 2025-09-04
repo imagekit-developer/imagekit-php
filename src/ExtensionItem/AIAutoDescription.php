@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Beta\V2\Files\FileUploadParams\Extension;
+namespace ImageKit\ExtensionItem;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;

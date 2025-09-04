@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace ImageKit\Beta\V2\Files;
 
-use ImageKit\Beta\V2\Files\FileUploadParams\Extension;
-use ImageKit\Beta\V2\Files\FileUploadParams\Extension\AIAutoDescription;
-use ImageKit\Beta\V2\Files\FileUploadParams\Extension\AutoTaggingExtension;
-use ImageKit\Beta\V2\Files\FileUploadParams\Extension\RemoveBg;
 use ImageKit\Beta\V2\Files\FileUploadParams\ResponseField;
 use ImageKit\Beta\V2\Files\FileUploadParams\Transformation;
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Concerns\SdkParams;
 use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\ExtensionItem;
+use ImageKit\ExtensionItem\AIAutoDescription;
+use ImageKit\ExtensionItem\AutoTaggingExtension;
+use ImageKit\ExtensionItem\RemoveBg;
 
 /**
  * An object containing the method's parameters.
@@ -138,7 +138,7 @@ final class FileUploadParams implements BaseModel
      *
      * @var list<RemoveBg|AutoTaggingExtension|AIAutoDescription>|null $extensions
      */
-    #[Api(list: Extension::class, optional: true)]
+    #[Api(list: ExtensionItem::class, optional: true)]
     public ?array $extensions;
 
     /**

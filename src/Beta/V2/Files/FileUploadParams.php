@@ -134,7 +134,7 @@ final class FileUploadParams implements BaseModel
     public ?string $description;
 
     /**
-     * Array of extensions to be applied to the image. Each extension can be configured with specific parameters based on the extension type.
+     * Array of extensions to be applied to the asset. Each extension can be configured with specific parameters based on the extension type.
      *
      * @var list<RemoveBg|AutoTaggingExtension|AIAutoDescription>|null $extensions
      */
@@ -411,7 +411,7 @@ final class FileUploadParams implements BaseModel
     }
 
     /**
-     * Array of extensions to be applied to the image. Each extension can be configured with specific parameters based on the extension type.
+     * Array of extensions to be applied to the asset. Each extension can be configured with specific parameters based on the extension type.
      *
      * @param list<RemoveBg|AutoTaggingExtension|AIAutoDescription> $extensions
      */

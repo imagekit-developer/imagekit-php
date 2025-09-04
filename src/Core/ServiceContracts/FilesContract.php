@@ -11,8 +11,7 @@ use ImageKit\Files\File;
 use ImageKit\Files\FileCopyResponse;
 use ImageKit\Files\FileMoveResponse;
 use ImageKit\Files\FileRenameResponse;
-use ImageKit\Files\FileUpdateParams\Update\ChangePublicationStatus;
-use ImageKit\Files\FileUpdateParams\Update\UpdateFileDetails;
+use ImageKit\Files\FileUpdateParams\Publish;
 use ImageKit\Files\FileUpdateResponse;
 use ImageKit\Files\FileUploadParams\ResponseField;
 use ImageKit\Files\FileUploadParams\Transformation;
@@ -26,12 +25,31 @@ interface FilesContract
     /**
      * @api
      *
-     * @param UpdateFileDetails|ChangePublicationStatus $update
+     * @param string|null $customCoordinates Define an important area in the image in the format `x,y,width,height` e.g. `10,10,100,100`. Send `null` to unset this value.
+     * @param array<string,
+     * mixed,> $customMetadata A key-value data to be associated with the asset. To unset a key, send `null` value for that key. Before setting any custom metadata on an asset you have to create the field using custom metadata fields API.
+     * @param string $description optional text to describe the contents of the file
+     * @param list<RemoveBg|AutoTaggingExtension|AIAutoDescription> $extensions Array of extensions to be applied to the asset. Each extension can be configured with specific parameters based on the extension type.
+     * @param string|list<string> $removeAITags An array of AITags associated with the file that you want to remove, e.g. `["car", "vehicle", "motorsports"]`.
+     *
+     * If you want to remove all AITags associated with the file, send a string - "all".
+     *
+     * Note: The remove operation for `AITags` executes before any of the `extensions` are processed.
+     * @param list<string>|null $tags An array of tags associated with the file, such as `["tag1", "tag2"]`. Send `null` to unset all tags associated with the file.
+     * @param string $webhookURL The final status of extensions after they have completed execution will be delivered to this endpoint as a POST request. [Learn more](/docs/api-reference/digital-asset-management-dam/managing-assets/update-file-details#webhook-payload-structure) about the webhook payload structure.
+     * @param Publish $publish configure the publication status of a file and its versions
      */
     public function update(
         string $fileID,
-        $update = omit,
-        ?RequestOptions $requestOptions = null
+        $customCoordinates = omit,
+        $customMetadata = omit,
+        $description = omit,
+        $extensions = omit,
+        $removeAITags = omit,
+        $tags = omit,
+        $webhookURL = omit,
+        $publish = omit,
+        ?RequestOptions $requestOptions = null,
     ): FileUpdateResponse;
 
     /**

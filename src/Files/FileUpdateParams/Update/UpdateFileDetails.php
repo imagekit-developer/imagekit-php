@@ -7,10 +7,10 @@ namespace ImageKit\Files\FileUpdateParams\Update;
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Files\FileUpdateParams\Update\UpdateFileDetails\Extension;
-use ImageKit\Files\FileUpdateParams\Update\UpdateFileDetails\Extension\AIAutoDescription;
-use ImageKit\Files\FileUpdateParams\Update\UpdateFileDetails\Extension\AutoTaggingExtension;
-use ImageKit\Files\FileUpdateParams\Update\UpdateFileDetails\Extension\RemoveBg;
+use ImageKit\ExtensionItem;
+use ImageKit\ExtensionItem\AIAutoDescription;
+use ImageKit\ExtensionItem\AutoTaggingExtension;
+use ImageKit\ExtensionItem\RemoveBg;
 use ImageKit\Files\FileUpdateParams\Update\UpdateFileDetails\RemoveAITags;
 
 /**
@@ -54,7 +54,7 @@ final class UpdateFileDetails implements BaseModel
      *
      * @var list<RemoveBg|AutoTaggingExtension|AIAutoDescription>|null $extensions
      */
-    #[Api(list: Extension::class, optional: true)]
+    #[Api(list: ExtensionItem::class, optional: true)]
     public ?array $extensions;
 
     /**

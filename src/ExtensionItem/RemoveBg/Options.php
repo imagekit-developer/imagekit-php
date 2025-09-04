@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Beta\V2\Files\FileUploadParams\Extension\RemoveBg;
+namespace ImageKit\ExtensionItem\RemoveBg;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;

@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace ImageKit\Core\Services\Beta\V2;
 
 use ImageKit\Beta\V2\Files\FileUploadParams;
-use ImageKit\Beta\V2\Files\FileUploadParams\Extension\AIAutoDescription;
-use ImageKit\Beta\V2\Files\FileUploadParams\Extension\AutoTaggingExtension;
-use ImageKit\Beta\V2\Files\FileUploadParams\Extension\RemoveBg;
 use ImageKit\Beta\V2\Files\FileUploadParams\ResponseField;
 use ImageKit\Beta\V2\Files\FileUploadParams\Transformation;
 use ImageKit\Beta\V2\Files\FileUploadResponse;
 use ImageKit\Client;
 use ImageKit\Core\ServiceContracts\Beta\V2\FilesContract;
+use ImageKit\ExtensionItem\AIAutoDescription;
+use ImageKit\ExtensionItem\AutoTaggingExtension;
+use ImageKit\ExtensionItem\RemoveBg;
 use ImageKit\RequestOptions;
 
 use const ImageKit\Core\OMIT as omit;

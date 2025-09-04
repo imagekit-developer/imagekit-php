@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files\FileUpdateParams\Update\ChangePublicationStatus;
+namespace ImageKit\Files\FileUpdateParams;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;

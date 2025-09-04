@@ -2,7 +2,6 @@
 
 namespace Tests\Services\Accounts;
 
-use ImageKit\Accounts\Origins\OriginRequest\S3;
 use ImageKit\Client;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
@@ -39,12 +38,22 @@ final class OriginsTest extends TestCase
         }
 
         $result = $this->client->accounts->origins->create(
-            S3::with(
-                accessKey: 'AKIATEST123',
-                bucket: 'test-bucket',
-                name: 'My S3 Origin',
-                secretKey: 'secrettest123',
-            ),
+            accessKey: 'AKIAIOSFODNN7EXAMPLE',
+            bucket: 'gcs-media',
+            name: 'US S3 Storage',
+            secretKey: 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY',
+            type: 'AKENEO_PIM',
+            endpoint: 'https://s3.eu-central-1.wasabisys.com',
+            baseURL: 'https://akeneo.company.com',
+            clientEmail: 'service-account@project.iam.gserviceaccount.com',
+            privateKey: '-----BEGIN PRIVATE KEY-----\\nMIIEv...',
+            accountName: 'account123',
+            container: 'images',
+            sasToken: '?sv=2023-01-03&sr=c&sig=abc123',
+            clientID: 'akeneo-client-id',
+            clientSecret: 'akeneo-client-secret',
+            password: 'strongpassword123',
+            username: 'integration-user',
         );
 
         $this->assertTrue(true); // @phpstan-ignore-line
@@ -58,15 +67,22 @@ final class OriginsTest extends TestCase
         }
 
         $result = $this->client->accounts->origins->create(
-            S3::with(
-                accessKey: 'AKIATEST123',
-                bucket: 'test-bucket',
-                name: 'My S3 Origin',
-                secretKey: 'secrettest123',
-            )
-                ->withBaseURLForCanonicalHeader('https://cdn.example.com')
-                ->withIncludeCanonicalHeader(false)
-                ->withPrefix('images'),
+            accessKey: 'AKIAIOSFODNN7EXAMPLE',
+            bucket: 'gcs-media',
+            name: 'US S3 Storage',
+            secretKey: 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY',
+            type: 'AKENEO_PIM',
+            endpoint: 'https://s3.eu-central-1.wasabisys.com',
+            baseURL: 'https://akeneo.company.com',
+            clientEmail: 'service-account@project.iam.gserviceaccount.com',
+            privateKey: '-----BEGIN PRIVATE KEY-----\\nMIIEv...',
+            accountName: 'account123',
+            container: 'images',
+            sasToken: '?sv=2023-01-03&sr=c&sig=abc123',
+            clientID: 'akeneo-client-id',
+            clientSecret: 'akeneo-client-secret',
+            password: 'strongpassword123',
+            username: 'integration-user',
         );
 
         $this->assertTrue(true); // @phpstan-ignore-line
@@ -81,12 +97,22 @@ final class OriginsTest extends TestCase
 
         $result = $this->client->accounts->origins->update(
             'id',
-            S3::with(
-                accessKey: 'AKIATEST123',
-                bucket: 'test-bucket',
-                name: 'My S3 Origin',
-                secretKey: 'secrettest123',
-            ),
+            accessKey: 'AKIAIOSFODNN7EXAMPLE',
+            bucket: 'gcs-media',
+            name: 'US S3 Storage',
+            secretKey: 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY',
+            type: 'AKENEO_PIM',
+            endpoint: 'https://s3.eu-central-1.wasabisys.com',
+            baseURL: 'https://akeneo.company.com',
+            clientEmail: 'service-account@project.iam.gserviceaccount.com',
+            privateKey: '-----BEGIN PRIVATE KEY-----\\nMIIEv...',
+            accountName: 'account123',
+            container: 'images',
+            sasToken: '?sv=2023-01-03&sr=c&sig=abc123',
+            clientID: 'akeneo-client-id',
+            clientSecret: 'akeneo-client-secret',
+            password: 'strongpassword123',
+            username: 'integration-user',
         );
 
         $this->assertTrue(true); // @phpstan-ignore-line
@@ -101,15 +127,22 @@ final class OriginsTest extends TestCase
 
         $result = $this->client->accounts->origins->update(
             'id',
-            S3::with(
-                accessKey: 'AKIATEST123',
-                bucket: 'test-bucket',
-                name: 'My S3 Origin',
-                secretKey: 'secrettest123',
-            )
-                ->withBaseURLForCanonicalHeader('https://cdn.example.com')
-                ->withIncludeCanonicalHeader(false)
-                ->withPrefix('images'),
+            accessKey: 'AKIAIOSFODNN7EXAMPLE',
+            bucket: 'gcs-media',
+            name: 'US S3 Storage',
+            secretKey: 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY',
+            type: 'AKENEO_PIM',
+            endpoint: 'https://s3.eu-central-1.wasabisys.com',
+            baseURL: 'https://akeneo.company.com',
+            clientEmail: 'service-account@project.iam.gserviceaccount.com',
+            privateKey: '-----BEGIN PRIVATE KEY-----\\nMIIEv...',
+            accountName: 'account123',
+            container: 'images',
+            sasToken: '?sv=2023-01-03&sr=c&sig=abc123',
+            clientID: 'akeneo-client-id',
+            clientSecret: 'akeneo-client-secret',
+            password: 'strongpassword123',
+            username: 'integration-user',
         );
 
         $this->assertTrue(true); // @phpstan-ignore-line

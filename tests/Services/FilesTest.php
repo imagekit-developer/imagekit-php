@@ -163,10 +163,7 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->files->upload(
-            file: 'https://example.com',
-            fileName: 'fileName'
-        );
+        $result = $this->client->files->upload(file: 'file', fileName: 'fileName');
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }
@@ -178,10 +175,7 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->files->upload(
-            file: 'https://example.com',
-            fileName: 'fileName'
-        );
+        $result = $this->client->files->upload(file: 'file', fileName: 'fileName');
 
         $this->assertTrue(true); // @phpstan-ignore-line
     }

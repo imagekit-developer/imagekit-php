@@ -52,9 +52,7 @@ $client = new Client(
   password: getenv("OPTIONAL_IMAGEKIT_IGNORES_THIS") ?: "do_not_set",
 );
 
-$response = $client->files->upload(
-  file: "https://www.example.com/public-url.jpg", fileName: "file-name.jpg"
-);
+$response = $client->files->upload(file: 'file', fileName: "file-name.jpg");
 
 var_dump($response->videoCodec);
 ```
@@ -76,9 +74,7 @@ When the library is unable to connect to the API, or if the API returns a non-su
 use ImageKit\Core\Exceptions\APIConnectionException;
 
 try {
-  $response = $client->files->upload(
-    file: "https://www.example.com/public-url.jpg", fileName: "file-name.jpg"
-  );
+  $response = $client->files->upload(file: 'file', fileName: "file-name.jpg");
 } catch (APIConnectionException $e) {
   echo "The server could not be reached", PHP_EOL;
   var_dump($e->getPrevious());
@@ -126,7 +122,7 @@ $client = new Client(maxRetries: 0);
 // Or, configure per-request:
 
 $result = $client->files->upload(
-  file: "https://www.example.com/public-url.jpg",
+  file: 'file',
   fileName: "file-name.jpg",
   requestOptions: RequestOptions::with(maxRetries: 5),
 );
@@ -148,7 +144,7 @@ Note: the `extra*` parameters of the same name overrides the documented paramete
 use ImageKit\RequestOptions;
 
 $response = $client->files->upload(
-  file: "https://www.example.com/public-url.jpg",
+  file: 'file',
   fileName: "file-name.jpg",
   requestOptions: RequestOptions::with(
     extraQueryParams: ["my_query_parameter" => "value"],

@@ -39,6 +39,6 @@ final class JobTest extends TestCase
 
         $result = $this->client->folders->job->get('jobId');
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 }

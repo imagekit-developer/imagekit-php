@@ -41,7 +41,7 @@ final class URLEndpointsTest extends TestCase
             description: 'My custom URL endpoint'
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -55,7 +55,7 @@ final class URLEndpointsTest extends TestCase
             description: 'My custom URL endpoint'
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -70,7 +70,7 @@ final class URLEndpointsTest extends TestCase
             description: 'My custom URL endpoint'
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -85,7 +85,7 @@ final class URLEndpointsTest extends TestCase
             description: 'My custom URL endpoint'
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -97,7 +97,7 @@ final class URLEndpointsTest extends TestCase
 
         $result = $this->client->accounts->urlEndpoints->list();
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -109,7 +109,7 @@ final class URLEndpointsTest extends TestCase
 
         $result = $this->client->accounts->urlEndpoints->delete('id');
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -121,6 +121,6 @@ final class URLEndpointsTest extends TestCase
 
         $result = $this->client->accounts->urlEndpoints->get('id');
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 }

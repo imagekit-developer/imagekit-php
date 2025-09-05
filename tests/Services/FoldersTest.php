@@ -42,7 +42,7 @@ final class FoldersTest extends TestCase
             parentFolderPath: '/product/images/'
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -57,7 +57,7 @@ final class FoldersTest extends TestCase
             parentFolderPath: '/product/images/'
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -69,7 +69,7 @@ final class FoldersTest extends TestCase
 
         $result = $this->client->folders->delete('/folder/to/delete/');
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -81,7 +81,7 @@ final class FoldersTest extends TestCase
 
         $result = $this->client->folders->delete('/folder/to/delete/');
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -96,7 +96,7 @@ final class FoldersTest extends TestCase
             sourceFolderPath: '/path/of/source/folder',
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -111,7 +111,7 @@ final class FoldersTest extends TestCase
             sourceFolderPath: '/path/of/source/folder',
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -126,7 +126,7 @@ final class FoldersTest extends TestCase
             sourceFolderPath: '/path/of/source/folder',
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -141,7 +141,7 @@ final class FoldersTest extends TestCase
             sourceFolderPath: '/path/of/source/folder',
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -156,7 +156,7 @@ final class FoldersTest extends TestCase
             newFolderName: 'new-folder-name'
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -171,6 +171,6 @@ final class FoldersTest extends TestCase
             newFolderName: 'new-folder-name'
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 }

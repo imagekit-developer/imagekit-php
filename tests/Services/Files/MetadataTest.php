@@ -39,7 +39,7 @@ final class MetadataTest extends TestCase
 
         $result = $this->client->files->metadata->get('fileId');
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -51,7 +51,7 @@ final class MetadataTest extends TestCase
 
         $result = $this->client->files->metadata->getFromURL('https://example.com');
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -63,6 +63,6 @@ final class MetadataTest extends TestCase
 
         $result = $this->client->files->metadata->getFromURL('https://example.com');
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 }

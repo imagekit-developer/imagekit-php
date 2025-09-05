@@ -39,7 +39,7 @@ final class VersionsTest extends TestCase
 
         $result = $this->client->files->versions->list('fileId');
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -51,7 +51,7 @@ final class VersionsTest extends TestCase
 
         $result = $this->client->files->versions->delete('versionId', 'fileId');
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -63,7 +63,7 @@ final class VersionsTest extends TestCase
 
         $result = $this->client->files->versions->delete('versionId', 'fileId');
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -75,7 +75,7 @@ final class VersionsTest extends TestCase
 
         $result = $this->client->files->versions->get('versionId', 'fileId');
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -87,7 +87,7 @@ final class VersionsTest extends TestCase
 
         $result = $this->client->files->versions->get('versionId', 'fileId');
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -99,7 +99,7 @@ final class VersionsTest extends TestCase
 
         $result = $this->client->files->versions->restore('versionId', 'fileId');
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -111,6 +111,6 @@ final class VersionsTest extends TestCase
 
         $result = $this->client->files->versions->restore('versionId', 'fileId');
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 }

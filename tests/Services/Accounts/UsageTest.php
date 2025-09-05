@@ -42,7 +42,7 @@ final class UsageTest extends TestCase
             startDate: new \DateTimeImmutable('2019-12-27'),
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -57,6 +57,6 @@ final class UsageTest extends TestCase
             startDate: new \DateTimeImmutable('2019-12-27'),
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 }

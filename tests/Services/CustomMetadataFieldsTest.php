@@ -44,7 +44,7 @@ final class CustomMetadataFieldsTest extends TestCase
             schema: Schema::with(type: 'Number')
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -67,7 +67,7 @@ final class CustomMetadataFieldsTest extends TestCase
                 ->withSelectOptions(['small', 'medium', 'large', 30, 40, true]),
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -79,7 +79,7 @@ final class CustomMetadataFieldsTest extends TestCase
 
         $result = $this->client->customMetadataFields->update('id');
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -91,7 +91,7 @@ final class CustomMetadataFieldsTest extends TestCase
 
         $result = $this->client->customMetadataFields->list();
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -103,6 +103,6 @@ final class CustomMetadataFieldsTest extends TestCase
 
         $result = $this->client->customMetadataFields->delete('id');
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 }

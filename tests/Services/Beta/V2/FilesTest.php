@@ -42,7 +42,7 @@ final class FilesTest extends TestCase
             fileName: 'fileName'
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -57,6 +57,6 @@ final class FilesTest extends TestCase
             fileName: 'fileName'
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 }

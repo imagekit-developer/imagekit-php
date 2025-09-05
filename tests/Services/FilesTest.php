@@ -39,7 +39,7 @@ final class FilesTest extends TestCase
 
         $result = $this->client->files->update('fileId');
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -51,7 +51,7 @@ final class FilesTest extends TestCase
 
         $result = $this->client->files->delete('fileId');
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -66,7 +66,7 @@ final class FilesTest extends TestCase
             sourceFilePath: '/path/to/file.jpg',
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -81,7 +81,7 @@ final class FilesTest extends TestCase
             sourceFilePath: '/path/to/file.jpg',
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -93,7 +93,7 @@ final class FilesTest extends TestCase
 
         $result = $this->client->files->get('fileId');
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -108,7 +108,7 @@ final class FilesTest extends TestCase
             sourceFilePath: '/path/to/file.jpg',
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -123,7 +123,7 @@ final class FilesTest extends TestCase
             sourceFilePath: '/path/to/file.jpg',
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -138,7 +138,7 @@ final class FilesTest extends TestCase
             newFileName: 'newFileName.jpg'
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -153,7 +153,7 @@ final class FilesTest extends TestCase
             newFileName: 'newFileName.jpg'
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -165,7 +165,7 @@ final class FilesTest extends TestCase
 
         $result = $this->client->files->upload(file: 'file', fileName: 'fileName');
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -177,6 +177,6 @@ final class FilesTest extends TestCase
 
         $result = $this->client->files->upload(file: 'file', fileName: 'fileName');
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 }

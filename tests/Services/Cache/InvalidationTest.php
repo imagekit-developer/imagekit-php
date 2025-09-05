@@ -41,7 +41,7 @@ final class InvalidationTest extends TestCase
             'https://ik.imagekit.io/your_imagekit_id/default-image.jpg'
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -55,7 +55,7 @@ final class InvalidationTest extends TestCase
             'https://ik.imagekit.io/your_imagekit_id/default-image.jpg'
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -67,6 +67,6 @@ final class InvalidationTest extends TestCase
 
         $result = $this->client->cache->invalidation->get('requestId');
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 }

@@ -56,7 +56,7 @@ final class OriginsTest extends TestCase
             username: 'integration-user',
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -85,7 +85,7 @@ final class OriginsTest extends TestCase
             username: 'integration-user',
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -115,7 +115,7 @@ final class OriginsTest extends TestCase
             username: 'integration-user',
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -145,7 +145,7 @@ final class OriginsTest extends TestCase
             username: 'integration-user',
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -157,7 +157,7 @@ final class OriginsTest extends TestCase
 
         $result = $this->client->accounts->origins->list();
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -169,7 +169,7 @@ final class OriginsTest extends TestCase
 
         $result = $this->client->accounts->origins->delete('id');
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -181,6 +181,6 @@ final class OriginsTest extends TestCase
 
         $result = $this->client->accounts->origins->get('id');
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 }

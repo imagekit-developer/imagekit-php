@@ -41,7 +41,7 @@ final class BulkTest extends TestCase
             ['598821f949c0a938d57563bd', '598821f949c0a938d57563be']
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -55,7 +55,7 @@ final class BulkTest extends TestCase
             ['598821f949c0a938d57563bd', '598821f949c0a938d57563be']
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -70,7 +70,7 @@ final class BulkTest extends TestCase
             tags: ['t-shirt', 'round-neck', 'sale2019'],
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -85,7 +85,7 @@ final class BulkTest extends TestCase
             tags: ['t-shirt', 'round-neck', 'sale2019'],
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -100,7 +100,7 @@ final class BulkTest extends TestCase
             fileIDs: ['598821f949c0a938d57563bd', '598821f949c0a938d57563be'],
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -115,7 +115,7 @@ final class BulkTest extends TestCase
             fileIDs: ['598821f949c0a938d57563bd', '598821f949c0a938d57563be'],
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -130,7 +130,7 @@ final class BulkTest extends TestCase
             tags: ['t-shirt', 'round-neck', 'sale2019'],
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 
     #[Test]
@@ -145,6 +145,6 @@ final class BulkTest extends TestCase
             tags: ['t-shirt', 'round-neck', 'sale2019'],
         );
 
-        $this->assertTrue(true); // @phpstan-ignore-line
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
 }

@@ -7,6 +7,7 @@ namespace ImageKit\Files\FileUpdateParams;
 use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
+use ImageKit\Core\Conversion\EnumOf;
 use ImageKit\Core\Conversion\ListOf;
 
 /**
@@ -26,6 +27,6 @@ final class RemoveAITags implements ConverterSource
      */
     public static function variants(): array
     {
-        return [new ListOf('string'), STAINLESS_FIXME_::class];
+        return [new ListOf('string'), new EnumOf(['all'])];
     }
 }

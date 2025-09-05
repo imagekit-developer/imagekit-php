@@ -7,6 +7,7 @@ namespace ImageKit\Transformation;
 use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
+use ImageKit\Core\Conversion\EnumOf;
 
 /**
  * Useful for images with a solid or nearly solid background and a central object. This parameter trims the background,
@@ -23,6 +24,6 @@ final class Trim implements ConverterSource
      */
     public static function variants(): array
     {
-        return [STAINLESS_FIXME_::class, 'float'];
+        return [new EnumOf([true]), 'float'];
     }
 }

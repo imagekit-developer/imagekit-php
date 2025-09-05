@@ -7,6 +7,7 @@ namespace ImageKit\SolidColorOverlayTransformation;
 use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
+use ImageKit\Core\Conversion\EnumOf;
 
 /**
  * Specifies the corner radius of the solid color overlay. Set to `max` for circular or oval shape.
@@ -22,6 +23,6 @@ final class Radius implements ConverterSource
      */
     public static function variants(): array
     {
-        return ['float', STAINLESS_FIXME_::class];
+        return ['float', new EnumOf(['max'])];
     }
 }

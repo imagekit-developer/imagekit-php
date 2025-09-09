@@ -4,27 +4,22 @@ declare(strict_types=1);
 
 namespace ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema;
 
-use ImageKit\Core\Concerns\SdkEnum;
-use ImageKit\Core\Conversion\Contracts\ConverterSource;
-
 /**
  * Type of the custom metadata field.
  */
-final class Type implements ConverterSource
+enum Type: string
 {
-    use SdkEnum;
+    case TEXT = 'Text';
 
-    public const TEXT = 'Text';
+    case TEXTAREA = 'Textarea';
 
-    public const TEXTAREA = 'Textarea';
+    case NUMBER = 'Number';
 
-    public const NUMBER = 'Number';
+    case DATE = 'Date';
 
-    public const DATE = 'Date';
+    case BOOLEAN = 'Boolean';
 
-    public const BOOLEAN = 'Boolean';
+    case SINGLE_SELECT = 'SingleSelect';
 
-    public const SINGLE_SELECT = 'SingleSelect';
-
-    public const MULTI_SELECT = 'MultiSelect';
+    case MULTI_SELECT = 'MultiSelect';
 }

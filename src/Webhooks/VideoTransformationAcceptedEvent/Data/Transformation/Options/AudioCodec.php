@@ -4,17 +4,12 @@ declare(strict_types=1);
 
 namespace ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation\Options;
 
-use ImageKit\Core\Concerns\SdkEnum;
-use ImageKit\Core\Conversion\Contracts\ConverterSource;
-
 /**
  * Audio codec used for encoding (aac or opus).
  */
-final class AudioCodec implements ConverterSource
+enum AudioCodec: string
 {
-    use SdkEnum;
+    case AAC = 'aac';
 
-    public const AAC = 'aac';
-
-    public const OPUS = 'opus';
+    case OPUS = 'opus';
 }

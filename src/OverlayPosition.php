@@ -11,7 +11,7 @@ use ImageKit\OverlayPosition\Focus;
 
 /**
  * @phpstan-type overlay_position = array{
- *   focus?: Focus::*|null, x?: float|string|null, y?: float|string|null
+ *   focus?: value-of<Focus>|null, x?: float|string|null, y?: float|string|null
  * }
  */
 final class OverlayPosition implements BaseModel
@@ -23,7 +23,7 @@ final class OverlayPosition implements BaseModel
      * Specifies the position of the overlay relative to the parent image or video.
      * Maps to `lfo` in the URL.
      *
-     * @var Focus::*|null $focus
+     * @var value-of<Focus>|null $focus
      */
     #[Api(enum: Focus::class, optional: true)]
     public ?string $focus;
@@ -56,16 +56,16 @@ final class OverlayPosition implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Focus::* $focus
+     * @param Focus|value-of<Focus> $focus
      */
     public static function with(
-        ?string $focus = null,
+        Focus|string|null $focus = null,
         float|string|null $x = null,
         float|string|null $y = null
     ): self {
         $obj = new self;
 
-        null !== $focus && $obj->focus = $focus;
+        null !== $focus && $obj->focus = $focus instanceof Focus ? $focus->value : $focus;
         null !== $x && $obj->x = $x;
         null !== $y && $obj->y = $y;
 
@@ -76,12 +76,12 @@ final class OverlayPosition implements BaseModel
      * Specifies the position of the overlay relative to the parent image or video.
      * Maps to `lfo` in the URL.
      *
-     * @param Focus::* $focus
+     * @param Focus|value-of<Focus> $focus
      */
-    public function withFocus(string $focus): self
+    public function withFocus(Focus|string $focus): self
     {
         $obj = clone $this;
-        $obj->focus = $focus;
+        $obj->focus = $focus instanceof Focus ? $focus->value : $focus;
 
         return $obj;
     }

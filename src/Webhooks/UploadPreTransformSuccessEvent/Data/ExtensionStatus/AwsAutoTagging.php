@@ -4,16 +4,11 @@ declare(strict_types=1);
 
 namespace ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\ExtensionStatus;
 
-use ImageKit\Core\Concerns\SdkEnum;
-use ImageKit\Core\Conversion\Contracts\ConverterSource;
-
-final class AwsAutoTagging implements ConverterSource
+enum AwsAutoTagging: string
 {
-    use SdkEnum;
+    case SUCCESS = 'success';
 
-    public const SUCCESS = 'success';
+    case PENDING = 'pending';
 
-    public const PENDING = 'pending';
-
-    public const FAILED = 'failed';
+    case FAILED = 'failed';
 }

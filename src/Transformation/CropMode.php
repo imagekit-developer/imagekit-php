@@ -4,19 +4,14 @@ declare(strict_types=1);
 
 namespace ImageKit\Transformation;
 
-use ImageKit\Core\Concerns\SdkEnum;
-use ImageKit\Core\Conversion\Contracts\ConverterSource;
-
 /**
  * Additional crop modes for image resizing. See [Crop modes & focus](https://imagekit.io/docs/image-resize-and-crop#crop-crop-modes--focus).
  */
-final class CropMode implements ConverterSource
+enum CropMode: string
 {
-    use SdkEnum;
+    case PAD_RESIZE = 'pad_resize';
 
-    public const PAD_RESIZE = 'pad_resize';
+    case EXTRACT = 'extract';
 
-    public const EXTRACT = 'extract';
-
-    public const PAD_EXTRACT = 'pad_extract';
+    case PAD_EXTRACT = 'pad_extract';
 }

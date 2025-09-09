@@ -14,11 +14,11 @@ use ImageKit\TextOverlayTransformation\InnerAlignment;
  * @phpstan-type text_overlay_transformation = array{
  *   alpha?: float|null,
  *   background?: string|null,
- *   flip?: Flip::*|null,
+ *   flip?: value-of<Flip>|null,
  *   fontColor?: string|null,
  *   fontFamily?: string|null,
  *   fontSize?: float|string|null,
- *   innerAlignment?: InnerAlignment::*|null,
+ *   innerAlignment?: value-of<InnerAlignment>|null,
  *   lineHeight?: float|string|null,
  *   padding?: float|string|null,
  *   radius?: float|string|null,
@@ -48,7 +48,7 @@ final class TextOverlayTransformation implements BaseModel
     /**
      * Flip the text overlay horizontally, vertically, or both.
      *
-     * @var Flip::*|null $flip
+     * @var value-of<Flip>|null $flip
      */
     #[Api(enum: Flip::class, optional: true)]
     public ?string $flip;
@@ -75,7 +75,7 @@ final class TextOverlayTransformation implements BaseModel
     /**
      * Specifies the inner alignment of the text when width is more than the text length.
      *
-     * @var InnerAlignment::*|null $innerAlignment
+     * @var value-of<InnerAlignment>|null $innerAlignment
      */
     #[Api(enum: InnerAlignment::class, optional: true)]
     public ?string $innerAlignment;
@@ -135,17 +135,17 @@ final class TextOverlayTransformation implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Flip::* $flip
-     * @param InnerAlignment::* $innerAlignment
+     * @param Flip|value-of<Flip> $flip
+     * @param InnerAlignment|value-of<InnerAlignment> $innerAlignment
      */
     public static function with(
         ?float $alpha = null,
         ?string $background = null,
-        ?string $flip = null,
+        Flip|string|null $flip = null,
         ?string $fontColor = null,
         ?string $fontFamily = null,
         float|string|null $fontSize = null,
-        ?string $innerAlignment = null,
+        InnerAlignment|string|null $innerAlignment = null,
         float|string|null $lineHeight = null,
         float|string|null $padding = null,
         float|string|null $radius = null,
@@ -157,11 +157,11 @@ final class TextOverlayTransformation implements BaseModel
 
         null !== $alpha && $obj->alpha = $alpha;
         null !== $background && $obj->background = $background;
-        null !== $flip && $obj->flip = $flip;
+        null !== $flip && $obj->flip = $flip instanceof Flip ? $flip->value : $flip;
         null !== $fontColor && $obj->fontColor = $fontColor;
         null !== $fontFamily && $obj->fontFamily = $fontFamily;
         null !== $fontSize && $obj->fontSize = $fontSize;
-        null !== $innerAlignment && $obj->innerAlignment = $innerAlignment;
+        null !== $innerAlignment && $obj->innerAlignment = $innerAlignment instanceof InnerAlignment ? $innerAlignment->value : $innerAlignment;
         null !== $lineHeight && $obj->lineHeight = $lineHeight;
         null !== $padding && $obj->padding = $padding;
         null !== $radius && $obj->radius = $radius;
@@ -198,12 +198,12 @@ final class TextOverlayTransformation implements BaseModel
     /**
      * Flip the text overlay horizontally, vertically, or both.
      *
-     * @param Flip::* $flip
+     * @param Flip|value-of<Flip> $flip
      */
-    public function withFlip(string $flip): self
+    public function withFlip(Flip|string $flip): self
     {
         $obj = clone $this;
-        $obj->flip = $flip;
+        $obj->flip = $flip instanceof Flip ? $flip->value : $flip;
 
         return $obj;
     }
@@ -245,12 +245,13 @@ final class TextOverlayTransformation implements BaseModel
     /**
      * Specifies the inner alignment of the text when width is more than the text length.
      *
-     * @param InnerAlignment::* $innerAlignment
+     * @param InnerAlignment|value-of<InnerAlignment> $innerAlignment
      */
-    public function withInnerAlignment(string $innerAlignment): self
-    {
+    public function withInnerAlignment(
+        InnerAlignment|string $innerAlignment
+    ): self {
         $obj = clone $this;
-        $obj->innerAlignment = $innerAlignment;
+        $obj->innerAlignment = $innerAlignment instanceof InnerAlignment ? $innerAlignment->value : $innerAlignment;
 
         return $obj;
     }

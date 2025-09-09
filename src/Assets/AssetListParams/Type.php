@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace ImageKit\Assets\AssetListParams;
 
-use ImageKit\Core\Concerns\SdkEnum;
-use ImageKit\Core\Conversion\Contracts\ConverterSource;
-
 /**
  * Filter results by asset type.
  *
@@ -15,15 +12,13 @@ use ImageKit\Core\Conversion\Contracts\ConverterSource;
  * - `folder` — returns only folders
  * - `all` — returns both files and folders (excludes `file-version`)
  */
-final class Type implements ConverterSource
+enum Type: string
 {
-    use SdkEnum;
+    case FILE = 'file';
 
-    public const FILE = 'file';
+    case FILE_VERSION = 'file-version';
 
-    public const FILE_VERSION = 'file-version';
+    case FOLDER = 'folder';
 
-    public const FOLDER = 'folder';
-
-    public const ALL = 'all';
+    case ALL = 'all';
 }

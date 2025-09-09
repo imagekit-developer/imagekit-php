@@ -4,23 +4,18 @@ declare(strict_types=1);
 
 namespace ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation\Options;
 
-use ImageKit\Core\Concerns\SdkEnum;
-use ImageKit\Core\Conversion\Contracts\ConverterSource;
-
 /**
  * Output format for the transformed video or thumbnail.
  */
-final class Format implements ConverterSource
+enum Format: string
 {
-    use SdkEnum;
+    case MP4 = 'mp4';
 
-    public const MP4 = 'mp4';
+    case WEBM = 'webm';
 
-    public const WEBM = 'webm';
+    case JPG = 'jpg';
 
-    public const JPG = 'jpg';
+    case PNG = 'png';
 
-    public const PNG = 'png';
-
-    public const WEBP = 'webp';
+    case WEBP = 'webp';
 }

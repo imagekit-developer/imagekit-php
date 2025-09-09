@@ -4,17 +4,12 @@ declare(strict_types=1);
 
 namespace ImageKit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Options;
 
-use ImageKit\Core\Concerns\SdkEnum;
-use ImageKit\Core\Conversion\Contracts\ConverterSource;
-
 /**
  * Streaming protocol for adaptive bitrate streaming.
  */
-final class StreamProtocol implements ConverterSource
+enum StreamProtocol: string
 {
-    use SdkEnum;
+    case HLS = 'HLS';
 
-    public const HLS = 'HLS';
-
-    public const DASH = 'DASH';
+    case DASH = 'DASH';
 }

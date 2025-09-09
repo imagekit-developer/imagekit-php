@@ -12,7 +12,7 @@ use ImageKit\Webhooks\UploadPostTransformSuccessEvent\Request\Transformation\Typ
 
 /**
  * @phpstan-type transformation_alias = array{
- *   type: Type::*, protocol?: Protocol::*|null, value?: string|null
+ *   type: value-of<Type>, protocol?: value-of<Protocol>|null, value?: string|null
  * }
  */
 final class Transformation implements BaseModel
@@ -23,7 +23,7 @@ final class Transformation implements BaseModel
     /**
      * Type of the requested post-transformation.
      *
-     * @var Type::* $type
+     * @var value-of<Type> $type
      */
     #[Api(enum: Type::class)]
     public string $type;
@@ -31,7 +31,7 @@ final class Transformation implements BaseModel
     /**
      * Only applicable if transformation type is 'abs'. Streaming protocol used.
      *
-     * @var Protocol::*|null $protocol
+     * @var value-of<Protocol>|null $protocol
      */
     #[Api(enum: Protocol::class, optional: true)]
     public ?string $protocol;
@@ -66,19 +66,19 @@ final class Transformation implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Type::* $type
-     * @param Protocol::* $protocol
+     * @param Type|value-of<Type> $type
+     * @param Protocol|value-of<Protocol> $protocol
      */
     public static function with(
-        string $type,
-        ?string $protocol = null,
+        Type|string $type,
+        Protocol|string|null $protocol = null,
         ?string $value = null
     ): self {
         $obj = new self;
 
-        $obj->type = $type;
+        $obj->type = $type instanceof Type ? $type->value : $type;
 
-        null !== $protocol && $obj->protocol = $protocol;
+        null !== $protocol && $obj->protocol = $protocol instanceof Protocol ? $protocol->value : $protocol;
         null !== $value && $obj->value = $value;
 
         return $obj;
@@ -87,12 +87,12 @@ final class Transformation implements BaseModel
     /**
      * Type of the requested post-transformation.
      *
-     * @param Type::* $type
+     * @param Type|value-of<Type> $type
      */
-    public function withType(string $type): self
+    public function withType(Type|string $type): self
     {
         $obj = clone $this;
-        $obj->type = $type;
+        $obj->type = $type instanceof Type ? $type->value : $type;
 
         return $obj;
     }
@@ -100,12 +100,12 @@ final class Transformation implements BaseModel
     /**
      * Only applicable if transformation type is 'abs'. Streaming protocol used.
      *
-     * @param Protocol::* $protocol
+     * @param Protocol|value-of<Protocol> $protocol
      */
-    public function withProtocol(string $protocol): self
+    public function withProtocol(Protocol|string $protocol): self
     {
         $obj = clone $this;
-        $obj->protocol = $protocol;
+        $obj->protocol = $protocol instanceof Protocol ? $protocol->value : $protocol;
 
         return $obj;
     }

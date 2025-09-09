@@ -32,7 +32,7 @@ use ImageKit\Files\File\VersionInfo;
  *   size?: float|null,
  *   tags?: list<string>|null,
  *   thumbnail?: string|null,
- *   type?: Type::*|null,
+ *   type?: value-of<Type>|null,
  *   updatedAt?: \DateTimeInterface|null,
  *   url?: string|null,
  *   versionInfo?: VersionInfo|null,
@@ -155,7 +155,7 @@ final class File implements BaseModel
     /**
      * Type of the asset.
      *
-     * @var Type::*|null $type
+     * @var value-of<Type>|null $type
      */
     #[Api(enum: Type::class, optional: true)]
     public ?string $type;
@@ -197,7 +197,7 @@ final class File implements BaseModel
      * @param list<AITag>|null $aiTags
      * @param array<string, mixed> $customMetadata
      * @param list<string>|null $tags
-     * @param Type::* $type
+     * @param Type|value-of<Type> $type
      */
     public static function with(
         ?array $aiTags = null,
@@ -217,7 +217,7 @@ final class File implements BaseModel
         ?float $size = null,
         ?array $tags = null,
         ?string $thumbnail = null,
-        ?string $type = null,
+        Type|string|null $type = null,
         ?\DateTimeInterface $updatedAt = null,
         ?string $url = null,
         ?VersionInfo $versionInfo = null,
@@ -242,7 +242,7 @@ final class File implements BaseModel
         null !== $size && $obj->size = $size;
         null !== $tags && $obj->tags = $tags;
         null !== $thumbnail && $obj->thumbnail = $thumbnail;
-        null !== $type && $obj->type = $type;
+        null !== $type && $obj->type = $type instanceof Type ? $type->value : $type;
         null !== $updatedAt && $obj->updatedAt = $updatedAt;
         null !== $url && $obj->url = $url;
         null !== $versionInfo && $obj->versionInfo = $versionInfo;
@@ -447,12 +447,12 @@ final class File implements BaseModel
     /**
      * Type of the asset.
      *
-     * @param Type::* $type
+     * @param Type|value-of<Type> $type
      */
-    public function withType(string $type): self
+    public function withType(Type|string $type): self
     {
         $obj = clone $this;
-        $obj->type = $type;
+        $obj->type = $type instanceof Type ? $type->value : $type;
 
         return $obj;
     }

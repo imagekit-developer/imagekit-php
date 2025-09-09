@@ -7,18 +7,11 @@ namespace ImageKit;
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Transformation\AIRemoveBackground;
-use ImageKit\Transformation\AIRemoveBackgroundExternal;
-use ImageKit\Transformation\AIRetouch;
-use ImageKit\Transformation\AIUpscale;
-use ImageKit\Transformation\AIVariation;
 use ImageKit\Transformation\AudioCodec;
-use ImageKit\Transformation\ContrastStretch;
 use ImageKit\Transformation\Crop;
 use ImageKit\Transformation\CropMode;
 use ImageKit\Transformation\Flip;
 use ImageKit\Transformation\Format;
-use ImageKit\Transformation\Grayscale;
 use ImageKit\Transformation\VideoCodec;
 
 /**
@@ -31,29 +24,29 @@ use ImageKit\Transformation\VideoCodec;
  *   aiChangeBackground?: string|null,
  *   aiDropShadow?: bool|string|null,
  *   aiEdit?: string|null,
- *   aiRemoveBackground?: AIRemoveBackground::*|null,
- *   aiRemoveBackgroundExternal?: AIRemoveBackgroundExternal::*|null,
- *   aiRetouch?: AIRetouch::*|null,
- *   aiUpscale?: AIUpscale::*|null,
- *   aiVariation?: AIVariation::*|null,
+ *   aiRemoveBackground?: bool|null,
+ *   aiRemoveBackgroundExternal?: bool|null,
+ *   aiRetouch?: bool|null,
+ *   aiUpscale?: bool|null,
+ *   aiVariation?: bool|null,
  *   aspectRatio?: float|string|null,
- *   audioCodec?: AudioCodec::*|null,
+ *   audioCodec?: value-of<AudioCodec>|null,
  *   background?: string|null,
  *   blur?: float|null,
  *   border?: string|null,
  *   colorProfile?: bool|null,
- *   contrastStretch?: ContrastStretch::*|null,
- *   crop?: Crop::*|null,
- *   cropMode?: CropMode::*|null,
+ *   contrastStretch?: bool|null,
+ *   crop?: value-of<Crop>|null,
+ *   cropMode?: value-of<CropMode>|null,
  *   defaultImage?: string|null,
  *   dpr?: float|null,
  *   duration?: float|string|null,
  *   endOffset?: float|string|null,
- *   flip?: Flip::*|null,
+ *   flip?: value-of<Flip>|null,
  *   focus?: string|null,
- *   format?: Format::*|null,
+ *   format?: value-of<Format>|null,
  *   gradient?: bool|string|null,
- *   grayscale?: Grayscale::*|null,
+ *   grayscale?: bool|null,
  *   height?: float|string|null,
  *   lossless?: bool|null,
  *   metadata?: bool|null,
@@ -70,10 +63,10 @@ use ImageKit\Transformation\VideoCodec;
  *   shadow?: bool|string|null,
  *   sharpen?: bool|float|null,
  *   startOffset?: float|string|null,
- *   streamingResolutions?: list<StreamingResolution::*>|null,
+ *   streamingResolutions?: list<value-of<StreamingResolution>>|null,
  *   trim?: bool|float|null,
  *   unsharpMask?: bool|string|null,
- *   videoCodec?: VideoCodec::*|null,
+ *   videoCodec?: value-of<VideoCodec>|null,
  *   width?: float|string|null,
  *   x?: float|string|null,
  *   xCenter?: float|string|null,
@@ -119,10 +112,8 @@ final class Transformation implements BaseModel
      * Applies ImageKit's in-house background removal.
      * Supported inside overlay.
      * See [AI Background Removal](https://imagekit.io/docs/ai-transformations#imagekit-background-removal-e-bgremove).
-     *
-     * @var AIRemoveBackground::*|null $aiRemoveBackground
      */
-    #[Api(enum: AIRemoveBackground::class, optional: true)]
+    #[Api(enum: STAINLESS_FIXME_AIRemoveBackground::class, optional: true)]
     public ?bool $aiRemoveBackground;
 
     /**
@@ -130,38 +121,33 @@ final class Transformation implements BaseModel
      * Note: It is recommended to use aiRemoveBackground, ImageKit's in-house solution, which is more cost-effective.
      * Supported inside overlay.
      * See [External Background Removal](https://imagekit.io/docs/ai-transformations#background-removal-e-removedotbg).
-     *
-     * @var AIRemoveBackgroundExternal::*|null $aiRemoveBackgroundExternal
      */
-    #[Api(enum: AIRemoveBackgroundExternal::class, optional: true)]
+    #[Api(
+        enum: STAINLESS_FIXME_AIRemoveBackgroundExternal::class,
+        optional: true
+    )]
     public ?bool $aiRemoveBackgroundExternal;
 
     /**
      * Performs AI-based retouching to improve faces or product shots. Not supported inside overlay.
      * See [AI Retouch](https://imagekit.io/docs/ai-transformations#retouch-e-retouch).
-     *
-     * @var AIRetouch::*|null $aiRetouch
      */
-    #[Api(enum: AIRetouch::class, optional: true)]
+    #[Api(enum: STAINLESS_FIXME_AIRetouch::class, optional: true)]
     public ?bool $aiRetouch;
 
     /**
      * Upscales images beyond their original dimensions using AI. Not supported inside overlay.
      * See [AI Upscale](https://imagekit.io/docs/ai-transformations#upscale-e-upscale).
-     *
-     * @var AIUpscale::*|null $aiUpscale
      */
-    #[Api(enum: AIUpscale::class, optional: true)]
+    #[Api(enum: STAINLESS_FIXME_AIUpscale::class, optional: true)]
     public ?bool $aiUpscale;
 
     /**
      * Generates a variation of an image using AI. This produces a new image with slight variations from the original,
      * such as changes in color, texture, and other visual elements, while preserving the structure and essence of the original image. Not supported inside overlay.
      * See [AI Generate Variations](https://imagekit.io/docs/ai-transformations#generate-variations-of-an-image-e-genvar).
-     *
-     * @var AIVariation::*|null $aiVariation
      */
-    #[Api(enum: AIVariation::class, optional: true)]
+    #[Api(enum: STAINLESS_FIXME_AIVariation::class, optional: true)]
     public ?bool $aiVariation;
 
     /**
@@ -175,7 +161,7 @@ final class Transformation implements BaseModel
     /**
      * Specifies the audio codec, e.g., `aac`, `opus`, or `none`. See [Audio codec](https://imagekit.io/docs/video-optimization#audio-codec---ac).
      *
-     * @var AudioCodec::*|null $audioCodec
+     * @var value-of<AudioCodec>|null $audioCodec
      */
     #[Api(enum: AudioCodec::class, optional: true)]
     public ?string $audioCodec;
@@ -215,16 +201,14 @@ final class Transformation implements BaseModel
     /**
      * Automatically enhances the contrast of an image (contrast stretch).
      * See [Contrast Stretch](https://imagekit.io/docs/effects-and-enhancements#contrast-stretch---e-contrast).
-     *
-     * @var ContrastStretch::*|null $contrastStretch
      */
-    #[Api(enum: ContrastStretch::class, optional: true)]
+    #[Api(enum: STAINLESS_FIXME_ContrastStretch::class, optional: true)]
     public ?bool $contrastStretch;
 
     /**
      * Crop modes for image resizing. See [Crop modes & focus](https://imagekit.io/docs/image-resize-and-crop#crop-crop-modes--focus).
      *
-     * @var Crop::*|null $crop
+     * @var value-of<Crop>|null $crop
      */
     #[Api(enum: Crop::class, optional: true)]
     public ?string $crop;
@@ -232,7 +216,7 @@ final class Transformation implements BaseModel
     /**
      * Additional crop modes for image resizing. See [Crop modes & focus](https://imagekit.io/docs/image-resize-and-crop#crop-crop-modes--focus).
      *
-     * @var CropMode::*|null $cropMode
+     * @var value-of<CropMode>|null $cropMode
      */
     #[Api(enum: CropMode::class, optional: true)]
     public ?string $cropMode;
@@ -272,7 +256,7 @@ final class Transformation implements BaseModel
      * Acceptable values: `h` (horizontal), `v` (vertical), `h_v` (horizontal and vertical), or `v_h`.
      * See [Flip](https://imagekit.io/docs/effects-and-enhancements#flip---fl).
      *
-     * @var Flip::*|null $flip
+     * @var value-of<Flip>|null $flip
      */
     #[Api(enum: Flip::class, optional: true)]
     public ?string $flip;
@@ -294,7 +278,7 @@ final class Transformation implements BaseModel
      * ImageKit automatically delivers images and videos in the optimal format based on device support unless overridden by the dashboard settings or the format parameter.
      * See [Image format](https://imagekit.io/docs/image-optimization#format---f) and [Video format](https://imagekit.io/docs/video-optimization#format---f).
      *
-     * @var Format::*|null $format
+     * @var value-of<Format>|null $format
      */
     #[Api(enum: Format::class, optional: true)]
     public ?string $format;
@@ -308,10 +292,8 @@ final class Transformation implements BaseModel
 
     /**
      * Enables a grayscale effect for images. See [Grayscale](https://imagekit.io/docs/effects-and-enhancements#grayscale---e-grayscale).
-     *
-     * @var Grayscale::*|null $grayscale
      */
-    #[Api(enum: Grayscale::class, optional: true)]
+    #[Api(enum: STAINLESS_FIXME_Grayscale::class, optional: true)]
     public ?bool $grayscale;
 
     /**
@@ -441,7 +423,7 @@ final class Transformation implements BaseModel
      * An array of resolutions for adaptive bitrate streaming, e.g., [`240`, `360`, `480`, `720`, `1080`].
      * See [Adaptive Bitrate Streaming](https://imagekit.io/docs/adaptive-bitrate-streaming).
      *
-     * @var list<StreamingResolution::*>|null $streamingResolutions
+     * @var list<value-of<StreamingResolution>>|null $streamingResolutions
      */
     #[Api(list: StreamingResolution::class, optional: true)]
     public ?array $streamingResolutions;
@@ -465,7 +447,7 @@ final class Transformation implements BaseModel
     /**
      * Specifies the video codec, e.g., `h264`, `vp9`, `av1`, or `none`. See [Video codec](https://imagekit.io/docs/video-optimization#video-codec---vc).
      *
-     * @var VideoCodec::*|null $videoCodec
+     * @var value-of<VideoCodec>|null $videoCodec
      */
     #[Api(enum: VideoCodec::class, optional: true)]
     public ?string $videoCodec;
@@ -520,20 +502,13 @@ final class Transformation implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param AIRemoveBackground::* $aiRemoveBackground
-     * @param AIRemoveBackgroundExternal::* $aiRemoveBackgroundExternal
-     * @param AIRetouch::* $aiRetouch
-     * @param AIUpscale::* $aiUpscale
-     * @param AIVariation::* $aiVariation
-     * @param AudioCodec::* $audioCodec
-     * @param ContrastStretch::* $contrastStretch
-     * @param Crop::* $crop
-     * @param CropMode::* $cropMode
-     * @param Flip::* $flip
-     * @param Format::* $format
-     * @param Grayscale::* $grayscale
-     * @param list<StreamingResolution::*> $streamingResolutions
-     * @param VideoCodec::* $videoCodec
+     * @param AudioCodec|value-of<AudioCodec> $audioCodec
+     * @param Crop|value-of<Crop> $crop
+     * @param CropMode|value-of<CropMode> $cropMode
+     * @param Flip|value-of<Flip> $flip
+     * @param Format|value-of<Format> $format
+     * @param list<StreamingResolution|value-of<StreamingResolution>> $streamingResolutions
+     * @param VideoCodec|value-of<VideoCodec> $videoCodec
      */
     public static function with(
         ?string $aiChangeBackground = null,
@@ -545,21 +520,21 @@ final class Transformation implements BaseModel
         ?bool $aiUpscale = null,
         ?bool $aiVariation = null,
         float|string|null $aspectRatio = null,
-        ?string $audioCodec = null,
+        AudioCodec|string|null $audioCodec = null,
         ?string $background = null,
         ?float $blur = null,
         ?string $border = null,
         ?bool $colorProfile = null,
         ?bool $contrastStretch = null,
-        ?string $crop = null,
-        ?string $cropMode = null,
+        Crop|string|null $crop = null,
+        CropMode|string|null $cropMode = null,
         ?string $defaultImage = null,
         ?float $dpr = null,
         float|string|null $duration = null,
         float|string|null $endOffset = null,
-        ?string $flip = null,
+        Flip|string|null $flip = null,
         ?string $focus = null,
-        ?string $format = null,
+        Format|string|null $format = null,
         bool|string|null $gradient = null,
         ?bool $grayscale = null,
         float|string|null $height = null,
@@ -581,7 +556,7 @@ final class Transformation implements BaseModel
         ?array $streamingResolutions = null,
         bool|float|null $trim = null,
         bool|string|null $unsharpMask = null,
-        ?string $videoCodec = null,
+        VideoCodec|string|null $videoCodec = null,
         float|string|null $width = null,
         float|string|null $x = null,
         float|string|null $xCenter = null,
@@ -600,21 +575,21 @@ final class Transformation implements BaseModel
         null !== $aiUpscale && $obj->aiUpscale = $aiUpscale;
         null !== $aiVariation && $obj->aiVariation = $aiVariation;
         null !== $aspectRatio && $obj->aspectRatio = $aspectRatio;
-        null !== $audioCodec && $obj->audioCodec = $audioCodec;
+        null !== $audioCodec && $obj->audioCodec = $audioCodec instanceof AudioCodec ? $audioCodec->value : $audioCodec;
         null !== $background && $obj->background = $background;
         null !== $blur && $obj->blur = $blur;
         null !== $border && $obj->border = $border;
         null !== $colorProfile && $obj->colorProfile = $colorProfile;
         null !== $contrastStretch && $obj->contrastStretch = $contrastStretch;
-        null !== $crop && $obj->crop = $crop;
-        null !== $cropMode && $obj->cropMode = $cropMode;
+        null !== $crop && $obj->crop = $crop instanceof Crop ? $crop->value : $crop;
+        null !== $cropMode && $obj->cropMode = $cropMode instanceof CropMode ? $cropMode->value : $cropMode;
         null !== $defaultImage && $obj->defaultImage = $defaultImage;
         null !== $dpr && $obj->dpr = $dpr;
         null !== $duration && $obj->duration = $duration;
         null !== $endOffset && $obj->endOffset = $endOffset;
-        null !== $flip && $obj->flip = $flip;
+        null !== $flip && $obj->flip = $flip instanceof Flip ? $flip->value : $flip;
         null !== $focus && $obj->focus = $focus;
-        null !== $format && $obj->format = $format;
+        null !== $format && $obj->format = $format instanceof Format ? $format->value : $format;
         null !== $gradient && $obj->gradient = $gradient;
         null !== $grayscale && $obj->grayscale = $grayscale;
         null !== $height && $obj->height = $height;
@@ -633,10 +608,10 @@ final class Transformation implements BaseModel
         null !== $shadow && $obj->shadow = $shadow;
         null !== $sharpen && $obj->sharpen = $sharpen;
         null !== $startOffset && $obj->startOffset = $startOffset;
-        null !== $streamingResolutions && $obj->streamingResolutions = $streamingResolutions;
+        null !== $streamingResolutions && $obj->streamingResolutions = array_map(fn ($v) => $v instanceof StreamingResolution ? $v->value : $v, $streamingResolutions);
         null !== $trim && $obj->trim = $trim;
         null !== $unsharpMask && $obj->unsharpMask = $unsharpMask;
-        null !== $videoCodec && $obj->videoCodec = $videoCodec;
+        null !== $videoCodec && $obj->videoCodec = $videoCodec instanceof VideoCodec ? $videoCodec->value : $videoCodec;
         null !== $width && $obj->width = $width;
         null !== $x && $obj->x = $x;
         null !== $xCenter && $obj->xCenter = $xCenter;
@@ -694,8 +669,6 @@ final class Transformation implements BaseModel
      * Applies ImageKit's in-house background removal.
      * Supported inside overlay.
      * See [AI Background Removal](https://imagekit.io/docs/ai-transformations#imagekit-background-removal-e-bgremove).
-     *
-     * @param AIRemoveBackground::* $aiRemoveBackground
      */
     public function withAIRemoveBackground(bool $aiRemoveBackground): self
     {
@@ -710,8 +683,6 @@ final class Transformation implements BaseModel
      * Note: It is recommended to use aiRemoveBackground, ImageKit's in-house solution, which is more cost-effective.
      * Supported inside overlay.
      * See [External Background Removal](https://imagekit.io/docs/ai-transformations#background-removal-e-removedotbg).
-     *
-     * @param AIRemoveBackgroundExternal::* $aiRemoveBackgroundExternal
      */
     public function withAIRemoveBackgroundExternal(
         bool $aiRemoveBackgroundExternal
@@ -725,8 +696,6 @@ final class Transformation implements BaseModel
     /**
      * Performs AI-based retouching to improve faces or product shots. Not supported inside overlay.
      * See [AI Retouch](https://imagekit.io/docs/ai-transformations#retouch-e-retouch).
-     *
-     * @param AIRetouch::* $aiRetouch
      */
     public function withAIRetouch(bool $aiRetouch): self
     {
@@ -739,8 +708,6 @@ final class Transformation implements BaseModel
     /**
      * Upscales images beyond their original dimensions using AI. Not supported inside overlay.
      * See [AI Upscale](https://imagekit.io/docs/ai-transformations#upscale-e-upscale).
-     *
-     * @param AIUpscale::* $aiUpscale
      */
     public function withAIUpscale(bool $aiUpscale): self
     {
@@ -754,8 +721,6 @@ final class Transformation implements BaseModel
      * Generates a variation of an image using AI. This produces a new image with slight variations from the original,
      * such as changes in color, texture, and other visual elements, while preserving the structure and essence of the original image. Not supported inside overlay.
      * See [AI Generate Variations](https://imagekit.io/docs/ai-transformations#generate-variations-of-an-image-e-genvar).
-     *
-     * @param AIVariation::* $aiVariation
      */
     public function withAIVariation(bool $aiVariation): self
     {
@@ -781,12 +746,12 @@ final class Transformation implements BaseModel
     /**
      * Specifies the audio codec, e.g., `aac`, `opus`, or `none`. See [Audio codec](https://imagekit.io/docs/video-optimization#audio-codec---ac).
      *
-     * @param AudioCodec::* $audioCodec
+     * @param AudioCodec|value-of<AudioCodec> $audioCodec
      */
-    public function withAudioCodec(string $audioCodec): self
+    public function withAudioCodec(AudioCodec|string $audioCodec): self
     {
         $obj = clone $this;
-        $obj->audioCodec = $audioCodec;
+        $obj->audioCodec = $audioCodec instanceof AudioCodec ? $audioCodec->value : $audioCodec;
 
         return $obj;
     }
@@ -846,8 +811,6 @@ final class Transformation implements BaseModel
     /**
      * Automatically enhances the contrast of an image (contrast stretch).
      * See [Contrast Stretch](https://imagekit.io/docs/effects-and-enhancements#contrast-stretch---e-contrast).
-     *
-     * @param ContrastStretch::* $contrastStretch
      */
     public function withContrastStretch(bool $contrastStretch): self
     {
@@ -860,12 +823,12 @@ final class Transformation implements BaseModel
     /**
      * Crop modes for image resizing. See [Crop modes & focus](https://imagekit.io/docs/image-resize-and-crop#crop-crop-modes--focus).
      *
-     * @param Crop::* $crop
+     * @param Crop|value-of<Crop> $crop
      */
-    public function withCrop(string $crop): self
+    public function withCrop(Crop|string $crop): self
     {
         $obj = clone $this;
-        $obj->crop = $crop;
+        $obj->crop = $crop instanceof Crop ? $crop->value : $crop;
 
         return $obj;
     }
@@ -873,12 +836,12 @@ final class Transformation implements BaseModel
     /**
      * Additional crop modes for image resizing. See [Crop modes & focus](https://imagekit.io/docs/image-resize-and-crop#crop-crop-modes--focus).
      *
-     * @param CropMode::* $cropMode
+     * @param CropMode|value-of<CropMode> $cropMode
      */
-    public function withCropMode(string $cropMode): self
+    public function withCropMode(CropMode|string $cropMode): self
     {
         $obj = clone $this;
-        $obj->cropMode = $cropMode;
+        $obj->cropMode = $cropMode instanceof CropMode ? $cropMode->value : $cropMode;
 
         return $obj;
     }
@@ -938,12 +901,12 @@ final class Transformation implements BaseModel
      * Acceptable values: `h` (horizontal), `v` (vertical), `h_v` (horizontal and vertical), or `v_h`.
      * See [Flip](https://imagekit.io/docs/effects-and-enhancements#flip---fl).
      *
-     * @param Flip::* $flip
+     * @param Flip|value-of<Flip> $flip
      */
-    public function withFlip(string $flip): self
+    public function withFlip(Flip|string $flip): self
     {
         $obj = clone $this;
-        $obj->flip = $flip;
+        $obj->flip = $flip instanceof Flip ? $flip->value : $flip;
 
         return $obj;
     }
@@ -970,12 +933,12 @@ final class Transformation implements BaseModel
      * ImageKit automatically delivers images and videos in the optimal format based on device support unless overridden by the dashboard settings or the format parameter.
      * See [Image format](https://imagekit.io/docs/image-optimization#format---f) and [Video format](https://imagekit.io/docs/video-optimization#format---f).
      *
-     * @param Format::* $format
+     * @param Format|value-of<Format> $format
      */
-    public function withFormat(string $format): self
+    public function withFormat(Format|string $format): self
     {
         $obj = clone $this;
-        $obj->format = $format;
+        $obj->format = $format instanceof Format ? $format->value : $format;
 
         return $obj;
     }
@@ -994,8 +957,6 @@ final class Transformation implements BaseModel
 
     /**
      * Enables a grayscale effect for images. See [Grayscale](https://imagekit.io/docs/effects-and-enhancements#grayscale---e-grayscale).
-     *
-     * @param Grayscale::* $grayscale
      */
     public function withGrayscale(bool $grayscale): self
     {
@@ -1213,12 +1174,12 @@ final class Transformation implements BaseModel
      * An array of resolutions for adaptive bitrate streaming, e.g., [`240`, `360`, `480`, `720`, `1080`].
      * See [Adaptive Bitrate Streaming](https://imagekit.io/docs/adaptive-bitrate-streaming).
      *
-     * @param list<StreamingResolution::*> $streamingResolutions
+     * @param list<StreamingResolution|value-of<StreamingResolution>> $streamingResolutions
      */
     public function withStreamingResolutions(array $streamingResolutions): self
     {
         $obj = clone $this;
-        $obj->streamingResolutions = $streamingResolutions;
+        $obj->streamingResolutions = array_map(fn ($v) => $v instanceof StreamingResolution ? $v->value : $v, $streamingResolutions);
 
         return $obj;
     }
@@ -1252,12 +1213,12 @@ final class Transformation implements BaseModel
     /**
      * Specifies the video codec, e.g., `h264`, `vp9`, `av1`, or `none`. See [Video codec](https://imagekit.io/docs/video-optimization#video-codec---vc).
      *
-     * @param VideoCodec::* $videoCodec
+     * @param VideoCodec|value-of<VideoCodec> $videoCodec
      */
-    public function withVideoCodec(string $videoCodec): self
+    public function withVideoCodec(VideoCodec|string $videoCodec): self
     {
         $obj = clone $this;
-        $obj->videoCodec = $videoCodec;
+        $obj->videoCodec = $videoCodec instanceof VideoCodec ? $videoCodec->value : $videoCodec;
 
         return $obj;
     }

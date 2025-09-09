@@ -16,13 +16,13 @@ use ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation\Optio
  * Configuration options for video transformations.
  *
  * @phpstan-type options_alias = array{
- *   audioCodec?: AudioCodec::*|null,
+ *   audioCodec?: value-of<AudioCodec>|null,
  *   autoRotate?: bool|null,
- *   format?: Format::*|null,
+ *   format?: value-of<Format>|null,
  *   quality?: int|null,
- *   streamProtocol?: StreamProtocol::*|null,
+ *   streamProtocol?: value-of<StreamProtocol>|null,
  *   variants?: list<string>|null,
- *   videoCodec?: VideoCodec::*|null,
+ *   videoCodec?: value-of<VideoCodec>|null,
  * }
  */
 final class Options implements BaseModel
@@ -33,7 +33,7 @@ final class Options implements BaseModel
     /**
      * Audio codec used for encoding (aac or opus).
      *
-     * @var AudioCodec::*|null $audioCodec
+     * @var value-of<AudioCodec>|null $audioCodec
      */
     #[Api('audio_codec', enum: AudioCodec::class, optional: true)]
     public ?string $audioCodec;
@@ -47,7 +47,7 @@ final class Options implements BaseModel
     /**
      * Output format for the transformed video or thumbnail.
      *
-     * @var Format::*|null $format
+     * @var value-of<Format>|null $format
      */
     #[Api(enum: Format::class, optional: true)]
     public ?string $format;
@@ -61,7 +61,7 @@ final class Options implements BaseModel
     /**
      * Streaming protocol for adaptive bitrate streaming.
      *
-     * @var StreamProtocol::*|null $streamProtocol
+     * @var value-of<StreamProtocol>|null $streamProtocol
      */
     #[Api('stream_protocol', enum: StreamProtocol::class, optional: true)]
     public ?string $streamProtocol;
@@ -77,7 +77,7 @@ final class Options implements BaseModel
     /**
      * Video codec used for encoding (h264, vp9, or av1).
      *
-     * @var VideoCodec::*|null $videoCodec
+     * @var value-of<VideoCodec>|null $videoCodec
      */
     #[Api('video_codec', enum: VideoCodec::class, optional: true)]
     public ?string $videoCodec;
@@ -92,30 +92,30 @@ final class Options implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param AudioCodec::* $audioCodec
-     * @param Format::* $format
-     * @param StreamProtocol::* $streamProtocol
+     * @param AudioCodec|value-of<AudioCodec> $audioCodec
+     * @param Format|value-of<Format> $format
+     * @param StreamProtocol|value-of<StreamProtocol> $streamProtocol
      * @param list<string> $variants
-     * @param VideoCodec::* $videoCodec
+     * @param VideoCodec|value-of<VideoCodec> $videoCodec
      */
     public static function with(
-        ?string $audioCodec = null,
+        AudioCodec|string|null $audioCodec = null,
         ?bool $autoRotate = null,
-        ?string $format = null,
+        Format|string|null $format = null,
         ?int $quality = null,
-        ?string $streamProtocol = null,
+        StreamProtocol|string|null $streamProtocol = null,
         ?array $variants = null,
-        ?string $videoCodec = null,
+        VideoCodec|string|null $videoCodec = null,
     ): self {
         $obj = new self;
 
-        null !== $audioCodec && $obj->audioCodec = $audioCodec;
+        null !== $audioCodec && $obj->audioCodec = $audioCodec instanceof AudioCodec ? $audioCodec->value : $audioCodec;
         null !== $autoRotate && $obj->autoRotate = $autoRotate;
-        null !== $format && $obj->format = $format;
+        null !== $format && $obj->format = $format instanceof Format ? $format->value : $format;
         null !== $quality && $obj->quality = $quality;
-        null !== $streamProtocol && $obj->streamProtocol = $streamProtocol;
+        null !== $streamProtocol && $obj->streamProtocol = $streamProtocol instanceof StreamProtocol ? $streamProtocol->value : $streamProtocol;
         null !== $variants && $obj->variants = $variants;
-        null !== $videoCodec && $obj->videoCodec = $videoCodec;
+        null !== $videoCodec && $obj->videoCodec = $videoCodec instanceof VideoCodec ? $videoCodec->value : $videoCodec;
 
         return $obj;
     }
@@ -123,12 +123,12 @@ final class Options implements BaseModel
     /**
      * Audio codec used for encoding (aac or opus).
      *
-     * @param AudioCodec::* $audioCodec
+     * @param AudioCodec|value-of<AudioCodec> $audioCodec
      */
-    public function withAudioCodec(string $audioCodec): self
+    public function withAudioCodec(AudioCodec|string $audioCodec): self
     {
         $obj = clone $this;
-        $obj->audioCodec = $audioCodec;
+        $obj->audioCodec = $audioCodec instanceof AudioCodec ? $audioCodec->value : $audioCodec;
 
         return $obj;
     }
@@ -147,12 +147,12 @@ final class Options implements BaseModel
     /**
      * Output format for the transformed video or thumbnail.
      *
-     * @param Format::* $format
+     * @param Format|value-of<Format> $format
      */
-    public function withFormat(string $format): self
+    public function withFormat(Format|string $format): self
     {
         $obj = clone $this;
-        $obj->format = $format;
+        $obj->format = $format instanceof Format ? $format->value : $format;
 
         return $obj;
     }
@@ -171,12 +171,13 @@ final class Options implements BaseModel
     /**
      * Streaming protocol for adaptive bitrate streaming.
      *
-     * @param StreamProtocol::* $streamProtocol
+     * @param StreamProtocol|value-of<StreamProtocol> $streamProtocol
      */
-    public function withStreamProtocol(string $streamProtocol): self
-    {
+    public function withStreamProtocol(
+        StreamProtocol|string $streamProtocol
+    ): self {
         $obj = clone $this;
-        $obj->streamProtocol = $streamProtocol;
+        $obj->streamProtocol = $streamProtocol instanceof StreamProtocol ? $streamProtocol->value : $streamProtocol;
 
         return $obj;
     }
@@ -197,12 +198,12 @@ final class Options implements BaseModel
     /**
      * Video codec used for encoding (h264, vp9, or av1).
      *
-     * @param VideoCodec::* $videoCodec
+     * @param VideoCodec|value-of<VideoCodec> $videoCodec
      */
-    public function withVideoCodec(string $videoCodec): self
+    public function withVideoCodec(VideoCodec|string $videoCodec): self
     {
         $obj = clone $this;
-        $obj->videoCodec = $videoCodec;
+        $obj->videoCodec = $videoCodec instanceof VideoCodec ? $videoCodec->value : $videoCodec;
 
         return $obj;
     }

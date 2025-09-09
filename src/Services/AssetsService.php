@@ -30,7 +30,7 @@ final class AssetsService implements AssetsContract
      *
      * This API can list all the uploaded files and folders in your ImageKit.io media library. In addition, you can fine-tune your query by specifying various filters by generating a query string in a Lucene-like syntax and provide this generated string as the value of the `searchQuery`.
      *
-     * @param FileType::* $fileType Filter results by file type.
+     * @param FileType|value-of<FileType> $fileType Filter results by file type.
      *
      * - `all` — include all file types
      * - `image` — include only image files
@@ -50,8 +50,8 @@ final class AssetsService implements AssetsContract
      *
      * [Learn more](/docs/api-reference/digital-asset-management-dam/list-and-search-assets#advanced-search-queries) from examples.
      * @param int $skip the number of results to skip before returning results
-     * @param Sort::* $sort sort the results by one of the supported fields in ascending or descending order
-     * @param Type::* $type Filter results by asset type.
+     * @param Sort|value-of<Sort> $sort sort the results by one of the supported fields in ascending or descending order
+     * @param Type|value-of<Type> $type Filter results by asset type.
      *
      * - `file` — returns only files
      * - `file-version` — returns specific file versions

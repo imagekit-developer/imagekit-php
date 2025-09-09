@@ -4,21 +4,16 @@ declare(strict_types=1);
 
 namespace ImageKit\Webhooks\UploadPostTransformSuccessEvent\Request\Transformation;
 
-use ImageKit\Core\Concerns\SdkEnum;
-use ImageKit\Core\Conversion\Contracts\ConverterSource;
-
 /**
  * Type of the requested post-transformation.
  */
-final class Type implements ConverterSource
+enum Type: string
 {
-    use SdkEnum;
+    case TRANSFORMATION = 'transformation';
 
-    public const TRANSFORMATION = 'transformation';
+    case ABS = 'abs';
 
-    public const ABS = 'abs';
+    case GIF_TO_VIDEO = 'gif-to-video';
 
-    public const GIF_TO_VIDEO = 'gif-to-video';
-
-    public const THUMBNAIL = 'thumbnail';
+    case THUMBNAIL = 'thumbnail';
 }

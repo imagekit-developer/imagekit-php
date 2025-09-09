@@ -4,38 +4,33 @@ declare(strict_types=1);
 
 namespace ImageKit\Transformation;
 
-use ImageKit\Core\Concerns\SdkEnum;
-use ImageKit\Core\Conversion\Contracts\ConverterSource;
-
 /**
  * Specifies the output format for images or videos, e.g., `jpg`, `png`, `webp`, `mp4`, or `auto`.
  * You can also pass `orig` for images to return the original format.
  * ImageKit automatically delivers images and videos in the optimal format based on device support unless overridden by the dashboard settings or the format parameter.
  * See [Image format](https://imagekit.io/docs/image-optimization#format---f) and [Video format](https://imagekit.io/docs/video-optimization#format---f).
  */
-final class Format implements ConverterSource
+enum Format: string
 {
-    use SdkEnum;
+    case AUTO = 'auto';
 
-    public const AUTO = 'auto';
+    case WEBP = 'webp';
 
-    public const WEBP = 'webp';
+    case JPG = 'jpg';
 
-    public const JPG = 'jpg';
+    case JPEG = 'jpeg';
 
-    public const JPEG = 'jpeg';
+    case PNG = 'png';
 
-    public const PNG = 'png';
+    case GIF = 'gif';
 
-    public const GIF = 'gif';
+    case SVG = 'svg';
 
-    public const SVG = 'svg';
+    case MP4 = 'mp4';
 
-    public const MP4 = 'mp4';
+    case WEBM = 'webm';
 
-    public const WEBM = 'webm';
+    case AVIF = 'avif';
 
-    public const AVIF = 'avif';
-
-    public const ORIG = 'orig';
+    case ORIG = 'orig';
 }

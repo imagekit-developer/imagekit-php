@@ -15,7 +15,7 @@ use ImageKit\CustomMetadataFields\CustomMetadataField\Schema\Type;
  * An object that describes the rules for the custom metadata field value.
  *
  * @phpstan-type schema_alias = array{
- *   type: Type::*,
+ *   type: value-of<Type>,
  *   defaultValue?: string|float|bool|null|list<string|float|bool>,
  *   isValueRequired?: bool|null,
  *   maxLength?: float|null,
@@ -33,7 +33,7 @@ final class Schema implements BaseModel
     /**
      * Type of the custom metadata field.
      *
-     * @var Type::* $type
+     * @var value-of<Type> $type
      */
     #[Api(enum: Type::class)]
     public string $type;
@@ -108,12 +108,12 @@ final class Schema implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Type::* $type
+     * @param Type|value-of<Type> $type
      * @param string|float|bool|list<string|float|bool> $defaultValue
      * @param list<string|float|bool> $selectOptions
      */
     public static function with(
-        string $type,
+        Type|string $type,
         string|float|bool|array|null $defaultValue = null,
         ?bool $isValueRequired = null,
         ?float $maxLength = null,
@@ -124,7 +124,7 @@ final class Schema implements BaseModel
     ): self {
         $obj = new self;
 
-        $obj->type = $type;
+        $obj->type = $type instanceof Type ? $type->value : $type;
 
         null !== $defaultValue && $obj->defaultValue = $defaultValue;
         null !== $isValueRequired && $obj->isValueRequired = $isValueRequired;
@@ -140,12 +140,12 @@ final class Schema implements BaseModel
     /**
      * Type of the custom metadata field.
      *
-     * @param Type::* $type
+     * @param Type|value-of<Type> $type
      */
-    public function withType(string $type): self
+    public function withType(Type|string $type): self
     {
         $obj = clone $this;
-        $obj->type = $type;
+        $obj->type = $type instanceof Type ? $type->value : $type;
 
         return $obj;
     }

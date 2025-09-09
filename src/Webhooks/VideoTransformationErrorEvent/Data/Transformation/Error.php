@@ -12,7 +12,7 @@ use ImageKit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Error\Re
 /**
  * Details about the transformation error.
  *
- * @phpstan-type error_alias = array{reason: Reason::*}
+ * @phpstan-type error_alias = array{reason: value-of<Reason>}
  */
 final class Error implements BaseModel
 {
@@ -25,7 +25,7 @@ final class Error implements BaseModel
      * - `download_failed`: Could not download source video
      * - `internal_server_error`: Unexpected server error
      *
-     * @var Reason::* $reason
+     * @var value-of<Reason> $reason
      */
     #[Api(enum: Reason::class)]
     public string $reason;
@@ -54,13 +54,13 @@ final class Error implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Reason::* $reason
+     * @param Reason|value-of<Reason> $reason
      */
-    public static function with(string $reason): self
+    public static function with(Reason|string $reason): self
     {
         $obj = new self;
 
-        $obj->reason = $reason;
+        $obj->reason = $reason instanceof Reason ? $reason->value : $reason;
 
         return $obj;
     }
@@ -71,12 +71,12 @@ final class Error implements BaseModel
      * - `download_failed`: Could not download source video
      * - `internal_server_error`: Unexpected server error
      *
-     * @param Reason::* $reason
+     * @param Reason|value-of<Reason> $reason
      */
-    public function withReason(string $reason): self
+    public function withReason(Reason|string $reason): self
     {
         $obj = clone $this;
-        $obj->reason = $reason;
+        $obj->reason = $reason instanceof Reason ? $reason->value : $reason;
 
         return $obj;
     }

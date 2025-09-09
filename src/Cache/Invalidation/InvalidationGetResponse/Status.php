@@ -4,17 +4,12 @@ declare(strict_types=1);
 
 namespace ImageKit\Cache\Invalidation\InvalidationGetResponse;
 
-use ImageKit\Core\Concerns\SdkEnum;
-use ImageKit\Core\Conversion\Contracts\ConverterSource;
-
 /**
  * Status of the purge request.
  */
-final class Status implements ConverterSource
+enum Status: string
 {
-    use SdkEnum;
+    case PENDING = 'Pending';
 
-    public const PENDING = 'Pending';
-
-    public const COMPLETED = 'Completed';
+    case COMPLETED = 'Completed';
 }

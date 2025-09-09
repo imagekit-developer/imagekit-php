@@ -15,7 +15,7 @@ use ImageKit\Files\Folder\Type;
  *   folderID?: string|null,
  *   folderPath?: string|null,
  *   name?: string|null,
- *   type?: Type::*|null,
+ *   type?: value-of<Type>|null,
  *   updatedAt?: \DateTimeInterface|null,
  * }
  */
@@ -51,7 +51,7 @@ final class Folder implements BaseModel
     /**
      * Type of the asset.
      *
-     * @var Type::*|null $type
+     * @var value-of<Type>|null $type
      */
     #[Api(enum: Type::class, optional: true)]
     public ?string $type;
@@ -72,14 +72,14 @@ final class Folder implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Type::* $type
+     * @param Type|value-of<Type> $type
      */
     public static function with(
         ?\DateTimeInterface $createdAt = null,
         ?string $folderID = null,
         ?string $folderPath = null,
         ?string $name = null,
-        ?string $type = null,
+        Type|string|null $type = null,
         ?\DateTimeInterface $updatedAt = null,
     ): self {
         $obj = new self;
@@ -88,7 +88,7 @@ final class Folder implements BaseModel
         null !== $folderID && $obj->folderID = $folderID;
         null !== $folderPath && $obj->folderPath = $folderPath;
         null !== $name && $obj->name = $name;
-        null !== $type && $obj->type = $type;
+        null !== $type && $obj->type = $type instanceof Type ? $type->value : $type;
         null !== $updatedAt && $obj->updatedAt = $updatedAt;
 
         return $obj;
@@ -141,12 +141,12 @@ final class Folder implements BaseModel
     /**
      * Type of the asset.
      *
-     * @param Type::* $type
+     * @param Type|value-of<Type> $type
      */
-    public function withType(string $type): self
+    public function withType(Type|string $type): self
     {
         $obj = clone $this;
-        $obj->type = $type;
+        $obj->type = $type instanceof Type ? $type->value : $type;
 
         return $obj;
     }

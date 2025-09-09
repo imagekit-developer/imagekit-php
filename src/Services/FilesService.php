@@ -334,7 +334,7 @@ final class FilesService implements FilesContract
      * @param bool $overwriteFile if `false` and `useUniqueFileName` is also `false`, and a file already exists at the exact location, upload API will return an error immediately
      * @param bool $overwriteTags if the request does not have `tags`, and a file already exists at the exact location, existing tags will be removed
      * @param string $publicKey Your ImageKit.io public key. This field is only required for authentication when uploading a file from the client side.
-     * @param list<ResponseField::*> $responseFields array of response field keys to include in the API response body
+     * @param list<ResponseField|value-of<ResponseField>> $responseFields array of response field keys to include in the API response body
      * @param string $signature HMAC-SHA1 digest of the token+expire using your ImageKit.io private API key as a key. Learn how to create a signature on the page below. This should be in lowercase.
      *
      * Signature must be calculated on the server-side. This field is only required for authentication when uploading a file from the client side.

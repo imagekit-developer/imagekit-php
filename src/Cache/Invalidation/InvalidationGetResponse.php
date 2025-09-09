@@ -10,7 +10,7 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type invalidation_get_response = array{status?: Status::*|null}
+ * @phpstan-type invalidation_get_response = array{status?: value-of<Status>|null}
  */
 final class InvalidationGetResponse implements BaseModel
 {
@@ -20,7 +20,7 @@ final class InvalidationGetResponse implements BaseModel
     /**
      * Status of the purge request.
      *
-     * @var Status::*|null $status
+     * @var value-of<Status>|null $status
      */
     #[Api(enum: Status::class, optional: true)]
     public ?string $status;
@@ -35,13 +35,13 @@ final class InvalidationGetResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Status::* $status
+     * @param Status|value-of<Status> $status
      */
-    public static function with(?string $status = null): self
+    public static function with(Status|string|null $status = null): self
     {
         $obj = new self;
 
-        null !== $status && $obj->status = $status;
+        null !== $status && $obj->status = $status instanceof Status ? $status->value : $status;
 
         return $obj;
     }
@@ -49,12 +49,12 @@ final class InvalidationGetResponse implements BaseModel
     /**
      * Status of the purge request.
      *
-     * @param Status::* $status
+     * @param Status|value-of<Status> $status
      */
-    public function withStatus(string $status): self
+    public function withStatus(Status|string $status): self
     {
         $obj = clone $this;
-        $obj->status = $status;
+        $obj->status = $status instanceof Status ? $status->value : $status;
 
         return $obj;
     }

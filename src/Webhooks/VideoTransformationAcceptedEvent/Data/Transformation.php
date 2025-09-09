@@ -14,7 +14,7 @@ use ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation\Type;
  * Base information about a video transformation request.
  *
  * @phpstan-type transformation_alias = array{
- *   type: Type::*, options?: Options|null
+ *   type: value-of<Type>, options?: Options|null
  * }
  */
 final class Transformation implements BaseModel
@@ -28,7 +28,7 @@ final class Transformation implements BaseModel
      * - `gif-to-video`: Convert animated GIF to video format
      * - `video-thumbnail`: Generate thumbnail image from video
      *
-     * @var Type::* $type
+     * @var value-of<Type> $type
      */
     #[Api(enum: Type::class)]
     public string $type;
@@ -63,13 +63,15 @@ final class Transformation implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Type::* $type
+     * @param Type|value-of<Type> $type
      */
-    public static function with(string $type, ?Options $options = null): self
-    {
+    public static function with(
+        Type|string $type,
+        ?Options $options = null
+    ): self {
         $obj = new self;
 
-        $obj->type = $type;
+        $obj->type = $type instanceof Type ? $type->value : $type;
 
         null !== $options && $obj->options = $options;
 
@@ -82,12 +84,12 @@ final class Transformation implements BaseModel
      * - `gif-to-video`: Convert animated GIF to video format
      * - `video-thumbnail`: Generate thumbnail image from video
      *
-     * @param Type::* $type
+     * @param Type|value-of<Type> $type
      */
-    public function withType(string $type): self
+    public function withType(Type|string $type): self
     {
         $obj = clone $this;
-        $obj->type = $type;
+        $obj->type = $type instanceof Type ? $type->value : $type;
 
         return $obj;
     }

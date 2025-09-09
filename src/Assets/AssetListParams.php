@@ -29,13 +29,13 @@ use ImageKit\Core\Contracts\BaseModel;
  * @see ImageKit\Assets->list
  *
  * @phpstan-type asset_list_params = array{
- *   fileType?: FileType::*,
+ *   fileType?: FileType|value-of<FileType>,
  *   limit?: int,
  *   path?: string,
  *   searchQuery?: string,
  *   skip?: int,
- *   sort?: Sort::*,
- *   type?: Type::*,
+ *   sort?: Sort|value-of<Sort>,
+ *   type?: Type|value-of<Type>,
  * }
  */
 final class AssetListParams implements BaseModel
@@ -51,7 +51,7 @@ final class AssetListParams implements BaseModel
      * - `image` — include only image files
      * - `non-image` — include only non-image files (e.g., JS, CSS, video)
      *
-     * @var FileType::*|null $fileType
+     * @var value-of<FileType>|null $fileType
      */
     #[Api(enum: FileType::class, optional: true)]
     public ?string $fileType;
@@ -94,7 +94,7 @@ final class AssetListParams implements BaseModel
     /**
      * Sort the results by one of the supported fields in ascending or descending order.
      *
-     * @var Sort::*|null $sort
+     * @var value-of<Sort>|null $sort
      */
     #[Api(enum: Sort::class, optional: true)]
     public ?string $sort;
@@ -107,7 +107,7 @@ final class AssetListParams implements BaseModel
      * - `folder` — returns only folders
      * - `all` — returns both files and folders (excludes `file-version`)
      *
-     * @var Type::*|null $type
+     * @var value-of<Type>|null $type
      */
     #[Api(enum: Type::class, optional: true)]
     public ?string $type;
@@ -122,28 +122,28 @@ final class AssetListParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param FileType::* $fileType
-     * @param Sort::* $sort
-     * @param Type::* $type
+     * @param FileType|value-of<FileType> $fileType
+     * @param Sort|value-of<Sort> $sort
+     * @param Type|value-of<Type> $type
      */
     public static function with(
-        ?string $fileType = null,
+        FileType|string|null $fileType = null,
         ?int $limit = null,
         ?string $path = null,
         ?string $searchQuery = null,
         ?int $skip = null,
-        ?string $sort = null,
-        ?string $type = null,
+        Sort|string|null $sort = null,
+        Type|string|null $type = null,
     ): self {
         $obj = new self;
 
-        null !== $fileType && $obj->fileType = $fileType;
+        null !== $fileType && $obj->fileType = $fileType instanceof FileType ? $fileType->value : $fileType;
         null !== $limit && $obj->limit = $limit;
         null !== $path && $obj->path = $path;
         null !== $searchQuery && $obj->searchQuery = $searchQuery;
         null !== $skip && $obj->skip = $skip;
-        null !== $sort && $obj->sort = $sort;
-        null !== $type && $obj->type = $type;
+        null !== $sort && $obj->sort = $sort instanceof Sort ? $sort->value : $sort;
+        null !== $type && $obj->type = $type instanceof Type ? $type->value : $type;
 
         return $obj;
     }
@@ -155,12 +155,12 @@ final class AssetListParams implements BaseModel
      * - `image` — include only image files
      * - `non-image` — include only non-image files (e.g., JS, CSS, video)
      *
-     * @param FileType::* $fileType
+     * @param FileType|value-of<FileType> $fileType
      */
-    public function withFileType(string $fileType): self
+    public function withFileType(FileType|string $fileType): self
     {
         $obj = clone $this;
-        $obj->fileType = $fileType;
+        $obj->fileType = $fileType instanceof FileType ? $fileType->value : $fileType;
 
         return $obj;
     }
@@ -223,12 +223,12 @@ final class AssetListParams implements BaseModel
     /**
      * Sort the results by one of the supported fields in ascending or descending order.
      *
-     * @param Sort::* $sort
+     * @param Sort|value-of<Sort> $sort
      */
-    public function withSort(string $sort): self
+    public function withSort(Sort|string $sort): self
     {
         $obj = clone $this;
-        $obj->sort = $sort;
+        $obj->sort = $sort instanceof Sort ? $sort->value : $sort;
 
         return $obj;
     }
@@ -241,12 +241,12 @@ final class AssetListParams implements BaseModel
      * - `folder` — returns only folders
      * - `all` — returns both files and folders (excludes `file-version`)
      *
-     * @param Type::* $type
+     * @param Type|value-of<Type> $type
      */
-    public function withType(string $type): self
+    public function withType(Type|string $type): self
     {
         $obj = clone $this;
-        $obj->type = $type;
+        $obj->type = $type instanceof Type ? $type->value : $type;
 
         return $obj;
     }

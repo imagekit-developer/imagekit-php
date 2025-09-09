@@ -11,7 +11,7 @@ use ImageKit\ExtensionItem\AutoTaggingExtension\Name;
 
 /**
  * @phpstan-type auto_tagging_extension = array{
- *   maxTags: int, minConfidence: int, name: Name::*
+ *   maxTags: int, minConfidence: int, name: value-of<Name>
  * }
  */
 final class AutoTaggingExtension implements BaseModel
@@ -34,7 +34,7 @@ final class AutoTaggingExtension implements BaseModel
     /**
      * Specifies the auto-tagging extension used.
      *
-     * @var Name::* $name
+     * @var value-of<Name> $name
      */
     #[Api(enum: Name::class)]
     public string $name;
@@ -66,18 +66,18 @@ final class AutoTaggingExtension implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Name::* $name
+     * @param Name|value-of<Name> $name
      */
     public static function with(
         int $maxTags,
         int $minConfidence,
-        string $name
+        Name|string $name
     ): self {
         $obj = new self;
 
         $obj->maxTags = $maxTags;
         $obj->minConfidence = $minConfidence;
-        $obj->name = $name;
+        $obj->name = $name instanceof Name ? $name->value : $name;
 
         return $obj;
     }
@@ -107,12 +107,12 @@ final class AutoTaggingExtension implements BaseModel
     /**
      * Specifies the auto-tagging extension used.
      *
-     * @param Name::* $name
+     * @param Name|value-of<Name> $name
      */
-    public function withName(string $name): self
+    public function withName(Name|string $name): self
     {
         $obj = clone $this;
-        $obj->name = $name;
+        $obj->name = $name instanceof Name ? $name->value : $name;
 
         return $obj;
     }

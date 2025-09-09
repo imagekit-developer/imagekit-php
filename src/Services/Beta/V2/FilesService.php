@@ -75,7 +75,7 @@ final class FilesService implements FilesContract
      * @param bool $overwriteCustomMetadata if the request does not have `customMetadata`, and a file already exists at the exact location, existing customMetadata will be removed
      * @param bool $overwriteFile if `false` and `useUniqueFileName` is also `false`, and a file already exists at the exact location, upload API will return an error immediately
      * @param bool $overwriteTags if the request does not have `tags`, and a file already exists at the exact location, existing tags will be removed
-     * @param list<ResponseField::*> $responseFields array of response field keys to include in the API response body
+     * @param list<ResponseField|value-of<ResponseField>> $responseFields array of response field keys to include in the API response body
      * @param list<string> $tags Set the tags while uploading the file.
      * Provide an array of tag strings (e.g. `["tag1", "tag2", "tag3"]`). The combined length of all tag characters must not exceed 500, and the `%` character is not allowed.
      * If this field is not specified and the file is overwritten, the existing tags will be removed.

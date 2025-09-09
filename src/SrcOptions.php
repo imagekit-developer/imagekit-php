@@ -18,7 +18,7 @@ use ImageKit\Core\Contracts\BaseModel;
  *   queryParameters?: array<string, string>|null,
  *   signed?: bool|null,
  *   transformation?: list<Transformation>|null,
- *   transformationPosition?: TransformationPosition::*|null,
+ *   transformationPosition?: value-of<TransformationPosition>|null,
  * }
  */
 final class SrcOptions implements BaseModel
@@ -85,7 +85,7 @@ final class SrcOptions implements BaseModel
      * If you want to add the transformation string in the path of the URL, set this to `path`.
      * Learn more in the [Transformations guide](https://imagekit.io/docs/transformations).
      *
-     * @var TransformationPosition::*|null $transformationPosition
+     * @var value-of<TransformationPosition>|null $transformationPosition
      */
     #[Api(enum: TransformationPosition::class, optional: true)]
     public ?string $transformationPosition;
@@ -116,7 +116,7 @@ final class SrcOptions implements BaseModel
      *
      * @param array<string, string> $queryParameters
      * @param list<Transformation> $transformation
-     * @param TransformationPosition::* $transformationPosition
+     * @param TransformationPosition|value-of<TransformationPosition> $transformationPosition
      */
     public static function with(
         string $src,
@@ -125,7 +125,7 @@ final class SrcOptions implements BaseModel
         ?array $queryParameters = null,
         ?bool $signed = null,
         ?array $transformation = null,
-        ?string $transformationPosition = null,
+        TransformationPosition|string|null $transformationPosition = null,
     ): self {
         $obj = new self;
 
@@ -136,7 +136,7 @@ final class SrcOptions implements BaseModel
         null !== $queryParameters && $obj->queryParameters = $queryParameters;
         null !== $signed && $obj->signed = $signed;
         null !== $transformation && $obj->transformation = $transformation;
-        null !== $transformationPosition && $obj->transformationPosition = $transformationPosition;
+        null !== $transformationPosition && $obj->transformationPosition = $transformationPosition instanceof TransformationPosition ? $transformationPosition->value : $transformationPosition;
 
         return $obj;
     }
@@ -230,13 +230,13 @@ final class SrcOptions implements BaseModel
      * If you want to add the transformation string in the path of the URL, set this to `path`.
      * Learn more in the [Transformations guide](https://imagekit.io/docs/transformations).
      *
-     * @param TransformationPosition::* $transformationPosition
+     * @param TransformationPosition|value-of<TransformationPosition> $transformationPosition
      */
     public function withTransformationPosition(
-        string $transformationPosition
+        TransformationPosition|string $transformationPosition
     ): self {
         $obj = clone $this;
-        $obj->transformationPosition = $transformationPosition;
+        $obj->transformationPosition = $transformationPosition instanceof TransformationPosition ? $transformationPosition->value : $transformationPosition;
 
         return $obj;
     }

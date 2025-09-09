@@ -4,16 +4,11 @@ declare(strict_types=1);
 
 namespace ImageKit\Files\FileUpdateResponse\ExtensionStatus;
 
-use ImageKit\Core\Concerns\SdkEnum;
-use ImageKit\Core\Conversion\Contracts\ConverterSource;
-
-final class GoogleAutoTagging implements ConverterSource
+enum GoogleAutoTagging: string
 {
-    use SdkEnum;
+    case SUCCESS = 'success';
 
-    public const SUCCESS = 'success';
+    case PENDING = 'pending';
 
-    public const PENDING = 'pending';
-
-    public const FAILED = 'failed';
+    case FAILED = 'failed';
 }

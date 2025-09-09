@@ -22,10 +22,10 @@ use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\ExtensionStatus\Remove
  * If no extension was requested, then this parameter is not returned.
  *
  * @phpstan-type extension_status = array{
- *   aiAutoDescription?: AIAutoDescription::*|null,
- *   awsAutoTagging?: AwsAutoTagging::*|null,
- *   googleAutoTagging?: GoogleAutoTagging::*|null,
- *   removeBg?: RemoveBg::*|null,
+ *   aiAutoDescription?: value-of<AIAutoDescription>|null,
+ *   awsAutoTagging?: value-of<AwsAutoTagging>|null,
+ *   googleAutoTagging?: value-of<GoogleAutoTagging>|null,
+ *   removeBg?: value-of<RemoveBg>|null,
  * }
  */
 final class ExtensionStatus implements BaseModel
@@ -33,19 +33,19 @@ final class ExtensionStatus implements BaseModel
     /** @use SdkModel<extension_status> */
     use SdkModel;
 
-    /** @var AIAutoDescription::*|null $aiAutoDescription */
+    /** @var value-of<AIAutoDescription>|null $aiAutoDescription */
     #[Api('ai-auto-description', enum: AIAutoDescription::class, optional: true)]
     public ?string $aiAutoDescription;
 
-    /** @var AwsAutoTagging::*|null $awsAutoTagging */
+    /** @var value-of<AwsAutoTagging>|null $awsAutoTagging */
     #[Api('aws-auto-tagging', enum: AwsAutoTagging::class, optional: true)]
     public ?string $awsAutoTagging;
 
-    /** @var GoogleAutoTagging::*|null $googleAutoTagging */
+    /** @var value-of<GoogleAutoTagging>|null $googleAutoTagging */
     #[Api('google-auto-tagging', enum: GoogleAutoTagging::class, optional: true)]
     public ?string $googleAutoTagging;
 
-    /** @var RemoveBg::*|null $removeBg */
+    /** @var value-of<RemoveBg>|null $removeBg */
     #[Api('remove-bg', enum: RemoveBg::class, optional: true)]
     public ?string $removeBg;
 
@@ -59,67 +59,70 @@ final class ExtensionStatus implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param AIAutoDescription::* $aiAutoDescription
-     * @param AwsAutoTagging::* $awsAutoTagging
-     * @param GoogleAutoTagging::* $googleAutoTagging
-     * @param RemoveBg::* $removeBg
+     * @param AIAutoDescription|value-of<AIAutoDescription> $aiAutoDescription
+     * @param AwsAutoTagging|value-of<AwsAutoTagging> $awsAutoTagging
+     * @param GoogleAutoTagging|value-of<GoogleAutoTagging> $googleAutoTagging
+     * @param RemoveBg|value-of<RemoveBg> $removeBg
      */
     public static function with(
-        ?string $aiAutoDescription = null,
-        ?string $awsAutoTagging = null,
-        ?string $googleAutoTagging = null,
-        ?string $removeBg = null,
+        AIAutoDescription|string|null $aiAutoDescription = null,
+        AwsAutoTagging|string|null $awsAutoTagging = null,
+        GoogleAutoTagging|string|null $googleAutoTagging = null,
+        RemoveBg|string|null $removeBg = null,
     ): self {
         $obj = new self;
 
-        null !== $aiAutoDescription && $obj->aiAutoDescription = $aiAutoDescription;
-        null !== $awsAutoTagging && $obj->awsAutoTagging = $awsAutoTagging;
-        null !== $googleAutoTagging && $obj->googleAutoTagging = $googleAutoTagging;
-        null !== $removeBg && $obj->removeBg = $removeBg;
+        null !== $aiAutoDescription && $obj->aiAutoDescription = $aiAutoDescription instanceof AIAutoDescription ? $aiAutoDescription->value : $aiAutoDescription;
+        null !== $awsAutoTagging && $obj->awsAutoTagging = $awsAutoTagging instanceof AwsAutoTagging ? $awsAutoTagging->value : $awsAutoTagging;
+        null !== $googleAutoTagging && $obj->googleAutoTagging = $googleAutoTagging instanceof GoogleAutoTagging ? $googleAutoTagging->value : $googleAutoTagging;
+        null !== $removeBg && $obj->removeBg = $removeBg instanceof RemoveBg ? $removeBg->value : $removeBg;
 
         return $obj;
     }
 
     /**
-     * @param AIAutoDescription::* $aiAutoDescription
+     * @param AIAutoDescription|value-of<AIAutoDescription> $aiAutoDescription
      */
-    public function withAIAutoDescription(string $aiAutoDescription): self
-    {
+    public function withAIAutoDescription(
+        AIAutoDescription|string $aiAutoDescription
+    ): self {
         $obj = clone $this;
-        $obj->aiAutoDescription = $aiAutoDescription;
+        $obj->aiAutoDescription = $aiAutoDescription instanceof AIAutoDescription ? $aiAutoDescription->value : $aiAutoDescription;
 
         return $obj;
     }
 
     /**
-     * @param AwsAutoTagging::* $awsAutoTagging
+     * @param AwsAutoTagging|value-of<AwsAutoTagging> $awsAutoTagging
      */
-    public function withAwsAutoTagging(string $awsAutoTagging): self
-    {
+    public function withAwsAutoTagging(
+        AwsAutoTagging|string $awsAutoTagging
+    ): self {
         $obj = clone $this;
-        $obj->awsAutoTagging = $awsAutoTagging;
+        $obj->awsAutoTagging = $awsAutoTagging instanceof AwsAutoTagging ? $awsAutoTagging->value : $awsAutoTagging;
 
         return $obj;
     }
 
     /**
-     * @param GoogleAutoTagging::* $googleAutoTagging
+     * @param GoogleAutoTagging|value-of<GoogleAutoTagging> $googleAutoTagging
      */
-    public function withGoogleAutoTagging(string $googleAutoTagging): self
-    {
+    public function withGoogleAutoTagging(
+        GoogleAutoTagging|string $googleAutoTagging
+    ): self {
         $obj = clone $this;
-        $obj->googleAutoTagging = $googleAutoTagging;
+        $obj->googleAutoTagging = $googleAutoTagging instanceof GoogleAutoTagging ? $googleAutoTagging->value : $googleAutoTagging;
 
         return $obj;
     }
 
     /**
-     * @param RemoveBg::* $removeBg
+     * @param RemoveBg|value-of<RemoveBg> $removeBg
      */
-    public function withRemoveBg(string $removeBg): self
+    public function withRemoveBg(RemoveBg|string $removeBg): self
     {
         $obj = clone $this;
-        $obj->removeBg = $removeBg;
+        $obj->removeBg = $removeBg instanceof RemoveBg ? $removeBg->value : $removeBg;
 
         return $obj;
     }

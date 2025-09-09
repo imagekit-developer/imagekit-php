@@ -4,17 +4,12 @@ declare(strict_types=1);
 
 namespace ImageKit\Files\File;
 
-use ImageKit\Core\Concerns\SdkEnum;
-use ImageKit\Core\Conversion\Contracts\ConverterSource;
-
 /**
  * Type of the asset.
  */
-final class Type implements ConverterSource
+enum Type: string
 {
-    use SdkEnum;
+    case FILE = 'file';
 
-    public const FILE = 'file';
-
-    public const FILE_VERSION = 'file-version';
+    case FILE_VERSION = 'file-version';
 }

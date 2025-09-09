@@ -13,7 +13,7 @@ use ImageKit\ImageOverlay\Encoding;
  * @phpstan-type image_overlay = array{
  *   input: string,
  *   type: string,
- *   encoding?: Encoding::*|null,
+ *   encoding?: value-of<Encoding>|null,
  *   transformation?: list<Transformation>|null,
  * }
  */
@@ -37,7 +37,7 @@ final class ImageOverlay implements BaseModel
      * To always use base64 encoding (`ie-{base64}`), set this parameter to `base64`.
      * To always use plain text (`i-{input}`), set it to `plain`.
      *
-     * @var Encoding::*|null $encoding
+     * @var value-of<Encoding>|null $encoding
      */
     #[Api(enum: Encoding::class, optional: true)]
     public ?string $encoding;
@@ -75,19 +75,19 @@ final class ImageOverlay implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Encoding::* $encoding
+     * @param Encoding|value-of<Encoding> $encoding
      * @param list<Transformation> $transformation
      */
     public static function with(
         string $input,
-        ?string $encoding = null,
-        ?array $transformation = null
+        Encoding|string|null $encoding = null,
+        ?array $transformation = null,
     ): self {
         $obj = new self;
 
         $obj->input = $input;
 
-        null !== $encoding && $obj->encoding = $encoding;
+        null !== $encoding && $obj->encoding = $encoding instanceof Encoding ? $encoding->value : $encoding;
         null !== $transformation && $obj->transformation = $transformation;
 
         return $obj;
@@ -110,12 +110,12 @@ final class ImageOverlay implements BaseModel
      * To always use base64 encoding (`ie-{base64}`), set this parameter to `base64`.
      * To always use plain text (`i-{input}`), set it to `plain`.
      *
-     * @param Encoding::* $encoding
+     * @param Encoding|value-of<Encoding> $encoding
      */
-    public function withEncoding(string $encoding): self
+    public function withEncoding(Encoding|string $encoding): self
     {
         $obj = clone $this;
-        $obj->encoding = $encoding;
+        $obj->encoding = $encoding instanceof Encoding ? $encoding->value : $encoding;
 
         return $obj;
     }

@@ -4,19 +4,14 @@ declare(strict_types=1);
 
 namespace ImageKit\Transformation;
 
-use ImageKit\Core\Concerns\SdkEnum;
-use ImageKit\Core\Conversion\Contracts\ConverterSource;
-
 /**
  * Specifies the audio codec, e.g., `aac`, `opus`, or `none`. See [Audio codec](https://imagekit.io/docs/video-optimization#audio-codec---ac).
  */
-final class AudioCodec implements ConverterSource
+enum AudioCodec: string
 {
-    use SdkEnum;
+    case AAC = 'aac';
 
-    public const AAC = 'aac';
+    case OPUS = 'opus';
 
-    public const OPUS = 'opus';
-
-    public const NONE = 'none';
+    case NONE = 'none';
 }

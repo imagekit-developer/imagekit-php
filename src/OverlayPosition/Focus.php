@@ -4,32 +4,27 @@ declare(strict_types=1);
 
 namespace ImageKit\OverlayPosition;
 
-use ImageKit\Core\Concerns\SdkEnum;
-use ImageKit\Core\Conversion\Contracts\ConverterSource;
-
 /**
  * Specifies the position of the overlay relative to the parent image or video.
  * Maps to `lfo` in the URL.
  */
-final class Focus implements ConverterSource
+enum Focus: string
 {
-    use SdkEnum;
+    case CENTER = 'center';
 
-    public const CENTER = 'center';
+    case TOP = 'top';
 
-    public const TOP = 'top';
+    case LEFT = 'left';
 
-    public const LEFT = 'left';
+    case BOTTOM = 'bottom';
 
-    public const BOTTOM = 'bottom';
+    case RIGHT = 'right';
 
-    public const RIGHT = 'right';
+    case TOP_LEFT = 'top_left';
 
-    public const TOP_LEFT = 'top_left';
+    case TOP_RIGHT = 'top_right';
 
-    public const TOP_RIGHT = 'top_right';
+    case BOTTOM_LEFT = 'bottom_left';
 
-    public const BOTTOM_LEFT = 'bottom_left';
-
-    public const BOTTOM_RIGHT = 'bottom_right';
+    case BOTTOM_RIGHT = 'bottom_right';
 }

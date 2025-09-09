@@ -4,19 +4,14 @@ declare(strict_types=1);
 
 namespace ImageKit\TextOverlayTransformation;
 
-use ImageKit\Core\Concerns\SdkEnum;
-use ImageKit\Core\Conversion\Contracts\ConverterSource;
-
 /**
  * Specifies the inner alignment of the text when width is more than the text length.
  */
-final class InnerAlignment implements ConverterSource
+enum InnerAlignment: string
 {
-    use SdkEnum;
+    case LEFT = 'left';
 
-    public const LEFT = 'left';
+    case RIGHT = 'right';
 
-    public const RIGHT = 'right';
-
-    public const CENTER = 'center';
+    case CENTER = 'center';
 }

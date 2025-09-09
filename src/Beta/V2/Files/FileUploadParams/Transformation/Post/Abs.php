@@ -11,7 +11,7 @@ use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * @phpstan-type abs_alias = array{
- *   protocol: Protocol::*, type: string, value: string
+ *   protocol: value-of<Protocol>, type: string, value: string
  * }
  */
 final class Abs implements BaseModel
@@ -28,7 +28,7 @@ final class Abs implements BaseModel
     /**
      * Streaming protocol to use (`hls` or `dash`).
      *
-     * @var Protocol::* $protocol
+     * @var value-of<Protocol> $protocol
      */
     #[Api(enum: Protocol::class)]
     public string $protocol;
@@ -63,13 +63,13 @@ final class Abs implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Protocol::* $protocol
+     * @param Protocol|value-of<Protocol> $protocol
      */
-    public static function with(string $protocol, string $value): self
+    public static function with(Protocol|string $protocol, string $value): self
     {
         $obj = new self;
 
-        $obj->protocol = $protocol;
+        $obj->protocol = $protocol instanceof Protocol ? $protocol->value : $protocol;
         $obj->value = $value;
 
         return $obj;
@@ -78,12 +78,12 @@ final class Abs implements BaseModel
     /**
      * Streaming protocol to use (`hls` or `dash`).
      *
-     * @param Protocol::* $protocol
+     * @param Protocol|value-of<Protocol> $protocol
      */
-    public function withProtocol(string $protocol): self
+    public function withProtocol(Protocol|string $protocol): self
     {
         $obj = clone $this;
-        $obj->protocol = $protocol;
+        $obj->protocol = $protocol instanceof Protocol ? $protocol->value : $protocol;
 
         return $obj;
     }

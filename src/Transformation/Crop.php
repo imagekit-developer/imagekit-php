@@ -4,23 +4,18 @@ declare(strict_types=1);
 
 namespace ImageKit\Transformation;
 
-use ImageKit\Core\Concerns\SdkEnum;
-use ImageKit\Core\Conversion\Contracts\ConverterSource;
-
 /**
  * Crop modes for image resizing. See [Crop modes & focus](https://imagekit.io/docs/image-resize-and-crop#crop-crop-modes--focus).
  */
-final class Crop implements ConverterSource
+enum Crop: string
 {
-    use SdkEnum;
+    case FORCE = 'force';
 
-    public const FORCE = 'force';
+    case AT_MAX = 'at_max';
 
-    public const AT_MAX = 'at_max';
+    case AT_MAX_ENLARGE = 'at_max_enlarge';
 
-    public const AT_MAX_ENLARGE = 'at_max_enlarge';
+    case AT_LEAST = 'at_least';
 
-    public const AT_LEAST = 'at_least';
-
-    public const MAINTAIN_RATIO = 'maintain_ratio';
+    case MAINTAIN_RATIO = 'maintain_ratio';
 }

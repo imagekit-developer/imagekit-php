@@ -19,7 +19,7 @@ use ImageKit\SubtitleOverlayTransformation\Typography;
  *   fontOutline?: string|null,
  *   fontShadow?: string|null,
  *   fontSize?: float|null,
- *   typography?: Typography::*|null,
+ *   typography?: value-of<Typography>|null,
  * }
  */
 final class SubtitleOverlayTransformation implements BaseModel
@@ -82,7 +82,7 @@ final class SubtitleOverlayTransformation implements BaseModel
      *
      * [Subtitle styling options](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer)
      *
-     * @var Typography::*|null $typography
+     * @var value-of<Typography>|null $typography
      */
     #[Api(enum: Typography::class, optional: true)]
     public ?string $typography;
@@ -97,7 +97,7 @@ final class SubtitleOverlayTransformation implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Typography::* $typography
+     * @param Typography|value-of<Typography> $typography
      */
     public static function with(
         ?string $background = null,
@@ -106,7 +106,7 @@ final class SubtitleOverlayTransformation implements BaseModel
         ?string $fontOutline = null,
         ?string $fontShadow = null,
         ?float $fontSize = null,
-        ?string $typography = null,
+        Typography|string|null $typography = null,
     ): self {
         $obj = new self;
 
@@ -116,7 +116,7 @@ final class SubtitleOverlayTransformation implements BaseModel
         null !== $fontOutline && $obj->fontOutline = $fontOutline;
         null !== $fontShadow && $obj->fontShadow = $fontShadow;
         null !== $fontSize && $obj->fontSize = $fontSize;
-        null !== $typography && $obj->typography = $typography;
+        null !== $typography && $obj->typography = $typography instanceof Typography ? $typography->value : $typography;
 
         return $obj;
     }
@@ -206,12 +206,12 @@ final class SubtitleOverlayTransformation implements BaseModel
      *
      * [Subtitle styling options](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer)
      *
-     * @param Typography::* $typography
+     * @param Typography|value-of<Typography> $typography
      */
-    public function withTypography(string $typography): self
+    public function withTypography(Typography|string $typography): self
     {
         $obj = clone $this;
-        $obj->typography = $typography;
+        $obj->typography = $typography instanceof Typography ? $typography->value : $typography;
 
         return $obj;
     }

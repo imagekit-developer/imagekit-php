@@ -4,27 +4,22 @@ declare(strict_types=1);
 
 namespace ImageKit;
 
-use ImageKit\Core\Concerns\SdkEnum;
-use ImageKit\Core\Conversion\Contracts\ConverterSource;
-
 /**
  * Available streaming resolutions for [adaptive bitrate streaming](https://imagekit.io/docs/adaptive-bitrate-streaming).
  */
-final class StreamingResolution implements ConverterSource
+enum StreamingResolution: string
 {
-    use SdkEnum;
+    case STREAMING_RESOLUTION_240 = '240';
 
-    public const STREAMING_RESOLUTION_240 = '240';
+    case STREAMING_RESOLUTION_360 = '360';
 
-    public const STREAMING_RESOLUTION_360 = '360';
+    case STREAMING_RESOLUTION_480 = '480';
 
-    public const STREAMING_RESOLUTION_480 = '480';
+    case STREAMING_RESOLUTION_720 = '720';
 
-    public const STREAMING_RESOLUTION_720 = '720';
+    case STREAMING_RESOLUTION_1080 = '1080';
 
-    public const STREAMING_RESOLUTION_1080 = '1080';
+    case STREAMING_RESOLUTION_1440 = '1440';
 
-    public const STREAMING_RESOLUTION_1440 = '1440';
-
-    public const STREAMING_RESOLUTION_2160 = '2160';
+    case STREAMING_RESOLUTION_2160 = '2160';
 }

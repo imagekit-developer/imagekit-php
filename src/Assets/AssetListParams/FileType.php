@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace ImageKit\Assets\AssetListParams;
 
-use ImageKit\Core\Concerns\SdkEnum;
-use ImageKit\Core\Conversion\Contracts\ConverterSource;
-
 /**
  * Filter results by file type.
  *
@@ -14,13 +11,11 @@ use ImageKit\Core\Conversion\Contracts\ConverterSource;
  * - `image` — include only image files
  * - `non-image` — include only non-image files (e.g., JS, CSS, video)
  */
-final class FileType implements ConverterSource
+enum FileType: string
 {
-    use SdkEnum;
+    case ALL = 'all';
 
-    public const ALL = 'all';
+    case IMAGE = 'image';
 
-    public const IMAGE = 'image';
-
-    public const NON_IMAGE = 'non-image';
+    case NON_IMAGE = 'non-image';
 }

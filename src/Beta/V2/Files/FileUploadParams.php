@@ -60,7 +60,7 @@ use ImageKit\ExtensionItem\RemoveBg;
  *   overwriteCustomMetadata?: bool,
  *   overwriteFile?: bool,
  *   overwriteTags?: bool,
- *   responseFields?: list<ResponseField::*>,
+ *   responseFields?: list<ResponseField|value-of<ResponseField>>,
  *   tags?: list<string>,
  *   transformation?: Transformation,
  *   useUniqueFileName?: bool,
@@ -192,7 +192,7 @@ final class FileUploadParams implements BaseModel
     /**
      * Array of response field keys to include in the API response body.
      *
-     * @var list<ResponseField::*>|null $responseFields
+     * @var list<value-of<ResponseField>>|null $responseFields
      */
     #[Api(list: ResponseField::class, optional: true)]
     public ?array $responseFields;
@@ -263,7 +263,7 @@ final class FileUploadParams implements BaseModel
      *
      * @param array<string, mixed> $customMetadata
      * @param list<RemoveBg|AutoTaggingExtension|AIAutoDescription> $extensions
-     * @param list<ResponseField::*> $responseFields
+     * @param list<ResponseField|value-of<ResponseField>> $responseFields
      * @param list<string> $tags
      */
     public static function with(
@@ -306,7 +306,7 @@ final class FileUploadParams implements BaseModel
         null !== $overwriteCustomMetadata && $obj->overwriteCustomMetadata = $overwriteCustomMetadata;
         null !== $overwriteFile && $obj->overwriteFile = $overwriteFile;
         null !== $overwriteTags && $obj->overwriteTags = $overwriteTags;
-        null !== $responseFields && $obj->responseFields = $responseFields;
+        null !== $responseFields && $obj->responseFields = array_map(fn ($v) => $v instanceof ResponseField ? $v->value : $v, $responseFields);
         null !== $tags && $obj->tags = $tags;
         null !== $transformation && $obj->transformation = $transformation;
         null !== $useUniqueFileName && $obj->useUniqueFileName = $useUniqueFileName;
@@ -510,12 +510,12 @@ final class FileUploadParams implements BaseModel
     /**
      * Array of response field keys to include in the API response body.
      *
-     * @param list<ResponseField::*> $responseFields
+     * @param list<ResponseField|value-of<ResponseField>> $responseFields
      */
     public function withResponseFields(array $responseFields): self
     {
         $obj = clone $this;
-        $obj->responseFields = $responseFields;
+        $obj->responseFields = array_map(fn ($v) => $v instanceof ResponseField ? $v->value : $v, $responseFields);
 
         return $obj;
     }

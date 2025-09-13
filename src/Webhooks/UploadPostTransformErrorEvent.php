@@ -13,17 +13,30 @@ use ImageKit\Webhooks\UploadPostTransformErrorEvent\Request;
 /**
  * Triggered when a post-transformation fails. The original file remains available, but the requested transformation could not be generated.
  *
- * @phpstan-type unnamed_type_with_intersection_parent5 = array{
- *   createdAt: \DateTimeInterface, data: Data, request: Request, type: string
+ * @phpstan-type upload_post_transform_error_event = array{
+ *   id: string,
+ *   type: string,
+ *   createdAt: \DateTimeInterface,
+ *   data: Data,
+ *   request: Request,
  * }
  */
 final class UploadPostTransformErrorEvent implements BaseModel
 {
-    /** @use SdkModel<unnamed_type_with_intersection_parent5> */
+    /** @use SdkModel<upload_post_transform_error_event> */
     use SdkModel;
 
+    /**
+     * Unique identifier for the event.
+     */
     #[Api]
-    public string $type = 'upload.post-transform.error';
+    public string $id;
+
+    /**
+     * The type of webhook event.
+     */
+    #[Api]
+    public string $type;
 
     /**
      * Timestamp of when the event occurred in ISO8601 format.
@@ -42,13 +55,17 @@ final class UploadPostTransformErrorEvent implements BaseModel
      *
      * To enforce required parameters use
      * ```
-     * UploadPostTransformErrorEvent::with(createdAt: ..., data: ..., request: ...)
+     * UploadPostTransformErrorEvent::with(
+     *   id: ..., type: ..., createdAt: ..., data: ..., request: ...
+     * )
      * ```
      *
      * Otherwise ensure the following setters are called
      *
      * ```
      * (new UploadPostTransformErrorEvent)
+     *   ->withID(...)
+     *   ->withType(...)
      *   ->withCreatedAt(...)
      *   ->withData(...)
      *   ->withRequest(...)
@@ -65,15 +82,41 @@ final class UploadPostTransformErrorEvent implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      */
     public static function with(
+        string $id,
+        string $type,
         \DateTimeInterface $createdAt,
         Data $data,
-        Request $request
+        Request $request,
     ): self {
         $obj = new self;
 
+        $obj->id = $id;
+        $obj->type = $type;
         $obj->createdAt = $createdAt;
         $obj->data = $data;
         $obj->request = $request;
+
+        return $obj;
+    }
+
+    /**
+     * Unique identifier for the event.
+     */
+    public function withID(string $id): self
+    {
+        $obj = clone $this;
+        $obj->id = $id;
+
+        return $obj;
+    }
+
+    /**
+     * The type of webhook event.
+     */
+    public function withType(string $type): self
+    {
+        $obj = clone $this;
+        $obj->type = $type;
 
         return $obj;
     }

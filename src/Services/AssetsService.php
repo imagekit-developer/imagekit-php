@@ -11,6 +11,7 @@ use ImageKit\Assets\AssetListParams\Type;
 use ImageKit\Assets\AssetListResponseItem;
 use ImageKit\Client;
 use ImageKit\Core\Conversion\ListOf;
+use ImageKit\Core\Exceptions\APIException;
 use ImageKit\Files\File;
 use ImageKit\Files\Folder;
 use ImageKit\RequestOptions;
@@ -59,6 +60,8 @@ final class AssetsService implements AssetsContract
      * - `all` — returns both files and folders (excludes `file-version`)
      *
      * @return list<File|Folder>
+     *
+     * @throws APIException
      */
     public function list(
         $fileType = omit,
@@ -70,17 +73,35 @@ final class AssetsService implements AssetsContract
         $type = omit,
         ?RequestOptions $requestOptions = null,
     ): array {
+        $params = [
+            'fileType' => $fileType,
+            'limit' => $limit,
+            'path' => $path,
+            'searchQuery' => $searchQuery,
+            'skip' => $skip,
+            'sort' => $sort,
+            'type' => $type,
+        ];
+
+        return $this->listRaw($params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return list<File|Folder>
+     *
+     * @throws APIException
+     */
+    public function listRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): array {
         [$parsed, $options] = AssetListParams::parseRequest(
-            [
-                'fileType' => $fileType,
-                'limit' => $limit,
-                'path' => $path,
-                'searchQuery' => $searchQuery,
-                'skip' => $skip,
-                'sort' => $sort,
-                'type' => $type,
-            ],
-            $requestOptions,
+            $params,
+            $requestOptions
         );
 
         // @phpstan-ignore-next-line;

@@ -9,6 +9,7 @@ use ImageKit\Beta\V2\Files\FileUploadParams\ResponseField;
 use ImageKit\Beta\V2\Files\FileUploadParams\Transformation;
 use ImageKit\Beta\V2\Files\FileUploadResponse;
 use ImageKit\Client;
+use ImageKit\Core\Exceptions\APIException;
 use ImageKit\Core\Implementation\HasRawResponse;
 use ImageKit\ExtensionItem\AIAutoDescription;
 use ImageKit\ExtensionItem\AutoTaggingExtension;
@@ -97,6 +98,8 @@ final class FilesService implements FilesContract
      * @param string $webhookURL The final status of extensions after they have completed execution will be delivered to this endpoint as a POST request. [Learn more](/docs/api-reference/digital-asset-management-dam/managing-assets/update-file-details#webhook-payload-structure) about the webhook payload structure.
      *
      * @return FileUploadResponse<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function upload(
         $file,
@@ -121,30 +124,48 @@ final class FilesService implements FilesContract
         $webhookURL = omit,
         ?RequestOptions $requestOptions = null,
     ): FileUploadResponse {
+        $params = [
+            'file' => $file,
+            'fileName' => $fileName,
+            'token' => $token,
+            'checks' => $checks,
+            'customCoordinates' => $customCoordinates,
+            'customMetadata' => $customMetadata,
+            'description' => $description,
+            'extensions' => $extensions,
+            'folder' => $folder,
+            'isPrivateFile' => $isPrivateFile,
+            'isPublished' => $isPublished,
+            'overwriteAITags' => $overwriteAITags,
+            'overwriteCustomMetadata' => $overwriteCustomMetadata,
+            'overwriteFile' => $overwriteFile,
+            'overwriteTags' => $overwriteTags,
+            'responseFields' => $responseFields,
+            'tags' => $tags,
+            'transformation' => $transformation,
+            'useUniqueFileName' => $useUniqueFileName,
+            'webhookURL' => $webhookURL,
+        ];
+
+        return $this->uploadRaw($params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return FileUploadResponse<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function uploadRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): FileUploadResponse {
         [$parsed, $options] = FileUploadParams::parseRequest(
-            [
-                'file' => $file,
-                'fileName' => $fileName,
-                'token' => $token,
-                'checks' => $checks,
-                'customCoordinates' => $customCoordinates,
-                'customMetadata' => $customMetadata,
-                'description' => $description,
-                'extensions' => $extensions,
-                'folder' => $folder,
-                'isPrivateFile' => $isPrivateFile,
-                'isPublished' => $isPublished,
-                'overwriteAITags' => $overwriteAITags,
-                'overwriteCustomMetadata' => $overwriteCustomMetadata,
-                'overwriteFile' => $overwriteFile,
-                'overwriteTags' => $overwriteTags,
-                'responseFields' => $responseFields,
-                'tags' => $tags,
-                'transformation' => $transformation,
-                'useUniqueFileName' => $useUniqueFileName,
-                'webhookURL' => $webhookURL,
-            ],
-            $requestOptions,
+            $params,
+            $requestOptions
         );
         $path = $this
             ->client

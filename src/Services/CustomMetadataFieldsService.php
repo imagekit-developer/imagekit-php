@@ -6,6 +6,7 @@ namespace ImageKit\Services;
 
 use ImageKit\Client;
 use ImageKit\Core\Conversion\ListOf;
+use ImageKit\Core\Exceptions\APIException;
 use ImageKit\Core\Implementation\HasRawResponse;
 use ImageKit\CustomMetadataFields\CustomMetadataField;
 use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams;
@@ -36,6 +37,8 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
      * @param Schema $schema
      *
      * @return CustomMetadataField<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function create(
         $label,
@@ -43,8 +46,26 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
         $schema,
         ?RequestOptions $requestOptions = null
     ): CustomMetadataField {
+        $params = ['label' => $label, 'name' => $name, 'schema' => $schema];
+
+        return $this->createRaw($params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return CustomMetadataField<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function createRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): CustomMetadataField {
         [$parsed, $options] = CustomMetadataFieldCreateParams::parseRequest(
-            ['label' => $label, 'name' => $name, 'schema' => $schema],
+            $params,
             $requestOptions
         );
 
@@ -67,6 +88,8 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
      * @param Schema1 $schema An object that describes the rules for the custom metadata key. This parameter is required if `label` is not provided. Note: `type` cannot be updated and will be ignored if sent with the `schema`. The schema will be validated as per the existing `type`.
      *
      * @return CustomMetadataField<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function update(
         string $id,
@@ -74,8 +97,27 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
         $schema = omit,
         ?RequestOptions $requestOptions = null,
     ): CustomMetadataField {
+        $params = ['label' => $label, 'schema' => $schema];
+
+        return $this->updateRaw($id, $params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return CustomMetadataField<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function updateRaw(
+        string $id,
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): CustomMetadataField {
         [$parsed, $options] = CustomMetadataFieldUpdateParams::parseRequest(
-            ['label' => $label, 'schema' => $schema],
+            $params,
             $requestOptions
         );
 
@@ -97,13 +139,33 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
      * @param bool $includeDeleted set it to `true` to include deleted field objects in the API response
      *
      * @return list<CustomMetadataField>
+     *
+     * @throws APIException
      */
     public function list(
         $includeDeleted = omit,
         ?RequestOptions $requestOptions = null
     ): array {
+        $params = ['includeDeleted' => $includeDeleted];
+
+        return $this->listRaw($params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return list<CustomMetadataField>
+     *
+     * @throws APIException
+     */
+    public function listRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): array {
         [$parsed, $options] = CustomMetadataFieldListParams::parseRequest(
-            ['includeDeleted' => $includeDeleted],
+            $params,
             $requestOptions
         );
 
@@ -123,9 +185,28 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
      * This API deletes a custom metadata field. Even after deleting a custom metadata field, you cannot create any new custom metadata field with the same name.
      *
      * @return CustomMetadataFieldDeleteResponse<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function delete(
         string $id,
+        ?RequestOptions $requestOptions = null
+    ): CustomMetadataFieldDeleteResponse {
+        $params = [];
+
+        return $this->deleteRaw($id, $params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @return CustomMetadataFieldDeleteResponse<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function deleteRaw(
+        string $id,
+        mixed $params,
         ?RequestOptions $requestOptions = null
     ): CustomMetadataFieldDeleteResponse {
         // @phpstan-ignore-next-line;

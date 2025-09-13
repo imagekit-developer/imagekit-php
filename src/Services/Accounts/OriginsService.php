@@ -17,6 +17,7 @@ use ImageKit\Accounts\Origins\OriginResponse\WebProxy;
 use ImageKit\Accounts\Origins\OriginUpdateParams;
 use ImageKit\Client;
 use ImageKit\Core\Conversion\ListOf;
+use ImageKit\Core\Exceptions\APIException;
 use ImageKit\RequestOptions;
 use ImageKit\ServiceContracts\Accounts\OriginsContract;
 
@@ -56,6 +57,8 @@ final class OriginsService implements OriginsContract
      * @param string $clientSecret akeneo API client secret
      * @param string $password akeneo API password
      * @param string $username akeneo API username
+     *
+     * @throws APIException
      */
     public function create(
         $accessKey,
@@ -81,31 +84,47 @@ final class OriginsService implements OriginsContract
         $username,
         ?RequestOptions $requestOptions = null,
     ): S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim {
+        $params = [
+            'accessKey' => $accessKey,
+            'bucket' => $bucket,
+            'name' => $name,
+            'secretKey' => $secretKey,
+            'type' => $type,
+            'baseURLForCanonicalHeader' => $baseURLForCanonicalHeader,
+            'includeCanonicalHeader' => $includeCanonicalHeader,
+            'prefix' => $prefix,
+            'endpoint' => $endpoint,
+            's3ForcePathStyle' => $s3ForcePathStyle,
+            'baseURL' => $baseURL,
+            'forwardHostHeaderToOrigin' => $forwardHostHeaderToOrigin,
+            'clientEmail' => $clientEmail,
+            'privateKey' => $privateKey,
+            'accountName' => $accountName,
+            'container' => $container,
+            'sasToken' => $sasToken,
+            'clientID' => $clientID,
+            'clientSecret' => $clientSecret,
+            'password' => $password,
+            'username' => $username,
+        ];
+
+        return $this->createRaw($params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @throws APIException
+     */
+    public function createRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim {
         [$parsed, $options] = OriginCreateParams::parseRequest(
-            [
-                'accessKey' => $accessKey,
-                'bucket' => $bucket,
-                'name' => $name,
-                'secretKey' => $secretKey,
-                'type' => $type,
-                'baseURLForCanonicalHeader' => $baseURLForCanonicalHeader,
-                'includeCanonicalHeader' => $includeCanonicalHeader,
-                'prefix' => $prefix,
-                'endpoint' => $endpoint,
-                's3ForcePathStyle' => $s3ForcePathStyle,
-                'baseURL' => $baseURL,
-                'forwardHostHeaderToOrigin' => $forwardHostHeaderToOrigin,
-                'clientEmail' => $clientEmail,
-                'privateKey' => $privateKey,
-                'accountName' => $accountName,
-                'container' => $container,
-                'sasToken' => $sasToken,
-                'clientID' => $clientID,
-                'clientSecret' => $clientSecret,
-                'password' => $password,
-                'username' => $username,
-            ],
-            $requestOptions,
+            $params,
+            $requestOptions
         );
 
         // @phpstan-ignore-next-line;
@@ -145,6 +164,8 @@ final class OriginsService implements OriginsContract
      * @param string $clientSecret akeneo API client secret
      * @param string $password akeneo API password
      * @param string $username akeneo API username
+     *
+     * @throws APIException
      */
     public function update(
         string $id,
@@ -171,31 +192,48 @@ final class OriginsService implements OriginsContract
         $username,
         ?RequestOptions $requestOptions = null,
     ): S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim {
+        $params = [
+            'accessKey' => $accessKey,
+            'bucket' => $bucket,
+            'name' => $name,
+            'secretKey' => $secretKey,
+            'type' => $type,
+            'baseURLForCanonicalHeader' => $baseURLForCanonicalHeader,
+            'includeCanonicalHeader' => $includeCanonicalHeader,
+            'prefix' => $prefix,
+            'endpoint' => $endpoint,
+            's3ForcePathStyle' => $s3ForcePathStyle,
+            'baseURL' => $baseURL,
+            'forwardHostHeaderToOrigin' => $forwardHostHeaderToOrigin,
+            'clientEmail' => $clientEmail,
+            'privateKey' => $privateKey,
+            'accountName' => $accountName,
+            'container' => $container,
+            'sasToken' => $sasToken,
+            'clientID' => $clientID,
+            'clientSecret' => $clientSecret,
+            'password' => $password,
+            'username' => $username,
+        ];
+
+        return $this->updateRaw($id, $params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @throws APIException
+     */
+    public function updateRaw(
+        string $id,
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim {
         [$parsed, $options] = OriginUpdateParams::parseRequest(
-            [
-                'accessKey' => $accessKey,
-                'bucket' => $bucket,
-                'name' => $name,
-                'secretKey' => $secretKey,
-                'type' => $type,
-                'baseURLForCanonicalHeader' => $baseURLForCanonicalHeader,
-                'includeCanonicalHeader' => $includeCanonicalHeader,
-                'prefix' => $prefix,
-                'endpoint' => $endpoint,
-                's3ForcePathStyle' => $s3ForcePathStyle,
-                'baseURL' => $baseURL,
-                'forwardHostHeaderToOrigin' => $forwardHostHeaderToOrigin,
-                'clientEmail' => $clientEmail,
-                'privateKey' => $privateKey,
-                'accountName' => $accountName,
-                'container' => $container,
-                'sasToken' => $sasToken,
-                'clientID' => $clientID,
-                'clientSecret' => $clientSecret,
-                'password' => $password,
-                'username' => $username,
-            ],
-            $requestOptions,
+            $params,
+            $requestOptions
         );
 
         // @phpstan-ignore-next-line;
@@ -215,9 +253,27 @@ final class OriginsService implements OriginsContract
      * Returns an array of all configured origins for the current account.
      *
      * @return list<S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim>
+     *
+     * @throws APIException
      */
     public function list(?RequestOptions $requestOptions = null): array
     {
+        $params = [];
+
+        return $this->listRaw($params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @return list<S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim>
+     *
+     * @throws APIException
+     */
+    public function listRaw(
+        mixed $params,
+        ?RequestOptions $requestOptions = null
+    ): array {
         // @phpstan-ignore-next-line;
         return $this->client->request(
             method: 'get',
@@ -232,9 +288,26 @@ final class OriginsService implements OriginsContract
      *
      * **Note:** This API is currently in beta.
      * Permanently removes the origin identified by `id`. If the origin is in use by any URL‑endpoints, the API will return an error.
+     *
+     * @throws APIException
      */
     public function delete(
         string $id,
+        ?RequestOptions $requestOptions = null
+    ): mixed {
+        $params = [];
+
+        return $this->deleteRaw($id, $params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @throws APIException
+     */
+    public function deleteRaw(
+        string $id,
+        mixed $params,
         ?RequestOptions $requestOptions = null
     ): mixed {
         // @phpstan-ignore-next-line;
@@ -251,9 +324,26 @@ final class OriginsService implements OriginsContract
      *
      * **Note:** This API is currently in beta.
      * Retrieves the origin identified by `id`.
+     *
+     * @throws APIException
      */
     public function get(
         string $id,
+        ?RequestOptions $requestOptions = null
+    ): S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim {
+        $params = [];
+
+        return $this->getRaw($id, $params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @throws APIException
+     */
+    public function getRaw(
+        string $id,
+        mixed $params,
         ?RequestOptions $requestOptions = null
     ): S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim {
         // @phpstan-ignore-next-line;

@@ -8,6 +8,7 @@ use ImageKit\Cache\Invalidation\InvalidationCreateParams;
 use ImageKit\Cache\Invalidation\InvalidationGetResponse;
 use ImageKit\Cache\Invalidation\InvalidationNewResponse;
 use ImageKit\Client;
+use ImageKit\Core\Exceptions\APIException;
 use ImageKit\Core\Implementation\HasRawResponse;
 use ImageKit\RequestOptions;
 use ImageKit\ServiceContracts\Cache\InvalidationContract;
@@ -27,13 +28,33 @@ final class InvalidationService implements InvalidationContract
      * @param string $url the full URL of the file to be purged
      *
      * @return InvalidationNewResponse<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function create(
         $url,
         ?RequestOptions $requestOptions = null
     ): InvalidationNewResponse {
+        $params = ['url' => $url];
+
+        return $this->createRaw($params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return InvalidationNewResponse<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function createRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): InvalidationNewResponse {
         [$parsed, $options] = InvalidationCreateParams::parseRequest(
-            ['url' => $url],
+            $params,
             $requestOptions
         );
 
@@ -53,9 +74,28 @@ final class InvalidationService implements InvalidationContract
      * This API returns the status of a purge cache request.
      *
      * @return InvalidationGetResponse<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function get(
         string $requestID,
+        ?RequestOptions $requestOptions = null
+    ): InvalidationGetResponse {
+        $params = [];
+
+        return $this->getRaw($requestID, $params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @return InvalidationGetResponse<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function getRaw(
+        string $requestID,
+        mixed $params,
         ?RequestOptions $requestOptions = null
     ): InvalidationGetResponse {
         // @phpstan-ignore-next-line;

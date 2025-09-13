@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ImageKit\ServiceContracts;
 
+use ImageKit\Core\Exceptions\APIException;
 use ImageKit\Core\Implementation\HasRawResponse;
 use ImageKit\Folders\FolderCopyResponse;
 use ImageKit\Folders\FolderDeleteResponse;
@@ -27,6 +28,8 @@ interface FoldersContract
      * Note: If any folder(s) is not present in the parentFolderPath parameter, it will be automatically created. For example, if you pass `/product/images/summer`, then `product`, `images`, and `summer` folders will be created if they don't already exist.
      *
      * @return FolderNewResponse<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function create(
         $folderName,
@@ -37,12 +40,42 @@ interface FoldersContract
     /**
      * @api
      *
+     * @param array<string, mixed> $params
+     *
+     * @return FolderNewResponse<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function createRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): FolderNewResponse;
+
+    /**
+     * @api
+     *
      * @param string $folderPath Full path to the folder you want to delete. For example `/folder/to/delete/`.
      *
      * @return FolderDeleteResponse<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function delete(
         $folderPath,
+        ?RequestOptions $requestOptions = null
+    ): FolderDeleteResponse;
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return FolderDeleteResponse<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function deleteRaw(
+        array $params,
         ?RequestOptions $requestOptions = null
     ): FolderDeleteResponse;
 
@@ -54,6 +87,8 @@ interface FoldersContract
      * @param bool $includeVersions Option to copy all versions of files that are nested inside the selected folder. By default, only the current version of each file will be copied. When set to true, all versions of each file will be copied. Default value - `false`.
      *
      * @return FolderCopyResponse<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function copy(
         $destinationPath,
@@ -65,15 +100,45 @@ interface FoldersContract
     /**
      * @api
      *
+     * @param array<string, mixed> $params
+     *
+     * @return FolderCopyResponse<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function copyRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): FolderCopyResponse;
+
+    /**
+     * @api
+     *
      * @param string $destinationPath full path to the destination folder where you want to move the source folder into
      * @param string $sourceFolderPath the full path to the source folder you want to move
      *
      * @return FolderMoveResponse<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function move(
         $destinationPath,
         $sourceFolderPath,
         ?RequestOptions $requestOptions = null,
+    ): FolderMoveResponse;
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return FolderMoveResponse<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function moveRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
     ): FolderMoveResponse;
 
     /**
@@ -92,11 +157,27 @@ interface FoldersContract
      * Default value - `false`
      *
      * @return FolderRenameResponse<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function rename(
         $folderPath,
         $newFolderName,
         $purgeCache = omit,
         ?RequestOptions $requestOptions = null,
+    ): FolderRenameResponse;
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return FolderRenameResponse<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function renameRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
     ): FolderRenameResponse;
 }

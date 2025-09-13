@@ -7,6 +7,7 @@ namespace ImageKit\ServiceContracts;
 use ImageKit\Assets\AssetListParams\FileType;
 use ImageKit\Assets\AssetListParams\Sort;
 use ImageKit\Assets\AssetListParams\Type;
+use ImageKit\Core\Exceptions\APIException;
 use ImageKit\Files\File;
 use ImageKit\Files\Folder;
 use ImageKit\RequestOptions;
@@ -47,6 +48,8 @@ interface AssetsContract
      * - `all` — returns both files and folders (excludes `file-version`)
      *
      * @return list<File|Folder>
+     *
+     * @throws APIException
      */
     public function list(
         $fileType = omit,
@@ -57,5 +60,19 @@ interface AssetsContract
         $sort = omit,
         $type = omit,
         ?RequestOptions $requestOptions = null,
+    ): array;
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return list<File|Folder>
+     *
+     * @throws APIException
+     */
+    public function listRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
     ): array;
 }

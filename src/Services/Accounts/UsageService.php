@@ -7,6 +7,7 @@ namespace ImageKit\Services\Accounts;
 use ImageKit\Accounts\Usage\UsageGetParams;
 use ImageKit\Accounts\Usage\UsageGetResponse;
 use ImageKit\Client;
+use ImageKit\Core\Exceptions\APIException;
 use ImageKit\Core\Implementation\HasRawResponse;
 use ImageKit\RequestOptions;
 use ImageKit\ServiceContracts\Accounts\UsageContract;
@@ -27,14 +28,34 @@ final class UsageService implements UsageContract
      * @param \DateTimeInterface $startDate Specify a `startDate` in `YYYY-MM-DD` format. It should be before the `endDate`. The difference between `startDate` and `endDate` should be less than 90 days.
      *
      * @return UsageGetResponse<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function get(
         $endDate,
         $startDate,
         ?RequestOptions $requestOptions = null
     ): UsageGetResponse {
+        $params = ['endDate' => $endDate, 'startDate' => $startDate];
+
+        return $this->getRaw($params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return UsageGetResponse<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function getRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): UsageGetResponse {
         [$parsed, $options] = UsageGetParams::parseRequest(
-            ['endDate' => $endDate, 'startDate' => $startDate],
+            $params,
             $requestOptions
         );
 

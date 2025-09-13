@@ -13,17 +13,30 @@ use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Request;
 /**
  * Triggered when a pre-transformation completes successfully. The file has been processed with the requested transformation and is now available in the Media Library.
  *
- * @phpstan-type unnamed_type_with_intersection_parent8 = array{
- *   createdAt: \DateTimeInterface, data: Data, request: Request, type: string
+ * @phpstan-type upload_pre_transform_success_event = array{
+ *   id: string,
+ *   type: string,
+ *   createdAt: \DateTimeInterface,
+ *   data: Data,
+ *   request: Request,
  * }
  */
 final class UploadPreTransformSuccessEvent implements BaseModel
 {
-    /** @use SdkModel<unnamed_type_with_intersection_parent8> */
+    /** @use SdkModel<upload_pre_transform_success_event> */
     use SdkModel;
 
+    /**
+     * Unique identifier for the event.
+     */
     #[Api]
-    public string $type = 'upload.pre-transform.success';
+    public string $id;
+
+    /**
+     * The type of webhook event.
+     */
+    #[Api]
+    public string $type;
 
     /**
      * Timestamp of when the event occurred in ISO8601 format.
@@ -45,13 +58,17 @@ final class UploadPreTransformSuccessEvent implements BaseModel
      *
      * To enforce required parameters use
      * ```
-     * UploadPreTransformSuccessEvent::with(createdAt: ..., data: ..., request: ...)
+     * UploadPreTransformSuccessEvent::with(
+     *   id: ..., type: ..., createdAt: ..., data: ..., request: ...
+     * )
      * ```
      *
      * Otherwise ensure the following setters are called
      *
      * ```
      * (new UploadPreTransformSuccessEvent)
+     *   ->withID(...)
+     *   ->withType(...)
      *   ->withCreatedAt(...)
      *   ->withData(...)
      *   ->withRequest(...)
@@ -68,15 +85,41 @@ final class UploadPreTransformSuccessEvent implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      */
     public static function with(
+        string $id,
+        string $type,
         \DateTimeInterface $createdAt,
         Data $data,
-        Request $request
+        Request $request,
     ): self {
         $obj = new self;
 
+        $obj->id = $id;
+        $obj->type = $type;
         $obj->createdAt = $createdAt;
         $obj->data = $data;
         $obj->request = $request;
+
+        return $obj;
+    }
+
+    /**
+     * Unique identifier for the event.
+     */
+    public function withID(string $id): self
+    {
+        $obj = clone $this;
+        $obj->id = $id;
+
+        return $obj;
+    }
+
+    /**
+     * The type of webhook event.
+     */
+    public function withType(string $type): self
+    {
+        $obj = clone $this;
+        $obj->type = $type;
 
         return $obj;
     }

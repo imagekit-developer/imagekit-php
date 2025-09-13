@@ -9,7 +9,9 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type unnamed_type_with_intersection_parent1 = array{
+ * @phpstan-type solid_color_overlay = array{
+ *   position?: OverlayPosition,
+ *   timing?: OverlayTiming,
  *   color: string,
  *   type: string,
  *   transformation?: list<SolidColorOverlayTransformation>,
@@ -17,11 +19,17 @@ use ImageKit\Core\Contracts\BaseModel;
  */
 final class SolidColorOverlay implements BaseModel
 {
-    /** @use SdkModel<unnamed_type_with_intersection_parent1> */
+    /** @use SdkModel<solid_color_overlay> */
     use SdkModel;
 
     #[Api]
     public string $type = 'solidColor';
+
+    #[Api(optional: true)]
+    public ?OverlayPosition $position;
+
+    #[Api(optional: true)]
+    public ?OverlayTiming $timing;
 
     /**
      * Specifies the color of the block using an RGB hex code (e.g., `FF0000`), an RGBA code (e.g., `FFAABB50`), or a color name (e.g., `red`).
@@ -67,13 +75,33 @@ final class SolidColorOverlay implements BaseModel
      */
     public static function with(
         string $color,
-        ?array $transformation = null
+        ?OverlayPosition $position = null,
+        ?OverlayTiming $timing = null,
+        ?array $transformation = null,
     ): self {
         $obj = new self;
 
         $obj->color = $color;
 
+        null !== $position && $obj->position = $position;
+        null !== $timing && $obj->timing = $timing;
         null !== $transformation && $obj->transformation = $transformation;
+
+        return $obj;
+    }
+
+    public function withPosition(OverlayPosition $position): self
+    {
+        $obj = clone $this;
+        $obj->position = $position;
+
+        return $obj;
+    }
+
+    public function withTiming(OverlayTiming $timing): self
+    {
+        $obj = clone $this;
+        $obj->timing = $timing;
 
         return $obj;
     }

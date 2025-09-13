@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ImageKit\Services\Files;
 
 use ImageKit\Client;
+use ImageKit\Core\Exceptions\APIException;
 use ImageKit\Core\Implementation\HasRawResponse;
 use ImageKit\Files\Bulk\BulkAddTagsParams;
 use ImageKit\Files\Bulk\BulkAddTagsResponse;
@@ -36,13 +37,33 @@ final class BulkService implements BulkContract
      * @param list<string> $fileIDs an array of fileIds which you want to delete
      *
      * @return BulkDeleteResponse<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function delete(
         $fileIDs,
         ?RequestOptions $requestOptions = null
     ): BulkDeleteResponse {
+        $params = ['fileIDs' => $fileIDs];
+
+        return $this->deleteRaw($params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return BulkDeleteResponse<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function deleteRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): BulkDeleteResponse {
         [$parsed, $options] = BulkDeleteParams::parseRequest(
-            ['fileIDs' => $fileIDs],
+            $params,
             $requestOptions
         );
 
@@ -65,14 +86,34 @@ final class BulkService implements BulkContract
      * @param list<string> $tags an array of tags that you want to add to the files
      *
      * @return BulkAddTagsResponse<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function addTags(
         $fileIDs,
         $tags,
         ?RequestOptions $requestOptions = null
     ): BulkAddTagsResponse {
+        $params = ['fileIDs' => $fileIDs, 'tags' => $tags];
+
+        return $this->addTagsRaw($params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return BulkAddTagsResponse<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function addTagsRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): BulkAddTagsResponse {
         [$parsed, $options] = BulkAddTagsParams::parseRequest(
-            ['fileIDs' => $fileIDs, 'tags' => $tags],
+            $params,
             $requestOptions
         );
 
@@ -95,14 +136,34 @@ final class BulkService implements BulkContract
      * @param list<string> $fileIDs an array of fileIds from which you want to remove AITags
      *
      * @return BulkRemoveAITagsResponse<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function removeAITags(
         $aiTags,
         $fileIDs,
         ?RequestOptions $requestOptions = null
     ): BulkRemoveAITagsResponse {
+        $params = ['aiTags' => $aiTags, 'fileIDs' => $fileIDs];
+
+        return $this->removeAITagsRaw($params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return BulkRemoveAITagsResponse<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function removeAITagsRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): BulkRemoveAITagsResponse {
         [$parsed, $options] = BulkRemoveAITagsParams::parseRequest(
-            ['aiTags' => $aiTags, 'fileIDs' => $fileIDs],
+            $params,
             $requestOptions
         );
 
@@ -125,14 +186,34 @@ final class BulkService implements BulkContract
      * @param list<string> $tags an array of tags that you want to remove from the files
      *
      * @return BulkRemoveTagsResponse<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function removeTags(
         $fileIDs,
         $tags,
         ?RequestOptions $requestOptions = null
     ): BulkRemoveTagsResponse {
+        $params = ['fileIDs' => $fileIDs, 'tags' => $tags];
+
+        return $this->removeTagsRaw($params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return BulkRemoveTagsResponse<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function removeTagsRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): BulkRemoveTagsResponse {
         [$parsed, $options] = BulkRemoveTagsParams::parseRequest(
-            ['fileIDs' => $fileIDs, 'tags' => $tags],
+            $params,
             $requestOptions
         );
 

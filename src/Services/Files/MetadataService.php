@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ImageKit\Services\Files;
 
 use ImageKit\Client;
+use ImageKit\Core\Exceptions\APIException;
 use ImageKit\Files\Metadata;
 use ImageKit\Files\Metadata\MetadataGetFromURLParams;
 use ImageKit\RequestOptions;
@@ -23,9 +24,26 @@ final class MetadataService implements MetadataContract
      * You can programmatically get image EXIF, pHash, and other metadata for uploaded files in the ImageKit.io media library using this API.
      *
      * You can also get the metadata in upload API response by passing `metadata` in `responseFields` parameter.
+     *
+     * @throws APIException
      */
     public function get(
         string $fileID,
+        ?RequestOptions $requestOptions = null
+    ): Metadata {
+        $params = [];
+
+        return $this->getRaw($fileID, $params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @throws APIException
+     */
+    public function getRaw(
+        string $fileID,
+        mixed $params,
         ?RequestOptions $requestOptions = null
     ): Metadata {
         // @phpstan-ignore-next-line;
@@ -43,13 +61,31 @@ final class MetadataService implements MetadataContract
      * Get image EXIF, pHash, and other metadata from ImageKit.io powered remote URL using this API.
      *
      * @param string $url Should be a valid file URL. It should be accessible using your ImageKit.io account.
+     *
+     * @throws APIException
      */
     public function getFromURL(
         $url,
         ?RequestOptions $requestOptions = null
     ): Metadata {
+        $params = ['url' => $url];
+
+        return $this->getFromURLRaw($params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @throws APIException
+     */
+    public function getFromURLRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): Metadata {
         [$parsed, $options] = MetadataGetFromURLParams::parseRequest(
-            ['url' => $url],
+            $params,
             $requestOptions
         );
 

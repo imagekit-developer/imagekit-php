@@ -15,7 +15,7 @@ use ImageKit\CustomMetadataFields\CustomMetadataField\Schema;
  * @phpstan-type custom_metadata_field = array{
  *   id: string, label: string, name: string, schema: Schema
  * }
- * When used in a response, this type parameter can be used to define a $rawResponse property.
+ * When used in a response, this type parameter can define a $rawResponse property.
  * @template TRawResponse of object = object{}
  *
  * @mixin TRawResponse

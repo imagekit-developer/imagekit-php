@@ -8,6 +8,7 @@ use ImageKit\Cache\Invalidation\InvalidationCreateParams;
 use ImageKit\Cache\Invalidation\InvalidationGetResponse;
 use ImageKit\Cache\Invalidation\InvalidationNewResponse;
 use ImageKit\Client;
+use ImageKit\Core\Implementation\HasRawResponse;
 use ImageKit\RequestOptions;
 use ImageKit\ServiceContracts\Cache\InvalidationContract;
 
@@ -24,6 +25,8 @@ final class InvalidationService implements InvalidationContract
      * This API will purge CDN cache and ImageKit.io's internal cache for a file.  Note: Purge cache is an asynchronous process and it may take some time to reflect the changes.
      *
      * @param string $url the full URL of the file to be purged
+     *
+     * @return InvalidationNewResponse<HasRawResponse>
      */
     public function create(
         $url,
@@ -48,6 +51,8 @@ final class InvalidationService implements InvalidationContract
      * @api
      *
      * This API returns the status of a purge cache request.
+     *
+     * @return InvalidationGetResponse<HasRawResponse>
      */
     public function get(
         string $requestID,

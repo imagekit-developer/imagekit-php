@@ -17,8 +17,8 @@ use ImageKit\Core\Contracts\BaseModel;
  *   password: string,
  *   type: string,
  *   username: string,
- *   baseURLForCanonicalHeader?: string|null,
- *   includeCanonicalHeader?: bool|null,
+ *   baseURLForCanonicalHeader?: string,
+ *   includeCanonicalHeader?: bool,
  * }
  */
 final class AkeneoPim implements BaseModel

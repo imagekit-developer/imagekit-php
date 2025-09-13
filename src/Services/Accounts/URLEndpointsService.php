@@ -15,6 +15,7 @@ use ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\Cloudinar
 use ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\Imgix as Imgix1;
 use ImageKit\Client;
 use ImageKit\Core\Conversion\ListOf;
+use ImageKit\Core\Implementation\HasRawResponse;
 use ImageKit\RequestOptions;
 use ImageKit\ServiceContracts\Accounts\URLEndpointsContract;
 
@@ -37,6 +38,8 @@ final class URLEndpointsService implements URLEndpointsContract
      * @param list<string> $origins Ordered list of origin IDs to try when the file isn’t in the Media Library; ImageKit checks them in the sequence provided. Origin must be created before it can be used in a URL endpoint.
      * @param string $urlPrefix path segment appended to your base URL to form the endpoint (letters, digits, and hyphens only — or empty for the default endpoint)
      * @param Cloudinary|Imgix|Akamai $urlRewriter configuration for third-party URL rewriting
+     *
+     * @return URLEndpointResponse<HasRawResponse>
      */
     public function create(
         $description,
@@ -75,6 +78,8 @@ final class URLEndpointsService implements URLEndpointsContract
      * @param list<string> $origins Ordered list of origin IDs to try when the file isn’t in the Media Library; ImageKit checks them in the sequence provided. Origin must be created before it can be used in a URL endpoint.
      * @param string $urlPrefix path segment appended to your base URL to form the endpoint (letters, digits, and hyphens only — or empty for the default endpoint)
      * @param Cloudinary1|Imgix1|Akamai1 $urlRewriter configuration for third-party URL rewriting
+     *
+     * @return URLEndpointResponse<HasRawResponse>
      */
     public function update(
         string $id,
@@ -147,6 +152,8 @@ final class URLEndpointsService implements URLEndpointsContract
      *
      * **Note:** This API is currently in beta.
      * Retrieves the URL‑endpoint identified by `id`.
+     *
+     * @return URLEndpointResponse<HasRawResponse>
      */
     public function get(
         string $id,

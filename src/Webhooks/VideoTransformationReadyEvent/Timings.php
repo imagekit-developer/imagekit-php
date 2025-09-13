@@ -12,7 +12,7 @@ use ImageKit\Core\Contracts\BaseModel;
  * Performance metrics for the transformation process.
  *
  * @phpstan-type timings_alias = array{
- *   downloadDuration?: int|null, encodingDuration?: int|null
+ *   downloadDuration?: int, encodingDuration?: int
  * }
  */
 final class Timings implements BaseModel

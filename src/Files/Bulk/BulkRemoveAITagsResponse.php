@@ -10,8 +10,12 @@ use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * @phpstan-type bulk_remove_ai_tags_response = array{
- *   successfullyUpdatedFileIDs?: list<string>|null
+ *   successfullyUpdatedFileIDs?: list<string>
  * }
+ * When used in a response, this type parameter can be used to define a $rawResponse property.
+ * @template TRawResponse of object = object{}
+ *
+ * @mixin TRawResponse
  */
 final class BulkRemoveAITagsResponse implements BaseModel
 {

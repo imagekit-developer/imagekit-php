@@ -10,7 +10,11 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type invalidation_get_response = array{status?: value-of<Status>|null}
+ * @phpstan-type invalidation_get_response = array{status?: value-of<Status>}
+ * When used in a response, this type parameter can be used to define a $rawResponse property.
+ * @template TRawResponse of object = object{}
+ *
+ * @mixin TRawResponse
  */
 final class InvalidationGetResponse implements BaseModel
 {

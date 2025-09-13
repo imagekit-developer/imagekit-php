@@ -13,13 +13,13 @@ use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Request;
 /**
  * Triggered when a pre-transformation completes successfully. The file has been processed with the requested transformation and is now available in the Media Library.
  *
- * @phpstan-type upload_pre_transform_success_event = array{
+ * @phpstan-type unnamed_type_with_intersection_parent8 = array{
  *   createdAt: \DateTimeInterface, data: Data, request: Request, type: string
  * }
  */
 final class UploadPreTransformSuccessEvent implements BaseModel
 {
-    /** @use SdkModel<upload_pre_transform_success_event> */
+    /** @use SdkModel<unnamed_type_with_intersection_parent8> */
     use SdkModel;
 
     #[Api]

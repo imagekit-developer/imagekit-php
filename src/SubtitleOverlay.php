@@ -10,16 +10,16 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\SubtitleOverlay\Encoding;
 
 /**
- * @phpstan-type subtitle_overlay = array{
+ * @phpstan-type unnamed_type_with_intersection_parent2 = array{
  *   input: string,
  *   type: string,
- *   encoding?: value-of<Encoding>|null,
- *   transformation?: list<SubtitleOverlayTransformation>|null,
+ *   encoding?: value-of<Encoding>,
+ *   transformation?: list<SubtitleOverlayTransformation>,
  * }
  */
 final class SubtitleOverlay implements BaseModel
 {
-    /** @use SdkModel<subtitle_overlay> */
+    /** @use SdkModel<unnamed_type_with_intersection_parent2> */
     use SdkModel;
 
     #[Api]

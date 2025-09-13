@@ -16,10 +16,10 @@ use ImageKit\Core\Contracts\BaseModel;
  *   name: string,
  *   secretKey: string,
  *   type: string,
- *   baseURLForCanonicalHeader?: string|null,
- *   includeCanonicalHeader?: bool|null,
- *   prefix?: string|null,
- *   s3ForcePathStyle?: bool|null,
+ *   baseURLForCanonicalHeader?: string,
+ *   includeCanonicalHeader?: bool,
+ *   prefix?: string,
+ *   s3ForcePathStyle?: bool,
  * }
  */
 final class S3Compatible implements BaseModel

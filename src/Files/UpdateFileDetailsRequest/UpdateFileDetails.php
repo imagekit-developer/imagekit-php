@@ -16,12 +16,12 @@ use ImageKit\Files\UpdateFileDetailsRequest\UpdateFileDetails\RemoveAITags;
 /**
  * @phpstan-type update_file_details = array{
  *   customCoordinates?: string|null,
- *   customMetadata?: array<string, mixed>|null,
- *   description?: string|null,
- *   extensions?: list<RemoveBg|AutoTaggingExtension|AIAutoDescription>|null,
- *   removeAITags?: string|null|list<string>,
+ *   customMetadata?: array<string, mixed>,
+ *   description?: string,
+ *   extensions?: list<RemoveBg|AutoTaggingExtension|AIAutoDescription>,
+ *   removeAITags?: string|list<string>,
  *   tags?: list<string>|null,
- *   webhookURL?: string|null,
+ *   webhookURL?: string,
  * }
  */
 final class UpdateFileDetails implements BaseModel

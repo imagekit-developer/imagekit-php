@@ -9,15 +9,15 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type solid_color_overlay = array{
+ * @phpstan-type unnamed_type_with_intersection_parent1 = array{
  *   color: string,
  *   type: string,
- *   transformation?: list<SolidColorOverlayTransformation>|null,
+ *   transformation?: list<SolidColorOverlayTransformation>,
  * }
  */
 final class SolidColorOverlay implements BaseModel
 {
-    /** @use SdkModel<solid_color_overlay> */
+    /** @use SdkModel<unnamed_type_with_intersection_parent1> */
     use SdkModel;
 
     #[Api]

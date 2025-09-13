@@ -10,8 +10,12 @@ use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * @phpstan-type bulk_delete_response = array{
- *   successfullyDeletedFileIDs?: list<string>|null
+ *   successfullyDeletedFileIDs?: list<string>
  * }
+ * When used in a response, this type parameter can be used to define a $rawResponse property.
+ * @template TRawResponse of object = object{}
+ *
+ * @mixin TRawResponse
  */
 final class BulkDeleteResponse implements BaseModel
 {

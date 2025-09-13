@@ -25,7 +25,7 @@ use ImageKit\Core\Contracts\BaseModel;
  * You can mix and match any combination of post-processing types.
  *
  * @phpstan-type transformation_alias = array{
- *   post?: list<Transformation1|GifToVideo|Thumbnail|Abs>|null, pre?: string|null
+ *   post?: list<Transformation1|GifToVideo|Thumbnail|Abs>, pre?: string
  * }
  */
 final class Transformation implements BaseModel

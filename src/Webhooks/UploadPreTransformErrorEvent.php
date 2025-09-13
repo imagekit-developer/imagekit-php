@@ -13,13 +13,13 @@ use ImageKit\Webhooks\UploadPreTransformErrorEvent\Request;
 /**
  * Triggered when a pre-transformation fails. The file upload may have been accepted, but the requested transformation could not be applied.
  *
- * @phpstan-type upload_pre_transform_error_event = array{
+ * @phpstan-type unnamed_type_with_intersection_parent7 = array{
  *   createdAt: \DateTimeInterface, data: Data, request: Request, type: string
  * }
  */
 final class UploadPreTransformErrorEvent implements BaseModel
 {
-    /** @use SdkModel<upload_pre_transform_error_event> */
+    /** @use SdkModel<unnamed_type_with_intersection_parent7> */
     use SdkModel;
 
     #[Api]

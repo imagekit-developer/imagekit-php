@@ -10,16 +10,16 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\ImageOverlay\Encoding;
 
 /**
- * @phpstan-type image_overlay = array{
+ * @phpstan-type unnamed_type_with_intersection_parent0 = array{
  *   input: string,
  *   type: string,
- *   encoding?: value-of<Encoding>|null,
- *   transformation?: list<Transformation>|null,
+ *   encoding?: value-of<Encoding>,
+ *   transformation?: list<Transformation>,
  * }
  */
 final class ImageOverlay implements BaseModel
 {
-    /** @use SdkModel<image_overlay> */
+    /** @use SdkModel<unnamed_type_with_intersection_parent0> */
     use SdkModel;
 
     #[Api]

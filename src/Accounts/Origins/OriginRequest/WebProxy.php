@@ -12,8 +12,8 @@ use ImageKit\Core\Contracts\BaseModel;
  * @phpstan-type web_proxy = array{
  *   name: string,
  *   type: string,
- *   baseURLForCanonicalHeader?: string|null,
- *   includeCanonicalHeader?: bool|null,
+ *   baseURLForCanonicalHeader?: string,
+ *   includeCanonicalHeader?: bool,
  * }
  */
 final class WebProxy implements BaseModel

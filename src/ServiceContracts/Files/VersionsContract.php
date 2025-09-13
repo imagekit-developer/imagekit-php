@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ImageKit\ServiceContracts\Files;
 
+use ImageKit\Core\Implementation\HasRawResponse;
 use ImageKit\Files\File;
 use ImageKit\Files\Versions\VersionDeleteResponse;
 use ImageKit\RequestOptions;
@@ -24,6 +25,8 @@ interface VersionsContract
      * @api
      *
      * @param string $fileID
+     *
+     * @return VersionDeleteResponse<HasRawResponse>
      */
     public function delete(
         string $versionID,
@@ -35,6 +38,8 @@ interface VersionsContract
      * @api
      *
      * @param string $fileID
+     *
+     * @return File<HasRawResponse>
      */
     public function get(
         string $versionID,
@@ -46,6 +51,8 @@ interface VersionsContract
      * @api
      *
      * @param string $fileID
+     *
+     * @return File<HasRawResponse>
      */
     public function restore(
         string $versionID,

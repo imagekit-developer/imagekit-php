@@ -13,13 +13,13 @@ use ImageKit\Webhooks\VideoTransformationAcceptedEvent\Request;
 /**
  * Triggered when a new video transformation request is accepted for processing. This event confirms that ImageKit has received and queued your transformation request. Use this for debugging and tracking transformation lifecycle.
  *
- * @phpstan-type video_transformation_accepted_event = array{
+ * @phpstan-type unnamed_type_with_intersection_parent9 = array{
  *   createdAt: \DateTimeInterface, data: Data, request: Request, type: string
  * }
  */
 final class VideoTransformationAcceptedEvent implements BaseModel
 {
-    /** @use SdkModel<video_transformation_accepted_event> */
+    /** @use SdkModel<unnamed_type_with_intersection_parent9> */
     use SdkModel;
 
     #[Api]

@@ -10,7 +10,7 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\ExtensionItem\RemoveBg\Options;
 
 /**
- * @phpstan-type remove_bg = array{name: string, options?: Options|null}
+ * @phpstan-type remove_bg = array{name: string, options?: Options}
  */
 final class RemoveBg implements BaseModel
 {

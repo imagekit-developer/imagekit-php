@@ -6,6 +6,7 @@ namespace ImageKit\Services\Files;
 
 use ImageKit\Client;
 use ImageKit\Core\Conversion\ListOf;
+use ImageKit\Core\Implementation\HasRawResponse;
 use ImageKit\Files\File;
 use ImageKit\Files\Versions\VersionDeleteParams;
 use ImageKit\Files\Versions\VersionDeleteResponse;
@@ -49,6 +50,8 @@ final class VersionsService implements VersionsContract
      * Note: If you want to delete all versions of a file, use the delete file API.
      *
      * @param string $fileID
+     *
+     * @return VersionDeleteResponse<HasRawResponse>
      */
     public function delete(
         string $versionID,
@@ -77,6 +80,8 @@ final class VersionsService implements VersionsContract
      * This API returns an object with details or attributes of a file version.
      *
      * @param string $fileID
+     *
+     * @return File<HasRawResponse>
      */
     public function get(
         string $versionID,
@@ -105,6 +110,8 @@ final class VersionsService implements VersionsContract
      * This API restores a file version as the current file version.
      *
      * @param string $fileID
+     *
+     * @return File<HasRawResponse>
      */
     public function restore(
         string $versionID,

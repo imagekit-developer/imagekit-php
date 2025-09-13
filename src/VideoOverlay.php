@@ -10,7 +10,9 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\VideoOverlay\Encoding;
 
 /**
- * @phpstan-type unnamed_type_with_intersection_parent4 = array{
+ * @phpstan-type video_overlay = array{
+ *   position?: OverlayPosition,
+ *   timing?: OverlayTiming,
  *   input: string,
  *   type: string,
  *   encoding?: value-of<Encoding>,
@@ -19,11 +21,17 @@ use ImageKit\VideoOverlay\Encoding;
  */
 final class VideoOverlay implements BaseModel
 {
-    /** @use SdkModel<unnamed_type_with_intersection_parent4> */
+    /** @use SdkModel<video_overlay> */
     use SdkModel;
 
     #[Api]
     public string $type = 'video';
+
+    #[Api(optional: true)]
+    public ?OverlayPosition $position;
+
+    #[Api(optional: true)]
+    public ?OverlayTiming $timing;
 
     /**
      * Specifies the relative path to the video used as an overlay.
@@ -80,6 +88,8 @@ final class VideoOverlay implements BaseModel
      */
     public static function with(
         string $input,
+        ?OverlayPosition $position = null,
+        ?OverlayTiming $timing = null,
         Encoding|string|null $encoding = null,
         ?array $transformation = null,
     ): self {
@@ -87,8 +97,26 @@ final class VideoOverlay implements BaseModel
 
         $obj->input = $input;
 
+        null !== $position && $obj->position = $position;
+        null !== $timing && $obj->timing = $timing;
         null !== $encoding && $obj->encoding = $encoding instanceof Encoding ? $encoding->value : $encoding;
         null !== $transformation && $obj->transformation = $transformation;
+
+        return $obj;
+    }
+
+    public function withPosition(OverlayPosition $position): self
+    {
+        $obj = clone $this;
+        $obj->position = $position;
+
+        return $obj;
+    }
+
+    public function withTiming(OverlayTiming $timing): self
+    {
+        $obj = clone $this;
+        $obj->timing = $timing;
 
         return $obj;
     }

@@ -6,6 +6,7 @@ namespace ImageKit\Services\Files;
 
 use ImageKit\Client;
 use ImageKit\Core\Conversion\ListOf;
+use ImageKit\Core\Exceptions\APIException;
 use ImageKit\Core\Implementation\HasRawResponse;
 use ImageKit\Files\File;
 use ImageKit\Files\Versions\VersionDeleteParams;
@@ -28,9 +29,28 @@ final class VersionsService implements VersionsContract
      * This API returns details of all versions of a file.
      *
      * @return list<File>
+     *
+     * @throws APIException
      */
     public function list(
         string $fileID,
+        ?RequestOptions $requestOptions = null
+    ): array {
+        $params = [];
+
+        return $this->listRaw($fileID, $params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @return list<File>
+     *
+     * @throws APIException
+     */
+    public function listRaw(
+        string $fileID,
+        mixed $params,
         ?RequestOptions $requestOptions = null
     ): array {
         // @phpstan-ignore-next-line;
@@ -52,14 +72,35 @@ final class VersionsService implements VersionsContract
      * @param string $fileID
      *
      * @return VersionDeleteResponse<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function delete(
         string $versionID,
         $fileID,
         ?RequestOptions $requestOptions = null
     ): VersionDeleteResponse {
+        $params = ['fileID' => $fileID];
+
+        return $this->deleteRaw($versionID, $params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return VersionDeleteResponse<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function deleteRaw(
+        string $versionID,
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): VersionDeleteResponse {
         [$parsed, $options] = VersionDeleteParams::parseRequest(
-            ['fileID' => $fileID],
+            $params,
             $requestOptions
         );
         $fileID = $parsed['fileID'];
@@ -82,14 +123,35 @@ final class VersionsService implements VersionsContract
      * @param string $fileID
      *
      * @return File<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function get(
         string $versionID,
         $fileID,
         ?RequestOptions $requestOptions = null
     ): File {
+        $params = ['fileID' => $fileID];
+
+        return $this->getRaw($versionID, $params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return File<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function getRaw(
+        string $versionID,
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): File {
         [$parsed, $options] = VersionGetParams::parseRequest(
-            ['fileID' => $fileID],
+            $params,
             $requestOptions
         );
         $fileID = $parsed['fileID'];
@@ -112,14 +174,35 @@ final class VersionsService implements VersionsContract
      * @param string $fileID
      *
      * @return File<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function restore(
         string $versionID,
         $fileID,
         ?RequestOptions $requestOptions = null
     ): File {
+        $params = ['fileID' => $fileID];
+
+        return $this->restoreRaw($versionID, $params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return File<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function restoreRaw(
+        string $versionID,
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): File {
         [$parsed, $options] = VersionRestoreParams::parseRequest(
-            ['fileID' => $fileID],
+            $params,
             $requestOptions
         );
         $fileID = $parsed['fileID'];

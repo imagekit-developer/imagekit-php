@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace ImageKit\ServiceContracts;
 
+use ImageKit\Core\Exceptions\APIException;
 use ImageKit\Core\Implementation\HasRawResponse;
 use ImageKit\ExtensionItem\AIAutoDescription;
 use ImageKit\ExtensionItem\AutoTaggingExtension;
@@ -41,6 +42,8 @@ interface FilesContract
      * @param Publish $publish configure the publication status of a file and its versions
      *
      * @return FileUpdateResponse<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function update(
         string $fileID,
@@ -57,9 +60,37 @@ interface FilesContract
 
     /**
      * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return FileUpdateResponse<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function updateRaw(
+        string $fileID,
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): FileUpdateResponse;
+
+    /**
+     * @api
+     *
+     * @throws APIException
      */
     public function delete(
         string $fileID,
+        ?RequestOptions $requestOptions = null
+    ): mixed;
+
+    /**
+     * @api
+     *
+     * @throws APIException
+     */
+    public function deleteRaw(
+        string $fileID,
+        mixed $params,
         ?RequestOptions $requestOptions = null
     ): mixed;
 
@@ -71,6 +102,8 @@ interface FilesContract
      * @param bool $includeFileVersions Option to copy all versions of a file. By default, only the current version of the file is copied. When set to true, all versions of the file will be copied. Default value - `false`.
      *
      * @return FileCopyResponse<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function copy(
         $destinationPath,
@@ -82,10 +115,39 @@ interface FilesContract
     /**
      * @api
      *
+     * @param array<string, mixed> $params
+     *
+     * @return FileCopyResponse<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function copyRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): FileCopyResponse;
+
+    /**
+     * @api
+     *
      * @return File<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function get(
         string $fileID,
+        ?RequestOptions $requestOptions = null
+    ): File;
+
+    /**
+     * @api
+     *
+     * @return File<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function getRaw(
+        string $fileID,
+        mixed $params,
         ?RequestOptions $requestOptions = null
     ): File;
 
@@ -96,11 +158,27 @@ interface FilesContract
      * @param string $sourceFilePath the full path of the file you want to move
      *
      * @return FileMoveResponse<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function move(
         $destinationPath,
         $sourceFilePath,
         ?RequestOptions $requestOptions = null,
+    ): FileMoveResponse;
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return FileMoveResponse<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function moveRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
     ): FileMoveResponse;
 
     /**
@@ -120,12 +198,28 @@ interface FilesContract
      * Note: If the old file were accessible at `https://ik.imagekit.io/demo/old-filename.jpg`, a purge cache request would be issued against `https://ik.imagekit.io/demo/old-filename.jpg*` (with a wildcard at the end). It will remove the file and its versions' URLs and any transformations made using query parameters on this file or its versions. However, the cache for file transformations made using path parameters will persist. You can purge them using the purge API. For more details, refer to the purge API documentation.
      *
      * @return FileRenameResponse<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function rename(
         $filePath,
         $newFileName,
         $purgeCache = omit,
         ?RequestOptions $requestOptions = null,
+    ): FileRenameResponse;
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return FileRenameResponse<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function renameRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
     ): FileRenameResponse;
 
     /**
@@ -205,6 +299,8 @@ interface FilesContract
      * @param string $webhookURL The final status of extensions after they have completed execution will be delivered to this endpoint as a POST request. [Learn more](/docs/api-reference/digital-asset-management-dam/managing-assets/update-file-details#webhook-payload-structure) about the webhook payload structure.
      *
      * @return FileUploadResponse<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function upload(
         $file,
@@ -231,5 +327,19 @@ interface FilesContract
         $useUniqueFileName = omit,
         $webhookURL = omit,
         ?RequestOptions $requestOptions = null,
+    ): FileUploadResponse;
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return FileUploadResponse<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function uploadRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
     ): FileUploadResponse;
 }

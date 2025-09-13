@@ -13,17 +13,30 @@ use ImageKit\Webhooks\VideoTransformationErrorEvent\Request;
 /**
  * Triggered when an error occurs during video encoding. Listen to this webhook to log error reasons and debug issues. Check your origin and URL endpoint settings if the reason is related to download failure. For other errors, contact ImageKit support.
  *
- * @phpstan-type unnamed_type_with_intersection_parent10 = array{
- *   createdAt: \DateTimeInterface, data: Data, request: Request, type: string
+ * @phpstan-type video_transformation_error_event = array{
+ *   id: string,
+ *   type: string,
+ *   createdAt: \DateTimeInterface,
+ *   data: Data,
+ *   request: Request,
  * }
  */
 final class VideoTransformationErrorEvent implements BaseModel
 {
-    /** @use SdkModel<unnamed_type_with_intersection_parent10> */
+    /** @use SdkModel<video_transformation_error_event> */
     use SdkModel;
 
+    /**
+     * Unique identifier for the event.
+     */
     #[Api]
-    public string $type = 'video.transformation.error';
+    public string $id;
+
+    /**
+     * The type of webhook event.
+     */
+    #[Api]
+    public string $type;
 
     /**
      * Timestamp when the event was created in ISO8601 format.
@@ -45,13 +58,17 @@ final class VideoTransformationErrorEvent implements BaseModel
      *
      * To enforce required parameters use
      * ```
-     * VideoTransformationErrorEvent::with(createdAt: ..., data: ..., request: ...)
+     * VideoTransformationErrorEvent::with(
+     *   id: ..., type: ..., createdAt: ..., data: ..., request: ...
+     * )
      * ```
      *
      * Otherwise ensure the following setters are called
      *
      * ```
      * (new VideoTransformationErrorEvent)
+     *   ->withID(...)
+     *   ->withType(...)
      *   ->withCreatedAt(...)
      *   ->withData(...)
      *   ->withRequest(...)
@@ -68,15 +85,41 @@ final class VideoTransformationErrorEvent implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      */
     public static function with(
+        string $id,
+        string $type,
         \DateTimeInterface $createdAt,
         Data $data,
-        Request $request
+        Request $request,
     ): self {
         $obj = new self;
 
+        $obj->id = $id;
+        $obj->type = $type;
         $obj->createdAt = $createdAt;
         $obj->data = $data;
         $obj->request = $request;
+
+        return $obj;
+    }
+
+    /**
+     * Unique identifier for the event.
+     */
+    public function withID(string $id): self
+    {
+        $obj = clone $this;
+        $obj->id = $id;
+
+        return $obj;
+    }
+
+    /**
+     * The type of webhook event.
+     */
+    public function withType(string $type): self
+    {
+        $obj = clone $this;
+        $obj->type = $type;
 
         return $obj;
     }

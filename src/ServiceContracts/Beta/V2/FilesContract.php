@@ -7,6 +7,7 @@ namespace ImageKit\ServiceContracts\Beta\V2;
 use ImageKit\Beta\V2\Files\FileUploadParams\ResponseField;
 use ImageKit\Beta\V2\Files\FileUploadParams\Transformation;
 use ImageKit\Beta\V2\Files\FileUploadResponse;
+use ImageKit\Core\Exceptions\APIException;
 use ImageKit\Core\Implementation\HasRawResponse;
 use ImageKit\ExtensionItem\AIAutoDescription;
 use ImageKit\ExtensionItem\AutoTaggingExtension;
@@ -74,6 +75,8 @@ interface FilesContract
      * @param string $webhookURL The final status of extensions after they have completed execution will be delivered to this endpoint as a POST request. [Learn more](/docs/api-reference/digital-asset-management-dam/managing-assets/update-file-details#webhook-payload-structure) about the webhook payload structure.
      *
      * @return FileUploadResponse<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function upload(
         $file,
@@ -97,5 +100,19 @@ interface FilesContract
         $useUniqueFileName = omit,
         $webhookURL = omit,
         ?RequestOptions $requestOptions = null,
+    ): FileUploadResponse;
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return FileUploadResponse<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function uploadRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
     ): FileUploadResponse;
 }

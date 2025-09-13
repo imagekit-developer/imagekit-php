@@ -12,7 +12,7 @@ use ImageKit\Core\Contracts\BaseModel;
  * Job submitted successfully. A `jobId` will be returned.
  *
  * @phpstan-type folder_rename_response = array{jobID: string}
- * When used in a response, this type parameter can be used to define a $rawResponse property.
+ * When used in a response, this type parameter can define a $rawResponse property.
  * @template TRawResponse of object = object{}
  *
  * @mixin TRawResponse

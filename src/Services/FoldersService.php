@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ImageKit\Services;
 
 use ImageKit\Client;
+use ImageKit\Core\Exceptions\APIException;
 use ImageKit\Core\Implementation\HasRawResponse;
 use ImageKit\Folders\FolderCopyParams;
 use ImageKit\Folders\FolderCopyResponse;
@@ -50,15 +51,37 @@ final class FoldersService implements FoldersContract
      * Note: If any folder(s) is not present in the parentFolderPath parameter, it will be automatically created. For example, if you pass `/product/images/summer`, then `product`, `images`, and `summer` folders will be created if they don't already exist.
      *
      * @return FolderNewResponse<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function create(
         $folderName,
         $parentFolderPath,
         ?RequestOptions $requestOptions = null
     ): FolderNewResponse {
+        $params = [
+            'folderName' => $folderName, 'parentFolderPath' => $parentFolderPath,
+        ];
+
+        return $this->createRaw($params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return FolderNewResponse<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function createRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): FolderNewResponse {
         [$parsed, $options] = FolderCreateParams::parseRequest(
-            ['folderName' => $folderName, 'parentFolderPath' => $parentFolderPath],
-            $requestOptions,
+            $params,
+            $requestOptions
         );
 
         // @phpstan-ignore-next-line;
@@ -79,13 +102,33 @@ final class FoldersService implements FoldersContract
      * @param string $folderPath Full path to the folder you want to delete. For example `/folder/to/delete/`.
      *
      * @return FolderDeleteResponse<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function delete(
         $folderPath,
         ?RequestOptions $requestOptions = null
     ): FolderDeleteResponse {
+        $params = ['folderPath' => $folderPath];
+
+        return $this->deleteRaw($params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return FolderDeleteResponse<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function deleteRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): FolderDeleteResponse {
         [$parsed, $options] = FolderDeleteParams::parseRequest(
-            ['folderPath' => $folderPath],
+            $params,
             $requestOptions
         );
 
@@ -109,6 +152,8 @@ final class FoldersService implements FoldersContract
      * @param bool $includeVersions Option to copy all versions of files that are nested inside the selected folder. By default, only the current version of each file will be copied. When set to true, all versions of each file will be copied. Default value - `false`.
      *
      * @return FolderCopyResponse<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function copy(
         $destinationPath,
@@ -116,13 +161,31 @@ final class FoldersService implements FoldersContract
         $includeVersions = omit,
         ?RequestOptions $requestOptions = null,
     ): FolderCopyResponse {
+        $params = [
+            'destinationPath' => $destinationPath,
+            'sourceFolderPath' => $sourceFolderPath,
+            'includeVersions' => $includeVersions,
+        ];
+
+        return $this->copyRaw($params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return FolderCopyResponse<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function copyRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): FolderCopyResponse {
         [$parsed, $options] = FolderCopyParams::parseRequest(
-            [
-                'destinationPath' => $destinationPath,
-                'sourceFolderPath' => $sourceFolderPath,
-                'includeVersions' => $includeVersions,
-            ],
-            $requestOptions,
+            $params,
+            $requestOptions
         );
 
         // @phpstan-ignore-next-line;
@@ -144,18 +207,38 @@ final class FoldersService implements FoldersContract
      * @param string $sourceFolderPath the full path to the source folder you want to move
      *
      * @return FolderMoveResponse<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function move(
         $destinationPath,
         $sourceFolderPath,
         ?RequestOptions $requestOptions = null
     ): FolderMoveResponse {
+        $params = [
+            'destinationPath' => $destinationPath,
+            'sourceFolderPath' => $sourceFolderPath,
+        ];
+
+        return $this->moveRaw($params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return FolderMoveResponse<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function moveRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): FolderMoveResponse {
         [$parsed, $options] = FolderMoveParams::parseRequest(
-            [
-                'destinationPath' => $destinationPath,
-                'sourceFolderPath' => $sourceFolderPath,
-            ],
-            $requestOptions,
+            $params,
+            $requestOptions
         );
 
         // @phpstan-ignore-next-line;
@@ -186,6 +269,8 @@ final class FoldersService implements FoldersContract
      * Default value - `false`
      *
      * @return FolderRenameResponse<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function rename(
         $folderPath,
@@ -193,13 +278,31 @@ final class FoldersService implements FoldersContract
         $purgeCache = omit,
         ?RequestOptions $requestOptions = null,
     ): FolderRenameResponse {
+        $params = [
+            'folderPath' => $folderPath,
+            'newFolderName' => $newFolderName,
+            'purgeCache' => $purgeCache,
+        ];
+
+        return $this->renameRaw($params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return FolderRenameResponse<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function renameRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): FolderRenameResponse {
         [$parsed, $options] = FolderRenameParams::parseRequest(
-            [
-                'folderPath' => $folderPath,
-                'newFolderName' => $newFolderName,
-                'purgeCache' => $purgeCache,
-            ],
-            $requestOptions,
+            $params,
+            $requestOptions
         );
 
         // @phpstan-ignore-next-line;

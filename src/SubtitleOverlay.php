@@ -10,7 +10,9 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\SubtitleOverlay\Encoding;
 
 /**
- * @phpstan-type unnamed_type_with_intersection_parent2 = array{
+ * @phpstan-type subtitle_overlay = array{
+ *   position?: OverlayPosition,
+ *   timing?: OverlayTiming,
  *   input: string,
  *   type: string,
  *   encoding?: value-of<Encoding>,
@@ -19,11 +21,17 @@ use ImageKit\SubtitleOverlay\Encoding;
  */
 final class SubtitleOverlay implements BaseModel
 {
-    /** @use SdkModel<unnamed_type_with_intersection_parent2> */
+    /** @use SdkModel<subtitle_overlay> */
     use SdkModel;
 
     #[Api]
     public string $type = 'subtitle';
+
+    #[Api(optional: true)]
+    public ?OverlayPosition $position;
+
+    #[Api(optional: true)]
+    public ?OverlayTiming $timing;
 
     /**
      * Specifies the relative path to the subtitle file used as an overlay.
@@ -79,6 +87,8 @@ final class SubtitleOverlay implements BaseModel
      */
     public static function with(
         string $input,
+        ?OverlayPosition $position = null,
+        ?OverlayTiming $timing = null,
         Encoding|string|null $encoding = null,
         ?array $transformation = null,
     ): self {
@@ -86,8 +96,26 @@ final class SubtitleOverlay implements BaseModel
 
         $obj->input = $input;
 
+        null !== $position && $obj->position = $position;
+        null !== $timing && $obj->timing = $timing;
         null !== $encoding && $obj->encoding = $encoding instanceof Encoding ? $encoding->value : $encoding;
         null !== $transformation && $obj->transformation = $transformation;
+
+        return $obj;
+    }
+
+    public function withPosition(OverlayPosition $position): self
+    {
+        $obj = clone $this;
+        $obj->position = $position;
+
+        return $obj;
+    }
+
+    public function withTiming(OverlayTiming $timing): self
+    {
+        $obj = clone $this;
+        $obj->timing = $timing;
 
         return $obj;
     }

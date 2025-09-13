@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ImageKit\Services;
 
 use ImageKit\Client;
+use ImageKit\Core\Exceptions\APIException;
 use ImageKit\Core\Implementation\HasRawResponse;
 use ImageKit\ExtensionItem\AIAutoDescription;
 use ImageKit\ExtensionItem\AutoTaggingExtension;
@@ -78,6 +79,8 @@ final class FilesService implements FilesContract
      * @param Publish $publish configure the publication status of a file and its versions
      *
      * @return FileUpdateResponse<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function update(
         string $fileID,
@@ -91,18 +94,37 @@ final class FilesService implements FilesContract
         $publish = omit,
         ?RequestOptions $requestOptions = null,
     ): FileUpdateResponse {
+        $params = [
+            'customCoordinates' => $customCoordinates,
+            'customMetadata' => $customMetadata,
+            'description' => $description,
+            'extensions' => $extensions,
+            'removeAITags' => $removeAITags,
+            'tags' => $tags,
+            'webhookURL' => $webhookURL,
+            'publish' => $publish,
+        ];
+
+        return $this->updateRaw($fileID, $params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return FileUpdateResponse<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function updateRaw(
+        string $fileID,
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): FileUpdateResponse {
         [$parsed, $options] = FileUpdateParams::parseRequest(
-            [
-                'customCoordinates' => $customCoordinates,
-                'customMetadata' => $customMetadata,
-                'description' => $description,
-                'extensions' => $extensions,
-                'removeAITags' => $removeAITags,
-                'tags' => $tags,
-                'webhookURL' => $webhookURL,
-                'publish' => $publish,
-            ],
-            $requestOptions,
+            $params,
+            $requestOptions
         );
 
         // @phpstan-ignore-next-line;
@@ -121,9 +143,26 @@ final class FilesService implements FilesContract
      * This API deletes the file and all its file versions permanently.
      *
      * Note: If a file or specific transformation has been requested in the past, then the response is cached. Deleting a file does not purge the cache. You can purge the cache using purge cache API.
+     *
+     * @throws APIException
      */
     public function delete(
         string $fileID,
+        ?RequestOptions $requestOptions = null
+    ): mixed {
+        $params = [];
+
+        return $this->deleteRaw($fileID, $params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @throws APIException
+     */
+    public function deleteRaw(
+        string $fileID,
+        mixed $params,
         ?RequestOptions $requestOptions = null
     ): mixed {
         // @phpstan-ignore-next-line;
@@ -147,6 +186,8 @@ final class FilesService implements FilesContract
      * @param bool $includeFileVersions Option to copy all versions of a file. By default, only the current version of the file is copied. When set to true, all versions of the file will be copied. Default value - `false`.
      *
      * @return FileCopyResponse<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function copy(
         $destinationPath,
@@ -154,13 +195,31 @@ final class FilesService implements FilesContract
         $includeFileVersions = omit,
         ?RequestOptions $requestOptions = null,
     ): FileCopyResponse {
+        $params = [
+            'destinationPath' => $destinationPath,
+            'sourceFilePath' => $sourceFilePath,
+            'includeFileVersions' => $includeFileVersions,
+        ];
+
+        return $this->copyRaw($params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return FileCopyResponse<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function copyRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): FileCopyResponse {
         [$parsed, $options] = FileCopyParams::parseRequest(
-            [
-                'destinationPath' => $destinationPath,
-                'sourceFilePath' => $sourceFilePath,
-                'includeFileVersions' => $includeFileVersions,
-            ],
-            $requestOptions,
+            $params,
+            $requestOptions
         );
 
         // @phpstan-ignore-next-line;
@@ -179,9 +238,28 @@ final class FilesService implements FilesContract
      * This API returns an object with details or attributes about the current version of the file.
      *
      * @return File<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function get(
         string $fileID,
+        ?RequestOptions $requestOptions = null
+    ): File {
+        $params = [];
+
+        return $this->getRaw($fileID, $params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @return File<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function getRaw(
+        string $fileID,
+        mixed $params,
         ?RequestOptions $requestOptions = null
     ): File {
         // @phpstan-ignore-next-line;
@@ -204,18 +282,37 @@ final class FilesService implements FilesContract
      * @param string $sourceFilePath the full path of the file you want to move
      *
      * @return FileMoveResponse<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function move(
         $destinationPath,
         $sourceFilePath,
         ?RequestOptions $requestOptions = null
     ): FileMoveResponse {
+        $params = [
+            'destinationPath' => $destinationPath, 'sourceFilePath' => $sourceFilePath,
+        ];
+
+        return $this->moveRaw($params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return FileMoveResponse<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function moveRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): FileMoveResponse {
         [$parsed, $options] = FileMoveParams::parseRequest(
-            [
-                'destinationPath' => $destinationPath,
-                'sourceFilePath' => $sourceFilePath,
-            ],
-            $requestOptions,
+            $params,
+            $requestOptions
         );
 
         // @phpstan-ignore-next-line;
@@ -249,6 +346,8 @@ final class FilesService implements FilesContract
      * Note: If the old file were accessible at `https://ik.imagekit.io/demo/old-filename.jpg`, a purge cache request would be issued against `https://ik.imagekit.io/demo/old-filename.jpg*` (with a wildcard at the end). It will remove the file and its versions' URLs and any transformations made using query parameters on this file or its versions. However, the cache for file transformations made using path parameters will persist. You can purge them using the purge API. For more details, refer to the purge API documentation.
      *
      * @return FileRenameResponse<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function rename(
         $filePath,
@@ -256,13 +355,31 @@ final class FilesService implements FilesContract
         $purgeCache = omit,
         ?RequestOptions $requestOptions = null,
     ): FileRenameResponse {
+        $params = [
+            'filePath' => $filePath,
+            'newFileName' => $newFileName,
+            'purgeCache' => $purgeCache,
+        ];
+
+        return $this->renameRaw($params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return FileRenameResponse<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function renameRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): FileRenameResponse {
         [$parsed, $options] = FileRenameParams::parseRequest(
-            [
-                'filePath' => $filePath,
-                'newFileName' => $newFileName,
-                'purgeCache' => $purgeCache,
-            ],
-            $requestOptions,
+            $params,
+            $requestOptions
         );
 
         // @phpstan-ignore-next-line;
@@ -367,6 +484,8 @@ final class FilesService implements FilesContract
      * @param string $webhookURL The final status of extensions after they have completed execution will be delivered to this endpoint as a POST request. [Learn more](/docs/api-reference/digital-asset-management-dam/managing-assets/update-file-details#webhook-payload-structure) about the webhook payload structure.
      *
      * @return FileUploadResponse<HasRawResponse>
+     *
+     * @throws APIException
      */
     public function upload(
         $file,
@@ -394,33 +513,51 @@ final class FilesService implements FilesContract
         $webhookURL = omit,
         ?RequestOptions $requestOptions = null,
     ): FileUploadResponse {
+        $params = [
+            'file' => $file,
+            'fileName' => $fileName,
+            'token' => $token,
+            'checks' => $checks,
+            'customCoordinates' => $customCoordinates,
+            'customMetadata' => $customMetadata,
+            'description' => $description,
+            'expire' => $expire,
+            'extensions' => $extensions,
+            'folder' => $folder,
+            'isPrivateFile' => $isPrivateFile,
+            'isPublished' => $isPublished,
+            'overwriteAITags' => $overwriteAITags,
+            'overwriteCustomMetadata' => $overwriteCustomMetadata,
+            'overwriteFile' => $overwriteFile,
+            'overwriteTags' => $overwriteTags,
+            'publicKey' => $publicKey,
+            'responseFields' => $responseFields,
+            'signature' => $signature,
+            'tags' => $tags,
+            'transformation' => $transformation,
+            'useUniqueFileName' => $useUniqueFileName,
+            'webhookURL' => $webhookURL,
+        ];
+
+        return $this->uploadRaw($params, $requestOptions);
+    }
+
+    /**
+     * @api
+     *
+     * @param array<string, mixed> $params
+     *
+     * @return FileUploadResponse<HasRawResponse>
+     *
+     * @throws APIException
+     */
+    public function uploadRaw(
+        array $params,
+        ?RequestOptions $requestOptions = null
+    ): FileUploadResponse {
         [$parsed, $options] = FileUploadParams::parseRequest(
-            [
-                'file' => $file,
-                'fileName' => $fileName,
-                'token' => $token,
-                'checks' => $checks,
-                'customCoordinates' => $customCoordinates,
-                'customMetadata' => $customMetadata,
-                'description' => $description,
-                'expire' => $expire,
-                'extensions' => $extensions,
-                'folder' => $folder,
-                'isPrivateFile' => $isPrivateFile,
-                'isPublished' => $isPublished,
-                'overwriteAITags' => $overwriteAITags,
-                'overwriteCustomMetadata' => $overwriteCustomMetadata,
-                'overwriteFile' => $overwriteFile,
-                'overwriteTags' => $overwriteTags,
-                'publicKey' => $publicKey,
-                'responseFields' => $responseFields,
-                'signature' => $signature,
-                'tags' => $tags,
-                'transformation' => $transformation,
-                'useUniqueFileName' => $useUniqueFileName,
-                'webhookURL' => $webhookURL,
-            ],
-            $requestOptions,
+            $params,
+            $requestOptions
         );
         $path = $this
             ->client

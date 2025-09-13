@@ -10,7 +10,7 @@ use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * @phpstan-type base_overlay = array{
- *   position?: OverlayPosition|null, timing?: OverlayTiming|null
+ *   position?: OverlayPosition, timing?: OverlayTiming
  * }
  */
 final class BaseOverlay implements BaseModel

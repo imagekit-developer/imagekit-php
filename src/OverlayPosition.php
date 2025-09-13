@@ -11,7 +11,7 @@ use ImageKit\OverlayPosition\Focus;
 
 /**
  * @phpstan-type overlay_position = array{
- *   focus?: value-of<Focus>|null, x?: float|string|null, y?: float|string|null
+ *   focus?: value-of<Focus>, x?: float|string, y?: float|string
  * }
  */
 final class OverlayPosition implements BaseModel

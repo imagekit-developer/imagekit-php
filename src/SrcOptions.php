@@ -14,11 +14,11 @@ use ImageKit\Core\Contracts\BaseModel;
  * @phpstan-type src_options = array{
  *   src: string,
  *   urlEndpoint: string,
- *   expiresIn?: float|null,
- *   queryParameters?: array<string, string>|null,
- *   signed?: bool|null,
- *   transformation?: list<Transformation>|null,
- *   transformationPosition?: value-of<TransformationPosition>|null,
+ *   expiresIn?: float,
+ *   queryParameters?: array<string, string>,
+ *   signed?: bool,
+ *   transformation?: list<Transformation>,
+ *   transformationPosition?: value-of<TransformationPosition>,
  * }
  */
 final class SrcOptions implements BaseModel

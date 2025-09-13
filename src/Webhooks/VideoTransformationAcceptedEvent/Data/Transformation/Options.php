@@ -16,13 +16,13 @@ use ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation\Optio
  * Configuration options for video transformations.
  *
  * @phpstan-type options_alias = array{
- *   audioCodec?: value-of<AudioCodec>|null,
- *   autoRotate?: bool|null,
- *   format?: value-of<Format>|null,
- *   quality?: int|null,
- *   streamProtocol?: value-of<StreamProtocol>|null,
- *   variants?: list<string>|null,
- *   videoCodec?: value-of<VideoCodec>|null,
+ *   audioCodec?: value-of<AudioCodec>,
+ *   autoRotate?: bool,
+ *   format?: value-of<Format>,
+ *   quality?: int,
+ *   streamProtocol?: value-of<StreamProtocol>,
+ *   variants?: list<string>,
+ *   videoCodec?: value-of<VideoCodec>,
  * }
  */
 final class Options implements BaseModel

@@ -12,6 +12,10 @@ use ImageKit\Core\Contracts\BaseModel;
  * Job submitted successfully. A `jobId` will be returned.
  *
  * @phpstan-type folder_copy_response = array{jobID: string}
+ * When used in a response, this type parameter can be used to define a $rawResponse property.
+ * @template TRawResponse of object = object{}
+ *
+ * @mixin TRawResponse
  */
 final class FolderCopyResponse implements BaseModel
 {

@@ -9,7 +9,11 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type file_rename_response = array{purgeRequestID?: string|null}
+ * @phpstan-type file_rename_response = array{purgeRequestID?: string}
+ * When used in a response, this type parameter can be used to define a $rawResponse property.
+ * @template TRawResponse of object = object{}
+ *
+ * @mixin TRawResponse
  */
 final class FileRenameResponse implements BaseModel
 {

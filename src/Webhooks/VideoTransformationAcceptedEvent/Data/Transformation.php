@@ -14,7 +14,7 @@ use ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation\Type;
  * Base information about a video transformation request.
  *
  * @phpstan-type transformation_alias = array{
- *   type: value-of<Type>, options?: Options|null
+ *   type: value-of<Type>, options?: Options
  * }
  */
 final class Transformation implements BaseModel

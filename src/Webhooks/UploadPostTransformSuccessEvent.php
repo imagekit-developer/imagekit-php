@@ -13,13 +13,13 @@ use ImageKit\Webhooks\UploadPostTransformSuccessEvent\Request;
 /**
  * Triggered when a post-transformation completes successfully. The transformed version of the file is now ready and can be accessed via the provided URL. Note that each post-transformation generates a separate webhook event.
  *
- * @phpstan-type upload_post_transform_success_event = array{
+ * @phpstan-type unnamed_type_with_intersection_parent6 = array{
  *   createdAt: \DateTimeInterface, data: Data, request: Request, type: string
  * }
  */
 final class UploadPostTransformSuccessEvent implements BaseModel
 {
-    /** @use SdkModel<upload_post_transform_success_event> */
+    /** @use SdkModel<unnamed_type_with_intersection_parent6> */
     use SdkModel;
 
     #[Api]

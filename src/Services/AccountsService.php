@@ -32,8 +32,8 @@ final class AccountsService implements AccountsContract
      */
     public function __construct(private Client $client)
     {
-        $this->usage = new UsageService($this->client);
-        $this->origins = new OriginsService($this->client);
-        $this->urlEndpoints = new URLEndpointsService($this->client);
+        $this->usage = new UsageService($client);
+        $this->origins = new OriginsService($client);
+        $this->urlEndpoints = new URLEndpointsService($client);
     }
 }

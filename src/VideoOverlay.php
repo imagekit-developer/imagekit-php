@@ -10,16 +10,16 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\VideoOverlay\Encoding;
 
 /**
- * @phpstan-type video_overlay = array{
+ * @phpstan-type unnamed_type_with_intersection_parent4 = array{
  *   input: string,
  *   type: string,
- *   encoding?: value-of<Encoding>|null,
- *   transformation?: list<Transformation>|null,
+ *   encoding?: value-of<Encoding>,
+ *   transformation?: list<Transformation>,
  * }
  */
 final class VideoOverlay implements BaseModel
 {
-    /** @use SdkModel<video_overlay> */
+    /** @use SdkModel<unnamed_type_with_intersection_parent4> */
     use SdkModel;
 
     #[Api]

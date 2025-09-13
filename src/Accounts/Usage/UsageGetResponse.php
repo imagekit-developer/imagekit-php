@@ -10,12 +10,16 @@ use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * @phpstan-type usage_get_response = array{
- *   bandwidthBytes?: int|null,
- *   extensionUnitsCount?: int|null,
- *   mediaLibraryStorageBytes?: int|null,
- *   originalCacheStorageBytes?: int|null,
- *   videoProcessingUnitsCount?: int|null,
+ *   bandwidthBytes?: int,
+ *   extensionUnitsCount?: int,
+ *   mediaLibraryStorageBytes?: int,
+ *   originalCacheStorageBytes?: int,
+ *   videoProcessingUnitsCount?: int,
  * }
+ * When used in a response, this type parameter can be used to define a $rawResponse property.
+ * @template TRawResponse of object = object{}
+ *
+ * @mixin TRawResponse
  */
 final class UsageGetResponse implements BaseModel
 {

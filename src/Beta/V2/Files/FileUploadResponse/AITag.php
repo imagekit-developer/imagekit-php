@@ -9,9 +9,7 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type ai_tag = array{
- *   confidence?: float|null, name?: string|null, source?: string|null
- * }
+ * @phpstan-type ai_tag = array{confidence?: float, name?: string, source?: string}
  */
 final class AITag implements BaseModel
 {

@@ -12,9 +12,7 @@ use ImageKit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Output\V
 /**
  * Information about the transformed output video.
  *
- * @phpstan-type output_alias = array{
- *   url: string, videoMetadata?: VideoMetadata|null
- * }
+ * @phpstan-type output_alias = array{url: string, videoMetadata?: VideoMetadata}
  */
 final class Output implements BaseModel
 {

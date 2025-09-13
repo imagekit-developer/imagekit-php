@@ -18,7 +18,7 @@ use ImageKit\Core\Contracts\BaseModel;
  *   prefix: string,
  *   s3ForcePathStyle: bool,
  *   type: string,
- *   baseURLForCanonicalHeader?: string|null,
+ *   baseURLForCanonicalHeader?: string,
  * }
  */
 final class S3Compatible implements BaseModel

@@ -10,16 +10,16 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\TextOverlay\Encoding;
 
 /**
- * @phpstan-type text_overlay = array{
+ * @phpstan-type unnamed_type_with_intersection_parent3 = array{
  *   text: string,
  *   type: string,
- *   encoding?: value-of<Encoding>|null,
- *   transformation?: list<TextOverlayTransformation>|null,
+ *   encoding?: value-of<Encoding>,
+ *   transformation?: list<TextOverlayTransformation>,
  * }
  */
 final class TextOverlay implements BaseModel
 {
-    /** @use SdkModel<text_overlay> */
+    /** @use SdkModel<unnamed_type_with_intersection_parent3> */
     use SdkModel;
 
     #[Api]

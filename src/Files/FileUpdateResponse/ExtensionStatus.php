@@ -14,10 +14,10 @@ use ImageKit\Files\FileUpdateResponse\ExtensionStatus\RemoveBg;
 
 /**
  * @phpstan-type extension_status = array{
- *   aiAutoDescription?: value-of<AIAutoDescription>|null,
- *   awsAutoTagging?: value-of<AwsAutoTagging>|null,
- *   googleAutoTagging?: value-of<GoogleAutoTagging>|null,
- *   removeBg?: value-of<RemoveBg>|null,
+ *   aiAutoDescription?: value-of<AIAutoDescription>,
+ *   awsAutoTagging?: value-of<AwsAutoTagging>,
+ *   googleAutoTagging?: value-of<GoogleAutoTagging>,
+ *   removeBg?: value-of<RemoveBg>,
  * }
  */
 final class ExtensionStatus implements BaseModel

@@ -22,10 +22,10 @@ use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\ExtensionStatus\Remove
  * If no extension was requested, then this parameter is not returned.
  *
  * @phpstan-type extension_status = array{
- *   aiAutoDescription?: value-of<AIAutoDescription>|null,
- *   awsAutoTagging?: value-of<AwsAutoTagging>|null,
- *   googleAutoTagging?: value-of<GoogleAutoTagging>|null,
- *   removeBg?: value-of<RemoveBg>|null,
+ *   aiAutoDescription?: value-of<AIAutoDescription>,
+ *   awsAutoTagging?: value-of<AwsAutoTagging>,
+ *   googleAutoTagging?: value-of<GoogleAutoTagging>,
+ *   removeBg?: value-of<RemoveBg>,
  * }
  */
 final class ExtensionStatus implements BaseModel

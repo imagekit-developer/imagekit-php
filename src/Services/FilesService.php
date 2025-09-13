@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ImageKit\Services;
 
 use ImageKit\Client;
+use ImageKit\Core\Implementation\HasRawResponse;
 use ImageKit\ExtensionItem\AIAutoDescription;
 use ImageKit\ExtensionItem\AutoTaggingExtension;
 use ImageKit\ExtensionItem\RemoveBg;
@@ -52,9 +53,9 @@ final class FilesService implements FilesContract
      */
     public function __construct(private Client $client)
     {
-        $this->bulk = new BulkService($this->client);
-        $this->versions = new VersionsService($this->client);
-        $this->metadata = new MetadataService($this->client);
+        $this->bulk = new BulkService($client);
+        $this->versions = new VersionsService($client);
+        $this->metadata = new MetadataService($client);
     }
 
     /**
@@ -75,6 +76,8 @@ final class FilesService implements FilesContract
      * @param list<string>|null $tags An array of tags associated with the file, such as `["tag1", "tag2"]`. Send `null` to unset all tags associated with the file.
      * @param string $webhookURL The final status of extensions after they have completed execution will be delivered to this endpoint as a POST request. [Learn more](/docs/api-reference/digital-asset-management-dam/managing-assets/update-file-details#webhook-payload-structure) about the webhook payload structure.
      * @param Publish $publish configure the publication status of a file and its versions
+     *
+     * @return FileUpdateResponse<HasRawResponse>
      */
     public function update(
         string $fileID,
@@ -142,6 +145,8 @@ final class FilesService implements FilesContract
      * @param string $destinationPath full path to the folder you want to copy the above file into
      * @param string $sourceFilePath the full path of the file you want to copy
      * @param bool $includeFileVersions Option to copy all versions of a file. By default, only the current version of the file is copied. When set to true, all versions of the file will be copied. Default value - `false`.
+     *
+     * @return FileCopyResponse<HasRawResponse>
      */
     public function copy(
         $destinationPath,
@@ -172,6 +177,8 @@ final class FilesService implements FilesContract
      * @api
      *
      * This API returns an object with details or attributes about the current version of the file.
+     *
+     * @return File<HasRawResponse>
      */
     public function get(
         string $fileID,
@@ -195,6 +202,8 @@ final class FilesService implements FilesContract
      *
      * @param string $destinationPath full path to the folder you want to move the above file into
      * @param string $sourceFilePath the full path of the file you want to move
+     *
+     * @return FileMoveResponse<HasRawResponse>
      */
     public function move(
         $destinationPath,
@@ -239,7 +248,7 @@ final class FilesService implements FilesContract
      *
      * Note: If the old file were accessible at `https://ik.imagekit.io/demo/old-filename.jpg`, a purge cache request would be issued against `https://ik.imagekit.io/demo/old-filename.jpg*` (with a wildcard at the end). It will remove the file and its versions' URLs and any transformations made using query parameters on this file or its versions. However, the cache for file transformations made using path parameters will persist. You can purge them using the purge API. For more details, refer to the purge API documentation.
      *
-     * Default value - `false`
+     * @return FileRenameResponse<HasRawResponse>
      */
     public function rename(
         $filePath,
@@ -356,6 +365,8 @@ final class FilesService implements FilesContract
      *
      * If `false`, then the image is uploaded with the provided filename parameter, and any existing file with the same name is replaced.
      * @param string $webhookURL The final status of extensions after they have completed execution will be delivered to this endpoint as a POST request. [Learn more](/docs/api-reference/digital-asset-management-dam/managing-assets/update-file-details#webhook-payload-structure) about the webhook payload structure.
+     *
+     * @return FileUploadResponse<HasRawResponse>
      */
     public function upload(
         $file,

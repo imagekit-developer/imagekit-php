@@ -20,6 +20,6 @@ final class CacheService implements CacheContract
      */
     public function __construct(private Client $client)
     {
-        $this->invalidation = new InvalidationService($this->client);
+        $this->invalidation = new InvalidationService($client);
     }
 }

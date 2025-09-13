@@ -17,30 +17,34 @@ use ImageKit\Files\Metadata;
  *
  * @phpstan-type file_upload_response = array{
  *   aiTags?: list<AITag>|null,
- *   audioCodec?: string|null,
- *   bitRate?: int|null,
+ *   audioCodec?: string,
+ *   bitRate?: int,
  *   customCoordinates?: string|null,
- *   customMetadata?: array<string, mixed>|null,
- *   description?: string|null,
- *   duration?: int|null,
- *   embeddedMetadata?: array<string, mixed>|null,
- *   extensionStatus?: ExtensionStatus|null,
- *   fileID?: string|null,
- *   filePath?: string|null,
- *   fileType?: string|null,
- *   height?: float|null,
- *   isPrivateFile?: bool|null,
- *   isPublished?: bool|null,
- *   metadata?: Metadata|null,
- *   name?: string|null,
- *   size?: float|null,
+ *   customMetadata?: array<string, mixed>,
+ *   description?: string,
+ *   duration?: int,
+ *   embeddedMetadata?: array<string, mixed>,
+ *   extensionStatus?: ExtensionStatus,
+ *   fileID?: string,
+ *   filePath?: string,
+ *   fileType?: string,
+ *   height?: float,
+ *   isPrivateFile?: bool,
+ *   isPublished?: bool,
+ *   metadata?: Metadata,
+ *   name?: string,
+ *   size?: float,
  *   tags?: list<string>|null,
- *   thumbnailURL?: string|null,
- *   url?: string|null,
- *   versionInfo?: VersionInfo|null,
- *   videoCodec?: string|null,
- *   width?: float|null,
+ *   thumbnailURL?: string,
+ *   url?: string,
+ *   versionInfo?: VersionInfo,
+ *   videoCodec?: string,
+ *   width?: float,
  * }
+ * When used in a response, this type parameter can be used to define a $rawResponse property.
+ * @template TRawResponse of object = object{}
+ *
+ * @mixin TRawResponse
  */
 final class FileUploadResponse implements BaseModel
 {

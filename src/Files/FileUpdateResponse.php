@@ -12,13 +12,17 @@ use ImageKit\Files\FileUpdateResponse\ExtensionStatus;
 /**
  * Object containing details of a file or file version.
  *
- * @phpstan-type file_update_response = array{
- *   extensionStatus?: ExtensionStatus|null
+ * @phpstan-type unnamed_type_with_intersection_parent12 = array{
+ *   extensionStatus?: ExtensionStatus
  * }
+ * When used in a response, this type parameter can be used to define a $rawResponse property.
+ * @template TRawResponse of object = object{}
+ *
+ * @mixin TRawResponse
  */
 final class FileUpdateResponse implements BaseModel
 {
-    /** @use SdkModel<file_update_response> */
+    /** @use SdkModel<unnamed_type_with_intersection_parent12> */
     use SdkModel;
 
     #[Api(optional: true)]

@@ -10,12 +10,12 @@ use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * @phpstan-type solid_color_overlay_transformation = array{
- *   alpha?: float|null,
- *   background?: string|null,
- *   gradient?: bool|string|null,
- *   height?: float|string|null,
- *   radius?: float|string|null,
- *   width?: float|string|null,
+ *   alpha?: float,
+ *   background?: string,
+ *   gradient?: bool|string,
+ *   height?: float|string,
+ *   radius?: float|string,
+ *   width?: float|string,
  * }
  */
 final class SolidColorOverlayTransformation implements BaseModel

@@ -11,12 +11,12 @@ use ImageKit\Files\Folder\Type;
 
 /**
  * @phpstan-type folder_alias = array{
- *   createdAt?: \DateTimeInterface|null,
- *   folderID?: string|null,
- *   folderPath?: string|null,
- *   name?: string|null,
- *   type?: value-of<Type>|null,
- *   updatedAt?: \DateTimeInterface|null,
+ *   createdAt?: \DateTimeInterface,
+ *   folderID?: string,
+ *   folderPath?: string,
+ *   name?: string,
+ *   type?: value-of<Type>,
+ *   updatedAt?: \DateTimeInterface,
  * }
  */
 final class Folder implements BaseModel

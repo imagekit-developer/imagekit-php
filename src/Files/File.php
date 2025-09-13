@@ -16,28 +16,32 @@ use ImageKit\Files\File\VersionInfo;
  *
  * @phpstan-type file_alias = array{
  *   aiTags?: list<AITag>|null,
- *   createdAt?: \DateTimeInterface|null,
+ *   createdAt?: \DateTimeInterface,
  *   customCoordinates?: string|null,
- *   customMetadata?: array<string, mixed>|null,
- *   description?: string|null,
- *   fileID?: string|null,
- *   filePath?: string|null,
- *   fileType?: string|null,
- *   hasAlpha?: bool|null,
- *   height?: float|null,
- *   isPrivateFile?: bool|null,
- *   isPublished?: bool|null,
- *   mime?: string|null,
- *   name?: string|null,
- *   size?: float|null,
+ *   customMetadata?: array<string, mixed>,
+ *   description?: string,
+ *   fileID?: string,
+ *   filePath?: string,
+ *   fileType?: string,
+ *   hasAlpha?: bool,
+ *   height?: float,
+ *   isPrivateFile?: bool,
+ *   isPublished?: bool,
+ *   mime?: string,
+ *   name?: string,
+ *   size?: float,
  *   tags?: list<string>|null,
- *   thumbnail?: string|null,
- *   type?: value-of<Type>|null,
- *   updatedAt?: \DateTimeInterface|null,
- *   url?: string|null,
- *   versionInfo?: VersionInfo|null,
- *   width?: float|null,
+ *   thumbnail?: string,
+ *   type?: value-of<Type>,
+ *   updatedAt?: \DateTimeInterface,
+ *   url?: string,
+ *   versionInfo?: VersionInfo,
+ *   width?: float,
  * }
+ * When used in a response, this type parameter can be used to define a $rawResponse property.
+ * @template TRawResponse of object = object{}
+ *
+ * @mixin TRawResponse
  */
 final class File implements BaseModel
 {

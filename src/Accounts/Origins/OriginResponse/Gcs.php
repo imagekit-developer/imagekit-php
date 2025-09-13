@@ -17,7 +17,7 @@ use ImageKit\Core\Contracts\BaseModel;
  *   name: string,
  *   prefix: string,
  *   type: string,
- *   baseURLForCanonicalHeader?: string|null,
+ *   baseURLForCanonicalHeader?: string,
  * }
  */
 final class Gcs implements BaseModel

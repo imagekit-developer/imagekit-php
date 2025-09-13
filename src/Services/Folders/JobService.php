@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ImageKit\Services\Folders;
 
 use ImageKit\Client;
+use ImageKit\Core\Implementation\HasRawResponse;
 use ImageKit\Folders\Job\JobGetResponse;
 use ImageKit\RequestOptions;
 use ImageKit\ServiceContracts\Folders\JobContract;
@@ -20,6 +21,8 @@ final class JobService implements JobContract
      * @api
      *
      * This API returns the status of a bulk job like copy and move folder operations.
+     *
+     * @return JobGetResponse<HasRawResponse>
      */
     public function get(
         string $jobID,

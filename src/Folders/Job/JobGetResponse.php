@@ -12,11 +12,15 @@ use ImageKit\Folders\Job\JobGetResponse\Type;
 
 /**
  * @phpstan-type job_get_response = array{
- *   jobID?: string|null,
- *   purgeRequestID?: string|null,
- *   status?: value-of<Status>|null,
- *   type?: value-of<Type>|null,
+ *   jobID?: string,
+ *   purgeRequestID?: string,
+ *   status?: value-of<Status>,
+ *   type?: value-of<Type>,
  * }
+ * When used in a response, this type parameter can be used to define a $rawResponse property.
+ * @template TRawResponse of object = object{}
+ *
+ * @mixin TRawResponse
  */
 final class JobGetResponse implements BaseModel
 {

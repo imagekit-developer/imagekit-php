@@ -10,10 +10,10 @@ use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * @phpstan-type options_alias = array{
- *   addShadow?: bool|null,
- *   bgColor?: string|null,
- *   bgImageURL?: string|null,
- *   semitransparency?: bool|null,
+ *   addShadow?: bool,
+ *   bgColor?: string,
+ *   bgImageURL?: string,
+ *   semitransparency?: bool,
  * }
  */
 final class Options implements BaseModel

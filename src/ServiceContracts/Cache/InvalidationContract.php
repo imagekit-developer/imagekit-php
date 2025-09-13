@@ -6,6 +6,7 @@ namespace ImageKit\ServiceContracts\Cache;
 
 use ImageKit\Cache\Invalidation\InvalidationGetResponse;
 use ImageKit\Cache\Invalidation\InvalidationNewResponse;
+use ImageKit\Core\Implementation\HasRawResponse;
 use ImageKit\RequestOptions;
 
 interface InvalidationContract
@@ -14,6 +15,8 @@ interface InvalidationContract
      * @api
      *
      * @param string $url the full URL of the file to be purged
+     *
+     * @return InvalidationNewResponse<HasRawResponse>
      */
     public function create(
         $url,
@@ -22,6 +25,8 @@ interface InvalidationContract
 
     /**
      * @api
+     *
+     * @return InvalidationGetResponse<HasRawResponse>
      */
     public function get(
         string $requestID,

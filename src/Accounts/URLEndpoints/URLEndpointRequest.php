@@ -17,9 +17,9 @@ use ImageKit\Core\Contracts\BaseModel;
  *
  * @phpstan-type url_endpoint_request = array{
  *   description: string,
- *   origins?: list<string>|null,
- *   urlPrefix?: string|null,
- *   urlRewriter?: null|Cloudinary|Imgix|Akamai,
+ *   origins?: list<string>,
+ *   urlPrefix?: string,
+ *   urlRewriter?: Cloudinary|Imgix|Akamai,
  * }
  */
 final class URLEndpointRequest implements BaseModel

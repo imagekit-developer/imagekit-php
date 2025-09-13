@@ -13,9 +13,9 @@ use ImageKit\Core\Contracts\BaseModel;
  *   baseURL: string,
  *   name: string,
  *   type: string,
- *   baseURLForCanonicalHeader?: string|null,
- *   forwardHostHeaderToOrigin?: bool|null,
- *   includeCanonicalHeader?: bool|null,
+ *   baseURLForCanonicalHeader?: string,
+ *   forwardHostHeaderToOrigin?: bool,
+ *   includeCanonicalHeader?: bool,
  * }
  */
 final class WebFolder implements BaseModel

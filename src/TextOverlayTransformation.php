@@ -12,19 +12,19 @@ use ImageKit\TextOverlayTransformation\InnerAlignment;
 
 /**
  * @phpstan-type text_overlay_transformation = array{
- *   alpha?: float|null,
- *   background?: string|null,
- *   flip?: value-of<Flip>|null,
- *   fontColor?: string|null,
- *   fontFamily?: string|null,
- *   fontSize?: float|string|null,
- *   innerAlignment?: value-of<InnerAlignment>|null,
- *   lineHeight?: float|string|null,
- *   padding?: float|string|null,
- *   radius?: float|string|null,
- *   rotation?: float|string|null,
- *   typography?: string|null,
- *   width?: float|string|null,
+ *   alpha?: float,
+ *   background?: string,
+ *   flip?: value-of<Flip>,
+ *   fontColor?: string,
+ *   fontFamily?: string,
+ *   fontSize?: float|string,
+ *   innerAlignment?: value-of<InnerAlignment>,
+ *   lineHeight?: float|string,
+ *   padding?: float|string,
+ *   radius?: float|string,
+ *   rotation?: float|string,
+ *   typography?: string,
+ *   width?: float|string,
  * }
  */
 final class TextOverlayTransformation implements BaseModel

@@ -12,7 +12,7 @@ use ImageKit\Core\Contracts\BaseModel;
  * Information about the original request that triggered the video transformation.
  *
  * @phpstan-type request_alias = array{
- *   url: string, xRequestID: string, userAgent?: string|null
+ *   url: string, xRequestID: string, userAgent?: string
  * }
  */
 final class Request implements BaseModel

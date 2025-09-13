@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ImageKit\Services;
 
 use ImageKit\Client;
+use ImageKit\Core\Implementation\HasRawResponse;
 use ImageKit\Folders\FolderCopyParams;
 use ImageKit\Folders\FolderCopyResponse;
 use ImageKit\Folders\FolderCreateParams;
@@ -33,7 +34,7 @@ final class FoldersService implements FoldersContract
      */
     public function __construct(private Client $client)
     {
-        $this->job = new JobService($this->client);
+        $this->job = new JobService($client);
     }
 
     /**
@@ -47,6 +48,8 @@ final class FoldersService implements FoldersContract
      * @param string $parentFolderPath The folder where the new folder should be created, for root use `/` else the path e.g. `containing/folder/`.
      *
      * Note: If any folder(s) is not present in the parentFolderPath parameter, it will be automatically created. For example, if you pass `/product/images/summer`, then `product`, `images`, and `summer` folders will be created if they don't already exist.
+     *
+     * @return FolderNewResponse<HasRawResponse>
      */
     public function create(
         $folderName,
@@ -74,6 +77,8 @@ final class FoldersService implements FoldersContract
      * This will delete a folder and all its contents permanently. The API returns an empty response.
      *
      * @param string $folderPath Full path to the folder you want to delete. For example `/folder/to/delete/`.
+     *
+     * @return FolderDeleteResponse<HasRawResponse>
      */
     public function delete(
         $folderPath,
@@ -102,6 +107,8 @@ final class FoldersService implements FoldersContract
      * @param string $destinationPath full path to the destination folder where you want to copy the source folder into
      * @param string $sourceFolderPath the full path to the source folder you want to copy
      * @param bool $includeVersions Option to copy all versions of files that are nested inside the selected folder. By default, only the current version of each file will be copied. When set to true, all versions of each file will be copied. Default value - `false`.
+     *
+     * @return FolderCopyResponse<HasRawResponse>
      */
     public function copy(
         $destinationPath,
@@ -135,6 +142,8 @@ final class FoldersService implements FoldersContract
      *
      * @param string $destinationPath full path to the destination folder where you want to move the source folder into
      * @param string $sourceFolderPath the full path to the source folder you want to move
+     *
+     * @return FolderMoveResponse<HasRawResponse>
      */
     public function move(
         $destinationPath,
@@ -175,6 +184,8 @@ final class FoldersService implements FoldersContract
      * Note: A purge cache request will be issued against `https://ik.imagekit.io/old/folder/path*` (with a wildcard at the end). This will remove all nested files, their versions' URLs, and any transformations made using query parameters on these files or their versions. However, the cache for file transformations made using path parameters will persist. You can purge them using the purge API. For more details, refer to the purge API documentation.
      *
      * Default value - `false`
+     *
+     * @return FolderRenameResponse<HasRawResponse>
      */
     public function rename(
         $folderPath,

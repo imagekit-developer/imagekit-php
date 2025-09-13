@@ -10,7 +10,7 @@ use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * @phpstan-type cloudinary_alias = array{
- *   type: string, preserveAssetDeliveryTypes?: bool|null
+ *   type: string, preserveAssetDeliveryTypes?: bool
  * }
  */
 final class Cloudinary implements BaseModel

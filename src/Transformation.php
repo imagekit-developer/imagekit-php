@@ -113,7 +113,7 @@ final class Transformation implements BaseModel
      * Supported inside overlay.
      * See [AI Background Removal](https://imagekit.io/docs/ai-transformations#imagekit-background-removal-e-bgremove).
      */
-    #[Api(enum: STAINLESS_FIXME_AIRemoveBackground::class, optional: true)]
+    #[Api(optional: true)]
     public ?bool $aiRemoveBackground;
 
     /**
@@ -122,24 +122,21 @@ final class Transformation implements BaseModel
      * Supported inside overlay.
      * See [External Background Removal](https://imagekit.io/docs/ai-transformations#background-removal-e-removedotbg).
      */
-    #[Api(
-        enum: STAINLESS_FIXME_AIRemoveBackgroundExternal::class,
-        optional: true
-    )]
+    #[Api(optional: true)]
     public ?bool $aiRemoveBackgroundExternal;
 
     /**
      * Performs AI-based retouching to improve faces or product shots. Not supported inside overlay.
      * See [AI Retouch](https://imagekit.io/docs/ai-transformations#retouch-e-retouch).
      */
-    #[Api(enum: STAINLESS_FIXME_AIRetouch::class, optional: true)]
+    #[Api(optional: true)]
     public ?bool $aiRetouch;
 
     /**
      * Upscales images beyond their original dimensions using AI. Not supported inside overlay.
      * See [AI Upscale](https://imagekit.io/docs/ai-transformations#upscale-e-upscale).
      */
-    #[Api(enum: STAINLESS_FIXME_AIUpscale::class, optional: true)]
+    #[Api(optional: true)]
     public ?bool $aiUpscale;
 
     /**
@@ -147,7 +144,7 @@ final class Transformation implements BaseModel
      * such as changes in color, texture, and other visual elements, while preserving the structure and essence of the original image. Not supported inside overlay.
      * See [AI Generate Variations](https://imagekit.io/docs/ai-transformations#generate-variations-of-an-image-e-genvar).
      */
-    #[Api(enum: STAINLESS_FIXME_AIVariation::class, optional: true)]
+    #[Api(optional: true)]
     public ?bool $aiVariation;
 
     /**
@@ -202,7 +199,7 @@ final class Transformation implements BaseModel
      * Automatically enhances the contrast of an image (contrast stretch).
      * See [Contrast Stretch](https://imagekit.io/docs/effects-and-enhancements#contrast-stretch---e-contrast).
      */
-    #[Api(enum: STAINLESS_FIXME_ContrastStretch::class, optional: true)]
+    #[Api(optional: true)]
     public ?bool $contrastStretch;
 
     /**
@@ -293,7 +290,7 @@ final class Transformation implements BaseModel
     /**
      * Enables a grayscale effect for images. See [Grayscale](https://imagekit.io/docs/effects-and-enhancements#grayscale---e-grayscale).
      */
-    #[Api(enum: STAINLESS_FIXME_Grayscale::class, optional: true)]
+    #[Api(optional: true)]
     public ?bool $grayscale;
 
     /**

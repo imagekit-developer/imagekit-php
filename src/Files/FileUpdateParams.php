@@ -12,6 +12,7 @@ use ImageKit\ExtensionItem;
 use ImageKit\ExtensionItem\AIAutoDescription;
 use ImageKit\ExtensionItem\AutoTaggingExtension;
 use ImageKit\ExtensionItem\RemoveBg;
+use ImageKit\Files\FileUpdateParams\Publish;
 use ImageKit\Files\FileUpdateParams\RemoveAITags;
 
 /**
@@ -38,7 +39,7 @@ use ImageKit\Files\FileUpdateParams\RemoveAITags;
  *   removeAITags?: string|list<string>,
  *   tags?: list<string>|null,
  *   webhookURL?: string,
- *   body: mixed,
+ *   publish?: Publish,
  * }
  */
 final class FileUpdateParams implements BaseModel
@@ -101,23 +102,12 @@ final class FileUpdateParams implements BaseModel
     #[Api('webhookUrl', optional: true)]
     public ?string $webhookURL;
 
-    #[Api]
-    public mixed $body;
-
     /**
-     * `new FileUpdateParams()` is missing required properties by the API.
-     *
-     * To enforce required parameters use
-     * ```
-     * FileUpdateParams::with(body: ...)
-     * ```
-     *
-     * Otherwise ensure the following setters are called
-     *
-     * ```
-     * (new FileUpdateParams)->withBody(...)
-     * ```
+     * Configure the publication status of a file and its versions.
      */
+    #[Api(optional: true)]
+    public ?Publish $publish;
+
     public function __construct()
     {
         $this->initialize();
@@ -134,7 +124,6 @@ final class FileUpdateParams implements BaseModel
      * @param list<string>|null $tags
      */
     public static function with(
-        mixed $body,
         ?string $customCoordinates = null,
         ?array $customMetadata = null,
         ?string $description = null,
@@ -142,10 +131,9 @@ final class FileUpdateParams implements BaseModel
         string|array|null $removeAITags = null,
         ?array $tags = null,
         ?string $webhookURL = null,
+        ?Publish $publish = null,
     ): self {
         $obj = new self;
-
-        $obj->body = $body;
 
         null !== $customCoordinates && $obj->customCoordinates = $customCoordinates;
         null !== $customMetadata && $obj->customMetadata = $customMetadata;
@@ -154,6 +142,7 @@ final class FileUpdateParams implements BaseModel
         null !== $removeAITags && $obj->removeAITags = $removeAITags;
         null !== $tags && $obj->tags = $tags;
         null !== $webhookURL && $obj->webhookURL = $webhookURL;
+        null !== $publish && $obj->publish = $publish;
 
         return $obj;
     }
@@ -247,10 +236,13 @@ final class FileUpdateParams implements BaseModel
         return $obj;
     }
 
-    public function withBody(mixed $body): self
+    /**
+     * Configure the publication status of a file and its versions.
+     */
+    public function withPublish(Publish $publish): self
     {
         $obj = clone $this;
-        $obj->body = $body;
+        $obj->publish = $publish;
 
         return $obj;
     }

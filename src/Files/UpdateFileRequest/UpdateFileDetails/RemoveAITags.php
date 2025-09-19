@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files\UpdateFileDetailsRequest\UpdateFileDetails;
+namespace ImageKit\Files\UpdateFileRequest\UpdateFileDetails;
 
 use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;

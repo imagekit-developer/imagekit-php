@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files\UpdateFileDetailsRequest;
+namespace ImageKit\Files\UpdateFileRequest;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
@@ -11,7 +11,7 @@ use ImageKit\ExtensionItem;
 use ImageKit\ExtensionItem\AIAutoDescription;
 use ImageKit\ExtensionItem\AutoTaggingExtension;
 use ImageKit\ExtensionItem\RemoveBg;
-use ImageKit\Files\UpdateFileDetailsRequest\UpdateFileDetails\RemoveAITags;
+use ImageKit\Files\UpdateFileRequest\UpdateFileDetails\RemoveAITags;
 
 /**
  * @phpstan-type update_file_details = array{

@@ -18,7 +18,6 @@ use ImageKit\Files\FileMoveResponse;
 use ImageKit\Files\FileRenameParams;
 use ImageKit\Files\FileRenameResponse;
 use ImageKit\Files\FileUpdateParams;
-use ImageKit\Files\FileUpdateParams\Publish;
 use ImageKit\Files\FileUpdateResponse;
 use ImageKit\Files\FileUploadParams;
 use ImageKit\Files\FileUploadParams\ResponseField;
@@ -76,7 +75,7 @@ final class FilesService implements FilesContract
      * Note: The remove operation for `AITags` executes before any of the `extensions` are processed.
      * @param list<string>|null $tags An array of tags associated with the file, such as `["tag1", "tag2"]`. Send `null` to unset all tags associated with the file.
      * @param string $webhookURL The final status of extensions after they have completed execution will be delivered to this endpoint as a POST request. [Learn more](/docs/api-reference/digital-asset-management-dam/managing-assets/update-file-details#webhook-payload-structure) about the webhook payload structure.
-     * @param Publish $publish configure the publication status of a file and its versions
+     * @param mixed $body
      *
      * @return FileUpdateResponse<HasRawResponse>
      *
@@ -91,7 +90,7 @@ final class FilesService implements FilesContract
         $removeAITags = omit,
         $tags = omit,
         $webhookURL = omit,
-        $publish = omit,
+        $body,
         ?RequestOptions $requestOptions = null,
     ): FileUpdateResponse {
         $params = [
@@ -102,7 +101,7 @@ final class FilesService implements FilesContract
             'removeAITags' => $removeAITags,
             'tags' => $tags,
             'webhookURL' => $webhookURL,
-            'publish' => $publish,
+            'body' => $body,
         ];
 
         return $this->updateRaw($fileID, $params, $requestOptions);

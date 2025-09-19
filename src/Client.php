@@ -18,7 +18,7 @@ use ImageKit\Services\WebhooksService;
 
 class Client extends BaseClient
 {
-    public string $privateAPIKey;
+    public string $privateKey;
 
     public string $password;
 
@@ -65,12 +65,12 @@ class Client extends BaseClient
     public WebhooksService $webhooks;
 
     public function __construct(
-        ?string $privateAPIKey = null,
+        ?string $privateKey = null,
         ?string $password = null,
         ?string $baseUrl = null,
     ) {
-        $this->privateAPIKey = (string) (
-            $privateAPIKey ?? getenv('IMAGEKIT_PRIVATE_API_KEY')
+        $this->privateKey = (string) (
+            $privateKey ?? getenv('IMAGEKIT_PRIVATE_API_KEY')
         );
         $this->password = (string) (
             $password ?? getenv('OPTIONAL_IMAGEKIT_IGNORES_THIS') ?: 'do_not_set'
@@ -110,12 +110,12 @@ class Client extends BaseClient
     /** @return array<string, string> */
     protected function authHeaders(): array
     {
-        if (!$this->privateAPIKey && !$this->password) {
+        if (!$this->privateKey && !$this->password) {
             return [];
         }
 
         $base64_credentials = base64_encode(
-            "{$this->privateAPIKey}:{$this->password}"
+            "{$this->privateKey}:{$this->password}"
         );
 
         return ['Authorization' => "Basic {$base64_credentials}"];

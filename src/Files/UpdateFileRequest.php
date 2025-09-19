@@ -7,10 +7,12 @@ namespace ImageKit\Files;
 use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
-use ImageKit\Files\UpdateFileDetailsRequest\ChangePublicationStatus;
-use ImageKit\Files\UpdateFileDetailsRequest\UpdateFileDetails;
+use ImageKit\Files\UpdateFileRequest\UpdateFileDetails;
 
-final class UpdateFileDetailsRequest implements ConverterSource
+/**
+ * Schema for update file update request.
+ */
+final class UpdateFileRequest implements ConverterSource
 {
     use SdkUnion;
 
@@ -20,6 +22,6 @@ final class UpdateFileDetailsRequest implements ConverterSource
      */
     public static function variants(): array
     {
-        return [UpdateFileDetails::class, ChangePublicationStatus::class];
+        return [UpdateFileDetails::class, 'mixed'];
     }
 }

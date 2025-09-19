@@ -37,7 +37,19 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->files->update('fileId');
+        $result = $this->client->files->update('fileId', body: (object) []);
+
+        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+    }
+
+    #[Test]
+    public function testUpdateWithOptionalParams(): void
+    {
+        if (UnsupportedMockTests::$skip) {
+            $this->markTestSkipped('Prism tests are disabled');
+        }
+
+        $result = $this->client->files->update('fileId', body: (object) []);
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }

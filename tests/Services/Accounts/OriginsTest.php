@@ -22,9 +22,9 @@ final class OriginsTest extends TestCase
 
         $testUrl = getenv('TEST_API_BASE_URL') ?: 'http://127.0.0.1:4010';
         $client = new Client(
-            privateAPIKey: 'My Private API Key',
+            privateKey: 'My Private Key',
             password: 'My Password',
-            baseUrl: $testUrl,
+            baseUrl: $testUrl
         );
 
         $this->client = $client;

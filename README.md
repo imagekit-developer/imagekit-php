@@ -48,7 +48,7 @@ Parameters with a default value must be set by name.
 use ImageKit\Client;
 
 $client = new Client(
-  privateKey: getenv("IMAGEKIT_PRIVATE_API_KEY") ?: "My Private Key",
+  privateKey: getenv("IMAGEKIT_PRIVATE_KEY") ?: "My Private Key",
   password: getenv("OPTIONAL_IMAGEKIT_IGNORES_THIS") ?: "do_not_set",
 );
 

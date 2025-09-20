@@ -70,7 +70,7 @@ class Client extends BaseClient
         ?string $baseUrl = null,
     ) {
         $this->privateKey = (string) (
-            $privateKey ?? getenv('IMAGEKIT_PRIVATE_API_KEY')
+            $privateKey ?? getenv('IMAGEKIT_PRIVATE_KEY')
         );
         $this->password = (string) (
             $password ?? getenv('OPTIONAL_IMAGEKIT_IGNORES_THIS') ?: 'do_not_set'

@@ -9,8 +9,6 @@
 
 The Image Kit PHP library provides convenient access to the Image Kit REST API from any PHP 8.1.0+ application.
 
-It is generated with [Stainless](https://www.stainless.com/).
-
 ## Documentation
 
 The REST API documentation can be found on [imagekit.io](https://imagekit.io/docs/api-reference).

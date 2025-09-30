@@ -16,7 +16,6 @@ use ImageKit\Files\FileRenameResponse;
 use ImageKit\Files\FileUpdateParams\Publish;
 use ImageKit\Files\FileUpdateResponse;
 use ImageKit\Files\FileUploadParams\ResponseField;
-use ImageKit\Files\FileUploadParams\SelectedFieldsSchema;
 use ImageKit\Files\FileUploadParams\Transformation;
 use ImageKit\Files\FileUploadResponse;
 use ImageKit\RequestOptions;
@@ -277,12 +276,6 @@ interface FilesContract
      * @param bool $overwriteTags if the request does not have `tags`, and a file already exists at the exact location, existing tags will be removed
      * @param string $publicKey Your ImageKit.io public key. This field is only required for authentication when uploading a file from the client side.
      * @param list<ResponseField|value-of<ResponseField>> $responseFields array of response field keys to include in the API response body
-     * @param array<string,
-     * SelectedFieldsSchema,> $selectedFieldsSchema This field is included in the response only if the Path policy feature is available in the plan.
-     * It contains schema definitions for the custom metadata fields selected for the specified file path.
-     * Field selection can only be done when the Path policy feature is enabled.
-     *
-     * Keys are the names of the custom metadata fields; the value object has details about the custom metadata schema.
      * @param string $signature HMAC-SHA1 digest of the token+expire using your ImageKit.io private API key as a key. Learn how to create a signature on the page below. This should be in lowercase.
      *
      * Signature must be calculated on the server-side. This field is only required for authentication when uploading a file from the client side.
@@ -328,7 +321,6 @@ interface FilesContract
         $overwriteTags = omit,
         $publicKey = omit,
         $responseFields = omit,
-        $selectedFieldsSchema = omit,
         $signature = omit,
         $tags = omit,
         $transformation = omit,

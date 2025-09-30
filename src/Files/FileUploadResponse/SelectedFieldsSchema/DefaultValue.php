@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files\FileUploadParams\SelectedFieldsSchema;
+namespace ImageKit\Files\FileUploadResponse\SelectedFieldsSchema;
 
 use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 use ImageKit\Core\Conversion\ListOf;
-use ImageKit\Files\FileUploadParams\SelectedFieldsSchema\DefaultValue\Mixed;
+use ImageKit\Files\FileUploadResponse\SelectedFieldsSchema\DefaultValue\Mixed;
 
 /**
  * The default value for this custom metadata field. The value should match the `type` of custom metadata field.

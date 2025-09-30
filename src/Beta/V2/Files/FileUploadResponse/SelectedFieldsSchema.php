@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Beta\V2\Files\FileUploadParams;
+namespace ImageKit\Beta\V2\Files\FileUploadResponse;
 
-use ImageKit\Beta\V2\Files\FileUploadParams\SelectedFieldsSchema\DefaultValue;
-use ImageKit\Beta\V2\Files\FileUploadParams\SelectedFieldsSchema\SelectOption;
-use ImageKit\Beta\V2\Files\FileUploadParams\SelectedFieldsSchema\Type;
+use ImageKit\Beta\V2\Files\FileUploadResponse\SelectedFieldsSchema\DefaultValue;
+use ImageKit\Beta\V2\Files\FileUploadResponse\SelectedFieldsSchema\SelectOption;
+use ImageKit\Beta\V2\Files\FileUploadResponse\SelectedFieldsSchema\Type;
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;

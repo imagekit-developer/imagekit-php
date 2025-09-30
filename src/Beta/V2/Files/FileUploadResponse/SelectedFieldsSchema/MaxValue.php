@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files\FileUploadParams\SelectedFieldsSchema;
+namespace ImageKit\Beta\V2\Files\FileUploadResponse\SelectedFieldsSchema;
 
 use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;

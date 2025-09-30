@@ -9,6 +9,7 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Files\FileUploadResponse\AITag;
 use ImageKit\Files\FileUploadResponse\ExtensionStatus;
+use ImageKit\Files\FileUploadResponse\SelectedFieldsSchema;
 use ImageKit\Files\FileUploadResponse\VersionInfo;
 
 /**
@@ -32,6 +33,7 @@ use ImageKit\Files\FileUploadResponse\VersionInfo;
  *   isPublished?: bool,
  *   metadata?: Metadata,
  *   name?: string,
+ *   selectedFieldsSchema?: array<string, SelectedFieldsSchema>,
  *   size?: float,
  *   tags?: list<string>|null,
  *   thumbnailURL?: string,
@@ -165,6 +167,18 @@ final class FileUploadResponse implements BaseModel
     public ?string $name;
 
     /**
+     * This field is included in the response only if the Path policy feature is available in the plan.
+     * It contains schema definitions for the custom metadata fields selected for the specified file path.
+     * Field selection can only be done when the Path policy feature is enabled.
+     *
+     * Keys are the names of the custom metadata fields; the value object has details about the custom metadata schema.
+     *
+     * @var array<string, SelectedFieldsSchema>|null $selectedFieldsSchema
+     */
+    #[Api(map: SelectedFieldsSchema::class, optional: true)]
+    public ?array $selectedFieldsSchema;
+
+    /**
      * Size of the image file in Bytes.
      */
     #[Api(optional: true)]
@@ -221,6 +235,7 @@ final class FileUploadResponse implements BaseModel
      * @param list<AITag>|null $aiTags
      * @param array<string, mixed> $customMetadata
      * @param array<string, mixed> $embeddedMetadata
+     * @param array<string, SelectedFieldsSchema> $selectedFieldsSchema
      * @param list<string>|null $tags
      */
     public static function with(
@@ -241,6 +256,7 @@ final class FileUploadResponse implements BaseModel
         ?bool $isPublished = null,
         ?Metadata $metadata = null,
         ?string $name = null,
+        ?array $selectedFieldsSchema = null,
         ?float $size = null,
         ?array $tags = null,
         ?string $thumbnailURL = null,
@@ -268,6 +284,7 @@ final class FileUploadResponse implements BaseModel
         null !== $isPublished && $obj->isPublished = $isPublished;
         null !== $metadata && $obj->metadata = $metadata;
         null !== $name && $obj->name = $name;
+        null !== $selectedFieldsSchema && $obj->selectedFieldsSchema = $selectedFieldsSchema;
         null !== $size && $obj->size = $size;
         null !== $tags && $obj->tags = $tags;
         null !== $thumbnailURL && $obj->thumbnailURL = $thumbnailURL;
@@ -474,6 +491,23 @@ final class FileUploadResponse implements BaseModel
     {
         $obj = clone $this;
         $obj->name = $name;
+
+        return $obj;
+    }
+
+    /**
+     * This field is included in the response only if the Path policy feature is available in the plan.
+     * It contains schema definitions for the custom metadata fields selected for the specified file path.
+     * Field selection can only be done when the Path policy feature is enabled.
+     *
+     * Keys are the names of the custom metadata fields; the value object has details about the custom metadata schema.
+     *
+     * @param array<string, SelectedFieldsSchema> $selectedFieldsSchema
+     */
+    public function withSelectedFieldsSchema(array $selectedFieldsSchema): self
+    {
+        $obj = clone $this;
+        $obj->selectedFieldsSchema = $selectedFieldsSchema;
 
         return $obj;
     }

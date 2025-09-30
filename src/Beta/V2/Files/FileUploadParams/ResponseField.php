@@ -19,4 +19,6 @@ enum ResponseField: string
     case CUSTOM_METADATA = 'customMetadata';
 
     case METADATA = 'metadata';
+
+    case SELECTED_FIELDS_SCHEMA = 'selectedFieldsSchema';
 }

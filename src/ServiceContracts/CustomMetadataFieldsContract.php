@@ -83,8 +83,7 @@ interface CustomMetadataFieldsContract
     /**
      * @api
      *
-     * @param string $folderPath The folder path (e.g., `/path/to/folder`) for which to retrieve applicable custom metadata fields.
-     * Useful for determining path-specific field selections when the [Path policy](https://imagekit.io/docs/dam/path-policy) feature is in use.
+     * @param string $folderPath The folder path (e.g., `/path/to/folder`) for which to retrieve applicable custom metadata fields. Useful for determining path-specific field selections when the [Path policy](https://imagekit.io/docs/dam/path-policy) feature is in use.
      * @param bool $includeDeleted set it to `true` to include deleted field objects in the API response
      *
      * @return list<CustomMetadataField>

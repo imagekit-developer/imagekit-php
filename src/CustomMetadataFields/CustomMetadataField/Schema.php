@@ -39,7 +39,7 @@ final class Schema implements BaseModel
     public string $type;
 
     /**
-     * The default value for this custom metadata field. Date type of default value depends on the field type.
+     * The default value for this custom metadata field. Data type of default value depends on the field type.
      *
      * @var string|float|bool|list<string|float|bool>|null $defaultValue
      */
@@ -151,7 +151,7 @@ final class Schema implements BaseModel
     }
 
     /**
-     * The default value for this custom metadata field. Date type of default value depends on the field type.
+     * The default value for this custom metadata field. Data type of default value depends on the field type.
      *
      * @param string|float|bool|list<string|float|bool> $defaultValue
      */

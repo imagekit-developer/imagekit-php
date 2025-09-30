@@ -136,6 +136,10 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
      *
      * This API returns the array of created custom metadata field objects. By default the API returns only non deleted field objects, but you can include deleted fields in the API response.
      *
+     * You can also filter results by a specific folder path to retrieve custom metadata fields applicable at that location. This path-specific filtering is useful when using the **Path policy** feature to determine which custom metadata fields are selected for a given path.
+     *
+     * @param string $folderPath The folder path (e.g., `/path/to/folder`) for which to retrieve applicable custom metadata fields.
+     * Useful for determining path-specific field selections when the [Path policy](https://imagekit.io/docs/dam/path-policy) feature is in use.
      * @param bool $includeDeleted set it to `true` to include deleted field objects in the API response
      *
      * @return list<CustomMetadataField>
@@ -143,10 +147,13 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
      * @throws APIException
      */
     public function list(
+        $folderPath = omit,
         $includeDeleted = omit,
-        ?RequestOptions $requestOptions = null
+        ?RequestOptions $requestOptions = null,
     ): array {
-        $params = ['includeDeleted' => $includeDeleted];
+        $params = [
+            'folderPath' => $folderPath, 'includeDeleted' => $includeDeleted,
+        ];
 
         return $this->listRaw($params, $requestOptions);
     }

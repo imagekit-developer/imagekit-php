@@ -38,8 +38,7 @@ final class CustomMetadataFieldListParams implements BaseModel
     use SdkParams;
 
     /**
-     * The folder path (e.g., `/path/to/folder`) for which to retrieve applicable custom metadata fields.
-     * Useful for determining path-specific field selections when the [Path policy](https://imagekit.io/docs/dam/path-policy) feature is in use.
+     * The folder path (e.g., `/path/to/folder`) for which to retrieve applicable custom metadata fields. Useful for determining path-specific field selections when the [Path policy](https://imagekit.io/docs/dam/path-policy) feature is in use.
      */
     #[Api(optional: true)]
     public ?string $folderPath;
@@ -73,8 +72,7 @@ final class CustomMetadataFieldListParams implements BaseModel
     }
 
     /**
-     * The folder path (e.g., `/path/to/folder`) for which to retrieve applicable custom metadata fields.
-     * Useful for determining path-specific field selections when the [Path policy](https://imagekit.io/docs/dam/path-policy) feature is in use.
+     * The folder path (e.g., `/path/to/folder`) for which to retrieve applicable custom metadata fields. Useful for determining path-specific field selections when the [Path policy](https://imagekit.io/docs/dam/path-policy) feature is in use.
      */
     public function withFolderPath(string $folderPath): self
     {

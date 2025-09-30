@@ -11,7 +11,7 @@ use ImageKit\Core\Conversion\ListOf;
 use ImageKit\CustomMetadataFields\CustomMetadataField\Schema\DefaultValue\Mixed;
 
 /**
- * The default value for this custom metadata field. Date type of default value depends on the field type.
+ * The default value for this custom metadata field. Data type of default value depends on the field type.
  */
 final class DefaultValue implements ConverterSource
 {

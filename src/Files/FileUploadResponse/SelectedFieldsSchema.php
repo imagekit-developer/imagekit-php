@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files\FileUploadParams;
+namespace ImageKit\Files\FileUploadResponse;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Files\FileUploadParams\SelectedFieldsSchema\DefaultValue;
-use ImageKit\Files\FileUploadParams\SelectedFieldsSchema\SelectOption;
-use ImageKit\Files\FileUploadParams\SelectedFieldsSchema\Type;
+use ImageKit\Files\FileUploadResponse\SelectedFieldsSchema\DefaultValue;
+use ImageKit\Files\FileUploadResponse\SelectedFieldsSchema\SelectOption;
+use ImageKit\Files\FileUploadResponse\SelectedFieldsSchema\Type;
 
 /**
  * @phpstan-type selected_fields_schema = array{

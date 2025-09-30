@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Beta\V2\Files\FileUploadParams\SelectedFieldsSchema\DefaultValue;
+namespace ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema;
 
 use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
-final class Mixed implements ConverterSource
+final class SelectOption implements ConverterSource
 {
     use SdkUnion;
 

@@ -13,7 +13,6 @@ use ImageKit\ExtensionItem\AIAutoDescription;
 use ImageKit\ExtensionItem\AutoTaggingExtension;
 use ImageKit\ExtensionItem\RemoveBg;
 use ImageKit\Files\FileUploadParams\ResponseField;
-use ImageKit\Files\FileUploadParams\SelectedFieldsSchema;
 use ImageKit\Files\FileUploadParams\Transformation;
 
 /**
@@ -64,7 +63,6 @@ use ImageKit\Files\FileUploadParams\Transformation;
  *   overwriteTags?: bool,
  *   publicKey?: string,
  *   responseFields?: list<ResponseField|value-of<ResponseField>>,
- *   selectedFieldsSchema?: array<string, SelectedFieldsSchema>,
  *   signature?: string,
  *   tags?: list<string>,
  *   transformation?: Transformation,
@@ -225,18 +223,6 @@ final class FileUploadParams implements BaseModel
     public ?array $responseFields;
 
     /**
-     * This field is included in the response only if the Path policy feature is available in the plan.
-     * It contains schema definitions for the custom metadata fields selected for the specified file path.
-     * Field selection can only be done when the Path policy feature is enabled.
-     *
-     * Keys are the names of the custom metadata fields; the value object has details about the custom metadata schema.
-     *
-     * @var array<string, SelectedFieldsSchema>|null $selectedFieldsSchema
-     */
-    #[Api(map: SelectedFieldsSchema::class, optional: true)]
-    public ?array $selectedFieldsSchema;
-
-    /**
      * HMAC-SHA1 digest of the token+expire using your ImageKit.io private API key as a key. Learn how to create a signature on the page below. This should be in lowercase.
      *
      * Signature must be calculated on the server-side. This field is only required for authentication when uploading a file from the client side.
@@ -311,7 +297,6 @@ final class FileUploadParams implements BaseModel
      * @param array<string, mixed> $customMetadata
      * @param list<RemoveBg|AutoTaggingExtension|AIAutoDescription> $extensions
      * @param list<ResponseField|value-of<ResponseField>> $responseFields
-     * @param array<string, SelectedFieldsSchema> $selectedFieldsSchema
      * @param list<string> $tags
      */
     public static function with(
@@ -333,7 +318,6 @@ final class FileUploadParams implements BaseModel
         ?bool $overwriteTags = null,
         ?string $publicKey = null,
         ?array $responseFields = null,
-        ?array $selectedFieldsSchema = null,
         ?string $signature = null,
         ?array $tags = null,
         ?Transformation $transformation = null,
@@ -361,7 +345,6 @@ final class FileUploadParams implements BaseModel
         null !== $overwriteTags && $obj->overwriteTags = $overwriteTags;
         null !== $publicKey && $obj->publicKey = $publicKey;
         null !== $responseFields && $obj->responseFields = array_map(fn ($v) => $v instanceof ResponseField ? $v->value : $v, $responseFields);
-        null !== $selectedFieldsSchema && $obj->selectedFieldsSchema = $selectedFieldsSchema;
         null !== $signature && $obj->signature = $signature;
         null !== $tags && $obj->tags = $tags;
         null !== $transformation && $obj->transformation = $transformation;
@@ -604,23 +587,6 @@ final class FileUploadParams implements BaseModel
     {
         $obj = clone $this;
         $obj->responseFields = array_map(fn ($v) => $v instanceof ResponseField ? $v->value : $v, $responseFields);
-
-        return $obj;
-    }
-
-    /**
-     * This field is included in the response only if the Path policy feature is available in the plan.
-     * It contains schema definitions for the custom metadata fields selected for the specified file path.
-     * Field selection can only be done when the Path policy feature is enabled.
-     *
-     * Keys are the names of the custom metadata fields; the value object has details about the custom metadata schema.
-     *
-     * @param array<string, SelectedFieldsSchema> $selectedFieldsSchema
-     */
-    public function withSelectedFieldsSchema(array $selectedFieldsSchema): self
-    {
-        $obj = clone $this;
-        $obj->selectedFieldsSchema = $selectedFieldsSchema;
 
         return $obj;
     }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ImageKit\ServiceContracts\Beta\V2;
 
 use ImageKit\Beta\V2\Files\FileUploadParams\ResponseField;
+use ImageKit\Beta\V2\Files\FileUploadParams\SelectedFieldsSchema;
 use ImageKit\Beta\V2\Files\FileUploadParams\Transformation;
 use ImageKit\Beta\V2\Files\FileUploadResponse;
 use ImageKit\Core\Exceptions\APIException;
@@ -55,6 +56,12 @@ interface FilesContract
      * @param bool $overwriteFile if `false` and `useUniqueFileName` is also `false`, and a file already exists at the exact location, upload API will return an error immediately
      * @param bool $overwriteTags if the request does not have `tags`, and a file already exists at the exact location, existing tags will be removed
      * @param list<ResponseField|value-of<ResponseField>> $responseFields array of response field keys to include in the API response body
+     * @param array<string,
+     * SelectedFieldsSchema,> $selectedFieldsSchema This field is included in the response only if the Path policy feature is available in the plan.
+     * It contains schema definitions for the custom metadata fields selected for the specified file path.
+     * Field selection can only be done when the Path policy feature is enabled.
+     *
+     * Keys are the names of the custom metadata fields; the value object has details about the custom metadata schema.
      * @param list<string> $tags Set the tags while uploading the file.
      * Provide an array of tag strings (e.g. `["tag1", "tag2", "tag3"]`). The combined length of all tag characters must not exceed 500, and the `%` character is not allowed.
      * If this field is not specified and the file is overwritten, the existing tags will be removed.
@@ -95,6 +102,7 @@ interface FilesContract
         $overwriteFile = omit,
         $overwriteTags = omit,
         $responseFields = omit,
+        $selectedFieldsSchema = omit,
         $tags = omit,
         $transformation = omit,
         $useUniqueFileName = omit,

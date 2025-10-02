@@ -7,7 +7,6 @@ namespace ImageKit\Files\Metadata;
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Files\Metadata\Exif\Exif as Exif1;
 use ImageKit\Files\Metadata\Exif\Gps;
 use ImageKit\Files\Metadata\Exif\Image;
 use ImageKit\Files\Metadata\Exif\Interoperability;
@@ -15,7 +14,7 @@ use ImageKit\Files\Metadata\Exif\Thumbnail;
 
 /**
  * @phpstan-type exif_alias = array{
- *   exif?: Exif1,
+ *   exif?: ImageKit\Files\Metadata\Exif\Exif,
  *   gps?: Gps,
  *   image?: Image,
  *   interoperability?: Interoperability,
@@ -32,7 +31,7 @@ final class Exif implements BaseModel
      * Object containing Exif details.
      */
     #[Api(optional: true)]
-    public ?Exif1 $exif;
+    public ?ImageKit\Files\Metadata\Exif\Exif $exif;
 
     /**
      * Object containing GPS information.
@@ -75,7 +74,7 @@ final class Exif implements BaseModel
      * @param array<string, mixed> $makernote
      */
     public static function with(
-        ?Exif1 $exif = null,
+        ?ImageKit\Files\Metadata\Exif\Exif $exif = null,
         ?Gps $gps = null,
         ?Image $image = null,
         ?Interoperability $interoperability = null,
@@ -97,7 +96,7 @@ final class Exif implements BaseModel
     /**
      * Object containing Exif details.
      */
-    public function withExif(Exif1 $exif): self
+    public function withExif(ImageKit\Files\Metadata\Exif\Exif $exif): self
     {
         $obj = clone $this;
         $obj->exif = $exif;

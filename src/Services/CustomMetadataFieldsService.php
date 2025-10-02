@@ -14,7 +14,6 @@ use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema;
 use ImageKit\CustomMetadataFields\CustomMetadataFieldDeleteResponse;
 use ImageKit\CustomMetadataFields\CustomMetadataFieldListParams;
 use ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams;
-use ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema as Schema1;
 use ImageKit\RequestOptions;
 use ImageKit\ServiceContracts\CustomMetadataFieldsContract;
 
@@ -85,7 +84,7 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
      * This API updates the label or schema of an existing custom metadata field.
      *
      * @param string $label Human readable name of the custom metadata field. This should be unique across all non deleted custom metadata fields. This name is displayed as form field label to the users while setting field value on an asset in the media library UI. This parameter is required if `schema` is not provided.
-     * @param Schema1 $schema An object that describes the rules for the custom metadata key. This parameter is required if `label` is not provided. Note: `type` cannot be updated and will be ignored if sent with the `schema`. The schema will be validated as per the existing `type`.
+     * @param ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema $schema An object that describes the rules for the custom metadata key. This parameter is required if `label` is not provided. Note: `type` cannot be updated and will be ignored if sent with the `schema`. The schema will be validated as per the existing `type`.
      *
      * @return CustomMetadataField<HasRawResponse>
      *

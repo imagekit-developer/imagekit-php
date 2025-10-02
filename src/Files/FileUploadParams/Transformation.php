@@ -11,7 +11,6 @@ use ImageKit\Files\FileUploadParams\Transformation\Post;
 use ImageKit\Files\FileUploadParams\Transformation\Post\Abs;
 use ImageKit\Files\FileUploadParams\Transformation\Post\GifToVideo;
 use ImageKit\Files\FileUploadParams\Transformation\Post\Thumbnail;
-use ImageKit\Files\FileUploadParams\Transformation\Post\Transformation as Transformation1;
 
 /**
  * Configure pre-processing (`pre`) and post-processing (`post`) transformations.
@@ -25,7 +24,8 @@ use ImageKit\Files\FileUploadParams\Transformation\Post\Transformation as Transf
  * You can mix and match any combination of post-processing types.
  *
  * @phpstan-type transformation_alias = array{
- *   post?: list<Transformation1|GifToVideo|Thumbnail|Abs>, pre?: string
+ *   post?: list<ImageKit\Files\FileUploadParams\Transformation\Post\Transformation|GifToVideo|Thumbnail|Abs>,
+ *   pre?: string,
  * }
  */
 final class Transformation implements BaseModel
@@ -38,7 +38,7 @@ final class Transformation implements BaseModel
      * Each item must match one of the following types:
      * `transformation`, `gif-to-video`, `thumbnail`, `abs`.
      *
-     * @var list<Transformation1|GifToVideo|Thumbnail|Abs>|null $post
+     * @var list<ImageKit\Files\FileUploadParams\Transformation\Post\Transformation|GifToVideo|Thumbnail|Abs>|null $post
      */
     #[Api(list: Post::class, optional: true)]
     public ?array $post;
@@ -59,7 +59,7 @@ final class Transformation implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<Transformation1|GifToVideo|Thumbnail|Abs> $post
+     * @param list<ImageKit\Files\FileUploadParams\Transformation\Post\Transformation|GifToVideo|Thumbnail|Abs> $post
      */
     public static function with(?array $post = null, ?string $pre = null): self
     {
@@ -76,7 +76,7 @@ final class Transformation implements BaseModel
      * Each item must match one of the following types:
      * `transformation`, `gif-to-video`, `thumbnail`, `abs`.
      *
-     * @param list<Transformation1|GifToVideo|Thumbnail|Abs> $post
+     * @param list<ImageKit\Files\FileUploadParams\Transformation\Post\Transformation|GifToVideo|Thumbnail|Abs> $post
      */
     public function withPost(array $post): self
     {

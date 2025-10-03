@@ -7,7 +7,6 @@ namespace ImageKit\Transformation;
 use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
-use ImageKit\Core\Conversion\EnumOf;
 
 /**
  * Adds a shadow beneath solid objects in an image with a transparent background.
@@ -25,6 +24,6 @@ final class Shadow implements ConverterSource
      */
     public static function variants(): array
     {
-        return [new EnumOf([true]), 'string'];
+        return ['bool', 'string'];
     }
 }

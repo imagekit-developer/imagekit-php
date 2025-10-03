@@ -341,7 +341,7 @@ final class Transformation implements BaseModel
      * See [Overlay using layers](https://imagekit.io/docs/transformations#overlay-using-layers).
      */
     #[Api(union: Overlay::class, optional: true)]
-    public TextOverlay|ImageOverlay|VideoOverlay|SubtitleOverlay|SolidColorOverlay|null $overlay;
+    public ?Overlay $overlay;
 
     /**
      * Extracts a specific page or frame from multi-page or layered files (PDF, PSD, AI).
@@ -540,7 +540,7 @@ final class Transformation implements BaseModel
         ?string $named = null,
         ?float $opacity = null,
         ?bool $original = null,
-        TextOverlay|ImageOverlay|VideoOverlay|SubtitleOverlay|SolidColorOverlay|null $overlay = null,
+        ?Overlay $overlay = null,
         float|string|null $page = null,
         ?bool $progressive = null,
         ?float $quality = null,
@@ -572,21 +572,21 @@ final class Transformation implements BaseModel
         null !== $aiUpscale && $obj->aiUpscale = $aiUpscale;
         null !== $aiVariation && $obj->aiVariation = $aiVariation;
         null !== $aspectRatio && $obj->aspectRatio = $aspectRatio;
-        null !== $audioCodec && $obj->audioCodec = $audioCodec instanceof AudioCodec ? $audioCodec->value : $audioCodec;
+        null !== $audioCodec && $obj['audioCodec'] = $audioCodec;
         null !== $background && $obj->background = $background;
         null !== $blur && $obj->blur = $blur;
         null !== $border && $obj->border = $border;
         null !== $colorProfile && $obj->colorProfile = $colorProfile;
         null !== $contrastStretch && $obj->contrastStretch = $contrastStretch;
-        null !== $crop && $obj->crop = $crop instanceof Crop ? $crop->value : $crop;
-        null !== $cropMode && $obj->cropMode = $cropMode instanceof CropMode ? $cropMode->value : $cropMode;
+        null !== $crop && $obj['crop'] = $crop;
+        null !== $cropMode && $obj['cropMode'] = $cropMode;
         null !== $defaultImage && $obj->defaultImage = $defaultImage;
         null !== $dpr && $obj->dpr = $dpr;
         null !== $duration && $obj->duration = $duration;
         null !== $endOffset && $obj->endOffset = $endOffset;
-        null !== $flip && $obj->flip = $flip instanceof Flip ? $flip->value : $flip;
+        null !== $flip && $obj['flip'] = $flip;
         null !== $focus && $obj->focus = $focus;
-        null !== $format && $obj->format = $format instanceof Format ? $format->value : $format;
+        null !== $format && $obj['format'] = $format;
         null !== $gradient && $obj->gradient = $gradient;
         null !== $grayscale && $obj->grayscale = $grayscale;
         null !== $height && $obj->height = $height;
@@ -605,10 +605,10 @@ final class Transformation implements BaseModel
         null !== $shadow && $obj->shadow = $shadow;
         null !== $sharpen && $obj->sharpen = $sharpen;
         null !== $startOffset && $obj->startOffset = $startOffset;
-        null !== $streamingResolutions && $obj->streamingResolutions = array_map(fn ($v) => $v instanceof StreamingResolution ? $v->value : $v, $streamingResolutions);
+        null !== $streamingResolutions && $obj['streamingResolutions'] = $streamingResolutions;
         null !== $trim && $obj->trim = $trim;
         null !== $unsharpMask && $obj->unsharpMask = $unsharpMask;
-        null !== $videoCodec && $obj->videoCodec = $videoCodec instanceof VideoCodec ? $videoCodec->value : $videoCodec;
+        null !== $videoCodec && $obj['videoCodec'] = $videoCodec;
         null !== $width && $obj->width = $width;
         null !== $x && $obj->x = $x;
         null !== $xCenter && $obj->xCenter = $xCenter;
@@ -748,7 +748,7 @@ final class Transformation implements BaseModel
     public function withAudioCodec(AudioCodec|string $audioCodec): self
     {
         $obj = clone $this;
-        $obj->audioCodec = $audioCodec instanceof AudioCodec ? $audioCodec->value : $audioCodec;
+        $obj['audioCodec'] = $audioCodec;
 
         return $obj;
     }
@@ -825,7 +825,7 @@ final class Transformation implements BaseModel
     public function withCrop(Crop|string $crop): self
     {
         $obj = clone $this;
-        $obj->crop = $crop instanceof Crop ? $crop->value : $crop;
+        $obj['crop'] = $crop;
 
         return $obj;
     }
@@ -838,7 +838,7 @@ final class Transformation implements BaseModel
     public function withCropMode(CropMode|string $cropMode): self
     {
         $obj = clone $this;
-        $obj->cropMode = $cropMode instanceof CropMode ? $cropMode->value : $cropMode;
+        $obj['cropMode'] = $cropMode;
 
         return $obj;
     }
@@ -903,7 +903,7 @@ final class Transformation implements BaseModel
     public function withFlip(Flip|string $flip): self
     {
         $obj = clone $this;
-        $obj->flip = $flip instanceof Flip ? $flip->value : $flip;
+        $obj['flip'] = $flip;
 
         return $obj;
     }
@@ -935,7 +935,7 @@ final class Transformation implements BaseModel
     public function withFormat(Format|string $format): self
     {
         $obj = clone $this;
-        $obj->format = $format instanceof Format ? $format->value : $format;
+        $obj['format'] = $format;
 
         return $obj;
     }
@@ -1040,9 +1040,8 @@ final class Transformation implements BaseModel
      * ImageKit supports overlays including images, text, videos, subtitles, and solid colors.
      * See [Overlay using layers](https://imagekit.io/docs/transformations#overlay-using-layers).
      */
-    public function withOverlay(
-        TextOverlay|ImageOverlay|VideoOverlay|SubtitleOverlay|SolidColorOverlay $overlay,
-    ): self {
+    public function withOverlay(Overlay $overlay): self
+    {
         $obj = clone $this;
         $obj->overlay = $overlay;
 
@@ -1176,7 +1175,7 @@ final class Transformation implements BaseModel
     public function withStreamingResolutions(array $streamingResolutions): self
     {
         $obj = clone $this;
-        $obj->streamingResolutions = array_map(fn ($v) => $v instanceof StreamingResolution ? $v->value : $v, $streamingResolutions);
+        $obj['streamingResolutions'] = $streamingResolutions;
 
         return $obj;
     }
@@ -1215,7 +1214,7 @@ final class Transformation implements BaseModel
     public function withVideoCodec(VideoCodec|string $videoCodec): self
     {
         $obj = clone $this;
-        $obj->videoCodec = $videoCodec instanceof VideoCodec ? $videoCodec->value : $videoCodec;
+        $obj['videoCodec'] = $videoCodec;
 
         return $obj;
     }

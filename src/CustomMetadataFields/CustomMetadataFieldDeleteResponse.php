@@ -5,19 +5,19 @@ declare(strict_types=1);
 namespace ImageKit\CustomMetadataFields;
 
 use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Concerns\SdkResponse;
 use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
  * @phpstan-type custom_metadata_field_delete_response = array{}
- * When used in a response, this type parameter can define a $rawResponse property.
- * @template TRawResponse of object = object{}
- *
- * @mixin TRawResponse
  */
-final class CustomMetadataFieldDeleteResponse implements BaseModel
+final class CustomMetadataFieldDeleteResponse implements BaseModel, ResponseConverter
 {
     /** @use SdkModel<custom_metadata_field_delete_response> */
     use SdkModel;
+
+    use SdkResponse;
 
     public function __construct()
     {

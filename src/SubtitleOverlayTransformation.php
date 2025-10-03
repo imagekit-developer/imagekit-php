@@ -116,7 +116,7 @@ final class SubtitleOverlayTransformation implements BaseModel
         null !== $fontOutline && $obj->fontOutline = $fontOutline;
         null !== $fontShadow && $obj->fontShadow = $fontShadow;
         null !== $fontSize && $obj->fontSize = $fontSize;
-        null !== $typography && $obj->typography = $typography instanceof Typography ? $typography->value : $typography;
+        null !== $typography && $obj['typography'] = $typography;
 
         return $obj;
     }
@@ -211,7 +211,7 @@ final class SubtitleOverlayTransformation implements BaseModel
     public function withTypography(Typography|string $typography): self
     {
         $obj = clone $this;
-        $obj->typography = $typography instanceof Typography ? $typography->value : $typography;
+        $obj['typography'] = $typography;
 
         return $obj;
     }

@@ -5,19 +5,19 @@ declare(strict_types=1);
 namespace ImageKit\Files\Versions;
 
 use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Concerns\SdkResponse;
 use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
  * @phpstan-type version_delete_response = array{}
- * When used in a response, this type parameter can define a $rawResponse property.
- * @template TRawResponse of object = object{}
- *
- * @mixin TRawResponse
  */
-final class VersionDeleteResponse implements BaseModel
+final class VersionDeleteResponse implements BaseModel, ResponseConverter
 {
     /** @use SdkModel<version_delete_response> */
     use SdkModel;
+
+    use SdkResponse;
 
     public function __construct()
     {

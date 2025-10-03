@@ -137,13 +137,13 @@ final class AssetListParams implements BaseModel
     ): self {
         $obj = new self;
 
-        null !== $fileType && $obj->fileType = $fileType instanceof FileType ? $fileType->value : $fileType;
+        null !== $fileType && $obj['fileType'] = $fileType;
         null !== $limit && $obj->limit = $limit;
         null !== $path && $obj->path = $path;
         null !== $searchQuery && $obj->searchQuery = $searchQuery;
         null !== $skip && $obj->skip = $skip;
-        null !== $sort && $obj->sort = $sort instanceof Sort ? $sort->value : $sort;
-        null !== $type && $obj->type = $type instanceof Type ? $type->value : $type;
+        null !== $sort && $obj['sort'] = $sort;
+        null !== $type && $obj['type'] = $type;
 
         return $obj;
     }
@@ -160,7 +160,7 @@ final class AssetListParams implements BaseModel
     public function withFileType(FileType|string $fileType): self
     {
         $obj = clone $this;
-        $obj->fileType = $fileType instanceof FileType ? $fileType->value : $fileType;
+        $obj['fileType'] = $fileType;
 
         return $obj;
     }
@@ -228,7 +228,7 @@ final class AssetListParams implements BaseModel
     public function withSort(Sort|string $sort): self
     {
         $obj = clone $this;
-        $obj->sort = $sort instanceof Sort ? $sort->value : $sort;
+        $obj['sort'] = $sort;
 
         return $obj;
     }
@@ -246,7 +246,7 @@ final class AssetListParams implements BaseModel
     public function withType(Type|string $type): self
     {
         $obj = clone $this;
-        $obj->type = $type instanceof Type ? $type->value : $type;
+        $obj['type'] = $type;
 
         return $obj;
     }

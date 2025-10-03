@@ -6,7 +6,9 @@ namespace ImageKit\CustomMetadataFields;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Concerns\SdkResponse;
 use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Core\Conversion\Contracts\ResponseConverter;
 use ImageKit\CustomMetadataFields\CustomMetadataField\Schema;
 
 /**
@@ -15,15 +17,13 @@ use ImageKit\CustomMetadataFields\CustomMetadataField\Schema;
  * @phpstan-type custom_metadata_field = array{
  *   id: string, label: string, name: string, schema: Schema
  * }
- * When used in a response, this type parameter can define a $rawResponse property.
- * @template TRawResponse of object = object{}
- *
- * @mixin TRawResponse
  */
-final class CustomMetadataField implements BaseModel
+final class CustomMetadataField implements BaseModel, ResponseConverter
 {
     /** @use SdkModel<custom_metadata_field> */
     use SdkModel;
+
+    use SdkResponse;
 
     /**
      * Unique identifier for the custom metadata field. Use this to update the field.

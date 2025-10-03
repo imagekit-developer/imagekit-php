@@ -6,21 +6,21 @@ namespace ImageKit\Files\Bulk;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Concerns\SdkResponse;
 use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
  * @phpstan-type bulk_remove_ai_tags_response = array{
  *   successfullyUpdatedFileIDs?: list<string>
  * }
- * When used in a response, this type parameter can define a $rawResponse property.
- * @template TRawResponse of object = object{}
- *
- * @mixin TRawResponse
  */
-final class BulkRemoveAITagsResponse implements BaseModel
+final class BulkRemoveAITagsResponse implements BaseModel, ResponseConverter
 {
     /** @use SdkModel<bulk_remove_ai_tags_response> */
     use SdkModel;
+
+    use SdkResponse;
 
     /**
      * An array of fileIds that in which AITags were successfully removed.

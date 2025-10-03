@@ -69,7 +69,7 @@ final class Abs implements BaseModel
     {
         $obj = new self;
 
-        $obj->protocol = $protocol instanceof Protocol ? $protocol->value : $protocol;
+        $obj['protocol'] = $protocol;
         $obj->value = $value;
 
         return $obj;
@@ -83,7 +83,7 @@ final class Abs implements BaseModel
     public function withProtocol(Protocol|string $protocol): self
     {
         $obj = clone $this;
-        $obj->protocol = $protocol instanceof Protocol ? $protocol->value : $protocol;
+        $obj['protocol'] = $protocol;
 
         return $obj;
     }

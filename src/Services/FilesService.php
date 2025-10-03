@@ -6,7 +6,6 @@ namespace ImageKit\Services;
 
 use ImageKit\Client;
 use ImageKit\Core\Exceptions\APIException;
-use ImageKit\Core\Implementation\HasRawResponse;
 use ImageKit\ExtensionItem\AIAutoDescription;
 use ImageKit\ExtensionItem\AutoTaggingExtension;
 use ImageKit\ExtensionItem\RemoveBg;
@@ -78,8 +77,6 @@ final class FilesService implements FilesContract
      * @param string $webhookURL The final status of extensions after they have completed execution will be delivered to this endpoint as a POST request. [Learn more](/docs/api-reference/digital-asset-management-dam/managing-assets/update-file-details#webhook-payload-structure) about the webhook payload structure.
      * @param Publish $publish configure the publication status of a file and its versions
      *
-     * @return FileUpdateResponse<HasRawResponse>
-     *
      * @throws APIException
      */
     public function update(
@@ -112,8 +109,6 @@ final class FilesService implements FilesContract
      * @api
      *
      * @param array<string, mixed> $params
-     *
-     * @return FileUpdateResponse<HasRawResponse>
      *
      * @throws APIException
      */
@@ -150,21 +145,6 @@ final class FilesService implements FilesContract
         string $fileID,
         ?RequestOptions $requestOptions = null
     ): mixed {
-        $params = [];
-
-        return $this->deleteRaw($fileID, $params, $requestOptions);
-    }
-
-    /**
-     * @api
-     *
-     * @throws APIException
-     */
-    public function deleteRaw(
-        string $fileID,
-        mixed $params,
-        ?RequestOptions $requestOptions = null
-    ): mixed {
         // @phpstan-ignore-next-line;
         return $this->client->request(
             method: 'delete',
@@ -184,8 +164,6 @@ final class FilesService implements FilesContract
      * @param string $destinationPath full path to the folder you want to copy the above file into
      * @param string $sourceFilePath the full path of the file you want to copy
      * @param bool $includeFileVersions Option to copy all versions of a file. By default, only the current version of the file is copied. When set to true, all versions of the file will be copied. Default value - `false`.
-     *
-     * @return FileCopyResponse<HasRawResponse>
      *
      * @throws APIException
      */
@@ -208,8 +186,6 @@ final class FilesService implements FilesContract
      * @api
      *
      * @param array<string, mixed> $params
-     *
-     * @return FileCopyResponse<HasRawResponse>
      *
      * @throws APIException
      */
@@ -237,29 +213,10 @@ final class FilesService implements FilesContract
      *
      * This API returns an object with details or attributes about the current version of the file.
      *
-     * @return File<HasRawResponse>
-     *
      * @throws APIException
      */
     public function get(
         string $fileID,
-        ?RequestOptions $requestOptions = null
-    ): File {
-        $params = [];
-
-        return $this->getRaw($fileID, $params, $requestOptions);
-    }
-
-    /**
-     * @api
-     *
-     * @return File<HasRawResponse>
-     *
-     * @throws APIException
-     */
-    public function getRaw(
-        string $fileID,
-        mixed $params,
         ?RequestOptions $requestOptions = null
     ): File {
         // @phpstan-ignore-next-line;
@@ -281,8 +238,6 @@ final class FilesService implements FilesContract
      * @param string $destinationPath full path to the folder you want to move the above file into
      * @param string $sourceFilePath the full path of the file you want to move
      *
-     * @return FileMoveResponse<HasRawResponse>
-     *
      * @throws APIException
      */
     public function move(
@@ -301,8 +256,6 @@ final class FilesService implements FilesContract
      * @api
      *
      * @param array<string, mixed> $params
-     *
-     * @return FileMoveResponse<HasRawResponse>
      *
      * @throws APIException
      */
@@ -345,8 +298,6 @@ final class FilesService implements FilesContract
      *
      * Note: If the old file were accessible at `https://ik.imagekit.io/demo/old-filename.jpg`, a purge cache request would be issued against `https://ik.imagekit.io/demo/old-filename.jpg*` (with a wildcard at the end). It will remove the file and its versions' URLs and any transformations made using query parameters on this file or its versions. However, the cache for file transformations made using path parameters will persist. You can purge them using the purge API. For more details, refer to the purge API documentation.
      *
-     * @return FileRenameResponse<HasRawResponse>
-     *
      * @throws APIException
      */
     public function rename(
@@ -368,8 +319,6 @@ final class FilesService implements FilesContract
      * @api
      *
      * @param array<string, mixed> $params
-     *
-     * @return FileRenameResponse<HasRawResponse>
      *
      * @throws APIException
      */
@@ -483,8 +432,6 @@ final class FilesService implements FilesContract
      * If `false`, then the image is uploaded with the provided filename parameter, and any existing file with the same name is replaced.
      * @param string $webhookURL The final status of extensions after they have completed execution will be delivered to this endpoint as a POST request. [Learn more](/docs/api-reference/digital-asset-management-dam/managing-assets/update-file-details#webhook-payload-structure) about the webhook payload structure.
      *
-     * @return FileUploadResponse<HasRawResponse>
-     *
      * @throws APIException
      */
     public function upload(
@@ -546,8 +493,6 @@ final class FilesService implements FilesContract
      * @api
      *
      * @param array<string, mixed> $params
-     *
-     * @return FileUploadResponse<HasRawResponse>
      *
      * @throws APIException
      */

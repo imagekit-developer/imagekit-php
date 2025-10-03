@@ -76,9 +76,9 @@ final class Transformation implements BaseModel
     ): self {
         $obj = new self;
 
-        $obj->type = $type instanceof Type ? $type->value : $type;
+        $obj['type'] = $type;
 
-        null !== $protocol && $obj->protocol = $protocol instanceof Protocol ? $protocol->value : $protocol;
+        null !== $protocol && $obj['protocol'] = $protocol;
         null !== $value && $obj->value = $value;
 
         return $obj;
@@ -92,7 +92,7 @@ final class Transformation implements BaseModel
     public function withType(Type|string $type): self
     {
         $obj = clone $this;
-        $obj->type = $type instanceof Type ? $type->value : $type;
+        $obj['type'] = $type;
 
         return $obj;
     }
@@ -105,7 +105,7 @@ final class Transformation implements BaseModel
     public function withProtocol(Protocol|string $protocol): self
     {
         $obj = clone $this;
-        $obj->protocol = $protocol instanceof Protocol ? $protocol->value : $protocol;
+        $obj['protocol'] = $protocol;
 
         return $obj;
     }

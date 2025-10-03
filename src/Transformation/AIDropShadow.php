@@ -7,7 +7,6 @@ namespace ImageKit\Transformation;
 use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
-use ImageKit\Core\Conversion\EnumOf;
 
 /**
  * Adds an AI-based drop shadow around a foreground object on a transparent or removed background.
@@ -26,6 +25,6 @@ final class AIDropShadow implements ConverterSource
      */
     public static function variants(): array
     {
-        return [new EnumOf([true]), 'string'];
+        return ['bool', 'string'];
     }
 }

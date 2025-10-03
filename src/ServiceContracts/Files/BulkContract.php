@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace ImageKit\ServiceContracts\Files;
 
 use ImageKit\Core\Exceptions\APIException;
-use ImageKit\Core\Implementation\HasRawResponse;
 use ImageKit\Files\Bulk\BulkAddTagsResponse;
 use ImageKit\Files\Bulk\BulkDeleteResponse;
 use ImageKit\Files\Bulk\BulkRemoveAITagsResponse;
@@ -19,8 +18,6 @@ interface BulkContract
      *
      * @param list<string> $fileIDs an array of fileIds which you want to delete
      *
-     * @return BulkDeleteResponse<HasRawResponse>
-     *
      * @throws APIException
      */
     public function delete(
@@ -32,8 +29,6 @@ interface BulkContract
      * @api
      *
      * @param array<string, mixed> $params
-     *
-     * @return BulkDeleteResponse<HasRawResponse>
      *
      * @throws APIException
      */
@@ -48,8 +43,6 @@ interface BulkContract
      * @param list<string> $fileIDs an array of fileIds to which you want to add tags
      * @param list<string> $tags an array of tags that you want to add to the files
      *
-     * @return BulkAddTagsResponse<HasRawResponse>
-     *
      * @throws APIException
      */
     public function addTags(
@@ -62,8 +55,6 @@ interface BulkContract
      * @api
      *
      * @param array<string, mixed> $params
-     *
-     * @return BulkAddTagsResponse<HasRawResponse>
      *
      * @throws APIException
      */
@@ -78,8 +69,6 @@ interface BulkContract
      * @param list<string> $aiTags an array of AITags that you want to remove from the files
      * @param list<string> $fileIDs an array of fileIds from which you want to remove AITags
      *
-     * @return BulkRemoveAITagsResponse<HasRawResponse>
-     *
      * @throws APIException
      */
     public function removeAITags(
@@ -92,8 +81,6 @@ interface BulkContract
      * @api
      *
      * @param array<string, mixed> $params
-     *
-     * @return BulkRemoveAITagsResponse<HasRawResponse>
      *
      * @throws APIException
      */
@@ -108,8 +95,6 @@ interface BulkContract
      * @param list<string> $fileIDs an array of fileIds from which you want to remove tags
      * @param list<string> $tags an array of tags that you want to remove from the files
      *
-     * @return BulkRemoveTagsResponse<HasRawResponse>
-     *
      * @throws APIException
      */
     public function removeTags(
@@ -122,8 +107,6 @@ interface BulkContract
      * @api
      *
      * @param array<string, mixed> $params
-     *
-     * @return BulkRemoveTagsResponse<HasRawResponse>
      *
      * @throws APIException
      */

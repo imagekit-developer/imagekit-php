@@ -9,17 +9,17 @@ namespace ImageKit;
  */
 enum StreamingResolution: string
 {
-    case STREAMING_RESOLUTION_240 = '240';
+    case _240 = '240';
 
-    case STREAMING_RESOLUTION_360 = '360';
+    case _360 = '360';
 
-    case STREAMING_RESOLUTION_480 = '480';
+    case _480 = '480';
 
-    case STREAMING_RESOLUTION_720 = '720';
+    case _720 = '720';
 
-    case STREAMING_RESOLUTION_1080 = '1080';
+    case _1080 = '1080';
 
-    case STREAMING_RESOLUTION_1440 = '1440';
+    case _1440 = '1440';
 
-    case STREAMING_RESOLUTION_2160 = '2160';
+    case _2160 = '2160';
 }

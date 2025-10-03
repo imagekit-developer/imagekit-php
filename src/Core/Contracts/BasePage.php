@@ -8,6 +8,7 @@ use ImageKit\Client;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 use ImageKit\RequestOptions;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * @internal
@@ -30,7 +31,7 @@ interface BasePage extends \IteratorAggregate
         Client $client,
         array $request,
         RequestOptions $options,
-        mixed $data,
+        ResponseInterface $response,
     );
 
     public function hasNextPage(): bool;

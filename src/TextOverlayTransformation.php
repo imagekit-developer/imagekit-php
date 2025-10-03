@@ -157,11 +157,11 @@ final class TextOverlayTransformation implements BaseModel
 
         null !== $alpha && $obj->alpha = $alpha;
         null !== $background && $obj->background = $background;
-        null !== $flip && $obj->flip = $flip instanceof Flip ? $flip->value : $flip;
+        null !== $flip && $obj['flip'] = $flip;
         null !== $fontColor && $obj->fontColor = $fontColor;
         null !== $fontFamily && $obj->fontFamily = $fontFamily;
         null !== $fontSize && $obj->fontSize = $fontSize;
-        null !== $innerAlignment && $obj->innerAlignment = $innerAlignment instanceof InnerAlignment ? $innerAlignment->value : $innerAlignment;
+        null !== $innerAlignment && $obj['innerAlignment'] = $innerAlignment;
         null !== $lineHeight && $obj->lineHeight = $lineHeight;
         null !== $padding && $obj->padding = $padding;
         null !== $radius && $obj->radius = $radius;
@@ -203,7 +203,7 @@ final class TextOverlayTransformation implements BaseModel
     public function withFlip(Flip|string $flip): self
     {
         $obj = clone $this;
-        $obj->flip = $flip instanceof Flip ? $flip->value : $flip;
+        $obj['flip'] = $flip;
 
         return $obj;
     }
@@ -251,7 +251,7 @@ final class TextOverlayTransformation implements BaseModel
         InnerAlignment|string $innerAlignment
     ): self {
         $obj = clone $this;
-        $obj->innerAlignment = $innerAlignment instanceof InnerAlignment ? $innerAlignment->value : $innerAlignment;
+        $obj['innerAlignment'] = $innerAlignment;
 
         return $obj;
     }

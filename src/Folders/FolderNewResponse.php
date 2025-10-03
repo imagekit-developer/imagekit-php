@@ -5,19 +5,19 @@ declare(strict_types=1);
 namespace ImageKit\Folders;
 
 use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Concerns\SdkResponse;
 use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
  * @phpstan-type folder_new_response = array{}
- * When used in a response, this type parameter can define a $rawResponse property.
- * @template TRawResponse of object = object{}
- *
- * @mixin TRawResponse
  */
-final class FolderNewResponse implements BaseModel
+final class FolderNewResponse implements BaseModel, ResponseConverter
 {
     /** @use SdkModel<folder_new_response> */
     use SdkModel;
+
+    use SdkResponse;
 
     public function __construct()
     {

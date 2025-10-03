@@ -98,7 +98,7 @@ final class SubtitleOverlay implements BaseModel
 
         null !== $position && $obj->position = $position;
         null !== $timing && $obj->timing = $timing;
-        null !== $encoding && $obj->encoding = $encoding instanceof Encoding ? $encoding->value : $encoding;
+        null !== $encoding && $obj['encoding'] = $encoding;
         null !== $transformation && $obj->transformation = $transformation;
 
         return $obj;
@@ -142,7 +142,7 @@ final class SubtitleOverlay implements BaseModel
     public function withEncoding(Encoding|string $encoding): self
     {
         $obj = clone $this;
-        $obj->encoding = $encoding instanceof Encoding ? $encoding->value : $encoding;
+        $obj['encoding'] = $encoding;
 
         return $obj;
     }

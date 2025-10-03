@@ -136,7 +136,7 @@ final class SrcOptions implements BaseModel
         null !== $queryParameters && $obj->queryParameters = $queryParameters;
         null !== $signed && $obj->signed = $signed;
         null !== $transformation && $obj->transformation = $transformation;
-        null !== $transformationPosition && $obj->transformationPosition = $transformationPosition instanceof TransformationPosition ? $transformationPosition->value : $transformationPosition;
+        null !== $transformationPosition && $obj['transformationPosition'] = $transformationPosition;
 
         return $obj;
     }
@@ -236,7 +236,7 @@ final class SrcOptions implements BaseModel
         TransformationPosition|string $transformationPosition
     ): self {
         $obj = clone $this;
-        $obj->transformationPosition = $transformationPosition instanceof TransformationPosition ? $transformationPosition->value : $transformationPosition;
+        $obj['transformationPosition'] = $transformationPosition;
 
         return $obj;
     }

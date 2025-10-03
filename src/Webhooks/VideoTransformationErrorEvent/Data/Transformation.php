@@ -77,7 +77,7 @@ final class Transformation implements BaseModel
     ): self {
         $obj = new self;
 
-        $obj->type = $type instanceof Type ? $type->value : $type;
+        $obj['type'] = $type;
 
         null !== $error && $obj->error = $error;
         null !== $options && $obj->options = $options;
@@ -96,7 +96,7 @@ final class Transformation implements BaseModel
     public function withType(Type|string $type): self
     {
         $obj = clone $this;
-        $obj->type = $type instanceof Type ? $type->value : $type;
+        $obj['type'] = $type;
 
         return $obj;
     }

@@ -9,7 +9,6 @@ use ImageKit\Cache\Invalidation\InvalidationGetResponse;
 use ImageKit\Cache\Invalidation\InvalidationNewResponse;
 use ImageKit\Client;
 use ImageKit\Core\Exceptions\APIException;
-use ImageKit\Core\Implementation\HasRawResponse;
 use ImageKit\RequestOptions;
 use ImageKit\ServiceContracts\Cache\InvalidationContract;
 
@@ -27,8 +26,6 @@ final class InvalidationService implements InvalidationContract
      *
      * @param string $url the full URL of the file to be purged
      *
-     * @return InvalidationNewResponse<HasRawResponse>
-     *
      * @throws APIException
      */
     public function create(
@@ -44,8 +41,6 @@ final class InvalidationService implements InvalidationContract
      * @api
      *
      * @param array<string, mixed> $params
-     *
-     * @return InvalidationNewResponse<HasRawResponse>
      *
      * @throws APIException
      */
@@ -73,29 +68,10 @@ final class InvalidationService implements InvalidationContract
      *
      * This API returns the status of a purge cache request.
      *
-     * @return InvalidationGetResponse<HasRawResponse>
-     *
      * @throws APIException
      */
     public function get(
         string $requestID,
-        ?RequestOptions $requestOptions = null
-    ): InvalidationGetResponse {
-        $params = [];
-
-        return $this->getRaw($requestID, $params, $requestOptions);
-    }
-
-    /**
-     * @api
-     *
-     * @return InvalidationGetResponse<HasRawResponse>
-     *
-     * @throws APIException
-     */
-    public function getRaw(
-        string $requestID,
-        mixed $params,
         ?RequestOptions $requestOptions = null
     ): InvalidationGetResponse {
         // @phpstan-ignore-next-line;

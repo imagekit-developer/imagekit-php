@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace ImageKit\ServiceContracts\Files;
 
 use ImageKit\Core\Exceptions\APIException;
-use ImageKit\Core\Implementation\HasRawResponse;
 use ImageKit\Files\File;
 use ImageKit\Files\Versions\VersionDeleteResponse;
 use ImageKit\RequestOptions;
@@ -27,22 +26,7 @@ interface VersionsContract
     /**
      * @api
      *
-     * @return list<File>
-     *
-     * @throws APIException
-     */
-    public function listRaw(
-        string $fileID,
-        mixed $params,
-        ?RequestOptions $requestOptions = null
-    ): array;
-
-    /**
-     * @api
-     *
      * @param string $fileID
-     *
-     * @return VersionDeleteResponse<HasRawResponse>
      *
      * @throws APIException
      */
@@ -57,8 +41,6 @@ interface VersionsContract
      *
      * @param array<string, mixed> $params
      *
-     * @return VersionDeleteResponse<HasRawResponse>
-     *
      * @throws APIException
      */
     public function deleteRaw(
@@ -71,8 +53,6 @@ interface VersionsContract
      * @api
      *
      * @param string $fileID
-     *
-     * @return File<HasRawResponse>
      *
      * @throws APIException
      */
@@ -87,8 +67,6 @@ interface VersionsContract
      *
      * @param array<string, mixed> $params
      *
-     * @return File<HasRawResponse>
-     *
      * @throws APIException
      */
     public function getRaw(
@@ -102,8 +80,6 @@ interface VersionsContract
      *
      * @param string $fileID
      *
-     * @return File<HasRawResponse>
-     *
      * @throws APIException
      */
     public function restore(
@@ -116,8 +92,6 @@ interface VersionsContract
      * @api
      *
      * @param array<string, mixed> $params
-     *
-     * @return File<HasRawResponse>
      *
      * @throws APIException
      */

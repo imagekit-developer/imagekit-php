@@ -6,21 +6,21 @@ namespace ImageKit\Folders;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Concerns\SdkResponse;
 use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
  * Job submitted successfully. A `jobId` will be returned.
  *
  * @phpstan-type folder_rename_response = array{jobID: string}
- * When used in a response, this type parameter can define a $rawResponse property.
- * @template TRawResponse of object = object{}
- *
- * @mixin TRawResponse
  */
-final class FolderRenameResponse implements BaseModel
+final class FolderRenameResponse implements BaseModel, ResponseConverter
 {
     /** @use SdkModel<folder_rename_response> */
     use SdkModel;
+
+    use SdkResponse;
 
     /**
      * Unique identifier of the bulk job. This can be used to check the status of the bulk job.

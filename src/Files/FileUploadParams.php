@@ -344,7 +344,7 @@ final class FileUploadParams implements BaseModel
         null !== $overwriteFile && $obj->overwriteFile = $overwriteFile;
         null !== $overwriteTags && $obj->overwriteTags = $overwriteTags;
         null !== $publicKey && $obj->publicKey = $publicKey;
-        null !== $responseFields && $obj->responseFields = array_map(fn ($v) => $v instanceof ResponseField ? $v->value : $v, $responseFields);
+        null !== $responseFields && $obj['responseFields'] = $responseFields;
         null !== $signature && $obj->signature = $signature;
         null !== $tags && $obj->tags = $tags;
         null !== $transformation && $obj->transformation = $transformation;
@@ -586,7 +586,7 @@ final class FileUploadParams implements BaseModel
     public function withResponseFields(array $responseFields): self
     {
         $obj = clone $this;
-        $obj->responseFields = array_map(fn ($v) => $v instanceof ResponseField ? $v->value : $v, $responseFields);
+        $obj['responseFields'] = $responseFields;
 
         return $obj;
     }

@@ -77,7 +77,7 @@ final class AutoTaggingExtension implements BaseModel
 
         $obj->maxTags = $maxTags;
         $obj->minConfidence = $minConfidence;
-        $obj->name = $name instanceof Name ? $name->value : $name;
+        $obj['name'] = $name;
 
         return $obj;
     }
@@ -112,7 +112,7 @@ final class AutoTaggingExtension implements BaseModel
     public function withName(Name|string $name): self
     {
         $obj = clone $this;
-        $obj->name = $name instanceof Name ? $name->value : $name;
+        $obj['name'] = $name;
 
         return $obj;
     }

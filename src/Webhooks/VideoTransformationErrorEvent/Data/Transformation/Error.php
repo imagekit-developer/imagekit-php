@@ -60,7 +60,7 @@ final class Error implements BaseModel
     {
         $obj = new self;
 
-        $obj->reason = $reason instanceof Reason ? $reason->value : $reason;
+        $obj['reason'] = $reason;
 
         return $obj;
     }
@@ -76,7 +76,7 @@ final class Error implements BaseModel
     public function withReason(Reason|string $reason): self
     {
         $obj = clone $this;
-        $obj->reason = $reason instanceof Reason ? $reason->value : $reason;
+        $obj['reason'] = $reason;
 
         return $obj;
     }

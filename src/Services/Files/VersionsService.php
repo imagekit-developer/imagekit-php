@@ -7,7 +7,6 @@ namespace ImageKit\Services\Files;
 use ImageKit\Client;
 use ImageKit\Core\Conversion\ListOf;
 use ImageKit\Core\Exceptions\APIException;
-use ImageKit\Core\Implementation\HasRawResponse;
 use ImageKit\Files\File;
 use ImageKit\Files\Versions\VersionDeleteParams;
 use ImageKit\Files\Versions\VersionDeleteResponse;
@@ -36,23 +35,6 @@ final class VersionsService implements VersionsContract
         string $fileID,
         ?RequestOptions $requestOptions = null
     ): array {
-        $params = [];
-
-        return $this->listRaw($fileID, $params, $requestOptions);
-    }
-
-    /**
-     * @api
-     *
-     * @return list<File>
-     *
-     * @throws APIException
-     */
-    public function listRaw(
-        string $fileID,
-        mixed $params,
-        ?RequestOptions $requestOptions = null
-    ): array {
         // @phpstan-ignore-next-line;
         return $this->client->request(
             method: 'get',
@@ -71,8 +53,6 @@ final class VersionsService implements VersionsContract
      *
      * @param string $fileID
      *
-     * @return VersionDeleteResponse<HasRawResponse>
-     *
      * @throws APIException
      */
     public function delete(
@@ -89,8 +69,6 @@ final class VersionsService implements VersionsContract
      * @api
      *
      * @param array<string, mixed> $params
-     *
-     * @return VersionDeleteResponse<HasRawResponse>
      *
      * @throws APIException
      */
@@ -122,8 +100,6 @@ final class VersionsService implements VersionsContract
      *
      * @param string $fileID
      *
-     * @return File<HasRawResponse>
-     *
      * @throws APIException
      */
     public function get(
@@ -140,8 +116,6 @@ final class VersionsService implements VersionsContract
      * @api
      *
      * @param array<string, mixed> $params
-     *
-     * @return File<HasRawResponse>
      *
      * @throws APIException
      */
@@ -173,8 +147,6 @@ final class VersionsService implements VersionsContract
      *
      * @param string $fileID
      *
-     * @return File<HasRawResponse>
-     *
      * @throws APIException
      */
     public function restore(
@@ -191,8 +163,6 @@ final class VersionsService implements VersionsContract
      * @api
      *
      * @param array<string, mixed> $params
-     *
-     * @return File<HasRawResponse>
      *
      * @throws APIException
      */

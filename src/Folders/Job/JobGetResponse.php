@@ -6,7 +6,9 @@ namespace ImageKit\Folders\Job;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Concerns\SdkResponse;
 use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Core\Conversion\Contracts\ResponseConverter;
 use ImageKit\Folders\Job\JobGetResponse\Status;
 use ImageKit\Folders\Job\JobGetResponse\Type;
 
@@ -17,15 +19,13 @@ use ImageKit\Folders\Job\JobGetResponse\Type;
  *   status?: value-of<Status>,
  *   type?: value-of<Type>,
  * }
- * When used in a response, this type parameter can define a $rawResponse property.
- * @template TRawResponse of object = object{}
- *
- * @mixin TRawResponse
  */
-final class JobGetResponse implements BaseModel
+final class JobGetResponse implements BaseModel, ResponseConverter
 {
     /** @use SdkModel<job_get_response> */
     use SdkModel;
+
+    use SdkResponse;
 
     /**
      * Unique identifier of the bulk job.
@@ -78,8 +78,8 @@ final class JobGetResponse implements BaseModel
 
         null !== $jobID && $obj->jobID = $jobID;
         null !== $purgeRequestID && $obj->purgeRequestID = $purgeRequestID;
-        null !== $status && $obj->status = $status instanceof Status ? $status->value : $status;
-        null !== $type && $obj->type = $type instanceof Type ? $type->value : $type;
+        null !== $status && $obj['status'] = $status;
+        null !== $type && $obj['type'] = $type;
 
         return $obj;
     }
@@ -114,7 +114,7 @@ final class JobGetResponse implements BaseModel
     public function withStatus(Status|string $status): self
     {
         $obj = clone $this;
-        $obj->status = $status instanceof Status ? $status->value : $status;
+        $obj['status'] = $status;
 
         return $obj;
     }
@@ -127,7 +127,7 @@ final class JobGetResponse implements BaseModel
     public function withType(Type|string $type): self
     {
         $obj = clone $this;
-        $obj->type = $type instanceof Type ? $type->value : $type;
+        $obj['type'] = $type;
 
         return $obj;
     }

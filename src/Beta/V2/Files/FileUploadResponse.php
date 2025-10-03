@@ -10,7 +10,9 @@ use ImageKit\Beta\V2\Files\FileUploadResponse\SelectedFieldsSchema;
 use ImageKit\Beta\V2\Files\FileUploadResponse\VersionInfo;
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Concerns\SdkResponse;
 use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Core\Conversion\Contracts\ResponseConverter;
 use ImageKit\Files\Metadata;
 
 /**
@@ -43,15 +45,13 @@ use ImageKit\Files\Metadata;
  *   videoCodec?: string,
  *   width?: float,
  * }
- * When used in a response, this type parameter can define a $rawResponse property.
- * @template TRawResponse of object = object{}
- *
- * @mixin TRawResponse
  */
-final class FileUploadResponse implements BaseModel
+final class FileUploadResponse implements BaseModel, ResponseConverter
 {
     /** @use SdkModel<file_upload_response> */
     use SdkModel;
+
+    use SdkResponse;
 
     /**
      * An array of tags assigned to the uploaded file by auto tagging.

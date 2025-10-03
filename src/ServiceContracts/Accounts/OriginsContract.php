@@ -27,13 +27,8 @@ interface OriginsContract
      * @param string $name display name of the origin
      * @param string $secretKey secret key for the bucket
      * @param string $type
-     * @param string $baseURLForCanonicalHeader URL used in the Canonical header (if enabled)
-     * @param bool $includeCanonicalHeader whether to send a Canonical header
-     * @param string $prefix
      * @param string $endpoint custom S3-compatible endpoint
-     * @param bool $s3ForcePathStyle Use path-style S3 URLs?
      * @param string $baseURL akeneo instance base URL
-     * @param bool $forwardHostHeaderToOrigin Forward the Host header to origin?
      * @param string $clientEmail
      * @param string $privateKey
      * @param string $accountName
@@ -43,6 +38,11 @@ interface OriginsContract
      * @param string $clientSecret akeneo API client secret
      * @param string $password akeneo API password
      * @param string $username akeneo API username
+     * @param string $baseURLForCanonicalHeader URL used in the Canonical header (if enabled)
+     * @param bool $includeCanonicalHeader whether to send a Canonical header
+     * @param string $prefix
+     * @param bool $s3ForcePathStyle Use path-style S3 URLs?
+     * @param bool $forwardHostHeaderToOrigin Forward the Host header to origin?
      *
      * @throws APIException
      */
@@ -52,13 +52,8 @@ interface OriginsContract
         $name,
         $secretKey,
         $type,
-        $baseURLForCanonicalHeader = omit,
-        $includeCanonicalHeader = omit,
-        $prefix = omit,
         $endpoint,
-        $s3ForcePathStyle = omit,
         $baseURL,
-        $forwardHostHeaderToOrigin = omit,
         $clientEmail,
         $privateKey,
         $accountName,
@@ -68,6 +63,11 @@ interface OriginsContract
         $clientSecret,
         $password,
         $username,
+        $baseURLForCanonicalHeader = omit,
+        $includeCanonicalHeader = omit,
+        $prefix = omit,
+        $s3ForcePathStyle = omit,
+        $forwardHostHeaderToOrigin = omit,
         ?RequestOptions $requestOptions = null,
     ): S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim;
 
@@ -91,13 +91,8 @@ interface OriginsContract
      * @param string $name display name of the origin
      * @param string $secretKey secret key for the bucket
      * @param string $type
-     * @param string $baseURLForCanonicalHeader URL used in the Canonical header (if enabled)
-     * @param bool $includeCanonicalHeader whether to send a Canonical header
-     * @param string $prefix
      * @param string $endpoint custom S3-compatible endpoint
-     * @param bool $s3ForcePathStyle Use path-style S3 URLs?
      * @param string $baseURL akeneo instance base URL
-     * @param bool $forwardHostHeaderToOrigin Forward the Host header to origin?
      * @param string $clientEmail
      * @param string $privateKey
      * @param string $accountName
@@ -107,6 +102,11 @@ interface OriginsContract
      * @param string $clientSecret akeneo API client secret
      * @param string $password akeneo API password
      * @param string $username akeneo API username
+     * @param string $baseURLForCanonicalHeader URL used in the Canonical header (if enabled)
+     * @param bool $includeCanonicalHeader whether to send a Canonical header
+     * @param string $prefix
+     * @param bool $s3ForcePathStyle Use path-style S3 URLs?
+     * @param bool $forwardHostHeaderToOrigin Forward the Host header to origin?
      *
      * @throws APIException
      */
@@ -117,13 +117,8 @@ interface OriginsContract
         $name,
         $secretKey,
         $type,
-        $baseURLForCanonicalHeader = omit,
-        $includeCanonicalHeader = omit,
-        $prefix = omit,
         $endpoint,
-        $s3ForcePathStyle = omit,
         $baseURL,
-        $forwardHostHeaderToOrigin = omit,
         $clientEmail,
         $privateKey,
         $accountName,
@@ -133,6 +128,11 @@ interface OriginsContract
         $clientSecret,
         $password,
         $username,
+        $baseURLForCanonicalHeader = omit,
+        $includeCanonicalHeader = omit,
+        $prefix = omit,
+        $s3ForcePathStyle = omit,
+        $forwardHostHeaderToOrigin = omit,
         ?RequestOptions $requestOptions = null,
     ): S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim;
 
@@ -163,18 +163,6 @@ interface OriginsContract
     /**
      * @api
      *
-     * @return list<S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim>
-     *
-     * @throws APIException
-     */
-    public function listRaw(
-        mixed $params,
-        ?RequestOptions $requestOptions = null
-    ): array;
-
-    /**
-     * @api
-     *
      * @throws APIException
      */
     public function delete(
@@ -187,30 +175,8 @@ interface OriginsContract
      *
      * @throws APIException
      */
-    public function deleteRaw(
-        string $id,
-        mixed $params,
-        ?RequestOptions $requestOptions = null
-    ): mixed;
-
-    /**
-     * @api
-     *
-     * @throws APIException
-     */
     public function get(
         string $id,
-        ?RequestOptions $requestOptions = null
-    ): S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim;
-
-    /**
-     * @api
-     *
-     * @throws APIException
-     */
-    public function getRaw(
-        string $id,
-        mixed $params,
         ?RequestOptions $requestOptions = null
     ): S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim;
 }

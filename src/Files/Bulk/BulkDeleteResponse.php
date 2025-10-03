@@ -6,21 +6,21 @@ namespace ImageKit\Files\Bulk;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Concerns\SdkResponse;
 use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
  * @phpstan-type bulk_delete_response = array{
  *   successfullyDeletedFileIDs?: list<string>
  * }
- * When used in a response, this type parameter can define a $rawResponse property.
- * @template TRawResponse of object = object{}
- *
- * @mixin TRawResponse
  */
-final class BulkDeleteResponse implements BaseModel
+final class BulkDeleteResponse implements BaseModel, ResponseConverter
 {
     /** @use SdkModel<bulk_delete_response> */
     use SdkModel;
+
+    use SdkResponse;
 
     /**
      * An array of fileIds that were successfully deleted.

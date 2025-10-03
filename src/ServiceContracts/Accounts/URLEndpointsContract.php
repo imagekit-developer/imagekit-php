@@ -9,7 +9,6 @@ use ImageKit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\Cloudinar
 use ImageKit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\Imgix;
 use ImageKit\Accounts\URLEndpoints\URLEndpointResponse;
 use ImageKit\Core\Exceptions\APIException;
-use ImageKit\Core\Implementation\HasRawResponse;
 use ImageKit\RequestOptions;
 
 use const ImageKit\Core\OMIT as omit;
@@ -23,8 +22,6 @@ interface URLEndpointsContract
      * @param list<string> $origins Ordered list of origin IDs to try when the file isn’t in the Media Library; ImageKit checks them in the sequence provided. Origin must be created before it can be used in a URL endpoint.
      * @param string $urlPrefix path segment appended to your base URL to form the endpoint (letters, digits, and hyphens only — or empty for the default endpoint)
      * @param Cloudinary|Imgix|Akamai $urlRewriter configuration for third-party URL rewriting
-     *
-     * @return URLEndpointResponse<HasRawResponse>
      *
      * @throws APIException
      */
@@ -41,8 +38,6 @@ interface URLEndpointsContract
      *
      * @param array<string, mixed> $params
      *
-     * @return URLEndpointResponse<HasRawResponse>
-     *
      * @throws APIException
      */
     public function createRaw(
@@ -57,8 +52,6 @@ interface URLEndpointsContract
      * @param list<string> $origins Ordered list of origin IDs to try when the file isn’t in the Media Library; ImageKit checks them in the sequence provided. Origin must be created before it can be used in a URL endpoint.
      * @param string $urlPrefix path segment appended to your base URL to form the endpoint (letters, digits, and hyphens only — or empty for the default endpoint)
      * @param ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\Cloudinary|ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\Imgix|ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\Akamai $urlRewriter configuration for third-party URL rewriting
-     *
-     * @return URLEndpointResponse<HasRawResponse>
      *
      * @throws APIException
      */
@@ -75,8 +68,6 @@ interface URLEndpointsContract
      * @api
      *
      * @param array<string, mixed> $params
-     *
-     * @return URLEndpointResponse<HasRawResponse>
      *
      * @throws APIException
      */
@@ -100,18 +91,6 @@ interface URLEndpointsContract
     /**
      * @api
      *
-     * @return list<URLEndpointResponse>
-     *
-     * @throws APIException
-     */
-    public function listRaw(
-        mixed $params,
-        ?RequestOptions $requestOptions = null
-    ): array;
-
-    /**
-     * @api
-     *
      * @throws APIException
      */
     public function delete(
@@ -124,34 +103,8 @@ interface URLEndpointsContract
      *
      * @throws APIException
      */
-    public function deleteRaw(
-        string $id,
-        mixed $params,
-        ?RequestOptions $requestOptions = null
-    ): mixed;
-
-    /**
-     * @api
-     *
-     * @return URLEndpointResponse<HasRawResponse>
-     *
-     * @throws APIException
-     */
     public function get(
         string $id,
-        ?RequestOptions $requestOptions = null
-    ): URLEndpointResponse;
-
-    /**
-     * @api
-     *
-     * @return URLEndpointResponse<HasRawResponse>
-     *
-     * @throws APIException
-     */
-    public function getRaw(
-        string $id,
-        mixed $params,
         ?RequestOptions $requestOptions = null
     ): URLEndpointResponse;
 }

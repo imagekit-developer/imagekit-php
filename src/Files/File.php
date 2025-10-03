@@ -6,7 +6,9 @@ namespace ImageKit\Files;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Concerns\SdkResponse;
 use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Core\Conversion\Contracts\ResponseConverter;
 use ImageKit\Files\File\AITag;
 use ImageKit\Files\File\SelectedFieldsSchema;
 use ImageKit\Files\File\Type;
@@ -40,15 +42,13 @@ use ImageKit\Files\File\VersionInfo;
  *   versionInfo?: VersionInfo,
  *   width?: float,
  * }
- * When used in a response, this type parameter can define a $rawResponse property.
- * @template TRawResponse of object = object{}
- *
- * @mixin TRawResponse
  */
-final class File implements BaseModel
+final class File implements BaseModel, ResponseConverter
 {
     /** @use SdkModel<file_alias> */
     use SdkModel;
+
+    use SdkResponse;
 
     /**
      * An array of tags assigned to the file by auto tagging.
@@ -263,7 +263,7 @@ final class File implements BaseModel
         null !== $size && $obj->size = $size;
         null !== $tags && $obj->tags = $tags;
         null !== $thumbnail && $obj->thumbnail = $thumbnail;
-        null !== $type && $obj->type = $type instanceof Type ? $type->value : $type;
+        null !== $type && $obj['type'] = $type;
         null !== $updatedAt && $obj->updatedAt = $updatedAt;
         null !== $url && $obj->url = $url;
         null !== $versionInfo && $obj->versionInfo = $versionInfo;
@@ -490,7 +490,7 @@ final class File implements BaseModel
     public function withType(Type|string $type): self
     {
         $obj = clone $this;
-        $obj->type = $type instanceof Type ? $type->value : $type;
+        $obj['type'] = $type;
 
         return $obj;
     }

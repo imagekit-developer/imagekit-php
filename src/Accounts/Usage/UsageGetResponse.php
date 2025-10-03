@@ -6,7 +6,9 @@ namespace ImageKit\Accounts\Usage;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Concerns\SdkResponse;
 use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
  * @phpstan-type usage_get_response = array{
@@ -16,15 +18,13 @@ use ImageKit\Core\Contracts\BaseModel;
  *   originalCacheStorageBytes?: int,
  *   videoProcessingUnitsCount?: int,
  * }
- * When used in a response, this type parameter can define a $rawResponse property.
- * @template TRawResponse of object = object{}
- *
- * @mixin TRawResponse
  */
-final class UsageGetResponse implements BaseModel
+final class UsageGetResponse implements BaseModel, ResponseConverter
 {
     /** @use SdkModel<usage_get_response> */
     use SdkModel;
+
+    use SdkResponse;
 
     /**
      * Amount of bandwidth used in bytes.

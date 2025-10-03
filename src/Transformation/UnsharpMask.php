@@ -7,7 +7,6 @@ namespace ImageKit\Transformation;
 use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
-use ImageKit\Core\Conversion\EnumOf;
 
 /**
  * Applies Unsharp Masking (USM), an image sharpening technique.
@@ -24,6 +23,6 @@ final class UnsharpMask implements ConverterSource
      */
     public static function variants(): array
     {
-        return [new EnumOf([true]), 'string'];
+        return ['bool', 'string'];
     }
 }

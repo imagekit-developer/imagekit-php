@@ -65,7 +65,7 @@ final class OverlayPosition implements BaseModel
     ): self {
         $obj = new self;
 
-        null !== $focus && $obj->focus = $focus instanceof Focus ? $focus->value : $focus;
+        null !== $focus && $obj['focus'] = $focus;
         null !== $x && $obj->x = $x;
         null !== $y && $obj->y = $y;
 
@@ -81,7 +81,7 @@ final class OverlayPosition implements BaseModel
     public function withFocus(Focus|string $focus): self
     {
         $obj = clone $this;
-        $obj->focus = $focus instanceof Focus ? $focus->value : $focus;
+        $obj['focus'] = $focus;
 
         return $obj;
     }

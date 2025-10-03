@@ -6,19 +6,19 @@ namespace ImageKit\Files;
 
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Concerns\SdkResponse;
 use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
  * @phpstan-type file_rename_response = array{purgeRequestID?: string}
- * When used in a response, this type parameter can define a $rawResponse property.
- * @template TRawResponse of object = object{}
- *
- * @mixin TRawResponse
  */
-final class FileRenameResponse implements BaseModel
+final class FileRenameResponse implements BaseModel, ResponseConverter
 {
     /** @use SdkModel<file_rename_response> */
     use SdkModel;
+
+    use SdkResponse;
 
     /**
      * Unique identifier of the purge request. This can be used to check the status of the purge request.

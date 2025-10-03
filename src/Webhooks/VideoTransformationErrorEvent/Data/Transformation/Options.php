@@ -109,13 +109,13 @@ final class Options implements BaseModel
     ): self {
         $obj = new self;
 
-        null !== $audioCodec && $obj->audioCodec = $audioCodec instanceof AudioCodec ? $audioCodec->value : $audioCodec;
+        null !== $audioCodec && $obj['audioCodec'] = $audioCodec;
         null !== $autoRotate && $obj->autoRotate = $autoRotate;
-        null !== $format && $obj->format = $format instanceof Format ? $format->value : $format;
+        null !== $format && $obj['format'] = $format;
         null !== $quality && $obj->quality = $quality;
-        null !== $streamProtocol && $obj->streamProtocol = $streamProtocol instanceof StreamProtocol ? $streamProtocol->value : $streamProtocol;
+        null !== $streamProtocol && $obj['streamProtocol'] = $streamProtocol;
         null !== $variants && $obj->variants = $variants;
-        null !== $videoCodec && $obj->videoCodec = $videoCodec instanceof VideoCodec ? $videoCodec->value : $videoCodec;
+        null !== $videoCodec && $obj['videoCodec'] = $videoCodec;
 
         return $obj;
     }
@@ -128,7 +128,7 @@ final class Options implements BaseModel
     public function withAudioCodec(AudioCodec|string $audioCodec): self
     {
         $obj = clone $this;
-        $obj->audioCodec = $audioCodec instanceof AudioCodec ? $audioCodec->value : $audioCodec;
+        $obj['audioCodec'] = $audioCodec;
 
         return $obj;
     }
@@ -152,7 +152,7 @@ final class Options implements BaseModel
     public function withFormat(Format|string $format): self
     {
         $obj = clone $this;
-        $obj->format = $format instanceof Format ? $format->value : $format;
+        $obj['format'] = $format;
 
         return $obj;
     }
@@ -177,7 +177,7 @@ final class Options implements BaseModel
         StreamProtocol|string $streamProtocol
     ): self {
         $obj = clone $this;
-        $obj->streamProtocol = $streamProtocol instanceof StreamProtocol ? $streamProtocol->value : $streamProtocol;
+        $obj['streamProtocol'] = $streamProtocol;
 
         return $obj;
     }
@@ -203,7 +203,7 @@ final class Options implements BaseModel
     public function withVideoCodec(VideoCodec|string $videoCodec): self
     {
         $obj = clone $this;
-        $obj->videoCodec = $videoCodec instanceof VideoCodec ? $videoCodec->value : $videoCodec;
+        $obj['videoCodec'] = $videoCodec;
 
         return $obj;
     }

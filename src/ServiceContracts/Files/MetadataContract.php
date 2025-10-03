@@ -23,17 +23,6 @@ interface MetadataContract
     /**
      * @api
      *
-     * @throws APIException
-     */
-    public function getRaw(
-        string $fileID,
-        mixed $params,
-        ?RequestOptions $requestOptions = null
-    ): Metadata;
-
-    /**
-     * @api
-     *
      * @param string $url Should be a valid file URL. It should be accessible using your ImageKit.io account.
      *
      * @throws APIException

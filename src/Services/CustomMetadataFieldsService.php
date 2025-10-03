@@ -7,7 +7,6 @@ namespace ImageKit\Services;
 use ImageKit\Client;
 use ImageKit\Core\Conversion\ListOf;
 use ImageKit\Core\Exceptions\APIException;
-use ImageKit\Core\Implementation\HasRawResponse;
 use ImageKit\CustomMetadataFields\CustomMetadataField;
 use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams;
 use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema;
@@ -35,8 +34,6 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
      * @param string $name API name of the custom metadata field. This should be unique across all (including deleted) custom metadata fields.
      * @param Schema $schema
      *
-     * @return CustomMetadataField<HasRawResponse>
-     *
      * @throws APIException
      */
     public function create(
@@ -54,8 +51,6 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
      * @api
      *
      * @param array<string, mixed> $params
-     *
-     * @return CustomMetadataField<HasRawResponse>
      *
      * @throws APIException
      */
@@ -86,8 +81,6 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
      * @param string $label Human readable name of the custom metadata field. This should be unique across all non deleted custom metadata fields. This name is displayed as form field label to the users while setting field value on an asset in the media library UI. This parameter is required if `schema` is not provided.
      * @param ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema $schema An object that describes the rules for the custom metadata key. This parameter is required if `label` is not provided. Note: `type` cannot be updated and will be ignored if sent with the `schema`. The schema will be validated as per the existing `type`.
      *
-     * @return CustomMetadataField<HasRawResponse>
-     *
      * @throws APIException
      */
     public function update(
@@ -105,8 +98,6 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
      * @api
      *
      * @param array<string, mixed> $params
-     *
-     * @return CustomMetadataField<HasRawResponse>
      *
      * @throws APIException
      */
@@ -189,29 +180,10 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
      *
      * This API deletes a custom metadata field. Even after deleting a custom metadata field, you cannot create any new custom metadata field with the same name.
      *
-     * @return CustomMetadataFieldDeleteResponse<HasRawResponse>
-     *
      * @throws APIException
      */
     public function delete(
         string $id,
-        ?RequestOptions $requestOptions = null
-    ): CustomMetadataFieldDeleteResponse {
-        $params = [];
-
-        return $this->deleteRaw($id, $params, $requestOptions);
-    }
-
-    /**
-     * @api
-     *
-     * @return CustomMetadataFieldDeleteResponse<HasRawResponse>
-     *
-     * @throws APIException
-     */
-    public function deleteRaw(
-        string $id,
-        mixed $params,
         ?RequestOptions $requestOptions = null
     ): CustomMetadataFieldDeleteResponse {
         // @phpstan-ignore-next-line;

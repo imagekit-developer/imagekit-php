@@ -31,21 +31,6 @@ final class MetadataService implements MetadataContract
         string $fileID,
         ?RequestOptions $requestOptions = null
     ): Metadata {
-        $params = [];
-
-        return $this->getRaw($fileID, $params, $requestOptions);
-    }
-
-    /**
-     * @api
-     *
-     * @throws APIException
-     */
-    public function getRaw(
-        string $fileID,
-        mixed $params,
-        ?RequestOptions $requestOptions = null
-    ): Metadata {
         // @phpstan-ignore-next-line;
         return $this->client->request(
             method: 'get',

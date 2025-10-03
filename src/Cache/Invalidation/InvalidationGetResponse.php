@@ -7,19 +7,19 @@ namespace ImageKit\Cache\Invalidation;
 use ImageKit\Cache\Invalidation\InvalidationGetResponse\Status;
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Concerns\SdkResponse;
 use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
  * @phpstan-type invalidation_get_response = array{status?: value-of<Status>}
- * When used in a response, this type parameter can define a $rawResponse property.
- * @template TRawResponse of object = object{}
- *
- * @mixin TRawResponse
  */
-final class InvalidationGetResponse implements BaseModel
+final class InvalidationGetResponse implements BaseModel, ResponseConverter
 {
     /** @use SdkModel<invalidation_get_response> */
     use SdkModel;
+
+    use SdkResponse;
 
     /**
      * Status of the purge request.
@@ -45,7 +45,7 @@ final class InvalidationGetResponse implements BaseModel
     {
         $obj = new self;
 
-        null !== $status && $obj->status = $status instanceof Status ? $status->value : $status;
+        null !== $status && $obj['status'] = $status;
 
         return $obj;
     }
@@ -58,7 +58,7 @@ final class InvalidationGetResponse implements BaseModel
     public function withStatus(Status|string $status): self
     {
         $obj = clone $this;
-        $obj->status = $status instanceof Status ? $status->value : $status;
+        $obj['status'] = $status;
 
         return $obj;
     }

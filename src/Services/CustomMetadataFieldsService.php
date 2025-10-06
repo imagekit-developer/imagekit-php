@@ -79,7 +79,7 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
      * This API updates the label or schema of an existing custom metadata field.
      *
      * @param string $label Human readable name of the custom metadata field. This should be unique across all non deleted custom metadata fields. This name is displayed as form field label to the users while setting field value on an asset in the media library UI. This parameter is required if `schema` is not provided.
-     * @param ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema $schema An object that describes the rules for the custom metadata key. This parameter is required if `label` is not provided. Note: `type` cannot be updated and will be ignored if sent with the `schema`. The schema will be validated as per the existing `type`.
+     * @param CustomMetadataFieldUpdateParams\Schema $schema An object that describes the rules for the custom metadata key. This parameter is required if `label` is not provided. Note: `type` cannot be updated and will be ignored if sent with the `schema`. The schema will be validated as per the existing `type`.
      *
      * @throws APIException
      */

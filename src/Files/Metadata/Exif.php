@@ -14,7 +14,7 @@ use ImageKit\Files\Metadata\Exif\Thumbnail;
 
 /**
  * @phpstan-type exif_alias = array{
- *   exif?: ImageKit\Files\Metadata\Exif\Exif,
+ *   exif?: \ImageKit\Files\Metadata\Exif\Exif,
  *   gps?: Gps,
  *   image?: Image,
  *   interoperability?: Interoperability,
@@ -31,7 +31,7 @@ final class Exif implements BaseModel
      * Object containing Exif details.
      */
     #[Api(optional: true)]
-    public ?ImageKit\Files\Metadata\Exif\Exif $exif;
+    public ?Exif\Exif $exif;
 
     /**
      * Object containing GPS information.
@@ -74,7 +74,7 @@ final class Exif implements BaseModel
      * @param array<string, mixed> $makernote
      */
     public static function with(
-        ?ImageKit\Files\Metadata\Exif\Exif $exif = null,
+        ?Exif\Exif $exif = null,
         ?Gps $gps = null,
         ?Image $image = null,
         ?Interoperability $interoperability = null,
@@ -96,7 +96,7 @@ final class Exif implements BaseModel
     /**
      * Object containing Exif details.
      */
-    public function withExif(ImageKit\Files\Metadata\Exif\Exif $exif): self
+    public function withExif(Exif\Exif $exif): self
     {
         $obj = clone $this;
         $obj->exif = $exif;

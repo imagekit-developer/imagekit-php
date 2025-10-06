@@ -24,7 +24,7 @@ use ImageKit\Files\FileUploadParams\Transformation\Post\Thumbnail;
  * You can mix and match any combination of post-processing types.
  *
  * @phpstan-type transformation_alias = array{
- *   post?: list<ImageKit\Files\FileUploadParams\Transformation\Post\Transformation|GifToVideo|Thumbnail|Abs>,
+ *   post?: list<\ImageKit\Files\FileUploadParams\Transformation\Post\Transformation|GifToVideo|Thumbnail|Abs>,
  *   pre?: string,
  * }
  */
@@ -38,7 +38,7 @@ final class Transformation implements BaseModel
      * Each item must match one of the following types:
      * `transformation`, `gif-to-video`, `thumbnail`, `abs`.
      *
-     * @var list<ImageKit\Files\FileUploadParams\Transformation\Post\Transformation|GifToVideo|Thumbnail|Abs>|null $post
+     * @var list<Post\Transformation|GifToVideo|Thumbnail|Abs>|null $post
      */
     #[Api(list: Post::class, optional: true)]
     public ?array $post;
@@ -59,7 +59,7 @@ final class Transformation implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<ImageKit\Files\FileUploadParams\Transformation\Post\Transformation|GifToVideo|Thumbnail|Abs> $post
+     * @param list<Post\Transformation|GifToVideo|Thumbnail|Abs> $post
      */
     public static function with(?array $post = null, ?string $pre = null): self
     {
@@ -76,7 +76,7 @@ final class Transformation implements BaseModel
      * Each item must match one of the following types:
      * `transformation`, `gif-to-video`, `thumbnail`, `abs`.
      *
-     * @param list<ImageKit\Files\FileUploadParams\Transformation\Post\Transformation|GifToVideo|Thumbnail|Abs> $post
+     * @param list<Post\Transformation|GifToVideo|Thumbnail|Abs> $post
      */
     public function withPost(array $post): self
     {

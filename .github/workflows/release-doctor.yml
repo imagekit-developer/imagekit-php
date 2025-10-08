@@ -17,3 +17,6 @@ jobs:
       - name: Check release environment
         run: |
           bash ./bin/check-release-environment
+        env:
+          PACKAGIST_USERNAME: ${{ secrets.IMAGE_KIT_PACKAGIST_USERNAME || secrets.PACKAGIST_USERNAME }}
+          PACKAGIST_SAFE_KEY: ${{ secrets.IMAGE_KIT_PACKAGIST_SAFE_KEY || secrets.PACKAGIST_SAFE_KEY }}

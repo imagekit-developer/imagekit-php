@@ -11,18 +11,7 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema;
 
 /**
- * An object containing the method's parameters.
- * Example usage:
- * ```
- * $params = (new CustomMetadataFieldUpdateParams); // set properties as needed
- * $client->customMetadataFields->update(...$params->toArray());
- * ```
  * This API updates the label or schema of an existing custom metadata field.
- *
- * @method toArray()
- *   Returns the parameters as an associative array suitable for passing to the client method.
- *
- *   `$client->customMetadataFields->update(...$params->toArray());`
  *
  * @see ImageKit\CustomMetadataFields->update
  *

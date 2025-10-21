@@ -10,18 +10,7 @@ use ImageKit\Core\Concerns\SdkParams;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * An object containing the method's parameters.
- * Example usage:
- * ```
- * $params = (new FolderRenameParams); // set properties as needed
- * $client->folders->rename(...$params->toArray());
- * ```
  * This API allows you to rename an existing folder. The folder and all its nested assets and sub-folders will remain unchanged, but their paths will be updated to reflect the new folder name.
- *
- * @method toArray()
- *   Returns the parameters as an associative array suitable for passing to the client method.
- *
- *   `$client->folders->rename(...$params->toArray());`
  *
  * @see ImageKit\Folders->rename
  *

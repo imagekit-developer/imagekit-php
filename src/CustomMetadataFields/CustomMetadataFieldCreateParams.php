@@ -11,18 +11,7 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema;
 
 /**
- * An object containing the method's parameters.
- * Example usage:
- * ```
- * $params = (new CustomMetadataFieldCreateParams); // set properties as needed
- * $client->customMetadataFields->create(...$params->toArray());
- * ```
  * This API creates a new custom metadata field. Once a custom metadata field is created either through this API or using the dashboard UI, its value can be set on the assets. The value of a field for an asset can be set using the media library UI or programmatically through upload or update assets API.
- *
- * @method toArray()
- *   Returns the parameters as an associative array suitable for passing to the client method.
- *
- *   `$client->customMetadataFields->create(...$params->toArray());`
  *
  * @see ImageKit\CustomMetadataFields->create
  *

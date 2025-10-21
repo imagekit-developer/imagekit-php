@@ -10,20 +10,9 @@ use ImageKit\Core\Concerns\SdkParams;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * An object containing the method's parameters.
- * Example usage:
- * ```
- * $params = (new VersionDeleteParams); // set properties as needed
- * $client->files.versions->delete(...$params->toArray());
- * ```
  * This API deletes a non-current file version permanently. The API returns an empty response.
  *
  * Note: If you want to delete all versions of a file, use the delete file API.
- *
- * @method toArray()
- *   Returns the parameters as an associative array suitable for passing to the client method.
- *
- *   `$client->files.versions->delete(...$params->toArray());`
  *
  * @see ImageKit\Files\Versions->delete
  *

@@ -14,19 +14,8 @@ use ImageKit\Core\Concerns\SdkParams;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * An object containing the method's parameters.
- * Example usage:
- * ```
- * $params = (new URLEndpointUpdateParams); // set properties as needed
- * $client->accounts.urlEndpoints->update(...$params->toArray());
- * ```
  * **Note:** This API is currently in beta.
  * Updates the URL‑endpoint identified by `id` and returns the updated object.
- *
- * @method toArray()
- *   Returns the parameters as an associative array suitable for passing to the client method.
- *
- *   `$client->accounts.urlEndpoints->update(...$params->toArray());`
  *
  * @see ImageKit\Accounts\URLEndpoints->update
  *

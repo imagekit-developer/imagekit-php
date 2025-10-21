@@ -10,18 +10,7 @@ use ImageKit\Core\Concerns\SdkParams;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * An object containing the method's parameters.
- * Example usage:
- * ```
- * $params = (new FolderDeleteParams); // set properties as needed
- * $client->folders->delete(...$params->toArray());
- * ```
  * This will delete a folder and all its contents permanently. The API returns an empty response.
- *
- * @method toArray()
- *   Returns the parameters as an associative array suitable for passing to the client method.
- *
- *   `$client->folders->delete(...$params->toArray());`
  *
  * @see ImageKit\Folders->delete
  *

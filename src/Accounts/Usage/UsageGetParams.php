@@ -10,18 +10,7 @@ use ImageKit\Core\Concerns\SdkParams;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * An object containing the method's parameters.
- * Example usage:
- * ```
- * $params = (new UsageGetParams); // set properties as needed
- * $client->accounts.usage->get(...$params->toArray());
- * ```
  * Get the account usage information between two dates. Note that the API response includes data from the start date while excluding data from the end date. In other words, the data covers the period starting from the specified start date up to, but not including, the end date.
- *
- * @method toArray()
- *   Returns the parameters as an associative array suitable for passing to the client method.
- *
- *   `$client->accounts.usage->get(...$params->toArray());`
  *
  * @see ImageKit\Accounts\Usage->get
  *

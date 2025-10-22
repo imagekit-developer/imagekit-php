@@ -24,7 +24,7 @@ final class OriginsTest extends TestCase
         $client = new Client(
             privateKey: 'My Private Key',
             password: 'My Password',
-            baseUrl: $testUrl
+            baseUrl: $testUrl,
         );
 
         $this->client = $client;

@@ -11,7 +11,7 @@ use ImageKit\Core\Contracts\BaseModel;
 /**
  * Object containing EXIF image information.
  *
- * @phpstan-type image_alias = array{
+ * @phpstan-type ImageShape = array{
  *   exifOffset?: int,
  *   gpsInfo?: int,
  *   make?: string,
@@ -27,7 +27,7 @@ use ImageKit\Core\Contracts\BaseModel;
  */
 final class Image implements BaseModel
 {
-    /** @use SdkModel<image_alias> */
+    /** @use SdkModel<ImageShape> */
     use SdkModel;
 
     #[Api('ExifOffset', optional: true)]

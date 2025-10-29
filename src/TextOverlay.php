@@ -10,7 +10,7 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\TextOverlay\Encoding;
 
 /**
- * @phpstan-type text_overlay = array{
+ * @phpstan-type TextOverlayShape = array{
  *   position?: OverlayPosition,
  *   timing?: OverlayTiming,
  *   text: string,
@@ -21,7 +21,7 @@ use ImageKit\TextOverlay\Encoding;
  */
 final class TextOverlay implements BaseModel
 {
-    /** @use SdkModel<text_overlay> */
+    /** @use SdkModel<TextOverlayShape> */
     use SdkModel;
 
     #[Api]

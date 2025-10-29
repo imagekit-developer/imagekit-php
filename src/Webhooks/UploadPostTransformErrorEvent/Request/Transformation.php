@@ -11,13 +11,13 @@ use ImageKit\Webhooks\UploadPostTransformErrorEvent\Request\Transformation\Proto
 use ImageKit\Webhooks\UploadPostTransformErrorEvent\Request\Transformation\Type;
 
 /**
- * @phpstan-type transformation_alias = array{
+ * @phpstan-type TransformationShape = array{
  *   type: value-of<Type>, protocol?: value-of<Protocol>, value?: string
  * }
  */
 final class Transformation implements BaseModel
 {
-    /** @use SdkModel<transformation_alias> */
+    /** @use SdkModel<TransformationShape> */
     use SdkModel;
 
     /**

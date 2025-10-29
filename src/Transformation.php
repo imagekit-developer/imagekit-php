@@ -20,7 +20,7 @@ use ImageKit\Transformation\VideoCodec;
  * You can use the `raw` parameter to pass the transformation string directly.
  * See the [Transformations documentation](https://imagekit.io/docs/transformations).
  *
- * @phpstan-type transformation_alias = array{
+ * @phpstan-type TransformationShape = array{
  *   aiChangeBackground?: string,
  *   aiDropShadow?: bool|string,
  *   aiEdit?: string,
@@ -77,7 +77,7 @@ use ImageKit\Transformation\VideoCodec;
  */
 final class Transformation implements BaseModel
 {
-    /** @use SdkModel<transformation_alias> */
+    /** @use SdkModel<TransformationShape> */
     use SdkModel;
 
     /**

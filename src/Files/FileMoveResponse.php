@@ -10,11 +10,11 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
- * @phpstan-type file_move_response = array{}
+ * @phpstan-type FileMoveResponseShape = array{}
  */
 final class FileMoveResponse implements BaseModel, ResponseConverter
 {
-    /** @use SdkModel<file_move_response> */
+    /** @use SdkModel<FileMoveResponseShape> */
     use SdkModel;
 
     use SdkResponse;

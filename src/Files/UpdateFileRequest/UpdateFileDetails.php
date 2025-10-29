@@ -14,7 +14,7 @@ use ImageKit\ExtensionItem\RemoveBg;
 use ImageKit\Files\UpdateFileRequest\UpdateFileDetails\RemoveAITags;
 
 /**
- * @phpstan-type update_file_details = array{
+ * @phpstan-type UpdateFileDetailsShape = array{
  *   customCoordinates?: string|null,
  *   customMetadata?: array<string, mixed>,
  *   description?: string,
@@ -26,7 +26,7 @@ use ImageKit\Files\UpdateFileRequest\UpdateFileDetails\RemoveAITags;
  */
 final class UpdateFileDetails implements BaseModel
 {
-    /** @use SdkModel<update_file_details> */
+    /** @use SdkModel<UpdateFileDetailsShape> */
     use SdkModel;
 
     /**

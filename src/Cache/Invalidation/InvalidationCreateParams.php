@@ -14,11 +14,11 @@ use ImageKit\Core\Contracts\BaseModel;
  *
  * @see ImageKit\Cache\Invalidation->create
  *
- * @phpstan-type invalidation_create_params = array{url: string}
+ * @phpstan-type InvalidationCreateParamsShape = array{url: string}
  */
 final class InvalidationCreateParams implements BaseModel
 {
-    /** @use SdkModel<invalidation_create_params> */
+    /** @use SdkModel<InvalidationCreateParamsShape> */
     use SdkModel;
     use SdkParams;
 

@@ -11,7 +11,7 @@ use ImageKit\Core\Contracts\BaseModel;
 /**
  * Object containing Exif details.
  *
- * @phpstan-type exif_alias = array{
+ * @phpstan-type ExifShape = array{
  *   apertureValue?: float,
  *   colorSpace?: int,
  *   createDate?: string,
@@ -42,7 +42,7 @@ use ImageKit\Core\Contracts\BaseModel;
  */
 final class Exif implements BaseModel
 {
-    /** @use SdkModel<exif_alias> */
+    /** @use SdkModel<ExifShape> */
     use SdkModel;
 
     #[Api('ApertureValue', optional: true)]

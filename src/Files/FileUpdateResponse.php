@@ -18,7 +18,7 @@ use ImageKit\Files\FileUpdateResponse\ExtensionStatus;
 /**
  * Object containing details of a file or file version.
  *
- * @phpstan-type file_update_response = array{
+ * @phpstan-type FileUpdateResponseShape = array{
  *   aiTags?: list<AITag>|null,
  *   createdAt?: \DateTimeInterface,
  *   customCoordinates?: string|null,
@@ -47,7 +47,7 @@ use ImageKit\Files\FileUpdateResponse\ExtensionStatus;
  */
 final class FileUpdateResponse implements BaseModel, ResponseConverter
 {
-    /** @use SdkModel<file_update_response> */
+    /** @use SdkModel<FileUpdateResponseShape> */
     use SdkModel;
 
     use SdkResponse;

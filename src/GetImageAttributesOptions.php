@@ -12,7 +12,7 @@ use ImageKit\Core\Contracts\BaseModel;
  * Options for generating responsive image attributes including `src`, `srcSet`, and `sizes` for HTML `<img>` elements.
  * This schema extends `SrcOptions` to add support for responsive image generation with breakpoints.
  *
- * @phpstan-type get_image_attributes_options = array{
+ * @phpstan-type GetImageAttributesOptionsShape = array{
  *   src: string,
  *   urlEndpoint: string,
  *   expiresIn?: float,
@@ -28,7 +28,7 @@ use ImageKit\Core\Contracts\BaseModel;
  */
 final class GetImageAttributesOptions implements BaseModel
 {
-    /** @use SdkModel<get_image_attributes_options> */
+    /** @use SdkModel<GetImageAttributesOptionsShape> */
     use SdkModel;
 
     /**

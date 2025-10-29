@@ -12,11 +12,11 @@ use ImageKit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Output\V
 /**
  * Information about the transformed output video.
  *
- * @phpstan-type output_alias = array{url: string, videoMetadata?: VideoMetadata}
+ * @phpstan-type OutputShape = array{url: string, videoMetadata?: VideoMetadata}
  */
 final class Output implements BaseModel
 {
-    /** @use SdkModel<output_alias> */
+    /** @use SdkModel<OutputShape> */
     use SdkModel;
 
     /**

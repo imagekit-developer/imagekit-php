@@ -15,7 +15,7 @@ use ImageKit\Core\Contracts\BaseModel;
  *
  * @see ImageKit\Accounts\Origins->update
  *
- * @phpstan-type origin_update_params = array{
+ * @phpstan-type OriginUpdateParamsShape = array{
  *   accessKey: string,
  *   bucket: string,
  *   name: string,
@@ -41,7 +41,7 @@ use ImageKit\Core\Contracts\BaseModel;
  */
 final class OriginUpdateParams implements BaseModel
 {
-    /** @use SdkModel<origin_update_params> */
+    /** @use SdkModel<OriginUpdateParamsShape> */
     use SdkModel;
     use SdkParams;
 

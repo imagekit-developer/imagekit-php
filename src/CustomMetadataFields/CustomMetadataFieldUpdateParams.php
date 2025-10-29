@@ -15,13 +15,13 @@ use ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema;
  *
  * @see ImageKit\CustomMetadataFields->update
  *
- * @phpstan-type custom_metadata_field_update_params = array{
+ * @phpstan-type CustomMetadataFieldUpdateParamsShape = array{
  *   label?: string, schema?: Schema
  * }
  */
 final class CustomMetadataFieldUpdateParams implements BaseModel
 {
-    /** @use SdkModel<custom_metadata_field_update_params> */
+    /** @use SdkModel<CustomMetadataFieldUpdateParamsShape> */
     use SdkModel;
     use SdkParams;
 

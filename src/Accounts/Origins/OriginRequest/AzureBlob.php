@@ -9,7 +9,7 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type azure_blob = array{
+ * @phpstan-type AzureBlobShape = array{
  *   accountName: string,
  *   container: string,
  *   name: string,
@@ -22,7 +22,7 @@ use ImageKit\Core\Contracts\BaseModel;
  */
 final class AzureBlob implements BaseModel
 {
-    /** @use SdkModel<azure_blob> */
+    /** @use SdkModel<AzureBlobShape> */
     use SdkModel;
 
     #[Api]

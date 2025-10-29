@@ -10,7 +10,7 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\ImageOverlay\Encoding;
 
 /**
- * @phpstan-type image_overlay = array{
+ * @phpstan-type ImageOverlayShape = array{
  *   position?: OverlayPosition,
  *   timing?: OverlayTiming,
  *   input: string,
@@ -21,7 +21,7 @@ use ImageKit\ImageOverlay\Encoding;
  */
 final class ImageOverlay implements BaseModel
 {
-    /** @use SdkModel<image_overlay> */
+    /** @use SdkModel<ImageOverlayShape> */
     use SdkModel;
 
     #[Api]

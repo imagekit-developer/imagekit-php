@@ -9,11 +9,11 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type request_alias = array{transformation: string, xRequestID: string}
+ * @phpstan-type RequestShape = array{transformation: string, xRequestID: string}
  */
 final class Request implements BaseModel
 {
-    /** @use SdkModel<request_alias> */
+    /** @use SdkModel<RequestShape> */
     use SdkModel;
 
     /**

@@ -19,7 +19,7 @@ use ImageKit\Core\Contracts\BaseModel;
  *
  * @see ImageKit\Accounts\URLEndpoints->update
  *
- * @phpstan-type url_endpoint_update_params = array{
+ * @phpstan-type URLEndpointUpdateParamsShape = array{
  *   description: string,
  *   origins?: list<string>,
  *   urlPrefix?: string,
@@ -28,7 +28,7 @@ use ImageKit\Core\Contracts\BaseModel;
  */
 final class URLEndpointUpdateParams implements BaseModel
 {
-    /** @use SdkModel<url_endpoint_update_params> */
+    /** @use SdkModel<URLEndpointUpdateParamsShape> */
     use SdkModel;
     use SdkParams;
 

@@ -9,11 +9,11 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type error_alias = array{reason: string}
+ * @phpstan-type ErrorShape = array{reason: string}
  */
 final class Error implements BaseModel
 {
-    /** @use SdkModel<error_alias> */
+    /** @use SdkModel<ErrorShape> */
     use SdkModel;
 
     /**

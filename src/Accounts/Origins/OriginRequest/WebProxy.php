@@ -9,7 +9,7 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type web_proxy = array{
+ * @phpstan-type WebProxyShape = array{
  *   name: string,
  *   type: string,
  *   baseURLForCanonicalHeader?: string,
@@ -18,7 +18,7 @@ use ImageKit\Core\Contracts\BaseModel;
  */
 final class WebProxy implements BaseModel
 {
-    /** @use SdkModel<web_proxy> */
+    /** @use SdkModel<WebProxyShape> */
     use SdkModel;
 
     #[Api]

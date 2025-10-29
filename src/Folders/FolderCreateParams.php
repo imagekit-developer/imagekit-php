@@ -14,13 +14,13 @@ use ImageKit\Core\Contracts\BaseModel;
  *
  * @see ImageKit\Folders->create
  *
- * @phpstan-type folder_create_params = array{
+ * @phpstan-type FolderCreateParamsShape = array{
  *   folderName: string, parentFolderPath: string
  * }
  */
 final class FolderCreateParams implements BaseModel
 {
-    /** @use SdkModel<folder_create_params> */
+    /** @use SdkModel<FolderCreateParamsShape> */
     use SdkModel;
     use SdkParams;
 

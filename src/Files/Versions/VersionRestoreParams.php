@@ -14,11 +14,11 @@ use ImageKit\Core\Contracts\BaseModel;
  *
  * @see ImageKit\Files\Versions->restore
  *
- * @phpstan-type version_restore_params = array{fileID: string}
+ * @phpstan-type VersionRestoreParamsShape = array{fileID: string}
  */
 final class VersionRestoreParams implements BaseModel
 {
-    /** @use SdkModel<version_restore_params> */
+    /** @use SdkModel<VersionRestoreParamsShape> */
     use SdkModel;
     use SdkParams;
 

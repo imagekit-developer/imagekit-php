@@ -14,11 +14,11 @@ use ImageKit\Core\Contracts\BaseModel;
  *
  * @see ImageKit\Files\Versions->get
  *
- * @phpstan-type version_get_params = array{fileID: string}
+ * @phpstan-type VersionGetParamsShape = array{fileID: string}
  */
 final class VersionGetParams implements BaseModel
 {
-    /** @use SdkModel<version_get_params> */
+    /** @use SdkModel<VersionGetParamsShape> */
     use SdkModel;
     use SdkParams;
 

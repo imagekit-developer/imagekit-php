@@ -12,11 +12,11 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
- * @phpstan-type invalidation_get_response = array{status?: value-of<Status>}
+ * @phpstan-type InvalidationGetResponseShape = array{status?: value-of<Status>}
  */
 final class InvalidationGetResponse implements BaseModel, ResponseConverter
 {
-    /** @use SdkModel<invalidation_get_response> */
+    /** @use SdkModel<InvalidationGetResponseShape> */
     use SdkModel;
 
     use SdkResponse;

@@ -11,13 +11,13 @@ use ImageKit\Core\Contracts\BaseModel;
 /**
  * Metadata of the output video file.
  *
- * @phpstan-type video_metadata = array{
+ * @phpstan-type VideoMetadataShape = array{
  *   bitrate: int, duration: float, height: int, width: int
  * }
  */
 final class VideoMetadata implements BaseModel
 {
-    /** @use SdkModel<video_metadata> */
+    /** @use SdkModel<VideoMetadataShape> */
     use SdkModel;
 
     /**

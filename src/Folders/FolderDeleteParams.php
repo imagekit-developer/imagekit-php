@@ -14,11 +14,11 @@ use ImageKit\Core\Contracts\BaseModel;
  *
  * @see ImageKit\Folders->delete
  *
- * @phpstan-type folder_delete_params = array{folderPath: string}
+ * @phpstan-type FolderDeleteParamsShape = array{folderPath: string}
  */
 final class FolderDeleteParams implements BaseModel
 {
-    /** @use SdkModel<folder_delete_params> */
+    /** @use SdkModel<FolderDeleteParamsShape> */
     use SdkModel;
     use SdkParams;
 

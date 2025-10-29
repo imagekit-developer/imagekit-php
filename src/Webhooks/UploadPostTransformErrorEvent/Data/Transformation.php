@@ -10,11 +10,11 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Webhooks\UploadPostTransformErrorEvent\Data\Transformation\Error;
 
 /**
- * @phpstan-type transformation_alias = array{error: Error}
+ * @phpstan-type TransformationShape = array{error: Error}
  */
 final class Transformation implements BaseModel
 {
-    /** @use SdkModel<transformation_alias> */
+    /** @use SdkModel<TransformationShape> */
     use SdkModel;
 
     #[Api]

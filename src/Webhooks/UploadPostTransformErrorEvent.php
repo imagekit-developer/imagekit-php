@@ -13,7 +13,7 @@ use ImageKit\Webhooks\UploadPostTransformErrorEvent\Request;
 /**
  * Triggered when a post-transformation fails. The original file remains available, but the requested transformation could not be generated.
  *
- * @phpstan-type upload_post_transform_error_event = array{
+ * @phpstan-type UploadPostTransformErrorEventShape = array{
  *   id: string,
  *   type: string,
  *   createdAt: \DateTimeInterface,
@@ -23,7 +23,7 @@ use ImageKit\Webhooks\UploadPostTransformErrorEvent\Request;
  */
 final class UploadPostTransformErrorEvent implements BaseModel
 {
-    /** @use SdkModel<upload_post_transform_error_event> */
+    /** @use SdkModel<UploadPostTransformErrorEventShape> */
     use SdkModel;
 
     /**

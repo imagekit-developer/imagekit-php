@@ -17,7 +17,7 @@ use ImageKit\Files\File\VersionInfo;
 /**
  * Object containing details of a file or file version.
  *
- * @phpstan-type file_alias = array{
+ * @phpstan-type FileShape = array{
  *   aiTags?: list<AITag>|null,
  *   createdAt?: \DateTimeInterface,
  *   customCoordinates?: string|null,
@@ -45,7 +45,7 @@ use ImageKit\Files\File\VersionInfo;
  */
 final class File implements BaseModel, ResponseConverter
 {
-    /** @use SdkModel<file_alias> */
+    /** @use SdkModel<FileShape> */
     use SdkModel;
 
     use SdkResponse;

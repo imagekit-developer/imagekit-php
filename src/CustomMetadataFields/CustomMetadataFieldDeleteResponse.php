@@ -10,11 +10,11 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
- * @phpstan-type custom_metadata_field_delete_response = array{}
+ * @phpstan-type CustomMetadataFieldDeleteResponseShape = array{}
  */
 final class CustomMetadataFieldDeleteResponse implements BaseModel, ResponseConverter
 {
-    /** @use SdkModel<custom_metadata_field_delete_response> */
+    /** @use SdkModel<CustomMetadataFieldDeleteResponseShape> */
     use SdkModel;
 
     use SdkResponse;

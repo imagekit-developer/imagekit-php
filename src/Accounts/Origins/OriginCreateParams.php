@@ -15,7 +15,7 @@ use ImageKit\Core\Contracts\BaseModel;
  *
  * @see ImageKit\Accounts\Origins->create
  *
- * @phpstan-type origin_create_params = array{
+ * @phpstan-type OriginCreateParamsShape = array{
  *   accessKey: string,
  *   bucket: string,
  *   name: string,
@@ -41,7 +41,7 @@ use ImageKit\Core\Contracts\BaseModel;
  */
 final class OriginCreateParams implements BaseModel
 {
-    /** @use SdkModel<origin_create_params> */
+    /** @use SdkModel<OriginCreateParamsShape> */
     use SdkModel;
     use SdkParams;
 

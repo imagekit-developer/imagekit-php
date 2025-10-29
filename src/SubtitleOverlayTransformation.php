@@ -12,7 +12,7 @@ use ImageKit\SubtitleOverlayTransformation\Typography;
 /**
  * Subtitle styling options. [Learn more](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer) from the docs.
  *
- * @phpstan-type subtitle_overlay_transformation = array{
+ * @phpstan-type SubtitleOverlayTransformationShape = array{
  *   background?: string,
  *   color?: string,
  *   fontFamily?: string,
@@ -24,7 +24,7 @@ use ImageKit\SubtitleOverlayTransformation\Typography;
  */
 final class SubtitleOverlayTransformation implements BaseModel
 {
-    /** @use SdkModel<subtitle_overlay_transformation> */
+    /** @use SdkModel<SubtitleOverlayTransformationShape> */
     use SdkModel;
 
     /**

@@ -9,7 +9,7 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type web_folder = array{
+ * @phpstan-type WebFolderShape = array{
  *   baseURL: string,
  *   name: string,
  *   type: string,
@@ -20,7 +20,7 @@ use ImageKit\Core\Contracts\BaseModel;
  */
 final class WebFolder implements BaseModel
 {
-    /** @use SdkModel<web_folder> */
+    /** @use SdkModel<WebFolderShape> */
     use SdkModel;
 
     #[Api]

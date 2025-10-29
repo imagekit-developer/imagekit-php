@@ -19,7 +19,7 @@ use ImageKit\Core\Contracts\BaseModel;
  *
  * @see ImageKit\Accounts\URLEndpoints->create
  *
- * @phpstan-type url_endpoint_create_params = array{
+ * @phpstan-type URLEndpointCreateParamsShape = array{
  *   description: string,
  *   origins?: list<string>,
  *   urlPrefix?: string,
@@ -28,7 +28,7 @@ use ImageKit\Core\Contracts\BaseModel;
  */
 final class URLEndpointCreateParams implements BaseModel
 {
-    /** @use SdkModel<url_endpoint_create_params> */
+    /** @use SdkModel<URLEndpointCreateParamsShape> */
     use SdkModel;
     use SdkParams;
 

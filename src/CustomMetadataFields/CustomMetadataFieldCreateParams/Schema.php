@@ -12,7 +12,7 @@ use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\SelectO
 use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\Type;
 
 /**
- * @phpstan-type schema_alias = array{
+ * @phpstan-type SchemaShape = array{
  *   type: value-of<Type>,
  *   defaultValue?: string|float|bool|list<string|float|bool>,
  *   isValueRequired?: bool,
@@ -25,7 +25,7 @@ use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\Type;
  */
 final class Schema implements BaseModel
 {
-    /** @use SdkModel<schema_alias> */
+    /** @use SdkModel<SchemaShape> */
     use SdkModel;
 
     /**

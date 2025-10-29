@@ -9,11 +9,11 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type data_alias = array{fileID: string, name: string, url: string}
+ * @phpstan-type DataShape = array{fileID: string, name: string, url: string}
  */
 final class Data implements BaseModel
 {
-    /** @use SdkModel<data_alias> */
+    /** @use SdkModel<DataShape> */
     use SdkModel;
 
     /**

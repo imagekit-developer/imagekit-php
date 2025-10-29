@@ -11,11 +11,11 @@ use ImageKit\Webhooks\VideoTransformationReadyEvent\Data\Asset;
 use ImageKit\Webhooks\VideoTransformationReadyEvent\Data\Transformation;
 
 /**
- * @phpstan-type data_alias = array{asset: Asset, transformation: Transformation}
+ * @phpstan-type DataShape = array{asset: Asset, transformation: Transformation}
  */
 final class Data implements BaseModel
 {
-    /** @use SdkModel<data_alias> */
+    /** @use SdkModel<DataShape> */
     use SdkModel;
 
     /**

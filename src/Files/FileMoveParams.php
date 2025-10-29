@@ -16,13 +16,13 @@ use ImageKit\Core\Contracts\BaseModel;
  *
  * @see ImageKit\Files->move
  *
- * @phpstan-type file_move_params = array{
+ * @phpstan-type FileMoveParamsShape = array{
  *   destinationPath: string, sourceFilePath: string
  * }
  */
 final class FileMoveParams implements BaseModel
 {
-    /** @use SdkModel<file_move_params> */
+    /** @use SdkModel<FileMoveParamsShape> */
     use SdkModel;
     use SdkParams;
 

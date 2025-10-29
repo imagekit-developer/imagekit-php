@@ -14,13 +14,13 @@ use ImageKit\Core\Contracts\BaseModel;
  *
  * @see ImageKit\Folders->rename
  *
- * @phpstan-type folder_rename_params = array{
+ * @phpstan-type FolderRenameParamsShape = array{
  *   folderPath: string, newFolderName: string, purgeCache?: bool
  * }
  */
 final class FolderRenameParams implements BaseModel
 {
-    /** @use SdkModel<folder_rename_params> */
+    /** @use SdkModel<FolderRenameParamsShape> */
     use SdkModel;
     use SdkParams;
 

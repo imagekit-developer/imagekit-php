@@ -13,7 +13,7 @@ use ImageKit\Files\Metadata\Exif\Interoperability;
 use ImageKit\Files\Metadata\Exif\Thumbnail;
 
 /**
- * @phpstan-type exif_alias = array{
+ * @phpstan-type ExifShape = array{
  *   exif?: \ImageKit\Files\Metadata\Exif\Exif,
  *   gps?: Gps,
  *   image?: Image,
@@ -24,7 +24,7 @@ use ImageKit\Files\Metadata\Exif\Thumbnail;
  */
 final class Exif implements BaseModel
 {
-    /** @use SdkModel<exif_alias> */
+    /** @use SdkModel<ExifShape> */
     use SdkModel;
 
     /**

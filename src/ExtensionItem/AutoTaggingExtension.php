@@ -10,13 +10,13 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\ExtensionItem\AutoTaggingExtension\Name;
 
 /**
- * @phpstan-type auto_tagging_extension = array{
+ * @phpstan-type AutoTaggingExtensionShape = array{
  *   maxTags: int, minConfidence: int, name: value-of<Name>
  * }
  */
 final class AutoTaggingExtension implements BaseModel
 {
-    /** @use SdkModel<auto_tagging_extension> */
+    /** @use SdkModel<AutoTaggingExtensionShape> */
     use SdkModel;
 
     /**

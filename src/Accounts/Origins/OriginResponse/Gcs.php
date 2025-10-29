@@ -9,7 +9,7 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type gcs_alias = array{
+ * @phpstan-type GcsShape = array{
  *   id: string,
  *   bucket: string,
  *   clientEmail: string,
@@ -22,7 +22,7 @@ use ImageKit\Core\Contracts\BaseModel;
  */
 final class Gcs implements BaseModel
 {
-    /** @use SdkModel<gcs_alias> */
+    /** @use SdkModel<GcsShape> */
     use SdkModel;
 
     #[Api]

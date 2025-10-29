@@ -11,11 +11,11 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
- * @phpstan-type invalidation_new_response = array{requestID?: string}
+ * @phpstan-type InvalidationNewResponseShape = array{requestID?: string}
  */
 final class InvalidationNewResponse implements BaseModel, ResponseConverter
 {
-    /** @use SdkModel<invalidation_new_response> */
+    /** @use SdkModel<InvalidationNewResponseShape> */
     use SdkModel;
 
     use SdkResponse;

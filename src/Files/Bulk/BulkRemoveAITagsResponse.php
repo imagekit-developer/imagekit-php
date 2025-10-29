@@ -11,13 +11,13 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
- * @phpstan-type bulk_remove_ai_tags_response = array{
+ * @phpstan-type BulkRemoveAITagsResponseShape = array{
  *   successfullyUpdatedFileIDs?: list<string>
  * }
  */
 final class BulkRemoveAITagsResponse implements BaseModel, ResponseConverter
 {
-    /** @use SdkModel<bulk_remove_ai_tags_response> */
+    /** @use SdkModel<BulkRemoveAITagsResponseShape> */
     use SdkModel;
 
     use SdkResponse;

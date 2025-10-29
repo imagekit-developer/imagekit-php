@@ -16,7 +16,7 @@ use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\VersionInfo;
 /**
  * Object containing details of a successful upload.
  *
- * @phpstan-type data_alias = array{
+ * @phpstan-type DataShape = array{
  *   aiTags?: list<AITag>|null,
  *   audioCodec?: string,
  *   bitRate?: int,
@@ -46,7 +46,7 @@ use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\VersionInfo;
  */
 final class Data implements BaseModel
 {
-    /** @use SdkModel<data_alias> */
+    /** @use SdkModel<DataShape> */
     use SdkModel;
 
     /**

@@ -23,14 +23,14 @@ use ImageKit\Files\FileUploadParams\Transformation\Post\Thumbnail;
  *
  * You can mix and match any combination of post-processing types.
  *
- * @phpstan-type transformation_alias = array{
+ * @phpstan-type TransformationShape = array{
  *   post?: list<\ImageKit\Files\FileUploadParams\Transformation\Post\Transformation|GifToVideo|Thumbnail|Abs>,
  *   pre?: string,
  * }
  */
 final class Transformation implements BaseModel
 {
-    /** @use SdkModel<transformation_alias> */
+    /** @use SdkModel<TransformationShape> */
     use SdkModel;
 
     /**

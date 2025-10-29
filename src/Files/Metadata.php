@@ -12,7 +12,7 @@ use ImageKit\Files\Metadata\Exif;
 /**
  * JSON object containing metadata.
  *
- * @phpstan-type metadata_alias = array{
+ * @phpstan-type MetadataShape = array{
  *   audioCodec?: string,
  *   bitRate?: int,
  *   density?: int,
@@ -31,7 +31,7 @@ use ImageKit\Files\Metadata\Exif;
  */
 final class Metadata implements BaseModel
 {
-    /** @use SdkModel<metadata_alias> */
+    /** @use SdkModel<MetadataShape> */
     use SdkModel;
 
     /**

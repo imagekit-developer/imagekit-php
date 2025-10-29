@@ -10,13 +10,13 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Webhooks\UploadPreTransformErrorEvent\Data\Transformation;
 
 /**
- * @phpstan-type data_alias = array{
+ * @phpstan-type DataShape = array{
  *   name: string, path: string, transformation: Transformation
  * }
  */
 final class Data implements BaseModel
 {
-    /** @use SdkModel<data_alias> */
+    /** @use SdkModel<DataShape> */
     use SdkModel;
 
     /**

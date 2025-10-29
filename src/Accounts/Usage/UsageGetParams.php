@@ -14,13 +14,13 @@ use ImageKit\Core\Contracts\BaseModel;
  *
  * @see ImageKit\Accounts\Usage->get
  *
- * @phpstan-type usage_get_params = array{
+ * @phpstan-type UsageGetParamsShape = array{
  *   endDate: \DateTimeInterface, startDate: \DateTimeInterface
  * }
  */
 final class UsageGetParams implements BaseModel
 {
-    /** @use SdkModel<usage_get_params> */
+    /** @use SdkModel<UsageGetParamsShape> */
     use SdkModel;
     use SdkParams;
 

@@ -16,13 +16,13 @@ use ImageKit\Core\Contracts\BaseModel;
  *
  * @see ImageKit\CustomMetadataFields->list
  *
- * @phpstan-type custom_metadata_field_list_params = array{
+ * @phpstan-type CustomMetadataFieldListParamsShape = array{
  *   folderPath?: string, includeDeleted?: bool
  * }
  */
 final class CustomMetadataFieldListParams implements BaseModel
 {
-    /** @use SdkModel<custom_metadata_field_list_params> */
+    /** @use SdkModel<CustomMetadataFieldListParamsShape> */
     use SdkModel;
     use SdkParams;
 

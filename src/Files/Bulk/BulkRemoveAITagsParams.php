@@ -14,13 +14,13 @@ use ImageKit\Core\Contracts\BaseModel;
  *
  * @see ImageKit\Files\Bulk->removeAITags
  *
- * @phpstan-type bulk_remove_ai_tags_params = array{
+ * @phpstan-type BulkRemoveAITagsParamsShape = array{
  *   aiTags: list<string>, fileIDs: list<string>
  * }
  */
 final class BulkRemoveAITagsParams implements BaseModel
 {
-    /** @use SdkModel<bulk_remove_ai_tags_params> */
+    /** @use SdkModel<BulkRemoveAITagsParamsShape> */
     use SdkModel;
     use SdkParams;
 

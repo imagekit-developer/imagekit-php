@@ -11,7 +11,7 @@ use ImageKit\Core\Contracts\BaseModel;
 /**
  * Options for generating ImageKit URLs with transformations. See the [Transformations guide](https://imagekit.io/docs/transformations).
  *
- * @phpstan-type src_options = array{
+ * @phpstan-type SrcOptionsShape = array{
  *   src: string,
  *   urlEndpoint: string,
  *   expiresIn?: float,
@@ -23,7 +23,7 @@ use ImageKit\Core\Contracts\BaseModel;
  */
 final class SrcOptions implements BaseModel
 {
-    /** @use SdkModel<src_options> */
+    /** @use SdkModel<SrcOptionsShape> */
     use SdkModel;
 
     /**

@@ -14,13 +14,13 @@ use ImageKit\Core\Contracts\BaseModel;
  *
  * @see ImageKit\Files\Bulk->addTags
  *
- * @phpstan-type bulk_add_tags_params = array{
+ * @phpstan-type BulkAddTagsParamsShape = array{
  *   fileIDs: list<string>, tags: list<string>
  * }
  */
 final class BulkAddTagsParams implements BaseModel
 {
-    /** @use SdkModel<bulk_add_tags_params> */
+    /** @use SdkModel<BulkAddTagsParamsShape> */
     use SdkModel;
     use SdkParams;
 

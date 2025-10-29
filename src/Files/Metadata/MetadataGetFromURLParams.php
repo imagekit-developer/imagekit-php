@@ -14,11 +14,11 @@ use ImageKit\Core\Contracts\BaseModel;
  *
  * @see ImageKit\Files\Metadata->getFromURL
  *
- * @phpstan-type metadata_get_from_url_params = array{url: string}
+ * @phpstan-type MetadataGetFromURLParamsShape = array{url: string}
  */
 final class MetadataGetFromURLParams implements BaseModel
 {
-    /** @use SdkModel<metadata_get_from_url_params> */
+    /** @use SdkModel<MetadataGetFromURLParamsShape> */
     use SdkModel;
     use SdkParams;
 

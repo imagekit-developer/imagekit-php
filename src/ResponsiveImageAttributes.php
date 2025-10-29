@@ -12,13 +12,13 @@ use ImageKit\Core\Contracts\BaseModel;
  * Resulting set of attributes suitable for an HTML `<img>` element.
  * Useful for enabling responsive image loading with `srcSet` and `sizes`.
  *
- * @phpstan-type responsive_image_attributes = array{
+ * @phpstan-type ResponsiveImageAttributesShape = array{
  *   src: string, sizes?: string, srcSet?: string, width?: float
  * }
  */
 final class ResponsiveImageAttributes implements BaseModel
 {
-    /** @use SdkModel<responsive_image_attributes> */
+    /** @use SdkModel<ResponsiveImageAttributesShape> */
     use SdkModel;
 
     /**

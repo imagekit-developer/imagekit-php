@@ -16,11 +16,11 @@ use ImageKit\Core\Contracts\BaseModel;
  *
  * @see ImageKit\Files\Versions->delete
  *
- * @phpstan-type version_delete_params = array{fileID: string}
+ * @phpstan-type VersionDeleteParamsShape = array{fileID: string}
  */
 final class VersionDeleteParams implements BaseModel
 {
-    /** @use SdkModel<version_delete_params> */
+    /** @use SdkModel<VersionDeleteParamsShape> */
     use SdkModel;
     use SdkParams;
 

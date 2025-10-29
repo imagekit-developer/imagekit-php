@@ -11,7 +11,7 @@ use ImageKit\TextOverlayTransformation\Flip;
 use ImageKit\TextOverlayTransformation\InnerAlignment;
 
 /**
- * @phpstan-type text_overlay_transformation = array{
+ * @phpstan-type TextOverlayTransformationShape = array{
  *   alpha?: float,
  *   background?: string,
  *   flip?: value-of<Flip>,
@@ -29,7 +29,7 @@ use ImageKit\TextOverlayTransformation\InnerAlignment;
  */
 final class TextOverlayTransformation implements BaseModel
 {
-    /** @use SdkModel<text_overlay_transformation> */
+    /** @use SdkModel<TextOverlayTransformationShape> */
     use SdkModel;
 
     /**

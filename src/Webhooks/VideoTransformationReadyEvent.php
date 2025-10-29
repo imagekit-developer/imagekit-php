@@ -14,7 +14,7 @@ use ImageKit\Webhooks\VideoTransformationReadyEvent\Timings;
 /**
  * Triggered when video encoding is finished and the transformed resource is ready to be served. This is the key event to listen for - update your database or CMS flags when you receive this so your application can start showing the transformed video to users.
  *
- * @phpstan-type video_transformation_ready_event = array{
+ * @phpstan-type VideoTransformationReadyEventShape = array{
  *   id: string,
  *   type: string,
  *   createdAt: \DateTimeInterface,
@@ -25,7 +25,7 @@ use ImageKit\Webhooks\VideoTransformationReadyEvent\Timings;
  */
 final class VideoTransformationReadyEvent implements BaseModel
 {
-    /** @use SdkModel<video_transformation_ready_event> */
+    /** @use SdkModel<VideoTransformationReadyEventShape> */
     use SdkModel;
 
     /**

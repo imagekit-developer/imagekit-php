@@ -10,11 +10,11 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
- * @phpstan-type version_delete_response = array{}
+ * @phpstan-type VersionDeleteResponseShape = array{}
  */
 final class VersionDeleteResponse implements BaseModel, ResponseConverter
 {
-    /** @use SdkModel<version_delete_response> */
+    /** @use SdkModel<VersionDeleteResponseShape> */
     use SdkModel;
 
     use SdkResponse;

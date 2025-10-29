@@ -10,11 +10,11 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
- * @phpstan-type folder_new_response = array{}
+ * @phpstan-type FolderNewResponseShape = array{}
  */
 final class FolderNewResponse implements BaseModel, ResponseConverter
 {
-    /** @use SdkModel<folder_new_response> */
+    /** @use SdkModel<FolderNewResponseShape> */
     use SdkModel;
 
     use SdkResponse;

@@ -12,11 +12,11 @@ use ImageKit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Error\Re
 /**
  * Details about the transformation error.
  *
- * @phpstan-type error_alias = array{reason: value-of<Reason>}
+ * @phpstan-type ErrorShape = array{reason: value-of<Reason>}
  */
 final class Error implements BaseModel
 {
-    /** @use SdkModel<error_alias> */
+    /** @use SdkModel<ErrorShape> */
     use SdkModel;
 
     /**

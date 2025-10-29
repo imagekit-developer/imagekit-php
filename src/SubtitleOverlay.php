@@ -10,7 +10,7 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\SubtitleOverlay\Encoding;
 
 /**
- * @phpstan-type subtitle_overlay = array{
+ * @phpstan-type SubtitleOverlayShape = array{
  *   position?: OverlayPosition,
  *   timing?: OverlayTiming,
  *   input: string,
@@ -21,7 +21,7 @@ use ImageKit\SubtitleOverlay\Encoding;
  */
 final class SubtitleOverlay implements BaseModel
 {
-    /** @use SdkModel<subtitle_overlay> */
+    /** @use SdkModel<SubtitleOverlayShape> */
     use SdkModel;
 
     #[Api]

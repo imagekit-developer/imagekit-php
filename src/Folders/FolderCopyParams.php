@@ -14,13 +14,13 @@ use ImageKit\Core\Contracts\BaseModel;
  *
  * @see ImageKit\Folders->copy
  *
- * @phpstan-type folder_copy_params = array{
+ * @phpstan-type FolderCopyParamsShape = array{
  *   destinationPath: string, sourceFolderPath: string, includeVersions?: bool
  * }
  */
 final class FolderCopyParams implements BaseModel
 {
-    /** @use SdkModel<folder_copy_params> */
+    /** @use SdkModel<FolderCopyParamsShape> */
     use SdkModel;
     use SdkParams;
 

@@ -18,11 +18,11 @@ use ImageKit\Core\Contracts\BaseModel;
  *
  * @see ImageKit\Files\Bulk->delete
  *
- * @phpstan-type bulk_delete_params = array{fileIDs: list<string>}
+ * @phpstan-type BulkDeleteParamsShape = array{fileIDs: list<string>}
  */
 final class BulkDeleteParams implements BaseModel
 {
-    /** @use SdkModel<bulk_delete_params> */
+    /** @use SdkModel<BulkDeleteParamsShape> */
     use SdkModel;
     use SdkParams;
 

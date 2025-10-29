@@ -14,13 +14,13 @@ use ImageKit\Core\Contracts\BaseModel;
  *
  * @see ImageKit\Folders->move
  *
- * @phpstan-type folder_move_params = array{
+ * @phpstan-type FolderMoveParamsShape = array{
  *   destinationPath: string, sourceFolderPath: string
  * }
  */
 final class FolderMoveParams implements BaseModel
 {
-    /** @use SdkModel<folder_move_params> */
+    /** @use SdkModel<FolderMoveParamsShape> */
     use SdkModel;
     use SdkParams;
 

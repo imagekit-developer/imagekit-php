@@ -9,13 +9,13 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type overlay_timing = array{
+ * @phpstan-type OverlayTimingShape = array{
  *   duration?: float|string, end?: float|string, start?: float|string
  * }
  */
 final class OverlayTiming implements BaseModel
 {
-    /** @use SdkModel<overlay_timing> */
+    /** @use SdkModel<OverlayTimingShape> */
     use SdkModel;
 
     /**

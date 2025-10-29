@@ -11,13 +11,13 @@ use ImageKit\Core\Contracts\BaseModel;
 /**
  * JSON object.
  *
- * @phpstan-type interoperability_alias = array{
+ * @phpstan-type InteroperabilityShape = array{
  *   interopIndex?: string, interopVersion?: string
  * }
  */
 final class Interoperability implements BaseModel
 {
-    /** @use SdkModel<interoperability_alias> */
+    /** @use SdkModel<InteroperabilityShape> */
     use SdkModel;
 
     #[Api('InteropIndex', optional: true)]

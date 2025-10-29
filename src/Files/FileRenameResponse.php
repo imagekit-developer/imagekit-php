@@ -11,11 +11,11 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
- * @phpstan-type file_rename_response = array{purgeRequestID?: string}
+ * @phpstan-type FileRenameResponseShape = array{purgeRequestID?: string}
  */
 final class FileRenameResponse implements BaseModel, ResponseConverter
 {
-    /** @use SdkModel<file_rename_response> */
+    /** @use SdkModel<FileRenameResponseShape> */
     use SdkModel;
 
     use SdkResponse;

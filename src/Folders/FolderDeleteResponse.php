@@ -10,11 +10,11 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
- * @phpstan-type folder_delete_response = array{}
+ * @phpstan-type FolderDeleteResponseShape = array{}
  */
 final class FolderDeleteResponse implements BaseModel, ResponseConverter
 {
-    /** @use SdkModel<folder_delete_response> */
+    /** @use SdkModel<FolderDeleteResponseShape> */
     use SdkModel;
 
     use SdkResponse;

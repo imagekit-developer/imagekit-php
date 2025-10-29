@@ -9,7 +9,7 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type solid_color_overlay = array{
+ * @phpstan-type SolidColorOverlayShape = array{
  *   position?: OverlayPosition,
  *   timing?: OverlayTiming,
  *   color: string,
@@ -19,7 +19,7 @@ use ImageKit\Core\Contracts\BaseModel;
  */
 final class SolidColorOverlay implements BaseModel
 {
-    /** @use SdkModel<solid_color_overlay> */
+    /** @use SdkModel<SolidColorOverlayShape> */
     use SdkModel;
 
     #[Api]

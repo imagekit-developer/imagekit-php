@@ -17,7 +17,7 @@ use ImageKit\Core\Conversion\Contracts\ResponseConverter;
 /**
  * URL‑endpoint object as returned by the API.
  *
- * @phpstan-type url_endpoint_response = array{
+ * @phpstan-type URLEndpointResponseShape = array{
  *   id: string,
  *   description: string,
  *   origins: list<string>,
@@ -27,7 +27,7 @@ use ImageKit\Core\Conversion\Contracts\ResponseConverter;
  */
 final class URLEndpointResponse implements BaseModel, ResponseConverter
 {
-    /** @use SdkModel<url_endpoint_response> */
+    /** @use SdkModel<URLEndpointResponseShape> */
     use SdkModel;
 
     use SdkResponse;

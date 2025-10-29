@@ -10,13 +10,13 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type abs_alias = array{
+ * @phpstan-type AbsShape = array{
  *   protocol: value-of<Protocol>, type: string, value: string
  * }
  */
 final class Abs implements BaseModel
 {
-    /** @use SdkModel<abs_alias> */
+    /** @use SdkModel<AbsShape> */
     use SdkModel;
 
     /**

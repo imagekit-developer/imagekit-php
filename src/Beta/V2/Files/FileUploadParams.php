@@ -33,7 +33,7 @@ use ImageKit\ExtensionItem\RemoveBg;
  *
  * @see ImageKit\Beta\V2\Files->upload
  *
- * @phpstan-type file_upload_params = array{
+ * @phpstan-type FileUploadParamsShape = array{
  *   file: string,
  *   fileName: string,
  *   token?: string,
@@ -58,7 +58,7 @@ use ImageKit\ExtensionItem\RemoveBg;
  */
 final class FileUploadParams implements BaseModel
 {
-    /** @use SdkModel<file_upload_params> */
+    /** @use SdkModel<FileUploadParamsShape> */
     use SdkModel;
     use SdkParams;
 

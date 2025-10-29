@@ -12,7 +12,7 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type selected_fields_schema = array{
+ * @phpstan-type SelectedFieldsSchemaShape = array{
  *   type: value-of<Type>,
  *   defaultValue?: string|float|bool|list<string|float|bool>,
  *   isValueRequired?: bool,
@@ -27,7 +27,7 @@ use ImageKit\Core\Contracts\BaseModel;
  */
 final class SelectedFieldsSchema implements BaseModel
 {
-    /** @use SdkModel<selected_fields_schema> */
+    /** @use SdkModel<SelectedFieldsSchemaShape> */
     use SdkModel;
 
     /**

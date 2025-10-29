@@ -11,7 +11,7 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
- * @phpstan-type usage_get_response = array{
+ * @phpstan-type UsageGetResponseShape = array{
  *   bandwidthBytes?: int,
  *   extensionUnitsCount?: int,
  *   mediaLibraryStorageBytes?: int,
@@ -21,7 +21,7 @@ use ImageKit\Core\Conversion\Contracts\ResponseConverter;
  */
 final class UsageGetResponse implements BaseModel, ResponseConverter
 {
-    /** @use SdkModel<usage_get_response> */
+    /** @use SdkModel<UsageGetResponseShape> */
     use SdkModel;
 
     use SdkResponse;

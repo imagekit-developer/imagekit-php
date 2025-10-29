@@ -11,7 +11,7 @@ use ImageKit\Core\Contracts\BaseModel;
 /**
  * Object containing Thumbnail information.
  *
- * @phpstan-type thumbnail_alias = array{
+ * @phpstan-type ThumbnailShape = array{
  *   compression?: int,
  *   resolutionUnit?: int,
  *   thumbnailLength?: int,
@@ -22,7 +22,7 @@ use ImageKit\Core\Contracts\BaseModel;
  */
 final class Thumbnail implements BaseModel
 {
-    /** @use SdkModel<thumbnail_alias> */
+    /** @use SdkModel<ThumbnailShape> */
     use SdkModel;
 
     #[Api('Compression', optional: true)]

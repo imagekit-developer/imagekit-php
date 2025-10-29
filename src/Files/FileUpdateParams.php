@@ -20,7 +20,7 @@ use ImageKit\Files\FileUpdateParams\RemoveAITags;
  *
  * @see ImageKit\Files->update
  *
- * @phpstan-type file_update_params = array{
+ * @phpstan-type FileUpdateParamsShape = array{
  *   customCoordinates?: string|null,
  *   customMetadata?: array<string, mixed>,
  *   description?: string,
@@ -33,7 +33,7 @@ use ImageKit\Files\FileUpdateParams\RemoveAITags;
  */
 final class FileUpdateParams implements BaseModel
 {
-    /** @use SdkModel<file_update_params> */
+    /** @use SdkModel<FileUpdateParamsShape> */
     use SdkModel;
     use SdkParams;
 

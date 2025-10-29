@@ -13,7 +13,7 @@ use ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema\SelectO
 /**
  * An object that describes the rules for the custom metadata key. This parameter is required if `label` is not provided. Note: `type` cannot be updated and will be ignored if sent with the `schema`. The schema will be validated as per the existing `type`.
  *
- * @phpstan-type schema_alias = array{
+ * @phpstan-type SchemaShape = array{
  *   defaultValue?: string|float|bool|list<string|float|bool>,
  *   isValueRequired?: bool,
  *   maxLength?: float,
@@ -25,7 +25,7 @@ use ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema\SelectO
  */
 final class Schema implements BaseModel
 {
-    /** @use SdkModel<schema_alias> */
+    /** @use SdkModel<SchemaShape> */
     use SdkModel;
 
     /**

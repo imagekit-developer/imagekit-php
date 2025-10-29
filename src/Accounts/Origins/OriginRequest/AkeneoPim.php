@@ -9,7 +9,7 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type akeneo_pim = array{
+ * @phpstan-type AkeneoPimShape = array{
  *   baseURL: string,
  *   clientID: string,
  *   clientSecret: string,
@@ -23,7 +23,7 @@ use ImageKit\Core\Contracts\BaseModel;
  */
 final class AkeneoPim implements BaseModel
 {
-    /** @use SdkModel<akeneo_pim> */
+    /** @use SdkModel<AkeneoPimShape> */
     use SdkModel;
 
     #[Api]

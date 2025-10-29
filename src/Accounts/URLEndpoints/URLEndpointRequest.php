@@ -15,7 +15,7 @@ use ImageKit\Core\Contracts\BaseModel;
 /**
  * Schema for URL endpoint resource.
  *
- * @phpstan-type url_endpoint_request = array{
+ * @phpstan-type URLEndpointRequestShape = array{
  *   description: string,
  *   origins?: list<string>,
  *   urlPrefix?: string,
@@ -24,7 +24,7 @@ use ImageKit\Core\Contracts\BaseModel;
  */
 final class URLEndpointRequest implements BaseModel
 {
-    /** @use SdkModel<url_endpoint_request> */
+    /** @use SdkModel<URLEndpointRequestShape> */
     use SdkModel;
 
     /**

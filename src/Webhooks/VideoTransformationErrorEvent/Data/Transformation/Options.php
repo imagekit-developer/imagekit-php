@@ -15,7 +15,7 @@ use ImageKit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Options\
 /**
  * Configuration options for video transformations.
  *
- * @phpstan-type options_alias = array{
+ * @phpstan-type OptionsShape = array{
  *   audioCodec?: value-of<AudioCodec>,
  *   autoRotate?: bool,
  *   format?: value-of<Format>,
@@ -27,7 +27,7 @@ use ImageKit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Options\
  */
 final class Options implements BaseModel
 {
-    /** @use SdkModel<options_alias> */
+    /** @use SdkModel<OptionsShape> */
     use SdkModel;
 
     /**

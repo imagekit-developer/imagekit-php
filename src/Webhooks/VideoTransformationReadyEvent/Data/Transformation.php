@@ -12,13 +12,13 @@ use ImageKit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Output;
 use ImageKit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Type;
 
 /**
- * @phpstan-type transformation_alias = array{
+ * @phpstan-type TransformationShape = array{
  *   type: value-of<Type>, options?: Options, output?: Output
  * }
  */
 final class Transformation implements BaseModel
 {
-    /** @use SdkModel<transformation_alias> */
+    /** @use SdkModel<TransformationShape> */
     use SdkModel;
 
     /**

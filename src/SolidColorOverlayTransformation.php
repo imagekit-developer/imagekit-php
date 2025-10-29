@@ -9,7 +9,7 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type solid_color_overlay_transformation = array{
+ * @phpstan-type SolidColorOverlayTransformationShape = array{
  *   alpha?: float,
  *   background?: string,
  *   gradient?: bool|string,
@@ -20,7 +20,7 @@ use ImageKit\Core\Contracts\BaseModel;
  */
 final class SolidColorOverlayTransformation implements BaseModel
 {
-    /** @use SdkModel<solid_color_overlay_transformation> */
+    /** @use SdkModel<SolidColorOverlayTransformationShape> */
     use SdkModel;
 
     /**

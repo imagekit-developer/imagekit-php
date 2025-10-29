@@ -11,11 +11,11 @@ use ImageKit\Core\Contracts\BaseModel;
 /**
  * Information about the source video asset being transformed.
  *
- * @phpstan-type asset_alias = array{url: string}
+ * @phpstan-type AssetShape = array{url: string}
  */
 final class Asset implements BaseModel
 {
-    /** @use SdkModel<asset_alias> */
+    /** @use SdkModel<AssetShape> */
     use SdkModel;
 
     /**

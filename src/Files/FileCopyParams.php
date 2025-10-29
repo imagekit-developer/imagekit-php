@@ -16,13 +16,13 @@ use ImageKit\Core\Contracts\BaseModel;
  *
  * @see ImageKit\Files->copy
  *
- * @phpstan-type file_copy_params = array{
+ * @phpstan-type FileCopyParamsShape = array{
  *   destinationPath: string, sourceFilePath: string, includeFileVersions?: bool
  * }
  */
 final class FileCopyParams implements BaseModel
 {
-    /** @use SdkModel<file_copy_params> */
+    /** @use SdkModel<FileCopyParamsShape> */
     use SdkModel;
     use SdkParams;
 

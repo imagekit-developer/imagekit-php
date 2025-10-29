@@ -11,13 +11,13 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
- * @phpstan-type bulk_delete_response = array{
+ * @phpstan-type BulkDeleteResponseShape = array{
  *   successfullyDeletedFileIDs?: list<string>
  * }
  */
 final class BulkDeleteResponse implements BaseModel, ResponseConverter
 {
-    /** @use SdkModel<bulk_delete_response> */
+    /** @use SdkModel<BulkDeleteResponseShape> */
     use SdkModel;
 
     use SdkResponse;

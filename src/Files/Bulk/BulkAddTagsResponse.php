@@ -11,13 +11,13 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
- * @phpstan-type bulk_add_tags_response = array{
+ * @phpstan-type BulkAddTagsResponseShape = array{
  *   successfullyUpdatedFileIDs?: list<string>
  * }
  */
 final class BulkAddTagsResponse implements BaseModel, ResponseConverter
 {
-    /** @use SdkModel<bulk_add_tags_response> */
+    /** @use SdkModel<BulkAddTagsResponseShape> */
     use SdkModel;
 
     use SdkResponse;

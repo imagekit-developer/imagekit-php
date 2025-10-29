@@ -9,11 +9,11 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type base_webhook_event = array{id: string, type: string}
+ * @phpstan-type BaseWebhookEventShape = array{id: string, type: string}
  */
 final class BaseWebhookEvent implements BaseModel
 {
-    /** @use SdkModel<base_webhook_event> */
+    /** @use SdkModel<BaseWebhookEventShape> */
     use SdkModel;
 
     /**

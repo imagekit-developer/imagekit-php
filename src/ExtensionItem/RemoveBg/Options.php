@@ -9,7 +9,7 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type options_alias = array{
+ * @phpstan-type OptionsShape = array{
  *   addShadow?: bool,
  *   bgColor?: string,
  *   bgImageURL?: string,
@@ -18,7 +18,7 @@ use ImageKit\Core\Contracts\BaseModel;
  */
 final class Options implements BaseModel
 {
-    /** @use SdkModel<options_alias> */
+    /** @use SdkModel<OptionsShape> */
     use SdkModel;
 
     /**

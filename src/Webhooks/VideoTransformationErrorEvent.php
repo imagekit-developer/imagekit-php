@@ -13,7 +13,7 @@ use ImageKit\Webhooks\VideoTransformationErrorEvent\Request;
 /**
  * Triggered when an error occurs during video encoding. Listen to this webhook to log error reasons and debug issues. Check your origin and URL endpoint settings if the reason is related to download failure. For other errors, contact ImageKit support.
  *
- * @phpstan-type video_transformation_error_event = array{
+ * @phpstan-type VideoTransformationErrorEventShape = array{
  *   id: string,
  *   type: string,
  *   createdAt: \DateTimeInterface,
@@ -23,7 +23,7 @@ use ImageKit\Webhooks\VideoTransformationErrorEvent\Request;
  */
 final class VideoTransformationErrorEvent implements BaseModel
 {
-    /** @use SdkModel<video_transformation_error_event> */
+    /** @use SdkModel<VideoTransformationErrorEventShape> */
     use SdkModel;
 
     /**

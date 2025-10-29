@@ -14,13 +14,13 @@ use ImageKit\CustomMetadataFields\CustomMetadataField\Schema;
 /**
  * Object containing details of a custom metadata field.
  *
- * @phpstan-type custom_metadata_field = array{
+ * @phpstan-type CustomMetadataFieldShape = array{
  *   id: string, label: string, name: string, schema: Schema
  * }
  */
 final class CustomMetadataField implements BaseModel, ResponseConverter
 {
-    /** @use SdkModel<custom_metadata_field> */
+    /** @use SdkModel<CustomMetadataFieldShape> */
     use SdkModel;
 
     use SdkResponse;

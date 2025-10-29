@@ -10,13 +10,13 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\OverlayPosition\Focus;
 
 /**
- * @phpstan-type overlay_position = array{
+ * @phpstan-type OverlayPositionShape = array{
  *   focus?: value-of<Focus>, x?: float|string, y?: float|string
  * }
  */
 final class OverlayPosition implements BaseModel
 {
-    /** @use SdkModel<overlay_position> */
+    /** @use SdkModel<OverlayPositionShape> */
     use SdkModel;
 
     /**

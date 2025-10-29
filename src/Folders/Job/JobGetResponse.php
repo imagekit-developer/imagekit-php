@@ -13,7 +13,7 @@ use ImageKit\Folders\Job\JobGetResponse\Status;
 use ImageKit\Folders\Job\JobGetResponse\Type;
 
 /**
- * @phpstan-type job_get_response = array{
+ * @phpstan-type JobGetResponseShape = array{
  *   jobID?: string,
  *   purgeRequestID?: string,
  *   status?: value-of<Status>,
@@ -22,7 +22,7 @@ use ImageKit\Folders\Job\JobGetResponse\Type;
  */
 final class JobGetResponse implements BaseModel, ResponseConverter
 {
-    /** @use SdkModel<job_get_response> */
+    /** @use SdkModel<JobGetResponseShape> */
     use SdkModel;
 
     use SdkResponse;

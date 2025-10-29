@@ -11,13 +11,13 @@ use ImageKit\Core\Contracts\BaseModel;
 /**
  * Performance metrics for the transformation process.
  *
- * @phpstan-type timings_alias = array{
+ * @phpstan-type TimingsShape = array{
  *   downloadDuration?: int, encodingDuration?: int
  * }
  */
 final class Timings implements BaseModel
 {
-    /** @use SdkModel<timings_alias> */
+    /** @use SdkModel<TimingsShape> */
     use SdkModel;
 
     /**

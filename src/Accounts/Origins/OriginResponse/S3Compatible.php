@@ -9,7 +9,7 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type s3_compatible = array{
+ * @phpstan-type S3CompatibleShape = array{
  *   id: string,
  *   bucket: string,
  *   endpoint: string,
@@ -23,7 +23,7 @@ use ImageKit\Core\Contracts\BaseModel;
  */
 final class S3Compatible implements BaseModel
 {
-    /** @use SdkModel<s3_compatible> */
+    /** @use SdkModel<S3CompatibleShape> */
     use SdkModel;
 
     #[Api]

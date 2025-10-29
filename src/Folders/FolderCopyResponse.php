@@ -13,11 +13,11 @@ use ImageKit\Core\Conversion\Contracts\ResponseConverter;
 /**
  * Job submitted successfully. A `jobId` will be returned.
  *
- * @phpstan-type folder_copy_response = array{jobID: string}
+ * @phpstan-type FolderCopyResponseShape = array{jobID: string}
  */
 final class FolderCopyResponse implements BaseModel, ResponseConverter
 {
-    /** @use SdkModel<folder_copy_response> */
+    /** @use SdkModel<FolderCopyResponseShape> */
     use SdkModel;
 
     use SdkResponse;

@@ -9,7 +9,7 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type s3_alias = array{
+ * @phpstan-type S3Shape = array{
  *   id: string,
  *   bucket: string,
  *   includeCanonicalHeader: bool,
@@ -21,7 +21,7 @@ use ImageKit\Core\Contracts\BaseModel;
  */
 final class S3 implements BaseModel
 {
-    /** @use SdkModel<s3_alias> */
+    /** @use SdkModel<S3Shape> */
     use SdkModel;
 
     #[Api]

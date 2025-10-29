@@ -10,13 +10,13 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Webhooks\UploadPostTransformSuccessEvent\Request\Transformation;
 
 /**
- * @phpstan-type request_alias = array{
+ * @phpstan-type RequestShape = array{
  *   transformation: Transformation, xRequestID: string
  * }
  */
 final class Request implements BaseModel
 {
-    /** @use SdkModel<request_alias> */
+    /** @use SdkModel<RequestShape> */
     use SdkModel;
 
     #[Api]

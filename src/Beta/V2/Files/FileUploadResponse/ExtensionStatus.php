@@ -21,7 +21,7 @@ use ImageKit\Core\Contracts\BaseModel;
  *
  * If no extension was requested, then this parameter is not returned.
  *
- * @phpstan-type extension_status = array{
+ * @phpstan-type ExtensionStatusShape = array{
  *   aiAutoDescription?: value-of<AIAutoDescription>,
  *   awsAutoTagging?: value-of<AwsAutoTagging>,
  *   googleAutoTagging?: value-of<GoogleAutoTagging>,
@@ -30,7 +30,7 @@ use ImageKit\Core\Contracts\BaseModel;
  */
 final class ExtensionStatus implements BaseModel
 {
-    /** @use SdkModel<extension_status> */
+    /** @use SdkModel<ExtensionStatusShape> */
     use SdkModel;
 
     /** @var value-of<AIAutoDescription>|null $aiAutoDescription */

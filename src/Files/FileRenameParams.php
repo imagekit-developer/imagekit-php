@@ -16,13 +16,13 @@ use ImageKit\Core\Contracts\BaseModel;
  *
  * @see ImageKit\Files->rename
  *
- * @phpstan-type file_rename_params = array{
+ * @phpstan-type FileRenameParamsShape = array{
  *   filePath: string, newFileName: string, purgeCache?: bool
  * }
  */
 final class FileRenameParams implements BaseModel
 {
-    /** @use SdkModel<file_rename_params> */
+    /** @use SdkModel<FileRenameParamsShape> */
     use SdkModel;
     use SdkParams;
 

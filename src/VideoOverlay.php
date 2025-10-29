@@ -10,7 +10,7 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\VideoOverlay\Encoding;
 
 /**
- * @phpstan-type video_overlay = array{
+ * @phpstan-type VideoOverlayShape = array{
  *   position?: OverlayPosition,
  *   timing?: OverlayTiming,
  *   input: string,
@@ -21,7 +21,7 @@ use ImageKit\VideoOverlay\Encoding;
  */
 final class VideoOverlay implements BaseModel
 {
-    /** @use SdkModel<video_overlay> */
+    /** @use SdkModel<VideoOverlayShape> */
     use SdkModel;
 
     #[Api]

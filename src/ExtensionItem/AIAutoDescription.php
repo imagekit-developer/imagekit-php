@@ -9,11 +9,11 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type ai_auto_description = array{name: string}
+ * @phpstan-type AIAutoDescriptionShape = array{name: string}
  */
 final class AIAutoDescription implements BaseModel
 {
-    /** @use SdkModel<ai_auto_description> */
+    /** @use SdkModel<AIAutoDescriptionShape> */
     use SdkModel;
 
     /**

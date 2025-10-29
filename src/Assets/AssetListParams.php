@@ -17,7 +17,7 @@ use ImageKit\Core\Contracts\BaseModel;
  *
  * @see ImageKit\Assets->list
  *
- * @phpstan-type asset_list_params = array{
+ * @phpstan-type AssetListParamsShape = array{
  *   fileType?: FileType|value-of<FileType>,
  *   limit?: int,
  *   path?: string,
@@ -29,7 +29,7 @@ use ImageKit\Core\Contracts\BaseModel;
  */
 final class AssetListParams implements BaseModel
 {
-    /** @use SdkModel<asset_list_params> */
+    /** @use SdkModel<AssetListParamsShape> */
     use SdkModel;
     use SdkParams;
 

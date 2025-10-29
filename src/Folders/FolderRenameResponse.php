@@ -13,11 +13,11 @@ use ImageKit\Core\Conversion\Contracts\ResponseConverter;
 /**
  * Job submitted successfully. A `jobId` will be returned.
  *
- * @phpstan-type folder_rename_response = array{jobID: string}
+ * @phpstan-type FolderRenameResponseShape = array{jobID: string}
  */
 final class FolderRenameResponse implements BaseModel, ResponseConverter
 {
-    /** @use SdkModel<folder_rename_response> */
+    /** @use SdkModel<FolderRenameResponseShape> */
     use SdkModel;
 
     use SdkResponse;

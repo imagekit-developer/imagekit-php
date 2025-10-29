@@ -18,7 +18,7 @@ use ImageKit\Files\Metadata;
 /**
  * Object containing details of a successful upload.
  *
- * @phpstan-type file_upload_response = array{
+ * @phpstan-type FileUploadResponseShape = array{
  *   aiTags?: list<AITag>|null,
  *   audioCodec?: string,
  *   bitRate?: int,
@@ -48,7 +48,7 @@ use ImageKit\Files\Metadata;
  */
 final class FileUploadResponse implements BaseModel, ResponseConverter
 {
-    /** @use SdkModel<file_upload_response> */
+    /** @use SdkModel<FileUploadResponseShape> */
     use SdkModel;
 
     use SdkResponse;

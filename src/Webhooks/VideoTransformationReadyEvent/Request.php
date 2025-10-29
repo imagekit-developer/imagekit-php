@@ -11,13 +11,13 @@ use ImageKit\Core\Contracts\BaseModel;
 /**
  * Information about the original request that triggered the video transformation.
  *
- * @phpstan-type request_alias = array{
+ * @phpstan-type RequestShape = array{
  *   url: string, xRequestID: string, userAgent?: string
  * }
  */
 final class Request implements BaseModel
 {
-    /** @use SdkModel<request_alias> */
+    /** @use SdkModel<RequestShape> */
     use SdkModel;
 
     /**

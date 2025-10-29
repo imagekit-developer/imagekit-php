@@ -9,7 +9,7 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type cloudinary_backup = array{
+ * @phpstan-type CloudinaryBackupShape = array{
  *   accessKey: string,
  *   bucket: string,
  *   name: string,
@@ -22,7 +22,7 @@ use ImageKit\Core\Contracts\BaseModel;
  */
 final class CloudinaryBackup implements BaseModel
 {
-    /** @use SdkModel<cloudinary_backup> */
+    /** @use SdkModel<CloudinaryBackupShape> */
     use SdkModel;
 
     #[Api]

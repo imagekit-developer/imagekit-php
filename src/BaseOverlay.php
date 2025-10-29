@@ -9,13 +9,13 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type base_overlay = array{
+ * @phpstan-type BaseOverlayShape = array{
  *   position?: OverlayPosition, timing?: OverlayTiming
  * }
  */
 final class BaseOverlay implements BaseModel
 {
-    /** @use SdkModel<base_overlay> */
+    /** @use SdkModel<BaseOverlayShape> */
     use SdkModel;
 
     #[Api(optional: true)]

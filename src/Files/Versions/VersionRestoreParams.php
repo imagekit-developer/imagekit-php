@@ -14,7 +14,7 @@ use ImageKit\Core\Contracts\BaseModel;
  *
  * @see ImageKit\Files\Versions->restore
  *
- * @phpstan-type VersionRestoreParamsShape = array{fileID: string}
+ * @phpstan-type VersionRestoreParamsShape = array{fileId: string}
  */
 final class VersionRestoreParams implements BaseModel
 {
@@ -23,14 +23,14 @@ final class VersionRestoreParams implements BaseModel
     use SdkParams;
 
     #[Api]
-    public string $fileID;
+    public string $fileId;
 
     /**
      * `new VersionRestoreParams()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * VersionRestoreParams::with(fileID: ...)
+     * VersionRestoreParams::with(fileId: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
@@ -49,11 +49,11 @@ final class VersionRestoreParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function with(string $fileID): self
+    public static function with(string $fileId): self
     {
         $obj = new self;
 
-        $obj->fileID = $fileID;
+        $obj->fileId = $fileId;
 
         return $obj;
     }
@@ -61,7 +61,7 @@ final class VersionRestoreParams implements BaseModel
     public function withFileID(string $fileID): self
     {
         $obj = clone $this;
-        $obj->fileID = $fileID;
+        $obj->fileId = $fileID;
 
         return $obj;
     }

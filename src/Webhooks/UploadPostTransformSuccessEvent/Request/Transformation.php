@@ -12,7 +12,7 @@ use ImageKit\Webhooks\UploadPostTransformSuccessEvent\Request\Transformation\Typ
 
 /**
  * @phpstan-type TransformationShape = array{
- *   type: value-of<Type>, protocol?: value-of<Protocol>, value?: string
+ *   type: value-of<Type>, protocol?: value-of<Protocol>|null, value?: string|null
  * }
  */
 final class Transformation implements BaseModel

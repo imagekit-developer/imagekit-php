@@ -51,38 +51,21 @@ final class VersionsService implements VersionsContract
      *
      * Note: If you want to delete all versions of a file, use the delete file API.
      *
-     * @param string $fileID
+     * @param array{fileId: string}|VersionDeleteParams $params
      *
      * @throws APIException
      */
     public function delete(
         string $versionID,
-        $fileID,
-        ?RequestOptions $requestOptions = null
-    ): VersionDeleteResponse {
-        $params = ['fileID' => $fileID];
-
-        return $this->deleteRaw($versionID, $params, $requestOptions);
-    }
-
-    /**
-     * @api
-     *
-     * @param array<string, mixed> $params
-     *
-     * @throws APIException
-     */
-    public function deleteRaw(
-        string $versionID,
-        array $params,
-        ?RequestOptions $requestOptions = null
+        array|VersionDeleteParams $params,
+        ?RequestOptions $requestOptions = null,
     ): VersionDeleteResponse {
         [$parsed, $options] = VersionDeleteParams::parseRequest(
             $params,
-            $requestOptions
+            $requestOptions,
         );
-        $fileID = $parsed['fileID'];
-        unset($parsed['fileID']);
+        $fileID = $parsed['fileId'];
+        unset($parsed['fileId']);
 
         // @phpstan-ignore-next-line;
         return $this->client->request(
@@ -98,38 +81,21 @@ final class VersionsService implements VersionsContract
      *
      * This API returns an object with details or attributes of a file version.
      *
-     * @param string $fileID
+     * @param array{fileId: string}|VersionGetParams $params
      *
      * @throws APIException
      */
     public function get(
         string $versionID,
-        $fileID,
-        ?RequestOptions $requestOptions = null
-    ): File {
-        $params = ['fileID' => $fileID];
-
-        return $this->getRaw($versionID, $params, $requestOptions);
-    }
-
-    /**
-     * @api
-     *
-     * @param array<string, mixed> $params
-     *
-     * @throws APIException
-     */
-    public function getRaw(
-        string $versionID,
-        array $params,
-        ?RequestOptions $requestOptions = null
+        array|VersionGetParams $params,
+        ?RequestOptions $requestOptions = null,
     ): File {
         [$parsed, $options] = VersionGetParams::parseRequest(
             $params,
-            $requestOptions
+            $requestOptions,
         );
-        $fileID = $parsed['fileID'];
-        unset($parsed['fileID']);
+        $fileID = $parsed['fileId'];
+        unset($parsed['fileId']);
 
         // @phpstan-ignore-next-line;
         return $this->client->request(
@@ -145,38 +111,21 @@ final class VersionsService implements VersionsContract
      *
      * This API restores a file version as the current file version.
      *
-     * @param string $fileID
+     * @param array{fileId: string}|VersionRestoreParams $params
      *
      * @throws APIException
      */
     public function restore(
         string $versionID,
-        $fileID,
-        ?RequestOptions $requestOptions = null
-    ): File {
-        $params = ['fileID' => $fileID];
-
-        return $this->restoreRaw($versionID, $params, $requestOptions);
-    }
-
-    /**
-     * @api
-     *
-     * @param array<string, mixed> $params
-     *
-     * @throws APIException
-     */
-    public function restoreRaw(
-        string $versionID,
-        array $params,
-        ?RequestOptions $requestOptions = null
+        array|VersionRestoreParams $params,
+        ?RequestOptions $requestOptions = null,
     ): File {
         [$parsed, $options] = VersionRestoreParams::parseRequest(
             $params,
-            $requestOptions
+            $requestOptions,
         );
-        $fileID = $parsed['fileID'];
-        unset($parsed['fileID']);
+        $fileID = $parsed['fileId'];
+        unset($parsed['fileId']);
 
         // @phpstan-ignore-next-line;
         return $this->client->request(

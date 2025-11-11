@@ -12,32 +12,32 @@ use ImageKit\Core\Contracts\BaseModel;
  * Object containing Exif details.
  *
  * @phpstan-type ExifShape = array{
- *   apertureValue?: float,
- *   colorSpace?: int,
- *   createDate?: string,
- *   customRendered?: int,
- *   dateTimeOriginal?: string,
- *   exifImageHeight?: int,
- *   exifImageWidth?: int,
- *   exifVersion?: string,
- *   exposureCompensation?: float,
- *   exposureMode?: int,
- *   exposureProgram?: int,
- *   exposureTime?: float,
- *   flash?: int,
- *   flashpixVersion?: string,
- *   fNumber?: float,
- *   focalLength?: int,
- *   focalPlaneResolutionUnit?: int,
- *   focalPlaneXResolution?: float,
- *   focalPlaneYResolution?: float,
- *   interopOffset?: int,
- *   iso?: int,
- *   meteringMode?: int,
- *   sceneCaptureType?: int,
- *   shutterSpeedValue?: float,
- *   subSecTime?: string,
- *   whiteBalance?: int,
+ *   ApertureValue?: float|null,
+ *   ColorSpace?: int|null,
+ *   CreateDate?: string|null,
+ *   CustomRendered?: int|null,
+ *   DateTimeOriginal?: string|null,
+ *   ExifImageHeight?: int|null,
+ *   ExifImageWidth?: int|null,
+ *   ExifVersion?: string|null,
+ *   ExposureCompensation?: float|null,
+ *   ExposureMode?: int|null,
+ *   ExposureProgram?: int|null,
+ *   ExposureTime?: float|null,
+ *   Flash?: int|null,
+ *   FlashpixVersion?: string|null,
+ *   FNumber?: float|null,
+ *   FocalLength?: int|null,
+ *   FocalPlaneResolutionUnit?: int|null,
+ *   FocalPlaneXResolution?: float|null,
+ *   FocalPlaneYResolution?: float|null,
+ *   InteropOffset?: int|null,
+ *   ISO?: int|null,
+ *   MeteringMode?: int|null,
+ *   SceneCaptureType?: int|null,
+ *   ShutterSpeedValue?: float|null,
+ *   SubSecTime?: string|null,
+ *   WhiteBalance?: int|null,
  * }
  */
 final class Exif implements BaseModel
@@ -45,83 +45,83 @@ final class Exif implements BaseModel
     /** @use SdkModel<ExifShape> */
     use SdkModel;
 
-    #[Api('ApertureValue', optional: true)]
-    public ?float $apertureValue;
+    #[Api(optional: true)]
+    public ?float $ApertureValue;
 
-    #[Api('ColorSpace', optional: true)]
-    public ?int $colorSpace;
+    #[Api(optional: true)]
+    public ?int $ColorSpace;
 
-    #[Api('CreateDate', optional: true)]
-    public ?string $createDate;
+    #[Api(optional: true)]
+    public ?string $CreateDate;
 
-    #[Api('CustomRendered', optional: true)]
-    public ?int $customRendered;
+    #[Api(optional: true)]
+    public ?int $CustomRendered;
 
-    #[Api('DateTimeOriginal', optional: true)]
-    public ?string $dateTimeOriginal;
+    #[Api(optional: true)]
+    public ?string $DateTimeOriginal;
 
-    #[Api('ExifImageHeight', optional: true)]
-    public ?int $exifImageHeight;
+    #[Api(optional: true)]
+    public ?int $ExifImageHeight;
 
-    #[Api('ExifImageWidth', optional: true)]
-    public ?int $exifImageWidth;
+    #[Api(optional: true)]
+    public ?int $ExifImageWidth;
 
-    #[Api('ExifVersion', optional: true)]
-    public ?string $exifVersion;
+    #[Api(optional: true)]
+    public ?string $ExifVersion;
 
-    #[Api('ExposureCompensation', optional: true)]
-    public ?float $exposureCompensation;
+    #[Api(optional: true)]
+    public ?float $ExposureCompensation;
 
-    #[Api('ExposureMode', optional: true)]
-    public ?int $exposureMode;
+    #[Api(optional: true)]
+    public ?int $ExposureMode;
 
-    #[Api('ExposureProgram', optional: true)]
-    public ?int $exposureProgram;
+    #[Api(optional: true)]
+    public ?int $ExposureProgram;
 
-    #[Api('ExposureTime', optional: true)]
-    public ?float $exposureTime;
+    #[Api(optional: true)]
+    public ?float $ExposureTime;
 
-    #[Api('Flash', optional: true)]
-    public ?int $flash;
+    #[Api(optional: true)]
+    public ?int $Flash;
 
-    #[Api('FlashpixVersion', optional: true)]
-    public ?string $flashpixVersion;
+    #[Api(optional: true)]
+    public ?string $FlashpixVersion;
 
-    #[Api('FNumber', optional: true)]
-    public ?float $fNumber;
+    #[Api(optional: true)]
+    public ?float $FNumber;
 
-    #[Api('FocalLength', optional: true)]
-    public ?int $focalLength;
+    #[Api(optional: true)]
+    public ?int $FocalLength;
 
-    #[Api('FocalPlaneResolutionUnit', optional: true)]
-    public ?int $focalPlaneResolutionUnit;
+    #[Api(optional: true)]
+    public ?int $FocalPlaneResolutionUnit;
 
-    #[Api('FocalPlaneXResolution', optional: true)]
-    public ?float $focalPlaneXResolution;
+    #[Api(optional: true)]
+    public ?float $FocalPlaneXResolution;
 
-    #[Api('FocalPlaneYResolution', optional: true)]
-    public ?float $focalPlaneYResolution;
+    #[Api(optional: true)]
+    public ?float $FocalPlaneYResolution;
 
-    #[Api('InteropOffset', optional: true)]
-    public ?int $interopOffset;
+    #[Api(optional: true)]
+    public ?int $InteropOffset;
 
-    #[Api('ISO', optional: true)]
-    public ?int $iso;
+    #[Api(optional: true)]
+    public ?int $ISO;
 
-    #[Api('MeteringMode', optional: true)]
-    public ?int $meteringMode;
+    #[Api(optional: true)]
+    public ?int $MeteringMode;
 
-    #[Api('SceneCaptureType', optional: true)]
-    public ?int $sceneCaptureType;
+    #[Api(optional: true)]
+    public ?int $SceneCaptureType;
 
-    #[Api('ShutterSpeedValue', optional: true)]
-    public ?float $shutterSpeedValue;
+    #[Api(optional: true)]
+    public ?float $ShutterSpeedValue;
 
-    #[Api('SubSecTime', optional: true)]
-    public ?string $subSecTime;
+    #[Api(optional: true)]
+    public ?string $SubSecTime;
 
-    #[Api('WhiteBalance', optional: true)]
-    public ?int $whiteBalance;
+    #[Api(optional: true)]
+    public ?int $WhiteBalance;
 
     public function __construct()
     {
@@ -134,61 +134,61 @@ final class Exif implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      */
     public static function with(
-        ?float $apertureValue = null,
-        ?int $colorSpace = null,
-        ?string $createDate = null,
-        ?int $customRendered = null,
-        ?string $dateTimeOriginal = null,
-        ?int $exifImageHeight = null,
-        ?int $exifImageWidth = null,
-        ?string $exifVersion = null,
-        ?float $exposureCompensation = null,
-        ?int $exposureMode = null,
-        ?int $exposureProgram = null,
-        ?float $exposureTime = null,
-        ?int $flash = null,
-        ?string $flashpixVersion = null,
-        ?float $fNumber = null,
-        ?int $focalLength = null,
-        ?int $focalPlaneResolutionUnit = null,
-        ?float $focalPlaneXResolution = null,
-        ?float $focalPlaneYResolution = null,
-        ?int $interopOffset = null,
-        ?int $iso = null,
-        ?int $meteringMode = null,
-        ?int $sceneCaptureType = null,
-        ?float $shutterSpeedValue = null,
-        ?string $subSecTime = null,
-        ?int $whiteBalance = null,
+        ?float $ApertureValue = null,
+        ?int $ColorSpace = null,
+        ?string $CreateDate = null,
+        ?int $CustomRendered = null,
+        ?string $DateTimeOriginal = null,
+        ?int $ExifImageHeight = null,
+        ?int $ExifImageWidth = null,
+        ?string $ExifVersion = null,
+        ?float $ExposureCompensation = null,
+        ?int $ExposureMode = null,
+        ?int $ExposureProgram = null,
+        ?float $ExposureTime = null,
+        ?int $Flash = null,
+        ?string $FlashpixVersion = null,
+        ?float $FNumber = null,
+        ?int $FocalLength = null,
+        ?int $FocalPlaneResolutionUnit = null,
+        ?float $FocalPlaneXResolution = null,
+        ?float $FocalPlaneYResolution = null,
+        ?int $InteropOffset = null,
+        ?int $ISO = null,
+        ?int $MeteringMode = null,
+        ?int $SceneCaptureType = null,
+        ?float $ShutterSpeedValue = null,
+        ?string $SubSecTime = null,
+        ?int $WhiteBalance = null,
     ): self {
         $obj = new self;
 
-        null !== $apertureValue && $obj->apertureValue = $apertureValue;
-        null !== $colorSpace && $obj->colorSpace = $colorSpace;
-        null !== $createDate && $obj->createDate = $createDate;
-        null !== $customRendered && $obj->customRendered = $customRendered;
-        null !== $dateTimeOriginal && $obj->dateTimeOriginal = $dateTimeOriginal;
-        null !== $exifImageHeight && $obj->exifImageHeight = $exifImageHeight;
-        null !== $exifImageWidth && $obj->exifImageWidth = $exifImageWidth;
-        null !== $exifVersion && $obj->exifVersion = $exifVersion;
-        null !== $exposureCompensation && $obj->exposureCompensation = $exposureCompensation;
-        null !== $exposureMode && $obj->exposureMode = $exposureMode;
-        null !== $exposureProgram && $obj->exposureProgram = $exposureProgram;
-        null !== $exposureTime && $obj->exposureTime = $exposureTime;
-        null !== $flash && $obj->flash = $flash;
-        null !== $flashpixVersion && $obj->flashpixVersion = $flashpixVersion;
-        null !== $fNumber && $obj->fNumber = $fNumber;
-        null !== $focalLength && $obj->focalLength = $focalLength;
-        null !== $focalPlaneResolutionUnit && $obj->focalPlaneResolutionUnit = $focalPlaneResolutionUnit;
-        null !== $focalPlaneXResolution && $obj->focalPlaneXResolution = $focalPlaneXResolution;
-        null !== $focalPlaneYResolution && $obj->focalPlaneYResolution = $focalPlaneYResolution;
-        null !== $interopOffset && $obj->interopOffset = $interopOffset;
-        null !== $iso && $obj->iso = $iso;
-        null !== $meteringMode && $obj->meteringMode = $meteringMode;
-        null !== $sceneCaptureType && $obj->sceneCaptureType = $sceneCaptureType;
-        null !== $shutterSpeedValue && $obj->shutterSpeedValue = $shutterSpeedValue;
-        null !== $subSecTime && $obj->subSecTime = $subSecTime;
-        null !== $whiteBalance && $obj->whiteBalance = $whiteBalance;
+        null !== $ApertureValue && $obj->ApertureValue = $ApertureValue;
+        null !== $ColorSpace && $obj->ColorSpace = $ColorSpace;
+        null !== $CreateDate && $obj->CreateDate = $CreateDate;
+        null !== $CustomRendered && $obj->CustomRendered = $CustomRendered;
+        null !== $DateTimeOriginal && $obj->DateTimeOriginal = $DateTimeOriginal;
+        null !== $ExifImageHeight && $obj->ExifImageHeight = $ExifImageHeight;
+        null !== $ExifImageWidth && $obj->ExifImageWidth = $ExifImageWidth;
+        null !== $ExifVersion && $obj->ExifVersion = $ExifVersion;
+        null !== $ExposureCompensation && $obj->ExposureCompensation = $ExposureCompensation;
+        null !== $ExposureMode && $obj->ExposureMode = $ExposureMode;
+        null !== $ExposureProgram && $obj->ExposureProgram = $ExposureProgram;
+        null !== $ExposureTime && $obj->ExposureTime = $ExposureTime;
+        null !== $Flash && $obj->Flash = $Flash;
+        null !== $FlashpixVersion && $obj->FlashpixVersion = $FlashpixVersion;
+        null !== $FNumber && $obj->FNumber = $FNumber;
+        null !== $FocalLength && $obj->FocalLength = $FocalLength;
+        null !== $FocalPlaneResolutionUnit && $obj->FocalPlaneResolutionUnit = $FocalPlaneResolutionUnit;
+        null !== $FocalPlaneXResolution && $obj->FocalPlaneXResolution = $FocalPlaneXResolution;
+        null !== $FocalPlaneYResolution && $obj->FocalPlaneYResolution = $FocalPlaneYResolution;
+        null !== $InteropOffset && $obj->InteropOffset = $InteropOffset;
+        null !== $ISO && $obj->ISO = $ISO;
+        null !== $MeteringMode && $obj->MeteringMode = $MeteringMode;
+        null !== $SceneCaptureType && $obj->SceneCaptureType = $SceneCaptureType;
+        null !== $ShutterSpeedValue && $obj->ShutterSpeedValue = $ShutterSpeedValue;
+        null !== $SubSecTime && $obj->SubSecTime = $SubSecTime;
+        null !== $WhiteBalance && $obj->WhiteBalance = $WhiteBalance;
 
         return $obj;
     }
@@ -196,7 +196,7 @@ final class Exif implements BaseModel
     public function withApertureValue(float $apertureValue): self
     {
         $obj = clone $this;
-        $obj->apertureValue = $apertureValue;
+        $obj->ApertureValue = $apertureValue;
 
         return $obj;
     }
@@ -204,7 +204,7 @@ final class Exif implements BaseModel
     public function withColorSpace(int $colorSpace): self
     {
         $obj = clone $this;
-        $obj->colorSpace = $colorSpace;
+        $obj->ColorSpace = $colorSpace;
 
         return $obj;
     }
@@ -212,7 +212,7 @@ final class Exif implements BaseModel
     public function withCreateDate(string $createDate): self
     {
         $obj = clone $this;
-        $obj->createDate = $createDate;
+        $obj->CreateDate = $createDate;
 
         return $obj;
     }
@@ -220,7 +220,7 @@ final class Exif implements BaseModel
     public function withCustomRendered(int $customRendered): self
     {
         $obj = clone $this;
-        $obj->customRendered = $customRendered;
+        $obj->CustomRendered = $customRendered;
 
         return $obj;
     }
@@ -228,7 +228,7 @@ final class Exif implements BaseModel
     public function withDateTimeOriginal(string $dateTimeOriginal): self
     {
         $obj = clone $this;
-        $obj->dateTimeOriginal = $dateTimeOriginal;
+        $obj->DateTimeOriginal = $dateTimeOriginal;
 
         return $obj;
     }
@@ -236,7 +236,7 @@ final class Exif implements BaseModel
     public function withExifImageHeight(int $exifImageHeight): self
     {
         $obj = clone $this;
-        $obj->exifImageHeight = $exifImageHeight;
+        $obj->ExifImageHeight = $exifImageHeight;
 
         return $obj;
     }
@@ -244,7 +244,7 @@ final class Exif implements BaseModel
     public function withExifImageWidth(int $exifImageWidth): self
     {
         $obj = clone $this;
-        $obj->exifImageWidth = $exifImageWidth;
+        $obj->ExifImageWidth = $exifImageWidth;
 
         return $obj;
     }
@@ -252,7 +252,7 @@ final class Exif implements BaseModel
     public function withExifVersion(string $exifVersion): self
     {
         $obj = clone $this;
-        $obj->exifVersion = $exifVersion;
+        $obj->ExifVersion = $exifVersion;
 
         return $obj;
     }
@@ -260,7 +260,7 @@ final class Exif implements BaseModel
     public function withExposureCompensation(float $exposureCompensation): self
     {
         $obj = clone $this;
-        $obj->exposureCompensation = $exposureCompensation;
+        $obj->ExposureCompensation = $exposureCompensation;
 
         return $obj;
     }
@@ -268,7 +268,7 @@ final class Exif implements BaseModel
     public function withExposureMode(int $exposureMode): self
     {
         $obj = clone $this;
-        $obj->exposureMode = $exposureMode;
+        $obj->ExposureMode = $exposureMode;
 
         return $obj;
     }
@@ -276,7 +276,7 @@ final class Exif implements BaseModel
     public function withExposureProgram(int $exposureProgram): self
     {
         $obj = clone $this;
-        $obj->exposureProgram = $exposureProgram;
+        $obj->ExposureProgram = $exposureProgram;
 
         return $obj;
     }
@@ -284,7 +284,7 @@ final class Exif implements BaseModel
     public function withExposureTime(float $exposureTime): self
     {
         $obj = clone $this;
-        $obj->exposureTime = $exposureTime;
+        $obj->ExposureTime = $exposureTime;
 
         return $obj;
     }
@@ -292,7 +292,7 @@ final class Exif implements BaseModel
     public function withFlash(int $flash): self
     {
         $obj = clone $this;
-        $obj->flash = $flash;
+        $obj->Flash = $flash;
 
         return $obj;
     }
@@ -300,7 +300,7 @@ final class Exif implements BaseModel
     public function withFlashpixVersion(string $flashpixVersion): self
     {
         $obj = clone $this;
-        $obj->flashpixVersion = $flashpixVersion;
+        $obj->FlashpixVersion = $flashpixVersion;
 
         return $obj;
     }
@@ -308,7 +308,7 @@ final class Exif implements BaseModel
     public function withFNumber(float $fNumber): self
     {
         $obj = clone $this;
-        $obj->fNumber = $fNumber;
+        $obj->FNumber = $fNumber;
 
         return $obj;
     }
@@ -316,7 +316,7 @@ final class Exif implements BaseModel
     public function withFocalLength(int $focalLength): self
     {
         $obj = clone $this;
-        $obj->focalLength = $focalLength;
+        $obj->FocalLength = $focalLength;
 
         return $obj;
     }
@@ -325,7 +325,7 @@ final class Exif implements BaseModel
         int $focalPlaneResolutionUnit
     ): self {
         $obj = clone $this;
-        $obj->focalPlaneResolutionUnit = $focalPlaneResolutionUnit;
+        $obj->FocalPlaneResolutionUnit = $focalPlaneResolutionUnit;
 
         return $obj;
     }
@@ -334,7 +334,7 @@ final class Exif implements BaseModel
         float $focalPlaneXResolution
     ): self {
         $obj = clone $this;
-        $obj->focalPlaneXResolution = $focalPlaneXResolution;
+        $obj->FocalPlaneXResolution = $focalPlaneXResolution;
 
         return $obj;
     }
@@ -343,7 +343,7 @@ final class Exif implements BaseModel
         float $focalPlaneYResolution
     ): self {
         $obj = clone $this;
-        $obj->focalPlaneYResolution = $focalPlaneYResolution;
+        $obj->FocalPlaneYResolution = $focalPlaneYResolution;
 
         return $obj;
     }
@@ -351,7 +351,7 @@ final class Exif implements BaseModel
     public function withInteropOffset(int $interopOffset): self
     {
         $obj = clone $this;
-        $obj->interopOffset = $interopOffset;
+        $obj->InteropOffset = $interopOffset;
 
         return $obj;
     }
@@ -359,7 +359,7 @@ final class Exif implements BaseModel
     public function withISO(int $iso): self
     {
         $obj = clone $this;
-        $obj->iso = $iso;
+        $obj->ISO = $iso;
 
         return $obj;
     }
@@ -367,7 +367,7 @@ final class Exif implements BaseModel
     public function withMeteringMode(int $meteringMode): self
     {
         $obj = clone $this;
-        $obj->meteringMode = $meteringMode;
+        $obj->MeteringMode = $meteringMode;
 
         return $obj;
     }
@@ -375,7 +375,7 @@ final class Exif implements BaseModel
     public function withSceneCaptureType(int $sceneCaptureType): self
     {
         $obj = clone $this;
-        $obj->sceneCaptureType = $sceneCaptureType;
+        $obj->SceneCaptureType = $sceneCaptureType;
 
         return $obj;
     }
@@ -383,7 +383,7 @@ final class Exif implements BaseModel
     public function withShutterSpeedValue(float $shutterSpeedValue): self
     {
         $obj = clone $this;
-        $obj->shutterSpeedValue = $shutterSpeedValue;
+        $obj->ShutterSpeedValue = $shutterSpeedValue;
 
         return $obj;
     }
@@ -391,7 +391,7 @@ final class Exif implements BaseModel
     public function withSubSecTime(string $subSecTime): self
     {
         $obj = clone $this;
-        $obj->subSecTime = $subSecTime;
+        $obj->SubSecTime = $subSecTime;
 
         return $obj;
     }
@@ -399,7 +399,7 @@ final class Exif implements BaseModel
     public function withWhiteBalance(int $whiteBalance): self
     {
         $obj = clone $this;
-        $obj->whiteBalance = $whiteBalance;
+        $obj->WhiteBalance = $whiteBalance;
 
         return $obj;
     }

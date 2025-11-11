@@ -12,12 +12,12 @@ use ImageKit\Core\Contracts\BaseModel;
  * Object containing Thumbnail information.
  *
  * @phpstan-type ThumbnailShape = array{
- *   compression?: int,
- *   resolutionUnit?: int,
- *   thumbnailLength?: int,
- *   thumbnailOffset?: int,
- *   xResolution?: int,
- *   yResolution?: int,
+ *   Compression?: int|null,
+ *   ResolutionUnit?: int|null,
+ *   ThumbnailLength?: int|null,
+ *   ThumbnailOffset?: int|null,
+ *   XResolution?: int|null,
+ *   YResolution?: int|null,
  * }
  */
 final class Thumbnail implements BaseModel
@@ -25,23 +25,23 @@ final class Thumbnail implements BaseModel
     /** @use SdkModel<ThumbnailShape> */
     use SdkModel;
 
-    #[Api('Compression', optional: true)]
-    public ?int $compression;
+    #[Api(optional: true)]
+    public ?int $Compression;
 
-    #[Api('ResolutionUnit', optional: true)]
-    public ?int $resolutionUnit;
+    #[Api(optional: true)]
+    public ?int $ResolutionUnit;
 
-    #[Api('ThumbnailLength', optional: true)]
-    public ?int $thumbnailLength;
+    #[Api(optional: true)]
+    public ?int $ThumbnailLength;
 
-    #[Api('ThumbnailOffset', optional: true)]
-    public ?int $thumbnailOffset;
+    #[Api(optional: true)]
+    public ?int $ThumbnailOffset;
 
-    #[Api('XResolution', optional: true)]
-    public ?int $xResolution;
+    #[Api(optional: true)]
+    public ?int $XResolution;
 
-    #[Api('YResolution', optional: true)]
-    public ?int $yResolution;
+    #[Api(optional: true)]
+    public ?int $YResolution;
 
     public function __construct()
     {
@@ -54,21 +54,21 @@ final class Thumbnail implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      */
     public static function with(
-        ?int $compression = null,
-        ?int $resolutionUnit = null,
-        ?int $thumbnailLength = null,
-        ?int $thumbnailOffset = null,
-        ?int $xResolution = null,
-        ?int $yResolution = null,
+        ?int $Compression = null,
+        ?int $ResolutionUnit = null,
+        ?int $ThumbnailLength = null,
+        ?int $ThumbnailOffset = null,
+        ?int $XResolution = null,
+        ?int $YResolution = null,
     ): self {
         $obj = new self;
 
-        null !== $compression && $obj->compression = $compression;
-        null !== $resolutionUnit && $obj->resolutionUnit = $resolutionUnit;
-        null !== $thumbnailLength && $obj->thumbnailLength = $thumbnailLength;
-        null !== $thumbnailOffset && $obj->thumbnailOffset = $thumbnailOffset;
-        null !== $xResolution && $obj->xResolution = $xResolution;
-        null !== $yResolution && $obj->yResolution = $yResolution;
+        null !== $Compression && $obj->Compression = $Compression;
+        null !== $ResolutionUnit && $obj->ResolutionUnit = $ResolutionUnit;
+        null !== $ThumbnailLength && $obj->ThumbnailLength = $ThumbnailLength;
+        null !== $ThumbnailOffset && $obj->ThumbnailOffset = $ThumbnailOffset;
+        null !== $XResolution && $obj->XResolution = $XResolution;
+        null !== $YResolution && $obj->YResolution = $YResolution;
 
         return $obj;
     }
@@ -76,7 +76,7 @@ final class Thumbnail implements BaseModel
     public function withCompression(int $compression): self
     {
         $obj = clone $this;
-        $obj->compression = $compression;
+        $obj->Compression = $compression;
 
         return $obj;
     }
@@ -84,7 +84,7 @@ final class Thumbnail implements BaseModel
     public function withResolutionUnit(int $resolutionUnit): self
     {
         $obj = clone $this;
-        $obj->resolutionUnit = $resolutionUnit;
+        $obj->ResolutionUnit = $resolutionUnit;
 
         return $obj;
     }
@@ -92,7 +92,7 @@ final class Thumbnail implements BaseModel
     public function withThumbnailLength(int $thumbnailLength): self
     {
         $obj = clone $this;
-        $obj->thumbnailLength = $thumbnailLength;
+        $obj->ThumbnailLength = $thumbnailLength;
 
         return $obj;
     }
@@ -100,7 +100,7 @@ final class Thumbnail implements BaseModel
     public function withThumbnailOffset(int $thumbnailOffset): self
     {
         $obj = clone $this;
-        $obj->thumbnailOffset = $thumbnailOffset;
+        $obj->ThumbnailOffset = $thumbnailOffset;
 
         return $obj;
     }
@@ -108,7 +108,7 @@ final class Thumbnail implements BaseModel
     public function withXResolution(int $xResolution): self
     {
         $obj = clone $this;
-        $obj->xResolution = $xResolution;
+        $obj->XResolution = $xResolution;
 
         return $obj;
     }
@@ -116,7 +116,7 @@ final class Thumbnail implements BaseModel
     public function withYResolution(int $yResolution): self
     {
         $obj = clone $this;
-        $obj->yResolution = $yResolution;
+        $obj->YResolution = $yResolution;
 
         return $obj;
     }

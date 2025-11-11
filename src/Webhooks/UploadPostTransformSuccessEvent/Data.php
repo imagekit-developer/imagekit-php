@@ -9,7 +9,7 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type DataShape = array{fileID: string, name: string, url: string}
+ * @phpstan-type DataShape = array{fileId: string, name: string, url: string}
  */
 final class Data implements BaseModel
 {
@@ -19,8 +19,8 @@ final class Data implements BaseModel
     /**
      * Unique identifier of the originally uploaded file.
      */
-    #[Api('fileId')]
-    public string $fileID;
+    #[Api]
+    public string $fileId;
 
     /**
      * Name of the file.
@@ -39,7 +39,7 @@ final class Data implements BaseModel
      *
      * To enforce required parameters use
      * ```
-     * Data::with(fileID: ..., name: ..., url: ...)
+     * Data::with(fileId: ..., name: ..., url: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
@@ -58,11 +58,11 @@ final class Data implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function with(string $fileID, string $name, string $url): self
+    public static function with(string $fileId, string $name, string $url): self
     {
         $obj = new self;
 
-        $obj->fileID = $fileID;
+        $obj->fileId = $fileId;
         $obj->name = $name;
         $obj->url = $url;
 
@@ -75,7 +75,7 @@ final class Data implements BaseModel
     public function withFileID(string $fileID): self
     {
         $obj = clone $this;
-        $obj->fileID = $fileID;
+        $obj->fileId = $fileID;
 
         return $obj;
     }

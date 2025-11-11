@@ -24,33 +24,17 @@ final class InvalidationService implements InvalidationContract
      *
      * This API will purge CDN cache and ImageKit.io's internal cache for a file.  Note: Purge cache is an asynchronous process and it may take some time to reflect the changes.
      *
-     * @param string $url the full URL of the file to be purged
+     * @param array{url: string}|InvalidationCreateParams $params
      *
      * @throws APIException
      */
     public function create(
-        $url,
-        ?RequestOptions $requestOptions = null
-    ): InvalidationNewResponse {
-        $params = ['url' => $url];
-
-        return $this->createRaw($params, $requestOptions);
-    }
-
-    /**
-     * @api
-     *
-     * @param array<string, mixed> $params
-     *
-     * @throws APIException
-     */
-    public function createRaw(
-        array $params,
-        ?RequestOptions $requestOptions = null
+        array|InvalidationCreateParams $params,
+        ?RequestOptions $requestOptions = null,
     ): InvalidationNewResponse {
         [$parsed, $options] = InvalidationCreateParams::parseRequest(
             $params,
-            $requestOptions
+            $requestOptions,
         );
 
         // @phpstan-ignore-next-line;

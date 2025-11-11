@@ -9,13 +9,14 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type AkamaiShape = array{type: string}
+ * @phpstan-type AkamaiShape = array{type: "AKAMAI"}
  */
 final class Akamai implements BaseModel
 {
     /** @use SdkModel<AkamaiShape> */
     use SdkModel;
 
+    /** @var "AKAMAI" $type */
     #[Api]
     public string $type = 'AKAMAI';
 

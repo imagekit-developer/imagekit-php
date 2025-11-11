@@ -10,7 +10,7 @@ use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * @phpstan-type AITagShape = array{
- *   confidence?: float, name?: string, source?: string
+ *   confidence?: float|null, name?: string|null, source?: string|null
  * }
  */
 final class AITag implements BaseModel

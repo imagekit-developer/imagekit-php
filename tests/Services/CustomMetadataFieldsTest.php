@@ -3,7 +3,6 @@
 namespace Tests\Services;
 
 use ImageKit\Client;
-use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
@@ -38,11 +37,9 @@ final class CustomMetadataFieldsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->customMetadataFields->create(
-            label: 'price',
-            name: 'price',
-            schema: Schema::with(type: 'Number')
-        );
+        $result = $this->client->customMetadataFields->create([
+            'label' => 'price', 'name' => 'price', 'schema' => ['type' => 'Number'],
+        ]);
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
@@ -54,18 +51,20 @@ final class CustomMetadataFieldsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->customMetadataFields->create(
-            label: 'price',
-            name: 'price',
-            schema: Schema::with(type: 'Number')
-                ->withDefaultValue('string')
-                ->withIsValueRequired(true)
-                ->withMaxLength(0)
-                ->withMaxValue(3000)
-                ->withMinLength(0)
-                ->withMinValue(1000)
-                ->withSelectOptions(['small', 'medium', 'large', 30, 40, true]),
-        );
+        $result = $this->client->customMetadataFields->create([
+            'label' => 'price',
+            'name' => 'price',
+            'schema' => [
+                'type' => 'Number',
+                'defaultValue' => 'string',
+                'isValueRequired' => true,
+                'maxLength' => 0,
+                'maxValue' => 3000,
+                'minLength' => 0,
+                'minValue' => 1000,
+                'selectOptions' => ['small', 'medium', 'large', 30, 40, true],
+            ],
+        ]);
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
@@ -77,7 +76,7 @@ final class CustomMetadataFieldsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->customMetadataFields->update('id');
+        $result = $this->client->customMetadataFields->update('id', []);
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
@@ -89,7 +88,7 @@ final class CustomMetadataFieldsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->customMetadataFields->list();
+        $result = $this->client->customMetadataFields->list([]);
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }

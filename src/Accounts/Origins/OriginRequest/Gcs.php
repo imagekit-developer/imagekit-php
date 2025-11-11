@@ -14,10 +14,10 @@ use ImageKit\Core\Contracts\BaseModel;
  *   clientEmail: string,
  *   name: string,
  *   privateKey: string,
- *   type: string,
- *   baseURLForCanonicalHeader?: string,
- *   includeCanonicalHeader?: bool,
- *   prefix?: string,
+ *   type: "GCS",
+ *   baseUrlForCanonicalHeader?: string|null,
+ *   includeCanonicalHeader?: bool|null,
+ *   prefix?: string|null,
  * }
  */
 final class Gcs implements BaseModel
@@ -25,6 +25,7 @@ final class Gcs implements BaseModel
     /** @use SdkModel<GcsShape> */
     use SdkModel;
 
+    /** @var "GCS" $type */
     #[Api]
     public string $type = 'GCS';
 
@@ -46,8 +47,8 @@ final class Gcs implements BaseModel
     /**
      * URL used in the Canonical header (if enabled).
      */
-    #[Api('baseUrlForCanonicalHeader', optional: true)]
-    public ?string $baseURLForCanonicalHeader;
+    #[Api(optional: true)]
+    public ?string $baseUrlForCanonicalHeader;
 
     /**
      * Whether to send a Canonical header.
@@ -91,7 +92,7 @@ final class Gcs implements BaseModel
         string $clientEmail,
         string $name,
         string $privateKey,
-        ?string $baseURLForCanonicalHeader = null,
+        ?string $baseUrlForCanonicalHeader = null,
         ?bool $includeCanonicalHeader = null,
         ?string $prefix = null,
     ): self {
@@ -102,7 +103,7 @@ final class Gcs implements BaseModel
         $obj->name = $name;
         $obj->privateKey = $privateKey;
 
-        null !== $baseURLForCanonicalHeader && $obj->baseURLForCanonicalHeader = $baseURLForCanonicalHeader;
+        null !== $baseUrlForCanonicalHeader && $obj->baseUrlForCanonicalHeader = $baseUrlForCanonicalHeader;
         null !== $includeCanonicalHeader && $obj->includeCanonicalHeader = $includeCanonicalHeader;
         null !== $prefix && $obj->prefix = $prefix;
 
@@ -151,7 +152,7 @@ final class Gcs implements BaseModel
         string $baseURLForCanonicalHeader
     ): self {
         $obj = clone $this;
-        $obj->baseURLForCanonicalHeader = $baseURLForCanonicalHeader;
+        $obj->baseUrlForCanonicalHeader = $baseURLForCanonicalHeader;
 
         return $obj;
     }

@@ -13,7 +13,7 @@ use ImageKit\Core\Conversion\Contracts\ResponseConverter;
 /**
  * Job submitted successfully. A `jobId` will be returned.
  *
- * @phpstan-type FolderRenameResponseShape = array{jobID: string}
+ * @phpstan-type FolderRenameResponseShape = array{jobId: string}
  */
 final class FolderRenameResponse implements BaseModel, ResponseConverter
 {
@@ -25,15 +25,15 @@ final class FolderRenameResponse implements BaseModel, ResponseConverter
     /**
      * Unique identifier of the bulk job. This can be used to check the status of the bulk job.
      */
-    #[Api('jobId')]
-    public string $jobID;
+    #[Api]
+    public string $jobId;
 
     /**
      * `new FolderRenameResponse()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * FolderRenameResponse::with(jobID: ...)
+     * FolderRenameResponse::with(jobId: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
@@ -52,11 +52,11 @@ final class FolderRenameResponse implements BaseModel, ResponseConverter
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function with(string $jobID): self
+    public static function with(string $jobId): self
     {
         $obj = new self;
 
-        $obj->jobID = $jobID;
+        $obj->jobId = $jobId;
 
         return $obj;
     }
@@ -67,7 +67,7 @@ final class FolderRenameResponse implements BaseModel, ResponseConverter
     public function withJobID(string $jobID): self
     {
         $obj = clone $this;
-        $obj->jobID = $jobID;
+        $obj->jobId = $jobID;
 
         return $obj;
     }

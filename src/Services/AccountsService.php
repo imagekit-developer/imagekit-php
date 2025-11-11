@@ -13,17 +13,17 @@ use ImageKit\Services\Accounts\UsageService;
 final class AccountsService implements AccountsContract
 {
     /**
-     * @@api
+     * @api
      */
     public UsageService $usage;
 
     /**
-     * @@api
+     * @api
      */
     public OriginsService $origins;
 
     /**
-     * @@api
+     * @api
      */
     public URLEndpointsService $urlEndpoints;
 

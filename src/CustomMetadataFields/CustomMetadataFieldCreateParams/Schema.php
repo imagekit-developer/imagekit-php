@@ -14,13 +14,13 @@ use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\Type;
 /**
  * @phpstan-type SchemaShape = array{
  *   type: value-of<Type>,
- *   defaultValue?: string|float|bool|list<string|float|bool>,
- *   isValueRequired?: bool,
- *   maxLength?: float,
- *   maxValue?: string|float,
- *   minLength?: float,
- *   minValue?: string|float,
- *   selectOptions?: list<string|float|bool>,
+ *   defaultValue?: string|float|bool|null|list<string|float|bool>,
+ *   isValueRequired?: bool|null,
+ *   maxLength?: float|null,
+ *   maxValue?: string|float|null,
+ *   minLength?: float|null,
+ *   minValue?: string|float|null,
+ *   selectOptions?: list<string|float|bool>|null,
  * }
  */
 final class Schema implements BaseModel

@@ -14,10 +14,10 @@ use ImageKit\Core\Contracts\BaseModel;
  *   bucket: string,
  *   name: string,
  *   secretKey: string,
- *   type: string,
- *   baseURLForCanonicalHeader?: string,
- *   includeCanonicalHeader?: bool,
- *   prefix?: string,
+ *   type: "CLOUDINARY_BACKUP",
+ *   baseUrlForCanonicalHeader?: string|null,
+ *   includeCanonicalHeader?: bool|null,
+ *   prefix?: string|null,
  * }
  */
 final class CloudinaryBackup implements BaseModel
@@ -25,6 +25,7 @@ final class CloudinaryBackup implements BaseModel
     /** @use SdkModel<CloudinaryBackupShape> */
     use SdkModel;
 
+    /** @var "CLOUDINARY_BACKUP" $type */
     #[Api]
     public string $type = 'CLOUDINARY_BACKUP';
 
@@ -55,8 +56,8 @@ final class CloudinaryBackup implements BaseModel
     /**
      * URL used in the Canonical header (if enabled).
      */
-    #[Api('baseUrlForCanonicalHeader', optional: true)]
-    public ?string $baseURLForCanonicalHeader;
+    #[Api(optional: true)]
+    public ?string $baseUrlForCanonicalHeader;
 
     /**
      * Whether to send a Canonical header.
@@ -103,7 +104,7 @@ final class CloudinaryBackup implements BaseModel
         string $bucket,
         string $name,
         string $secretKey,
-        ?string $baseURLForCanonicalHeader = null,
+        ?string $baseUrlForCanonicalHeader = null,
         ?bool $includeCanonicalHeader = null,
         ?string $prefix = null,
     ): self {
@@ -114,7 +115,7 @@ final class CloudinaryBackup implements BaseModel
         $obj->name = $name;
         $obj->secretKey = $secretKey;
 
-        null !== $baseURLForCanonicalHeader && $obj->baseURLForCanonicalHeader = $baseURLForCanonicalHeader;
+        null !== $baseUrlForCanonicalHeader && $obj->baseUrlForCanonicalHeader = $baseUrlForCanonicalHeader;
         null !== $includeCanonicalHeader && $obj->includeCanonicalHeader = $includeCanonicalHeader;
         null !== $prefix && $obj->prefix = $prefix;
 
@@ -172,7 +173,7 @@ final class CloudinaryBackup implements BaseModel
         string $baseURLForCanonicalHeader
     ): self {
         $obj = clone $this;
-        $obj->baseURLForCanonicalHeader = $baseURLForCanonicalHeader;
+        $obj->baseUrlForCanonicalHeader = $baseURLForCanonicalHeader;
 
         return $obj;
     }

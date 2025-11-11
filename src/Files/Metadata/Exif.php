@@ -14,12 +14,12 @@ use ImageKit\Files\Metadata\Exif\Thumbnail;
 
 /**
  * @phpstan-type ExifShape = array{
- *   exif?: \ImageKit\Files\Metadata\Exif\Exif,
- *   gps?: Gps,
- *   image?: Image,
- *   interoperability?: Interoperability,
- *   makernote?: array<string, mixed>,
- *   thumbnail?: Thumbnail,
+ *   exif?: \ImageKit\Files\Metadata\Exif\Exif|null,
+ *   gps?: Gps|null,
+ *   image?: Image|null,
+ *   interoperability?: Interoperability|null,
+ *   makernote?: array<string,mixed>|null,
+ *   thumbnail?: Thumbnail|null,
  * }
  */
 final class Exif implements BaseModel
@@ -51,7 +51,7 @@ final class Exif implements BaseModel
     #[Api(optional: true)]
     public ?Interoperability $interoperability;
 
-    /** @var array<string, mixed>|null $makernote */
+    /** @var array<string,mixed>|null $makernote */
     #[Api(map: 'mixed', optional: true)]
     public ?array $makernote;
 
@@ -71,7 +71,7 @@ final class Exif implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param array<string, mixed> $makernote
+     * @param array<string,mixed> $makernote
      */
     public static function with(
         ?Exif\Exif $exif = null,
@@ -139,7 +139,7 @@ final class Exif implements BaseModel
     }
 
     /**
-     * @param array<string, mixed> $makernote
+     * @param array<string,mixed> $makernote
      */
     public function withMakernote(array $makernote): self
     {

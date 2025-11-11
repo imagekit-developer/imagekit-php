@@ -9,13 +9,14 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type ImgixShape = array{type: string}
+ * @phpstan-type ImgixShape = array{type: "IMGIX"}
  */
 final class Imgix implements BaseModel
 {
     /** @use SdkModel<ImgixShape> */
     use SdkModel;
 
+    /** @var "IMGIX" $type */
     #[Api]
     public string $type = 'IMGIX';
 

@@ -11,12 +11,12 @@ use ImageKit\TextOverlay\Encoding;
 
 /**
  * @phpstan-type TextOverlayShape = array{
- *   position?: OverlayPosition,
- *   timing?: OverlayTiming,
+ *   position?: OverlayPosition|null,
+ *   timing?: OverlayTiming|null,
  *   text: string,
- *   type: string,
- *   encoding?: value-of<Encoding>,
- *   transformation?: list<TextOverlayTransformation>,
+ *   type: "text",
+ *   encoding?: value-of<Encoding>|null,
+ *   transformation?: list<TextOverlayTransformation>|null,
  * }
  */
 final class TextOverlay implements BaseModel
@@ -24,6 +24,7 @@ final class TextOverlay implements BaseModel
     /** @use SdkModel<TextOverlayShape> */
     use SdkModel;
 
+    /** @var "text" $type */
     #[Api]
     public string $type = 'text';
 

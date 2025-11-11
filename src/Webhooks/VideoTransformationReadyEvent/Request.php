@@ -12,7 +12,7 @@ use ImageKit\Core\Contracts\BaseModel;
  * Information about the original request that triggered the video transformation.
  *
  * @phpstan-type RequestShape = array{
- *   url: string, xRequestID: string, userAgent?: string
+ *   url: string, x_request_id: string, user_agent?: string|null
  * }
  */
 final class Request implements BaseModel
@@ -29,21 +29,21 @@ final class Request implements BaseModel
     /**
      * Unique identifier for the originating transformation request.
      */
-    #[Api('x_request_id')]
-    public string $xRequestID;
+    #[Api]
+    public string $x_request_id;
 
     /**
      * User-Agent header from the original request that triggered the transformation.
      */
-    #[Api('user_agent', optional: true)]
-    public ?string $userAgent;
+    #[Api(optional: true)]
+    public ?string $user_agent;
 
     /**
      * `new Request()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * Request::with(url: ..., xRequestID: ...)
+     * Request::with(url: ..., x_request_id: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
@@ -64,15 +64,15 @@ final class Request implements BaseModel
      */
     public static function with(
         string $url,
-        string $xRequestID,
-        ?string $userAgent = null
+        string $x_request_id,
+        ?string $user_agent = null
     ): self {
         $obj = new self;
 
         $obj->url = $url;
-        $obj->xRequestID = $xRequestID;
+        $obj->x_request_id = $x_request_id;
 
-        null !== $userAgent && $obj->userAgent = $userAgent;
+        null !== $user_agent && $obj->user_agent = $user_agent;
 
         return $obj;
     }
@@ -94,7 +94,7 @@ final class Request implements BaseModel
     public function withXRequestID(string $xRequestID): self
     {
         $obj = clone $this;
-        $obj->xRequestID = $xRequestID;
+        $obj->x_request_id = $xRequestID;
 
         return $obj;
     }
@@ -105,7 +105,7 @@ final class Request implements BaseModel
     public function withUserAgent(string $userAgent): self
     {
         $obj = clone $this;
-        $obj->userAgent = $userAgent;
+        $obj->user_agent = $userAgent;
 
         return $obj;
     }

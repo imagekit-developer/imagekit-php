@@ -11,7 +11,7 @@ use ImageKit\Services\Beta\V2\FilesService;
 final class V2Service implements V2Contract
 {
     /**
-     * @@api
+     * @api
      */
     public FilesService $files;
 

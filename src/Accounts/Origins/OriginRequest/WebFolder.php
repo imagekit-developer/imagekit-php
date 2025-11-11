@@ -10,12 +10,12 @@ use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * @phpstan-type WebFolderShape = array{
- *   baseURL: string,
+ *   baseUrl: string,
  *   name: string,
- *   type: string,
- *   baseURLForCanonicalHeader?: string,
- *   forwardHostHeaderToOrigin?: bool,
- *   includeCanonicalHeader?: bool,
+ *   type: "WEB_FOLDER",
+ *   baseUrlForCanonicalHeader?: string|null,
+ *   forwardHostHeaderToOrigin?: bool|null,
+ *   includeCanonicalHeader?: bool|null,
  * }
  */
 final class WebFolder implements BaseModel
@@ -23,14 +23,15 @@ final class WebFolder implements BaseModel
     /** @use SdkModel<WebFolderShape> */
     use SdkModel;
 
+    /** @var "WEB_FOLDER" $type */
     #[Api]
     public string $type = 'WEB_FOLDER';
 
     /**
      * Root URL for the web folder origin.
      */
-    #[Api('baseUrl')]
-    public string $baseURL;
+    #[Api]
+    public string $baseUrl;
 
     /**
      * Display name of the origin.
@@ -41,8 +42,8 @@ final class WebFolder implements BaseModel
     /**
      * URL used in the Canonical header (if enabled).
      */
-    #[Api('baseUrlForCanonicalHeader', optional: true)]
-    public ?string $baseURLForCanonicalHeader;
+    #[Api(optional: true)]
+    public ?string $baseUrlForCanonicalHeader;
 
     /**
      * Forward the Host header to origin?
@@ -61,7 +62,7 @@ final class WebFolder implements BaseModel
      *
      * To enforce required parameters use
      * ```
-     * WebFolder::with(baseURL: ..., name: ...)
+     * WebFolder::with(baseUrl: ..., name: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
@@ -81,18 +82,18 @@ final class WebFolder implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      */
     public static function with(
-        string $baseURL,
+        string $baseUrl,
         string $name,
-        ?string $baseURLForCanonicalHeader = null,
+        ?string $baseUrlForCanonicalHeader = null,
         ?bool $forwardHostHeaderToOrigin = null,
         ?bool $includeCanonicalHeader = null,
     ): self {
         $obj = new self;
 
-        $obj->baseURL = $baseURL;
+        $obj->baseUrl = $baseUrl;
         $obj->name = $name;
 
-        null !== $baseURLForCanonicalHeader && $obj->baseURLForCanonicalHeader = $baseURLForCanonicalHeader;
+        null !== $baseUrlForCanonicalHeader && $obj->baseUrlForCanonicalHeader = $baseUrlForCanonicalHeader;
         null !== $forwardHostHeaderToOrigin && $obj->forwardHostHeaderToOrigin = $forwardHostHeaderToOrigin;
         null !== $includeCanonicalHeader && $obj->includeCanonicalHeader = $includeCanonicalHeader;
 
@@ -105,7 +106,7 @@ final class WebFolder implements BaseModel
     public function withBaseURL(string $baseURL): self
     {
         $obj = clone $this;
-        $obj->baseURL = $baseURL;
+        $obj->baseUrl = $baseURL;
 
         return $obj;
     }
@@ -128,7 +129,7 @@ final class WebFolder implements BaseModel
         string $baseURLForCanonicalHeader
     ): self {
         $obj = clone $this;
-        $obj->baseURLForCanonicalHeader = $baseURLForCanonicalHeader;
+        $obj->baseUrlForCanonicalHeader = $baseURLForCanonicalHeader;
 
         return $obj;
     }

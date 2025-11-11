@@ -37,10 +37,9 @@ final class FoldersTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->folders->create(
-            folderName: 'summer',
-            parentFolderPath: '/product/images/'
-        );
+        $result = $this->client->folders->create([
+            'folderName' => 'summer', 'parentFolderPath' => '/product/images/',
+        ]);
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
@@ -52,10 +51,9 @@ final class FoldersTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->folders->create(
-            folderName: 'summer',
-            parentFolderPath: '/product/images/'
-        );
+        $result = $this->client->folders->create([
+            'folderName' => 'summer', 'parentFolderPath' => '/product/images/',
+        ]);
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
@@ -67,7 +65,9 @@ final class FoldersTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->folders->delete('/folder/to/delete/');
+        $result = $this->client->folders->delete([
+            'folderPath' => '/folder/to/delete/',
+        ]);
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
@@ -79,7 +79,9 @@ final class FoldersTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->folders->delete('/folder/to/delete/');
+        $result = $this->client->folders->delete([
+            'folderPath' => '/folder/to/delete/',
+        ]);
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
@@ -91,10 +93,10 @@ final class FoldersTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->folders->copy(
-            destinationPath: '/path/of/destination/folder',
-            sourceFolderPath: '/path/of/source/folder',
-        );
+        $result = $this->client->folders->copy([
+            'destinationPath' => '/path/of/destination/folder',
+            'sourceFolderPath' => '/path/of/source/folder',
+        ]);
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
@@ -106,10 +108,10 @@ final class FoldersTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->folders->copy(
-            destinationPath: '/path/of/destination/folder',
-            sourceFolderPath: '/path/of/source/folder',
-        );
+        $result = $this->client->folders->copy([
+            'destinationPath' => '/path/of/destination/folder',
+            'sourceFolderPath' => '/path/of/source/folder',
+        ]);
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
@@ -121,10 +123,10 @@ final class FoldersTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->folders->move(
-            destinationPath: '/path/of/destination/folder',
-            sourceFolderPath: '/path/of/source/folder',
-        );
+        $result = $this->client->folders->move([
+            'destinationPath' => '/path/of/destination/folder',
+            'sourceFolderPath' => '/path/of/source/folder',
+        ]);
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
@@ -136,10 +138,10 @@ final class FoldersTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->folders->move(
-            destinationPath: '/path/of/destination/folder',
-            sourceFolderPath: '/path/of/source/folder',
-        );
+        $result = $this->client->folders->move([
+            'destinationPath' => '/path/of/destination/folder',
+            'sourceFolderPath' => '/path/of/source/folder',
+        ]);
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
@@ -151,10 +153,9 @@ final class FoldersTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->folders->rename(
-            folderPath: '/path/of/folder',
-            newFolderName: 'new-folder-name'
-        );
+        $result = $this->client->folders->rename([
+            'folderPath' => '/path/of/folder', 'newFolderName' => 'new-folder-name',
+        ]);
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
@@ -166,10 +167,9 @@ final class FoldersTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->folders->rename(
-            folderPath: '/path/of/folder',
-            newFolderName: 'new-folder-name'
-        );
+        $result = $this->client->folders->rename([
+            'folderPath' => '/path/of/folder', 'newFolderName' => 'new-folder-name',
+        ]);
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }

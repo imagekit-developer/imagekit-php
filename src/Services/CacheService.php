@@ -11,7 +11,7 @@ use ImageKit\Services\Cache\InvalidationService;
 final class CacheService implements CacheContract
 {
     /**
-     * @@api
+     * @api
      */
     public InvalidationService $invalidation;
 

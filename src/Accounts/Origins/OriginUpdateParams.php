@@ -20,20 +20,20 @@ use ImageKit\Core\Contracts\BaseModel;
  *   bucket: string,
  *   name: string,
  *   secretKey: string,
- *   type: string,
- *   baseURLForCanonicalHeader?: string,
+ *   type: "AKENEO_PIM",
+ *   baseUrlForCanonicalHeader?: string,
  *   includeCanonicalHeader?: bool,
  *   prefix?: string,
  *   endpoint: string,
  *   s3ForcePathStyle?: bool,
- *   baseURL: string,
+ *   baseUrl: string,
  *   forwardHostHeaderToOrigin?: bool,
  *   clientEmail: string,
  *   privateKey: string,
  *   accountName: string,
  *   container: string,
  *   sasToken: string,
- *   clientID: string,
+ *   clientId: string,
  *   clientSecret: string,
  *   password: string,
  *   username: string,
@@ -45,6 +45,7 @@ final class OriginUpdateParams implements BaseModel
     use SdkModel;
     use SdkParams;
 
+    /** @var "AKENEO_PIM" $type */
     #[Api]
     public string $type = 'AKENEO_PIM';
 
@@ -72,8 +73,8 @@ final class OriginUpdateParams implements BaseModel
     /**
      * URL used in the Canonical header (if enabled).
      */
-    #[Api('baseUrlForCanonicalHeader', optional: true)]
-    public ?string $baseURLForCanonicalHeader;
+    #[Api(optional: true)]
+    public ?string $baseUrlForCanonicalHeader;
 
     /**
      * Whether to send a Canonical header.
@@ -99,8 +100,8 @@ final class OriginUpdateParams implements BaseModel
     /**
      * Akeneo instance base URL.
      */
-    #[Api('baseUrl')]
-    public string $baseURL;
+    #[Api]
+    public string $baseUrl;
 
     /**
      * Forward the Host header to origin?
@@ -126,8 +127,8 @@ final class OriginUpdateParams implements BaseModel
     /**
      * Akeneo API client ID.
      */
-    #[Api('clientId')]
-    public string $clientID;
+    #[Api]
+    public string $clientId;
 
     /**
      * Akeneo API client secret.
@@ -158,13 +159,13 @@ final class OriginUpdateParams implements BaseModel
      *   name: ...,
      *   secretKey: ...,
      *   endpoint: ...,
-     *   baseURL: ...,
+     *   baseUrl: ...,
      *   clientEmail: ...,
      *   privateKey: ...,
      *   accountName: ...,
      *   container: ...,
      *   sasToken: ...,
-     *   clientID: ...,
+     *   clientId: ...,
      *   clientSecret: ...,
      *   password: ...,
      *   username: ...,
@@ -208,17 +209,17 @@ final class OriginUpdateParams implements BaseModel
         string $name,
         string $secretKey,
         string $endpoint,
-        string $baseURL,
+        string $baseUrl,
         string $clientEmail,
         string $privateKey,
         string $accountName,
         string $container,
         string $sasToken,
-        string $clientID,
+        string $clientId,
         string $clientSecret,
         string $password,
         string $username,
-        ?string $baseURLForCanonicalHeader = null,
+        ?string $baseUrlForCanonicalHeader = null,
         ?bool $includeCanonicalHeader = null,
         ?string $prefix = null,
         ?bool $s3ForcePathStyle = null,
@@ -231,18 +232,18 @@ final class OriginUpdateParams implements BaseModel
         $obj->name = $name;
         $obj->secretKey = $secretKey;
         $obj->endpoint = $endpoint;
-        $obj->baseURL = $baseURL;
+        $obj->baseUrl = $baseUrl;
         $obj->clientEmail = $clientEmail;
         $obj->privateKey = $privateKey;
         $obj->accountName = $accountName;
         $obj->container = $container;
         $obj->sasToken = $sasToken;
-        $obj->clientID = $clientID;
+        $obj->clientId = $clientId;
         $obj->clientSecret = $clientSecret;
         $obj->password = $password;
         $obj->username = $username;
 
-        null !== $baseURLForCanonicalHeader && $obj->baseURLForCanonicalHeader = $baseURLForCanonicalHeader;
+        null !== $baseUrlForCanonicalHeader && $obj->baseUrlForCanonicalHeader = $baseUrlForCanonicalHeader;
         null !== $includeCanonicalHeader && $obj->includeCanonicalHeader = $includeCanonicalHeader;
         null !== $prefix && $obj->prefix = $prefix;
         null !== $s3ForcePathStyle && $obj->s3ForcePathStyle = $s3ForcePathStyle;
@@ -299,7 +300,7 @@ final class OriginUpdateParams implements BaseModel
         string $baseURLForCanonicalHeader
     ): self {
         $obj = clone $this;
-        $obj->baseURLForCanonicalHeader = $baseURLForCanonicalHeader;
+        $obj->baseUrlForCanonicalHeader = $baseURLForCanonicalHeader;
 
         return $obj;
     }
@@ -352,7 +353,7 @@ final class OriginUpdateParams implements BaseModel
     public function withBaseURL(string $baseURL): self
     {
         $obj = clone $this;
-        $obj->baseURL = $baseURL;
+        $obj->baseUrl = $baseURL;
 
         return $obj;
     }
@@ -415,7 +416,7 @@ final class OriginUpdateParams implements BaseModel
     public function withClientID(string $clientID): self
     {
         $obj = clone $this;
-        $obj->clientID = $clientID;
+        $obj->clientId = $clientID;
 
         return $obj;
     }

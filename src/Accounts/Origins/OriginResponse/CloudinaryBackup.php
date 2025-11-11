@@ -15,8 +15,8 @@ use ImageKit\Core\Contracts\BaseModel;
  *   includeCanonicalHeader: bool,
  *   name: string,
  *   prefix: string,
- *   type: string,
- *   baseURLForCanonicalHeader?: string,
+ *   type: "CLOUDINARY_BACKUP",
+ *   baseUrlForCanonicalHeader?: string|null,
  * }
  */
 final class CloudinaryBackup implements BaseModel
@@ -24,6 +24,7 @@ final class CloudinaryBackup implements BaseModel
     /** @use SdkModel<CloudinaryBackupShape> */
     use SdkModel;
 
+    /** @var "CLOUDINARY_BACKUP" $type */
     #[Api]
     public string $type = 'CLOUDINARY_BACKUP';
 
@@ -60,8 +61,8 @@ final class CloudinaryBackup implements BaseModel
     /**
      * URL used in the Canonical header (if enabled).
      */
-    #[Api('baseUrlForCanonicalHeader', optional: true)]
-    public ?string $baseURLForCanonicalHeader;
+    #[Api(optional: true)]
+    public ?string $baseUrlForCanonicalHeader;
 
     /**
      * `new CloudinaryBackup()` is missing required properties by the API.
@@ -100,7 +101,7 @@ final class CloudinaryBackup implements BaseModel
         string $name,
         string $prefix,
         bool $includeCanonicalHeader = false,
-        ?string $baseURLForCanonicalHeader = null,
+        ?string $baseUrlForCanonicalHeader = null,
     ): self {
         $obj = new self;
 
@@ -110,7 +111,7 @@ final class CloudinaryBackup implements BaseModel
         $obj->name = $name;
         $obj->prefix = $prefix;
 
-        null !== $baseURLForCanonicalHeader && $obj->baseURLForCanonicalHeader = $baseURLForCanonicalHeader;
+        null !== $baseUrlForCanonicalHeader && $obj->baseUrlForCanonicalHeader = $baseUrlForCanonicalHeader;
 
         return $obj;
     }
@@ -178,7 +179,7 @@ final class CloudinaryBackup implements BaseModel
         string $baseURLForCanonicalHeader
     ): self {
         $obj = clone $this;
-        $obj->baseURLForCanonicalHeader = $baseURLForCanonicalHeader;
+        $obj->baseUrlForCanonicalHeader = $baseURLForCanonicalHeader;
 
         return $obj;
     }

@@ -13,7 +13,7 @@ use ImageKit\Core\Contracts\BaseModel;
  * Useful for enabling responsive image loading with `srcSet` and `sizes`.
  *
  * @phpstan-type ResponsiveImageAttributesShape = array{
- *   src: string, sizes?: string, srcSet?: string, width?: float
+ *   src: string, sizes?: string|null, srcSet?: string|null, width?: float|null
  * }
  */
 final class ResponsiveImageAttributes implements BaseModel

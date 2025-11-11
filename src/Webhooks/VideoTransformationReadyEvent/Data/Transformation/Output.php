@@ -12,7 +12,9 @@ use ImageKit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Output\V
 /**
  * Information about the transformed output video.
  *
- * @phpstan-type OutputShape = array{url: string, videoMetadata?: VideoMetadata}
+ * @phpstan-type OutputShape = array{
+ *   url: string, video_metadata?: VideoMetadata|null
+ * }
  */
 final class Output implements BaseModel
 {
@@ -28,8 +30,8 @@ final class Output implements BaseModel
     /**
      * Metadata of the output video file.
      */
-    #[Api('video_metadata', optional: true)]
-    public ?VideoMetadata $videoMetadata;
+    #[Api(optional: true)]
+    public ?VideoMetadata $video_metadata;
 
     /**
      * `new Output()` is missing required properties by the API.
@@ -57,13 +59,13 @@ final class Output implements BaseModel
      */
     public static function with(
         string $url,
-        ?VideoMetadata $videoMetadata = null
+        ?VideoMetadata $video_metadata = null
     ): self {
         $obj = new self;
 
         $obj->url = $url;
 
-        null !== $videoMetadata && $obj->videoMetadata = $videoMetadata;
+        null !== $video_metadata && $obj->video_metadata = $video_metadata;
 
         return $obj;
     }
@@ -85,7 +87,7 @@ final class Output implements BaseModel
     public function withVideoMetadata(VideoMetadata $videoMetadata): self
     {
         $obj = clone $this;
-        $obj->videoMetadata = $videoMetadata;
+        $obj->video_metadata = $videoMetadata;
 
         return $obj;
     }

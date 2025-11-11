@@ -10,15 +10,15 @@ use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * @phpstan-type AkeneoPimShape = array{
- *   baseURL: string,
- *   clientID: string,
+ *   baseUrl: string,
+ *   clientId: string,
  *   clientSecret: string,
  *   name: string,
  *   password: string,
- *   type: string,
+ *   type: "AKENEO_PIM",
  *   username: string,
- *   baseURLForCanonicalHeader?: string,
- *   includeCanonicalHeader?: bool,
+ *   baseUrlForCanonicalHeader?: string|null,
+ *   includeCanonicalHeader?: bool|null,
  * }
  */
 final class AkeneoPim implements BaseModel
@@ -26,20 +26,21 @@ final class AkeneoPim implements BaseModel
     /** @use SdkModel<AkeneoPimShape> */
     use SdkModel;
 
+    /** @var "AKENEO_PIM" $type */
     #[Api]
     public string $type = 'AKENEO_PIM';
 
     /**
      * Akeneo instance base URL.
      */
-    #[Api('baseUrl')]
-    public string $baseURL;
+    #[Api]
+    public string $baseUrl;
 
     /**
      * Akeneo API client ID.
      */
-    #[Api('clientId')]
-    public string $clientID;
+    #[Api]
+    public string $clientId;
 
     /**
      * Akeneo API client secret.
@@ -68,8 +69,8 @@ final class AkeneoPim implements BaseModel
     /**
      * URL used in the Canonical header (if enabled).
      */
-    #[Api('baseUrlForCanonicalHeader', optional: true)]
-    public ?string $baseURLForCanonicalHeader;
+    #[Api(optional: true)]
+    public ?string $baseUrlForCanonicalHeader;
 
     /**
      * Whether to send a Canonical header.
@@ -83,8 +84,8 @@ final class AkeneoPim implements BaseModel
      * To enforce required parameters use
      * ```
      * AkeneoPim::with(
-     *   baseURL: ...,
-     *   clientID: ...,
+     *   baseUrl: ...,
+     *   clientId: ...,
      *   clientSecret: ...,
      *   name: ...,
      *   password: ...,
@@ -115,25 +116,25 @@ final class AkeneoPim implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      */
     public static function with(
-        string $baseURL,
-        string $clientID,
+        string $baseUrl,
+        string $clientId,
         string $clientSecret,
         string $name,
         string $password,
         string $username,
-        ?string $baseURLForCanonicalHeader = null,
+        ?string $baseUrlForCanonicalHeader = null,
         ?bool $includeCanonicalHeader = null,
     ): self {
         $obj = new self;
 
-        $obj->baseURL = $baseURL;
-        $obj->clientID = $clientID;
+        $obj->baseUrl = $baseUrl;
+        $obj->clientId = $clientId;
         $obj->clientSecret = $clientSecret;
         $obj->name = $name;
         $obj->password = $password;
         $obj->username = $username;
 
-        null !== $baseURLForCanonicalHeader && $obj->baseURLForCanonicalHeader = $baseURLForCanonicalHeader;
+        null !== $baseUrlForCanonicalHeader && $obj->baseUrlForCanonicalHeader = $baseUrlForCanonicalHeader;
         null !== $includeCanonicalHeader && $obj->includeCanonicalHeader = $includeCanonicalHeader;
 
         return $obj;
@@ -145,7 +146,7 @@ final class AkeneoPim implements BaseModel
     public function withBaseURL(string $baseURL): self
     {
         $obj = clone $this;
-        $obj->baseURL = $baseURL;
+        $obj->baseUrl = $baseURL;
 
         return $obj;
     }
@@ -156,7 +157,7 @@ final class AkeneoPim implements BaseModel
     public function withClientID(string $clientID): self
     {
         $obj = clone $this;
-        $obj->clientID = $clientID;
+        $obj->clientId = $clientID;
 
         return $obj;
     }
@@ -212,7 +213,7 @@ final class AkeneoPim implements BaseModel
         string $baseURLForCanonicalHeader
     ): self {
         $obj = clone $this;
-        $obj->baseURLForCanonicalHeader = $baseURLForCanonicalHeader;
+        $obj->baseUrlForCanonicalHeader = $baseURLForCanonicalHeader;
 
         return $obj;
     }

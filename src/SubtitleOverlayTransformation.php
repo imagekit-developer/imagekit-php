@@ -13,13 +13,13 @@ use ImageKit\SubtitleOverlayTransformation\Typography;
  * Subtitle styling options. [Learn more](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer) from the docs.
  *
  * @phpstan-type SubtitleOverlayTransformationShape = array{
- *   background?: string,
- *   color?: string,
- *   fontFamily?: string,
- *   fontOutline?: string,
- *   fontShadow?: string,
- *   fontSize?: float,
- *   typography?: value-of<Typography>,
+ *   background?: string|null,
+ *   color?: string|null,
+ *   fontFamily?: string|null,
+ *   fontOutline?: string|null,
+ *   fontShadow?: string|null,
+ *   fontSize?: float|null,
+ *   typography?: value-of<Typography>|null,
  * }
  */
 final class SubtitleOverlayTransformation implements BaseModel

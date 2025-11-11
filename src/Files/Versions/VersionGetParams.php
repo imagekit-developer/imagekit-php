@@ -14,7 +14,7 @@ use ImageKit\Core\Contracts\BaseModel;
  *
  * @see ImageKit\Files\Versions->get
  *
- * @phpstan-type VersionGetParamsShape = array{fileID: string}
+ * @phpstan-type VersionGetParamsShape = array{fileId: string}
  */
 final class VersionGetParams implements BaseModel
 {
@@ -23,14 +23,14 @@ final class VersionGetParams implements BaseModel
     use SdkParams;
 
     #[Api]
-    public string $fileID;
+    public string $fileId;
 
     /**
      * `new VersionGetParams()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * VersionGetParams::with(fileID: ...)
+     * VersionGetParams::with(fileId: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
@@ -49,11 +49,11 @@ final class VersionGetParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function with(string $fileID): self
+    public static function with(string $fileId): self
     {
         $obj = new self;
 
-        $obj->fileID = $fileID;
+        $obj->fileId = $fileId;
 
         return $obj;
     }
@@ -61,7 +61,7 @@ final class VersionGetParams implements BaseModel
     public function withFileID(string $fileID): self
     {
         $obj = clone $this;
-        $obj->fileID = $fileID;
+        $obj->fileId = $fileID;
 
         return $obj;
     }

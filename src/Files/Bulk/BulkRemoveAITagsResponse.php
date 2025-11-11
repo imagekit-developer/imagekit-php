@@ -12,7 +12,7 @@ use ImageKit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
  * @phpstan-type BulkRemoveAITagsResponseShape = array{
- *   successfullyUpdatedFileIDs?: list<string>
+ *   successfullyUpdatedFileIds?: list<string>|null
  * }
  */
 final class BulkRemoveAITagsResponse implements BaseModel, ResponseConverter
@@ -25,10 +25,10 @@ final class BulkRemoveAITagsResponse implements BaseModel, ResponseConverter
     /**
      * An array of fileIds that in which AITags were successfully removed.
      *
-     * @var list<string>|null $successfullyUpdatedFileIDs
+     * @var list<string>|null $successfullyUpdatedFileIds
      */
-    #[Api('successfullyUpdatedFileIds', list: 'string', optional: true)]
-    public ?array $successfullyUpdatedFileIDs;
+    #[Api(list: 'string', optional: true)]
+    public ?array $successfullyUpdatedFileIds;
 
     public function __construct()
     {
@@ -40,13 +40,13 @@ final class BulkRemoveAITagsResponse implements BaseModel, ResponseConverter
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<string> $successfullyUpdatedFileIDs
+     * @param list<string> $successfullyUpdatedFileIds
      */
-    public static function with(?array $successfullyUpdatedFileIDs = null): self
+    public static function with(?array $successfullyUpdatedFileIds = null): self
     {
         $obj = new self;
 
-        null !== $successfullyUpdatedFileIDs && $obj->successfullyUpdatedFileIDs = $successfullyUpdatedFileIDs;
+        null !== $successfullyUpdatedFileIds && $obj->successfullyUpdatedFileIds = $successfullyUpdatedFileIds;
 
         return $obj;
     }
@@ -60,7 +60,7 @@ final class BulkRemoveAITagsResponse implements BaseModel, ResponseConverter
         array $successfullyUpdatedFileIDs
     ): self {
         $obj = clone $this;
-        $obj->successfullyUpdatedFileIDs = $successfullyUpdatedFileIDs;
+        $obj->successfullyUpdatedFileIds = $successfullyUpdatedFileIDs;
 
         return $obj;
     }

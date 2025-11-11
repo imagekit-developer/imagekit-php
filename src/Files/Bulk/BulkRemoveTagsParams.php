@@ -15,7 +15,7 @@ use ImageKit\Core\Contracts\BaseModel;
  * @see ImageKit\Files\Bulk->removeTags
  *
  * @phpstan-type BulkRemoveTagsParamsShape = array{
- *   fileIDs: list<string>, tags: list<string>
+ *   fileIds: list<string>, tags: list<string>
  * }
  */
 final class BulkRemoveTagsParams implements BaseModel
@@ -27,10 +27,10 @@ final class BulkRemoveTagsParams implements BaseModel
     /**
      * An array of fileIds from which you want to remove tags.
      *
-     * @var list<string> $fileIDs
+     * @var list<string> $fileIds
      */
-    #[Api('fileIds', list: 'string')]
-    public array $fileIDs;
+    #[Api(list: 'string')]
+    public array $fileIds;
 
     /**
      * An array of tags that you want to remove from the files.
@@ -45,7 +45,7 @@ final class BulkRemoveTagsParams implements BaseModel
      *
      * To enforce required parameters use
      * ```
-     * BulkRemoveTagsParams::with(fileIDs: ..., tags: ...)
+     * BulkRemoveTagsParams::with(fileIds: ..., tags: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
@@ -64,14 +64,14 @@ final class BulkRemoveTagsParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<string> $fileIDs
+     * @param list<string> $fileIds
      * @param list<string> $tags
      */
-    public static function with(array $fileIDs, array $tags): self
+    public static function with(array $fileIds, array $tags): self
     {
         $obj = new self;
 
-        $obj->fileIDs = $fileIDs;
+        $obj->fileIds = $fileIds;
         $obj->tags = $tags;
 
         return $obj;
@@ -85,7 +85,7 @@ final class BulkRemoveTagsParams implements BaseModel
     public function withFileIDs(array $fileIDs): self
     {
         $obj = clone $this;
-        $obj->fileIDs = $fileIDs;
+        $obj->fileIds = $fileIDs;
 
         return $obj;
     }

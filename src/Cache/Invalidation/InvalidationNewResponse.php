@@ -11,7 +11,7 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
- * @phpstan-type InvalidationNewResponseShape = array{requestID?: string}
+ * @phpstan-type InvalidationNewResponseShape = array{requestId?: string|null}
  */
 final class InvalidationNewResponse implements BaseModel, ResponseConverter
 {
@@ -23,8 +23,8 @@ final class InvalidationNewResponse implements BaseModel, ResponseConverter
     /**
      * Unique identifier of the purge request. This can be used to check the status of the purge request.
      */
-    #[Api('requestId', optional: true)]
-    public ?string $requestID;
+    #[Api(optional: true)]
+    public ?string $requestId;
 
     public function __construct()
     {
@@ -36,11 +36,11 @@ final class InvalidationNewResponse implements BaseModel, ResponseConverter
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function with(?string $requestID = null): self
+    public static function with(?string $requestId = null): self
     {
         $obj = new self;
 
-        null !== $requestID && $obj->requestID = $requestID;
+        null !== $requestId && $obj->requestId = $requestId;
 
         return $obj;
     }
@@ -51,7 +51,7 @@ final class InvalidationNewResponse implements BaseModel, ResponseConverter
     public function withRequestID(string $requestID): self
     {
         $obj = clone $this;
-        $obj->requestID = $requestID;
+        $obj->requestId = $requestID;
 
         return $obj;
     }

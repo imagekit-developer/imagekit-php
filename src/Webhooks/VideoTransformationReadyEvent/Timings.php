@@ -12,7 +12,7 @@ use ImageKit\Core\Contracts\BaseModel;
  * Performance metrics for the transformation process.
  *
  * @phpstan-type TimingsShape = array{
- *   downloadDuration?: int, encodingDuration?: int
+ *   download_duration?: int|null, encoding_duration?: int|null
  * }
  */
 final class Timings implements BaseModel
@@ -23,14 +23,14 @@ final class Timings implements BaseModel
     /**
      * Time spent downloading the source video from your origin or media library, in milliseconds.
      */
-    #[Api('download_duration', optional: true)]
-    public ?int $downloadDuration;
+    #[Api(optional: true)]
+    public ?int $download_duration;
 
     /**
      * Time spent encoding the video, in milliseconds.
      */
-    #[Api('encoding_duration', optional: true)]
-    public ?int $encodingDuration;
+    #[Api(optional: true)]
+    public ?int $encoding_duration;
 
     public function __construct()
     {
@@ -43,13 +43,13 @@ final class Timings implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      */
     public static function with(
-        ?int $downloadDuration = null,
-        ?int $encodingDuration = null
+        ?int $download_duration = null,
+        ?int $encoding_duration = null
     ): self {
         $obj = new self;
 
-        null !== $downloadDuration && $obj->downloadDuration = $downloadDuration;
-        null !== $encodingDuration && $obj->encodingDuration = $encodingDuration;
+        null !== $download_duration && $obj->download_duration = $download_duration;
+        null !== $encoding_duration && $obj->encoding_duration = $encoding_duration;
 
         return $obj;
     }
@@ -60,7 +60,7 @@ final class Timings implements BaseModel
     public function withDownloadDuration(int $downloadDuration): self
     {
         $obj = clone $this;
-        $obj->downloadDuration = $downloadDuration;
+        $obj->download_duration = $downloadDuration;
 
         return $obj;
     }
@@ -71,7 +71,7 @@ final class Timings implements BaseModel
     public function withEncodingDuration(int $encodingDuration): self
     {
         $obj = clone $this;
-        $obj->encodingDuration = $encodingDuration;
+        $obj->encoding_duration = $encodingDuration;
 
         return $obj;
     }

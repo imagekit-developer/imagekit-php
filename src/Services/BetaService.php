@@ -11,7 +11,7 @@ use ImageKit\Services\Beta\V2Service;
 final class BetaService implements BetaContract
 {
     /**
-     * @@api
+     * @api
      */
     public V2Service $v2;
 

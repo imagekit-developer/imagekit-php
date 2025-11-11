@@ -11,12 +11,12 @@ use ImageKit\SubtitleOverlay\Encoding;
 
 /**
  * @phpstan-type SubtitleOverlayShape = array{
- *   position?: OverlayPosition,
- *   timing?: OverlayTiming,
+ *   position?: OverlayPosition|null,
+ *   timing?: OverlayTiming|null,
  *   input: string,
- *   type: string,
- *   encoding?: value-of<Encoding>,
- *   transformation?: list<SubtitleOverlayTransformation>,
+ *   type: "subtitle",
+ *   encoding?: value-of<Encoding>|null,
+ *   transformation?: list<SubtitleOverlayTransformation>|null,
  * }
  */
 final class SubtitleOverlay implements BaseModel
@@ -24,6 +24,7 @@ final class SubtitleOverlay implements BaseModel
     /** @use SdkModel<SubtitleOverlayShape> */
     use SdkModel;
 
+    /** @var "subtitle" $type */
     #[Api]
     public string $type = 'subtitle';
 

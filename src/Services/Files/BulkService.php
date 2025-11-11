@@ -33,33 +33,17 @@ final class BulkService implements BulkContract
      *
      * A maximum of 100 files can be deleted at a time.
      *
-     * @param list<string> $fileIDs an array of fileIds which you want to delete
+     * @param array{fileIds: list<string>}|BulkDeleteParams $params
      *
      * @throws APIException
      */
     public function delete(
-        $fileIDs,
-        ?RequestOptions $requestOptions = null
-    ): BulkDeleteResponse {
-        $params = ['fileIDs' => $fileIDs];
-
-        return $this->deleteRaw($params, $requestOptions);
-    }
-
-    /**
-     * @api
-     *
-     * @param array<string, mixed> $params
-     *
-     * @throws APIException
-     */
-    public function deleteRaw(
-        array $params,
+        array|BulkDeleteParams $params,
         ?RequestOptions $requestOptions = null
     ): BulkDeleteResponse {
         [$parsed, $options] = BulkDeleteParams::parseRequest(
             $params,
-            $requestOptions
+            $requestOptions,
         );
 
         // @phpstan-ignore-next-line;
@@ -77,35 +61,19 @@ final class BulkService implements BulkContract
      *
      * This API adds tags to multiple files in bulk. A maximum of 50 files can be specified at a time.
      *
-     * @param list<string> $fileIDs an array of fileIds to which you want to add tags
-     * @param list<string> $tags an array of tags that you want to add to the files
+     * @param array{
+     *   fileIds: list<string>, tags: list<string>
+     * }|BulkAddTagsParams $params
      *
      * @throws APIException
      */
     public function addTags(
-        $fileIDs,
-        $tags,
-        ?RequestOptions $requestOptions = null
-    ): BulkAddTagsResponse {
-        $params = ['fileIDs' => $fileIDs, 'tags' => $tags];
-
-        return $this->addTagsRaw($params, $requestOptions);
-    }
-
-    /**
-     * @api
-     *
-     * @param array<string, mixed> $params
-     *
-     * @throws APIException
-     */
-    public function addTagsRaw(
-        array $params,
+        array|BulkAddTagsParams $params,
         ?RequestOptions $requestOptions = null
     ): BulkAddTagsResponse {
         [$parsed, $options] = BulkAddTagsParams::parseRequest(
             $params,
-            $requestOptions
+            $requestOptions,
         );
 
         // @phpstan-ignore-next-line;
@@ -123,35 +91,19 @@ final class BulkService implements BulkContract
      *
      * This API removes AITags from multiple files in bulk. A maximum of 50 files can be specified at a time.
      *
-     * @param list<string> $aiTags an array of AITags that you want to remove from the files
-     * @param list<string> $fileIDs an array of fileIds from which you want to remove AITags
+     * @param array{
+     *   AITags: list<string>, fileIds: list<string>
+     * }|BulkRemoveAITagsParams $params
      *
      * @throws APIException
      */
     public function removeAITags(
-        $aiTags,
-        $fileIDs,
-        ?RequestOptions $requestOptions = null
-    ): BulkRemoveAITagsResponse {
-        $params = ['aiTags' => $aiTags, 'fileIDs' => $fileIDs];
-
-        return $this->removeAITagsRaw($params, $requestOptions);
-    }
-
-    /**
-     * @api
-     *
-     * @param array<string, mixed> $params
-     *
-     * @throws APIException
-     */
-    public function removeAITagsRaw(
-        array $params,
+        array|BulkRemoveAITagsParams $params,
         ?RequestOptions $requestOptions = null
     ): BulkRemoveAITagsResponse {
         [$parsed, $options] = BulkRemoveAITagsParams::parseRequest(
             $params,
-            $requestOptions
+            $requestOptions,
         );
 
         // @phpstan-ignore-next-line;
@@ -169,35 +121,19 @@ final class BulkService implements BulkContract
      *
      * This API removes tags from multiple files in bulk. A maximum of 50 files can be specified at a time.
      *
-     * @param list<string> $fileIDs an array of fileIds from which you want to remove tags
-     * @param list<string> $tags an array of tags that you want to remove from the files
+     * @param array{
+     *   fileIds: list<string>, tags: list<string>
+     * }|BulkRemoveTagsParams $params
      *
      * @throws APIException
      */
     public function removeTags(
-        $fileIDs,
-        $tags,
-        ?RequestOptions $requestOptions = null
-    ): BulkRemoveTagsResponse {
-        $params = ['fileIDs' => $fileIDs, 'tags' => $tags];
-
-        return $this->removeTagsRaw($params, $requestOptions);
-    }
-
-    /**
-     * @api
-     *
-     * @param array<string, mixed> $params
-     *
-     * @throws APIException
-     */
-    public function removeTagsRaw(
-        array $params,
+        array|BulkRemoveTagsParams $params,
         ?RequestOptions $requestOptions = null
     ): BulkRemoveTagsResponse {
         [$parsed, $options] = BulkRemoveTagsParams::parseRequest(
             $params,
-            $requestOptions
+            $requestOptions,
         );
 
         // @phpstan-ignore-next-line;

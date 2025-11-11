@@ -21,58 +21,58 @@ use ImageKit\Transformation\VideoCodec;
  * See the [Transformations documentation](https://imagekit.io/docs/transformations).
  *
  * @phpstan-type TransformationShape = array{
- *   aiChangeBackground?: string,
- *   aiDropShadow?: bool|string,
- *   aiEdit?: string,
- *   aiRemoveBackground?: bool,
- *   aiRemoveBackgroundExternal?: bool,
- *   aiRetouch?: bool,
- *   aiUpscale?: bool,
- *   aiVariation?: bool,
- *   aspectRatio?: float|string,
- *   audioCodec?: value-of<AudioCodec>,
- *   background?: string,
- *   blur?: float,
- *   border?: string,
- *   colorProfile?: bool,
- *   contrastStretch?: bool,
- *   crop?: value-of<Crop>,
- *   cropMode?: value-of<CropMode>,
- *   defaultImage?: string,
- *   dpr?: float,
- *   duration?: float|string,
- *   endOffset?: float|string,
- *   flip?: value-of<Flip>,
- *   focus?: string,
- *   format?: value-of<Format>,
- *   gradient?: bool|string,
- *   grayscale?: bool,
- *   height?: float|string,
- *   lossless?: bool,
- *   metadata?: bool,
- *   named?: string,
- *   opacity?: float,
- *   original?: bool,
- *   overlay?: Overlay,
- *   page?: float|string,
- *   progressive?: bool,
- *   quality?: float,
- *   radius?: float|string,
- *   raw?: string,
- *   rotation?: float|string,
- *   shadow?: bool|string,
- *   sharpen?: bool|float,
- *   startOffset?: float|string,
- *   streamingResolutions?: list<value-of<StreamingResolution>>,
- *   trim?: bool|float,
- *   unsharpMask?: bool|string,
- *   videoCodec?: value-of<VideoCodec>,
- *   width?: float|string,
- *   x?: float|string,
- *   xCenter?: float|string,
- *   y?: float|string,
- *   yCenter?: float|string,
- *   zoom?: float,
+ *   aiChangeBackground?: string|null,
+ *   aiDropShadow?: string|null|bool,
+ *   aiEdit?: string|null,
+ *   aiRemoveBackground?: bool|null,
+ *   aiRemoveBackgroundExternal?: bool|null,
+ *   aiRetouch?: bool|null,
+ *   aiUpscale?: bool|null,
+ *   aiVariation?: bool|null,
+ *   aspectRatio?: float|string|null,
+ *   audioCodec?: value-of<AudioCodec>|null,
+ *   background?: string|null,
+ *   blur?: float|null,
+ *   border?: string|null,
+ *   colorProfile?: bool|null,
+ *   contrastStretch?: bool|null,
+ *   crop?: value-of<Crop>|null,
+ *   cropMode?: value-of<CropMode>|null,
+ *   defaultImage?: string|null,
+ *   dpr?: float|null,
+ *   duration?: float|string|null,
+ *   endOffset?: float|string|null,
+ *   flip?: value-of<Flip>|null,
+ *   focus?: string|null,
+ *   format?: value-of<Format>|null,
+ *   gradient?: string|null|bool,
+ *   grayscale?: bool|null,
+ *   height?: float|string|null,
+ *   lossless?: bool|null,
+ *   metadata?: bool|null,
+ *   named?: string|null,
+ *   opacity?: float|null,
+ *   original?: bool|null,
+ *   overlay?: Overlay|null,
+ *   page?: float|string|null,
+ *   progressive?: bool|null,
+ *   quality?: float|null,
+ *   radius?: float|null|"max",
+ *   raw?: string|null,
+ *   rotation?: float|string|null,
+ *   shadow?: string|null|bool,
+ *   sharpen?: float|null|bool,
+ *   startOffset?: float|string|null,
+ *   streamingResolutions?: list<value-of<StreamingResolution>>|null,
+ *   trim?: float|null|bool,
+ *   unsharpMask?: string|null|bool,
+ *   videoCodec?: value-of<VideoCodec>|null,
+ *   width?: float|string|null,
+ *   x?: float|string|null,
+ *   xCenter?: float|string|null,
+ *   y?: float|string|null,
+ *   yCenter?: float|string|null,
+ *   zoom?: float|null,
  * }
  */
 final class Transformation implements BaseModel
@@ -97,7 +97,7 @@ final class Transformation implements BaseModel
      * See [AI Drop Shadow](https://imagekit.io/docs/ai-transformations#ai-drop-shadow-e-dropshadow).
      */
     #[Api(optional: true)]
-    public bool|string|null $aiDropShadow;
+    public string|bool|null $aiDropShadow;
 
     /**
      * Uses AI to edit images based on a text prompt. Provide a text prompt or a base64-encoded prompt,
@@ -285,7 +285,7 @@ final class Transformation implements BaseModel
      * See [Gradient](https://imagekit.io/docs/effects-and-enhancements#gradient---e-gradient).
      */
     #[Api(optional: true)]
-    public bool|string|null $gradient;
+    public string|bool|null $gradient;
 
     /**
      * Enables a grayscale effect for images. See [Grayscale](https://imagekit.io/docs/effects-and-enhancements#grayscale---e-grayscale).
@@ -371,6 +371,8 @@ final class Transformation implements BaseModel
     /**
      * Specifies the corner radius for rounded corners (e.g., 20) or `max` for circular or oval shape.
      * See [Radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
+     *
+     * @var float|"max"|null $radius
      */
     #[Api(optional: true)]
     public float|string|null $radius;
@@ -398,7 +400,7 @@ final class Transformation implements BaseModel
      * See [Shadow](https://imagekit.io/docs/effects-and-enhancements#shadow---e-shadow).
      */
     #[Api(optional: true)]
-    public bool|string|null $shadow;
+    public string|bool|null $shadow;
 
     /**
      * Sharpens the input image, highlighting edges and finer details.
@@ -406,7 +408,7 @@ final class Transformation implements BaseModel
      * See [Sharpen](https://imagekit.io/docs/effects-and-enhancements#sharpen---e-sharpen).
      */
     #[Api(optional: true)]
-    public bool|float|null $sharpen;
+    public float|bool|null $sharpen;
 
     /**
      * Specifies the start offset (in seconds) for trimming videos, e.g., `5` or `10.5`.
@@ -431,7 +433,7 @@ final class Transformation implements BaseModel
      * See [Trim edges](https://imagekit.io/docs/effects-and-enhancements#trim-edges---t).
      */
     #[Api(optional: true)]
-    public bool|float|null $trim;
+    public float|bool|null $trim;
 
     /**
      * Applies Unsharp Masking (USM), an image sharpening technique.
@@ -439,7 +441,7 @@ final class Transformation implements BaseModel
      * See [Unsharp Mask](https://imagekit.io/docs/effects-and-enhancements#unsharp-mask---e-usm).
      */
     #[Api(optional: true)]
-    public bool|string|null $unsharpMask;
+    public string|bool|null $unsharpMask;
 
     /**
      * Specifies the video codec, e.g., `h264`, `vp9`, `av1`, or `none`. See [Video codec](https://imagekit.io/docs/video-optimization#video-codec---vc).
@@ -504,12 +506,13 @@ final class Transformation implements BaseModel
      * @param CropMode|value-of<CropMode> $cropMode
      * @param Flip|value-of<Flip> $flip
      * @param Format|value-of<Format> $format
+     * @param float|"max" $radius
      * @param list<StreamingResolution|value-of<StreamingResolution>> $streamingResolutions
      * @param VideoCodec|value-of<VideoCodec> $videoCodec
      */
     public static function with(
         ?string $aiChangeBackground = null,
-        bool|string|null $aiDropShadow = null,
+        string|bool|null $aiDropShadow = null,
         ?string $aiEdit = null,
         ?bool $aiRemoveBackground = null,
         ?bool $aiRemoveBackgroundExternal = null,
@@ -532,7 +535,7 @@ final class Transformation implements BaseModel
         Flip|string|null $flip = null,
         ?string $focus = null,
         Format|string|null $format = null,
-        bool|string|null $gradient = null,
+        string|bool|null $gradient = null,
         ?bool $grayscale = null,
         float|string|null $height = null,
         ?bool $lossless = null,
@@ -547,12 +550,12 @@ final class Transformation implements BaseModel
         float|string|null $radius = null,
         ?string $raw = null,
         float|string|null $rotation = null,
-        bool|string|null $shadow = null,
-        bool|float|null $sharpen = null,
+        string|bool|null $shadow = null,
+        float|bool|null $sharpen = null,
         float|string|null $startOffset = null,
         ?array $streamingResolutions = null,
-        bool|float|null $trim = null,
-        bool|string|null $unsharpMask = null,
+        float|bool|null $trim = null,
+        string|bool|null $unsharpMask = null,
         VideoCodec|string|null $videoCodec = null,
         float|string|null $width = null,
         float|string|null $x = null,
@@ -640,7 +643,7 @@ final class Transformation implements BaseModel
      * Supported inside overlay.
      * See [AI Drop Shadow](https://imagekit.io/docs/ai-transformations#ai-drop-shadow-e-dropshadow).
      */
-    public function withAIDropShadow(bool|string $aiDropShadow): self
+    public function withAIDropShadow(string|bool $aiDropShadow): self
     {
         $obj = clone $this;
         $obj->aiDropShadow = $aiDropShadow;
@@ -944,7 +947,7 @@ final class Transformation implements BaseModel
      * Creates a linear gradient with two colors. Pass `true` for a default gradient, or provide a string for a custom gradient.
      * See [Gradient](https://imagekit.io/docs/effects-and-enhancements#gradient---e-gradient).
      */
-    public function withGradient(bool|string $gradient): self
+    public function withGradient(string|bool $gradient): self
     {
         $obj = clone $this;
         $obj->gradient = $gradient;
@@ -1091,6 +1094,8 @@ final class Transformation implements BaseModel
     /**
      * Specifies the corner radius for rounded corners (e.g., 20) or `max` for circular or oval shape.
      * See [Radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
+     *
+     * @param float|"max" $radius
      */
     public function withRadius(float|string $radius): self
     {
@@ -1132,7 +1137,7 @@ final class Transformation implements BaseModel
      * Pass `true` for a default shadow, or provide a string for a custom shadow.
      * See [Shadow](https://imagekit.io/docs/effects-and-enhancements#shadow---e-shadow).
      */
-    public function withShadow(bool|string $shadow): self
+    public function withShadow(string|bool $shadow): self
     {
         $obj = clone $this;
         $obj->shadow = $shadow;
@@ -1145,7 +1150,7 @@ final class Transformation implements BaseModel
      * Pass `true` for default sharpening, or provide a numeric value for custom sharpening.
      * See [Sharpen](https://imagekit.io/docs/effects-and-enhancements#sharpen---e-sharpen).
      */
-    public function withSharpen(bool|float $sharpen): self
+    public function withSharpen(float|bool $sharpen): self
     {
         $obj = clone $this;
         $obj->sharpen = $sharpen;
@@ -1185,7 +1190,7 @@ final class Transformation implements BaseModel
      * leaving only the central object in the output image.
      * See [Trim edges](https://imagekit.io/docs/effects-and-enhancements#trim-edges---t).
      */
-    public function withTrim(bool|float $trim): self
+    public function withTrim(float|bool $trim): self
     {
         $obj = clone $this;
         $obj->trim = $trim;
@@ -1198,7 +1203,7 @@ final class Transformation implements BaseModel
      * Pass `true` for a default unsharp mask, or provide a string for a custom unsharp mask.
      * See [Unsharp Mask](https://imagekit.io/docs/effects-and-enhancements#unsharp-mask---e-usm).
      */
-    public function withUnsharpMask(bool|string $unsharpMask): self
+    public function withUnsharpMask(string|bool $unsharpMask): self
     {
         $obj = clone $this;
         $obj->unsharpMask = $unsharpMask;

@@ -22,7 +22,7 @@ use ImageKit\Core\Conversion\Contracts\ResponseConverter;
  *   description: string,
  *   origins: list<string>,
  *   urlPrefix: string,
- *   urlRewriter?: Cloudinary|Imgix|Akamai,
+ *   urlRewriter?: null|Cloudinary|Imgix|Akamai,
  * }
  */
 final class URLEndpointResponse implements BaseModel, ResponseConverter

@@ -12,7 +12,7 @@ use ImageKit\Core\Contracts\BaseModel;
  * Configure the publication status of a file and its versions.
  *
  * @phpstan-type PublishShape = array{
- *   isPublished: bool, includeFileVersions?: bool
+ *   isPublished: bool, includeFileVersions?: bool|null
  * }
  */
 final class Publish implements BaseModel

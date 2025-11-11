@@ -11,12 +11,12 @@ use ImageKit\VideoOverlay\Encoding;
 
 /**
  * @phpstan-type VideoOverlayShape = array{
- *   position?: OverlayPosition,
- *   timing?: OverlayTiming,
+ *   position?: OverlayPosition|null,
+ *   timing?: OverlayTiming|null,
  *   input: string,
- *   type: string,
- *   encoding?: value-of<Encoding>,
- *   transformation?: list<Transformation>,
+ *   type: "video",
+ *   encoding?: value-of<Encoding>|null,
+ *   transformation?: list<Transformation>|null,
  * }
  */
 final class VideoOverlay implements BaseModel
@@ -24,6 +24,7 @@ final class VideoOverlay implements BaseModel
     /** @use SdkModel<VideoOverlayShape> */
     use SdkModel;
 
+    /** @var "video" $type */
     #[Api]
     public string $type = 'video';
 

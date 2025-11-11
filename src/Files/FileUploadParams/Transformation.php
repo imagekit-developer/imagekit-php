@@ -24,8 +24,8 @@ use ImageKit\Files\FileUploadParams\Transformation\Post\Thumbnail;
  * You can mix and match any combination of post-processing types.
  *
  * @phpstan-type TransformationShape = array{
- *   post?: list<\ImageKit\Files\FileUploadParams\Transformation\Post\Transformation|GifToVideo|Thumbnail|Abs>,
- *   pre?: string,
+ *   post?: list<\ImageKit\Files\FileUploadParams\Transformation\Post\Transformation|GifToVideo|Thumbnail|Abs>|null,
+ *   pre?: string|null,
  * }
  */
 final class Transformation implements BaseModel

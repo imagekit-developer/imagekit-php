@@ -11,7 +11,7 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
- * @phpstan-type FileRenameResponseShape = array{purgeRequestID?: string}
+ * @phpstan-type FileRenameResponseShape = array{purgeRequestId?: string|null}
  */
 final class FileRenameResponse implements BaseModel, ResponseConverter
 {
@@ -23,8 +23,8 @@ final class FileRenameResponse implements BaseModel, ResponseConverter
     /**
      * Unique identifier of the purge request. This can be used to check the status of the purge request.
      */
-    #[Api('purgeRequestId', optional: true)]
-    public ?string $purgeRequestID;
+    #[Api(optional: true)]
+    public ?string $purgeRequestId;
 
     public function __construct()
     {
@@ -36,11 +36,11 @@ final class FileRenameResponse implements BaseModel, ResponseConverter
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function with(?string $purgeRequestID = null): self
+    public static function with(?string $purgeRequestId = null): self
     {
         $obj = new self;
 
-        null !== $purgeRequestID && $obj->purgeRequestID = $purgeRequestID;
+        null !== $purgeRequestId && $obj->purgeRequestId = $purgeRequestId;
 
         return $obj;
     }
@@ -51,7 +51,7 @@ final class FileRenameResponse implements BaseModel, ResponseConverter
     public function withPurgeRequestID(string $purgeRequestID): self
     {
         $obj = clone $this;
-        $obj->purgeRequestID = $purgeRequestID;
+        $obj->purgeRequestId = $purgeRequestID;
 
         return $obj;
     }

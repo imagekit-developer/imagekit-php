@@ -19,30 +19,30 @@ use ImageKit\Files\FileUpdateResponse\ExtensionStatus;
  * Object containing details of a file or file version.
  *
  * @phpstan-type FileUpdateResponseShape = array{
- *   aiTags?: list<AITag>|null,
- *   createdAt?: \DateTimeInterface,
+ *   AITags?: list<AITag>|null,
+ *   createdAt?: \DateTimeInterface|null,
  *   customCoordinates?: string|null,
- *   customMetadata?: array<string, mixed>,
- *   description?: string,
- *   fileID?: string,
- *   filePath?: string,
- *   fileType?: string,
- *   hasAlpha?: bool,
- *   height?: float,
- *   isPrivateFile?: bool,
- *   isPublished?: bool,
- *   mime?: string,
- *   name?: string,
- *   selectedFieldsSchema?: array<string, SelectedFieldsSchema>,
- *   size?: float,
+ *   customMetadata?: array<string,mixed>|null,
+ *   description?: string|null,
+ *   fileId?: string|null,
+ *   filePath?: string|null,
+ *   fileType?: string|null,
+ *   hasAlpha?: bool|null,
+ *   height?: float|null,
+ *   isPrivateFile?: bool|null,
+ *   isPublished?: bool|null,
+ *   mime?: string|null,
+ *   name?: string|null,
+ *   selectedFieldsSchema?: array<string,SelectedFieldsSchema>|null,
+ *   size?: float|null,
  *   tags?: list<string>|null,
- *   thumbnail?: string,
- *   type?: value-of<Type>,
- *   updatedAt?: \DateTimeInterface,
- *   url?: string,
- *   versionInfo?: VersionInfo,
- *   width?: float,
- *   extensionStatus?: ExtensionStatus,
+ *   thumbnail?: string|null,
+ *   type?: value-of<Type>|null,
+ *   updatedAt?: \DateTimeInterface|null,
+ *   url?: string|null,
+ *   versionInfo?: VersionInfo|null,
+ *   width?: float|null,
+ *   extensionStatus?: ExtensionStatus|null,
  * }
  */
 final class FileUpdateResponse implements BaseModel, ResponseConverter
@@ -55,10 +55,10 @@ final class FileUpdateResponse implements BaseModel, ResponseConverter
     /**
      * An array of tags assigned to the file by auto tagging.
      *
-     * @var list<AITag>|null $aiTags
+     * @var list<AITag>|null $AITags
      */
-    #[Api('AITags', list: AITag::class, nullable: true, optional: true)]
-    public ?array $aiTags;
+    #[Api(list: AITag::class, nullable: true, optional: true)]
+    public ?array $AITags;
 
     /**
      * Date and time when the file was uploaded. The date and time is in ISO8601 format.
@@ -75,7 +75,7 @@ final class FileUpdateResponse implements BaseModel, ResponseConverter
     /**
      * An object with custom metadata for the file.
      *
-     * @var array<string, mixed>|null $customMetadata
+     * @var array<string,mixed>|null $customMetadata
      */
     #[Api(map: 'mixed', optional: true)]
     public ?array $customMetadata;
@@ -89,8 +89,8 @@ final class FileUpdateResponse implements BaseModel, ResponseConverter
     /**
      * Unique identifier of the asset.
      */
-    #[Api('fileId', optional: true)]
-    public ?string $fileID;
+    #[Api(optional: true)]
+    public ?string $fileId;
 
     /**
      * Path of the file. This is the path you would use in the URL to access the file. For example, if the file is at the root of the media library, the path will be `/file.jpg`. If the file is inside a folder named `images`, the path will be `/images/file.jpg`.
@@ -147,7 +147,7 @@ final class FileUpdateResponse implements BaseModel, ResponseConverter
      *
      * Keys are the names of the custom metadata fields; the value object has details about the custom metadata schema.
      *
-     * @var array<string, SelectedFieldsSchema>|null $selectedFieldsSchema
+     * @var array<string,SelectedFieldsSchema>|null $selectedFieldsSchema
      */
     #[Api(map: SelectedFieldsSchema::class, optional: true)]
     public ?array $selectedFieldsSchema;
@@ -217,19 +217,19 @@ final class FileUpdateResponse implements BaseModel, ResponseConverter
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<AITag>|null $aiTags
-     * @param array<string, mixed> $customMetadata
-     * @param array<string, SelectedFieldsSchema> $selectedFieldsSchema
+     * @param list<AITag>|null $AITags
+     * @param array<string,mixed> $customMetadata
+     * @param array<string,SelectedFieldsSchema> $selectedFieldsSchema
      * @param list<string>|null $tags
      * @param Type|value-of<Type> $type
      */
     public static function with(
-        ?array $aiTags = null,
+        ?array $AITags = null,
         ?\DateTimeInterface $createdAt = null,
         ?string $customCoordinates = null,
         ?array $customMetadata = null,
         ?string $description = null,
-        ?string $fileID = null,
+        ?string $fileId = null,
         ?string $filePath = null,
         ?string $fileType = null,
         ?bool $hasAlpha = null,
@@ -251,12 +251,12 @@ final class FileUpdateResponse implements BaseModel, ResponseConverter
     ): self {
         $obj = new self;
 
-        null !== $aiTags && $obj->aiTags = $aiTags;
+        null !== $AITags && $obj->AITags = $AITags;
         null !== $createdAt && $obj->createdAt = $createdAt;
         null !== $customCoordinates && $obj->customCoordinates = $customCoordinates;
         null !== $customMetadata && $obj->customMetadata = $customMetadata;
         null !== $description && $obj->description = $description;
-        null !== $fileID && $obj->fileID = $fileID;
+        null !== $fileId && $obj->fileId = $fileId;
         null !== $filePath && $obj->filePath = $filePath;
         null !== $fileType && $obj->fileType = $fileType;
         null !== $hasAlpha && $obj->hasAlpha = $hasAlpha;
@@ -287,7 +287,7 @@ final class FileUpdateResponse implements BaseModel, ResponseConverter
     public function withAITags(?array $aiTags): self
     {
         $obj = clone $this;
-        $obj->aiTags = $aiTags;
+        $obj->AITags = $aiTags;
 
         return $obj;
     }
@@ -317,7 +317,7 @@ final class FileUpdateResponse implements BaseModel, ResponseConverter
     /**
      * An object with custom metadata for the file.
      *
-     * @param array<string, mixed> $customMetadata
+     * @param array<string,mixed> $customMetadata
      */
     public function withCustomMetadata(array $customMetadata): self
     {
@@ -344,7 +344,7 @@ final class FileUpdateResponse implements BaseModel, ResponseConverter
     public function withFileID(string $fileID): self
     {
         $obj = clone $this;
-        $obj->fileID = $fileID;
+        $obj->fileId = $fileID;
 
         return $obj;
     }
@@ -444,7 +444,7 @@ final class FileUpdateResponse implements BaseModel, ResponseConverter
      *
      * Keys are the names of the custom metadata fields; the value object has details about the custom metadata schema.
      *
-     * @param array<string, SelectedFieldsSchema> $selectedFieldsSchema
+     * @param array<string,SelectedFieldsSchema> $selectedFieldsSchema
      */
     public function withSelectedFieldsSchema(array $selectedFieldsSchema): self
     {

@@ -16,7 +16,7 @@ use ImageKit\Core\Contracts\BaseModel;
  *
  * @see ImageKit\Files\Versions->delete
  *
- * @phpstan-type VersionDeleteParamsShape = array{fileID: string}
+ * @phpstan-type VersionDeleteParamsShape = array{fileId: string}
  */
 final class VersionDeleteParams implements BaseModel
 {
@@ -25,14 +25,14 @@ final class VersionDeleteParams implements BaseModel
     use SdkParams;
 
     #[Api]
-    public string $fileID;
+    public string $fileId;
 
     /**
      * `new VersionDeleteParams()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * VersionDeleteParams::with(fileID: ...)
+     * VersionDeleteParams::with(fileId: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
@@ -51,11 +51,11 @@ final class VersionDeleteParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function with(string $fileID): self
+    public static function with(string $fileId): self
     {
         $obj = new self;
 
-        $obj->fileID = $fileID;
+        $obj->fileId = $fileId;
 
         return $obj;
     }
@@ -63,7 +63,7 @@ final class VersionDeleteParams implements BaseModel
     public function withFileID(string $fileID): self
     {
         $obj = clone $this;
-        $obj->fileID = $fileID;
+        $obj->fileId = $fileID;
 
         return $obj;
     }

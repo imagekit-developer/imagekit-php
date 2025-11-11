@@ -5,9 +5,6 @@ declare(strict_types=1);
 namespace ImageKit\Services\Accounts;
 
 use ImageKit\Accounts\URLEndpoints\URLEndpointCreateParams;
-use ImageKit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\Akamai;
-use ImageKit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\Cloudinary;
-use ImageKit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\Imgix;
 use ImageKit\Accounts\URLEndpoints\URLEndpointResponse;
 use ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams;
 use ImageKit\Client;
@@ -15,8 +12,6 @@ use ImageKit\Core\Conversion\ListOf;
 use ImageKit\Core\Exceptions\APIException;
 use ImageKit\RequestOptions;
 use ImageKit\ServiceContracts\Accounts\URLEndpointsContract;
-
-use const ImageKit\Core\OMIT as omit;
 
 final class URLEndpointsService implements URLEndpointsContract
 {
@@ -31,44 +26,22 @@ final class URLEndpointsService implements URLEndpointsContract
      * **Note:** This API is currently in beta.
      * Creates a new URL‑endpoint and returns the resulting object.
      *
-     * @param string $description description of the URL endpoint
-     * @param list<string> $origins Ordered list of origin IDs to try when the file isn’t in the Media Library; ImageKit checks them in the sequence provided. Origin must be created before it can be used in a URL endpoint.
-     * @param string $urlPrefix path segment appended to your base URL to form the endpoint (letters, digits, and hyphens only — or empty for the default endpoint)
-     * @param Cloudinary|Imgix|Akamai $urlRewriter configuration for third-party URL rewriting
+     * @param array{
+     *   description: string,
+     *   origins?: list<string>,
+     *   urlPrefix?: string,
+     *   urlRewriter?: array<string,mixed>,
+     * }|URLEndpointCreateParams $params
      *
      * @throws APIException
      */
     public function create(
-        $description,
-        $origins = omit,
-        $urlPrefix = omit,
-        $urlRewriter = omit,
+        array|URLEndpointCreateParams $params,
         ?RequestOptions $requestOptions = null,
-    ): URLEndpointResponse {
-        $params = [
-            'description' => $description,
-            'origins' => $origins,
-            'urlPrefix' => $urlPrefix,
-            'urlRewriter' => $urlRewriter,
-        ];
-
-        return $this->createRaw($params, $requestOptions);
-    }
-
-    /**
-     * @api
-     *
-     * @param array<string, mixed> $params
-     *
-     * @throws APIException
-     */
-    public function createRaw(
-        array $params,
-        ?RequestOptions $requestOptions = null
     ): URLEndpointResponse {
         [$parsed, $options] = URLEndpointCreateParams::parseRequest(
             $params,
-            $requestOptions
+            $requestOptions,
         );
 
         // @phpstan-ignore-next-line;
@@ -87,46 +60,23 @@ final class URLEndpointsService implements URLEndpointsContract
      * **Note:** This API is currently in beta.
      * Updates the URL‑endpoint identified by `id` and returns the updated object.
      *
-     * @param string $description description of the URL endpoint
-     * @param list<string> $origins Ordered list of origin IDs to try when the file isn’t in the Media Library; ImageKit checks them in the sequence provided. Origin must be created before it can be used in a URL endpoint.
-     * @param string $urlPrefix path segment appended to your base URL to form the endpoint (letters, digits, and hyphens only — or empty for the default endpoint)
-     * @param URLEndpointUpdateParams\URLRewriter\Cloudinary|URLEndpointUpdateParams\URLRewriter\Imgix|URLEndpointUpdateParams\URLRewriter\Akamai $urlRewriter configuration for third-party URL rewriting
+     * @param array{
+     *   description: string,
+     *   origins?: list<string>,
+     *   urlPrefix?: string,
+     *   urlRewriter?: array<string,mixed>,
+     * }|URLEndpointUpdateParams $params
      *
      * @throws APIException
      */
     public function update(
         string $id,
-        $description,
-        $origins = omit,
-        $urlPrefix = omit,
-        $urlRewriter = omit,
+        array|URLEndpointUpdateParams $params,
         ?RequestOptions $requestOptions = null,
-    ): URLEndpointResponse {
-        $params = [
-            'description' => $description,
-            'origins' => $origins,
-            'urlPrefix' => $urlPrefix,
-            'urlRewriter' => $urlRewriter,
-        ];
-
-        return $this->updateRaw($id, $params, $requestOptions);
-    }
-
-    /**
-     * @api
-     *
-     * @param array<string, mixed> $params
-     *
-     * @throws APIException
-     */
-    public function updateRaw(
-        string $id,
-        array $params,
-        ?RequestOptions $requestOptions = null
     ): URLEndpointResponse {
         [$parsed, $options] = URLEndpointUpdateParams::parseRequest(
             $params,
-            $requestOptions
+            $requestOptions,
         );
 
         // @phpstan-ignore-next-line;

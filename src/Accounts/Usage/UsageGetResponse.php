@@ -12,11 +12,11 @@ use ImageKit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
  * @phpstan-type UsageGetResponseShape = array{
- *   bandwidthBytes?: int,
- *   extensionUnitsCount?: int,
- *   mediaLibraryStorageBytes?: int,
- *   originalCacheStorageBytes?: int,
- *   videoProcessingUnitsCount?: int,
+ *   bandwidthBytes?: int|null,
+ *   extensionUnitsCount?: int|null,
+ *   mediaLibraryStorageBytes?: int|null,
+ *   originalCacheStorageBytes?: int|null,
+ *   videoProcessingUnitsCount?: int|null,
  * }
  */
 final class UsageGetResponse implements BaseModel, ResponseConverter

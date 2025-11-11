@@ -11,7 +11,7 @@ use ImageKit\Files\FileUploadParams\Transformation\Post\Abs\Protocol;
 
 /**
  * @phpstan-type AbsShape = array{
- *   protocol: value-of<Protocol>, type: string, value: string
+ *   protocol: value-of<Protocol>, type: "abs", value: string
  * }
  */
 final class Abs implements BaseModel
@@ -21,6 +21,8 @@ final class Abs implements BaseModel
 
     /**
      * Adaptive Bitrate Streaming (ABS) setup.
+     *
+     * @var "abs" $type
      */
     #[Api]
     public string $type = 'abs';

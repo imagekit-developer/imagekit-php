@@ -16,13 +16,13 @@ use ImageKit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Options\
  * Configuration options for video transformations.
  *
  * @phpstan-type OptionsShape = array{
- *   audioCodec?: value-of<AudioCodec>,
- *   autoRotate?: bool,
- *   format?: value-of<Format>,
- *   quality?: int,
- *   streamProtocol?: value-of<StreamProtocol>,
- *   variants?: list<string>,
- *   videoCodec?: value-of<VideoCodec>,
+ *   audio_codec?: value-of<AudioCodec>|null,
+ *   auto_rotate?: bool|null,
+ *   format?: value-of<Format>|null,
+ *   quality?: int|null,
+ *   stream_protocol?: value-of<StreamProtocol>|null,
+ *   variants?: list<string>|null,
+ *   video_codec?: value-of<VideoCodec>|null,
  * }
  */
 final class Options implements BaseModel
@@ -33,16 +33,16 @@ final class Options implements BaseModel
     /**
      * Audio codec used for encoding (aac or opus).
      *
-     * @var value-of<AudioCodec>|null $audioCodec
+     * @var value-of<AudioCodec>|null $audio_codec
      */
-    #[Api('audio_codec', enum: AudioCodec::class, optional: true)]
-    public ?string $audioCodec;
+    #[Api(enum: AudioCodec::class, optional: true)]
+    public ?string $audio_codec;
 
     /**
      * Whether to automatically rotate the video based on metadata.
      */
-    #[Api('auto_rotate', optional: true)]
-    public ?bool $autoRotate;
+    #[Api(optional: true)]
+    public ?bool $auto_rotate;
 
     /**
      * Output format for the transformed video or thumbnail.
@@ -61,10 +61,10 @@ final class Options implements BaseModel
     /**
      * Streaming protocol for adaptive bitrate streaming.
      *
-     * @var value-of<StreamProtocol>|null $streamProtocol
+     * @var value-of<StreamProtocol>|null $stream_protocol
      */
-    #[Api('stream_protocol', enum: StreamProtocol::class, optional: true)]
-    public ?string $streamProtocol;
+    #[Api(enum: StreamProtocol::class, optional: true)]
+    public ?string $stream_protocol;
 
     /**
      * Array of quality representations for adaptive bitrate streaming.
@@ -77,10 +77,10 @@ final class Options implements BaseModel
     /**
      * Video codec used for encoding (h264, vp9, or av1).
      *
-     * @var value-of<VideoCodec>|null $videoCodec
+     * @var value-of<VideoCodec>|null $video_codec
      */
-    #[Api('video_codec', enum: VideoCodec::class, optional: true)]
-    public ?string $videoCodec;
+    #[Api(enum: VideoCodec::class, optional: true)]
+    public ?string $video_codec;
 
     public function __construct()
     {
@@ -92,30 +92,30 @@ final class Options implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param AudioCodec|value-of<AudioCodec> $audioCodec
+     * @param AudioCodec|value-of<AudioCodec> $audio_codec
      * @param Format|value-of<Format> $format
-     * @param StreamProtocol|value-of<StreamProtocol> $streamProtocol
+     * @param StreamProtocol|value-of<StreamProtocol> $stream_protocol
      * @param list<string> $variants
-     * @param VideoCodec|value-of<VideoCodec> $videoCodec
+     * @param VideoCodec|value-of<VideoCodec> $video_codec
      */
     public static function with(
-        AudioCodec|string|null $audioCodec = null,
-        ?bool $autoRotate = null,
+        AudioCodec|string|null $audio_codec = null,
+        ?bool $auto_rotate = null,
         Format|string|null $format = null,
         ?int $quality = null,
-        StreamProtocol|string|null $streamProtocol = null,
+        StreamProtocol|string|null $stream_protocol = null,
         ?array $variants = null,
-        VideoCodec|string|null $videoCodec = null,
+        VideoCodec|string|null $video_codec = null,
     ): self {
         $obj = new self;
 
-        null !== $audioCodec && $obj['audioCodec'] = $audioCodec;
-        null !== $autoRotate && $obj->autoRotate = $autoRotate;
+        null !== $audio_codec && $obj['audio_codec'] = $audio_codec;
+        null !== $auto_rotate && $obj->auto_rotate = $auto_rotate;
         null !== $format && $obj['format'] = $format;
         null !== $quality && $obj->quality = $quality;
-        null !== $streamProtocol && $obj['streamProtocol'] = $streamProtocol;
+        null !== $stream_protocol && $obj['stream_protocol'] = $stream_protocol;
         null !== $variants && $obj->variants = $variants;
-        null !== $videoCodec && $obj['videoCodec'] = $videoCodec;
+        null !== $video_codec && $obj['video_codec'] = $video_codec;
 
         return $obj;
     }
@@ -128,7 +128,7 @@ final class Options implements BaseModel
     public function withAudioCodec(AudioCodec|string $audioCodec): self
     {
         $obj = clone $this;
-        $obj['audioCodec'] = $audioCodec;
+        $obj['audio_codec'] = $audioCodec;
 
         return $obj;
     }
@@ -139,7 +139,7 @@ final class Options implements BaseModel
     public function withAutoRotate(bool $autoRotate): self
     {
         $obj = clone $this;
-        $obj->autoRotate = $autoRotate;
+        $obj->auto_rotate = $autoRotate;
 
         return $obj;
     }
@@ -177,7 +177,7 @@ final class Options implements BaseModel
         StreamProtocol|string $streamProtocol
     ): self {
         $obj = clone $this;
-        $obj['streamProtocol'] = $streamProtocol;
+        $obj['stream_protocol'] = $streamProtocol;
 
         return $obj;
     }
@@ -203,7 +203,7 @@ final class Options implements BaseModel
     public function withVideoCodec(VideoCodec|string $videoCodec): self
     {
         $obj = clone $this;
-        $obj['videoCodec'] = $videoCodec;
+        $obj['video_codec'] = $videoCodec;
 
         return $obj;
     }

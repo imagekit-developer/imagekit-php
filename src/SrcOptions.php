@@ -14,11 +14,11 @@ use ImageKit\Core\Contracts\BaseModel;
  * @phpstan-type SrcOptionsShape = array{
  *   src: string,
  *   urlEndpoint: string,
- *   expiresIn?: float,
- *   queryParameters?: array<string, string>,
- *   signed?: bool,
- *   transformation?: list<Transformation>,
- *   transformationPosition?: value-of<TransformationPosition>,
+ *   expiresIn?: float|null,
+ *   queryParameters?: array<string,string>|null,
+ *   signed?: bool|null,
+ *   transformation?: list<Transformation>|null,
+ *   transformationPosition?: value-of<TransformationPosition>|null,
  * }
  */
 final class SrcOptions implements BaseModel
@@ -57,7 +57,7 @@ final class SrcOptions implements BaseModel
      * They can be any query parameters and not necessarily related to ImageKit.
      * This is especially useful if you want to add a versioning parameter to your URLs.
      *
-     * @var array<string, string>|null $queryParameters
+     * @var array<string,string>|null $queryParameters
      */
     #[Api(map: 'string', optional: true)]
     public ?array $queryParameters;
@@ -114,7 +114,7 @@ final class SrcOptions implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param array<string, string> $queryParameters
+     * @param array<string,string> $queryParameters
      * @param list<Transformation> $transformation
      * @param TransformationPosition|value-of<TransformationPosition> $transformationPosition
      */
@@ -187,7 +187,7 @@ final class SrcOptions implements BaseModel
      * They can be any query parameters and not necessarily related to ImageKit.
      * This is especially useful if you want to add a versioning parameter to your URLs.
      *
-     * @param array<string, string> $queryParameters
+     * @param array<string,string> $queryParameters
      */
     public function withQueryParameters(array $queryParameters): self
     {

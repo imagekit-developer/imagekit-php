@@ -10,7 +10,7 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Files\UpdateFileRequest\ChangePublicationStatus\Publish;
 
 /**
- * @phpstan-type ChangePublicationStatusShape = array{publish?: Publish}
+ * @phpstan-type ChangePublicationStatusShape = array{publish?: Publish|null}
  */
 final class ChangePublicationStatus implements BaseModel
 {

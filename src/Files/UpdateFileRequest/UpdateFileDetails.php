@@ -16,12 +16,12 @@ use ImageKit\Files\UpdateFileRequest\UpdateFileDetails\RemoveAITags;
 /**
  * @phpstan-type UpdateFileDetailsShape = array{
  *   customCoordinates?: string|null,
- *   customMetadata?: array<string, mixed>,
- *   description?: string,
- *   extensions?: list<RemoveBg|AutoTaggingExtension|AIAutoDescription>,
- *   removeAITags?: string|list<string>,
+ *   customMetadata?: array<string,mixed>|null,
+ *   description?: string|null,
+ *   extensions?: list<RemoveBg|AutoTaggingExtension|AIAutoDescription>|null,
+ *   removeAITags?: null|"all"|list<string>,
  *   tags?: list<string>|null,
- *   webhookURL?: string,
+ *   webhookUrl?: string|null,
  * }
  */
 final class UpdateFileDetails implements BaseModel
@@ -38,7 +38,7 @@ final class UpdateFileDetails implements BaseModel
     /**
      * A key-value data to be associated with the asset. To unset a key, send `null` value for that key. Before setting any custom metadata on an asset you have to create the field using custom metadata fields API.
      *
-     * @var array<string, mixed>|null $customMetadata
+     * @var array<string,mixed>|null $customMetadata
      */
     #[Api(map: 'mixed', optional: true)]
     public ?array $customMetadata;
@@ -64,7 +64,7 @@ final class UpdateFileDetails implements BaseModel
      *
      * Note: The remove operation for `AITags` executes before any of the `extensions` are processed.
      *
-     * @var string|list<string>|null $removeAITags
+     * @var "all"|list<string>|null $removeAITags
      */
     #[Api(union: RemoveAITags::class, optional: true)]
     public string|array|null $removeAITags;
@@ -80,8 +80,8 @@ final class UpdateFileDetails implements BaseModel
     /**
      * The final status of extensions after they have completed execution will be delivered to this endpoint as a POST request. [Learn more](/docs/api-reference/digital-asset-management-dam/managing-assets/update-file-details#webhook-payload-structure) about the webhook payload structure.
      */
-    #[Api('webhookUrl', optional: true)]
-    public ?string $webhookURL;
+    #[Api(optional: true)]
+    public ?string $webhookUrl;
 
     public function __construct()
     {
@@ -93,9 +93,9 @@ final class UpdateFileDetails implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param array<string, mixed> $customMetadata
+     * @param array<string,mixed> $customMetadata
      * @param list<RemoveBg|AutoTaggingExtension|AIAutoDescription> $extensions
-     * @param string|list<string> $removeAITags
+     * @param "all"|list<string> $removeAITags
      * @param list<string>|null $tags
      */
     public static function with(
@@ -105,7 +105,7 @@ final class UpdateFileDetails implements BaseModel
         ?array $extensions = null,
         string|array|null $removeAITags = null,
         ?array $tags = null,
-        ?string $webhookURL = null,
+        ?string $webhookUrl = null,
     ): self {
         $obj = new self;
 
@@ -115,7 +115,7 @@ final class UpdateFileDetails implements BaseModel
         null !== $extensions && $obj->extensions = $extensions;
         null !== $removeAITags && $obj->removeAITags = $removeAITags;
         null !== $tags && $obj->tags = $tags;
-        null !== $webhookURL && $obj->webhookURL = $webhookURL;
+        null !== $webhookUrl && $obj->webhookUrl = $webhookUrl;
 
         return $obj;
     }
@@ -134,7 +134,7 @@ final class UpdateFileDetails implements BaseModel
     /**
      * A key-value data to be associated with the asset. To unset a key, send `null` value for that key. Before setting any custom metadata on an asset you have to create the field using custom metadata fields API.
      *
-     * @param array<string, mixed> $customMetadata
+     * @param array<string,mixed> $customMetadata
      */
     public function withCustomMetadata(array $customMetadata): self
     {
@@ -175,7 +175,7 @@ final class UpdateFileDetails implements BaseModel
      *
      * Note: The remove operation for `AITags` executes before any of the `extensions` are processed.
      *
-     * @param string|list<string> $removeAITags
+     * @param "all"|list<string> $removeAITags
      */
     public function withRemoveAITags(string|array $removeAITags): self
     {
@@ -204,7 +204,7 @@ final class UpdateFileDetails implements BaseModel
     public function withWebhookURL(string $webhookURL): self
     {
         $obj = clone $this;
-        $obj->webhookURL = $webhookURL;
+        $obj->webhookUrl = $webhookURL;
 
         return $obj;
     }

@@ -6,6 +6,7 @@ namespace ImageKit\ServiceContracts\Files;
 
 use ImageKit\Core\Exceptions\APIException;
 use ImageKit\Files\Metadata;
+use ImageKit\Files\Metadata\MetadataGetFromURLParams;
 use ImageKit\RequestOptions;
 
 interface MetadataContract
@@ -23,24 +24,12 @@ interface MetadataContract
     /**
      * @api
      *
-     * @param string $url Should be a valid file URL. It should be accessible using your ImageKit.io account.
+     * @param array<mixed>|MetadataGetFromURLParams $params
      *
      * @throws APIException
      */
     public function getFromURL(
-        $url,
-        ?RequestOptions $requestOptions = null
-    ): Metadata;
-
-    /**
-     * @api
-     *
-     * @param array<string, mixed> $params
-     *
-     * @throws APIException
-     */
-    public function getFromURLRaw(
-        array $params,
-        ?RequestOptions $requestOptions = null
+        array|MetadataGetFromURLParams $params,
+        ?RequestOptions $requestOptions = null,
     ): Metadata;
 }

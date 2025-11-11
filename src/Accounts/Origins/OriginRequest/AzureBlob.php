@@ -14,10 +14,10 @@ use ImageKit\Core\Contracts\BaseModel;
  *   container: string,
  *   name: string,
  *   sasToken: string,
- *   type: string,
- *   baseURLForCanonicalHeader?: string,
- *   includeCanonicalHeader?: bool,
- *   prefix?: string,
+ *   type: "AZURE_BLOB",
+ *   baseUrlForCanonicalHeader?: string|null,
+ *   includeCanonicalHeader?: bool|null,
+ *   prefix?: string|null,
  * }
  */
 final class AzureBlob implements BaseModel
@@ -25,6 +25,7 @@ final class AzureBlob implements BaseModel
     /** @use SdkModel<AzureBlobShape> */
     use SdkModel;
 
+    /** @var "AZURE_BLOB" $type */
     #[Api]
     public string $type = 'AZURE_BLOB';
 
@@ -46,8 +47,8 @@ final class AzureBlob implements BaseModel
     /**
      * URL used in the Canonical header (if enabled).
      */
-    #[Api('baseUrlForCanonicalHeader', optional: true)]
-    public ?string $baseURLForCanonicalHeader;
+    #[Api(optional: true)]
+    public ?string $baseUrlForCanonicalHeader;
 
     /**
      * Whether to send a Canonical header.
@@ -91,7 +92,7 @@ final class AzureBlob implements BaseModel
         string $container,
         string $name,
         string $sasToken,
-        ?string $baseURLForCanonicalHeader = null,
+        ?string $baseUrlForCanonicalHeader = null,
         ?bool $includeCanonicalHeader = null,
         ?string $prefix = null,
     ): self {
@@ -102,7 +103,7 @@ final class AzureBlob implements BaseModel
         $obj->name = $name;
         $obj->sasToken = $sasToken;
 
-        null !== $baseURLForCanonicalHeader && $obj->baseURLForCanonicalHeader = $baseURLForCanonicalHeader;
+        null !== $baseUrlForCanonicalHeader && $obj->baseUrlForCanonicalHeader = $baseUrlForCanonicalHeader;
         null !== $includeCanonicalHeader && $obj->includeCanonicalHeader = $includeCanonicalHeader;
         null !== $prefix && $obj->prefix = $prefix;
 
@@ -151,7 +152,7 @@ final class AzureBlob implements BaseModel
         string $baseURLForCanonicalHeader
     ): self {
         $obj = clone $this;
-        $obj->baseURLForCanonicalHeader = $baseURLForCanonicalHeader;
+        $obj->baseUrlForCanonicalHeader = $baseURLForCanonicalHeader;
 
         return $obj;
     }

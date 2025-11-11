@@ -10,7 +10,9 @@ use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * @phpstan-type OverlayTimingShape = array{
- *   duration?: float|string, end?: float|string, start?: float|string
+ *   duration?: float|string|null,
+ *   end?: float|string|null,
+ *   start?: float|string|null,
  * }
  */
 final class OverlayTiming implements BaseModel

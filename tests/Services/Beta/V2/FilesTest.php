@@ -37,10 +37,9 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->beta->v2->files->upload(
-            file: 'file',
-            fileName: 'fileName'
-        );
+        $result = $this->client->beta->v2->files->upload([
+            'file' => null, 'fileName' => 'fileName',
+        ]);
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
@@ -52,10 +51,9 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->beta->v2->files->upload(
-            file: 'file',
-            fileName: 'fileName'
-        );
+        $result = $this->client->beta->v2->files->upload([
+            'file' => null, 'fileName' => 'fileName',
+        ]);
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }

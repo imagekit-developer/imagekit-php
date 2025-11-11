@@ -49,7 +49,10 @@ final class VersionsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->files->versions->delete('versionId', 'fileId');
+        $result = $this->client->files->versions->delete(
+            'versionId',
+            ['fileId' => 'fileId']
+        );
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
@@ -61,7 +64,10 @@ final class VersionsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->files->versions->delete('versionId', 'fileId');
+        $result = $this->client->files->versions->delete(
+            'versionId',
+            ['fileId' => 'fileId']
+        );
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
@@ -73,7 +79,10 @@ final class VersionsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->files->versions->get('versionId', 'fileId');
+        $result = $this->client->files->versions->get(
+            'versionId',
+            ['fileId' => 'fileId']
+        );
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
@@ -85,7 +94,10 @@ final class VersionsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->files->versions->get('versionId', 'fileId');
+        $result = $this->client->files->versions->get(
+            'versionId',
+            ['fileId' => 'fileId']
+        );
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
@@ -97,7 +109,10 @@ final class VersionsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->files->versions->restore('versionId', 'fileId');
+        $result = $this->client->files->versions->restore(
+            'versionId',
+            ['fileId' => 'fileId']
+        );
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
@@ -109,7 +124,10 @@ final class VersionsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->files->versions->restore('versionId', 'fileId');
+        $result = $this->client->files->versions->restore(
+            'versionId',
+            ['fileId' => 'fileId']
+        );
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }

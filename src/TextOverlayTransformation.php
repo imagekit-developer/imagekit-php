@@ -12,19 +12,19 @@ use ImageKit\TextOverlayTransformation\InnerAlignment;
 
 /**
  * @phpstan-type TextOverlayTransformationShape = array{
- *   alpha?: float,
- *   background?: string,
- *   flip?: value-of<Flip>,
- *   fontColor?: string,
- *   fontFamily?: string,
- *   fontSize?: float|string,
- *   innerAlignment?: value-of<InnerAlignment>,
- *   lineHeight?: float|string,
- *   padding?: float|string,
- *   radius?: float|string,
- *   rotation?: float|string,
- *   typography?: string,
- *   width?: float|string,
+ *   alpha?: float|null,
+ *   background?: string|null,
+ *   flip?: value-of<Flip>|null,
+ *   fontColor?: string|null,
+ *   fontFamily?: string|null,
+ *   fontSize?: float|string|null,
+ *   innerAlignment?: value-of<InnerAlignment>|null,
+ *   lineHeight?: float|string|null,
+ *   padding?: float|string|null,
+ *   radius?: float|null|"max",
+ *   rotation?: float|string|null,
+ *   typography?: string|null,
+ *   width?: float|string|null,
  * }
  */
 final class TextOverlayTransformation implements BaseModel
@@ -98,6 +98,8 @@ final class TextOverlayTransformation implements BaseModel
     /**
      * Specifies the corner radius of the text overlay.
      * Set to `max` to achieve a circular or oval shape.
+     *
+     * @var float|"max"|null $radius
      */
     #[Api(optional: true)]
     public float|string|null $radius;
@@ -137,6 +139,7 @@ final class TextOverlayTransformation implements BaseModel
      *
      * @param Flip|value-of<Flip> $flip
      * @param InnerAlignment|value-of<InnerAlignment> $innerAlignment
+     * @param float|"max" $radius
      */
     public static function with(
         ?float $alpha = null,
@@ -284,6 +287,8 @@ final class TextOverlayTransformation implements BaseModel
     /**
      * Specifies the corner radius of the text overlay.
      * Set to `max` to achieve a circular or oval shape.
+     *
+     * @param float|"max" $radius
      */
     public function withRadius(float|string $radius): self
     {

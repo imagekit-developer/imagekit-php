@@ -18,7 +18,7 @@ use ImageKit\Core\Contracts\BaseModel;
  *
  * @see ImageKit\Files\Bulk->delete
  *
- * @phpstan-type BulkDeleteParamsShape = array{fileIDs: list<string>}
+ * @phpstan-type BulkDeleteParamsShape = array{fileIds: list<string>}
  */
 final class BulkDeleteParams implements BaseModel
 {
@@ -29,17 +29,17 @@ final class BulkDeleteParams implements BaseModel
     /**
      * An array of fileIds which you want to delete.
      *
-     * @var list<string> $fileIDs
+     * @var list<string> $fileIds
      */
-    #[Api('fileIds', list: 'string')]
-    public array $fileIDs;
+    #[Api(list: 'string')]
+    public array $fileIds;
 
     /**
      * `new BulkDeleteParams()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * BulkDeleteParams::with(fileIDs: ...)
+     * BulkDeleteParams::with(fileIds: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
@@ -58,13 +58,13 @@ final class BulkDeleteParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<string> $fileIDs
+     * @param list<string> $fileIds
      */
-    public static function with(array $fileIDs): self
+    public static function with(array $fileIds): self
     {
         $obj = new self;
 
-        $obj->fileIDs = $fileIDs;
+        $obj->fileIds = $fileIds;
 
         return $obj;
     }
@@ -77,7 +77,7 @@ final class BulkDeleteParams implements BaseModel
     public function withFileIDs(array $fileIDs): self
     {
         $obj = clone $this;
-        $obj->fileIDs = $fileIDs;
+        $obj->fileIds = $fileIDs;
 
         return $obj;
     }

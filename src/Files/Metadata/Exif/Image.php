@@ -12,17 +12,17 @@ use ImageKit\Core\Contracts\BaseModel;
  * Object containing EXIF image information.
  *
  * @phpstan-type ImageShape = array{
- *   exifOffset?: int,
- *   gpsInfo?: int,
- *   make?: string,
- *   model?: string,
- *   modifyDate?: string,
- *   orientation?: int,
- *   resolutionUnit?: int,
- *   software?: string,
- *   xResolution?: int,
- *   yCbCrPositioning?: int,
- *   yResolution?: int,
+ *   ExifOffset?: int|null,
+ *   GPSInfo?: int|null,
+ *   Make?: string|null,
+ *   Model?: string|null,
+ *   ModifyDate?: string|null,
+ *   Orientation?: int|null,
+ *   ResolutionUnit?: int|null,
+ *   Software?: string|null,
+ *   XResolution?: int|null,
+ *   YCbCrPositioning?: int|null,
+ *   YResolution?: int|null,
  * }
  */
 final class Image implements BaseModel
@@ -30,38 +30,38 @@ final class Image implements BaseModel
     /** @use SdkModel<ImageShape> */
     use SdkModel;
 
-    #[Api('ExifOffset', optional: true)]
-    public ?int $exifOffset;
+    #[Api(optional: true)]
+    public ?int $ExifOffset;
 
-    #[Api('GPSInfo', optional: true)]
-    public ?int $gpsInfo;
+    #[Api(optional: true)]
+    public ?int $GPSInfo;
 
-    #[Api('Make', optional: true)]
-    public ?string $make;
+    #[Api(optional: true)]
+    public ?string $Make;
 
-    #[Api('Model', optional: true)]
-    public ?string $model;
+    #[Api(optional: true)]
+    public ?string $Model;
 
-    #[Api('ModifyDate', optional: true)]
-    public ?string $modifyDate;
+    #[Api(optional: true)]
+    public ?string $ModifyDate;
 
-    #[Api('Orientation', optional: true)]
-    public ?int $orientation;
+    #[Api(optional: true)]
+    public ?int $Orientation;
 
-    #[Api('ResolutionUnit', optional: true)]
-    public ?int $resolutionUnit;
+    #[Api(optional: true)]
+    public ?int $ResolutionUnit;
 
-    #[Api('Software', optional: true)]
-    public ?string $software;
+    #[Api(optional: true)]
+    public ?string $Software;
 
-    #[Api('XResolution', optional: true)]
-    public ?int $xResolution;
+    #[Api(optional: true)]
+    public ?int $XResolution;
 
-    #[Api('YCbCrPositioning', optional: true)]
-    public ?int $yCbCrPositioning;
+    #[Api(optional: true)]
+    public ?int $YCbCrPositioning;
 
-    #[Api('YResolution', optional: true)]
-    public ?int $yResolution;
+    #[Api(optional: true)]
+    public ?int $YResolution;
 
     public function __construct()
     {
@@ -74,31 +74,31 @@ final class Image implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      */
     public static function with(
-        ?int $exifOffset = null,
-        ?int $gpsInfo = null,
-        ?string $make = null,
-        ?string $model = null,
-        ?string $modifyDate = null,
-        ?int $orientation = null,
-        ?int $resolutionUnit = null,
-        ?string $software = null,
-        ?int $xResolution = null,
-        ?int $yCbCrPositioning = null,
-        ?int $yResolution = null,
+        ?int $ExifOffset = null,
+        ?int $GPSInfo = null,
+        ?string $Make = null,
+        ?string $Model = null,
+        ?string $ModifyDate = null,
+        ?int $Orientation = null,
+        ?int $ResolutionUnit = null,
+        ?string $Software = null,
+        ?int $XResolution = null,
+        ?int $YCbCrPositioning = null,
+        ?int $YResolution = null,
     ): self {
         $obj = new self;
 
-        null !== $exifOffset && $obj->exifOffset = $exifOffset;
-        null !== $gpsInfo && $obj->gpsInfo = $gpsInfo;
-        null !== $make && $obj->make = $make;
-        null !== $model && $obj->model = $model;
-        null !== $modifyDate && $obj->modifyDate = $modifyDate;
-        null !== $orientation && $obj->orientation = $orientation;
-        null !== $resolutionUnit && $obj->resolutionUnit = $resolutionUnit;
-        null !== $software && $obj->software = $software;
-        null !== $xResolution && $obj->xResolution = $xResolution;
-        null !== $yCbCrPositioning && $obj->yCbCrPositioning = $yCbCrPositioning;
-        null !== $yResolution && $obj->yResolution = $yResolution;
+        null !== $ExifOffset && $obj->ExifOffset = $ExifOffset;
+        null !== $GPSInfo && $obj->GPSInfo = $GPSInfo;
+        null !== $Make && $obj->Make = $Make;
+        null !== $Model && $obj->Model = $Model;
+        null !== $ModifyDate && $obj->ModifyDate = $ModifyDate;
+        null !== $Orientation && $obj->Orientation = $Orientation;
+        null !== $ResolutionUnit && $obj->ResolutionUnit = $ResolutionUnit;
+        null !== $Software && $obj->Software = $Software;
+        null !== $XResolution && $obj->XResolution = $XResolution;
+        null !== $YCbCrPositioning && $obj->YCbCrPositioning = $YCbCrPositioning;
+        null !== $YResolution && $obj->YResolution = $YResolution;
 
         return $obj;
     }
@@ -106,7 +106,7 @@ final class Image implements BaseModel
     public function withExifOffset(int $exifOffset): self
     {
         $obj = clone $this;
-        $obj->exifOffset = $exifOffset;
+        $obj->ExifOffset = $exifOffset;
 
         return $obj;
     }
@@ -114,7 +114,7 @@ final class Image implements BaseModel
     public function withGpsInfo(int $gpsInfo): self
     {
         $obj = clone $this;
-        $obj->gpsInfo = $gpsInfo;
+        $obj->GPSInfo = $gpsInfo;
 
         return $obj;
     }
@@ -122,7 +122,7 @@ final class Image implements BaseModel
     public function withMake(string $make): self
     {
         $obj = clone $this;
-        $obj->make = $make;
+        $obj->Make = $make;
 
         return $obj;
     }
@@ -130,7 +130,7 @@ final class Image implements BaseModel
     public function withModel(string $model): self
     {
         $obj = clone $this;
-        $obj->model = $model;
+        $obj->Model = $model;
 
         return $obj;
     }
@@ -138,7 +138,7 @@ final class Image implements BaseModel
     public function withModifyDate(string $modifyDate): self
     {
         $obj = clone $this;
-        $obj->modifyDate = $modifyDate;
+        $obj->ModifyDate = $modifyDate;
 
         return $obj;
     }
@@ -146,7 +146,7 @@ final class Image implements BaseModel
     public function withOrientation(int $orientation): self
     {
         $obj = clone $this;
-        $obj->orientation = $orientation;
+        $obj->Orientation = $orientation;
 
         return $obj;
     }
@@ -154,7 +154,7 @@ final class Image implements BaseModel
     public function withResolutionUnit(int $resolutionUnit): self
     {
         $obj = clone $this;
-        $obj->resolutionUnit = $resolutionUnit;
+        $obj->ResolutionUnit = $resolutionUnit;
 
         return $obj;
     }
@@ -162,7 +162,7 @@ final class Image implements BaseModel
     public function withSoftware(string $software): self
     {
         $obj = clone $this;
-        $obj->software = $software;
+        $obj->Software = $software;
 
         return $obj;
     }
@@ -170,7 +170,7 @@ final class Image implements BaseModel
     public function withXResolution(int $xResolution): self
     {
         $obj = clone $this;
-        $obj->xResolution = $xResolution;
+        $obj->XResolution = $xResolution;
 
         return $obj;
     }
@@ -178,7 +178,7 @@ final class Image implements BaseModel
     public function withYCbCrPositioning(int $yCbCrPositioning): self
     {
         $obj = clone $this;
-        $obj->yCbCrPositioning = $yCbCrPositioning;
+        $obj->YCbCrPositioning = $yCbCrPositioning;
 
         return $obj;
     }
@@ -186,7 +186,7 @@ final class Image implements BaseModel
     public function withYResolution(int $yResolution): self
     {
         $obj = clone $this;
-        $obj->yResolution = $yResolution;
+        $obj->YResolution = $yResolution;
 
         return $obj;
     }

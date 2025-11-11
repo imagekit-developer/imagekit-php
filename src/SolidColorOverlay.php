@@ -10,11 +10,11 @@ use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * @phpstan-type SolidColorOverlayShape = array{
- *   position?: OverlayPosition,
- *   timing?: OverlayTiming,
+ *   position?: OverlayPosition|null,
+ *   timing?: OverlayTiming|null,
  *   color: string,
- *   type: string,
- *   transformation?: list<SolidColorOverlayTransformation>,
+ *   type: "solidColor",
+ *   transformation?: list<SolidColorOverlayTransformation>|null,
  * }
  */
 final class SolidColorOverlay implements BaseModel
@@ -22,6 +22,7 @@ final class SolidColorOverlay implements BaseModel
     /** @use SdkModel<SolidColorOverlayShape> */
     use SdkModel;
 
+    /** @var "solidColor" $type */
     #[Api]
     public string $type = 'solidColor';
 

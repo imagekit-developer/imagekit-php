@@ -18,31 +18,31 @@ use ImageKit\Files\FileUploadResponse\VersionInfo;
  * Object containing details of a successful upload.
  *
  * @phpstan-type FileUploadResponseShape = array{
- *   aiTags?: list<AITag>|null,
- *   audioCodec?: string,
- *   bitRate?: int,
+ *   AITags?: list<AITag>|null,
+ *   audioCodec?: string|null,
+ *   bitRate?: int|null,
  *   customCoordinates?: string|null,
- *   customMetadata?: array<string, mixed>,
- *   description?: string,
- *   duration?: int,
- *   embeddedMetadata?: array<string, mixed>,
- *   extensionStatus?: ExtensionStatus,
- *   fileID?: string,
- *   filePath?: string,
- *   fileType?: string,
- *   height?: float,
- *   isPrivateFile?: bool,
- *   isPublished?: bool,
- *   metadata?: Metadata,
- *   name?: string,
- *   selectedFieldsSchema?: array<string, SelectedFieldsSchema>,
- *   size?: float,
+ *   customMetadata?: array<string,mixed>|null,
+ *   description?: string|null,
+ *   duration?: int|null,
+ *   embeddedMetadata?: array<string,mixed>|null,
+ *   extensionStatus?: ExtensionStatus|null,
+ *   fileId?: string|null,
+ *   filePath?: string|null,
+ *   fileType?: string|null,
+ *   height?: float|null,
+ *   isPrivateFile?: bool|null,
+ *   isPublished?: bool|null,
+ *   metadata?: Metadata|null,
+ *   name?: string|null,
+ *   selectedFieldsSchema?: array<string,SelectedFieldsSchema>|null,
+ *   size?: float|null,
  *   tags?: list<string>|null,
- *   thumbnailURL?: string,
- *   url?: string,
- *   versionInfo?: VersionInfo,
- *   videoCodec?: string,
- *   width?: float,
+ *   thumbnailUrl?: string|null,
+ *   url?: string|null,
+ *   versionInfo?: VersionInfo|null,
+ *   videoCodec?: string|null,
+ *   width?: float|null,
  * }
  */
 final class FileUploadResponse implements BaseModel, ResponseConverter
@@ -55,10 +55,10 @@ final class FileUploadResponse implements BaseModel, ResponseConverter
     /**
      * An array of tags assigned to the uploaded file by auto tagging.
      *
-     * @var list<AITag>|null $aiTags
+     * @var list<AITag>|null $AITags
      */
-    #[Api('AITags', list: AITag::class, nullable: true, optional: true)]
-    public ?array $aiTags;
+    #[Api(list: AITag::class, nullable: true, optional: true)]
+    public ?array $AITags;
 
     /**
      * The audio codec used in the video (only for video).
@@ -81,7 +81,7 @@ final class FileUploadResponse implements BaseModel, ResponseConverter
     /**
      * A key-value data associated with the asset. Use `responseField` in API request to get `customMetadata` in the upload API response. Before setting any custom metadata on an asset, you have to create the field using custom metadata fields API. Send `customMetadata` in `responseFields` in API request to get the value of this field.
      *
-     * @var array<string, mixed>|null $customMetadata
+     * @var array<string,mixed>|null $customMetadata
      */
     #[Api(map: 'mixed', optional: true)]
     public ?array $customMetadata;
@@ -101,7 +101,7 @@ final class FileUploadResponse implements BaseModel, ResponseConverter
     /**
      * Consolidated embedded metadata associated with the file. It includes exif, iptc, and xmp data. Send `embeddedMetadata` in `responseFields` in API request to get embeddedMetadata in the upload API response.
      *
-     * @var array<string, mixed>|null $embeddedMetadata
+     * @var array<string,mixed>|null $embeddedMetadata
      */
     #[Api(map: 'mixed', optional: true)]
     public ?array $embeddedMetadata;
@@ -121,8 +121,8 @@ final class FileUploadResponse implements BaseModel, ResponseConverter
     /**
      * Unique fileId. Store this fileld in your database, as this will be used to perform update action on this file.
      */
-    #[Api('fileId', optional: true)]
-    public ?string $fileID;
+    #[Api(optional: true)]
+    public ?string $fileId;
 
     /**
      * The relative path of the file in the media library e.g. `/marketing-assets/new-banner.jpg`.
@@ -173,7 +173,7 @@ final class FileUploadResponse implements BaseModel, ResponseConverter
      *
      * Keys are the names of the custom metadata fields; the value object has details about the custom metadata schema.
      *
-     * @var array<string, SelectedFieldsSchema>|null $selectedFieldsSchema
+     * @var array<string,SelectedFieldsSchema>|null $selectedFieldsSchema
      */
     #[Api(map: SelectedFieldsSchema::class, optional: true)]
     public ?array $selectedFieldsSchema;
@@ -195,8 +195,8 @@ final class FileUploadResponse implements BaseModel, ResponseConverter
     /**
      * In the case of an image, a small thumbnail URL.
      */
-    #[Api('thumbnailUrl', optional: true)]
-    public ?string $thumbnailURL;
+    #[Api(optional: true)]
+    public ?string $thumbnailUrl;
 
     /**
      * A publicly accessible URL of the file.
@@ -232,14 +232,14 @@ final class FileUploadResponse implements BaseModel, ResponseConverter
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<AITag>|null $aiTags
-     * @param array<string, mixed> $customMetadata
-     * @param array<string, mixed> $embeddedMetadata
-     * @param array<string, SelectedFieldsSchema> $selectedFieldsSchema
+     * @param list<AITag>|null $AITags
+     * @param array<string,mixed> $customMetadata
+     * @param array<string,mixed> $embeddedMetadata
+     * @param array<string,SelectedFieldsSchema> $selectedFieldsSchema
      * @param list<string>|null $tags
      */
     public static function with(
-        ?array $aiTags = null,
+        ?array $AITags = null,
         ?string $audioCodec = null,
         ?int $bitRate = null,
         ?string $customCoordinates = null,
@@ -248,7 +248,7 @@ final class FileUploadResponse implements BaseModel, ResponseConverter
         ?int $duration = null,
         ?array $embeddedMetadata = null,
         ?ExtensionStatus $extensionStatus = null,
-        ?string $fileID = null,
+        ?string $fileId = null,
         ?string $filePath = null,
         ?string $fileType = null,
         ?float $height = null,
@@ -259,7 +259,7 @@ final class FileUploadResponse implements BaseModel, ResponseConverter
         ?array $selectedFieldsSchema = null,
         ?float $size = null,
         ?array $tags = null,
-        ?string $thumbnailURL = null,
+        ?string $thumbnailUrl = null,
         ?string $url = null,
         ?VersionInfo $versionInfo = null,
         ?string $videoCodec = null,
@@ -267,7 +267,7 @@ final class FileUploadResponse implements BaseModel, ResponseConverter
     ): self {
         $obj = new self;
 
-        null !== $aiTags && $obj->aiTags = $aiTags;
+        null !== $AITags && $obj->AITags = $AITags;
         null !== $audioCodec && $obj->audioCodec = $audioCodec;
         null !== $bitRate && $obj->bitRate = $bitRate;
         null !== $customCoordinates && $obj->customCoordinates = $customCoordinates;
@@ -276,7 +276,7 @@ final class FileUploadResponse implements BaseModel, ResponseConverter
         null !== $duration && $obj->duration = $duration;
         null !== $embeddedMetadata && $obj->embeddedMetadata = $embeddedMetadata;
         null !== $extensionStatus && $obj->extensionStatus = $extensionStatus;
-        null !== $fileID && $obj->fileID = $fileID;
+        null !== $fileId && $obj->fileId = $fileId;
         null !== $filePath && $obj->filePath = $filePath;
         null !== $fileType && $obj->fileType = $fileType;
         null !== $height && $obj->height = $height;
@@ -287,7 +287,7 @@ final class FileUploadResponse implements BaseModel, ResponseConverter
         null !== $selectedFieldsSchema && $obj->selectedFieldsSchema = $selectedFieldsSchema;
         null !== $size && $obj->size = $size;
         null !== $tags && $obj->tags = $tags;
-        null !== $thumbnailURL && $obj->thumbnailURL = $thumbnailURL;
+        null !== $thumbnailUrl && $obj->thumbnailUrl = $thumbnailUrl;
         null !== $url && $obj->url = $url;
         null !== $versionInfo && $obj->versionInfo = $versionInfo;
         null !== $videoCodec && $obj->videoCodec = $videoCodec;
@@ -304,7 +304,7 @@ final class FileUploadResponse implements BaseModel, ResponseConverter
     public function withAITags(?array $aiTags): self
     {
         $obj = clone $this;
-        $obj->aiTags = $aiTags;
+        $obj->AITags = $aiTags;
 
         return $obj;
     }
@@ -345,7 +345,7 @@ final class FileUploadResponse implements BaseModel, ResponseConverter
     /**
      * A key-value data associated with the asset. Use `responseField` in API request to get `customMetadata` in the upload API response. Before setting any custom metadata on an asset, you have to create the field using custom metadata fields API. Send `customMetadata` in `responseFields` in API request to get the value of this field.
      *
-     * @param array<string, mixed> $customMetadata
+     * @param array<string,mixed> $customMetadata
      */
     public function withCustomMetadata(array $customMetadata): self
     {
@@ -380,7 +380,7 @@ final class FileUploadResponse implements BaseModel, ResponseConverter
     /**
      * Consolidated embedded metadata associated with the file. It includes exif, iptc, and xmp data. Send `embeddedMetadata` in `responseFields` in API request to get embeddedMetadata in the upload API response.
      *
-     * @param array<string, mixed> $embeddedMetadata
+     * @param array<string,mixed> $embeddedMetadata
      */
     public function withEmbeddedMetadata(array $embeddedMetadata): self
     {
@@ -413,7 +413,7 @@ final class FileUploadResponse implements BaseModel, ResponseConverter
     public function withFileID(string $fileID): self
     {
         $obj = clone $this;
-        $obj->fileID = $fileID;
+        $obj->fileId = $fileID;
 
         return $obj;
     }
@@ -502,7 +502,7 @@ final class FileUploadResponse implements BaseModel, ResponseConverter
      *
      * Keys are the names of the custom metadata fields; the value object has details about the custom metadata schema.
      *
-     * @param array<string, SelectedFieldsSchema> $selectedFieldsSchema
+     * @param array<string,SelectedFieldsSchema> $selectedFieldsSchema
      */
     public function withSelectedFieldsSchema(array $selectedFieldsSchema): self
     {
@@ -542,7 +542,7 @@ final class FileUploadResponse implements BaseModel, ResponseConverter
     public function withThumbnailURL(string $thumbnailURL): self
     {
         $obj = clone $this;
-        $obj->thumbnailURL = $thumbnailURL;
+        $obj->thumbnailUrl = $thumbnailURL;
 
         return $obj;
     }

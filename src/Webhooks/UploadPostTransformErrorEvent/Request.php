@@ -11,7 +11,7 @@ use ImageKit\Webhooks\UploadPostTransformErrorEvent\Request\Transformation;
 
 /**
  * @phpstan-type RequestShape = array{
- *   transformation: Transformation, xRequestID: string
+ *   transformation: Transformation, x_request_id: string
  * }
  */
 final class Request implements BaseModel
@@ -25,15 +25,15 @@ final class Request implements BaseModel
     /**
      * Unique identifier for the originating request.
      */
-    #[Api('x_request_id')]
-    public string $xRequestID;
+    #[Api]
+    public string $x_request_id;
 
     /**
      * `new Request()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * Request::with(transformation: ..., xRequestID: ...)
+     * Request::with(transformation: ..., x_request_id: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
@@ -54,12 +54,12 @@ final class Request implements BaseModel
      */
     public static function with(
         Transformation $transformation,
-        string $xRequestID
+        string $x_request_id
     ): self {
         $obj = new self;
 
         $obj->transformation = $transformation;
-        $obj->xRequestID = $xRequestID;
+        $obj->x_request_id = $x_request_id;
 
         return $obj;
     }
@@ -78,7 +78,7 @@ final class Request implements BaseModel
     public function withXRequestID(string $xRequestID): self
     {
         $obj = clone $this;
-        $obj->xRequestID = $xRequestID;
+        $obj->x_request_id = $xRequestID;
 
         return $obj;
     }

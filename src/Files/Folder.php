@@ -11,12 +11,12 @@ use ImageKit\Files\Folder\Type;
 
 /**
  * @phpstan-type FolderShape = array{
- *   createdAt?: \DateTimeInterface,
- *   folderID?: string,
- *   folderPath?: string,
- *   name?: string,
- *   type?: value-of<Type>,
- *   updatedAt?: \DateTimeInterface,
+ *   createdAt?: \DateTimeInterface|null,
+ *   folderId?: string|null,
+ *   folderPath?: string|null,
+ *   name?: string|null,
+ *   type?: value-of<Type>|null,
+ *   updatedAt?: \DateTimeInterface|null,
  * }
  */
 final class Folder implements BaseModel
@@ -33,8 +33,8 @@ final class Folder implements BaseModel
     /**
      * Unique identifier of the asset.
      */
-    #[Api('folderId', optional: true)]
-    public ?string $folderID;
+    #[Api(optional: true)]
+    public ?string $folderId;
 
     /**
      * Path of the folder. This is the path you would use in the URL to access the folder. For example, if the folder is at the root of the media library, the path will be /folder. If the folder is inside another folder named images, the path will be /images/folder.
@@ -76,7 +76,7 @@ final class Folder implements BaseModel
      */
     public static function with(
         ?\DateTimeInterface $createdAt = null,
-        ?string $folderID = null,
+        ?string $folderId = null,
         ?string $folderPath = null,
         ?string $name = null,
         Type|string|null $type = null,
@@ -85,7 +85,7 @@ final class Folder implements BaseModel
         $obj = new self;
 
         null !== $createdAt && $obj->createdAt = $createdAt;
-        null !== $folderID && $obj->folderID = $folderID;
+        null !== $folderId && $obj->folderId = $folderId;
         null !== $folderPath && $obj->folderPath = $folderPath;
         null !== $name && $obj->name = $name;
         null !== $type && $obj['type'] = $type;
@@ -111,7 +111,7 @@ final class Folder implements BaseModel
     public function withFolderID(string $folderID): self
     {
         $obj = clone $this;
-        $obj->folderID = $folderID;
+        $obj->folderId = $folderID;
 
         return $obj;
     }

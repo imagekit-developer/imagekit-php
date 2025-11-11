@@ -37,9 +37,9 @@ final class URLEndpointsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->accounts->urlEndpoints->create(
-            description: 'My custom URL endpoint'
-        );
+        $result = $this->client->accounts->urlEndpoints->create([
+            'description' => 'My custom URL endpoint',
+        ]);
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
@@ -51,9 +51,9 @@ final class URLEndpointsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->accounts->urlEndpoints->create(
-            description: 'My custom URL endpoint'
-        );
+        $result = $this->client->accounts->urlEndpoints->create([
+            'description' => 'My custom URL endpoint',
+        ]);
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
@@ -67,7 +67,7 @@ final class URLEndpointsTest extends TestCase
 
         $result = $this->client->accounts->urlEndpoints->update(
             'id',
-            description: 'My custom URL endpoint'
+            ['description' => 'My custom URL endpoint']
         );
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
@@ -82,7 +82,7 @@ final class URLEndpointsTest extends TestCase
 
         $result = $this->client->accounts->urlEndpoints->update(
             'id',
-            description: 'My custom URL endpoint'
+            ['description' => 'My custom URL endpoint']
         );
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType

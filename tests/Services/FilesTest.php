@@ -37,7 +37,7 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->files->update('fileId');
+        $result = $this->client->files->update('fileId', []);
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
@@ -61,10 +61,10 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->files->copy(
-            destinationPath: '/folder/to/copy/into/',
-            sourceFilePath: '/path/to/file.jpg',
-        );
+        $result = $this->client->files->copy([
+            'destinationPath' => '/folder/to/copy/into/',
+            'sourceFilePath' => '/path/to/file.jpg',
+        ]);
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
@@ -76,10 +76,10 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->files->copy(
-            destinationPath: '/folder/to/copy/into/',
-            sourceFilePath: '/path/to/file.jpg',
-        );
+        $result = $this->client->files->copy([
+            'destinationPath' => '/folder/to/copy/into/',
+            'sourceFilePath' => '/path/to/file.jpg',
+        ]);
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
@@ -103,10 +103,10 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->files->move(
-            destinationPath: '/folder/to/move/into/',
-            sourceFilePath: '/path/to/file.jpg',
-        );
+        $result = $this->client->files->move([
+            'destinationPath' => '/folder/to/move/into/',
+            'sourceFilePath' => '/path/to/file.jpg',
+        ]);
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
@@ -118,10 +118,10 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->files->move(
-            destinationPath: '/folder/to/move/into/',
-            sourceFilePath: '/path/to/file.jpg',
-        );
+        $result = $this->client->files->move([
+            'destinationPath' => '/folder/to/move/into/',
+            'sourceFilePath' => '/path/to/file.jpg',
+        ]);
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
@@ -133,10 +133,9 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->files->rename(
-            filePath: '/path/to/file.jpg',
-            newFileName: 'newFileName.jpg'
-        );
+        $result = $this->client->files->rename([
+            'filePath' => '/path/to/file.jpg', 'newFileName' => 'newFileName.jpg',
+        ]);
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
@@ -148,10 +147,9 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->files->rename(
-            filePath: '/path/to/file.jpg',
-            newFileName: 'newFileName.jpg'
-        );
+        $result = $this->client->files->rename([
+            'filePath' => '/path/to/file.jpg', 'newFileName' => 'newFileName.jpg',
+        ]);
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
@@ -163,7 +161,9 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->files->upload(file: 'file', fileName: 'fileName');
+        $result = $this->client->files->upload([
+            'file' => null, 'fileName' => 'fileName',
+        ]);
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }
@@ -175,7 +175,9 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->files->upload(file: 'file', fileName: 'fileName');
+        $result = $this->client->files->upload([
+            'file' => null, 'fileName' => 'fileName',
+        ]);
 
         $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
     }

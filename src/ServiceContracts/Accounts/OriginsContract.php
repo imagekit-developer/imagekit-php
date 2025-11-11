@@ -15,137 +15,26 @@ use ImageKit\Accounts\Origins\OriginResponse\WebProxy;
 use ImageKit\Core\Exceptions\APIException;
 use ImageKit\RequestOptions;
 
-use const ImageKit\Core\OMIT as omit;
-
 interface OriginsContract
 {
     /**
      * @api
      *
-     * @param string $accessKey access key for the bucket
-     * @param string $bucket
-     * @param string $name display name of the origin
-     * @param string $secretKey secret key for the bucket
-     * @param string $type
-     * @param string $endpoint custom S3-compatible endpoint
-     * @param string $baseURL akeneo instance base URL
-     * @param string $clientEmail
-     * @param string $privateKey
-     * @param string $accountName
-     * @param string $container
-     * @param string $sasToken
-     * @param string $clientID akeneo API client ID
-     * @param string $clientSecret akeneo API client secret
-     * @param string $password akeneo API password
-     * @param string $username akeneo API username
-     * @param string $baseURLForCanonicalHeader URL used in the Canonical header (if enabled)
-     * @param bool $includeCanonicalHeader whether to send a Canonical header
-     * @param string $prefix
-     * @param bool $s3ForcePathStyle Use path-style S3 URLs?
-     * @param bool $forwardHostHeaderToOrigin Forward the Host header to origin?
-     *
      * @throws APIException
      */
     public function create(
-        $accessKey,
-        $bucket,
-        $name,
-        $secretKey,
-        $type,
-        $endpoint,
-        $baseURL,
-        $clientEmail,
-        $privateKey,
-        $accountName,
-        $container,
-        $sasToken,
-        $clientID,
-        $clientSecret,
-        $password,
-        $username,
-        $baseURLForCanonicalHeader = omit,
-        $includeCanonicalHeader = omit,
-        $prefix = omit,
-        $s3ForcePathStyle = omit,
-        $forwardHostHeaderToOrigin = omit,
-        ?RequestOptions $requestOptions = null,
-    ): S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim;
-
-    /**
-     * @api
-     *
-     * @param array<string, mixed> $params
-     *
-     * @throws APIException
-     */
-    public function createRaw(
-        array $params,
+        mixed $params,
         ?RequestOptions $requestOptions = null
     ): S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim;
 
     /**
      * @api
      *
-     * @param string $accessKey access key for the bucket
-     * @param string $bucket
-     * @param string $name display name of the origin
-     * @param string $secretKey secret key for the bucket
-     * @param string $type
-     * @param string $endpoint custom S3-compatible endpoint
-     * @param string $baseURL akeneo instance base URL
-     * @param string $clientEmail
-     * @param string $privateKey
-     * @param string $accountName
-     * @param string $container
-     * @param string $sasToken
-     * @param string $clientID akeneo API client ID
-     * @param string $clientSecret akeneo API client secret
-     * @param string $password akeneo API password
-     * @param string $username akeneo API username
-     * @param string $baseURLForCanonicalHeader URL used in the Canonical header (if enabled)
-     * @param bool $includeCanonicalHeader whether to send a Canonical header
-     * @param string $prefix
-     * @param bool $s3ForcePathStyle Use path-style S3 URLs?
-     * @param bool $forwardHostHeaderToOrigin Forward the Host header to origin?
-     *
      * @throws APIException
      */
     public function update(
         string $id,
-        $accessKey,
-        $bucket,
-        $name,
-        $secretKey,
-        $type,
-        $endpoint,
-        $baseURL,
-        $clientEmail,
-        $privateKey,
-        $accountName,
-        $container,
-        $sasToken,
-        $clientID,
-        $clientSecret,
-        $password,
-        $username,
-        $baseURLForCanonicalHeader = omit,
-        $includeCanonicalHeader = omit,
-        $prefix = omit,
-        $s3ForcePathStyle = omit,
-        $forwardHostHeaderToOrigin = omit,
-        ?RequestOptions $requestOptions = null,
-    ): S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim;
-
-    /**
-     * @api
-     *
-     * @param array<string, mixed> $params
-     *
-     * @throws APIException
-     */
-    public function updateRaw(
-        string $id,
-        array $params,
+        mixed $params,
         ?RequestOptions $requestOptions = null
     ): S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim;
 

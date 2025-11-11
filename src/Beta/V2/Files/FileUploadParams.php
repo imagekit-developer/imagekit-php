@@ -39,7 +39,7 @@ use ImageKit\ExtensionItem\RemoveBg;
  *   token?: string,
  *   checks?: string,
  *   customCoordinates?: string,
- *   customMetadata?: array<string, mixed>,
+ *   customMetadata?: array<string,mixed>,
  *   description?: string,
  *   extensions?: list<RemoveBg|AutoTaggingExtension|AIAutoDescription>,
  *   folder?: string,
@@ -53,7 +53,7 @@ use ImageKit\ExtensionItem\RemoveBg;
  *   tags?: list<string>,
  *   transformation?: Transformation,
  *   useUniqueFileName?: bool,
- *   webhookURL?: string,
+ *   webhookUrl?: string,
  * }
  */
 final class FileUploadParams implements BaseModel
@@ -111,7 +111,7 @@ final class FileUploadParams implements BaseModel
     /**
      * JSON key-value pairs to associate with the asset. Create the custom metadata fields before setting these values.
      *
-     * @var array<string, mixed>|null $customMetadata
+     * @var array<string,mixed>|null $customMetadata
      */
     #[Api(map: 'mixed', optional: true)]
     public ?array $customMetadata;
@@ -223,8 +223,8 @@ final class FileUploadParams implements BaseModel
     /**
      * The final status of extensions after they have completed execution will be delivered to this endpoint as a POST request. [Learn more](/docs/api-reference/digital-asset-management-dam/managing-assets/update-file-details#webhook-payload-structure) about the webhook payload structure.
      */
-    #[Api('webhookUrl', optional: true)]
-    public ?string $webhookURL;
+    #[Api(optional: true)]
+    public ?string $webhookUrl;
 
     /**
      * `new FileUploadParams()` is missing required properties by the API.
@@ -250,7 +250,7 @@ final class FileUploadParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param array<string, mixed> $customMetadata
+     * @param array<string,mixed> $customMetadata
      * @param list<RemoveBg|AutoTaggingExtension|AIAutoDescription> $extensions
      * @param list<ResponseField|value-of<ResponseField>> $responseFields
      * @param list<string> $tags
@@ -275,7 +275,7 @@ final class FileUploadParams implements BaseModel
         ?array $tags = null,
         ?Transformation $transformation = null,
         ?bool $useUniqueFileName = null,
-        ?string $webhookURL = null,
+        ?string $webhookUrl = null,
     ): self {
         $obj = new self;
 
@@ -299,7 +299,7 @@ final class FileUploadParams implements BaseModel
         null !== $tags && $obj->tags = $tags;
         null !== $transformation && $obj->transformation = $transformation;
         null !== $useUniqueFileName && $obj->useUniqueFileName = $useUniqueFileName;
-        null !== $webhookURL && $obj->webhookURL = $webhookURL;
+        null !== $webhookUrl && $obj->webhookUrl = $webhookUrl;
 
         return $obj;
     }
@@ -378,7 +378,7 @@ final class FileUploadParams implements BaseModel
     /**
      * JSON key-value pairs to associate with the asset. Create the custom metadata fields before setting these values.
      *
-     * @param array<string, mixed> $customMetadata
+     * @param array<string,mixed> $customMetadata
      */
     public function withCustomMetadata(array $customMetadata): self
     {
@@ -564,7 +564,7 @@ final class FileUploadParams implements BaseModel
     public function withWebhookURL(string $webhookURL): self
     {
         $obj = clone $this;
-        $obj->webhookURL = $webhookURL;
+        $obj->webhookUrl = $webhookURL;
 
         return $obj;
     }

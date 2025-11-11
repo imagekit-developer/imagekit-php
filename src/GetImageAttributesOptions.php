@@ -15,15 +15,15 @@ use ImageKit\Core\Contracts\BaseModel;
  * @phpstan-type GetImageAttributesOptionsShape = array{
  *   src: string,
  *   urlEndpoint: string,
- *   expiresIn?: float,
- *   queryParameters?: array<string, string>,
- *   signed?: bool,
- *   transformation?: list<Transformation>,
- *   transformationPosition?: value-of<TransformationPosition>,
- *   deviceBreakpoints?: list<float>,
- *   imageBreakpoints?: list<float>,
- *   sizes?: string,
- *   width?: float,
+ *   expiresIn?: float|null,
+ *   queryParameters?: array<string,string>|null,
+ *   signed?: bool|null,
+ *   transformation?: list<Transformation>|null,
+ *   transformationPosition?: value-of<TransformationPosition>|null,
+ *   deviceBreakpoints?: list<float>|null,
+ *   imageBreakpoints?: list<float>|null,
+ *   sizes?: string|null,
+ *   width?: float|null,
  * }
  */
 final class GetImageAttributesOptions implements BaseModel
@@ -62,7 +62,7 @@ final class GetImageAttributesOptions implements BaseModel
      * They can be any query parameters and not necessarily related to ImageKit.
      * This is especially useful if you want to add a versioning parameter to your URLs.
      *
-     * @var array<string, string>|null $queryParameters
+     * @var array<string,string>|null $queryParameters
      */
     #[Api(map: 'string', optional: true)]
     public ?array $queryParameters;
@@ -167,7 +167,7 @@ final class GetImageAttributesOptions implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param array<string, string> $queryParameters
+     * @param array<string,string> $queryParameters
      * @param list<Transformation> $transformation
      * @param TransformationPosition|value-of<TransformationPosition> $transformationPosition
      * @param list<float> $deviceBreakpoints
@@ -250,7 +250,7 @@ final class GetImageAttributesOptions implements BaseModel
      * They can be any query parameters and not necessarily related to ImageKit.
      * This is especially useful if you want to add a versioning parameter to your URLs.
      *
-     * @param array<string, string> $queryParameters
+     * @param array<string,string> $queryParameters
      */
     public function withQueryParameters(array $queryParameters): self
     {

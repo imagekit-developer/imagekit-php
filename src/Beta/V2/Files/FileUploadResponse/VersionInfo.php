@@ -11,7 +11,7 @@ use ImageKit\Core\Contracts\BaseModel;
 /**
  * An object containing the file or file version's `id` (versionId) and `name`.
  *
- * @phpstan-type VersionInfoShape = array{id?: string, name?: string}
+ * @phpstan-type VersionInfoShape = array{id?: string|null, name?: string|null}
  */
 final class VersionInfo implements BaseModel
 {

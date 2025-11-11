@@ -13,20 +13,20 @@ use ImageKit\Files\Metadata\Exif;
  * JSON object containing metadata.
  *
  * @phpstan-type MetadataShape = array{
- *   audioCodec?: string,
- *   bitRate?: int,
- *   density?: int,
- *   duration?: int,
- *   exif?: Exif,
- *   format?: string,
- *   hasColorProfile?: bool,
- *   hasTransparency?: bool,
- *   height?: int,
- *   pHash?: string,
- *   quality?: int,
- *   size?: int,
- *   videoCodec?: string,
- *   width?: int,
+ *   audioCodec?: string|null,
+ *   bitRate?: int|null,
+ *   density?: int|null,
+ *   duration?: int|null,
+ *   exif?: Exif|null,
+ *   format?: string|null,
+ *   hasColorProfile?: bool|null,
+ *   hasTransparency?: bool|null,
+ *   height?: int|null,
+ *   pHash?: string|null,
+ *   quality?: int|null,
+ *   size?: int|null,
+ *   videoCodec?: string|null,
+ *   width?: int|null,
  * }
  */
 final class Metadata implements BaseModel

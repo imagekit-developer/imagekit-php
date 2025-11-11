@@ -11,12 +11,12 @@ use ImageKit\ImageOverlay\Encoding;
 
 /**
  * @phpstan-type ImageOverlayShape = array{
- *   position?: OverlayPosition,
- *   timing?: OverlayTiming,
+ *   position?: OverlayPosition|null,
+ *   timing?: OverlayTiming|null,
  *   input: string,
- *   type: string,
- *   encoding?: value-of<Encoding>,
- *   transformation?: list<Transformation>,
+ *   type: "image",
+ *   encoding?: value-of<Encoding>|null,
+ *   transformation?: list<Transformation>|null,
  * }
  */
 final class ImageOverlay implements BaseModel
@@ -24,6 +24,7 @@ final class ImageOverlay implements BaseModel
     /** @use SdkModel<ImageOverlayShape> */
     use SdkModel;
 
+    /** @var "image" $type */
     #[Api]
     public string $type = 'image';
 

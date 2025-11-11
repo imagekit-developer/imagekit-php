@@ -11,9 +11,9 @@ use ImageKit\Core\Contracts\BaseModel;
 /**
  * @phpstan-type WebProxyShape = array{
  *   name: string,
- *   type: string,
- *   baseURLForCanonicalHeader?: string,
- *   includeCanonicalHeader?: bool,
+ *   type: "WEB_PROXY",
+ *   baseUrlForCanonicalHeader?: string|null,
+ *   includeCanonicalHeader?: bool|null,
  * }
  */
 final class WebProxy implements BaseModel
@@ -21,6 +21,7 @@ final class WebProxy implements BaseModel
     /** @use SdkModel<WebProxyShape> */
     use SdkModel;
 
+    /** @var "WEB_PROXY" $type */
     #[Api]
     public string $type = 'WEB_PROXY';
 
@@ -33,8 +34,8 @@ final class WebProxy implements BaseModel
     /**
      * URL used in the Canonical header (if enabled).
      */
-    #[Api('baseUrlForCanonicalHeader', optional: true)]
-    public ?string $baseURLForCanonicalHeader;
+    #[Api(optional: true)]
+    public ?string $baseUrlForCanonicalHeader;
 
     /**
      * Whether to send a Canonical header.
@@ -68,14 +69,14 @@ final class WebProxy implements BaseModel
      */
     public static function with(
         string $name,
-        ?string $baseURLForCanonicalHeader = null,
+        ?string $baseUrlForCanonicalHeader = null,
         ?bool $includeCanonicalHeader = null,
     ): self {
         $obj = new self;
 
         $obj->name = $name;
 
-        null !== $baseURLForCanonicalHeader && $obj->baseURLForCanonicalHeader = $baseURLForCanonicalHeader;
+        null !== $baseUrlForCanonicalHeader && $obj->baseUrlForCanonicalHeader = $baseUrlForCanonicalHeader;
         null !== $includeCanonicalHeader && $obj->includeCanonicalHeader = $includeCanonicalHeader;
 
         return $obj;
@@ -99,7 +100,7 @@ final class WebProxy implements BaseModel
         string $baseURLForCanonicalHeader
     ): self {
         $obj = clone $this;
-        $obj->baseURLForCanonicalHeader = $baseURLForCanonicalHeader;
+        $obj->baseUrlForCanonicalHeader = $baseURLForCanonicalHeader;
 
         return $obj;
     }

@@ -12,7 +12,7 @@ use ImageKit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
  * @phpstan-type BulkDeleteResponseShape = array{
- *   successfullyDeletedFileIDs?: list<string>
+ *   successfullyDeletedFileIds?: list<string>|null
  * }
  */
 final class BulkDeleteResponse implements BaseModel, ResponseConverter
@@ -25,10 +25,10 @@ final class BulkDeleteResponse implements BaseModel, ResponseConverter
     /**
      * An array of fileIds that were successfully deleted.
      *
-     * @var list<string>|null $successfullyDeletedFileIDs
+     * @var list<string>|null $successfullyDeletedFileIds
      */
-    #[Api('successfullyDeletedFileIds', list: 'string', optional: true)]
-    public ?array $successfullyDeletedFileIDs;
+    #[Api(list: 'string', optional: true)]
+    public ?array $successfullyDeletedFileIds;
 
     public function __construct()
     {
@@ -40,13 +40,13 @@ final class BulkDeleteResponse implements BaseModel, ResponseConverter
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<string> $successfullyDeletedFileIDs
+     * @param list<string> $successfullyDeletedFileIds
      */
-    public static function with(?array $successfullyDeletedFileIDs = null): self
+    public static function with(?array $successfullyDeletedFileIds = null): self
     {
         $obj = new self;
 
-        null !== $successfullyDeletedFileIDs && $obj->successfullyDeletedFileIDs = $successfullyDeletedFileIDs;
+        null !== $successfullyDeletedFileIds && $obj->successfullyDeletedFileIds = $successfullyDeletedFileIds;
 
         return $obj;
     }
@@ -60,7 +60,7 @@ final class BulkDeleteResponse implements BaseModel, ResponseConverter
         array $successfullyDeletedFileIDs
     ): self {
         $obj = clone $this;
-        $obj->successfullyDeletedFileIDs = $successfullyDeletedFileIDs;
+        $obj->successfullyDeletedFileIds = $successfullyDeletedFileIDs;
 
         return $obj;
     }

@@ -10,12 +10,12 @@ use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * @phpstan-type SolidColorOverlayTransformationShape = array{
- *   alpha?: float,
- *   background?: string,
- *   gradient?: bool|string,
- *   height?: float|string,
- *   radius?: float|string,
- *   width?: float|string,
+ *   alpha?: float|null,
+ *   background?: string|null,
+ *   gradient?: string|null|bool,
+ *   height?: float|string|null,
+ *   radius?: float|null|"max",
+ *   width?: float|string|null,
  * }
  */
 final class SolidColorOverlayTransformation implements BaseModel
@@ -40,7 +40,7 @@ final class SolidColorOverlayTransformation implements BaseModel
      * Only works if the base asset is an image. See [gradient](https://imagekit.io/docs/effects-and-enhancements#gradient---e-gradient).
      */
     #[Api(optional: true)]
-    public bool|string|null $gradient;
+    public string|bool|null $gradient;
 
     /**
      * Controls the height of the solid color overlay. Accepts a numeric value or an arithmetic expression.
@@ -52,6 +52,8 @@ final class SolidColorOverlayTransformation implements BaseModel
     /**
      * Specifies the corner radius of the solid color overlay. Set to `max` for circular or oval shape.
      * See [radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
+     *
+     * @var float|"max"|null $radius
      */
     #[Api(optional: true)]
     public float|string|null $radius;
@@ -72,11 +74,13 @@ final class SolidColorOverlayTransformation implements BaseModel
      * Construct an instance from the required parameters.
      *
      * You must use named parameters to construct any parameters with a default value.
+     *
+     * @param float|"max" $radius
      */
     public static function with(
         ?float $alpha = null,
         ?string $background = null,
-        bool|string|null $gradient = null,
+        string|bool|null $gradient = null,
         float|string|null $height = null,
         float|string|null $radius = null,
         float|string|null $width = null,
@@ -119,7 +123,7 @@ final class SolidColorOverlayTransformation implements BaseModel
      * Creates a linear gradient with two colors. Pass `true` for a default gradient, or provide a string for a custom gradient.
      * Only works if the base asset is an image. See [gradient](https://imagekit.io/docs/effects-and-enhancements#gradient---e-gradient).
      */
-    public function withGradient(bool|string $gradient): self
+    public function withGradient(string|bool $gradient): self
     {
         $obj = clone $this;
         $obj->gradient = $gradient;
@@ -142,6 +146,8 @@ final class SolidColorOverlayTransformation implements BaseModel
     /**
      * Specifies the corner radius of the solid color overlay. Set to `max` for circular or oval shape.
      * See [radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
+     *
+     * @param float|"max" $radius
      */
     public function withRadius(float|string $radius): self
     {

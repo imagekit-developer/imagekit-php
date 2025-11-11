@@ -15,7 +15,7 @@ use ImageKit\Core\Contracts\BaseModel;
  * @see ImageKit\Files\Bulk->addTags
  *
  * @phpstan-type BulkAddTagsParamsShape = array{
- *   fileIDs: list<string>, tags: list<string>
+ *   fileIds: list<string>, tags: list<string>
  * }
  */
 final class BulkAddTagsParams implements BaseModel
@@ -27,10 +27,10 @@ final class BulkAddTagsParams implements BaseModel
     /**
      * An array of fileIds to which you want to add tags.
      *
-     * @var list<string> $fileIDs
+     * @var list<string> $fileIds
      */
-    #[Api('fileIds', list: 'string')]
-    public array $fileIDs;
+    #[Api(list: 'string')]
+    public array $fileIds;
 
     /**
      * An array of tags that you want to add to the files.
@@ -45,7 +45,7 @@ final class BulkAddTagsParams implements BaseModel
      *
      * To enforce required parameters use
      * ```
-     * BulkAddTagsParams::with(fileIDs: ..., tags: ...)
+     * BulkAddTagsParams::with(fileIds: ..., tags: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
@@ -64,14 +64,14 @@ final class BulkAddTagsParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<string> $fileIDs
+     * @param list<string> $fileIds
      * @param list<string> $tags
      */
-    public static function with(array $fileIDs, array $tags): self
+    public static function with(array $fileIds, array $tags): self
     {
         $obj = new self;
 
-        $obj->fileIDs = $fileIDs;
+        $obj->fileIds = $fileIds;
         $obj->tags = $tags;
 
         return $obj;
@@ -85,7 +85,7 @@ final class BulkAddTagsParams implements BaseModel
     public function withFileIDs(array $fileIDs): self
     {
         $obj = clone $this;
-        $obj->fileIDs = $fileIDs;
+        $obj->fileIds = $fileIDs;
 
         return $obj;
     }

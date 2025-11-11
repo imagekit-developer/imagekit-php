@@ -13,7 +13,7 @@ use ImageKit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Type;
 
 /**
  * @phpstan-type TransformationShape = array{
- *   type: value-of<Type>, options?: Options, output?: Output
+ *   type: value-of<Type>, options?: Options|null, output?: Output|null
  * }
  */
 final class Transformation implements BaseModel

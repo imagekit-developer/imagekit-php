@@ -14,10 +14,10 @@ use ImageKit\Folders\Job\JobGetResponse\Type;
 
 /**
  * @phpstan-type JobGetResponseShape = array{
- *   jobID?: string,
- *   purgeRequestID?: string,
- *   status?: value-of<Status>,
- *   type?: value-of<Type>,
+ *   jobId?: string|null,
+ *   purgeRequestId?: string|null,
+ *   status?: value-of<Status>|null,
+ *   type?: value-of<Type>|null,
  * }
  */
 final class JobGetResponse implements BaseModel, ResponseConverter
@@ -30,14 +30,14 @@ final class JobGetResponse implements BaseModel, ResponseConverter
     /**
      * Unique identifier of the bulk job.
      */
-    #[Api('jobId', optional: true)]
-    public ?string $jobID;
+    #[Api(optional: true)]
+    public ?string $jobId;
 
     /**
      * Unique identifier of the purge request. This will be present only if `purgeCache` is set to `true` in the rename folder API request.
      */
-    #[Api('purgeRequestId', optional: true)]
-    public ?string $purgeRequestID;
+    #[Api(optional: true)]
+    public ?string $purgeRequestId;
 
     /**
      * Status of the bulk job.
@@ -69,15 +69,15 @@ final class JobGetResponse implements BaseModel, ResponseConverter
      * @param Type|value-of<Type> $type
      */
     public static function with(
-        ?string $jobID = null,
-        ?string $purgeRequestID = null,
+        ?string $jobId = null,
+        ?string $purgeRequestId = null,
         Status|string|null $status = null,
         Type|string|null $type = null,
     ): self {
         $obj = new self;
 
-        null !== $jobID && $obj->jobID = $jobID;
-        null !== $purgeRequestID && $obj->purgeRequestID = $purgeRequestID;
+        null !== $jobId && $obj->jobId = $jobId;
+        null !== $purgeRequestId && $obj->purgeRequestId = $purgeRequestId;
         null !== $status && $obj['status'] = $status;
         null !== $type && $obj['type'] = $type;
 
@@ -90,7 +90,7 @@ final class JobGetResponse implements BaseModel, ResponseConverter
     public function withJobID(string $jobID): self
     {
         $obj = clone $this;
-        $obj->jobID = $jobID;
+        $obj->jobId = $jobID;
 
         return $obj;
     }
@@ -101,7 +101,7 @@ final class JobGetResponse implements BaseModel, ResponseConverter
     public function withPurgeRequestID(string $purgeRequestID): self
     {
         $obj = clone $this;
-        $obj->purgeRequestID = $purgeRequestID;
+        $obj->purgeRequestId = $purgeRequestID;
 
         return $obj;
     }

@@ -31,7 +31,7 @@ use ImageKit\Files\FileUploadParams\Transformation;
  * - A full-fledged [upload widget using Uppy](https://github.com/imagekit-samples/uppy-uploader), supporting file selections from local storage, URL, Dropbox, Google Drive, Instagram, and more.
  * - [Quick start guides](/docs/quick-start-guides) for various frameworks and technologies.
  *
- * @see ImageKit\FilesService::upload()
+ * @see ImageKit\Services\FilesService::upload()
  *
  * @phpstan-type FileUploadParamsShape = array{
  *   file: string,

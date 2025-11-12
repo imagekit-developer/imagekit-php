@@ -31,7 +31,7 @@ use ImageKit\ExtensionItem\RemoveBg;
  * - A full-fledged [upload widget using Uppy](https://github.com/imagekit-samples/uppy-uploader), supporting file selections from local storage, URL, Dropbox, Google Drive, Instagram, and more.
  * - [Quick start guides](/docs/quick-start-guides) for various frameworks and technologies.
  *
- * @see ImageKit\STAINLESS_FIXME_Beta\STAINLESS_FIXME_V2\FilesService::upload()
+ * @see ImageKit\Services\Beta\V2\FilesService::upload()
  *
  * @phpstan-type FileUploadParamsShape = array{
  *   file: string,

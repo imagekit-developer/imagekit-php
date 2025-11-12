@@ -18,7 +18,7 @@ use ImageKit\Files\FileUpdateParams\RemoveAITags;
 /**
  * This API updates the details or attributes of the current version of the file. You can update `tags`, `customCoordinates`, `customMetadata`, publication status, remove existing `AITags` and apply extensions using this API.
  *
- * @see ImageKit\FilesService::update()
+ * @see ImageKit\Services\FilesService::update()
  *
  * @phpstan-type FileUpdateParamsShape = array{
  *   customCoordinates?: string|null,

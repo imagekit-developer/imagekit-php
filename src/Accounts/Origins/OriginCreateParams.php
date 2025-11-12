@@ -13,7 +13,7 @@ use ImageKit\Core\Contracts\BaseModel;
  * **Note:** This API is currently in beta.
  * Creates a new origin and returns the origin object.
  *
- * @see ImageKit\STAINLESS_FIXME_Accounts\OriginsService::create()
+ * @see ImageKit\Services\Accounts\OriginsService::create()
  *
  * @phpstan-type OriginCreateParamsShape = array{
  *   accessKey: string,

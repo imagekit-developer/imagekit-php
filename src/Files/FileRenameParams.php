@@ -14,7 +14,7 @@ use ImageKit\Core\Contracts\BaseModel;
  *
  * Note: The old URLs will stop working. The file/file version URLs cached on CDN will continue to work unless a purge is requested.
  *
- * @see ImageKit\FilesService::rename()
+ * @see ImageKit\Services\FilesService::rename()
  *
  * @phpstan-type FileRenameParamsShape = array{
  *   filePath: string, newFileName: string, purgeCache?: bool

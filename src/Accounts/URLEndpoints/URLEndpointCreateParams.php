@@ -17,7 +17,7 @@ use ImageKit\Core\Contracts\BaseModel;
  * **Note:** This API is currently in beta.
  * Creates a new URL‑endpoint and returns the resulting object.
  *
- * @see ImageKit\STAINLESS_FIXME_Accounts\URLEndpointsService::create()
+ * @see ImageKit\Services\Accounts\URLEndpointsService::create()
  *
  * @phpstan-type URLEndpointCreateParamsShape = array{
  *   description: string,

@@ -16,7 +16,7 @@ use ImageKit\Core\Contracts\BaseModel;
  *
  * A maximum of 100 files can be deleted at a time.
  *
- * @see ImageKit\STAINLESS_FIXME_Files\BulkService::delete()
+ * @see ImageKit\Services\Files\BulkService::delete()
  *
  * @phpstan-type BulkDeleteParamsShape = array{fileIds: list<string>}
  */

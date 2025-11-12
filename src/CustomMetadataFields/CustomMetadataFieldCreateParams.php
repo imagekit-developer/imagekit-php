@@ -13,7 +13,7 @@ use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema;
 /**
  * This API creates a new custom metadata field. Once a custom metadata field is created either through this API or using the dashboard UI, its value can be set on the assets. The value of a field for an asset can be set using the media library UI or programmatically through upload or update assets API.
  *
- * @see ImageKit\CustomMetadataFieldsService::create()
+ * @see ImageKit\Services\CustomMetadataFieldsService::create()
  *
  * @phpstan-type CustomMetadataFieldCreateParamsShape = array{
  *   label: string, name: string, schema: Schema

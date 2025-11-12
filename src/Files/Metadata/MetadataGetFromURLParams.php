@@ -12,7 +12,7 @@ use ImageKit\Core\Contracts\BaseModel;
 /**
  * Get image EXIF, pHash, and other metadata from ImageKit.io powered remote URL using this API.
  *
- * @see ImageKit\Files\Metadata->getFromURL
+ * @see ImageKit\STAINLESS_FIXME_Files\MetadataService::getFromURL()
  *
  * @phpstan-type MetadataGetFromURLParamsShape = array{url: string}
  */

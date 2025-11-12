@@ -12,7 +12,7 @@ use ImageKit\Core\Contracts\BaseModel;
 /**
  * This API returns an object with details or attributes of a file version.
  *
- * @see ImageKit\STAINLESS_FIXME_Files\VersionsService::get()
+ * @see ImageKit\Services\Files\VersionsService::get()
  *
  * @phpstan-type VersionGetParamsShape = array{fileId: string}
  */

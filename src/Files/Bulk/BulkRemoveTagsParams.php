@@ -12,7 +12,7 @@ use ImageKit\Core\Contracts\BaseModel;
 /**
  * This API removes tags from multiple files in bulk. A maximum of 50 files can be specified at a time.
  *
- * @see ImageKit\STAINLESS_FIXME_Files\BulkService::removeTags()
+ * @see ImageKit\Services\Files\BulkService::removeTags()
  *
  * @phpstan-type BulkRemoveTagsParamsShape = array{
  *   fileIds: list<string>, tags: list<string>

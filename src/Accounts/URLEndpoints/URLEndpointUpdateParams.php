@@ -17,7 +17,7 @@ use ImageKit\Core\Contracts\BaseModel;
  * **Note:** This API is currently in beta.
  * Updates the URL‑endpoint identified by `id` and returns the updated object.
  *
- * @see ImageKit\STAINLESS_FIXME_Accounts\URLEndpointsService::update()
+ * @see ImageKit\Services\Accounts\URLEndpointsService::update()
  *
  * @phpstan-type URLEndpointUpdateParamsShape = array{
  *   description: string,

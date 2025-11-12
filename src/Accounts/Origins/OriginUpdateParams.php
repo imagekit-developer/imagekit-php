@@ -13,7 +13,7 @@ use ImageKit\Core\Contracts\BaseModel;
  * **Note:** This API is currently in beta.
  * Updates the origin identified by `id` and returns the updated origin object.
  *
- * @see ImageKit\STAINLESS_FIXME_Accounts\OriginsService::update()
+ * @see ImageKit\Services\Accounts\OriginsService::update()
  *
  * @phpstan-type OriginUpdateParamsShape = array{
  *   accessKey: string,

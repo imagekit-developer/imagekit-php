@@ -14,7 +14,7 @@ use ImageKit\Core\Contracts\BaseModel;
  *
  * You can also filter results by a specific folder path to retrieve custom metadata fields applicable at that location. This path-specific filtering is useful when using the **Path policy** feature to determine which custom metadata fields are selected for a given path.
  *
- * @see ImageKit\CustomMetadataFieldsService::list()
+ * @see ImageKit\Services\CustomMetadataFieldsService::list()
  *
  * @phpstan-type CustomMetadataFieldListParamsShape = array{
  *   folderPath?: string, includeDeleted?: bool

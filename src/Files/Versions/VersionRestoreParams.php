@@ -12,7 +12,7 @@ use ImageKit\Core\Contracts\BaseModel;
 /**
  * This API restores a file version as the current file version.
  *
- * @see ImageKit\STAINLESS_FIXME_Files\VersionsService::restore()
+ * @see ImageKit\Services\Files\VersionsService::restore()
  *
  * @phpstan-type VersionRestoreParamsShape = array{fileId: string}
  */

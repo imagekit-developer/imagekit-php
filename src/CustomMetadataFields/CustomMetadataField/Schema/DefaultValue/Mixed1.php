@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Beta\V2\Files\FileUploadResponse\SelectedFieldsSchema\DefaultValue;
+namespace ImageKit\CustomMetadataFields\CustomMetadataField\Schema\DefaultValue;
 
 use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
-final class Mixed implements ConverterSource
+final class Mixed1 implements ConverterSource
 {
     use SdkUnion;
 

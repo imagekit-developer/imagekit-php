@@ -12,7 +12,7 @@ use ImageKit\Core\Contracts\BaseModel;
 /**
  * This API adds tags to multiple files in bulk. A maximum of 50 files can be specified at a time.
  *
- * @see ImageKit\Files\Bulk->addTags
+ * @see ImageKit\STAINLESS_FIXME_Files\BulkService::addTags()
  *
  * @phpstan-type BulkAddTagsParamsShape = array{
  *   fileIds: list<string>, tags: list<string>

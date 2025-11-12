@@ -12,7 +12,7 @@ use ImageKit\Core\Contracts\BaseModel;
 /**
  * This will delete a folder and all its contents permanently. The API returns an empty response.
  *
- * @see ImageKit\Folders->delete
+ * @see ImageKit\FoldersService::delete()
  *
  * @phpstan-type FolderDeleteParamsShape = array{folderPath: string}
  */

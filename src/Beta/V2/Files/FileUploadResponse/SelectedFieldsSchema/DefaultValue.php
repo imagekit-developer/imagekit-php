@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace ImageKit\Beta\V2\Files\FileUploadResponse\SelectedFieldsSchema;
 
-use ImageKit\Beta\V2\Files\FileUploadResponse\SelectedFieldsSchema\DefaultValue\Mixed;
+use ImageKit\Beta\V2\Files\FileUploadResponse\SelectedFieldsSchema\DefaultValue\Mixed1;
 use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
@@ -22,6 +22,6 @@ final class DefaultValue implements ConverterSource
      */
     public static function variants(): array
     {
-        return ['string', 'float', 'bool', new ListOf(Mixed::class)];
+        return ['string', 'float', 'bool', new ListOf(Mixed1::class)];
     }
 }

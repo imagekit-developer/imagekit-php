@@ -8,7 +8,7 @@ use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
-final class Mixed implements ConverterSource
+final class Mixed1 implements ConverterSource
 {
     use SdkUnion;
 

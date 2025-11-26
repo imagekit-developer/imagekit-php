@@ -14,7 +14,7 @@ use ImageKit\Core\Contracts\BaseModel;
  *   bucket: string,
  *   name: string,
  *   secretKey: string,
- *   type: "CLOUDINARY_BACKUP",
+ *   type: 'CLOUDINARY_BACKUP',
  *   baseUrlForCanonicalHeader?: string|null,
  *   includeCanonicalHeader?: bool|null,
  *   prefix?: string|null,
@@ -25,7 +25,7 @@ final class CloudinaryBackup implements BaseModel
     /** @use SdkModel<CloudinaryBackupShape> */
     use SdkModel;
 
-    /** @var "CLOUDINARY_BACKUP" $type */
+    /** @var 'CLOUDINARY_BACKUP' $type */
     #[Api]
     public string $type = 'CLOUDINARY_BACKUP';
 

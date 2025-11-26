@@ -21,7 +21,7 @@ use ImageKit\TextOverlayTransformation\InnerAlignment;
  *   innerAlignment?: value-of<InnerAlignment>|null,
  *   lineHeight?: float|string|null,
  *   padding?: float|string|null,
- *   radius?: float|null|"max",
+ *   radius?: float|null|'max',
  *   rotation?: float|string|null,
  *   typography?: string|null,
  *   width?: float|string|null,
@@ -99,7 +99,7 @@ final class TextOverlayTransformation implements BaseModel
      * Specifies the corner radius of the text overlay.
      * Set to `max` to achieve a circular or oval shape.
      *
-     * @var float|"max"|null $radius
+     * @var float|'max'|null $radius
      */
     #[Api(optional: true)]
     public float|string|null $radius;
@@ -139,7 +139,7 @@ final class TextOverlayTransformation implements BaseModel
      *
      * @param Flip|value-of<Flip> $flip
      * @param InnerAlignment|value-of<InnerAlignment> $innerAlignment
-     * @param float|"max" $radius
+     * @param float|'max' $radius
      */
     public static function with(
         ?float $alpha = null,
@@ -288,7 +288,7 @@ final class TextOverlayTransformation implements BaseModel
      * Specifies the corner radius of the text overlay.
      * Set to `max` to achieve a circular or oval shape.
      *
-     * @param float|"max" $radius
+     * @param float|'max' $radius
      */
     public function withRadius(float|string $radius): self
     {

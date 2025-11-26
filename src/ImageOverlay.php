@@ -14,7 +14,7 @@ use ImageKit\ImageOverlay\Encoding;
  *   position?: OverlayPosition|null,
  *   timing?: OverlayTiming|null,
  *   input: string,
- *   type: "image",
+ *   type: 'image',
  *   encoding?: value-of<Encoding>|null,
  *   transformation?: list<Transformation>|null,
  * }
@@ -24,7 +24,7 @@ final class ImageOverlay implements BaseModel
     /** @use SdkModel<ImageOverlayShape> */
     use SdkModel;
 
-    /** @var "image" $type */
+    /** @var 'image' $type */
     #[Api]
     public string $type = 'image';
 

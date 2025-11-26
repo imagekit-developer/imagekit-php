@@ -10,7 +10,7 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\ExtensionItem\RemoveBg\Options;
 
 /**
- * @phpstan-type RemoveBgShape = array{name: "remove-bg", options?: Options|null}
+ * @phpstan-type RemoveBgShape = array{name: 'remove-bg', options?: Options|null}
  */
 final class RemoveBg implements BaseModel
 {
@@ -20,7 +20,7 @@ final class RemoveBg implements BaseModel
     /**
      * Specifies the background removal extension.
      *
-     * @var "remove-bg" $name
+     * @var 'remove-bg' $name
      */
     #[Api]
     public string $name = 'remove-bg';

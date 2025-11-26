@@ -57,7 +57,7 @@ use ImageKit\Transformation\VideoCodec;
  *   page?: float|string|null,
  *   progressive?: bool|null,
  *   quality?: float|null,
- *   radius?: float|null|"max",
+ *   radius?: float|null|'max',
  *   raw?: string|null,
  *   rotation?: float|string|null,
  *   shadow?: string|null|bool,
@@ -372,7 +372,7 @@ final class Transformation implements BaseModel
      * Specifies the corner radius for rounded corners (e.g., 20) or `max` for circular or oval shape.
      * See [Radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
      *
-     * @var float|"max"|null $radius
+     * @var float|'max'|null $radius
      */
     #[Api(optional: true)]
     public float|string|null $radius;
@@ -506,7 +506,7 @@ final class Transformation implements BaseModel
      * @param CropMode|value-of<CropMode> $cropMode
      * @param Flip|value-of<Flip> $flip
      * @param Format|value-of<Format> $format
-     * @param float|"max" $radius
+     * @param float|'max' $radius
      * @param list<StreamingResolution|value-of<StreamingResolution>> $streamingResolutions
      * @param VideoCodec|value-of<VideoCodec> $videoCodec
      */
@@ -1095,7 +1095,7 @@ final class Transformation implements BaseModel
      * Specifies the corner radius for rounded corners (e.g., 20) or `max` for circular or oval shape.
      * See [Radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
      *
-     * @param float|"max" $radius
+     * @param float|'max' $radius
      */
     public function withRadius(float|string $radius): self
     {

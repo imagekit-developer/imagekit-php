@@ -52,7 +52,7 @@ final class FilesService implements FilesContract
      *   overwriteCustomMetadata?: bool,
      *   overwriteFile?: bool,
      *   overwriteTags?: bool,
-     *   responseFields?: list<"tags"|"customCoordinates"|"isPrivateFile"|"embeddedMetadata"|"isPublished"|"customMetadata"|"metadata"|"selectedFieldsSchema">,
+     *   responseFields?: list<'tags'|'customCoordinates'|'isPrivateFile'|'embeddedMetadata'|'isPublished'|'customMetadata'|'metadata'|'selectedFieldsSchema'>,
      *   tags?: list<string>,
      *   transformation?: array{post?: list<array<string,mixed>>, pre?: string},
      *   useUniqueFileName?: bool,

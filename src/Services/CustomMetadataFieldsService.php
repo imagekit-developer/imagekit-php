@@ -31,7 +31,7 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
      *   label: string,
      *   name: string,
      *   schema: array{
-     *     type: "Text"|"Textarea"|"Number"|"Date"|"Boolean"|"SingleSelect"|"MultiSelect",
+     *     type: 'Text'|'Textarea'|'Number'|'Date'|'Boolean'|'SingleSelect'|'MultiSelect',
      *     defaultValue?: mixed,
      *     isValueRequired?: bool,
      *     maxLength?: float,

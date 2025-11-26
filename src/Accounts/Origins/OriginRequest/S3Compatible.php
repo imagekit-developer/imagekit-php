@@ -15,7 +15,7 @@ use ImageKit\Core\Contracts\BaseModel;
  *   endpoint: string,
  *   name: string,
  *   secretKey: string,
- *   type: "S3_COMPATIBLE",
+ *   type: 'S3_COMPATIBLE',
  *   baseUrlForCanonicalHeader?: string|null,
  *   includeCanonicalHeader?: bool|null,
  *   prefix?: string|null,
@@ -27,7 +27,7 @@ final class S3Compatible implements BaseModel
     /** @use SdkModel<S3CompatibleShape> */
     use SdkModel;
 
-    /** @var "S3_COMPATIBLE" $type */
+    /** @var 'S3_COMPATIBLE' $type */
     #[Api]
     public string $type = 'S3_COMPATIBLE';
 

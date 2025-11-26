@@ -9,7 +9,7 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type GifToVideoShape = array{type: "gif-to-video", value?: string|null}
+ * @phpstan-type GifToVideoShape = array{type: 'gif-to-video', value?: string|null}
  */
 final class GifToVideo implements BaseModel
 {
@@ -19,7 +19,7 @@ final class GifToVideo implements BaseModel
     /**
      * Converts an animated GIF into an MP4.
      *
-     * @var "gif-to-video" $type
+     * @var 'gif-to-video' $type
      */
     #[Api]
     public string $type = 'gif-to-video';

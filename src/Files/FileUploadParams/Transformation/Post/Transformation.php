@@ -9,7 +9,7 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type TransformationShape = array{type: "transformation", value: string}
+ * @phpstan-type TransformationShape = array{type: 'transformation', value: string}
  */
 final class Transformation implements BaseModel
 {
@@ -19,7 +19,7 @@ final class Transformation implements BaseModel
     /**
      * Transformation type.
      *
-     * @var "transformation" $type
+     * @var 'transformation' $type
      */
     #[Api]
     public string $type = 'transformation';

@@ -15,7 +15,7 @@ use ImageKit\Core\Contracts\BaseModel;
  *   clientSecret: string,
  *   name: string,
  *   password: string,
- *   type: "AKENEO_PIM",
+ *   type: 'AKENEO_PIM',
  *   username: string,
  *   baseUrlForCanonicalHeader?: string|null,
  *   includeCanonicalHeader?: bool|null,
@@ -26,7 +26,7 @@ final class AkeneoPim implements BaseModel
     /** @use SdkModel<AkeneoPimShape> */
     use SdkModel;
 
-    /** @var "AKENEO_PIM" $type */
+    /** @var 'AKENEO_PIM' $type */
     #[Api]
     public string $type = 'AKENEO_PIM';
 

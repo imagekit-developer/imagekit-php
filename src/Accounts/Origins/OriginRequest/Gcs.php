@@ -14,7 +14,7 @@ use ImageKit\Core\Contracts\BaseModel;
  *   clientEmail: string,
  *   name: string,
  *   privateKey: string,
- *   type: "GCS",
+ *   type: 'GCS',
  *   baseUrlForCanonicalHeader?: string|null,
  *   includeCanonicalHeader?: bool|null,
  *   prefix?: string|null,
@@ -25,7 +25,7 @@ final class Gcs implements BaseModel
     /** @use SdkModel<GcsShape> */
     use SdkModel;
 
-    /** @var "GCS" $type */
+    /** @var 'GCS' $type */
     #[Api]
     public string $type = 'GCS';
 

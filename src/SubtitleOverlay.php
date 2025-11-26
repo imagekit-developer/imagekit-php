@@ -14,7 +14,7 @@ use ImageKit\SubtitleOverlay\Encoding;
  *   position?: OverlayPosition|null,
  *   timing?: OverlayTiming|null,
  *   input: string,
- *   type: "subtitle",
+ *   type: 'subtitle',
  *   encoding?: value-of<Encoding>|null,
  *   transformation?: list<SubtitleOverlayTransformation>|null,
  * }
@@ -24,7 +24,7 @@ final class SubtitleOverlay implements BaseModel
     /** @use SdkModel<SubtitleOverlayShape> */
     use SdkModel;
 
-    /** @var "subtitle" $type */
+    /** @var 'subtitle' $type */
     #[Api]
     public string $type = 'subtitle';
 

@@ -14,7 +14,7 @@ use ImageKit\Core\Contracts\BaseModel;
  *   bucket: string,
  *   name: string,
  *   secretKey: string,
- *   type: "S3",
+ *   type: 'S3',
  *   baseUrlForCanonicalHeader?: string|null,
  *   includeCanonicalHeader?: bool|null,
  *   prefix?: string|null,
@@ -25,7 +25,7 @@ final class S3 implements BaseModel
     /** @use SdkModel<S3Shape> */
     use SdkModel;
 
-    /** @var "S3" $type */
+    /** @var 'S3' $type */
     #[Api]
     public string $type = 'S3';
 

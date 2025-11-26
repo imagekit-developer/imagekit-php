@@ -20,7 +20,7 @@ use ImageKit\Core\Contracts\BaseModel;
  *   bucket: string,
  *   name: string,
  *   secretKey: string,
- *   type: "AKENEO_PIM",
+ *   type: 'AKENEO_PIM',
  *   baseUrlForCanonicalHeader?: string,
  *   includeCanonicalHeader?: bool,
  *   prefix?: string,
@@ -45,7 +45,7 @@ final class OriginCreateParams implements BaseModel
     use SdkModel;
     use SdkParams;
 
-    /** @var "AKENEO_PIM" $type */
+    /** @var 'AKENEO_PIM' $type */
     #[Api]
     public string $type = 'AKENEO_PIM';
 

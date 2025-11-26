@@ -12,7 +12,7 @@ use ImageKit\Core\Contracts\BaseModel;
  * @phpstan-type WebFolderShape = array{
  *   baseUrl: string,
  *   name: string,
- *   type: "WEB_FOLDER",
+ *   type: 'WEB_FOLDER',
  *   baseUrlForCanonicalHeader?: string|null,
  *   forwardHostHeaderToOrigin?: bool|null,
  *   includeCanonicalHeader?: bool|null,
@@ -23,7 +23,7 @@ final class WebFolder implements BaseModel
     /** @use SdkModel<WebFolderShape> */
     use SdkModel;
 
-    /** @var "WEB_FOLDER" $type */
+    /** @var 'WEB_FOLDER' $type */
     #[Api]
     public string $type = 'WEB_FOLDER';
 

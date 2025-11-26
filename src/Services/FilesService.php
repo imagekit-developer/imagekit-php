@@ -251,7 +251,7 @@ final class FilesService implements FilesContract
      *   overwriteFile?: bool,
      *   overwriteTags?: bool,
      *   publicKey?: string,
-     *   responseFields?: list<"tags"|"customCoordinates"|"isPrivateFile"|"embeddedMetadata"|"isPublished"|"customMetadata"|"metadata"|"selectedFieldsSchema">,
+     *   responseFields?: list<'tags'|'customCoordinates'|'isPrivateFile'|'embeddedMetadata'|'isPublished'|'customMetadata'|'metadata'|'selectedFieldsSchema'>,
      *   signature?: string,
      *   tags?: list<string>,
      *   transformation?: array{post?: list<array<string,mixed>>, pre?: string},

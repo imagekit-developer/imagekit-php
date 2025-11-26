@@ -14,7 +14,7 @@ use ImageKit\TextOverlay\Encoding;
  *   position?: OverlayPosition|null,
  *   timing?: OverlayTiming|null,
  *   text: string,
- *   type: "text",
+ *   type: 'text',
  *   encoding?: value-of<Encoding>|null,
  *   transformation?: list<TextOverlayTransformation>|null,
  * }
@@ -24,7 +24,7 @@ final class TextOverlay implements BaseModel
     /** @use SdkModel<TextOverlayShape> */
     use SdkModel;
 
-    /** @var "text" $type */
+    /** @var 'text' $type */
     #[Api]
     public string $type = 'text';
 

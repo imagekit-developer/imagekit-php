@@ -10,7 +10,7 @@ use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * @phpstan-type CloudinaryShape = array{
- *   preserveAssetDeliveryTypes: bool, type: "CLOUDINARY"
+ *   preserveAssetDeliveryTypes: bool, type: 'CLOUDINARY'
  * }
  */
 final class Cloudinary implements BaseModel
@@ -18,7 +18,7 @@ final class Cloudinary implements BaseModel
     /** @use SdkModel<CloudinaryShape> */
     use SdkModel;
 
-    /** @var "CLOUDINARY" $type */
+    /** @var 'CLOUDINARY' $type */
     #[Api]
     public string $type = 'CLOUDINARY';
 

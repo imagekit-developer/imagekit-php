@@ -13,7 +13,7 @@ use ImageKit\Core\Contracts\BaseModel;
  *   position?: OverlayPosition|null,
  *   timing?: OverlayTiming|null,
  *   color: string,
- *   type: "solidColor",
+ *   type: 'solidColor',
  *   transformation?: list<SolidColorOverlayTransformation>|null,
  * }
  */
@@ -22,7 +22,7 @@ final class SolidColorOverlay implements BaseModel
     /** @use SdkModel<SolidColorOverlayShape> */
     use SdkModel;
 
-    /** @var "solidColor" $type */
+    /** @var 'solidColor' $type */
     #[Api]
     public string $type = 'solidColor';
 

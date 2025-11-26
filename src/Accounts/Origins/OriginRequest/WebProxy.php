@@ -11,7 +11,7 @@ use ImageKit\Core\Contracts\BaseModel;
 /**
  * @phpstan-type WebProxyShape = array{
  *   name: string,
- *   type: "WEB_PROXY",
+ *   type: 'WEB_PROXY',
  *   baseUrlForCanonicalHeader?: string|null,
  *   includeCanonicalHeader?: bool|null,
  * }
@@ -21,7 +21,7 @@ final class WebProxy implements BaseModel
     /** @use SdkModel<WebProxyShape> */
     use SdkModel;
 
-    /** @var "WEB_PROXY" $type */
+    /** @var 'WEB_PROXY' $type */
     #[Api]
     public string $type = 'WEB_PROXY';
 

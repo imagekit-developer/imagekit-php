@@ -42,13 +42,13 @@ Parameters with a default value must be set by name.
 use ImageKit\Client;
 
 $client = new Client(
-  privateKey: getenv("IMAGEKIT_PRIVATE_KEY") ?: "My Private Key",
-  password: getenv("OPTIONAL_IMAGEKIT_IGNORES_THIS") ?: "do_not_set",
+  privateKey: getenv('IMAGEKIT_PRIVATE_KEY') ?: 'My Private Key',
+  password: getenv('OPTIONAL_IMAGEKIT_IGNORES_THIS') ?: 'do_not_set',
 );
 
 $response = $client->files->upload([
-  "file" => "https://www.example.com/public-url.jpg",
-  "fileName" => "file-name.jpg",
+  'file' => 'https://www.example.com/public-url.jpg',
+  'fileName' => 'file-name.jpg',
 ]);
 
 var_dump($response->videoCodec);
@@ -72,8 +72,8 @@ use ImageKit\Core\Exceptions\APIConnectionException;
 
 try {
   $response = $client->files->upload([
-    "file" => "https://www.example.com/public-url.jpg",
-    "fileName" => "file-name.jpg",
+    'file' => 'https://www.example.com/public-url.jpg',
+    'fileName' => 'file-name.jpg',
   ]);
 } catch (APIConnectionException $e) {
   echo "The server could not be reached", PHP_EOL;
@@ -122,8 +122,8 @@ $client = new Client(maxRetries: 0);
 // Or, configure per-request:
 $result = $client->files->upload(
   [
-    "file" => "https://www.example.com/public-url.jpg",
-    "fileName" => "file-name.jpg",
+    'file' => 'https://www.example.com/public-url.jpg',
+    'fileName' => 'file-name.jpg',
   ],
   RequestOptions::with(maxRetries: 5),
 );
@@ -146,13 +146,13 @@ use ImageKit\RequestOptions;
 
 $response = $client->files->upload(
   [
-    "file" => "https://www.example.com/public-url.jpg",
-    "fileName" => "file-name.jpg",
+    'file' => 'https://www.example.com/public-url.jpg',
+    'fileName' => 'file-name.jpg',
   ],
   RequestOptions::with(
-    extraQueryParams: ["my_query_parameter" => "value"],
-    extraBodyParams: ["my_body_parameter" => "value"],
-    extraHeaders: ["my-header" => "value"],
+    extraQueryParams: ['my_query_parameter' => 'value'],
+    extraBodyParams: ['my_body_parameter' => 'value'],
+    extraHeaders: ['my-header' => 'value'],
   ),
 );
 ```

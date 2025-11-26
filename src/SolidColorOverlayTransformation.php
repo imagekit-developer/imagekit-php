@@ -14,7 +14,7 @@ use ImageKit\Core\Contracts\BaseModel;
  *   background?: string|null,
  *   gradient?: string|null|bool,
  *   height?: float|string|null,
- *   radius?: float|null|"max",
+ *   radius?: float|null|'max',
  *   width?: float|string|null,
  * }
  */
@@ -53,7 +53,7 @@ final class SolidColorOverlayTransformation implements BaseModel
      * Specifies the corner radius of the solid color overlay. Set to `max` for circular or oval shape.
      * See [radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
      *
-     * @var float|"max"|null $radius
+     * @var float|'max'|null $radius
      */
     #[Api(optional: true)]
     public float|string|null $radius;
@@ -75,7 +75,7 @@ final class SolidColorOverlayTransformation implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param float|"max" $radius
+     * @param float|'max' $radius
      */
     public static function with(
         ?float $alpha = null,
@@ -147,7 +147,7 @@ final class SolidColorOverlayTransformation implements BaseModel
      * Specifies the corner radius of the solid color overlay. Set to `max` for circular or oval shape.
      * See [radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
      *
-     * @param float|"max" $radius
+     * @param float|'max' $radius
      */
     public function withRadius(float|string $radius): self
     {

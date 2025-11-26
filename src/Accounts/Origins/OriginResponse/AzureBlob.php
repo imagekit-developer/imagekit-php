@@ -16,7 +16,7 @@ use ImageKit\Core\Contracts\BaseModel;
  *   includeCanonicalHeader: bool,
  *   name: string,
  *   prefix: string,
- *   type: "AZURE_BLOB",
+ *   type: 'AZURE_BLOB',
  *   baseUrlForCanonicalHeader?: string|null,
  * }
  */
@@ -25,7 +25,7 @@ final class AzureBlob implements BaseModel
     /** @use SdkModel<AzureBlobShape> */
     use SdkModel;
 
-    /** @var "AZURE_BLOB" $type */
+    /** @var 'AZURE_BLOB' $type */
     #[Api]
     public string $type = 'AZURE_BLOB';
 

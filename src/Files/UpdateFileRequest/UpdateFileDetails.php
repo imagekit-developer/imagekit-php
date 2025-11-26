@@ -19,7 +19,7 @@ use ImageKit\Files\UpdateFileRequest\UpdateFileDetails\RemoveAITags;
  *   customMetadata?: array<string,mixed>|null,
  *   description?: string|null,
  *   extensions?: list<RemoveBg|AutoTaggingExtension|AIAutoDescription>|null,
- *   removeAITags?: null|"all"|list<string>,
+ *   removeAITags?: null|'all'|list<string>,
  *   tags?: list<string>|null,
  *   webhookUrl?: string|null,
  * }
@@ -64,7 +64,7 @@ final class UpdateFileDetails implements BaseModel
      *
      * Note: The remove operation for `AITags` executes before any of the `extensions` are processed.
      *
-     * @var "all"|list<string>|null $removeAITags
+     * @var 'all'|list<string>|null $removeAITags
      */
     #[Api(union: RemoveAITags::class, optional: true)]
     public string|array|null $removeAITags;
@@ -95,7 +95,7 @@ final class UpdateFileDetails implements BaseModel
      *
      * @param array<string,mixed> $customMetadata
      * @param list<RemoveBg|AutoTaggingExtension|AIAutoDescription> $extensions
-     * @param "all"|list<string> $removeAITags
+     * @param 'all'|list<string> $removeAITags
      * @param list<string>|null $tags
      */
     public static function with(
@@ -175,7 +175,7 @@ final class UpdateFileDetails implements BaseModel
      *
      * Note: The remove operation for `AITags` executes before any of the `extensions` are processed.
      *
-     * @param "all"|list<string> $removeAITags
+     * @param 'all'|list<string> $removeAITags
      */
     public function withRemoveAITags(string|array $removeAITags): self
     {

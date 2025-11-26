@@ -9,7 +9,7 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type ThumbnailShape = array{type: "thumbnail", value?: string|null}
+ * @phpstan-type ThumbnailShape = array{type: 'thumbnail', value?: string|null}
  */
 final class Thumbnail implements BaseModel
 {
@@ -19,7 +19,7 @@ final class Thumbnail implements BaseModel
     /**
      * Generates a thumbnail image.
      *
-     * @var "thumbnail" $type
+     * @var 'thumbnail' $type
      */
     #[Api]
     public string $type = 'thumbnail';

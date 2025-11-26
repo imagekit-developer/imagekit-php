@@ -9,7 +9,7 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type AIAutoDescriptionShape = array{name: "ai-auto-description"}
+ * @phpstan-type AIAutoDescriptionShape = array{name: 'ai-auto-description'}
  */
 final class AIAutoDescription implements BaseModel
 {
@@ -19,7 +19,7 @@ final class AIAutoDescription implements BaseModel
     /**
      * Specifies the auto description extension.
      *
-     * @var "ai-auto-description" $name
+     * @var 'ai-auto-description' $name
      */
     #[Api]
     public string $name = 'ai-auto-description';

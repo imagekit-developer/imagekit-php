@@ -3,6 +3,7 @@
 namespace Tests\Services\Files;
 
 use ImageKit\Client;
+use ImageKit\Files\Metadata;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
@@ -39,7 +40,8 @@ final class MetadataTest extends TestCase
 
         $result = $this->client->files->metadata->get('fileId');
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(Metadata::class, $result);
     }
 
     #[Test]
@@ -53,7 +55,8 @@ final class MetadataTest extends TestCase
             'url' => 'https://example.com',
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(Metadata::class, $result);
     }
 
     #[Test]
@@ -67,6 +70,7 @@ final class MetadataTest extends TestCase
             'url' => 'https://example.com',
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(Metadata::class, $result);
     }
 }

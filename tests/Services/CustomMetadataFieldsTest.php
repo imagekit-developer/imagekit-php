@@ -3,6 +3,8 @@
 namespace Tests\Services;
 
 use ImageKit\Client;
+use ImageKit\CustomMetadataFields\CustomMetadataField;
+use ImageKit\CustomMetadataFields\CustomMetadataFieldDeleteResponse;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
@@ -41,7 +43,8 @@ final class CustomMetadataFieldsTest extends TestCase
             'label' => 'price', 'name' => 'price', 'schema' => ['type' => 'Number'],
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(CustomMetadataField::class, $result);
     }
 
     #[Test]
@@ -66,7 +69,8 @@ final class CustomMetadataFieldsTest extends TestCase
             ],
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(CustomMetadataField::class, $result);
     }
 
     #[Test]
@@ -78,7 +82,8 @@ final class CustomMetadataFieldsTest extends TestCase
 
         $result = $this->client->customMetadataFields->update('id', []);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(CustomMetadataField::class, $result);
     }
 
     #[Test]
@@ -90,7 +95,8 @@ final class CustomMetadataFieldsTest extends TestCase
 
         $result = $this->client->customMetadataFields->list([]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertIsList($result);
     }
 
     #[Test]
@@ -102,6 +108,7 @@ final class CustomMetadataFieldsTest extends TestCase
 
         $result = $this->client->customMetadataFields->delete('id');
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(CustomMetadataFieldDeleteResponse::class, $result);
     }
 }

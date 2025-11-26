@@ -3,6 +3,12 @@
 namespace Tests\Services;
 
 use ImageKit\Client;
+use ImageKit\Files\File;
+use ImageKit\Files\FileCopyResponse;
+use ImageKit\Files\FileMoveResponse;
+use ImageKit\Files\FileRenameResponse;
+use ImageKit\Files\FileUpdateResponse;
+use ImageKit\Files\FileUploadResponse;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
@@ -39,7 +45,8 @@ final class FilesTest extends TestCase
 
         $result = $this->client->files->update('fileId', []);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(FileUpdateResponse::class, $result);
     }
 
     #[Test]
@@ -51,7 +58,8 @@ final class FilesTest extends TestCase
 
         $result = $this->client->files->delete('fileId');
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertNull($result);
     }
 
     #[Test]
@@ -66,7 +74,8 @@ final class FilesTest extends TestCase
             'sourceFilePath' => '/path/to/file.jpg',
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(FileCopyResponse::class, $result);
     }
 
     #[Test]
@@ -79,9 +88,11 @@ final class FilesTest extends TestCase
         $result = $this->client->files->copy([
             'destinationPath' => '/folder/to/copy/into/',
             'sourceFilePath' => '/path/to/file.jpg',
+            'includeFileVersions' => false,
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(FileCopyResponse::class, $result);
     }
 
     #[Test]
@@ -93,7 +104,8 @@ final class FilesTest extends TestCase
 
         $result = $this->client->files->get('fileId');
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(File::class, $result);
     }
 
     #[Test]
@@ -108,7 +120,8 @@ final class FilesTest extends TestCase
             'sourceFilePath' => '/path/to/file.jpg',
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(FileMoveResponse::class, $result);
     }
 
     #[Test]
@@ -123,7 +136,8 @@ final class FilesTest extends TestCase
             'sourceFilePath' => '/path/to/file.jpg',
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(FileMoveResponse::class, $result);
     }
 
     #[Test]
@@ -137,7 +151,8 @@ final class FilesTest extends TestCase
             'filePath' => '/path/to/file.jpg', 'newFileName' => 'newFileName.jpg',
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(FileRenameResponse::class, $result);
     }
 
     #[Test]
@@ -148,10 +163,13 @@ final class FilesTest extends TestCase
         }
 
         $result = $this->client->files->rename([
-            'filePath' => '/path/to/file.jpg', 'newFileName' => 'newFileName.jpg',
+            'filePath' => '/path/to/file.jpg',
+            'newFileName' => 'newFileName.jpg',
+            'purgeCache' => true,
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(FileRenameResponse::class, $result);
     }
 
     #[Test]
@@ -165,7 +183,8 @@ final class FilesTest extends TestCase
             'file' => null, 'fileName' => 'fileName',
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(FileUploadResponse::class, $result);
     }
 
     #[Test]
@@ -176,9 +195,56 @@ final class FilesTest extends TestCase
         }
 
         $result = $this->client->files->upload([
-            'file' => null, 'fileName' => 'fileName',
+            'file' => null,
+            'fileName' => 'fileName',
+            'token' => 'token',
+            'checks' => '"request.folder" : "marketing/"\n',
+            'customCoordinates' => 'customCoordinates',
+            'customMetadata' => ['brand' => 'bar', 'color' => 'bar'],
+            'description' => 'Running shoes',
+            'expire' => 0,
+            'extensions' => [
+                [
+                    'name' => 'remove-bg',
+                    'options' => [
+                        'add_shadow' => true,
+                        'bg_color' => 'bg_color',
+                        'bg_image_url' => 'bg_image_url',
+                        'semitransparency' => true,
+                    ],
+                ],
+                [
+                    'maxTags' => 5, 'minConfidence' => 95, 'name' => 'google-auto-tagging',
+                ],
+                ['name' => 'ai-auto-description'],
+            ],
+            'folder' => 'folder',
+            'isPrivateFile' => true,
+            'isPublished' => true,
+            'overwriteAITags' => true,
+            'overwriteCustomMetadata' => true,
+            'overwriteFile' => true,
+            'overwriteTags' => true,
+            'publicKey' => 'publicKey',
+            'responseFields' => ['tags', 'customCoordinates', 'isPrivateFile'],
+            'signature' => 'signature',
+            'tags' => ['t-shirt', 'round-neck', 'men'],
+            'transformation' => [
+                'post' => [
+                    ['type' => 'thumbnail', 'value' => 'w-150,h-150'],
+                    [
+                        'protocol' => 'dash',
+                        'type' => 'abs',
+                        'value' => 'sr-240_360_480_720_1080',
+                    ],
+                ],
+                'pre' => 'w-300,h-300,q-80',
+            ],
+            'useUniqueFileName' => true,
+            'webhookUrl' => 'https://example.com',
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(FileUploadResponse::class, $result);
     }
 }

@@ -3,6 +3,11 @@
 namespace Tests\Services;
 
 use ImageKit\Client;
+use ImageKit\Folders\FolderCopyResponse;
+use ImageKit\Folders\FolderDeleteResponse;
+use ImageKit\Folders\FolderMoveResponse;
+use ImageKit\Folders\FolderNewResponse;
+use ImageKit\Folders\FolderRenameResponse;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
@@ -41,7 +46,8 @@ final class FoldersTest extends TestCase
             'folderName' => 'summer', 'parentFolderPath' => '/product/images/',
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(FolderNewResponse::class, $result);
     }
 
     #[Test]
@@ -55,7 +61,8 @@ final class FoldersTest extends TestCase
             'folderName' => 'summer', 'parentFolderPath' => '/product/images/',
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(FolderNewResponse::class, $result);
     }
 
     #[Test]
@@ -69,7 +76,8 @@ final class FoldersTest extends TestCase
             'folderPath' => '/folder/to/delete/',
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(FolderDeleteResponse::class, $result);
     }
 
     #[Test]
@@ -83,7 +91,8 @@ final class FoldersTest extends TestCase
             'folderPath' => '/folder/to/delete/',
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(FolderDeleteResponse::class, $result);
     }
 
     #[Test]
@@ -98,7 +107,8 @@ final class FoldersTest extends TestCase
             'sourceFolderPath' => '/path/of/source/folder',
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(FolderCopyResponse::class, $result);
     }
 
     #[Test]
@@ -111,9 +121,11 @@ final class FoldersTest extends TestCase
         $result = $this->client->folders->copy([
             'destinationPath' => '/path/of/destination/folder',
             'sourceFolderPath' => '/path/of/source/folder',
+            'includeVersions' => true,
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(FolderCopyResponse::class, $result);
     }
 
     #[Test]
@@ -128,7 +140,8 @@ final class FoldersTest extends TestCase
             'sourceFolderPath' => '/path/of/source/folder',
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(FolderMoveResponse::class, $result);
     }
 
     #[Test]
@@ -143,7 +156,8 @@ final class FoldersTest extends TestCase
             'sourceFolderPath' => '/path/of/source/folder',
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(FolderMoveResponse::class, $result);
     }
 
     #[Test]
@@ -157,7 +171,8 @@ final class FoldersTest extends TestCase
             'folderPath' => '/path/of/folder', 'newFolderName' => 'new-folder-name',
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(FolderRenameResponse::class, $result);
     }
 
     #[Test]
@@ -168,9 +183,12 @@ final class FoldersTest extends TestCase
         }
 
         $result = $this->client->folders->rename([
-            'folderPath' => '/path/of/folder', 'newFolderName' => 'new-folder-name',
+            'folderPath' => '/path/of/folder',
+            'newFolderName' => 'new-folder-name',
+            'purgeCache' => true,
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(FolderRenameResponse::class, $result);
     }
 }

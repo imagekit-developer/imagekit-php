@@ -2,6 +2,7 @@
 
 namespace Tests\Services\Accounts;
 
+use ImageKit\Accounts\URLEndpoints\URLEndpointResponse;
 use ImageKit\Client;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
@@ -41,7 +42,8 @@ final class URLEndpointsTest extends TestCase
             'description' => 'My custom URL endpoint',
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(URLEndpointResponse::class, $result);
     }
 
     #[Test]
@@ -53,9 +55,15 @@ final class URLEndpointsTest extends TestCase
 
         $result = $this->client->accounts->urlEndpoints->create([
             'description' => 'My custom URL endpoint',
+            'origins' => ['origin-id-1'],
+            'urlPrefix' => 'product-images',
+            'urlRewriter' => [
+                'type' => 'CLOUDINARY', 'preserveAssetDeliveryTypes' => true,
+            ],
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(URLEndpointResponse::class, $result);
     }
 
     #[Test]
@@ -70,7 +78,8 @@ final class URLEndpointsTest extends TestCase
             ['description' => 'My custom URL endpoint']
         );
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(URLEndpointResponse::class, $result);
     }
 
     #[Test]
@@ -82,10 +91,18 @@ final class URLEndpointsTest extends TestCase
 
         $result = $this->client->accounts->urlEndpoints->update(
             'id',
-            ['description' => 'My custom URL endpoint']
+            [
+                'description' => 'My custom URL endpoint',
+                'origins' => ['origin-id-1'],
+                'urlPrefix' => 'product-images',
+                'urlRewriter' => [
+                    'type' => 'CLOUDINARY', 'preserveAssetDeliveryTypes' => true,
+                ],
+            ],
         );
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(URLEndpointResponse::class, $result);
     }
 
     #[Test]
@@ -97,7 +114,8 @@ final class URLEndpointsTest extends TestCase
 
         $result = $this->client->accounts->urlEndpoints->list();
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertIsList($result);
     }
 
     #[Test]
@@ -109,7 +127,8 @@ final class URLEndpointsTest extends TestCase
 
         $result = $this->client->accounts->urlEndpoints->delete('id');
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertNull($result);
     }
 
     #[Test]
@@ -121,6 +140,7 @@ final class URLEndpointsTest extends TestCase
 
         $result = $this->client->accounts->urlEndpoints->get('id');
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(URLEndpointResponse::class, $result);
     }
 }

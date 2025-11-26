@@ -2,6 +2,8 @@
 
 namespace Tests\Services\Cache;
 
+use ImageKit\Cache\Invalidation\InvalidationGetResponse;
+use ImageKit\Cache\Invalidation\InvalidationNewResponse;
 use ImageKit\Client;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
@@ -41,7 +43,8 @@ final class InvalidationTest extends TestCase
             'url' => 'https://ik.imagekit.io/your_imagekit_id/default-image.jpg',
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(InvalidationNewResponse::class, $result);
     }
 
     #[Test]
@@ -55,7 +58,8 @@ final class InvalidationTest extends TestCase
             'url' => 'https://ik.imagekit.io/your_imagekit_id/default-image.jpg',
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(InvalidationNewResponse::class, $result);
     }
 
     #[Test]
@@ -67,6 +71,7 @@ final class InvalidationTest extends TestCase
 
         $result = $this->client->cache->invalidation->get('requestId');
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(InvalidationGetResponse::class, $result);
     }
 }

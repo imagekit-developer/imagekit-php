@@ -3,6 +3,10 @@
 namespace Tests\Services\Files;
 
 use ImageKit\Client;
+use ImageKit\Files\Bulk\BulkAddTagsResponse;
+use ImageKit\Files\Bulk\BulkDeleteResponse;
+use ImageKit\Files\Bulk\BulkRemoveAITagsResponse;
+use ImageKit\Files\Bulk\BulkRemoveTagsResponse;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
@@ -41,7 +45,8 @@ final class BulkTest extends TestCase
             'fileIds' => ['598821f949c0a938d57563bd', '598821f949c0a938d57563be'],
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(BulkDeleteResponse::class, $result);
     }
 
     #[Test]
@@ -55,7 +60,8 @@ final class BulkTest extends TestCase
             'fileIds' => ['598821f949c0a938d57563bd', '598821f949c0a938d57563be'],
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(BulkDeleteResponse::class, $result);
     }
 
     #[Test]
@@ -70,7 +76,8 @@ final class BulkTest extends TestCase
             'tags' => ['t-shirt', 'round-neck', 'sale2019'],
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(BulkAddTagsResponse::class, $result);
     }
 
     #[Test]
@@ -85,7 +92,8 @@ final class BulkTest extends TestCase
             'tags' => ['t-shirt', 'round-neck', 'sale2019'],
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(BulkAddTagsResponse::class, $result);
     }
 
     #[Test]
@@ -100,7 +108,8 @@ final class BulkTest extends TestCase
             'fileIds' => ['598821f949c0a938d57563bd', '598821f949c0a938d57563be'],
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(BulkRemoveAITagsResponse::class, $result);
     }
 
     #[Test]
@@ -115,7 +124,8 @@ final class BulkTest extends TestCase
             'fileIds' => ['598821f949c0a938d57563bd', '598821f949c0a938d57563be'],
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(BulkRemoveAITagsResponse::class, $result);
     }
 
     #[Test]
@@ -130,7 +140,8 @@ final class BulkTest extends TestCase
             'tags' => ['t-shirt', 'round-neck', 'sale2019'],
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(BulkRemoveTagsResponse::class, $result);
     }
 
     #[Test]
@@ -145,6 +156,7 @@ final class BulkTest extends TestCase
             'tags' => ['t-shirt', 'round-neck', 'sale2019'],
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(BulkRemoveTagsResponse::class, $result);
     }
 }

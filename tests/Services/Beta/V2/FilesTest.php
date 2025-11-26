@@ -2,6 +2,7 @@
 
 namespace Tests\Services\Beta\V2;
 
+use ImageKit\Beta\V2\Files\FileUploadResponse;
 use ImageKit\Client;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
@@ -41,7 +42,8 @@ final class FilesTest extends TestCase
             'file' => null, 'fileName' => 'fileName',
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(FileUploadResponse::class, $result);
     }
 
     #[Test]
@@ -52,9 +54,53 @@ final class FilesTest extends TestCase
         }
 
         $result = $this->client->beta->v2->files->upload([
-            'file' => null, 'fileName' => 'fileName',
+            'file' => null,
+            'fileName' => 'fileName',
+            'token' => 'token',
+            'checks' => '"request.folder" : "marketing/"\n',
+            'customCoordinates' => 'customCoordinates',
+            'customMetadata' => ['brand' => 'bar', 'color' => 'bar'],
+            'description' => 'Running shoes',
+            'extensions' => [
+                [
+                    'name' => 'remove-bg',
+                    'options' => [
+                        'add_shadow' => true,
+                        'bg_color' => 'bg_color',
+                        'bg_image_url' => 'bg_image_url',
+                        'semitransparency' => true,
+                    ],
+                ],
+                [
+                    'maxTags' => 5, 'minConfidence' => 95, 'name' => 'google-auto-tagging',
+                ],
+                ['name' => 'ai-auto-description'],
+            ],
+            'folder' => 'folder',
+            'isPrivateFile' => true,
+            'isPublished' => true,
+            'overwriteAITags' => true,
+            'overwriteCustomMetadata' => true,
+            'overwriteFile' => true,
+            'overwriteTags' => true,
+            'responseFields' => ['tags', 'customCoordinates', 'isPrivateFile'],
+            'tags' => ['t-shirt', 'round-neck', 'men'],
+            'transformation' => [
+                'post' => [
+                    ['type' => 'thumbnail', 'value' => 'w-150,h-150'],
+                    [
+                        'protocol' => 'dash',
+                        'type' => 'abs',
+                        'value' => 'sr-240_360_480_720_1080',
+                    ],
+                ],
+                'pre' => 'w-300,h-300,q-80',
+            ],
+            'useUniqueFileName' => true,
+            'webhookUrl' => 'https://example.com',
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(FileUploadResponse::class, $result);
     }
 }

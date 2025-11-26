@@ -16,7 +16,7 @@ use ImageKit\VideoOverlay\Encoding;
  *   input: string,
  *   type: 'video',
  *   encoding?: value-of<Encoding>|null,
- *   transformation?: list<Transformation>|null,
+ *   transformation?: list<mixed>|null,
  * }
  */
 final class VideoOverlay implements BaseModel
@@ -55,7 +55,7 @@ final class VideoOverlay implements BaseModel
      * Array of transformation to be applied to the overlay video. Except `streamingResolutions`, all other video transformations are supported.
      * See [Video transformations](https://imagekit.io/docs/video-transformation).
      *
-     * @var list<Transformation>|null $transformation
+     * @var list<mixed>|null $transformation
      */
     #[Api(list: Transformation::class, optional: true)]
     public ?array $transformation;
@@ -85,7 +85,7 @@ final class VideoOverlay implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param Encoding|value-of<Encoding> $encoding
-     * @param list<Transformation> $transformation
+     * @param list<mixed> $transformation
      */
     public static function with(
         string $input,
@@ -153,7 +153,7 @@ final class VideoOverlay implements BaseModel
      * Array of transformation to be applied to the overlay video. Except `streamingResolutions`, all other video transformations are supported.
      * See [Video transformations](https://imagekit.io/docs/video-transformation).
      *
-     * @param list<Transformation> $transformation
+     * @param list<mixed> $transformation
      */
     public function withTransformation(array $transformation): self
     {

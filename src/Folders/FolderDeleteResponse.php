@@ -10,7 +10,7 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
- * @phpstan-type FolderDeleteResponseShape = array{}
+ * @phpstan-type FolderDeleteResponseShape = array<string,mixed>
  */
 final class FolderDeleteResponse implements BaseModel, ResponseConverter
 {

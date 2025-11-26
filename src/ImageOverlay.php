@@ -16,7 +16,7 @@ use ImageKit\ImageOverlay\Encoding;
  *   input: string,
  *   type: 'image',
  *   encoding?: value-of<Encoding>|null,
- *   transformation?: list<Transformation>|null,
+ *   transformation?: list<mixed>|null,
  * }
  */
 final class ImageOverlay implements BaseModel
@@ -55,7 +55,7 @@ final class ImageOverlay implements BaseModel
      * Array of transformations to be applied to the overlay image. Supported transformations depends on the base/parent asset.
      * See overlays on [Images](https://imagekit.io/docs/add-overlays-on-images#list-of-supported-image-transformations-in-image-layers) and [Videos](https://imagekit.io/docs/add-overlays-on-videos#list-of-transformations-supported-on-image-overlay).
      *
-     * @var list<Transformation>|null $transformation
+     * @var list<mixed>|null $transformation
      */
     #[Api(list: Transformation::class, optional: true)]
     public ?array $transformation;
@@ -85,7 +85,7 @@ final class ImageOverlay implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param Encoding|value-of<Encoding> $encoding
-     * @param list<Transformation> $transformation
+     * @param list<mixed> $transformation
      */
     public static function with(
         string $input,
@@ -153,7 +153,7 @@ final class ImageOverlay implements BaseModel
      * Array of transformations to be applied to the overlay image. Supported transformations depends on the base/parent asset.
      * See overlays on [Images](https://imagekit.io/docs/add-overlays-on-images#list-of-supported-image-transformations-in-image-layers) and [Videos](https://imagekit.io/docs/add-overlays-on-videos#list-of-transformations-supported-on-image-overlay).
      *
-     * @param list<Transformation> $transformation
+     * @param list<mixed> $transformation
      */
     public function withTransformation(array $transformation): self
     {

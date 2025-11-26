@@ -18,7 +18,7 @@ use ImageKit\Core\Contracts\BaseModel;
  *   expiresIn?: float|null,
  *   queryParameters?: array<string,string>|null,
  *   signed?: bool|null,
- *   transformation?: list<Transformation>|null,
+ *   transformation?: list<mixed>|null,
  *   transformationPosition?: value-of<TransformationPosition>|null,
  *   deviceBreakpoints?: list<float>|null,
  *   imageBreakpoints?: list<float>|null,
@@ -80,7 +80,7 @@ final class GetImageAttributesOptions implements BaseModel
      * An array of objects specifying the transformations to be applied in the URL. If more than one transformation is specified, they are applied in the order they are specified as chained transformations.
      * See [Chained transformations](https://imagekit.io/docs/transformations#chained-transformations).
      *
-     * @var list<Transformation>|null $transformation
+     * @var list<mixed>|null $transformation
      */
     #[Api(list: Transformation::class, optional: true)]
     public ?array $transformation;
@@ -168,7 +168,7 @@ final class GetImageAttributesOptions implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param array<string,string> $queryParameters
-     * @param list<Transformation> $transformation
+     * @param list<mixed> $transformation
      * @param TransformationPosition|value-of<TransformationPosition> $transformationPosition
      * @param list<float> $deviceBreakpoints
      * @param list<float> $imageBreakpoints
@@ -278,7 +278,7 @@ final class GetImageAttributesOptions implements BaseModel
      * An array of objects specifying the transformations to be applied in the URL. If more than one transformation is specified, they are applied in the order they are specified as chained transformations.
      * See [Chained transformations](https://imagekit.io/docs/transformations#chained-transformations).
      *
-     * @param list<Transformation> $transformation
+     * @param list<mixed> $transformation
      */
     public function withTransformation(array $transformation): self
     {

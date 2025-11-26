@@ -10,7 +10,7 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
- * @phpstan-type CustomMetadataFieldDeleteResponseShape = array{}
+ * @phpstan-type CustomMetadataFieldDeleteResponseShape = array<string,mixed>
  */
 final class CustomMetadataFieldDeleteResponse implements BaseModel, ResponseConverter
 {

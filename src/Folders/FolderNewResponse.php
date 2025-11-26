@@ -10,7 +10,7 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
- * @phpstan-type FolderNewResponseShape = array{}
+ * @phpstan-type FolderNewResponseShape = array<string,mixed>
  */
 final class FolderNewResponse implements BaseModel, ResponseConverter
 {

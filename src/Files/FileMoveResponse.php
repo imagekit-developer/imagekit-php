@@ -10,7 +10,7 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
- * @phpstan-type FileMoveResponseShape = array{}
+ * @phpstan-type FileMoveResponseShape = array<string,mixed>
  */
 final class FileMoveResponse implements BaseModel, ResponseConverter
 {

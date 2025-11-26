@@ -10,7 +10,7 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
- * @phpstan-type VersionDeleteResponseShape = array{}
+ * @phpstan-type VersionDeleteResponseShape = array<string,mixed>
  */
 final class VersionDeleteResponse implements BaseModel, ResponseConverter
 {

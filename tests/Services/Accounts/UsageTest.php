@@ -2,6 +2,7 @@
 
 namespace Tests\Services\Accounts;
 
+use ImageKit\Accounts\Usage\UsageGetResponse;
 use ImageKit\Client;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
@@ -41,7 +42,8 @@ final class UsageTest extends TestCase
             'endDate' => '2019-12-27', 'startDate' => '2019-12-27',
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(UsageGetResponse::class, $result);
     }
 
     #[Test]
@@ -55,6 +57,7 @@ final class UsageTest extends TestCase
             'endDate' => '2019-12-27', 'startDate' => '2019-12-27',
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(UsageGetResponse::class, $result);
     }
 }

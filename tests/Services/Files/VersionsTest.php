@@ -3,6 +3,8 @@
 namespace Tests\Services\Files;
 
 use ImageKit\Client;
+use ImageKit\Files\File;
+use ImageKit\Files\Versions\VersionDeleteResponse;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
@@ -39,7 +41,8 @@ final class VersionsTest extends TestCase
 
         $result = $this->client->files->versions->list('fileId');
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertIsList($result);
     }
 
     #[Test]
@@ -54,7 +57,8 @@ final class VersionsTest extends TestCase
             ['fileId' => 'fileId']
         );
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(VersionDeleteResponse::class, $result);
     }
 
     #[Test]
@@ -69,7 +73,8 @@ final class VersionsTest extends TestCase
             ['fileId' => 'fileId']
         );
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(VersionDeleteResponse::class, $result);
     }
 
     #[Test]
@@ -84,7 +89,8 @@ final class VersionsTest extends TestCase
             ['fileId' => 'fileId']
         );
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(File::class, $result);
     }
 
     #[Test]
@@ -99,7 +105,8 @@ final class VersionsTest extends TestCase
             ['fileId' => 'fileId']
         );
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(File::class, $result);
     }
 
     #[Test]
@@ -114,7 +121,8 @@ final class VersionsTest extends TestCase
             ['fileId' => 'fileId']
         );
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(File::class, $result);
     }
 
     #[Test]
@@ -129,6 +137,7 @@ final class VersionsTest extends TestCase
             ['fileId' => 'fileId']
         );
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(File::class, $result);
     }
 }

@@ -39,6 +39,7 @@ final class AssetsTest extends TestCase
 
         $result = $this->client->assets->list([]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertIsList($result);
     }
 }

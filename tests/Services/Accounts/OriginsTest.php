@@ -38,25 +38,14 @@ final class OriginsTest extends TestCase
         }
 
         $result = $this->client->accounts->origins->create([
-            'accessKey' => 'AKIAIOSFODNN7EXAMPLE',
-            'bucket' => 'gcs-media',
-            'name' => 'US S3 Storage',
-            'secretKey' => 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY',
-            'type' => 'AKENEO_PIM',
-            'endpoint' => 'https://s3.eu-central-1.wasabisys.com',
-            'baseUrl' => 'https://akeneo.company.com',
-            'clientEmail' => 'service-account@project.iam.gserviceaccount.com',
-            'privateKey' => '-----BEGIN PRIVATE KEY-----\nMIIEv...',
-            'accountName' => 'account123',
-            'container' => 'images',
-            'sasToken' => '?sv=2023-01-03&sr=c&sig=abc123',
-            'clientId' => 'akeneo-client-id',
-            'clientSecret' => 'akeneo-client-secret',
-            'password' => 'strongpassword123',
-            'username' => 'integration-user',
+            'accessKey' => 'AKIATEST123',
+            'bucket' => 'test-bucket',
+            'name' => 'My S3 Origin',
+            'secretKey' => 'secrettest123',
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertNotNull($result);
     }
 
     #[Test]
@@ -67,25 +56,17 @@ final class OriginsTest extends TestCase
         }
 
         $result = $this->client->accounts->origins->create([
-            'accessKey' => 'AKIAIOSFODNN7EXAMPLE',
-            'bucket' => 'gcs-media',
-            'name' => 'US S3 Storage',
-            'secretKey' => 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY',
-            'type' => 'AKENEO_PIM',
-            'endpoint' => 'https://s3.eu-central-1.wasabisys.com',
-            'baseUrl' => 'https://akeneo.company.com',
-            'clientEmail' => 'service-account@project.iam.gserviceaccount.com',
-            'privateKey' => '-----BEGIN PRIVATE KEY-----\nMIIEv...',
-            'accountName' => 'account123',
-            'container' => 'images',
-            'sasToken' => '?sv=2023-01-03&sr=c&sig=abc123',
-            'clientId' => 'akeneo-client-id',
-            'clientSecret' => 'akeneo-client-secret',
-            'password' => 'strongpassword123',
-            'username' => 'integration-user',
+            'accessKey' => 'AKIATEST123',
+            'bucket' => 'test-bucket',
+            'name' => 'My S3 Origin',
+            'secretKey' => 'secrettest123',
+            'baseUrlForCanonicalHeader' => 'https://cdn.example.com',
+            'includeCanonicalHeader' => false,
+            'prefix' => 'images',
         ]);
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertNotNull($result);
     }
 
     #[Test]
@@ -98,26 +79,15 @@ final class OriginsTest extends TestCase
         $result = $this->client->accounts->origins->update(
             'id',
             [
-                'accessKey' => 'AKIAIOSFODNN7EXAMPLE',
-                'bucket' => 'gcs-media',
-                'name' => 'US S3 Storage',
-                'secretKey' => 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY',
-                'type' => 'AKENEO_PIM',
-                'endpoint' => 'https://s3.eu-central-1.wasabisys.com',
-                'baseUrl' => 'https://akeneo.company.com',
-                'clientEmail' => 'service-account@project.iam.gserviceaccount.com',
-                'privateKey' => '-----BEGIN PRIVATE KEY-----\nMIIEv...',
-                'accountName' => 'account123',
-                'container' => 'images',
-                'sasToken' => '?sv=2023-01-03&sr=c&sig=abc123',
-                'clientId' => 'akeneo-client-id',
-                'clientSecret' => 'akeneo-client-secret',
-                'password' => 'strongpassword123',
-                'username' => 'integration-user',
+                'accessKey' => 'AKIATEST123',
+                'bucket' => 'test-bucket',
+                'name' => 'My S3 Origin',
+                'secretKey' => 'secrettest123',
             ],
         );
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertNotNull($result);
     }
 
     #[Test]
@@ -130,26 +100,18 @@ final class OriginsTest extends TestCase
         $result = $this->client->accounts->origins->update(
             'id',
             [
-                'accessKey' => 'AKIAIOSFODNN7EXAMPLE',
-                'bucket' => 'gcs-media',
-                'name' => 'US S3 Storage',
-                'secretKey' => 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY',
-                'type' => 'AKENEO_PIM',
-                'endpoint' => 'https://s3.eu-central-1.wasabisys.com',
-                'baseUrl' => 'https://akeneo.company.com',
-                'clientEmail' => 'service-account@project.iam.gserviceaccount.com',
-                'privateKey' => '-----BEGIN PRIVATE KEY-----\nMIIEv...',
-                'accountName' => 'account123',
-                'container' => 'images',
-                'sasToken' => '?sv=2023-01-03&sr=c&sig=abc123',
-                'clientId' => 'akeneo-client-id',
-                'clientSecret' => 'akeneo-client-secret',
-                'password' => 'strongpassword123',
-                'username' => 'integration-user',
+                'accessKey' => 'AKIATEST123',
+                'bucket' => 'test-bucket',
+                'name' => 'My S3 Origin',
+                'secretKey' => 'secrettest123',
+                'baseUrlForCanonicalHeader' => 'https://cdn.example.com',
+                'includeCanonicalHeader' => false,
+                'prefix' => 'images',
             ],
         );
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertNotNull($result);
     }
 
     #[Test]
@@ -161,7 +123,8 @@ final class OriginsTest extends TestCase
 
         $result = $this->client->accounts->origins->list();
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertIsList($result);
     }
 
     #[Test]
@@ -173,7 +136,8 @@ final class OriginsTest extends TestCase
 
         $result = $this->client->accounts->origins->delete('id');
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertNull($result);
     }
 
     #[Test]
@@ -185,6 +149,7 @@ final class OriginsTest extends TestCase
 
         $result = $this->client->accounts->origins->get('id');
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertNotNull($result);
     }
 }

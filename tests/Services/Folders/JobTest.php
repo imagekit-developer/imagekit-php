@@ -3,6 +3,7 @@
 namespace Tests\Services\Folders;
 
 use ImageKit\Client;
+use ImageKit\Folders\Job\JobGetResponse;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
@@ -39,6 +40,7 @@ final class JobTest extends TestCase
 
         $result = $this->client->folders->job->get('jobId');
 
-        $this->assertTrue(true); // @phpstan-ignore method.alreadyNarrowedType
+        // @phpstan-ignore-next-line method.alreadyNarrowedType
+        $this->assertInstanceOf(JobGetResponse::class, $result);
     }
 }

@@ -62,6 +62,6 @@ interface BulkContract
      */
     public function removeTags(
         array|BulkRemoveTagsParams $params,
-        ?RequestOptions $requestOptions = null,
+        ?RequestOptions $requestOptions = null
     ): BulkRemoveTagsResponse;
 }

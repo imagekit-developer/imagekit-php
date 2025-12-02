@@ -44,9 +44,7 @@ interface URLEndpointsContract
      *
      * @throws APIException
      */
-    public function list(
-        ?RequestOptions $requestOptions = null
-    ): array;
+    public function list(?RequestOptions $requestOptions = null): array;
 
     /**
      * @api

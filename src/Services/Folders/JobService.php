@@ -28,7 +28,7 @@ final class JobService implements JobContract
         string $jobID,
         ?RequestOptions $requestOptions = null
     ): JobGetResponse {
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'get',
             path: ['v1/bulkJobs/%1$s', $jobID],

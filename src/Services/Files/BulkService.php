@@ -46,7 +46,7 @@ final class BulkService implements BulkContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'post',
             path: 'v1/files/batch/deleteByFileIds',
@@ -76,7 +76,7 @@ final class BulkService implements BulkContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'post',
             path: 'v1/files/addTags',
@@ -106,7 +106,7 @@ final class BulkService implements BulkContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'post',
             path: 'v1/files/removeAITags',
@@ -136,7 +136,7 @@ final class BulkService implements BulkContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'post',
             path: 'v1/files/removeTags',

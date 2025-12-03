@@ -13,7 +13,7 @@ use ImageKit\Files\File\SelectedFieldsSchema\Type;
 
 /**
  * @phpstan-type SelectedFieldsSchemaShape = array{
- *   type: value-of<Type>,
+ *   type: value-of<\ImageKit\Files\File\SelectedFieldsSchema\Type>,
  *   defaultValue?: string|float|bool|null|list<string|float|bool>,
  *   isValueRequired?: bool|null,
  *   maxLength?: float|null,
@@ -158,8 +158,9 @@ final class SelectedFieldsSchema implements BaseModel
      *
      * @param Type|value-of<Type> $type
      */
-    public function withType(Type|string $type): self
-    {
+    public function withType(
+        Type|string $type
+    ): self {
         $obj = clone $this;
         $obj['type'] = $type;
 

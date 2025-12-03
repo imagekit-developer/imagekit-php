@@ -31,7 +31,7 @@ final class MetadataService implements MetadataContract
         string $fileID,
         ?RequestOptions $requestOptions = null
     ): Metadata {
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'get',
             path: ['v1/files/%1$s/metadata', $fileID],
@@ -58,7 +58,7 @@ final class MetadataService implements MetadataContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'get',
             path: 'v1/files/metadata',

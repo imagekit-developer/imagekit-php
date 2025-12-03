@@ -45,7 +45,7 @@ final class OriginsService implements OriginsContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'post',
             path: 'v1/accounts/origins',
@@ -73,7 +73,7 @@ final class OriginsService implements OriginsContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'put',
             path: ['v1/accounts/origins/%1$s', $id],
@@ -95,7 +95,7 @@ final class OriginsService implements OriginsContract
      */
     public function list(?RequestOptions $requestOptions = null): array
     {
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'get',
             path: 'v1/accounts/origins',
@@ -116,7 +116,7 @@ final class OriginsService implements OriginsContract
         string $id,
         ?RequestOptions $requestOptions = null
     ): mixed {
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'delete',
             path: ['v1/accounts/origins/%1$s', $id],
@@ -137,7 +137,7 @@ final class OriginsService implements OriginsContract
         string $id,
         ?RequestOptions $requestOptions = null
     ): S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim {
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'get',
             path: ['v1/accounts/origins/%1$s', $id],

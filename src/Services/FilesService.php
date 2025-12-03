@@ -67,7 +67,7 @@ final class FilesService implements FilesContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'patch',
             path: ['v1/files/%1$s/details', $fileID],
@@ -90,7 +90,7 @@ final class FilesService implements FilesContract
         string $fileID,
         ?RequestOptions $requestOptions = null
     ): mixed {
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'delete',
             path: ['v1/files/%1$s', $fileID],
@@ -121,7 +121,7 @@ final class FilesService implements FilesContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'post',
             path: 'v1/files/copy',
@@ -142,7 +142,7 @@ final class FilesService implements FilesContract
         string $fileID,
         ?RequestOptions $requestOptions = null
     ): File {
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'get',
             path: ['v1/files/%1$s/details', $fileID],
@@ -173,7 +173,7 @@ final class FilesService implements FilesContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'post',
             path: 'v1/files/move',
@@ -205,7 +205,7 @@ final class FilesService implements FilesContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'put',
             path: 'v1/files/rename',
@@ -273,7 +273,7 @@ final class FilesService implements FilesContract
             ->client
             ->baseUrlOverridden ? 'api/v1/files/upload' : 'https://upload.imagekit.io/api/v1/files/upload';
 
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'post',
             path: $path,

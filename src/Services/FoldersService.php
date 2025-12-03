@@ -55,7 +55,7 @@ final class FoldersService implements FoldersContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'post',
             path: 'v1/folder',
@@ -83,7 +83,7 @@ final class FoldersService implements FoldersContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'delete',
             path: 'v1/folder',
@@ -113,7 +113,7 @@ final class FoldersService implements FoldersContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'post',
             path: 'v1/bulkJobs/copyFolder',
@@ -143,7 +143,7 @@ final class FoldersService implements FoldersContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'post',
             path: 'v1/bulkJobs/moveFolder',
@@ -173,7 +173,7 @@ final class FoldersService implements FoldersContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'post',
             path: 'v1/bulkJobs/renameFolder',

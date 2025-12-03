@@ -37,7 +37,7 @@ final class InvalidationService implements InvalidationContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'post',
             path: 'v1/files/purge',
@@ -58,7 +58,7 @@ final class InvalidationService implements InvalidationContract
         string $requestID,
         ?RequestOptions $requestOptions = null
     ): InvalidationGetResponse {
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'get',
             path: ['v1/files/purge/%1$s', $requestID],

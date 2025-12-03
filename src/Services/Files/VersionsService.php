@@ -35,7 +35,7 @@ final class VersionsService implements VersionsContract
         string $fileID,
         ?RequestOptions $requestOptions = null
     ): array {
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'get',
             path: ['v1/files/%1$s/versions', $fileID],
@@ -67,7 +67,7 @@ final class VersionsService implements VersionsContract
         $fileID = $parsed['fileId'];
         unset($parsed['fileId']);
 
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'delete',
             path: ['v1/files/%1$s/versions/%2$s', $fileID, $versionID],
@@ -97,7 +97,7 @@ final class VersionsService implements VersionsContract
         $fileID = $parsed['fileId'];
         unset($parsed['fileId']);
 
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'get',
             path: ['v1/files/%1$s/versions/%2$s', $fileID, $versionID],
@@ -127,7 +127,7 @@ final class VersionsService implements VersionsContract
         $fileID = $parsed['fileId'];
         unset($parsed['fileId']);
 
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'put',
             path: ['v1/files/%1$s/versions/%2$s/restore', $fileID, $versionID],

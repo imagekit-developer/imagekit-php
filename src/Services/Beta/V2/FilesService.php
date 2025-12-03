@@ -73,7 +73,7 @@ final class FilesService implements FilesContract
             ->client
             ->baseUrlOverridden ? 'api/v2/files/upload' : 'https://upload.imagekit.io/api/v2/files/upload';
 
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'post',
             path: $path,

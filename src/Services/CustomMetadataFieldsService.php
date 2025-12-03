@@ -53,7 +53,7 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'post',
             path: 'v1/customMetadataFields',
@@ -93,7 +93,7 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'patch',
             path: ['v1/customMetadataFields/%1$s', $id],
@@ -127,7 +127,7 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'get',
             path: 'v1/customMetadataFields',
@@ -148,7 +148,7 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
         string $id,
         ?RequestOptions $requestOptions = null
     ): CustomMetadataFieldDeleteResponse {
-        // @phpstan-ignore-next-line;
+        // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'delete',
             path: ['v1/customMetadataFields/%1$s', $id],

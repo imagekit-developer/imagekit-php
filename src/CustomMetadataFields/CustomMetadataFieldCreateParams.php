@@ -9,6 +9,7 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Concerns\SdkParams;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema;
+use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\Type;
 
 /**
  * This API creates a new custom metadata field. Once a custom metadata field is created either through this API or using the dashboard UI, its value can be set on the assets. The value of a field for an asset can be set using the media library UI or programmatically through upload or update assets API.
@@ -16,7 +17,18 @@ use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema;
  * @see ImageKit\Services\CustomMetadataFieldsService::create()
  *
  * @phpstan-type CustomMetadataFieldCreateParamsShape = array{
- *   label: string, name: string, schema: Schema
+ *   label: string,
+ *   name: string,
+ *   schema: Schema|array{
+ *     type: value-of<Type>,
+ *     defaultValue?: string|float|bool|null|list<string|float|bool>,
+ *     isValueRequired?: bool|null,
+ *     maxLength?: float|null,
+ *     maxValue?: string|float|null,
+ *     minLength?: float|null,
+ *     minValue?: string|float|null,
+ *     selectOptions?: list<string|float|bool>|null,
+ *   },
  * }
  */
 final class CustomMetadataFieldCreateParams implements BaseModel
@@ -66,17 +78,28 @@ final class CustomMetadataFieldCreateParams implements BaseModel
      * Construct an instance from the required parameters.
      *
      * You must use named parameters to construct any parameters with a default value.
+     *
+     * @param Schema|array{
+     *   type: value-of<Type>,
+     *   defaultValue?: string|float|bool|list<string|float|bool>|null,
+     *   isValueRequired?: bool|null,
+     *   maxLength?: float|null,
+     *   maxValue?: string|float|null,
+     *   minLength?: float|null,
+     *   minValue?: string|float|null,
+     *   selectOptions?: list<string|float|bool>|null,
+     * } $schema
      */
     public static function with(
         string $label,
         string $name,
-        Schema $schema
+        Schema|array $schema
     ): self {
         $obj = new self;
 
-        $obj->label = $label;
-        $obj->name = $name;
-        $obj->schema = $schema;
+        $obj['label'] = $label;
+        $obj['name'] = $name;
+        $obj['schema'] = $schema;
 
         return $obj;
     }
@@ -87,7 +110,7 @@ final class CustomMetadataFieldCreateParams implements BaseModel
     public function withLabel(string $label): self
     {
         $obj = clone $this;
-        $obj->label = $label;
+        $obj['label'] = $label;
 
         return $obj;
     }
@@ -98,15 +121,27 @@ final class CustomMetadataFieldCreateParams implements BaseModel
     public function withName(string $name): self
     {
         $obj = clone $this;
-        $obj->name = $name;
+        $obj['name'] = $name;
 
         return $obj;
     }
 
-    public function withSchema(Schema $schema): self
+    /**
+     * @param Schema|array{
+     *   type: value-of<Type>,
+     *   defaultValue?: string|float|bool|list<string|float|bool>|null,
+     *   isValueRequired?: bool|null,
+     *   maxLength?: float|null,
+     *   maxValue?: string|float|null,
+     *   minLength?: float|null,
+     *   minValue?: string|float|null,
+     *   selectOptions?: list<string|float|bool>|null,
+     * } $schema
+     */
+    public function withSchema(Schema|array $schema): self
     {
         $obj = clone $this;
-        $obj->schema = $schema;
+        $obj['schema'] = $schema;
 
         return $obj;
     }

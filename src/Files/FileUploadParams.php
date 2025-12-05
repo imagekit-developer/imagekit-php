@@ -11,9 +11,14 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\ExtensionItem;
 use ImageKit\ExtensionItem\AIAutoDescription;
 use ImageKit\ExtensionItem\AutoTaggingExtension;
+use ImageKit\ExtensionItem\AutoTaggingExtension\Name;
 use ImageKit\ExtensionItem\RemoveBg;
+use ImageKit\ExtensionItem\RemoveBg\Options;
 use ImageKit\Files\FileUploadParams\ResponseField;
 use ImageKit\Files\FileUploadParams\Transformation;
+use ImageKit\Files\FileUploadParams\Transformation\Post\Abs;
+use ImageKit\Files\FileUploadParams\Transformation\Post\GifToVideo;
+use ImageKit\Files\FileUploadParams\Transformation\Post\Thumbnail;
 
 /**
  * ImageKit.io allows you to upload files directly from both the server and client sides. For server-side uploads, private API key authentication is used. For client-side uploads, generate a one-time `token`, `signature`, and `expire` from your secure backend using private API. [Learn more](/docs/api-reference/upload-file/upload-file#how-to-implement-client-side-file-upload) about how to implement client-side file upload.
@@ -42,7 +47,11 @@ use ImageKit\Files\FileUploadParams\Transformation;
  *   customMetadata?: array<string,mixed>,
  *   description?: string,
  *   expire?: int,
- *   extensions?: list<RemoveBg|AutoTaggingExtension|AIAutoDescription>,
+ *   extensions?: list<RemoveBg|array{
+ *     name: 'remove-bg', options?: Options|null
+ *   }|AutoTaggingExtension|array{
+ *     maxTags: int, minConfidence: int, name: value-of<Name>
+ *   }|AIAutoDescription|array{name: 'ai-auto-description'}>,
  *   folder?: string,
  *   isPrivateFile?: bool,
  *   isPublished?: bool,
@@ -54,7 +63,10 @@ use ImageKit\Files\FileUploadParams\Transformation;
  *   responseFields?: list<ResponseField|value-of<ResponseField>>,
  *   signature?: string,
  *   tags?: list<string>,
- *   transformation?: Transformation,
+ *   transformation?: Transformation|array{
+ *     post?: list<\ImageKit\Files\FileUploadParams\Transformation\Post\Transformation|GifToVideo|Thumbnail|Abs>|null,
+ *     pre?: string|null,
+ *   },
  *   useUniqueFileName?: bool,
  *   webhookUrl?: string,
  * }
@@ -284,9 +296,17 @@ final class FileUploadParams implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param array<string,mixed> $customMetadata
-     * @param list<RemoveBg|AutoTaggingExtension|AIAutoDescription> $extensions
+     * @param list<RemoveBg|array{
+     *   name: 'remove-bg', options?: Options|null
+     * }|AutoTaggingExtension|array{
+     *   maxTags: int, minConfidence: int, name: value-of<Name>
+     * }|AIAutoDescription|array{name: 'ai-auto-description'}> $extensions
      * @param list<ResponseField|value-of<ResponseField>> $responseFields
      * @param list<string> $tags
+     * @param Transformation|array{
+     *   post?: list<Transformation\Post\Transformation|GifToVideo|Thumbnail|Abs>|null,
+     *   pre?: string|null,
+     * } $transformation
      */
     public static function with(
         string $file,
@@ -309,36 +329,36 @@ final class FileUploadParams implements BaseModel
         ?array $responseFields = null,
         ?string $signature = null,
         ?array $tags = null,
-        ?Transformation $transformation = null,
+        Transformation|array|null $transformation = null,
         ?bool $useUniqueFileName = null,
         ?string $webhookUrl = null,
     ): self {
         $obj = new self;
 
-        $obj->file = $file;
-        $obj->fileName = $fileName;
+        $obj['file'] = $file;
+        $obj['fileName'] = $fileName;
 
-        null !== $token && $obj->token = $token;
-        null !== $checks && $obj->checks = $checks;
-        null !== $customCoordinates && $obj->customCoordinates = $customCoordinates;
-        null !== $customMetadata && $obj->customMetadata = $customMetadata;
-        null !== $description && $obj->description = $description;
-        null !== $expire && $obj->expire = $expire;
-        null !== $extensions && $obj->extensions = $extensions;
-        null !== $folder && $obj->folder = $folder;
-        null !== $isPrivateFile && $obj->isPrivateFile = $isPrivateFile;
-        null !== $isPublished && $obj->isPublished = $isPublished;
-        null !== $overwriteAITags && $obj->overwriteAITags = $overwriteAITags;
-        null !== $overwriteCustomMetadata && $obj->overwriteCustomMetadata = $overwriteCustomMetadata;
-        null !== $overwriteFile && $obj->overwriteFile = $overwriteFile;
-        null !== $overwriteTags && $obj->overwriteTags = $overwriteTags;
-        null !== $publicKey && $obj->publicKey = $publicKey;
+        null !== $token && $obj['token'] = $token;
+        null !== $checks && $obj['checks'] = $checks;
+        null !== $customCoordinates && $obj['customCoordinates'] = $customCoordinates;
+        null !== $customMetadata && $obj['customMetadata'] = $customMetadata;
+        null !== $description && $obj['description'] = $description;
+        null !== $expire && $obj['expire'] = $expire;
+        null !== $extensions && $obj['extensions'] = $extensions;
+        null !== $folder && $obj['folder'] = $folder;
+        null !== $isPrivateFile && $obj['isPrivateFile'] = $isPrivateFile;
+        null !== $isPublished && $obj['isPublished'] = $isPublished;
+        null !== $overwriteAITags && $obj['overwriteAITags'] = $overwriteAITags;
+        null !== $overwriteCustomMetadata && $obj['overwriteCustomMetadata'] = $overwriteCustomMetadata;
+        null !== $overwriteFile && $obj['overwriteFile'] = $overwriteFile;
+        null !== $overwriteTags && $obj['overwriteTags'] = $overwriteTags;
+        null !== $publicKey && $obj['publicKey'] = $publicKey;
         null !== $responseFields && $obj['responseFields'] = $responseFields;
-        null !== $signature && $obj->signature = $signature;
-        null !== $tags && $obj->tags = $tags;
-        null !== $transformation && $obj->transformation = $transformation;
-        null !== $useUniqueFileName && $obj->useUniqueFileName = $useUniqueFileName;
-        null !== $webhookUrl && $obj->webhookUrl = $webhookUrl;
+        null !== $signature && $obj['signature'] = $signature;
+        null !== $tags && $obj['tags'] = $tags;
+        null !== $transformation && $obj['transformation'] = $transformation;
+        null !== $useUniqueFileName && $obj['useUniqueFileName'] = $useUniqueFileName;
+        null !== $webhookUrl && $obj['webhookUrl'] = $webhookUrl;
 
         return $obj;
     }
@@ -355,7 +375,7 @@ final class FileUploadParams implements BaseModel
     public function withFile(string $file): self
     {
         $obj = clone $this;
-        $obj->file = $file;
+        $obj['file'] = $file;
 
         return $obj;
     }
@@ -372,7 +392,7 @@ final class FileUploadParams implements BaseModel
     public function withFileName(string $fileName): self
     {
         $obj = clone $this;
-        $obj->fileName = $fileName;
+        $obj['fileName'] = $fileName;
 
         return $obj;
     }
@@ -385,7 +405,7 @@ final class FileUploadParams implements BaseModel
     public function withToken(string $token): self
     {
         $obj = clone $this;
-        $obj->token = $token;
+        $obj['token'] = $token;
 
         return $obj;
     }
@@ -397,7 +417,7 @@ final class FileUploadParams implements BaseModel
     public function withChecks(string $checks): self
     {
         $obj = clone $this;
-        $obj->checks = $checks;
+        $obj['checks'] = $checks;
 
         return $obj;
     }
@@ -412,7 +432,7 @@ final class FileUploadParams implements BaseModel
     public function withCustomCoordinates(string $customCoordinates): self
     {
         $obj = clone $this;
-        $obj->customCoordinates = $customCoordinates;
+        $obj['customCoordinates'] = $customCoordinates;
 
         return $obj;
     }
@@ -425,7 +445,7 @@ final class FileUploadParams implements BaseModel
     public function withCustomMetadata(array $customMetadata): self
     {
         $obj = clone $this;
-        $obj->customMetadata = $customMetadata;
+        $obj['customMetadata'] = $customMetadata;
 
         return $obj;
     }
@@ -436,7 +456,7 @@ final class FileUploadParams implements BaseModel
     public function withDescription(string $description): self
     {
         $obj = clone $this;
-        $obj->description = $description;
+        $obj['description'] = $description;
 
         return $obj;
     }
@@ -447,7 +467,7 @@ final class FileUploadParams implements BaseModel
     public function withExpire(int $expire): self
     {
         $obj = clone $this;
-        $obj->expire = $expire;
+        $obj['expire'] = $expire;
 
         return $obj;
     }
@@ -455,12 +475,16 @@ final class FileUploadParams implements BaseModel
     /**
      * Array of extensions to be applied to the asset. Each extension can be configured with specific parameters based on the extension type.
      *
-     * @param list<RemoveBg|AutoTaggingExtension|AIAutoDescription> $extensions
+     * @param list<RemoveBg|array{
+     *   name: 'remove-bg', options?: Options|null
+     * }|AutoTaggingExtension|array{
+     *   maxTags: int, minConfidence: int, name: value-of<Name>
+     * }|AIAutoDescription|array{name: 'ai-auto-description'}> $extensions
      */
     public function withExtensions(array $extensions): self
     {
         $obj = clone $this;
-        $obj->extensions = $extensions;
+        $obj['extensions'] = $extensions;
 
         return $obj;
     }
@@ -478,7 +502,7 @@ final class FileUploadParams implements BaseModel
     public function withFolder(string $folder): self
     {
         $obj = clone $this;
-        $obj->folder = $folder;
+        $obj['folder'] = $folder;
 
         return $obj;
     }
@@ -491,7 +515,7 @@ final class FileUploadParams implements BaseModel
     public function withIsPrivateFile(bool $isPrivateFile): self
     {
         $obj = clone $this;
-        $obj->isPrivateFile = $isPrivateFile;
+        $obj['isPrivateFile'] = $isPrivateFile;
 
         return $obj;
     }
@@ -506,7 +530,7 @@ final class FileUploadParams implements BaseModel
     public function withIsPublished(bool $isPublished): self
     {
         $obj = clone $this;
-        $obj->isPublished = $isPublished;
+        $obj['isPublished'] = $isPublished;
 
         return $obj;
     }
@@ -517,7 +541,7 @@ final class FileUploadParams implements BaseModel
     public function withOverwriteAITags(bool $overwriteAITags): self
     {
         $obj = clone $this;
-        $obj->overwriteAITags = $overwriteAITags;
+        $obj['overwriteAITags'] = $overwriteAITags;
 
         return $obj;
     }
@@ -529,7 +553,7 @@ final class FileUploadParams implements BaseModel
         bool $overwriteCustomMetadata
     ): self {
         $obj = clone $this;
-        $obj->overwriteCustomMetadata = $overwriteCustomMetadata;
+        $obj['overwriteCustomMetadata'] = $overwriteCustomMetadata;
 
         return $obj;
     }
@@ -540,7 +564,7 @@ final class FileUploadParams implements BaseModel
     public function withOverwriteFile(bool $overwriteFile): self
     {
         $obj = clone $this;
-        $obj->overwriteFile = $overwriteFile;
+        $obj['overwriteFile'] = $overwriteFile;
 
         return $obj;
     }
@@ -551,7 +575,7 @@ final class FileUploadParams implements BaseModel
     public function withOverwriteTags(bool $overwriteTags): self
     {
         $obj = clone $this;
-        $obj->overwriteTags = $overwriteTags;
+        $obj['overwriteTags'] = $overwriteTags;
 
         return $obj;
     }
@@ -562,7 +586,7 @@ final class FileUploadParams implements BaseModel
     public function withPublicKey(string $publicKey): self
     {
         $obj = clone $this;
-        $obj->publicKey = $publicKey;
+        $obj['publicKey'] = $publicKey;
 
         return $obj;
     }
@@ -588,7 +612,7 @@ final class FileUploadParams implements BaseModel
     public function withSignature(string $signature): self
     {
         $obj = clone $this;
-        $obj->signature = $signature;
+        $obj['signature'] = $signature;
 
         return $obj;
     }
@@ -603,7 +627,7 @@ final class FileUploadParams implements BaseModel
     public function withTags(array $tags): self
     {
         $obj = clone $this;
-        $obj->tags = $tags;
+        $obj['tags'] = $tags;
 
         return $obj;
     }
@@ -618,11 +642,17 @@ final class FileUploadParams implements BaseModel
      *   Ideal for generating transformed versions (like video encodes or thumbnails) in advance, so they're ready for delivery without delay.
      *
      * You can mix and match any combination of post-processing types.
+     *
+     * @param Transformation|array{
+     *   post?: list<Transformation\Post\Transformation|GifToVideo|Thumbnail|Abs>|null,
+     *   pre?: string|null,
+     * } $transformation
      */
-    public function withTransformation(Transformation $transformation): self
-    {
+    public function withTransformation(
+        Transformation|array $transformation
+    ): self {
         $obj = clone $this;
-        $obj->transformation = $transformation;
+        $obj['transformation'] = $transformation;
 
         return $obj;
     }
@@ -637,7 +667,7 @@ final class FileUploadParams implements BaseModel
     public function withUseUniqueFileName(bool $useUniqueFileName): self
     {
         $obj = clone $this;
-        $obj->useUniqueFileName = $useUniqueFileName;
+        $obj['useUniqueFileName'] = $useUniqueFileName;
 
         return $obj;
     }
@@ -648,7 +678,7 @@ final class FileUploadParams implements BaseModel
     public function withWebhookURL(string $webhookURL): self
     {
         $obj = clone $this;
-        $obj->webhookUrl = $webhookURL;
+        $obj['webhookUrl'] = $webhookURL;
 
         return $obj;
     }

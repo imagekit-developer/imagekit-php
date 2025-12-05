@@ -8,6 +8,7 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Webhooks\UploadPreTransformErrorEvent\Data;
+use ImageKit\Webhooks\UploadPreTransformErrorEvent\Data\Transformation;
 use ImageKit\Webhooks\UploadPreTransformErrorEvent\Request;
 
 /**
@@ -80,21 +81,26 @@ final class UploadPreTransformErrorEvent implements BaseModel
      * Construct an instance from the required parameters.
      *
      * You must use named parameters to construct any parameters with a default value.
+     *
+     * @param Data|array{
+     *   name: string, path: string, transformation: Transformation
+     * } $data
+     * @param Request|array{transformation: string, x_request_id: string} $request
      */
     public static function with(
         string $id,
         string $type,
         \DateTimeInterface $created_at,
-        Data $data,
-        Request $request,
+        Data|array $data,
+        Request|array $request,
     ): self {
         $obj = new self;
 
-        $obj->id = $id;
-        $obj->type = $type;
-        $obj->created_at = $created_at;
-        $obj->data = $data;
-        $obj->request = $request;
+        $obj['id'] = $id;
+        $obj['type'] = $type;
+        $obj['created_at'] = $created_at;
+        $obj['data'] = $data;
+        $obj['request'] = $request;
 
         return $obj;
     }
@@ -105,7 +111,7 @@ final class UploadPreTransformErrorEvent implements BaseModel
     public function withID(string $id): self
     {
         $obj = clone $this;
-        $obj->id = $id;
+        $obj['id'] = $id;
 
         return $obj;
     }
@@ -116,7 +122,7 @@ final class UploadPreTransformErrorEvent implements BaseModel
     public function withType(string $type): self
     {
         $obj = clone $this;
-        $obj->type = $type;
+        $obj['type'] = $type;
 
         return $obj;
     }
@@ -127,23 +133,31 @@ final class UploadPreTransformErrorEvent implements BaseModel
     public function withCreatedAt(\DateTimeInterface $createdAt): self
     {
         $obj = clone $this;
-        $obj->created_at = $createdAt;
+        $obj['created_at'] = $createdAt;
 
         return $obj;
     }
 
-    public function withData(Data $data): self
+    /**
+     * @param Data|array{
+     *   name: string, path: string, transformation: Transformation
+     * } $data
+     */
+    public function withData(Data|array $data): self
     {
         $obj = clone $this;
-        $obj->data = $data;
+        $obj['data'] = $data;
 
         return $obj;
     }
 
-    public function withRequest(Request $request): self
+    /**
+     * @param Request|array{transformation: string, x_request_id: string} $request
+     */
+    public function withRequest(Request|array $request): self
     {
         $obj = clone $this;
-        $obj->request = $request;
+        $obj['request'] = $request;
 
         return $obj;
     }

@@ -76,8 +76,8 @@ final class JobGetResponse implements BaseModel, ResponseConverter
     ): self {
         $obj = new self;
 
-        null !== $jobId && $obj->jobId = $jobId;
-        null !== $purgeRequestId && $obj->purgeRequestId = $purgeRequestId;
+        null !== $jobId && $obj['jobId'] = $jobId;
+        null !== $purgeRequestId && $obj['purgeRequestId'] = $purgeRequestId;
         null !== $status && $obj['status'] = $status;
         null !== $type && $obj['type'] = $type;
 
@@ -90,7 +90,7 @@ final class JobGetResponse implements BaseModel, ResponseConverter
     public function withJobID(string $jobID): self
     {
         $obj = clone $this;
-        $obj->jobId = $jobID;
+        $obj['jobId'] = $jobID;
 
         return $obj;
     }
@@ -101,7 +101,7 @@ final class JobGetResponse implements BaseModel, ResponseConverter
     public function withPurgeRequestID(string $purgeRequestID): self
     {
         $obj = clone $this;
-        $obj->purgeRequestId = $purgeRequestID;
+        $obj['purgeRequestId'] = $purgeRequestID;
 
         return $obj;
     }

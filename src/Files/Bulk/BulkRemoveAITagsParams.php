@@ -71,8 +71,8 @@ final class BulkRemoveAITagsParams implements BaseModel
     {
         $obj = new self;
 
-        $obj->AITags = $AITags;
-        $obj->fileIds = $fileIds;
+        $obj['AITags'] = $AITags;
+        $obj['fileIds'] = $fileIds;
 
         return $obj;
     }
@@ -85,7 +85,7 @@ final class BulkRemoveAITagsParams implements BaseModel
     public function withAITags(array $aiTags): self
     {
         $obj = clone $this;
-        $obj->AITags = $aiTags;
+        $obj['AITags'] = $aiTags;
 
         return $obj;
     }
@@ -98,7 +98,7 @@ final class BulkRemoveAITagsParams implements BaseModel
     public function withFileIDs(array $fileIDs): self
     {
         $obj = clone $this;
-        $obj->fileIds = $fileIDs;
+        $obj['fileIds'] = $fileIDs;
 
         return $obj;
     }

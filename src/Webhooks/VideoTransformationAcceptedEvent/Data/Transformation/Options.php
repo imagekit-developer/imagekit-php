@@ -110,11 +110,11 @@ final class Options implements BaseModel
         $obj = new self;
 
         null !== $audio_codec && $obj['audio_codec'] = $audio_codec;
-        null !== $auto_rotate && $obj->auto_rotate = $auto_rotate;
+        null !== $auto_rotate && $obj['auto_rotate'] = $auto_rotate;
         null !== $format && $obj['format'] = $format;
-        null !== $quality && $obj->quality = $quality;
+        null !== $quality && $obj['quality'] = $quality;
         null !== $stream_protocol && $obj['stream_protocol'] = $stream_protocol;
-        null !== $variants && $obj->variants = $variants;
+        null !== $variants && $obj['variants'] = $variants;
         null !== $video_codec && $obj['video_codec'] = $video_codec;
 
         return $obj;
@@ -139,7 +139,7 @@ final class Options implements BaseModel
     public function withAutoRotate(bool $autoRotate): self
     {
         $obj = clone $this;
-        $obj->auto_rotate = $autoRotate;
+        $obj['auto_rotate'] = $autoRotate;
 
         return $obj;
     }
@@ -163,7 +163,7 @@ final class Options implements BaseModel
     public function withQuality(int $quality): self
     {
         $obj = clone $this;
-        $obj->quality = $quality;
+        $obj['quality'] = $quality;
 
         return $obj;
     }
@@ -190,7 +190,7 @@ final class Options implements BaseModel
     public function withVariants(array $variants): self
     {
         $obj = clone $this;
-        $obj->variants = $variants;
+        $obj['variants'] = $variants;
 
         return $obj;
     }

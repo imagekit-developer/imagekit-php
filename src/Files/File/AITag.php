@@ -53,9 +53,9 @@ final class AITag implements BaseModel
     ): self {
         $obj = new self;
 
-        null !== $confidence && $obj->confidence = $confidence;
-        null !== $name && $obj->name = $name;
-        null !== $source && $obj->source = $source;
+        null !== $confidence && $obj['confidence'] = $confidence;
+        null !== $name && $obj['name'] = $name;
+        null !== $source && $obj['source'] = $source;
 
         return $obj;
     }
@@ -66,7 +66,7 @@ final class AITag implements BaseModel
     public function withConfidence(float $confidence): self
     {
         $obj = clone $this;
-        $obj->confidence = $confidence;
+        $obj['confidence'] = $confidence;
 
         return $obj;
     }
@@ -77,7 +77,7 @@ final class AITag implements BaseModel
     public function withName(string $name): self
     {
         $obj = clone $this;
-        $obj->name = $name;
+        $obj['name'] = $name;
 
         return $obj;
     }
@@ -88,7 +88,7 @@ final class AITag implements BaseModel
     public function withSource(string $source): self
     {
         $obj = clone $this;
-        $obj->source = $source;
+        $obj['source'] = $source;
 
         return $obj;
     }

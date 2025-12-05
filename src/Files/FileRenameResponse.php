@@ -40,7 +40,7 @@ final class FileRenameResponse implements BaseModel, ResponseConverter
     {
         $obj = new self;
 
-        null !== $purgeRequestId && $obj->purgeRequestId = $purgeRequestId;
+        null !== $purgeRequestId && $obj['purgeRequestId'] = $purgeRequestId;
 
         return $obj;
     }
@@ -51,7 +51,7 @@ final class FileRenameResponse implements BaseModel, ResponseConverter
     public function withPurgeRequestID(string $purgeRequestID): self
     {
         $obj = clone $this;
-        $obj->purgeRequestId = $purgeRequestID;
+        $obj['purgeRequestId'] = $purgeRequestID;
 
         return $obj;
     }

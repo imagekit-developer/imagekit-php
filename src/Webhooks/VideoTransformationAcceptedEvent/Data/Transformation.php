@@ -8,6 +8,10 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation\Options;
+use ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation\Options\AudioCodec;
+use ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation\Options\Format;
+use ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation\Options\StreamProtocol;
+use ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation\Options\VideoCodec;
 use ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation\Type;
 
 /**
@@ -64,16 +68,25 @@ final class Transformation implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param Type|value-of<Type> $type
+     * @param Options|array{
+     *   audio_codec?: value-of<AudioCodec>|null,
+     *   auto_rotate?: bool|null,
+     *   format?: value-of<Format>|null,
+     *   quality?: int|null,
+     *   stream_protocol?: value-of<StreamProtocol>|null,
+     *   variants?: list<string>|null,
+     *   video_codec?: value-of<VideoCodec>|null,
+     * } $options
      */
     public static function with(
         Type|string $type,
-        ?Options $options = null
+        Options|array|null $options = null
     ): self {
         $obj = new self;
 
         $obj['type'] = $type;
 
-        null !== $options && $obj->options = $options;
+        null !== $options && $obj['options'] = $options;
 
         return $obj;
     }
@@ -96,11 +109,21 @@ final class Transformation implements BaseModel
 
     /**
      * Configuration options for video transformations.
+     *
+     * @param Options|array{
+     *   audio_codec?: value-of<AudioCodec>|null,
+     *   auto_rotate?: bool|null,
+     *   format?: value-of<Format>|null,
+     *   quality?: int|null,
+     *   stream_protocol?: value-of<StreamProtocol>|null,
+     *   variants?: list<string>|null,
+     *   video_codec?: value-of<VideoCodec>|null,
+     * } $options
      */
-    public function withOptions(Options $options): self
+    public function withOptions(Options|array $options): self
     {
         $obj = clone $this;
-        $obj->options = $options;
+        $obj['options'] = $options;
 
         return $obj;
     }

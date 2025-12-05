@@ -8,6 +8,8 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Webhooks\UploadPostTransformErrorEvent\Request\Transformation;
+use ImageKit\Webhooks\UploadPostTransformErrorEvent\Request\Transformation\Protocol;
+use ImageKit\Webhooks\UploadPostTransformErrorEvent\Request\Transformation\Type;
 
 /**
  * @phpstan-type RequestShape = array{
@@ -51,23 +53,33 @@ final class Request implements BaseModel
      * Construct an instance from the required parameters.
      *
      * You must use named parameters to construct any parameters with a default value.
+     *
+     * @param Transformation|array{
+     *   type: value-of<Type>, protocol?: value-of<Protocol>|null, value?: string|null
+     * } $transformation
      */
     public static function with(
-        Transformation $transformation,
+        Transformation|array $transformation,
         string $x_request_id
     ): self {
         $obj = new self;
 
-        $obj->transformation = $transformation;
-        $obj->x_request_id = $x_request_id;
+        $obj['transformation'] = $transformation;
+        $obj['x_request_id'] = $x_request_id;
 
         return $obj;
     }
 
-    public function withTransformation(Transformation $transformation): self
-    {
+    /**
+     * @param Transformation|array{
+     *   type: value-of<Type>, protocol?: value-of<Protocol>|null, value?: string|null
+     * } $transformation
+     */
+    public function withTransformation(
+        Transformation|array $transformation
+    ): self {
         $obj = clone $this;
-        $obj->transformation = $transformation;
+        $obj['transformation'] = $transformation;
 
         return $obj;
     }
@@ -78,7 +90,7 @@ final class Request implements BaseModel
     public function withXRequestID(string $xRequestID): self
     {
         $obj = clone $this;
-        $obj->x_request_id = $xRequestID;
+        $obj['x_request_id'] = $xRequestID;
 
         return $obj;
     }

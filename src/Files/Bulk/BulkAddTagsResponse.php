@@ -46,7 +46,7 @@ final class BulkAddTagsResponse implements BaseModel, ResponseConverter
     {
         $obj = new self;
 
-        null !== $successfullyUpdatedFileIds && $obj->successfullyUpdatedFileIds = $successfullyUpdatedFileIds;
+        null !== $successfullyUpdatedFileIds && $obj['successfullyUpdatedFileIds'] = $successfullyUpdatedFileIds;
 
         return $obj;
     }
@@ -60,7 +60,7 @@ final class BulkAddTagsResponse implements BaseModel, ResponseConverter
         array $successfullyUpdatedFileIDs
     ): self {
         $obj = clone $this;
-        $obj->successfullyUpdatedFileIds = $successfullyUpdatedFileIDs;
+        $obj['successfullyUpdatedFileIds'] = $successfullyUpdatedFileIDs;
 
         return $obj;
     }

@@ -32,23 +32,31 @@ final class ChangePublicationStatus implements BaseModel
      * Construct an instance from the required parameters.
      *
      * You must use named parameters to construct any parameters with a default value.
+     *
+     * @param Publish|array{
+     *   isPublished: bool, includeFileVersions?: bool|null
+     * } $publish
      */
-    public static function with(?Publish $publish = null): self
+    public static function with(Publish|array|null $publish = null): self
     {
         $obj = new self;
 
-        null !== $publish && $obj->publish = $publish;
+        null !== $publish && $obj['publish'] = $publish;
 
         return $obj;
     }
 
     /**
      * Configure the publication status of a file and its versions.
+     *
+     * @param Publish|array{
+     *   isPublished: bool, includeFileVersions?: bool|null
+     * } $publish
      */
-    public function withPublish(Publish $publish): self
+    public function withPublish(Publish|array $publish): self
     {
         $obj = clone $this;
-        $obj->publish = $publish;
+        $obj['publish'] = $publish;
 
         return $obj;
     }

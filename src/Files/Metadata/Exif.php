@@ -71,69 +71,172 @@ final class Exif implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
+     * @param Exif\Exif|array{
+     *   ApertureValue?: float|null,
+     *   ColorSpace?: int|null,
+     *   CreateDate?: string|null,
+     *   CustomRendered?: int|null,
+     *   DateTimeOriginal?: string|null,
+     *   ExifImageHeight?: int|null,
+     *   ExifImageWidth?: int|null,
+     *   ExifVersion?: string|null,
+     *   ExposureCompensation?: float|null,
+     *   ExposureMode?: int|null,
+     *   ExposureProgram?: int|null,
+     *   ExposureTime?: float|null,
+     *   Flash?: int|null,
+     *   FlashpixVersion?: string|null,
+     *   FNumber?: float|null,
+     *   FocalLength?: int|null,
+     *   FocalPlaneResolutionUnit?: int|null,
+     *   FocalPlaneXResolution?: float|null,
+     *   FocalPlaneYResolution?: float|null,
+     *   InteropOffset?: int|null,
+     *   ISO?: int|null,
+     *   MeteringMode?: int|null,
+     *   SceneCaptureType?: int|null,
+     *   ShutterSpeedValue?: float|null,
+     *   SubSecTime?: string|null,
+     *   WhiteBalance?: int|null,
+     * } $exif
+     * @param Gps|array{GPSVersionID?: list<int>|null} $gps
+     * @param Image|array{
+     *   ExifOffset?: int|null,
+     *   GPSInfo?: int|null,
+     *   Make?: string|null,
+     *   Model?: string|null,
+     *   ModifyDate?: string|null,
+     *   Orientation?: int|null,
+     *   ResolutionUnit?: int|null,
+     *   Software?: string|null,
+     *   XResolution?: int|null,
+     *   YCbCrPositioning?: int|null,
+     *   YResolution?: int|null,
+     * } $image
+     * @param Interoperability|array{
+     *   InteropIndex?: string|null, InteropVersion?: string|null
+     * } $interoperability
      * @param array<string,mixed> $makernote
+     * @param Thumbnail|array{
+     *   Compression?: int|null,
+     *   ResolutionUnit?: int|null,
+     *   ThumbnailLength?: int|null,
+     *   ThumbnailOffset?: int|null,
+     *   XResolution?: int|null,
+     *   YResolution?: int|null,
+     * } $thumbnail
      */
     public static function with(
-        ?Exif\Exif $exif = null,
-        ?Gps $gps = null,
-        ?Image $image = null,
-        ?Interoperability $interoperability = null,
+        Exif\Exif|array|null $exif = null,
+        Gps|array|null $gps = null,
+        Image|array|null $image = null,
+        Interoperability|array|null $interoperability = null,
         ?array $makernote = null,
-        ?Thumbnail $thumbnail = null,
+        Thumbnail|array|null $thumbnail = null,
     ): self {
         $obj = new self;
 
-        null !== $exif && $obj->exif = $exif;
-        null !== $gps && $obj->gps = $gps;
-        null !== $image && $obj->image = $image;
-        null !== $interoperability && $obj->interoperability = $interoperability;
-        null !== $makernote && $obj->makernote = $makernote;
-        null !== $thumbnail && $obj->thumbnail = $thumbnail;
+        null !== $exif && $obj['exif'] = $exif;
+        null !== $gps && $obj['gps'] = $gps;
+        null !== $image && $obj['image'] = $image;
+        null !== $interoperability && $obj['interoperability'] = $interoperability;
+        null !== $makernote && $obj['makernote'] = $makernote;
+        null !== $thumbnail && $obj['thumbnail'] = $thumbnail;
 
         return $obj;
     }
 
     /**
      * Object containing Exif details.
+     *
+     * @param Exif\Exif|array{
+     *   ApertureValue?: float|null,
+     *   ColorSpace?: int|null,
+     *   CreateDate?: string|null,
+     *   CustomRendered?: int|null,
+     *   DateTimeOriginal?: string|null,
+     *   ExifImageHeight?: int|null,
+     *   ExifImageWidth?: int|null,
+     *   ExifVersion?: string|null,
+     *   ExposureCompensation?: float|null,
+     *   ExposureMode?: int|null,
+     *   ExposureProgram?: int|null,
+     *   ExposureTime?: float|null,
+     *   Flash?: int|null,
+     *   FlashpixVersion?: string|null,
+     *   FNumber?: float|null,
+     *   FocalLength?: int|null,
+     *   FocalPlaneResolutionUnit?: int|null,
+     *   FocalPlaneXResolution?: float|null,
+     *   FocalPlaneYResolution?: float|null,
+     *   InteropOffset?: int|null,
+     *   ISO?: int|null,
+     *   MeteringMode?: int|null,
+     *   SceneCaptureType?: int|null,
+     *   ShutterSpeedValue?: float|null,
+     *   SubSecTime?: string|null,
+     *   WhiteBalance?: int|null,
+     * } $exif
      */
-    public function withExif(Exif\Exif $exif): self
-    {
+    public function withExif(
+        Exif\Exif|array $exif
+    ): self {
         $obj = clone $this;
-        $obj->exif = $exif;
+        $obj['exif'] = $exif;
 
         return $obj;
     }
 
     /**
      * Object containing GPS information.
+     *
+     * @param Gps|array{GPSVersionID?: list<int>|null} $gps
      */
-    public function withGps(Gps $gps): self
+    public function withGps(Gps|array $gps): self
     {
         $obj = clone $this;
-        $obj->gps = $gps;
+        $obj['gps'] = $gps;
 
         return $obj;
     }
 
     /**
      * Object containing EXIF image information.
+     *
+     * @param Image|array{
+     *   ExifOffset?: int|null,
+     *   GPSInfo?: int|null,
+     *   Make?: string|null,
+     *   Model?: string|null,
+     *   ModifyDate?: string|null,
+     *   Orientation?: int|null,
+     *   ResolutionUnit?: int|null,
+     *   Software?: string|null,
+     *   XResolution?: int|null,
+     *   YCbCrPositioning?: int|null,
+     *   YResolution?: int|null,
+     * } $image
      */
-    public function withImage(Image $image): self
+    public function withImage(Image|array $image): self
     {
         $obj = clone $this;
-        $obj->image = $image;
+        $obj['image'] = $image;
 
         return $obj;
     }
 
     /**
      * JSON object.
+     *
+     * @param Interoperability|array{
+     *   InteropIndex?: string|null, InteropVersion?: string|null
+     * } $interoperability
      */
     public function withInteroperability(
-        Interoperability $interoperability
+        Interoperability|array $interoperability
     ): self {
         $obj = clone $this;
-        $obj->interoperability = $interoperability;
+        $obj['interoperability'] = $interoperability;
 
         return $obj;
     }
@@ -144,18 +247,27 @@ final class Exif implements BaseModel
     public function withMakernote(array $makernote): self
     {
         $obj = clone $this;
-        $obj->makernote = $makernote;
+        $obj['makernote'] = $makernote;
 
         return $obj;
     }
 
     /**
      * Object containing Thumbnail information.
+     *
+     * @param Thumbnail|array{
+     *   Compression?: int|null,
+     *   ResolutionUnit?: int|null,
+     *   ThumbnailLength?: int|null,
+     *   ThumbnailOffset?: int|null,
+     *   XResolution?: int|null,
+     *   YResolution?: int|null,
+     * } $thumbnail
      */
-    public function withThumbnail(Thumbnail $thumbnail): self
+    public function withThumbnail(Thumbnail|array $thumbnail): self
     {
         $obj = clone $this;
-        $obj->thumbnail = $thumbnail;
+        $obj['thumbnail'] = $thumbnail;
 
         return $obj;
     }

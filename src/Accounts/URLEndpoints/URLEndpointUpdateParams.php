@@ -23,7 +23,9 @@ use ImageKit\Core\Contracts\BaseModel;
  *   description: string,
  *   origins?: list<string>,
  *   urlPrefix?: string,
- *   urlRewriter?: Cloudinary|Imgix|Akamai,
+ *   urlRewriter?: Cloudinary|array{
+ *     type: 'CLOUDINARY', preserveAssetDeliveryTypes?: bool|null
+ *   }|Imgix|array{type: 'IMGIX'}|Akamai|array{type: 'AKAMAI'},
  * }
  */
 final class URLEndpointUpdateParams implements BaseModel
@@ -83,20 +85,23 @@ final class URLEndpointUpdateParams implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param list<string> $origins
+     * @param Cloudinary|array{
+     *   type: 'CLOUDINARY', preserveAssetDeliveryTypes?: bool|null
+     * }|Imgix|array{type: 'IMGIX'}|Akamai|array{type: 'AKAMAI'} $urlRewriter
      */
     public static function with(
         string $description,
         ?array $origins = null,
         ?string $urlPrefix = null,
-        Cloudinary|Imgix|Akamai|null $urlRewriter = null,
+        Cloudinary|array|Imgix|Akamai|null $urlRewriter = null,
     ): self {
         $obj = new self;
 
-        $obj->description = $description;
+        $obj['description'] = $description;
 
-        null !== $origins && $obj->origins = $origins;
-        null !== $urlPrefix && $obj->urlPrefix = $urlPrefix;
-        null !== $urlRewriter && $obj->urlRewriter = $urlRewriter;
+        null !== $origins && $obj['origins'] = $origins;
+        null !== $urlPrefix && $obj['urlPrefix'] = $urlPrefix;
+        null !== $urlRewriter && $obj['urlRewriter'] = $urlRewriter;
 
         return $obj;
     }
@@ -107,7 +112,7 @@ final class URLEndpointUpdateParams implements BaseModel
     public function withDescription(string $description): self
     {
         $obj = clone $this;
-        $obj->description = $description;
+        $obj['description'] = $description;
 
         return $obj;
     }
@@ -120,7 +125,7 @@ final class URLEndpointUpdateParams implements BaseModel
     public function withOrigins(array $origins): self
     {
         $obj = clone $this;
-        $obj->origins = $origins;
+        $obj['origins'] = $origins;
 
         return $obj;
     }
@@ -131,18 +136,23 @@ final class URLEndpointUpdateParams implements BaseModel
     public function withURLPrefix(string $urlPrefix): self
     {
         $obj = clone $this;
-        $obj->urlPrefix = $urlPrefix;
+        $obj['urlPrefix'] = $urlPrefix;
 
         return $obj;
     }
 
     /**
      * Configuration for third-party URL rewriting.
+     *
+     * @param Cloudinary|array{
+     *   type: 'CLOUDINARY', preserveAssetDeliveryTypes?: bool|null
+     * }|Imgix|array{type: 'IMGIX'}|Akamai|array{type: 'AKAMAI'} $urlRewriter
      */
-    public function withURLRewriter(Cloudinary|Imgix|Akamai $urlRewriter): self
-    {
+    public function withURLRewriter(
+        Cloudinary|array|Imgix|Akamai $urlRewriter
+    ): self {
         $obj = clone $this;
-        $obj->urlRewriter = $urlRewriter;
+        $obj['urlRewriter'] = $urlRewriter;
 
         return $obj;
     }

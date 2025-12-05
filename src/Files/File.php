@@ -212,11 +212,25 @@ final class File implements BaseModel, ResponseConverter
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<AITag>|null $AITags
+     * @param list<AITag|array{
+     *   confidence?: float|null, name?: string|null, source?: string|null
+     * }>|null $AITags
      * @param array<string,mixed> $customMetadata
-     * @param array<string,SelectedFieldsSchema> $selectedFieldsSchema
+     * @param array<string,SelectedFieldsSchema|array{
+     *   type: value-of<SelectedFieldsSchema\Type>,
+     *   defaultValue?: string|float|bool|list<string|float|bool>|null,
+     *   isValueRequired?: bool|null,
+     *   maxLength?: float|null,
+     *   maxValue?: string|float|null,
+     *   minLength?: float|null,
+     *   minValue?: string|float|null,
+     *   readOnly?: bool|null,
+     *   selectOptions?: list<string|float|bool>|null,
+     *   selectOptionsTruncated?: bool|null,
+     * }> $selectedFieldsSchema
      * @param list<string>|null $tags
      * @param Type|value-of<Type> $type
+     * @param VersionInfo|array{id?: string|null, name?: string|null} $versionInfo
      */
     public static function with(
         ?array $AITags = null,
@@ -240,34 +254,34 @@ final class File implements BaseModel, ResponseConverter
         Type|string|null $type = null,
         ?\DateTimeInterface $updatedAt = null,
         ?string $url = null,
-        ?VersionInfo $versionInfo = null,
+        VersionInfo|array|null $versionInfo = null,
         ?float $width = null,
     ): self {
         $obj = new self;
 
-        null !== $AITags && $obj->AITags = $AITags;
-        null !== $createdAt && $obj->createdAt = $createdAt;
-        null !== $customCoordinates && $obj->customCoordinates = $customCoordinates;
-        null !== $customMetadata && $obj->customMetadata = $customMetadata;
-        null !== $description && $obj->description = $description;
-        null !== $fileId && $obj->fileId = $fileId;
-        null !== $filePath && $obj->filePath = $filePath;
-        null !== $fileType && $obj->fileType = $fileType;
-        null !== $hasAlpha && $obj->hasAlpha = $hasAlpha;
-        null !== $height && $obj->height = $height;
-        null !== $isPrivateFile && $obj->isPrivateFile = $isPrivateFile;
-        null !== $isPublished && $obj->isPublished = $isPublished;
-        null !== $mime && $obj->mime = $mime;
-        null !== $name && $obj->name = $name;
-        null !== $selectedFieldsSchema && $obj->selectedFieldsSchema = $selectedFieldsSchema;
-        null !== $size && $obj->size = $size;
-        null !== $tags && $obj->tags = $tags;
-        null !== $thumbnail && $obj->thumbnail = $thumbnail;
+        null !== $AITags && $obj['AITags'] = $AITags;
+        null !== $createdAt && $obj['createdAt'] = $createdAt;
+        null !== $customCoordinates && $obj['customCoordinates'] = $customCoordinates;
+        null !== $customMetadata && $obj['customMetadata'] = $customMetadata;
+        null !== $description && $obj['description'] = $description;
+        null !== $fileId && $obj['fileId'] = $fileId;
+        null !== $filePath && $obj['filePath'] = $filePath;
+        null !== $fileType && $obj['fileType'] = $fileType;
+        null !== $hasAlpha && $obj['hasAlpha'] = $hasAlpha;
+        null !== $height && $obj['height'] = $height;
+        null !== $isPrivateFile && $obj['isPrivateFile'] = $isPrivateFile;
+        null !== $isPublished && $obj['isPublished'] = $isPublished;
+        null !== $mime && $obj['mime'] = $mime;
+        null !== $name && $obj['name'] = $name;
+        null !== $selectedFieldsSchema && $obj['selectedFieldsSchema'] = $selectedFieldsSchema;
+        null !== $size && $obj['size'] = $size;
+        null !== $tags && $obj['tags'] = $tags;
+        null !== $thumbnail && $obj['thumbnail'] = $thumbnail;
         null !== $type && $obj['type'] = $type;
-        null !== $updatedAt && $obj->updatedAt = $updatedAt;
-        null !== $url && $obj->url = $url;
-        null !== $versionInfo && $obj->versionInfo = $versionInfo;
-        null !== $width && $obj->width = $width;
+        null !== $updatedAt && $obj['updatedAt'] = $updatedAt;
+        null !== $url && $obj['url'] = $url;
+        null !== $versionInfo && $obj['versionInfo'] = $versionInfo;
+        null !== $width && $obj['width'] = $width;
 
         return $obj;
     }
@@ -275,12 +289,14 @@ final class File implements BaseModel, ResponseConverter
     /**
      * An array of tags assigned to the file by auto tagging.
      *
-     * @param list<AITag>|null $aiTags
+     * @param list<AITag|array{
+     *   confidence?: float|null, name?: string|null, source?: string|null
+     * }>|null $aiTags
      */
     public function withAITags(?array $aiTags): self
     {
         $obj = clone $this;
-        $obj->AITags = $aiTags;
+        $obj['AITags'] = $aiTags;
 
         return $obj;
     }
@@ -291,7 +307,7 @@ final class File implements BaseModel, ResponseConverter
     public function withCreatedAt(\DateTimeInterface $createdAt): self
     {
         $obj = clone $this;
-        $obj->createdAt = $createdAt;
+        $obj['createdAt'] = $createdAt;
 
         return $obj;
     }
@@ -302,7 +318,7 @@ final class File implements BaseModel, ResponseConverter
     public function withCustomCoordinates(?string $customCoordinates): self
     {
         $obj = clone $this;
-        $obj->customCoordinates = $customCoordinates;
+        $obj['customCoordinates'] = $customCoordinates;
 
         return $obj;
     }
@@ -315,7 +331,7 @@ final class File implements BaseModel, ResponseConverter
     public function withCustomMetadata(array $customMetadata): self
     {
         $obj = clone $this;
-        $obj->customMetadata = $customMetadata;
+        $obj['customMetadata'] = $customMetadata;
 
         return $obj;
     }
@@ -326,7 +342,7 @@ final class File implements BaseModel, ResponseConverter
     public function withDescription(string $description): self
     {
         $obj = clone $this;
-        $obj->description = $description;
+        $obj['description'] = $description;
 
         return $obj;
     }
@@ -337,7 +353,7 @@ final class File implements BaseModel, ResponseConverter
     public function withFileID(string $fileID): self
     {
         $obj = clone $this;
-        $obj->fileId = $fileID;
+        $obj['fileId'] = $fileID;
 
         return $obj;
     }
@@ -348,7 +364,7 @@ final class File implements BaseModel, ResponseConverter
     public function withFilePath(string $filePath): self
     {
         $obj = clone $this;
-        $obj->filePath = $filePath;
+        $obj['filePath'] = $filePath;
 
         return $obj;
     }
@@ -359,7 +375,7 @@ final class File implements BaseModel, ResponseConverter
     public function withFileType(string $fileType): self
     {
         $obj = clone $this;
-        $obj->fileType = $fileType;
+        $obj['fileType'] = $fileType;
 
         return $obj;
     }
@@ -370,7 +386,7 @@ final class File implements BaseModel, ResponseConverter
     public function withHasAlpha(bool $hasAlpha): self
     {
         $obj = clone $this;
-        $obj->hasAlpha = $hasAlpha;
+        $obj['hasAlpha'] = $hasAlpha;
 
         return $obj;
     }
@@ -381,7 +397,7 @@ final class File implements BaseModel, ResponseConverter
     public function withHeight(float $height): self
     {
         $obj = clone $this;
-        $obj->height = $height;
+        $obj['height'] = $height;
 
         return $obj;
     }
@@ -392,7 +408,7 @@ final class File implements BaseModel, ResponseConverter
     public function withIsPrivateFile(bool $isPrivateFile): self
     {
         $obj = clone $this;
-        $obj->isPrivateFile = $isPrivateFile;
+        $obj['isPrivateFile'] = $isPrivateFile;
 
         return $obj;
     }
@@ -403,7 +419,7 @@ final class File implements BaseModel, ResponseConverter
     public function withIsPublished(bool $isPublished): self
     {
         $obj = clone $this;
-        $obj->isPublished = $isPublished;
+        $obj['isPublished'] = $isPublished;
 
         return $obj;
     }
@@ -414,7 +430,7 @@ final class File implements BaseModel, ResponseConverter
     public function withMime(string $mime): self
     {
         $obj = clone $this;
-        $obj->mime = $mime;
+        $obj['mime'] = $mime;
 
         return $obj;
     }
@@ -425,7 +441,7 @@ final class File implements BaseModel, ResponseConverter
     public function withName(string $name): self
     {
         $obj = clone $this;
-        $obj->name = $name;
+        $obj['name'] = $name;
 
         return $obj;
     }
@@ -437,12 +453,23 @@ final class File implements BaseModel, ResponseConverter
      *
      * Keys are the names of the custom metadata fields; the value object has details about the custom metadata schema.
      *
-     * @param array<string,SelectedFieldsSchema> $selectedFieldsSchema
+     * @param array<string,SelectedFieldsSchema|array{
+     *   type: value-of<SelectedFieldsSchema\Type>,
+     *   defaultValue?: string|float|bool|list<string|float|bool>|null,
+     *   isValueRequired?: bool|null,
+     *   maxLength?: float|null,
+     *   maxValue?: string|float|null,
+     *   minLength?: float|null,
+     *   minValue?: string|float|null,
+     *   readOnly?: bool|null,
+     *   selectOptions?: list<string|float|bool>|null,
+     *   selectOptionsTruncated?: bool|null,
+     * }> $selectedFieldsSchema
      */
     public function withSelectedFieldsSchema(array $selectedFieldsSchema): self
     {
         $obj = clone $this;
-        $obj->selectedFieldsSchema = $selectedFieldsSchema;
+        $obj['selectedFieldsSchema'] = $selectedFieldsSchema;
 
         return $obj;
     }
@@ -453,7 +480,7 @@ final class File implements BaseModel, ResponseConverter
     public function withSize(float $size): self
     {
         $obj = clone $this;
-        $obj->size = $size;
+        $obj['size'] = $size;
 
         return $obj;
     }
@@ -466,7 +493,7 @@ final class File implements BaseModel, ResponseConverter
     public function withTags(?array $tags): self
     {
         $obj = clone $this;
-        $obj->tags = $tags;
+        $obj['tags'] = $tags;
 
         return $obj;
     }
@@ -477,7 +504,7 @@ final class File implements BaseModel, ResponseConverter
     public function withThumbnail(string $thumbnail): self
     {
         $obj = clone $this;
-        $obj->thumbnail = $thumbnail;
+        $obj['thumbnail'] = $thumbnail;
 
         return $obj;
     }
@@ -501,7 +528,7 @@ final class File implements BaseModel, ResponseConverter
     public function withUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $obj = clone $this;
-        $obj->updatedAt = $updatedAt;
+        $obj['updatedAt'] = $updatedAt;
 
         return $obj;
     }
@@ -512,18 +539,20 @@ final class File implements BaseModel, ResponseConverter
     public function withURL(string $url): self
     {
         $obj = clone $this;
-        $obj->url = $url;
+        $obj['url'] = $url;
 
         return $obj;
     }
 
     /**
      * An object with details of the file version.
+     *
+     * @param VersionInfo|array{id?: string|null, name?: string|null} $versionInfo
      */
-    public function withVersionInfo(VersionInfo $versionInfo): self
+    public function withVersionInfo(VersionInfo|array $versionInfo): self
     {
         $obj = clone $this;
-        $obj->versionInfo = $versionInfo;
+        $obj['versionInfo'] = $versionInfo;
 
         return $obj;
     }
@@ -534,7 +563,7 @@ final class File implements BaseModel, ResponseConverter
     public function withWidth(float $width): self
     {
         $obj = clone $this;
-        $obj->width = $width;
+        $obj['width'] = $width;
 
         return $obj;
     }

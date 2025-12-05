@@ -40,7 +40,7 @@ final class InvalidationNewResponse implements BaseModel, ResponseConverter
     {
         $obj = new self;
 
-        null !== $requestId && $obj->requestId = $requestId;
+        null !== $requestId && $obj['requestId'] = $requestId;
 
         return $obj;
     }
@@ -51,7 +51,7 @@ final class InvalidationNewResponse implements BaseModel, ResponseConverter
     public function withRequestID(string $requestID): self
     {
         $obj = clone $this;
-        $obj->requestId = $requestID;
+        $obj['requestId'] = $requestID;
 
         return $obj;
     }

@@ -566,58 +566,58 @@ final class Transformation implements BaseModel
     ): self {
         $obj = new self;
 
-        null !== $aiChangeBackground && $obj->aiChangeBackground = $aiChangeBackground;
-        null !== $aiDropShadow && $obj->aiDropShadow = $aiDropShadow;
-        null !== $aiEdit && $obj->aiEdit = $aiEdit;
-        null !== $aiRemoveBackground && $obj->aiRemoveBackground = $aiRemoveBackground;
-        null !== $aiRemoveBackgroundExternal && $obj->aiRemoveBackgroundExternal = $aiRemoveBackgroundExternal;
-        null !== $aiRetouch && $obj->aiRetouch = $aiRetouch;
-        null !== $aiUpscale && $obj->aiUpscale = $aiUpscale;
-        null !== $aiVariation && $obj->aiVariation = $aiVariation;
-        null !== $aspectRatio && $obj->aspectRatio = $aspectRatio;
+        null !== $aiChangeBackground && $obj['aiChangeBackground'] = $aiChangeBackground;
+        null !== $aiDropShadow && $obj['aiDropShadow'] = $aiDropShadow;
+        null !== $aiEdit && $obj['aiEdit'] = $aiEdit;
+        null !== $aiRemoveBackground && $obj['aiRemoveBackground'] = $aiRemoveBackground;
+        null !== $aiRemoveBackgroundExternal && $obj['aiRemoveBackgroundExternal'] = $aiRemoveBackgroundExternal;
+        null !== $aiRetouch && $obj['aiRetouch'] = $aiRetouch;
+        null !== $aiUpscale && $obj['aiUpscale'] = $aiUpscale;
+        null !== $aiVariation && $obj['aiVariation'] = $aiVariation;
+        null !== $aspectRatio && $obj['aspectRatio'] = $aspectRatio;
         null !== $audioCodec && $obj['audioCodec'] = $audioCodec;
-        null !== $background && $obj->background = $background;
-        null !== $blur && $obj->blur = $blur;
-        null !== $border && $obj->border = $border;
-        null !== $colorProfile && $obj->colorProfile = $colorProfile;
-        null !== $contrastStretch && $obj->contrastStretch = $contrastStretch;
+        null !== $background && $obj['background'] = $background;
+        null !== $blur && $obj['blur'] = $blur;
+        null !== $border && $obj['border'] = $border;
+        null !== $colorProfile && $obj['colorProfile'] = $colorProfile;
+        null !== $contrastStretch && $obj['contrastStretch'] = $contrastStretch;
         null !== $crop && $obj['crop'] = $crop;
         null !== $cropMode && $obj['cropMode'] = $cropMode;
-        null !== $defaultImage && $obj->defaultImage = $defaultImage;
-        null !== $dpr && $obj->dpr = $dpr;
-        null !== $duration && $obj->duration = $duration;
-        null !== $endOffset && $obj->endOffset = $endOffset;
+        null !== $defaultImage && $obj['defaultImage'] = $defaultImage;
+        null !== $dpr && $obj['dpr'] = $dpr;
+        null !== $duration && $obj['duration'] = $duration;
+        null !== $endOffset && $obj['endOffset'] = $endOffset;
         null !== $flip && $obj['flip'] = $flip;
-        null !== $focus && $obj->focus = $focus;
+        null !== $focus && $obj['focus'] = $focus;
         null !== $format && $obj['format'] = $format;
-        null !== $gradient && $obj->gradient = $gradient;
-        null !== $grayscale && $obj->grayscale = $grayscale;
-        null !== $height && $obj->height = $height;
-        null !== $lossless && $obj->lossless = $lossless;
-        null !== $metadata && $obj->metadata = $metadata;
-        null !== $named && $obj->named = $named;
-        null !== $opacity && $obj->opacity = $opacity;
-        null !== $original && $obj->original = $original;
-        null !== $overlay && $obj->overlay = $overlay;
-        null !== $page && $obj->page = $page;
-        null !== $progressive && $obj->progressive = $progressive;
-        null !== $quality && $obj->quality = $quality;
-        null !== $radius && $obj->radius = $radius;
-        null !== $raw && $obj->raw = $raw;
-        null !== $rotation && $obj->rotation = $rotation;
-        null !== $shadow && $obj->shadow = $shadow;
-        null !== $sharpen && $obj->sharpen = $sharpen;
-        null !== $startOffset && $obj->startOffset = $startOffset;
+        null !== $gradient && $obj['gradient'] = $gradient;
+        null !== $grayscale && $obj['grayscale'] = $grayscale;
+        null !== $height && $obj['height'] = $height;
+        null !== $lossless && $obj['lossless'] = $lossless;
+        null !== $metadata && $obj['metadata'] = $metadata;
+        null !== $named && $obj['named'] = $named;
+        null !== $opacity && $obj['opacity'] = $opacity;
+        null !== $original && $obj['original'] = $original;
+        null !== $overlay && $obj['overlay'] = $overlay;
+        null !== $page && $obj['page'] = $page;
+        null !== $progressive && $obj['progressive'] = $progressive;
+        null !== $quality && $obj['quality'] = $quality;
+        null !== $radius && $obj['radius'] = $radius;
+        null !== $raw && $obj['raw'] = $raw;
+        null !== $rotation && $obj['rotation'] = $rotation;
+        null !== $shadow && $obj['shadow'] = $shadow;
+        null !== $sharpen && $obj['sharpen'] = $sharpen;
+        null !== $startOffset && $obj['startOffset'] = $startOffset;
         null !== $streamingResolutions && $obj['streamingResolutions'] = $streamingResolutions;
-        null !== $trim && $obj->trim = $trim;
-        null !== $unsharpMask && $obj->unsharpMask = $unsharpMask;
+        null !== $trim && $obj['trim'] = $trim;
+        null !== $unsharpMask && $obj['unsharpMask'] = $unsharpMask;
         null !== $videoCodec && $obj['videoCodec'] = $videoCodec;
-        null !== $width && $obj->width = $width;
-        null !== $x && $obj->x = $x;
-        null !== $xCenter && $obj->xCenter = $xCenter;
-        null !== $y && $obj->y = $y;
-        null !== $yCenter && $obj->yCenter = $yCenter;
-        null !== $zoom && $obj->zoom = $zoom;
+        null !== $width && $obj['width'] = $width;
+        null !== $x && $obj['x'] = $x;
+        null !== $xCenter && $obj['xCenter'] = $xCenter;
+        null !== $y && $obj['y'] = $y;
+        null !== $yCenter && $obj['yCenter'] = $yCenter;
+        null !== $zoom && $obj['zoom'] = $zoom;
 
         return $obj;
     }
@@ -631,7 +631,7 @@ final class Transformation implements BaseModel
     public function withAIChangeBackground(string $aiChangeBackground): self
     {
         $obj = clone $this;
-        $obj->aiChangeBackground = $aiChangeBackground;
+        $obj['aiChangeBackground'] = $aiChangeBackground;
 
         return $obj;
     }
@@ -646,7 +646,7 @@ final class Transformation implements BaseModel
     public function withAIDropShadow(string|bool $aiDropShadow): self
     {
         $obj = clone $this;
-        $obj->aiDropShadow = $aiDropShadow;
+        $obj['aiDropShadow'] = $aiDropShadow;
 
         return $obj;
     }
@@ -660,7 +660,7 @@ final class Transformation implements BaseModel
     public function withAIEdit(string $aiEdit): self
     {
         $obj = clone $this;
-        $obj->aiEdit = $aiEdit;
+        $obj['aiEdit'] = $aiEdit;
 
         return $obj;
     }
@@ -673,7 +673,7 @@ final class Transformation implements BaseModel
     public function withAIRemoveBackground(bool $aiRemoveBackground): self
     {
         $obj = clone $this;
-        $obj->aiRemoveBackground = $aiRemoveBackground;
+        $obj['aiRemoveBackground'] = $aiRemoveBackground;
 
         return $obj;
     }
@@ -688,7 +688,7 @@ final class Transformation implements BaseModel
         bool $aiRemoveBackgroundExternal
     ): self {
         $obj = clone $this;
-        $obj->aiRemoveBackgroundExternal = $aiRemoveBackgroundExternal;
+        $obj['aiRemoveBackgroundExternal'] = $aiRemoveBackgroundExternal;
 
         return $obj;
     }
@@ -700,7 +700,7 @@ final class Transformation implements BaseModel
     public function withAIRetouch(bool $aiRetouch): self
     {
         $obj = clone $this;
-        $obj->aiRetouch = $aiRetouch;
+        $obj['aiRetouch'] = $aiRetouch;
 
         return $obj;
     }
@@ -712,7 +712,7 @@ final class Transformation implements BaseModel
     public function withAIUpscale(bool $aiUpscale): self
     {
         $obj = clone $this;
-        $obj->aiUpscale = $aiUpscale;
+        $obj['aiUpscale'] = $aiUpscale;
 
         return $obj;
     }
@@ -725,7 +725,7 @@ final class Transformation implements BaseModel
     public function withAIVariation(bool $aiVariation): self
     {
         $obj = clone $this;
-        $obj->aiVariation = $aiVariation;
+        $obj['aiVariation'] = $aiVariation;
 
         return $obj;
     }
@@ -738,7 +738,7 @@ final class Transformation implements BaseModel
     public function withAspectRatio(float|string $aspectRatio): self
     {
         $obj = clone $this;
-        $obj->aspectRatio = $aspectRatio;
+        $obj['aspectRatio'] = $aspectRatio;
 
         return $obj;
     }
@@ -766,7 +766,7 @@ final class Transformation implements BaseModel
     public function withBackground(string $background): self
     {
         $obj = clone $this;
-        $obj->background = $background;
+        $obj['background'] = $background;
 
         return $obj;
     }
@@ -778,7 +778,7 @@ final class Transformation implements BaseModel
     public function withBlur(float $blur): self
     {
         $obj = clone $this;
-        $obj->blur = $blur;
+        $obj['blur'] = $blur;
 
         return $obj;
     }
@@ -791,7 +791,7 @@ final class Transformation implements BaseModel
     public function withBorder(string $border): self
     {
         $obj = clone $this;
-        $obj->border = $border;
+        $obj['border'] = $border;
 
         return $obj;
     }
@@ -803,7 +803,7 @@ final class Transformation implements BaseModel
     public function withColorProfile(bool $colorProfile): self
     {
         $obj = clone $this;
-        $obj->colorProfile = $colorProfile;
+        $obj['colorProfile'] = $colorProfile;
 
         return $obj;
     }
@@ -815,7 +815,7 @@ final class Transformation implements BaseModel
     public function withContrastStretch(bool $contrastStretch): self
     {
         $obj = clone $this;
-        $obj->contrastStretch = $contrastStretch;
+        $obj['contrastStretch'] = $contrastStretch;
 
         return $obj;
     }
@@ -853,7 +853,7 @@ final class Transformation implements BaseModel
     public function withDefaultImage(string $defaultImage): self
     {
         $obj = clone $this;
-        $obj->defaultImage = $defaultImage;
+        $obj['defaultImage'] = $defaultImage;
 
         return $obj;
     }
@@ -865,7 +865,7 @@ final class Transformation implements BaseModel
     public function withDpr(float $dpr): self
     {
         $obj = clone $this;
-        $obj->dpr = $dpr;
+        $obj['dpr'] = $dpr;
 
         return $obj;
     }
@@ -878,7 +878,7 @@ final class Transformation implements BaseModel
     public function withDuration(float|string $duration): self
     {
         $obj = clone $this;
-        $obj->duration = $duration;
+        $obj['duration'] = $duration;
 
         return $obj;
     }
@@ -891,7 +891,7 @@ final class Transformation implements BaseModel
     public function withEndOffset(float|string $endOffset): self
     {
         $obj = clone $this;
-        $obj->endOffset = $endOffset;
+        $obj['endOffset'] = $endOffset;
 
         return $obj;
     }
@@ -922,7 +922,7 @@ final class Transformation implements BaseModel
     public function withFocus(string $focus): self
     {
         $obj = clone $this;
-        $obj->focus = $focus;
+        $obj['focus'] = $focus;
 
         return $obj;
     }
@@ -950,7 +950,7 @@ final class Transformation implements BaseModel
     public function withGradient(string|bool $gradient): self
     {
         $obj = clone $this;
-        $obj->gradient = $gradient;
+        $obj['gradient'] = $gradient;
 
         return $obj;
     }
@@ -961,7 +961,7 @@ final class Transformation implements BaseModel
     public function withGrayscale(bool $grayscale): self
     {
         $obj = clone $this;
-        $obj->grayscale = $grayscale;
+        $obj['grayscale'] = $grayscale;
 
         return $obj;
     }
@@ -974,7 +974,7 @@ final class Transformation implements BaseModel
     public function withHeight(float|string $height): self
     {
         $obj = clone $this;
-        $obj->height = $height;
+        $obj['height'] = $height;
 
         return $obj;
     }
@@ -986,7 +986,7 @@ final class Transformation implements BaseModel
     public function withLossless(bool $lossless): self
     {
         $obj = clone $this;
-        $obj->lossless = $lossless;
+        $obj['lossless'] = $lossless;
 
         return $obj;
     }
@@ -999,7 +999,7 @@ final class Transformation implements BaseModel
     public function withMetadata(bool $metadata): self
     {
         $obj = clone $this;
-        $obj->metadata = $metadata;
+        $obj['metadata'] = $metadata;
 
         return $obj;
     }
@@ -1010,7 +1010,7 @@ final class Transformation implements BaseModel
     public function withNamed(string $named): self
     {
         $obj = clone $this;
-        $obj->named = $named;
+        $obj['named'] = $named;
 
         return $obj;
     }
@@ -1021,7 +1021,7 @@ final class Transformation implements BaseModel
     public function withOpacity(float $opacity): self
     {
         $obj = clone $this;
-        $obj->opacity = $opacity;
+        $obj['opacity'] = $opacity;
 
         return $obj;
     }
@@ -1033,7 +1033,7 @@ final class Transformation implements BaseModel
     public function withOriginal(bool $original): self
     {
         $obj = clone $this;
-        $obj->original = $original;
+        $obj['original'] = $original;
 
         return $obj;
     }
@@ -1046,7 +1046,7 @@ final class Transformation implements BaseModel
     public function withOverlay(Overlay $overlay): self
     {
         $obj = clone $this;
-        $obj->overlay = $overlay;
+        $obj['overlay'] = $overlay;
 
         return $obj;
     }
@@ -1060,7 +1060,7 @@ final class Transformation implements BaseModel
     public function withPage(float|string $page): self
     {
         $obj = clone $this;
-        $obj->page = $page;
+        $obj['page'] = $page;
 
         return $obj;
     }
@@ -1073,7 +1073,7 @@ final class Transformation implements BaseModel
     public function withProgressive(bool $progressive): self
     {
         $obj = clone $this;
-        $obj->progressive = $progressive;
+        $obj['progressive'] = $progressive;
 
         return $obj;
     }
@@ -1086,7 +1086,7 @@ final class Transformation implements BaseModel
     public function withQuality(float $quality): self
     {
         $obj = clone $this;
-        $obj->quality = $quality;
+        $obj['quality'] = $quality;
 
         return $obj;
     }
@@ -1100,7 +1100,7 @@ final class Transformation implements BaseModel
     public function withRadius(float|string $radius): self
     {
         $obj = clone $this;
-        $obj->radius = $radius;
+        $obj['radius'] = $radius;
 
         return $obj;
     }
@@ -1112,7 +1112,7 @@ final class Transformation implements BaseModel
     public function withRaw(string $raw): self
     {
         $obj = clone $this;
-        $obj->raw = $raw;
+        $obj['raw'] = $raw;
 
         return $obj;
     }
@@ -1126,7 +1126,7 @@ final class Transformation implements BaseModel
     public function withRotation(float|string $rotation): self
     {
         $obj = clone $this;
-        $obj->rotation = $rotation;
+        $obj['rotation'] = $rotation;
 
         return $obj;
     }
@@ -1140,7 +1140,7 @@ final class Transformation implements BaseModel
     public function withShadow(string|bool $shadow): self
     {
         $obj = clone $this;
-        $obj->shadow = $shadow;
+        $obj['shadow'] = $shadow;
 
         return $obj;
     }
@@ -1153,7 +1153,7 @@ final class Transformation implements BaseModel
     public function withSharpen(float|bool $sharpen): self
     {
         $obj = clone $this;
-        $obj->sharpen = $sharpen;
+        $obj['sharpen'] = $sharpen;
 
         return $obj;
     }
@@ -1166,7 +1166,7 @@ final class Transformation implements BaseModel
     public function withStartOffset(float|string $startOffset): self
     {
         $obj = clone $this;
-        $obj->startOffset = $startOffset;
+        $obj['startOffset'] = $startOffset;
 
         return $obj;
     }
@@ -1193,7 +1193,7 @@ final class Transformation implements BaseModel
     public function withTrim(float|bool $trim): self
     {
         $obj = clone $this;
-        $obj->trim = $trim;
+        $obj['trim'] = $trim;
 
         return $obj;
     }
@@ -1206,7 +1206,7 @@ final class Transformation implements BaseModel
     public function withUnsharpMask(string|bool $unsharpMask): self
     {
         $obj = clone $this;
-        $obj->unsharpMask = $unsharpMask;
+        $obj['unsharpMask'] = $unsharpMask;
 
         return $obj;
     }
@@ -1232,7 +1232,7 @@ final class Transformation implements BaseModel
     public function withWidth(float|string $width): self
     {
         $obj = clone $this;
-        $obj->width = $width;
+        $obj['width'] = $width;
 
         return $obj;
     }
@@ -1243,7 +1243,7 @@ final class Transformation implements BaseModel
     public function withX(float|string $x): self
     {
         $obj = clone $this;
-        $obj->x = $x;
+        $obj['x'] = $x;
 
         return $obj;
     }
@@ -1254,7 +1254,7 @@ final class Transformation implements BaseModel
     public function withXCenter(float|string $xCenter): self
     {
         $obj = clone $this;
-        $obj->xCenter = $xCenter;
+        $obj['xCenter'] = $xCenter;
 
         return $obj;
     }
@@ -1265,7 +1265,7 @@ final class Transformation implements BaseModel
     public function withY(float|string $y): self
     {
         $obj = clone $this;
-        $obj->y = $y;
+        $obj['y'] = $y;
 
         return $obj;
     }
@@ -1276,7 +1276,7 @@ final class Transformation implements BaseModel
     public function withYCenter(float|string $yCenter): self
     {
         $obj = clone $this;
-        $obj->yCenter = $yCenter;
+        $obj['yCenter'] = $yCenter;
 
         return $obj;
     }
@@ -1289,7 +1289,7 @@ final class Transformation implements BaseModel
     public function withZoom(float $zoom): self
     {
         $obj = clone $this;
-        $obj->zoom = $zoom;
+        $obj['zoom'] = $zoom;
 
         return $obj;
     }

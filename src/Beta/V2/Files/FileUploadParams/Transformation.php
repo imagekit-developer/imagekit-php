@@ -6,6 +6,7 @@ namespace ImageKit\Beta\V2\Files\FileUploadParams;
 
 use ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post;
 use ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post\Abs;
+use ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post\Abs\Protocol;
 use ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post\GifToVideo;
 use ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post\Thumbnail;
 use ImageKit\Core\Attributes\Api;
@@ -59,14 +60,18 @@ final class Transformation implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<Post\Transformation|GifToVideo|Thumbnail|Abs> $post
+     * @param list<Post\Transformation|array{
+     *   type: 'transformation', value: string
+     * }|GifToVideo|array{type: 'gif-to-video', value?: string|null}|Thumbnail|array{
+     *   type: 'thumbnail', value?: string|null
+     * }|Abs|array{protocol: value-of<Protocol>, type: 'abs', value: string}> $post
      */
     public static function with(?array $post = null, ?string $pre = null): self
     {
         $obj = new self;
 
-        null !== $post && $obj->post = $post;
-        null !== $pre && $obj->pre = $pre;
+        null !== $post && $obj['post'] = $post;
+        null !== $pre && $obj['pre'] = $pre;
 
         return $obj;
     }
@@ -76,12 +81,16 @@ final class Transformation implements BaseModel
      * Each item must match one of the following types:
      * `transformation`, `gif-to-video`, `thumbnail`, `abs`.
      *
-     * @param list<Post\Transformation|GifToVideo|Thumbnail|Abs> $post
+     * @param list<Post\Transformation|array{
+     *   type: 'transformation', value: string
+     * }|GifToVideo|array{type: 'gif-to-video', value?: string|null}|Thumbnail|array{
+     *   type: 'thumbnail', value?: string|null
+     * }|Abs|array{protocol: value-of<Protocol>, type: 'abs', value: string}> $post
      */
     public function withPost(array $post): self
     {
         $obj = clone $this;
-        $obj->post = $post;
+        $obj['post'] = $post;
 
         return $obj;
     }
@@ -92,7 +101,7 @@ final class Transformation implements BaseModel
     public function withPre(string $pre): self
     {
         $obj = clone $this;
-        $obj->pre = $pre;
+        $obj['pre'] = $pre;
 
         return $obj;
     }

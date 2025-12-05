@@ -94,12 +94,12 @@ final class AkeneoPim implements BaseModel
     ): self {
         $obj = new self;
 
-        $obj->id = $id;
-        $obj->baseUrl = $baseUrl;
-        $obj->includeCanonicalHeader = $includeCanonicalHeader;
-        $obj->name = $name;
+        $obj['id'] = $id;
+        $obj['baseUrl'] = $baseUrl;
+        $obj['includeCanonicalHeader'] = $includeCanonicalHeader;
+        $obj['name'] = $name;
 
-        null !== $baseUrlForCanonicalHeader && $obj->baseUrlForCanonicalHeader = $baseUrlForCanonicalHeader;
+        null !== $baseUrlForCanonicalHeader && $obj['baseUrlForCanonicalHeader'] = $baseUrlForCanonicalHeader;
 
         return $obj;
     }
@@ -110,7 +110,7 @@ final class AkeneoPim implements BaseModel
     public function withID(string $id): self
     {
         $obj = clone $this;
-        $obj->id = $id;
+        $obj['id'] = $id;
 
         return $obj;
     }
@@ -121,7 +121,7 @@ final class AkeneoPim implements BaseModel
     public function withBaseURL(string $baseURL): self
     {
         $obj = clone $this;
-        $obj->baseUrl = $baseURL;
+        $obj['baseUrl'] = $baseURL;
 
         return $obj;
     }
@@ -133,7 +133,7 @@ final class AkeneoPim implements BaseModel
         bool $includeCanonicalHeader
     ): self {
         $obj = clone $this;
-        $obj->includeCanonicalHeader = $includeCanonicalHeader;
+        $obj['includeCanonicalHeader'] = $includeCanonicalHeader;
 
         return $obj;
     }
@@ -144,7 +144,7 @@ final class AkeneoPim implements BaseModel
     public function withName(string $name): self
     {
         $obj = clone $this;
-        $obj->name = $name;
+        $obj['name'] = $name;
 
         return $obj;
     }
@@ -156,7 +156,7 @@ final class AkeneoPim implements BaseModel
         string $baseURLForCanonicalHeader
     ): self {
         $obj = clone $this;
-        $obj->baseUrlForCanonicalHeader = $baseURLForCanonicalHeader;
+        $obj['baseUrlForCanonicalHeader'] = $baseURLForCanonicalHeader;
 
         return $obj;
     }

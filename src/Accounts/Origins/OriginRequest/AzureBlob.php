@@ -98,14 +98,14 @@ final class AzureBlob implements BaseModel
     ): self {
         $obj = new self;
 
-        $obj->accountName = $accountName;
-        $obj->container = $container;
-        $obj->name = $name;
-        $obj->sasToken = $sasToken;
+        $obj['accountName'] = $accountName;
+        $obj['container'] = $container;
+        $obj['name'] = $name;
+        $obj['sasToken'] = $sasToken;
 
-        null !== $baseUrlForCanonicalHeader && $obj->baseUrlForCanonicalHeader = $baseUrlForCanonicalHeader;
-        null !== $includeCanonicalHeader && $obj->includeCanonicalHeader = $includeCanonicalHeader;
-        null !== $prefix && $obj->prefix = $prefix;
+        null !== $baseUrlForCanonicalHeader && $obj['baseUrlForCanonicalHeader'] = $baseUrlForCanonicalHeader;
+        null !== $includeCanonicalHeader && $obj['includeCanonicalHeader'] = $includeCanonicalHeader;
+        null !== $prefix && $obj['prefix'] = $prefix;
 
         return $obj;
     }
@@ -113,7 +113,7 @@ final class AzureBlob implements BaseModel
     public function withAccountName(string $accountName): self
     {
         $obj = clone $this;
-        $obj->accountName = $accountName;
+        $obj['accountName'] = $accountName;
 
         return $obj;
     }
@@ -121,7 +121,7 @@ final class AzureBlob implements BaseModel
     public function withContainer(string $container): self
     {
         $obj = clone $this;
-        $obj->container = $container;
+        $obj['container'] = $container;
 
         return $obj;
     }
@@ -132,7 +132,7 @@ final class AzureBlob implements BaseModel
     public function withName(string $name): self
     {
         $obj = clone $this;
-        $obj->name = $name;
+        $obj['name'] = $name;
 
         return $obj;
     }
@@ -140,7 +140,7 @@ final class AzureBlob implements BaseModel
     public function withSasToken(string $sasToken): self
     {
         $obj = clone $this;
-        $obj->sasToken = $sasToken;
+        $obj['sasToken'] = $sasToken;
 
         return $obj;
     }
@@ -152,7 +152,7 @@ final class AzureBlob implements BaseModel
         string $baseURLForCanonicalHeader
     ): self {
         $obj = clone $this;
-        $obj->baseUrlForCanonicalHeader = $baseURLForCanonicalHeader;
+        $obj['baseUrlForCanonicalHeader'] = $baseURLForCanonicalHeader;
 
         return $obj;
     }
@@ -164,7 +164,7 @@ final class AzureBlob implements BaseModel
         bool $includeCanonicalHeader
     ): self {
         $obj = clone $this;
-        $obj->includeCanonicalHeader = $includeCanonicalHeader;
+        $obj['includeCanonicalHeader'] = $includeCanonicalHeader;
 
         return $obj;
     }
@@ -172,7 +172,7 @@ final class AzureBlob implements BaseModel
     public function withPrefix(string $prefix): self
     {
         $obj = clone $this;
-        $obj->prefix = $prefix;
+        $obj['prefix'] = $prefix;
 
         return $obj;
     }

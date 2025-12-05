@@ -7,6 +7,7 @@ namespace ImageKit;
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\OverlayPosition\Focus;
 
 /**
  * @phpstan-type SolidColorOverlayShape = array{
@@ -72,37 +73,64 @@ final class SolidColorOverlay implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<SolidColorOverlayTransformation> $transformation
+     * @param OverlayPosition|array{
+     *   focus?: value-of<Focus>|null, x?: float|string|null, y?: float|string|null
+     * } $position
+     * @param OverlayTiming|array{
+     *   duration?: float|string|null,
+     *   end?: float|string|null,
+     *   start?: float|string|null,
+     * } $timing
+     * @param list<SolidColorOverlayTransformation|array{
+     *   alpha?: float|null,
+     *   background?: string|null,
+     *   gradient?: string|bool|null,
+     *   height?: float|string|null,
+     *   radius?: float|'max'|null,
+     *   width?: float|string|null,
+     * }> $transformation
      */
     public static function with(
         string $color,
-        ?OverlayPosition $position = null,
-        ?OverlayTiming $timing = null,
+        OverlayPosition|array|null $position = null,
+        OverlayTiming|array|null $timing = null,
         ?array $transformation = null,
     ): self {
         $obj = new self;
 
-        $obj->color = $color;
+        $obj['color'] = $color;
 
-        null !== $position && $obj->position = $position;
-        null !== $timing && $obj->timing = $timing;
-        null !== $transformation && $obj->transformation = $transformation;
-
-        return $obj;
-    }
-
-    public function withPosition(OverlayPosition $position): self
-    {
-        $obj = clone $this;
-        $obj->position = $position;
+        null !== $position && $obj['position'] = $position;
+        null !== $timing && $obj['timing'] = $timing;
+        null !== $transformation && $obj['transformation'] = $transformation;
 
         return $obj;
     }
 
-    public function withTiming(OverlayTiming $timing): self
+    /**
+     * @param OverlayPosition|array{
+     *   focus?: value-of<Focus>|null, x?: float|string|null, y?: float|string|null
+     * } $position
+     */
+    public function withPosition(OverlayPosition|array $position): self
     {
         $obj = clone $this;
-        $obj->timing = $timing;
+        $obj['position'] = $position;
+
+        return $obj;
+    }
+
+    /**
+     * @param OverlayTiming|array{
+     *   duration?: float|string|null,
+     *   end?: float|string|null,
+     *   start?: float|string|null,
+     * } $timing
+     */
+    public function withTiming(OverlayTiming|array $timing): self
+    {
+        $obj = clone $this;
+        $obj['timing'] = $timing;
 
         return $obj;
     }
@@ -114,7 +142,7 @@ final class SolidColorOverlay implements BaseModel
     public function withColor(string $color): self
     {
         $obj = clone $this;
-        $obj->color = $color;
+        $obj['color'] = $color;
 
         return $obj;
     }
@@ -123,12 +151,19 @@ final class SolidColorOverlay implements BaseModel
      * Control width and height of the solid color overlay. Supported transformations depend on the base/parent asset.
      * See overlays on [Images](https://imagekit.io/docs/add-overlays-on-images#apply-transformation-on-solid-color-overlay) and [Videos](https://imagekit.io/docs/add-overlays-on-videos#apply-transformations-on-solid-color-block-overlay).
      *
-     * @param list<SolidColorOverlayTransformation> $transformation
+     * @param list<SolidColorOverlayTransformation|array{
+     *   alpha?: float|null,
+     *   background?: string|null,
+     *   gradient?: string|bool|null,
+     *   height?: float|string|null,
+     *   radius?: float|'max'|null,
+     *   width?: float|string|null,
+     * }> $transformation
      */
     public function withTransformation(array $transformation): self
     {
         $obj = clone $this;
-        $obj->transformation = $transformation;
+        $obj['transformation'] = $transformation;
 
         return $obj;
     }

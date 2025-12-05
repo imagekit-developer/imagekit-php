@@ -63,10 +63,10 @@ final class Options implements BaseModel
     ): self {
         $obj = new self;
 
-        null !== $add_shadow && $obj->add_shadow = $add_shadow;
-        null !== $bg_color && $obj->bg_color = $bg_color;
-        null !== $bg_image_url && $obj->bg_image_url = $bg_image_url;
-        null !== $semitransparency && $obj->semitransparency = $semitransparency;
+        null !== $add_shadow && $obj['add_shadow'] = $add_shadow;
+        null !== $bg_color && $obj['bg_color'] = $bg_color;
+        null !== $bg_image_url && $obj['bg_image_url'] = $bg_image_url;
+        null !== $semitransparency && $obj['semitransparency'] = $semitransparency;
 
         return $obj;
     }
@@ -77,7 +77,7 @@ final class Options implements BaseModel
     public function withAddShadow(bool $addShadow): self
     {
         $obj = clone $this;
-        $obj->add_shadow = $addShadow;
+        $obj['add_shadow'] = $addShadow;
 
         return $obj;
     }
@@ -88,7 +88,7 @@ final class Options implements BaseModel
     public function withBgColor(string $bgColor): self
     {
         $obj = clone $this;
-        $obj->bg_color = $bgColor;
+        $obj['bg_color'] = $bgColor;
 
         return $obj;
     }
@@ -99,7 +99,7 @@ final class Options implements BaseModel
     public function withBgImageURL(string $bgImageURL): self
     {
         $obj = clone $this;
-        $obj->bg_image_url = $bgImageURL;
+        $obj['bg_image_url'] = $bgImageURL;
 
         return $obj;
     }
@@ -110,7 +110,7 @@ final class Options implements BaseModel
     public function withSemitransparency(bool $semitransparency): self
     {
         $obj = clone $this;
-        $obj->semitransparency = $semitransparency;
+        $obj['semitransparency'] = $semitransparency;
 
         return $obj;
     }

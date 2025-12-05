@@ -79,7 +79,7 @@ final class Transformation implements BaseModel
         $obj['type'] = $type;
 
         null !== $protocol && $obj['protocol'] = $protocol;
-        null !== $value && $obj->value = $value;
+        null !== $value && $obj['value'] = $value;
 
         return $obj;
     }
@@ -116,7 +116,7 @@ final class Transformation implements BaseModel
     public function withValue(string $value): self
     {
         $obj = clone $this;
-        $obj->value = $value;
+        $obj['value'] = $value;
 
         return $obj;
     }

@@ -8,6 +8,10 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Files\Metadata\Exif;
+use ImageKit\Files\Metadata\Exif\Gps;
+use ImageKit\Files\Metadata\Exif\Image;
+use ImageKit\Files\Metadata\Exif\Interoperability;
+use ImageKit\Files\Metadata\Exif\Thumbnail;
 
 /**
  * JSON object containing metadata.
@@ -124,13 +128,22 @@ final class Metadata implements BaseModel
      * Construct an instance from the required parameters.
      *
      * You must use named parameters to construct any parameters with a default value.
+     *
+     * @param Exif|array{
+     *   exif?: Exif\Exif|null,
+     *   gps?: Gps|null,
+     *   image?: Image|null,
+     *   interoperability?: Interoperability|null,
+     *   makernote?: array<string,mixed>|null,
+     *   thumbnail?: Thumbnail|null,
+     * } $exif
      */
     public static function with(
         ?string $audioCodec = null,
         ?int $bitRate = null,
         ?int $density = null,
         ?int $duration = null,
-        ?Exif $exif = null,
+        Exif|array|null $exif = null,
         ?string $format = null,
         ?bool $hasColorProfile = null,
         ?bool $hasTransparency = null,
@@ -143,20 +156,20 @@ final class Metadata implements BaseModel
     ): self {
         $obj = new self;
 
-        null !== $audioCodec && $obj->audioCodec = $audioCodec;
-        null !== $bitRate && $obj->bitRate = $bitRate;
-        null !== $density && $obj->density = $density;
-        null !== $duration && $obj->duration = $duration;
-        null !== $exif && $obj->exif = $exif;
-        null !== $format && $obj->format = $format;
-        null !== $hasColorProfile && $obj->hasColorProfile = $hasColorProfile;
-        null !== $hasTransparency && $obj->hasTransparency = $hasTransparency;
-        null !== $height && $obj->height = $height;
-        null !== $pHash && $obj->pHash = $pHash;
-        null !== $quality && $obj->quality = $quality;
-        null !== $size && $obj->size = $size;
-        null !== $videoCodec && $obj->videoCodec = $videoCodec;
-        null !== $width && $obj->width = $width;
+        null !== $audioCodec && $obj['audioCodec'] = $audioCodec;
+        null !== $bitRate && $obj['bitRate'] = $bitRate;
+        null !== $density && $obj['density'] = $density;
+        null !== $duration && $obj['duration'] = $duration;
+        null !== $exif && $obj['exif'] = $exif;
+        null !== $format && $obj['format'] = $format;
+        null !== $hasColorProfile && $obj['hasColorProfile'] = $hasColorProfile;
+        null !== $hasTransparency && $obj['hasTransparency'] = $hasTransparency;
+        null !== $height && $obj['height'] = $height;
+        null !== $pHash && $obj['pHash'] = $pHash;
+        null !== $quality && $obj['quality'] = $quality;
+        null !== $size && $obj['size'] = $size;
+        null !== $videoCodec && $obj['videoCodec'] = $videoCodec;
+        null !== $width && $obj['width'] = $width;
 
         return $obj;
     }
@@ -167,7 +180,7 @@ final class Metadata implements BaseModel
     public function withAudioCodec(string $audioCodec): self
     {
         $obj = clone $this;
-        $obj->audioCodec = $audioCodec;
+        $obj['audioCodec'] = $audioCodec;
 
         return $obj;
     }
@@ -178,7 +191,7 @@ final class Metadata implements BaseModel
     public function withBitRate(int $bitRate): self
     {
         $obj = clone $this;
-        $obj->bitRate = $bitRate;
+        $obj['bitRate'] = $bitRate;
 
         return $obj;
     }
@@ -189,7 +202,7 @@ final class Metadata implements BaseModel
     public function withDensity(int $density): self
     {
         $obj = clone $this;
-        $obj->density = $density;
+        $obj['density'] = $density;
 
         return $obj;
     }
@@ -200,15 +213,25 @@ final class Metadata implements BaseModel
     public function withDuration(int $duration): self
     {
         $obj = clone $this;
-        $obj->duration = $duration;
+        $obj['duration'] = $duration;
 
         return $obj;
     }
 
-    public function withExif(Exif $exif): self
+    /**
+     * @param Exif|array{
+     *   exif?: Exif\Exif|null,
+     *   gps?: Gps|null,
+     *   image?: Image|null,
+     *   interoperability?: Interoperability|null,
+     *   makernote?: array<string,mixed>|null,
+     *   thumbnail?: Thumbnail|null,
+     * } $exif
+     */
+    public function withExif(Exif|array $exif): self
     {
         $obj = clone $this;
-        $obj->exif = $exif;
+        $obj['exif'] = $exif;
 
         return $obj;
     }
@@ -219,7 +242,7 @@ final class Metadata implements BaseModel
     public function withFormat(string $format): self
     {
         $obj = clone $this;
-        $obj->format = $format;
+        $obj['format'] = $format;
 
         return $obj;
     }
@@ -230,7 +253,7 @@ final class Metadata implements BaseModel
     public function withHasColorProfile(bool $hasColorProfile): self
     {
         $obj = clone $this;
-        $obj->hasColorProfile = $hasColorProfile;
+        $obj['hasColorProfile'] = $hasColorProfile;
 
         return $obj;
     }
@@ -241,7 +264,7 @@ final class Metadata implements BaseModel
     public function withHasTransparency(bool $hasTransparency): self
     {
         $obj = clone $this;
-        $obj->hasTransparency = $hasTransparency;
+        $obj['hasTransparency'] = $hasTransparency;
 
         return $obj;
     }
@@ -252,7 +275,7 @@ final class Metadata implements BaseModel
     public function withHeight(int $height): self
     {
         $obj = clone $this;
-        $obj->height = $height;
+        $obj['height'] = $height;
 
         return $obj;
     }
@@ -263,7 +286,7 @@ final class Metadata implements BaseModel
     public function withPHash(string $pHash): self
     {
         $obj = clone $this;
-        $obj->pHash = $pHash;
+        $obj['pHash'] = $pHash;
 
         return $obj;
     }
@@ -274,7 +297,7 @@ final class Metadata implements BaseModel
     public function withQuality(int $quality): self
     {
         $obj = clone $this;
-        $obj->quality = $quality;
+        $obj['quality'] = $quality;
 
         return $obj;
     }
@@ -285,7 +308,7 @@ final class Metadata implements BaseModel
     public function withSize(int $size): self
     {
         $obj = clone $this;
-        $obj->size = $size;
+        $obj['size'] = $size;
 
         return $obj;
     }
@@ -296,7 +319,7 @@ final class Metadata implements BaseModel
     public function withVideoCodec(string $videoCodec): self
     {
         $obj = clone $this;
-        $obj->videoCodec = $videoCodec;
+        $obj['videoCodec'] = $videoCodec;
 
         return $obj;
     }
@@ -307,7 +330,7 @@ final class Metadata implements BaseModel
     public function withWidth(int $width): self
     {
         $obj = clone $this;
-        $obj->width = $width;
+        $obj['width'] = $width;
 
         return $obj;
     }

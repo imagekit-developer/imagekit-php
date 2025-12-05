@@ -56,16 +56,20 @@ final class Output implements BaseModel
      * Construct an instance from the required parameters.
      *
      * You must use named parameters to construct any parameters with a default value.
+     *
+     * @param VideoMetadata|array{
+     *   bitrate: int, duration: float, height: int, width: int
+     * } $video_metadata
      */
     public static function with(
         string $url,
-        ?VideoMetadata $video_metadata = null
+        VideoMetadata|array|null $video_metadata = null
     ): self {
         $obj = new self;
 
-        $obj->url = $url;
+        $obj['url'] = $url;
 
-        null !== $video_metadata && $obj->video_metadata = $video_metadata;
+        null !== $video_metadata && $obj['video_metadata'] = $video_metadata;
 
         return $obj;
     }
@@ -76,18 +80,22 @@ final class Output implements BaseModel
     public function withURL(string $url): self
     {
         $obj = clone $this;
-        $obj->url = $url;
+        $obj['url'] = $url;
 
         return $obj;
     }
 
     /**
      * Metadata of the output video file.
+     *
+     * @param VideoMetadata|array{
+     *   bitrate: int, duration: float, height: int, width: int
+     * } $videoMetadata
      */
-    public function withVideoMetadata(VideoMetadata $videoMetadata): self
+    public function withVideoMetadata(VideoMetadata|array $videoMetadata): self
     {
         $obj = clone $this;
-        $obj->video_metadata = $videoMetadata;
+        $obj['video_metadata'] = $videoMetadata;
 
         return $obj;
     }

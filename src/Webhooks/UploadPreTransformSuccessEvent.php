@@ -7,7 +7,12 @@ namespace ImageKit\Webhooks;
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Files\Metadata;
 use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data;
+use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\AITag;
+use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\ExtensionStatus;
+use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema;
+use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\VersionInfo;
 use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Request;
 
 /**
@@ -83,21 +88,50 @@ final class UploadPreTransformSuccessEvent implements BaseModel
      * Construct an instance from the required parameters.
      *
      * You must use named parameters to construct any parameters with a default value.
+     *
+     * @param Data|array{
+     *   AITags?: list<AITag>|null,
+     *   audioCodec?: string|null,
+     *   bitRate?: int|null,
+     *   customCoordinates?: string|null,
+     *   customMetadata?: array<string,mixed>|null,
+     *   description?: string|null,
+     *   duration?: int|null,
+     *   embeddedMetadata?: array<string,mixed>|null,
+     *   extensionStatus?: ExtensionStatus|null,
+     *   fileId?: string|null,
+     *   filePath?: string|null,
+     *   fileType?: string|null,
+     *   height?: float|null,
+     *   isPrivateFile?: bool|null,
+     *   isPublished?: bool|null,
+     *   metadata?: Metadata|null,
+     *   name?: string|null,
+     *   selectedFieldsSchema?: array<string,SelectedFieldsSchema>|null,
+     *   size?: float|null,
+     *   tags?: list<string>|null,
+     *   thumbnailUrl?: string|null,
+     *   url?: string|null,
+     *   versionInfo?: VersionInfo|null,
+     *   videoCodec?: string|null,
+     *   width?: float|null,
+     * } $data
+     * @param Request|array{transformation: string, x_request_id: string} $request
      */
     public static function with(
         string $id,
         string $type,
         \DateTimeInterface $created_at,
-        Data $data,
-        Request $request,
+        Data|array $data,
+        Request|array $request,
     ): self {
         $obj = new self;
 
-        $obj->id = $id;
-        $obj->type = $type;
-        $obj->created_at = $created_at;
-        $obj->data = $data;
-        $obj->request = $request;
+        $obj['id'] = $id;
+        $obj['type'] = $type;
+        $obj['created_at'] = $created_at;
+        $obj['data'] = $data;
+        $obj['request'] = $request;
 
         return $obj;
     }
@@ -108,7 +142,7 @@ final class UploadPreTransformSuccessEvent implements BaseModel
     public function withID(string $id): self
     {
         $obj = clone $this;
-        $obj->id = $id;
+        $obj['id'] = $id;
 
         return $obj;
     }
@@ -119,7 +153,7 @@ final class UploadPreTransformSuccessEvent implements BaseModel
     public function withType(string $type): self
     {
         $obj = clone $this;
-        $obj->type = $type;
+        $obj['type'] = $type;
 
         return $obj;
     }
@@ -130,26 +164,57 @@ final class UploadPreTransformSuccessEvent implements BaseModel
     public function withCreatedAt(\DateTimeInterface $createdAt): self
     {
         $obj = clone $this;
-        $obj->created_at = $createdAt;
+        $obj['created_at'] = $createdAt;
 
         return $obj;
     }
 
     /**
      * Object containing details of a successful upload.
+     *
+     * @param Data|array{
+     *   AITags?: list<AITag>|null,
+     *   audioCodec?: string|null,
+     *   bitRate?: int|null,
+     *   customCoordinates?: string|null,
+     *   customMetadata?: array<string,mixed>|null,
+     *   description?: string|null,
+     *   duration?: int|null,
+     *   embeddedMetadata?: array<string,mixed>|null,
+     *   extensionStatus?: ExtensionStatus|null,
+     *   fileId?: string|null,
+     *   filePath?: string|null,
+     *   fileType?: string|null,
+     *   height?: float|null,
+     *   isPrivateFile?: bool|null,
+     *   isPublished?: bool|null,
+     *   metadata?: Metadata|null,
+     *   name?: string|null,
+     *   selectedFieldsSchema?: array<string,SelectedFieldsSchema>|null,
+     *   size?: float|null,
+     *   tags?: list<string>|null,
+     *   thumbnailUrl?: string|null,
+     *   url?: string|null,
+     *   versionInfo?: VersionInfo|null,
+     *   videoCodec?: string|null,
+     *   width?: float|null,
+     * } $data
      */
-    public function withData(Data $data): self
+    public function withData(Data|array $data): self
     {
         $obj = clone $this;
-        $obj->data = $data;
+        $obj['data'] = $data;
 
         return $obj;
     }
 
-    public function withRequest(Request $request): self
+    /**
+     * @param Request|array{transformation: string, x_request_id: string} $request
+     */
+    public function withRequest(Request|array $request): self
     {
         $obj = clone $this;
-        $obj->request = $request;
+        $obj['request'] = $request;
 
         return $obj;
     }

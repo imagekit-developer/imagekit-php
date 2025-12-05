@@ -6,7 +6,12 @@ namespace ImageKit\Beta\V2\Files;
 
 use ImageKit\Beta\V2\Files\FileUploadResponse\AITag;
 use ImageKit\Beta\V2\Files\FileUploadResponse\ExtensionStatus;
+use ImageKit\Beta\V2\Files\FileUploadResponse\ExtensionStatus\AIAutoDescription;
+use ImageKit\Beta\V2\Files\FileUploadResponse\ExtensionStatus\AwsAutoTagging;
+use ImageKit\Beta\V2\Files\FileUploadResponse\ExtensionStatus\GoogleAutoTagging;
+use ImageKit\Beta\V2\Files\FileUploadResponse\ExtensionStatus\RemoveBg;
 use ImageKit\Beta\V2\Files\FileUploadResponse\SelectedFieldsSchema;
+use ImageKit\Beta\V2\Files\FileUploadResponse\SelectedFieldsSchema\Type;
 use ImageKit\Beta\V2\Files\FileUploadResponse\VersionInfo;
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
@@ -14,6 +19,7 @@ use ImageKit\Core\Concerns\SdkResponse;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Core\Conversion\Contracts\ResponseConverter;
 use ImageKit\Files\Metadata;
+use ImageKit\Files\Metadata\Exif;
 
 /**
  * Object containing details of a successful upload.
@@ -233,11 +239,47 @@ final class FileUploadResponse implements BaseModel, ResponseConverter
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<AITag>|null $AITags
+     * @param list<AITag|array{
+     *   confidence?: float|null, name?: string|null, source?: string|null
+     * }>|null $AITags
      * @param array<string,mixed> $customMetadata
      * @param array<string,mixed> $embeddedMetadata
-     * @param array<string,SelectedFieldsSchema> $selectedFieldsSchema
+     * @param ExtensionStatus|array{
+     *   ai_auto_description?: value-of<AIAutoDescription>|null,
+     *   aws_auto_tagging?: value-of<AwsAutoTagging>|null,
+     *   google_auto_tagging?: value-of<GoogleAutoTagging>|null,
+     *   remove_bg?: value-of<RemoveBg>|null,
+     * } $extensionStatus
+     * @param Metadata|array{
+     *   audioCodec?: string|null,
+     *   bitRate?: int|null,
+     *   density?: int|null,
+     *   duration?: int|null,
+     *   exif?: Exif|null,
+     *   format?: string|null,
+     *   hasColorProfile?: bool|null,
+     *   hasTransparency?: bool|null,
+     *   height?: int|null,
+     *   pHash?: string|null,
+     *   quality?: int|null,
+     *   size?: int|null,
+     *   videoCodec?: string|null,
+     *   width?: int|null,
+     * } $metadata
+     * @param array<string,SelectedFieldsSchema|array{
+     *   type: value-of<Type>,
+     *   defaultValue?: string|float|bool|list<string|float|bool>|null,
+     *   isValueRequired?: bool|null,
+     *   maxLength?: float|null,
+     *   maxValue?: string|float|null,
+     *   minLength?: float|null,
+     *   minValue?: string|float|null,
+     *   readOnly?: bool|null,
+     *   selectOptions?: list<string|float|bool>|null,
+     *   selectOptionsTruncated?: bool|null,
+     * }> $selectedFieldsSchema
      * @param list<string>|null $tags
+     * @param VersionInfo|array{id?: string|null, name?: string|null} $versionInfo
      */
     public static function with(
         ?array $AITags = null,
@@ -248,51 +290,51 @@ final class FileUploadResponse implements BaseModel, ResponseConverter
         ?string $description = null,
         ?int $duration = null,
         ?array $embeddedMetadata = null,
-        ?ExtensionStatus $extensionStatus = null,
+        ExtensionStatus|array|null $extensionStatus = null,
         ?string $fileId = null,
         ?string $filePath = null,
         ?string $fileType = null,
         ?float $height = null,
         ?bool $isPrivateFile = null,
         ?bool $isPublished = null,
-        ?Metadata $metadata = null,
+        Metadata|array|null $metadata = null,
         ?string $name = null,
         ?array $selectedFieldsSchema = null,
         ?float $size = null,
         ?array $tags = null,
         ?string $thumbnailUrl = null,
         ?string $url = null,
-        ?VersionInfo $versionInfo = null,
+        VersionInfo|array|null $versionInfo = null,
         ?string $videoCodec = null,
         ?float $width = null,
     ): self {
         $obj = new self;
 
-        null !== $AITags && $obj->AITags = $AITags;
-        null !== $audioCodec && $obj->audioCodec = $audioCodec;
-        null !== $bitRate && $obj->bitRate = $bitRate;
-        null !== $customCoordinates && $obj->customCoordinates = $customCoordinates;
-        null !== $customMetadata && $obj->customMetadata = $customMetadata;
-        null !== $description && $obj->description = $description;
-        null !== $duration && $obj->duration = $duration;
-        null !== $embeddedMetadata && $obj->embeddedMetadata = $embeddedMetadata;
-        null !== $extensionStatus && $obj->extensionStatus = $extensionStatus;
-        null !== $fileId && $obj->fileId = $fileId;
-        null !== $filePath && $obj->filePath = $filePath;
-        null !== $fileType && $obj->fileType = $fileType;
-        null !== $height && $obj->height = $height;
-        null !== $isPrivateFile && $obj->isPrivateFile = $isPrivateFile;
-        null !== $isPublished && $obj->isPublished = $isPublished;
-        null !== $metadata && $obj->metadata = $metadata;
-        null !== $name && $obj->name = $name;
-        null !== $selectedFieldsSchema && $obj->selectedFieldsSchema = $selectedFieldsSchema;
-        null !== $size && $obj->size = $size;
-        null !== $tags && $obj->tags = $tags;
-        null !== $thumbnailUrl && $obj->thumbnailUrl = $thumbnailUrl;
-        null !== $url && $obj->url = $url;
-        null !== $versionInfo && $obj->versionInfo = $versionInfo;
-        null !== $videoCodec && $obj->videoCodec = $videoCodec;
-        null !== $width && $obj->width = $width;
+        null !== $AITags && $obj['AITags'] = $AITags;
+        null !== $audioCodec && $obj['audioCodec'] = $audioCodec;
+        null !== $bitRate && $obj['bitRate'] = $bitRate;
+        null !== $customCoordinates && $obj['customCoordinates'] = $customCoordinates;
+        null !== $customMetadata && $obj['customMetadata'] = $customMetadata;
+        null !== $description && $obj['description'] = $description;
+        null !== $duration && $obj['duration'] = $duration;
+        null !== $embeddedMetadata && $obj['embeddedMetadata'] = $embeddedMetadata;
+        null !== $extensionStatus && $obj['extensionStatus'] = $extensionStatus;
+        null !== $fileId && $obj['fileId'] = $fileId;
+        null !== $filePath && $obj['filePath'] = $filePath;
+        null !== $fileType && $obj['fileType'] = $fileType;
+        null !== $height && $obj['height'] = $height;
+        null !== $isPrivateFile && $obj['isPrivateFile'] = $isPrivateFile;
+        null !== $isPublished && $obj['isPublished'] = $isPublished;
+        null !== $metadata && $obj['metadata'] = $metadata;
+        null !== $name && $obj['name'] = $name;
+        null !== $selectedFieldsSchema && $obj['selectedFieldsSchema'] = $selectedFieldsSchema;
+        null !== $size && $obj['size'] = $size;
+        null !== $tags && $obj['tags'] = $tags;
+        null !== $thumbnailUrl && $obj['thumbnailUrl'] = $thumbnailUrl;
+        null !== $url && $obj['url'] = $url;
+        null !== $versionInfo && $obj['versionInfo'] = $versionInfo;
+        null !== $videoCodec && $obj['videoCodec'] = $videoCodec;
+        null !== $width && $obj['width'] = $width;
 
         return $obj;
     }
@@ -300,12 +342,14 @@ final class FileUploadResponse implements BaseModel, ResponseConverter
     /**
      * An array of tags assigned to the uploaded file by auto tagging.
      *
-     * @param list<AITag>|null $aiTags
+     * @param list<AITag|array{
+     *   confidence?: float|null, name?: string|null, source?: string|null
+     * }>|null $aiTags
      */
     public function withAITags(?array $aiTags): self
     {
         $obj = clone $this;
-        $obj->AITags = $aiTags;
+        $obj['AITags'] = $aiTags;
 
         return $obj;
     }
@@ -316,7 +360,7 @@ final class FileUploadResponse implements BaseModel, ResponseConverter
     public function withAudioCodec(string $audioCodec): self
     {
         $obj = clone $this;
-        $obj->audioCodec = $audioCodec;
+        $obj['audioCodec'] = $audioCodec;
 
         return $obj;
     }
@@ -327,7 +371,7 @@ final class FileUploadResponse implements BaseModel, ResponseConverter
     public function withBitRate(int $bitRate): self
     {
         $obj = clone $this;
-        $obj->bitRate = $bitRate;
+        $obj['bitRate'] = $bitRate;
 
         return $obj;
     }
@@ -338,7 +382,7 @@ final class FileUploadResponse implements BaseModel, ResponseConverter
     public function withCustomCoordinates(?string $customCoordinates): self
     {
         $obj = clone $this;
-        $obj->customCoordinates = $customCoordinates;
+        $obj['customCoordinates'] = $customCoordinates;
 
         return $obj;
     }
@@ -351,7 +395,7 @@ final class FileUploadResponse implements BaseModel, ResponseConverter
     public function withCustomMetadata(array $customMetadata): self
     {
         $obj = clone $this;
-        $obj->customMetadata = $customMetadata;
+        $obj['customMetadata'] = $customMetadata;
 
         return $obj;
     }
@@ -362,7 +406,7 @@ final class FileUploadResponse implements BaseModel, ResponseConverter
     public function withDescription(string $description): self
     {
         $obj = clone $this;
-        $obj->description = $description;
+        $obj['description'] = $description;
 
         return $obj;
     }
@@ -373,7 +417,7 @@ final class FileUploadResponse implements BaseModel, ResponseConverter
     public function withDuration(int $duration): self
     {
         $obj = clone $this;
-        $obj->duration = $duration;
+        $obj['duration'] = $duration;
 
         return $obj;
     }
@@ -386,7 +430,7 @@ final class FileUploadResponse implements BaseModel, ResponseConverter
     public function withEmbeddedMetadata(array $embeddedMetadata): self
     {
         $obj = clone $this;
-        $obj->embeddedMetadata = $embeddedMetadata;
+        $obj['embeddedMetadata'] = $embeddedMetadata;
 
         return $obj;
     }
@@ -399,11 +443,19 @@ final class FileUploadResponse implements BaseModel, ResponseConverter
      * `pending`: The extension will finish processing in some time. On completion, the final status (success / failed) will be sent to the `webhookUrl` provided.
      *
      * If no extension was requested, then this parameter is not returned.
+     *
+     * @param ExtensionStatus|array{
+     *   ai_auto_description?: value-of<AIAutoDescription>|null,
+     *   aws_auto_tagging?: value-of<AwsAutoTagging>|null,
+     *   google_auto_tagging?: value-of<GoogleAutoTagging>|null,
+     *   remove_bg?: value-of<RemoveBg>|null,
+     * } $extensionStatus
      */
-    public function withExtensionStatus(ExtensionStatus $extensionStatus): self
-    {
+    public function withExtensionStatus(
+        ExtensionStatus|array $extensionStatus
+    ): self {
         $obj = clone $this;
-        $obj->extensionStatus = $extensionStatus;
+        $obj['extensionStatus'] = $extensionStatus;
 
         return $obj;
     }
@@ -414,7 +466,7 @@ final class FileUploadResponse implements BaseModel, ResponseConverter
     public function withFileID(string $fileID): self
     {
         $obj = clone $this;
-        $obj->fileId = $fileID;
+        $obj['fileId'] = $fileID;
 
         return $obj;
     }
@@ -425,7 +477,7 @@ final class FileUploadResponse implements BaseModel, ResponseConverter
     public function withFilePath(string $filePath): self
     {
         $obj = clone $this;
-        $obj->filePath = $filePath;
+        $obj['filePath'] = $filePath;
 
         return $obj;
     }
@@ -436,7 +488,7 @@ final class FileUploadResponse implements BaseModel, ResponseConverter
     public function withFileType(string $fileType): self
     {
         $obj = clone $this;
-        $obj->fileType = $fileType;
+        $obj['fileType'] = $fileType;
 
         return $obj;
     }
@@ -447,7 +499,7 @@ final class FileUploadResponse implements BaseModel, ResponseConverter
     public function withHeight(float $height): self
     {
         $obj = clone $this;
-        $obj->height = $height;
+        $obj['height'] = $height;
 
         return $obj;
     }
@@ -458,7 +510,7 @@ final class FileUploadResponse implements BaseModel, ResponseConverter
     public function withIsPrivateFile(bool $isPrivateFile): self
     {
         $obj = clone $this;
-        $obj->isPrivateFile = $isPrivateFile;
+        $obj['isPrivateFile'] = $isPrivateFile;
 
         return $obj;
     }
@@ -469,18 +521,35 @@ final class FileUploadResponse implements BaseModel, ResponseConverter
     public function withIsPublished(bool $isPublished): self
     {
         $obj = clone $this;
-        $obj->isPublished = $isPublished;
+        $obj['isPublished'] = $isPublished;
 
         return $obj;
     }
 
     /**
      * Legacy metadata. Send `metadata` in `responseFields` in API request to get metadata in the upload API response.
+     *
+     * @param Metadata|array{
+     *   audioCodec?: string|null,
+     *   bitRate?: int|null,
+     *   density?: int|null,
+     *   duration?: int|null,
+     *   exif?: Exif|null,
+     *   format?: string|null,
+     *   hasColorProfile?: bool|null,
+     *   hasTransparency?: bool|null,
+     *   height?: int|null,
+     *   pHash?: string|null,
+     *   quality?: int|null,
+     *   size?: int|null,
+     *   videoCodec?: string|null,
+     *   width?: int|null,
+     * } $metadata
      */
-    public function withMetadata(Metadata $metadata): self
+    public function withMetadata(Metadata|array $metadata): self
     {
         $obj = clone $this;
-        $obj->metadata = $metadata;
+        $obj['metadata'] = $metadata;
 
         return $obj;
     }
@@ -491,7 +560,7 @@ final class FileUploadResponse implements BaseModel, ResponseConverter
     public function withName(string $name): self
     {
         $obj = clone $this;
-        $obj->name = $name;
+        $obj['name'] = $name;
 
         return $obj;
     }
@@ -503,12 +572,23 @@ final class FileUploadResponse implements BaseModel, ResponseConverter
      *
      * Keys are the names of the custom metadata fields; the value object has details about the custom metadata schema.
      *
-     * @param array<string,SelectedFieldsSchema> $selectedFieldsSchema
+     * @param array<string,SelectedFieldsSchema|array{
+     *   type: value-of<Type>,
+     *   defaultValue?: string|float|bool|list<string|float|bool>|null,
+     *   isValueRequired?: bool|null,
+     *   maxLength?: float|null,
+     *   maxValue?: string|float|null,
+     *   minLength?: float|null,
+     *   minValue?: string|float|null,
+     *   readOnly?: bool|null,
+     *   selectOptions?: list<string|float|bool>|null,
+     *   selectOptionsTruncated?: bool|null,
+     * }> $selectedFieldsSchema
      */
     public function withSelectedFieldsSchema(array $selectedFieldsSchema): self
     {
         $obj = clone $this;
-        $obj->selectedFieldsSchema = $selectedFieldsSchema;
+        $obj['selectedFieldsSchema'] = $selectedFieldsSchema;
 
         return $obj;
     }
@@ -519,7 +599,7 @@ final class FileUploadResponse implements BaseModel, ResponseConverter
     public function withSize(float $size): self
     {
         $obj = clone $this;
-        $obj->size = $size;
+        $obj['size'] = $size;
 
         return $obj;
     }
@@ -532,7 +612,7 @@ final class FileUploadResponse implements BaseModel, ResponseConverter
     public function withTags(?array $tags): self
     {
         $obj = clone $this;
-        $obj->tags = $tags;
+        $obj['tags'] = $tags;
 
         return $obj;
     }
@@ -543,7 +623,7 @@ final class FileUploadResponse implements BaseModel, ResponseConverter
     public function withThumbnailURL(string $thumbnailURL): self
     {
         $obj = clone $this;
-        $obj->thumbnailUrl = $thumbnailURL;
+        $obj['thumbnailUrl'] = $thumbnailURL;
 
         return $obj;
     }
@@ -554,18 +634,20 @@ final class FileUploadResponse implements BaseModel, ResponseConverter
     public function withURL(string $url): self
     {
         $obj = clone $this;
-        $obj->url = $url;
+        $obj['url'] = $url;
 
         return $obj;
     }
 
     /**
      * An object containing the file or file version's `id` (versionId) and `name`.
+     *
+     * @param VersionInfo|array{id?: string|null, name?: string|null} $versionInfo
      */
-    public function withVersionInfo(VersionInfo $versionInfo): self
+    public function withVersionInfo(VersionInfo|array $versionInfo): self
     {
         $obj = clone $this;
-        $obj->versionInfo = $versionInfo;
+        $obj['versionInfo'] = $versionInfo;
 
         return $obj;
     }
@@ -576,7 +658,7 @@ final class FileUploadResponse implements BaseModel, ResponseConverter
     public function withVideoCodec(string $videoCodec): self
     {
         $obj = clone $this;
-        $obj->videoCodec = $videoCodec;
+        $obj['videoCodec'] = $videoCodec;
 
         return $obj;
     }
@@ -587,7 +669,7 @@ final class FileUploadResponse implements BaseModel, ResponseConverter
     public function withWidth(float $width): self
     {
         $obj = clone $this;
-        $obj->width = $width;
+        $obj['width'] = $width;
 
         return $obj;
     }

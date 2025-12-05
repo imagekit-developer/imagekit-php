@@ -127,10 +127,10 @@ final class AssetListParams implements BaseModel
         $obj = new self;
 
         null !== $fileType && $obj['fileType'] = $fileType;
-        null !== $limit && $obj->limit = $limit;
-        null !== $path && $obj->path = $path;
-        null !== $searchQuery && $obj->searchQuery = $searchQuery;
-        null !== $skip && $obj->skip = $skip;
+        null !== $limit && $obj['limit'] = $limit;
+        null !== $path && $obj['path'] = $path;
+        null !== $searchQuery && $obj['searchQuery'] = $searchQuery;
+        null !== $skip && $obj['skip'] = $skip;
         null !== $sort && $obj['sort'] = $sort;
         null !== $type && $obj['type'] = $type;
 
@@ -160,7 +160,7 @@ final class AssetListParams implements BaseModel
     public function withLimit(int $limit): self
     {
         $obj = clone $this;
-        $obj->limit = $limit;
+        $obj['limit'] = $limit;
 
         return $obj;
     }
@@ -174,7 +174,7 @@ final class AssetListParams implements BaseModel
     public function withPath(string $path): self
     {
         $obj = clone $this;
-        $obj->path = $path;
+        $obj['path'] = $path;
 
         return $obj;
     }
@@ -193,7 +193,7 @@ final class AssetListParams implements BaseModel
     public function withSearchQuery(string $searchQuery): self
     {
         $obj = clone $this;
-        $obj->searchQuery = $searchQuery;
+        $obj['searchQuery'] = $searchQuery;
 
         return $obj;
     }
@@ -204,7 +204,7 @@ final class AssetListParams implements BaseModel
     public function withSkip(int $skip): self
     {
         $obj = clone $this;
-        $obj->skip = $skip;
+        $obj['skip'] = $skip;
 
         return $obj;
     }

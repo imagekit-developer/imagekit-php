@@ -127,15 +127,15 @@ final class AkeneoPim implements BaseModel
     ): self {
         $obj = new self;
 
-        $obj->baseUrl = $baseUrl;
-        $obj->clientId = $clientId;
-        $obj->clientSecret = $clientSecret;
-        $obj->name = $name;
-        $obj->password = $password;
-        $obj->username = $username;
+        $obj['baseUrl'] = $baseUrl;
+        $obj['clientId'] = $clientId;
+        $obj['clientSecret'] = $clientSecret;
+        $obj['name'] = $name;
+        $obj['password'] = $password;
+        $obj['username'] = $username;
 
-        null !== $baseUrlForCanonicalHeader && $obj->baseUrlForCanonicalHeader = $baseUrlForCanonicalHeader;
-        null !== $includeCanonicalHeader && $obj->includeCanonicalHeader = $includeCanonicalHeader;
+        null !== $baseUrlForCanonicalHeader && $obj['baseUrlForCanonicalHeader'] = $baseUrlForCanonicalHeader;
+        null !== $includeCanonicalHeader && $obj['includeCanonicalHeader'] = $includeCanonicalHeader;
 
         return $obj;
     }
@@ -146,7 +146,7 @@ final class AkeneoPim implements BaseModel
     public function withBaseURL(string $baseURL): self
     {
         $obj = clone $this;
-        $obj->baseUrl = $baseURL;
+        $obj['baseUrl'] = $baseURL;
 
         return $obj;
     }
@@ -157,7 +157,7 @@ final class AkeneoPim implements BaseModel
     public function withClientID(string $clientID): self
     {
         $obj = clone $this;
-        $obj->clientId = $clientID;
+        $obj['clientId'] = $clientID;
 
         return $obj;
     }
@@ -168,7 +168,7 @@ final class AkeneoPim implements BaseModel
     public function withClientSecret(string $clientSecret): self
     {
         $obj = clone $this;
-        $obj->clientSecret = $clientSecret;
+        $obj['clientSecret'] = $clientSecret;
 
         return $obj;
     }
@@ -179,7 +179,7 @@ final class AkeneoPim implements BaseModel
     public function withName(string $name): self
     {
         $obj = clone $this;
-        $obj->name = $name;
+        $obj['name'] = $name;
 
         return $obj;
     }
@@ -190,7 +190,7 @@ final class AkeneoPim implements BaseModel
     public function withPassword(string $password): self
     {
         $obj = clone $this;
-        $obj->password = $password;
+        $obj['password'] = $password;
 
         return $obj;
     }
@@ -201,7 +201,7 @@ final class AkeneoPim implements BaseModel
     public function withUsername(string $username): self
     {
         $obj = clone $this;
-        $obj->username = $username;
+        $obj['username'] = $username;
 
         return $obj;
     }
@@ -213,7 +213,7 @@ final class AkeneoPim implements BaseModel
         string $baseURLForCanonicalHeader
     ): self {
         $obj = clone $this;
-        $obj->baseUrlForCanonicalHeader = $baseURLForCanonicalHeader;
+        $obj['baseUrlForCanonicalHeader'] = $baseURLForCanonicalHeader;
 
         return $obj;
     }
@@ -225,7 +225,7 @@ final class AkeneoPim implements BaseModel
         bool $includeCanonicalHeader
     ): self {
         $obj = clone $this;
-        $obj->includeCanonicalHeader = $includeCanonicalHeader;
+        $obj['includeCanonicalHeader'] = $includeCanonicalHeader;
 
         return $obj;
     }

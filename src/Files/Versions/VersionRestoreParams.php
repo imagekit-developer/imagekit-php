@@ -53,7 +53,7 @@ final class VersionRestoreParams implements BaseModel
     {
         $obj = new self;
 
-        $obj->fileId = $fileId;
+        $obj['fileId'] = $fileId;
 
         return $obj;
     }
@@ -61,7 +61,7 @@ final class VersionRestoreParams implements BaseModel
     public function withFileID(string $fileID): self
     {
         $obj = clone $this;
-        $obj->fileId = $fileID;
+        $obj['fileId'] = $fileID;
 
         return $obj;
     }

@@ -44,8 +44,8 @@ final class VersionInfo implements BaseModel
     {
         $obj = new self;
 
-        null !== $id && $obj->id = $id;
-        null !== $name && $obj->name = $name;
+        null !== $id && $obj['id'] = $id;
+        null !== $name && $obj['name'] = $name;
 
         return $obj;
     }
@@ -56,7 +56,7 @@ final class VersionInfo implements BaseModel
     public function withID(string $id): self
     {
         $obj = clone $this;
-        $obj->id = $id;
+        $obj['id'] = $id;
 
         return $obj;
     }
@@ -67,7 +67,7 @@ final class VersionInfo implements BaseModel
     public function withName(string $name): self
     {
         $obj = clone $this;
-        $obj->name = $name;
+        $obj['name'] = $name;
 
         return $obj;
     }

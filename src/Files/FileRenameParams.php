@@ -88,10 +88,10 @@ final class FileRenameParams implements BaseModel
     ): self {
         $obj = new self;
 
-        $obj->filePath = $filePath;
-        $obj->newFileName = $newFileName;
+        $obj['filePath'] = $filePath;
+        $obj['newFileName'] = $newFileName;
 
-        null !== $purgeCache && $obj->purgeCache = $purgeCache;
+        null !== $purgeCache && $obj['purgeCache'] = $purgeCache;
 
         return $obj;
     }
@@ -102,7 +102,7 @@ final class FileRenameParams implements BaseModel
     public function withFilePath(string $filePath): self
     {
         $obj = clone $this;
-        $obj->filePath = $filePath;
+        $obj['filePath'] = $filePath;
 
         return $obj;
     }
@@ -118,7 +118,7 @@ final class FileRenameParams implements BaseModel
     public function withNewFileName(string $newFileName): self
     {
         $obj = clone $this;
-        $obj->newFileName = $newFileName;
+        $obj['newFileName'] = $newFileName;
 
         return $obj;
     }
@@ -137,7 +137,7 @@ final class FileRenameParams implements BaseModel
     public function withPurgeCache(bool $purgeCache): self
     {
         $obj = clone $this;
-        $obj->purgeCache = $purgeCache;
+        $obj['purgeCache'] = $purgeCache;
 
         return $obj;
     }

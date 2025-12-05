@@ -75,11 +75,11 @@ final class UsageGetResponse implements BaseModel, ResponseConverter
     ): self {
         $obj = new self;
 
-        null !== $bandwidthBytes && $obj->bandwidthBytes = $bandwidthBytes;
-        null !== $extensionUnitsCount && $obj->extensionUnitsCount = $extensionUnitsCount;
-        null !== $mediaLibraryStorageBytes && $obj->mediaLibraryStorageBytes = $mediaLibraryStorageBytes;
-        null !== $originalCacheStorageBytes && $obj->originalCacheStorageBytes = $originalCacheStorageBytes;
-        null !== $videoProcessingUnitsCount && $obj->videoProcessingUnitsCount = $videoProcessingUnitsCount;
+        null !== $bandwidthBytes && $obj['bandwidthBytes'] = $bandwidthBytes;
+        null !== $extensionUnitsCount && $obj['extensionUnitsCount'] = $extensionUnitsCount;
+        null !== $mediaLibraryStorageBytes && $obj['mediaLibraryStorageBytes'] = $mediaLibraryStorageBytes;
+        null !== $originalCacheStorageBytes && $obj['originalCacheStorageBytes'] = $originalCacheStorageBytes;
+        null !== $videoProcessingUnitsCount && $obj['videoProcessingUnitsCount'] = $videoProcessingUnitsCount;
 
         return $obj;
     }
@@ -90,7 +90,7 @@ final class UsageGetResponse implements BaseModel, ResponseConverter
     public function withBandwidthBytes(int $bandwidthBytes): self
     {
         $obj = clone $this;
-        $obj->bandwidthBytes = $bandwidthBytes;
+        $obj['bandwidthBytes'] = $bandwidthBytes;
 
         return $obj;
     }
@@ -101,7 +101,7 @@ final class UsageGetResponse implements BaseModel, ResponseConverter
     public function withExtensionUnitsCount(int $extensionUnitsCount): self
     {
         $obj = clone $this;
-        $obj->extensionUnitsCount = $extensionUnitsCount;
+        $obj['extensionUnitsCount'] = $extensionUnitsCount;
 
         return $obj;
     }
@@ -113,7 +113,7 @@ final class UsageGetResponse implements BaseModel, ResponseConverter
         int $mediaLibraryStorageBytes
     ): self {
         $obj = clone $this;
-        $obj->mediaLibraryStorageBytes = $mediaLibraryStorageBytes;
+        $obj['mediaLibraryStorageBytes'] = $mediaLibraryStorageBytes;
 
         return $obj;
     }
@@ -125,7 +125,7 @@ final class UsageGetResponse implements BaseModel, ResponseConverter
         int $originalCacheStorageBytes
     ): self {
         $obj = clone $this;
-        $obj->originalCacheStorageBytes = $originalCacheStorageBytes;
+        $obj['originalCacheStorageBytes'] = $originalCacheStorageBytes;
 
         return $obj;
     }
@@ -137,7 +137,7 @@ final class UsageGetResponse implements BaseModel, ResponseConverter
         int $videoProcessingUnitsCount
     ): self {
         $obj = clone $this;
-        $obj->videoProcessingUnitsCount = $videoProcessingUnitsCount;
+        $obj['videoProcessingUnitsCount'] = $videoProcessingUnitsCount;
 
         return $obj;
     }

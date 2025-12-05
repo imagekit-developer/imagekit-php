@@ -98,14 +98,14 @@ final class Gcs implements BaseModel
     ): self {
         $obj = new self;
 
-        $obj->bucket = $bucket;
-        $obj->clientEmail = $clientEmail;
-        $obj->name = $name;
-        $obj->privateKey = $privateKey;
+        $obj['bucket'] = $bucket;
+        $obj['clientEmail'] = $clientEmail;
+        $obj['name'] = $name;
+        $obj['privateKey'] = $privateKey;
 
-        null !== $baseUrlForCanonicalHeader && $obj->baseUrlForCanonicalHeader = $baseUrlForCanonicalHeader;
-        null !== $includeCanonicalHeader && $obj->includeCanonicalHeader = $includeCanonicalHeader;
-        null !== $prefix && $obj->prefix = $prefix;
+        null !== $baseUrlForCanonicalHeader && $obj['baseUrlForCanonicalHeader'] = $baseUrlForCanonicalHeader;
+        null !== $includeCanonicalHeader && $obj['includeCanonicalHeader'] = $includeCanonicalHeader;
+        null !== $prefix && $obj['prefix'] = $prefix;
 
         return $obj;
     }
@@ -113,7 +113,7 @@ final class Gcs implements BaseModel
     public function withBucket(string $bucket): self
     {
         $obj = clone $this;
-        $obj->bucket = $bucket;
+        $obj['bucket'] = $bucket;
 
         return $obj;
     }
@@ -121,7 +121,7 @@ final class Gcs implements BaseModel
     public function withClientEmail(string $clientEmail): self
     {
         $obj = clone $this;
-        $obj->clientEmail = $clientEmail;
+        $obj['clientEmail'] = $clientEmail;
 
         return $obj;
     }
@@ -132,7 +132,7 @@ final class Gcs implements BaseModel
     public function withName(string $name): self
     {
         $obj = clone $this;
-        $obj->name = $name;
+        $obj['name'] = $name;
 
         return $obj;
     }
@@ -140,7 +140,7 @@ final class Gcs implements BaseModel
     public function withPrivateKey(string $privateKey): self
     {
         $obj = clone $this;
-        $obj->privateKey = $privateKey;
+        $obj['privateKey'] = $privateKey;
 
         return $obj;
     }
@@ -152,7 +152,7 @@ final class Gcs implements BaseModel
         string $baseURLForCanonicalHeader
     ): self {
         $obj = clone $this;
-        $obj->baseUrlForCanonicalHeader = $baseURLForCanonicalHeader;
+        $obj['baseUrlForCanonicalHeader'] = $baseURLForCanonicalHeader;
 
         return $obj;
     }
@@ -164,7 +164,7 @@ final class Gcs implements BaseModel
         bool $includeCanonicalHeader
     ): self {
         $obj = clone $this;
-        $obj->includeCanonicalHeader = $includeCanonicalHeader;
+        $obj['includeCanonicalHeader'] = $includeCanonicalHeader;
 
         return $obj;
     }
@@ -172,7 +172,7 @@ final class Gcs implements BaseModel
     public function withPrefix(string $prefix): self
     {
         $obj = clone $this;
-        $obj->prefix = $prefix;
+        $obj['prefix'] = $prefix;
 
         return $obj;
     }

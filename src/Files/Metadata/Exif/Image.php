@@ -88,17 +88,17 @@ final class Image implements BaseModel
     ): self {
         $obj = new self;
 
-        null !== $ExifOffset && $obj->ExifOffset = $ExifOffset;
-        null !== $GPSInfo && $obj->GPSInfo = $GPSInfo;
-        null !== $Make && $obj->Make = $Make;
-        null !== $Model && $obj->Model = $Model;
-        null !== $ModifyDate && $obj->ModifyDate = $ModifyDate;
-        null !== $Orientation && $obj->Orientation = $Orientation;
-        null !== $ResolutionUnit && $obj->ResolutionUnit = $ResolutionUnit;
-        null !== $Software && $obj->Software = $Software;
-        null !== $XResolution && $obj->XResolution = $XResolution;
-        null !== $YCbCrPositioning && $obj->YCbCrPositioning = $YCbCrPositioning;
-        null !== $YResolution && $obj->YResolution = $YResolution;
+        null !== $ExifOffset && $obj['ExifOffset'] = $ExifOffset;
+        null !== $GPSInfo && $obj['GPSInfo'] = $GPSInfo;
+        null !== $Make && $obj['Make'] = $Make;
+        null !== $Model && $obj['Model'] = $Model;
+        null !== $ModifyDate && $obj['ModifyDate'] = $ModifyDate;
+        null !== $Orientation && $obj['Orientation'] = $Orientation;
+        null !== $ResolutionUnit && $obj['ResolutionUnit'] = $ResolutionUnit;
+        null !== $Software && $obj['Software'] = $Software;
+        null !== $XResolution && $obj['XResolution'] = $XResolution;
+        null !== $YCbCrPositioning && $obj['YCbCrPositioning'] = $YCbCrPositioning;
+        null !== $YResolution && $obj['YResolution'] = $YResolution;
 
         return $obj;
     }
@@ -106,7 +106,7 @@ final class Image implements BaseModel
     public function withExifOffset(int $exifOffset): self
     {
         $obj = clone $this;
-        $obj->ExifOffset = $exifOffset;
+        $obj['ExifOffset'] = $exifOffset;
 
         return $obj;
     }
@@ -114,7 +114,7 @@ final class Image implements BaseModel
     public function withGpsInfo(int $gpsInfo): self
     {
         $obj = clone $this;
-        $obj->GPSInfo = $gpsInfo;
+        $obj['GPSInfo'] = $gpsInfo;
 
         return $obj;
     }
@@ -122,7 +122,7 @@ final class Image implements BaseModel
     public function withMake(string $make): self
     {
         $obj = clone $this;
-        $obj->Make = $make;
+        $obj['Make'] = $make;
 
         return $obj;
     }
@@ -130,7 +130,7 @@ final class Image implements BaseModel
     public function withModel(string $model): self
     {
         $obj = clone $this;
-        $obj->Model = $model;
+        $obj['Model'] = $model;
 
         return $obj;
     }
@@ -138,7 +138,7 @@ final class Image implements BaseModel
     public function withModifyDate(string $modifyDate): self
     {
         $obj = clone $this;
-        $obj->ModifyDate = $modifyDate;
+        $obj['ModifyDate'] = $modifyDate;
 
         return $obj;
     }
@@ -146,7 +146,7 @@ final class Image implements BaseModel
     public function withOrientation(int $orientation): self
     {
         $obj = clone $this;
-        $obj->Orientation = $orientation;
+        $obj['Orientation'] = $orientation;
 
         return $obj;
     }
@@ -154,7 +154,7 @@ final class Image implements BaseModel
     public function withResolutionUnit(int $resolutionUnit): self
     {
         $obj = clone $this;
-        $obj->ResolutionUnit = $resolutionUnit;
+        $obj['ResolutionUnit'] = $resolutionUnit;
 
         return $obj;
     }
@@ -162,7 +162,7 @@ final class Image implements BaseModel
     public function withSoftware(string $software): self
     {
         $obj = clone $this;
-        $obj->Software = $software;
+        $obj['Software'] = $software;
 
         return $obj;
     }
@@ -170,7 +170,7 @@ final class Image implements BaseModel
     public function withXResolution(int $xResolution): self
     {
         $obj = clone $this;
-        $obj->XResolution = $xResolution;
+        $obj['XResolution'] = $xResolution;
 
         return $obj;
     }
@@ -178,7 +178,7 @@ final class Image implements BaseModel
     public function withYCbCrPositioning(int $yCbCrPositioning): self
     {
         $obj = clone $this;
-        $obj->YCbCrPositioning = $yCbCrPositioning;
+        $obj['YCbCrPositioning'] = $yCbCrPositioning;
 
         return $obj;
     }
@@ -186,7 +186,7 @@ final class Image implements BaseModel
     public function withYResolution(int $yResolution): self
     {
         $obj = clone $this;
-        $obj->YResolution = $yResolution;
+        $obj['YResolution'] = $yResolution;
 
         return $obj;
     }

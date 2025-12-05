@@ -95,22 +95,25 @@ final class URLEndpointResponse implements BaseModel, ResponseConverter
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param list<string> $origins
+     * @param Cloudinary|array{
+     *   preserveAssetDeliveryTypes: bool, type: 'CLOUDINARY'
+     * }|Imgix|array{type: 'IMGIX'}|Akamai|array{type: 'AKAMAI'} $urlRewriter
      */
     public static function with(
         string $id,
         string $description,
         array $origins = [],
         string $urlPrefix = '',
-        Cloudinary|Imgix|Akamai|null $urlRewriter = null,
+        Cloudinary|array|Imgix|Akamai|null $urlRewriter = null,
     ): self {
         $obj = new self;
 
-        $obj->id = $id;
-        $obj->description = $description;
-        $obj->origins = $origins;
-        $obj->urlPrefix = $urlPrefix;
+        $obj['id'] = $id;
+        $obj['description'] = $description;
+        $obj['origins'] = $origins;
+        $obj['urlPrefix'] = $urlPrefix;
 
-        null !== $urlRewriter && $obj->urlRewriter = $urlRewriter;
+        null !== $urlRewriter && $obj['urlRewriter'] = $urlRewriter;
 
         return $obj;
     }
@@ -121,7 +124,7 @@ final class URLEndpointResponse implements BaseModel, ResponseConverter
     public function withID(string $id): self
     {
         $obj = clone $this;
-        $obj->id = $id;
+        $obj['id'] = $id;
 
         return $obj;
     }
@@ -132,7 +135,7 @@ final class URLEndpointResponse implements BaseModel, ResponseConverter
     public function withDescription(string $description): self
     {
         $obj = clone $this;
-        $obj->description = $description;
+        $obj['description'] = $description;
 
         return $obj;
     }
@@ -145,7 +148,7 @@ final class URLEndpointResponse implements BaseModel, ResponseConverter
     public function withOrigins(array $origins): self
     {
         $obj = clone $this;
-        $obj->origins = $origins;
+        $obj['origins'] = $origins;
 
         return $obj;
     }
@@ -156,18 +159,23 @@ final class URLEndpointResponse implements BaseModel, ResponseConverter
     public function withURLPrefix(string $urlPrefix): self
     {
         $obj = clone $this;
-        $obj->urlPrefix = $urlPrefix;
+        $obj['urlPrefix'] = $urlPrefix;
 
         return $obj;
     }
 
     /**
      * Configuration for third-party URL rewriting.
+     *
+     * @param Cloudinary|array{
+     *   preserveAssetDeliveryTypes: bool, type: 'CLOUDINARY'
+     * }|Imgix|array{type: 'IMGIX'}|Akamai|array{type: 'AKAMAI'} $urlRewriter
      */
-    public function withURLRewriter(Cloudinary|Imgix|Akamai $urlRewriter): self
-    {
+    public function withURLRewriter(
+        Cloudinary|array|Imgix|Akamai $urlRewriter
+    ): self {
         $obj = clone $this;
-        $obj->urlRewriter = $urlRewriter;
+        $obj['urlRewriter'] = $urlRewriter;
 
         return $obj;
     }

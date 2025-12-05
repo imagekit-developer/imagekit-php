@@ -124,13 +124,13 @@ final class Schema implements BaseModel
 
         $obj['type'] = $type;
 
-        null !== $defaultValue && $obj->defaultValue = $defaultValue;
-        null !== $isValueRequired && $obj->isValueRequired = $isValueRequired;
-        null !== $maxLength && $obj->maxLength = $maxLength;
-        null !== $maxValue && $obj->maxValue = $maxValue;
-        null !== $minLength && $obj->minLength = $minLength;
-        null !== $minValue && $obj->minValue = $minValue;
-        null !== $selectOptions && $obj->selectOptions = $selectOptions;
+        null !== $defaultValue && $obj['defaultValue'] = $defaultValue;
+        null !== $isValueRequired && $obj['isValueRequired'] = $isValueRequired;
+        null !== $maxLength && $obj['maxLength'] = $maxLength;
+        null !== $maxValue && $obj['maxValue'] = $maxValue;
+        null !== $minLength && $obj['minLength'] = $minLength;
+        null !== $minValue && $obj['minValue'] = $minValue;
+        null !== $selectOptions && $obj['selectOptions'] = $selectOptions;
 
         return $obj;
     }
@@ -157,7 +157,7 @@ final class Schema implements BaseModel
         string|float|bool|array $defaultValue
     ): self {
         $obj = clone $this;
-        $obj->defaultValue = $defaultValue;
+        $obj['defaultValue'] = $defaultValue;
 
         return $obj;
     }
@@ -168,7 +168,7 @@ final class Schema implements BaseModel
     public function withIsValueRequired(bool $isValueRequired): self
     {
         $obj = clone $this;
-        $obj->isValueRequired = $isValueRequired;
+        $obj['isValueRequired'] = $isValueRequired;
 
         return $obj;
     }
@@ -179,7 +179,7 @@ final class Schema implements BaseModel
     public function withMaxLength(float $maxLength): self
     {
         $obj = clone $this;
-        $obj->maxLength = $maxLength;
+        $obj['maxLength'] = $maxLength;
 
         return $obj;
     }
@@ -190,7 +190,7 @@ final class Schema implements BaseModel
     public function withMaxValue(string|float $maxValue): self
     {
         $obj = clone $this;
-        $obj->maxValue = $maxValue;
+        $obj['maxValue'] = $maxValue;
 
         return $obj;
     }
@@ -201,7 +201,7 @@ final class Schema implements BaseModel
     public function withMinLength(float $minLength): self
     {
         $obj = clone $this;
-        $obj->minLength = $minLength;
+        $obj['minLength'] = $minLength;
 
         return $obj;
     }
@@ -212,7 +212,7 @@ final class Schema implements BaseModel
     public function withMinValue(string|float $minValue): self
     {
         $obj = clone $this;
-        $obj->minValue = $minValue;
+        $obj['minValue'] = $minValue;
 
         return $obj;
     }
@@ -225,7 +225,7 @@ final class Schema implements BaseModel
     public function withSelectOptions(array $selectOptions): self
     {
         $obj = clone $this;
-        $obj->selectOptions = $selectOptions;
+        $obj['selectOptions'] = $selectOptions;
 
         return $obj;
     }

@@ -48,8 +48,8 @@ final class Timings implements BaseModel
     ): self {
         $obj = new self;
 
-        null !== $download_duration && $obj->download_duration = $download_duration;
-        null !== $encoding_duration && $obj->encoding_duration = $encoding_duration;
+        null !== $download_duration && $obj['download_duration'] = $download_duration;
+        null !== $encoding_duration && $obj['encoding_duration'] = $encoding_duration;
 
         return $obj;
     }
@@ -60,7 +60,7 @@ final class Timings implements BaseModel
     public function withDownloadDuration(int $downloadDuration): self
     {
         $obj = clone $this;
-        $obj->download_duration = $downloadDuration;
+        $obj['download_duration'] = $downloadDuration;
 
         return $obj;
     }
@@ -71,7 +71,7 @@ final class Timings implements BaseModel
     public function withEncodingDuration(int $encodingDuration): self
     {
         $obj = clone $this;
-        $obj->encoding_duration = $encodingDuration;
+        $obj['encoding_duration'] = $encodingDuration;
 
         return $obj;
     }

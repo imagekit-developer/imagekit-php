@@ -11,7 +11,9 @@ use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\ExtensionItem;
 use ImageKit\ExtensionItem\AIAutoDescription;
 use ImageKit\ExtensionItem\AutoTaggingExtension;
+use ImageKit\ExtensionItem\AutoTaggingExtension\Name;
 use ImageKit\ExtensionItem\RemoveBg;
+use ImageKit\ExtensionItem\RemoveBg\Options;
 use ImageKit\Files\FileUpdateParams\Publish;
 use ImageKit\Files\FileUpdateParams\RemoveAITags;
 
@@ -24,11 +26,15 @@ use ImageKit\Files\FileUpdateParams\RemoveAITags;
  *   customCoordinates?: string|null,
  *   customMetadata?: array<string,mixed>,
  *   description?: string,
- *   extensions?: list<RemoveBg|AutoTaggingExtension|AIAutoDescription>,
+ *   extensions?: list<RemoveBg|array{
+ *     name: 'remove-bg', options?: Options|null
+ *   }|AutoTaggingExtension|array{
+ *     maxTags: int, minConfidence: int, name: value-of<Name>
+ *   }|AIAutoDescription|array{name: 'ai-auto-description'}>,
  *   removeAITags?: 'all'|list<string>,
  *   tags?: list<string>|null,
  *   webhookUrl?: string,
- *   publish?: Publish,
+ *   publish?: Publish|array{isPublished: bool, includeFileVersions?: bool|null},
  * }
  */
 final class FileUpdateParams implements BaseModel
@@ -108,9 +114,16 @@ final class FileUpdateParams implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param array<string,mixed> $customMetadata
-     * @param list<RemoveBg|AutoTaggingExtension|AIAutoDescription> $extensions
+     * @param list<RemoveBg|array{
+     *   name: 'remove-bg', options?: Options|null
+     * }|AutoTaggingExtension|array{
+     *   maxTags: int, minConfidence: int, name: value-of<Name>
+     * }|AIAutoDescription|array{name: 'ai-auto-description'}> $extensions
      * @param 'all'|list<string> $removeAITags
      * @param list<string>|null $tags
+     * @param Publish|array{
+     *   isPublished: bool, includeFileVersions?: bool|null
+     * } $publish
      */
     public static function with(
         ?string $customCoordinates = null,
@@ -120,18 +133,18 @@ final class FileUpdateParams implements BaseModel
         string|array|null $removeAITags = null,
         ?array $tags = null,
         ?string $webhookUrl = null,
-        ?Publish $publish = null,
+        Publish|array|null $publish = null,
     ): self {
         $obj = new self;
 
-        null !== $customCoordinates && $obj->customCoordinates = $customCoordinates;
-        null !== $customMetadata && $obj->customMetadata = $customMetadata;
-        null !== $description && $obj->description = $description;
-        null !== $extensions && $obj->extensions = $extensions;
-        null !== $removeAITags && $obj->removeAITags = $removeAITags;
-        null !== $tags && $obj->tags = $tags;
-        null !== $webhookUrl && $obj->webhookUrl = $webhookUrl;
-        null !== $publish && $obj->publish = $publish;
+        null !== $customCoordinates && $obj['customCoordinates'] = $customCoordinates;
+        null !== $customMetadata && $obj['customMetadata'] = $customMetadata;
+        null !== $description && $obj['description'] = $description;
+        null !== $extensions && $obj['extensions'] = $extensions;
+        null !== $removeAITags && $obj['removeAITags'] = $removeAITags;
+        null !== $tags && $obj['tags'] = $tags;
+        null !== $webhookUrl && $obj['webhookUrl'] = $webhookUrl;
+        null !== $publish && $obj['publish'] = $publish;
 
         return $obj;
     }
@@ -142,7 +155,7 @@ final class FileUpdateParams implements BaseModel
     public function withCustomCoordinates(?string $customCoordinates): self
     {
         $obj = clone $this;
-        $obj->customCoordinates = $customCoordinates;
+        $obj['customCoordinates'] = $customCoordinates;
 
         return $obj;
     }
@@ -155,7 +168,7 @@ final class FileUpdateParams implements BaseModel
     public function withCustomMetadata(array $customMetadata): self
     {
         $obj = clone $this;
-        $obj->customMetadata = $customMetadata;
+        $obj['customMetadata'] = $customMetadata;
 
         return $obj;
     }
@@ -166,7 +179,7 @@ final class FileUpdateParams implements BaseModel
     public function withDescription(string $description): self
     {
         $obj = clone $this;
-        $obj->description = $description;
+        $obj['description'] = $description;
 
         return $obj;
     }
@@ -174,12 +187,16 @@ final class FileUpdateParams implements BaseModel
     /**
      * Array of extensions to be applied to the asset. Each extension can be configured with specific parameters based on the extension type.
      *
-     * @param list<RemoveBg|AutoTaggingExtension|AIAutoDescription> $extensions
+     * @param list<RemoveBg|array{
+     *   name: 'remove-bg', options?: Options|null
+     * }|AutoTaggingExtension|array{
+     *   maxTags: int, minConfidence: int, name: value-of<Name>
+     * }|AIAutoDescription|array{name: 'ai-auto-description'}> $extensions
      */
     public function withExtensions(array $extensions): self
     {
         $obj = clone $this;
-        $obj->extensions = $extensions;
+        $obj['extensions'] = $extensions;
 
         return $obj;
     }
@@ -196,7 +213,7 @@ final class FileUpdateParams implements BaseModel
     public function withRemoveAITags(string|array $removeAITags): self
     {
         $obj = clone $this;
-        $obj->removeAITags = $removeAITags;
+        $obj['removeAITags'] = $removeAITags;
 
         return $obj;
     }
@@ -209,7 +226,7 @@ final class FileUpdateParams implements BaseModel
     public function withTags(?array $tags): self
     {
         $obj = clone $this;
-        $obj->tags = $tags;
+        $obj['tags'] = $tags;
 
         return $obj;
     }
@@ -220,18 +237,22 @@ final class FileUpdateParams implements BaseModel
     public function withWebhookURL(string $webhookURL): self
     {
         $obj = clone $this;
-        $obj->webhookUrl = $webhookURL;
+        $obj['webhookUrl'] = $webhookURL;
 
         return $obj;
     }
 
     /**
      * Configure the publication status of a file and its versions.
+     *
+     * @param Publish|array{
+     *   isPublished: bool, includeFileVersions?: bool|null
+     * } $publish
      */
-    public function withPublish(Publish $publish): self
+    public function withPublish(Publish|array $publish): self
     {
         $obj = clone $this;
-        $obj->publish = $publish;
+        $obj['publish'] = $publish;
 
         return $obj;
     }

@@ -42,8 +42,8 @@ final class Interoperability implements BaseModel
     ): self {
         $obj = new self;
 
-        null !== $InteropIndex && $obj->InteropIndex = $InteropIndex;
-        null !== $InteropVersion && $obj->InteropVersion = $InteropVersion;
+        null !== $InteropIndex && $obj['InteropIndex'] = $InteropIndex;
+        null !== $InteropVersion && $obj['InteropVersion'] = $InteropVersion;
 
         return $obj;
     }
@@ -51,7 +51,7 @@ final class Interoperability implements BaseModel
     public function withInteropIndex(string $interopIndex): self
     {
         $obj = clone $this;
-        $obj->InteropIndex = $interopIndex;
+        $obj['InteropIndex'] = $interopIndex;
 
         return $obj;
     }
@@ -59,7 +59,7 @@ final class Interoperability implements BaseModel
     public function withInteropVersion(string $interopVersion): self
     {
         $obj = clone $this;
-        $obj->InteropVersion = $interopVersion;
+        $obj['InteropVersion'] = $interopVersion;
 
         return $obj;
     }

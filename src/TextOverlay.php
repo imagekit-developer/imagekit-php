@@ -7,7 +7,10 @@ namespace ImageKit;
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\OverlayPosition\Focus;
 use ImageKit\TextOverlay\Encoding;
+use ImageKit\TextOverlayTransformation\Flip;
+use ImageKit\TextOverlayTransformation\InnerAlignment;
 
 /**
  * @phpstan-type TextOverlayShape = array{
@@ -83,40 +86,74 @@ final class TextOverlay implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
+     * @param OverlayPosition|array{
+     *   focus?: value-of<Focus>|null, x?: float|string|null, y?: float|string|null
+     * } $position
+     * @param OverlayTiming|array{
+     *   duration?: float|string|null,
+     *   end?: float|string|null,
+     *   start?: float|string|null,
+     * } $timing
      * @param Encoding|value-of<Encoding> $encoding
-     * @param list<TextOverlayTransformation> $transformation
+     * @param list<TextOverlayTransformation|array{
+     *   alpha?: float|null,
+     *   background?: string|null,
+     *   flip?: value-of<Flip>|null,
+     *   fontColor?: string|null,
+     *   fontFamily?: string|null,
+     *   fontSize?: float|string|null,
+     *   innerAlignment?: value-of<InnerAlignment>|null,
+     *   lineHeight?: float|string|null,
+     *   padding?: float|string|null,
+     *   radius?: float|'max'|null,
+     *   rotation?: float|string|null,
+     *   typography?: string|null,
+     *   width?: float|string|null,
+     * }> $transformation
      */
     public static function with(
         string $text,
-        ?OverlayPosition $position = null,
-        ?OverlayTiming $timing = null,
+        OverlayPosition|array|null $position = null,
+        OverlayTiming|array|null $timing = null,
         Encoding|string|null $encoding = null,
         ?array $transformation = null,
     ): self {
         $obj = new self;
 
-        $obj->text = $text;
+        $obj['text'] = $text;
 
-        null !== $position && $obj->position = $position;
-        null !== $timing && $obj->timing = $timing;
+        null !== $position && $obj['position'] = $position;
+        null !== $timing && $obj['timing'] = $timing;
         null !== $encoding && $obj['encoding'] = $encoding;
-        null !== $transformation && $obj->transformation = $transformation;
+        null !== $transformation && $obj['transformation'] = $transformation;
 
         return $obj;
     }
 
-    public function withPosition(OverlayPosition $position): self
+    /**
+     * @param OverlayPosition|array{
+     *   focus?: value-of<Focus>|null, x?: float|string|null, y?: float|string|null
+     * } $position
+     */
+    public function withPosition(OverlayPosition|array $position): self
     {
         $obj = clone $this;
-        $obj->position = $position;
+        $obj['position'] = $position;
 
         return $obj;
     }
 
-    public function withTiming(OverlayTiming $timing): self
+    /**
+     * @param OverlayTiming|array{
+     *   duration?: float|string|null,
+     *   end?: float|string|null,
+     *   start?: float|string|null,
+     * } $timing
+     */
+    public function withTiming(OverlayTiming|array $timing): self
     {
         $obj = clone $this;
-        $obj->timing = $timing;
+        $obj['timing'] = $timing;
 
         return $obj;
     }
@@ -127,7 +164,7 @@ final class TextOverlay implements BaseModel
     public function withText(string $text): self
     {
         $obj = clone $this;
-        $obj->text = $text;
+        $obj['text'] = $text;
 
         return $obj;
     }
@@ -151,12 +188,26 @@ final class TextOverlay implements BaseModel
     /**
      * Control styling of the text overlay. See [Text overlays](https://imagekit.io/docs/add-overlays-on-images#text-overlay).
      *
-     * @param list<TextOverlayTransformation> $transformation
+     * @param list<TextOverlayTransformation|array{
+     *   alpha?: float|null,
+     *   background?: string|null,
+     *   flip?: value-of<Flip>|null,
+     *   fontColor?: string|null,
+     *   fontFamily?: string|null,
+     *   fontSize?: float|string|null,
+     *   innerAlignment?: value-of<InnerAlignment>|null,
+     *   lineHeight?: float|string|null,
+     *   padding?: float|string|null,
+     *   radius?: float|'max'|null,
+     *   rotation?: float|string|null,
+     *   typography?: string|null,
+     *   width?: float|string|null,
+     * }> $transformation
      */
     public function withTransformation(array $transformation): self
     {
         $obj = clone $this;
-        $obj->transformation = $transformation;
+        $obj['transformation'] = $transformation;
 
         return $obj;
     }

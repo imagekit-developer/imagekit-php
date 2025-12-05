@@ -87,12 +87,12 @@ final class SolidColorOverlayTransformation implements BaseModel
     ): self {
         $obj = new self;
 
-        null !== $alpha && $obj->alpha = $alpha;
-        null !== $background && $obj->background = $background;
-        null !== $gradient && $obj->gradient = $gradient;
-        null !== $height && $obj->height = $height;
-        null !== $radius && $obj->radius = $radius;
-        null !== $width && $obj->width = $width;
+        null !== $alpha && $obj['alpha'] = $alpha;
+        null !== $background && $obj['background'] = $background;
+        null !== $gradient && $obj['gradient'] = $gradient;
+        null !== $height && $obj['height'] = $height;
+        null !== $radius && $obj['radius'] = $radius;
+        null !== $width && $obj['width'] = $width;
 
         return $obj;
     }
@@ -103,7 +103,7 @@ final class SolidColorOverlayTransformation implements BaseModel
     public function withAlpha(float $alpha): self
     {
         $obj = clone $this;
-        $obj->alpha = $alpha;
+        $obj['alpha'] = $alpha;
 
         return $obj;
     }
@@ -114,7 +114,7 @@ final class SolidColorOverlayTransformation implements BaseModel
     public function withBackground(string $background): self
     {
         $obj = clone $this;
-        $obj->background = $background;
+        $obj['background'] = $background;
 
         return $obj;
     }
@@ -126,7 +126,7 @@ final class SolidColorOverlayTransformation implements BaseModel
     public function withGradient(string|bool $gradient): self
     {
         $obj = clone $this;
-        $obj->gradient = $gradient;
+        $obj['gradient'] = $gradient;
 
         return $obj;
     }
@@ -138,7 +138,7 @@ final class SolidColorOverlayTransformation implements BaseModel
     public function withHeight(float|string $height): self
     {
         $obj = clone $this;
-        $obj->height = $height;
+        $obj['height'] = $height;
 
         return $obj;
     }
@@ -152,7 +152,7 @@ final class SolidColorOverlayTransformation implements BaseModel
     public function withRadius(float|string $radius): self
     {
         $obj = clone $this;
-        $obj->radius = $radius;
+        $obj['radius'] = $radius;
 
         return $obj;
     }
@@ -164,7 +164,7 @@ final class SolidColorOverlayTransformation implements BaseModel
     public function withWidth(float|string $width): self
     {
         $obj = clone $this;
-        $obj->width = $width;
+        $obj['width'] = $width;
 
         return $obj;
     }

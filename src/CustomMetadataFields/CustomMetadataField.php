@@ -10,6 +10,7 @@ use ImageKit\Core\Concerns\SdkResponse;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Core\Conversion\Contracts\ResponseConverter;
 use ImageKit\CustomMetadataFields\CustomMetadataField\Schema;
+use ImageKit\CustomMetadataFields\CustomMetadataField\Schema\Type;
 
 /**
  * Object containing details of a custom metadata field.
@@ -76,19 +77,30 @@ final class CustomMetadataField implements BaseModel, ResponseConverter
      * Construct an instance from the required parameters.
      *
      * You must use named parameters to construct any parameters with a default value.
+     *
+     * @param Schema|array{
+     *   type: value-of<Type>,
+     *   defaultValue?: string|float|bool|list<string|float|bool>|null,
+     *   isValueRequired?: bool|null,
+     *   maxLength?: float|null,
+     *   maxValue?: string|float|null,
+     *   minLength?: float|null,
+     *   minValue?: string|float|null,
+     *   selectOptions?: list<string|float|bool>|null,
+     * } $schema
      */
     public static function with(
         string $id,
         string $label,
         string $name,
-        Schema $schema
+        Schema|array $schema
     ): self {
         $obj = new self;
 
-        $obj->id = $id;
-        $obj->label = $label;
-        $obj->name = $name;
-        $obj->schema = $schema;
+        $obj['id'] = $id;
+        $obj['label'] = $label;
+        $obj['name'] = $name;
+        $obj['schema'] = $schema;
 
         return $obj;
     }
@@ -99,7 +111,7 @@ final class CustomMetadataField implements BaseModel, ResponseConverter
     public function withID(string $id): self
     {
         $obj = clone $this;
-        $obj->id = $id;
+        $obj['id'] = $id;
 
         return $obj;
     }
@@ -110,7 +122,7 @@ final class CustomMetadataField implements BaseModel, ResponseConverter
     public function withLabel(string $label): self
     {
         $obj = clone $this;
-        $obj->label = $label;
+        $obj['label'] = $label;
 
         return $obj;
     }
@@ -121,18 +133,29 @@ final class CustomMetadataField implements BaseModel, ResponseConverter
     public function withName(string $name): self
     {
         $obj = clone $this;
-        $obj->name = $name;
+        $obj['name'] = $name;
 
         return $obj;
     }
 
     /**
      * An object that describes the rules for the custom metadata field value.
+     *
+     * @param Schema|array{
+     *   type: value-of<Type>,
+     *   defaultValue?: string|float|bool|list<string|float|bool>|null,
+     *   isValueRequired?: bool|null,
+     *   maxLength?: float|null,
+     *   maxValue?: string|float|null,
+     *   minLength?: float|null,
+     *   minValue?: string|float|null,
+     *   selectOptions?: list<string|float|bool>|null,
+     * } $schema
      */
-    public function withSchema(Schema $schema): self
+    public function withSchema(Schema|array $schema): self
     {
         $obj = clone $this;
-        $obj->schema = $schema;
+        $obj['schema'] = $schema;
 
         return $obj;
     }

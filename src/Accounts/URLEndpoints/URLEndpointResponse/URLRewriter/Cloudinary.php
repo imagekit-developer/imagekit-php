@@ -56,7 +56,7 @@ final class Cloudinary implements BaseModel
     {
         $obj = new self;
 
-        $obj->preserveAssetDeliveryTypes = $preserveAssetDeliveryTypes;
+        $obj['preserveAssetDeliveryTypes'] = $preserveAssetDeliveryTypes;
 
         return $obj;
     }
@@ -68,7 +68,7 @@ final class Cloudinary implements BaseModel
         bool $preserveAssetDeliveryTypes
     ): self {
         $obj = clone $this;
-        $obj->preserveAssetDeliveryTypes = $preserveAssetDeliveryTypes;
+        $obj['preserveAssetDeliveryTypes'] = $preserveAssetDeliveryTypes;
 
         return $obj;
     }

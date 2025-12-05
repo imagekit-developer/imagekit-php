@@ -66,8 +66,8 @@ final class FolderMoveParams implements BaseModel
     ): self {
         $obj = new self;
 
-        $obj->destinationPath = $destinationPath;
-        $obj->sourceFolderPath = $sourceFolderPath;
+        $obj['destinationPath'] = $destinationPath;
+        $obj['sourceFolderPath'] = $sourceFolderPath;
 
         return $obj;
     }
@@ -78,7 +78,7 @@ final class FolderMoveParams implements BaseModel
     public function withDestinationPath(string $destinationPath): self
     {
         $obj = clone $this;
-        $obj->destinationPath = $destinationPath;
+        $obj['destinationPath'] = $destinationPath;
 
         return $obj;
     }
@@ -89,7 +89,7 @@ final class FolderMoveParams implements BaseModel
     public function withSourceFolderPath(string $sourceFolderPath): self
     {
         $obj = clone $this;
-        $obj->sourceFolderPath = $sourceFolderPath;
+        $obj['sourceFolderPath'] = $sourceFolderPath;
 
         return $obj;
     }

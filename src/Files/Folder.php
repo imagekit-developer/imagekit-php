@@ -84,12 +84,12 @@ final class Folder implements BaseModel
     ): self {
         $obj = new self;
 
-        null !== $createdAt && $obj->createdAt = $createdAt;
-        null !== $folderId && $obj->folderId = $folderId;
-        null !== $folderPath && $obj->folderPath = $folderPath;
-        null !== $name && $obj->name = $name;
+        null !== $createdAt && $obj['createdAt'] = $createdAt;
+        null !== $folderId && $obj['folderId'] = $folderId;
+        null !== $folderPath && $obj['folderPath'] = $folderPath;
+        null !== $name && $obj['name'] = $name;
         null !== $type && $obj['type'] = $type;
-        null !== $updatedAt && $obj->updatedAt = $updatedAt;
+        null !== $updatedAt && $obj['updatedAt'] = $updatedAt;
 
         return $obj;
     }
@@ -100,7 +100,7 @@ final class Folder implements BaseModel
     public function withCreatedAt(\DateTimeInterface $createdAt): self
     {
         $obj = clone $this;
-        $obj->createdAt = $createdAt;
+        $obj['createdAt'] = $createdAt;
 
         return $obj;
     }
@@ -111,7 +111,7 @@ final class Folder implements BaseModel
     public function withFolderID(string $folderID): self
     {
         $obj = clone $this;
-        $obj->folderId = $folderID;
+        $obj['folderId'] = $folderID;
 
         return $obj;
     }
@@ -122,7 +122,7 @@ final class Folder implements BaseModel
     public function withFolderPath(string $folderPath): self
     {
         $obj = clone $this;
-        $obj->folderPath = $folderPath;
+        $obj['folderPath'] = $folderPath;
 
         return $obj;
     }
@@ -133,7 +133,7 @@ final class Folder implements BaseModel
     public function withName(string $name): self
     {
         $obj = clone $this;
-        $obj->name = $name;
+        $obj['name'] = $name;
 
         return $obj;
     }
@@ -157,7 +157,7 @@ final class Folder implements BaseModel
     public function withUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $obj = clone $this;
-        $obj->updatedAt = $updatedAt;
+        $obj['updatedAt'] = $updatedAt;
 
         return $obj;
     }

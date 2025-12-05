@@ -56,7 +56,7 @@ final class FolderMoveResponse implements BaseModel, ResponseConverter
     {
         $obj = new self;
 
-        $obj->jobId = $jobId;
+        $obj['jobId'] = $jobId;
 
         return $obj;
     }
@@ -67,7 +67,7 @@ final class FolderMoveResponse implements BaseModel, ResponseConverter
     public function withJobID(string $jobID): self
     {
         $obj = clone $this;
-        $obj->jobId = $jobID;
+        $obj['jobId'] = $jobID;
 
         return $obj;
     }

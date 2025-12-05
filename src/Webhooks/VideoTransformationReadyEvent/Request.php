@@ -69,10 +69,10 @@ final class Request implements BaseModel
     ): self {
         $obj = new self;
 
-        $obj->url = $url;
-        $obj->x_request_id = $x_request_id;
+        $obj['url'] = $url;
+        $obj['x_request_id'] = $x_request_id;
 
-        null !== $user_agent && $obj->user_agent = $user_agent;
+        null !== $user_agent && $obj['user_agent'] = $user_agent;
 
         return $obj;
     }
@@ -83,7 +83,7 @@ final class Request implements BaseModel
     public function withURL(string $url): self
     {
         $obj = clone $this;
-        $obj->url = $url;
+        $obj['url'] = $url;
 
         return $obj;
     }
@@ -94,7 +94,7 @@ final class Request implements BaseModel
     public function withXRequestID(string $xRequestID): self
     {
         $obj = clone $this;
-        $obj->x_request_id = $xRequestID;
+        $obj['x_request_id'] = $xRequestID;
 
         return $obj;
     }
@@ -105,7 +105,7 @@ final class Request implements BaseModel
     public function withUserAgent(string $userAgent): self
     {
         $obj = clone $this;
-        $obj->user_agent = $userAgent;
+        $obj['user_agent'] = $userAgent;
 
         return $obj;
     }

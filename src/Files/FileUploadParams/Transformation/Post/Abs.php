@@ -72,7 +72,7 @@ final class Abs implements BaseModel
         $obj = new self;
 
         $obj['protocol'] = $protocol;
-        $obj->value = $value;
+        $obj['value'] = $value;
 
         return $obj;
     }
@@ -96,7 +96,7 @@ final class Abs implements BaseModel
     public function withValue(string $value): self
     {
         $obj = clone $this;
-        $obj->value = $value;
+        $obj['value'] = $value;
 
         return $obj;
     }

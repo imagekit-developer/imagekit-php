@@ -106,14 +106,14 @@ final class S3 implements BaseModel
     ): self {
         $obj = new self;
 
-        $obj->accessKey = $accessKey;
-        $obj->bucket = $bucket;
-        $obj->name = $name;
-        $obj->secretKey = $secretKey;
+        $obj['accessKey'] = $accessKey;
+        $obj['bucket'] = $bucket;
+        $obj['name'] = $name;
+        $obj['secretKey'] = $secretKey;
 
-        null !== $baseUrlForCanonicalHeader && $obj->baseUrlForCanonicalHeader = $baseUrlForCanonicalHeader;
-        null !== $includeCanonicalHeader && $obj->includeCanonicalHeader = $includeCanonicalHeader;
-        null !== $prefix && $obj->prefix = $prefix;
+        null !== $baseUrlForCanonicalHeader && $obj['baseUrlForCanonicalHeader'] = $baseUrlForCanonicalHeader;
+        null !== $includeCanonicalHeader && $obj['includeCanonicalHeader'] = $includeCanonicalHeader;
+        null !== $prefix && $obj['prefix'] = $prefix;
 
         return $obj;
     }
@@ -124,7 +124,7 @@ final class S3 implements BaseModel
     public function withAccessKey(string $accessKey): self
     {
         $obj = clone $this;
-        $obj->accessKey = $accessKey;
+        $obj['accessKey'] = $accessKey;
 
         return $obj;
     }
@@ -135,7 +135,7 @@ final class S3 implements BaseModel
     public function withBucket(string $bucket): self
     {
         $obj = clone $this;
-        $obj->bucket = $bucket;
+        $obj['bucket'] = $bucket;
 
         return $obj;
     }
@@ -146,7 +146,7 @@ final class S3 implements BaseModel
     public function withName(string $name): self
     {
         $obj = clone $this;
-        $obj->name = $name;
+        $obj['name'] = $name;
 
         return $obj;
     }
@@ -157,7 +157,7 @@ final class S3 implements BaseModel
     public function withSecretKey(string $secretKey): self
     {
         $obj = clone $this;
-        $obj->secretKey = $secretKey;
+        $obj['secretKey'] = $secretKey;
 
         return $obj;
     }
@@ -169,7 +169,7 @@ final class S3 implements BaseModel
         string $baseURLForCanonicalHeader
     ): self {
         $obj = clone $this;
-        $obj->baseUrlForCanonicalHeader = $baseURLForCanonicalHeader;
+        $obj['baseUrlForCanonicalHeader'] = $baseURLForCanonicalHeader;
 
         return $obj;
     }
@@ -181,7 +181,7 @@ final class S3 implements BaseModel
         bool $includeCanonicalHeader
     ): self {
         $obj = clone $this;
-        $obj->includeCanonicalHeader = $includeCanonicalHeader;
+        $obj['includeCanonicalHeader'] = $includeCanonicalHeader;
 
         return $obj;
     }
@@ -192,7 +192,7 @@ final class S3 implements BaseModel
     public function withPrefix(string $prefix): self
     {
         $obj = clone $this;
-        $obj->prefix = $prefix;
+        $obj['prefix'] = $prefix;
 
         return $obj;
     }

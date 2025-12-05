@@ -79,11 +79,11 @@ final class ResponsiveImageAttributes implements BaseModel
     ): self {
         $obj = new self;
 
-        $obj->src = $src;
+        $obj['src'] = $src;
 
-        null !== $sizes && $obj->sizes = $sizes;
-        null !== $srcSet && $obj->srcSet = $srcSet;
-        null !== $width && $obj->width = $width;
+        null !== $sizes && $obj['sizes'] = $sizes;
+        null !== $srcSet && $obj['srcSet'] = $srcSet;
+        null !== $width && $obj['width'] = $width;
 
         return $obj;
     }
@@ -94,7 +94,7 @@ final class ResponsiveImageAttributes implements BaseModel
     public function withSrc(string $src): self
     {
         $obj = clone $this;
-        $obj->src = $src;
+        $obj['src'] = $src;
 
         return $obj;
     }
@@ -106,7 +106,7 @@ final class ResponsiveImageAttributes implements BaseModel
     public function withSizes(string $sizes): self
     {
         $obj = clone $this;
-        $obj->sizes = $sizes;
+        $obj['sizes'] = $sizes;
 
         return $obj;
     }
@@ -118,7 +118,7 @@ final class ResponsiveImageAttributes implements BaseModel
     public function withSrcSet(string $srcSet): self
     {
         $obj = clone $this;
-        $obj->srcSet = $srcSet;
+        $obj['srcSet'] = $srcSet;
 
         return $obj;
     }
@@ -129,7 +129,7 @@ final class ResponsiveImageAttributes implements BaseModel
     public function withWidth(float $width): self
     {
         $obj = clone $this;
-        $obj->width = $width;
+        $obj['width'] = $width;
 
         return $obj;
     }

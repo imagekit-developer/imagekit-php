@@ -7,7 +7,9 @@ namespace ImageKit;
 use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\OverlayPosition\Focus;
 use ImageKit\SubtitleOverlay\Encoding;
+use ImageKit\SubtitleOverlayTransformation\Typography;
 
 /**
  * @phpstan-type SubtitleOverlayShape = array{
@@ -83,40 +85,68 @@ final class SubtitleOverlay implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
+     * @param OverlayPosition|array{
+     *   focus?: value-of<Focus>|null, x?: float|string|null, y?: float|string|null
+     * } $position
+     * @param OverlayTiming|array{
+     *   duration?: float|string|null,
+     *   end?: float|string|null,
+     *   start?: float|string|null,
+     * } $timing
      * @param Encoding|value-of<Encoding> $encoding
-     * @param list<SubtitleOverlayTransformation> $transformation
+     * @param list<SubtitleOverlayTransformation|array{
+     *   background?: string|null,
+     *   color?: string|null,
+     *   fontFamily?: string|null,
+     *   fontOutline?: string|null,
+     *   fontShadow?: string|null,
+     *   fontSize?: float|null,
+     *   typography?: value-of<Typography>|null,
+     * }> $transformation
      */
     public static function with(
         string $input,
-        ?OverlayPosition $position = null,
-        ?OverlayTiming $timing = null,
+        OverlayPosition|array|null $position = null,
+        OverlayTiming|array|null $timing = null,
         Encoding|string|null $encoding = null,
         ?array $transformation = null,
     ): self {
         $obj = new self;
 
-        $obj->input = $input;
+        $obj['input'] = $input;
 
-        null !== $position && $obj->position = $position;
-        null !== $timing && $obj->timing = $timing;
+        null !== $position && $obj['position'] = $position;
+        null !== $timing && $obj['timing'] = $timing;
         null !== $encoding && $obj['encoding'] = $encoding;
-        null !== $transformation && $obj->transformation = $transformation;
+        null !== $transformation && $obj['transformation'] = $transformation;
 
         return $obj;
     }
 
-    public function withPosition(OverlayPosition $position): self
+    /**
+     * @param OverlayPosition|array{
+     *   focus?: value-of<Focus>|null, x?: float|string|null, y?: float|string|null
+     * } $position
+     */
+    public function withPosition(OverlayPosition|array $position): self
     {
         $obj = clone $this;
-        $obj->position = $position;
+        $obj['position'] = $position;
 
         return $obj;
     }
 
-    public function withTiming(OverlayTiming $timing): self
+    /**
+     * @param OverlayTiming|array{
+     *   duration?: float|string|null,
+     *   end?: float|string|null,
+     *   start?: float|string|null,
+     * } $timing
+     */
+    public function withTiming(OverlayTiming|array $timing): self
     {
         $obj = clone $this;
-        $obj->timing = $timing;
+        $obj['timing'] = $timing;
 
         return $obj;
     }
@@ -127,7 +157,7 @@ final class SubtitleOverlay implements BaseModel
     public function withInput(string $input): self
     {
         $obj = clone $this;
-        $obj->input = $input;
+        $obj['input'] = $input;
 
         return $obj;
     }
@@ -151,12 +181,20 @@ final class SubtitleOverlay implements BaseModel
     /**
      * Control styling of the subtitle. See [Styling subtitles](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer).
      *
-     * @param list<SubtitleOverlayTransformation> $transformation
+     * @param list<SubtitleOverlayTransformation|array{
+     *   background?: string|null,
+     *   color?: string|null,
+     *   fontFamily?: string|null,
+     *   fontOutline?: string|null,
+     *   fontShadow?: string|null,
+     *   fontSize?: float|null,
+     *   typography?: value-of<Typography>|null,
+     * }> $transformation
      */
     public function withTransformation(array $transformation): self
     {
         $obj = clone $this;
-        $obj->transformation = $transformation;
+        $obj['transformation'] = $transformation;
 
         return $obj;
     }

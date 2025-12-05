@@ -62,9 +62,9 @@ final class Data implements BaseModel
     {
         $obj = new self;
 
-        $obj->fileId = $fileId;
-        $obj->name = $name;
-        $obj->url = $url;
+        $obj['fileId'] = $fileId;
+        $obj['name'] = $name;
+        $obj['url'] = $url;
 
         return $obj;
     }
@@ -75,7 +75,7 @@ final class Data implements BaseModel
     public function withFileID(string $fileID): self
     {
         $obj = clone $this;
-        $obj->fileId = $fileID;
+        $obj['fileId'] = $fileID;
 
         return $obj;
     }
@@ -86,7 +86,7 @@ final class Data implements BaseModel
     public function withName(string $name): self
     {
         $obj = clone $this;
-        $obj->name = $name;
+        $obj['name'] = $name;
 
         return $obj;
     }
@@ -97,7 +97,7 @@ final class Data implements BaseModel
     public function withURL(string $url): self
     {
         $obj = clone $this;
-        $obj->url = $url;
+        $obj['url'] = $url;
 
         return $obj;
     }

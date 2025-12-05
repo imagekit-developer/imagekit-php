@@ -55,7 +55,7 @@ final class VersionDeleteParams implements BaseModel
     {
         $obj = new self;
 
-        $obj->fileId = $fileId;
+        $obj['fileId'] = $fileId;
 
         return $obj;
     }
@@ -63,7 +63,7 @@ final class VersionDeleteParams implements BaseModel
     public function withFileID(string $fileID): self
     {
         $obj = clone $this;
-        $obj->fileId = $fileID;
+        $obj['fileId'] = $fileID;
 
         return $obj;
     }

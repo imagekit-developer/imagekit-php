@@ -45,7 +45,7 @@ final class GifToVideo implements BaseModel
     {
         $obj = new self;
 
-        null !== $value && $obj->value = $value;
+        null !== $value && $obj['value'] = $value;
 
         return $obj;
     }
@@ -57,7 +57,7 @@ final class GifToVideo implements BaseModel
     public function withValue(string $value): self
     {
         $obj = clone $this;
-        $obj->value = $value;
+        $obj['value'] = $value;
 
         return $obj;
     }

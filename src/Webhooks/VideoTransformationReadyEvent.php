@@ -8,6 +8,8 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Webhooks\VideoTransformationReadyEvent\Data;
+use ImageKit\Webhooks\VideoTransformationReadyEvent\Data\Asset;
+use ImageKit\Webhooks\VideoTransformationReadyEvent\Data\Transformation;
 use ImageKit\Webhooks\VideoTransformationReadyEvent\Request;
 use ImageKit\Webhooks\VideoTransformationReadyEvent\Timings;
 
@@ -91,24 +93,32 @@ final class VideoTransformationReadyEvent implements BaseModel
      * Construct an instance from the required parameters.
      *
      * You must use named parameters to construct any parameters with a default value.
+     *
+     * @param Data|array{asset: Asset, transformation: Transformation} $data
+     * @param Request|array{
+     *   url: string, x_request_id: string, user_agent?: string|null
+     * } $request
+     * @param Timings|array{
+     *   download_duration?: int|null, encoding_duration?: int|null
+     * } $timings
      */
     public static function with(
         string $id,
         string $type,
         \DateTimeInterface $created_at,
-        Data $data,
-        Request $request,
-        ?Timings $timings = null,
+        Data|array $data,
+        Request|array $request,
+        Timings|array|null $timings = null,
     ): self {
         $obj = new self;
 
-        $obj->id = $id;
-        $obj->type = $type;
-        $obj->created_at = $created_at;
-        $obj->data = $data;
-        $obj->request = $request;
+        $obj['id'] = $id;
+        $obj['type'] = $type;
+        $obj['created_at'] = $created_at;
+        $obj['data'] = $data;
+        $obj['request'] = $request;
 
-        null !== $timings && $obj->timings = $timings;
+        null !== $timings && $obj['timings'] = $timings;
 
         return $obj;
     }
@@ -119,7 +129,7 @@ final class VideoTransformationReadyEvent implements BaseModel
     public function withID(string $id): self
     {
         $obj = clone $this;
-        $obj->id = $id;
+        $obj['id'] = $id;
 
         return $obj;
     }
@@ -130,7 +140,7 @@ final class VideoTransformationReadyEvent implements BaseModel
     public function withType(string $type): self
     {
         $obj = clone $this;
-        $obj->type = $type;
+        $obj['type'] = $type;
 
         return $obj;
     }
@@ -141,37 +151,48 @@ final class VideoTransformationReadyEvent implements BaseModel
     public function withCreatedAt(\DateTimeInterface $createdAt): self
     {
         $obj = clone $this;
-        $obj->created_at = $createdAt;
+        $obj['created_at'] = $createdAt;
 
         return $obj;
     }
 
-    public function withData(Data $data): self
+    /**
+     * @param Data|array{asset: Asset, transformation: Transformation} $data
+     */
+    public function withData(Data|array $data): self
     {
         $obj = clone $this;
-        $obj->data = $data;
+        $obj['data'] = $data;
 
         return $obj;
     }
 
     /**
      * Information about the original request that triggered the video transformation.
+     *
+     * @param Request|array{
+     *   url: string, x_request_id: string, user_agent?: string|null
+     * } $request
      */
-    public function withRequest(Request $request): self
+    public function withRequest(Request|array $request): self
     {
         $obj = clone $this;
-        $obj->request = $request;
+        $obj['request'] = $request;
 
         return $obj;
     }
 
     /**
      * Performance metrics for the transformation process.
+     *
+     * @param Timings|array{
+     *   download_duration?: int|null, encoding_duration?: int|null
+     * } $timings
      */
-    public function withTimings(Timings $timings): self
+    public function withTimings(Timings|array $timings): self
     {
         $obj = clone $this;
-        $obj->timings = $timings;
+        $obj['timings'] = $timings;
 
         return $obj;
     }

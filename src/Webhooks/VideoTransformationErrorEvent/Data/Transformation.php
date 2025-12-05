@@ -8,7 +8,12 @@ use ImageKit\Core\Attributes\Api;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Error;
+use ImageKit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Error\Reason;
 use ImageKit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Options;
+use ImageKit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Options\AudioCodec;
+use ImageKit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Options\Format;
+use ImageKit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Options\StreamProtocol;
+use ImageKit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Options\VideoCodec;
 use ImageKit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Type;
 
 /**
@@ -69,18 +74,28 @@ final class Transformation implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param Type|value-of<Type> $type
+     * @param Error|array{reason: value-of<Reason>} $error
+     * @param Options|array{
+     *   audio_codec?: value-of<AudioCodec>|null,
+     *   auto_rotate?: bool|null,
+     *   format?: value-of<Format>|null,
+     *   quality?: int|null,
+     *   stream_protocol?: value-of<StreamProtocol>|null,
+     *   variants?: list<string>|null,
+     *   video_codec?: value-of<VideoCodec>|null,
+     * } $options
      */
     public static function with(
         Type|string $type,
-        ?Error $error = null,
-        ?Options $options = null
+        Error|array|null $error = null,
+        Options|array|null $options = null
     ): self {
         $obj = new self;
 
         $obj['type'] = $type;
 
-        null !== $error && $obj->error = $error;
-        null !== $options && $obj->options = $options;
+        null !== $error && $obj['error'] = $error;
+        null !== $options && $obj['options'] = $options;
 
         return $obj;
     }
@@ -103,22 +118,34 @@ final class Transformation implements BaseModel
 
     /**
      * Details about the transformation error.
+     *
+     * @param Error|array{reason: value-of<Reason>} $error
      */
-    public function withError(Error $error): self
+    public function withError(Error|array $error): self
     {
         $obj = clone $this;
-        $obj->error = $error;
+        $obj['error'] = $error;
 
         return $obj;
     }
 
     /**
      * Configuration options for video transformations.
+     *
+     * @param Options|array{
+     *   audio_codec?: value-of<AudioCodec>|null,
+     *   auto_rotate?: bool|null,
+     *   format?: value-of<Format>|null,
+     *   quality?: int|null,
+     *   stream_protocol?: value-of<StreamProtocol>|null,
+     *   variants?: list<string>|null,
+     *   video_codec?: value-of<VideoCodec>|null,
+     * } $options
      */
-    public function withOptions(Options $options): self
+    public function withOptions(Options|array $options): self
     {
         $obj = clone $this;
-        $obj->options = $options;
+        $obj['options'] = $options;
 
         return $obj;
     }

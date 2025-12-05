@@ -58,8 +58,8 @@ final class Request implements BaseModel
     ): self {
         $obj = new self;
 
-        $obj->transformation = $transformation;
-        $obj->x_request_id = $x_request_id;
+        $obj['transformation'] = $transformation;
+        $obj['x_request_id'] = $x_request_id;
 
         return $obj;
     }
@@ -70,7 +70,7 @@ final class Request implements BaseModel
     public function withTransformation(string $transformation): self
     {
         $obj = clone $this;
-        $obj->transformation = $transformation;
+        $obj['transformation'] = $transformation;
 
         return $obj;
     }
@@ -81,7 +81,7 @@ final class Request implements BaseModel
     public function withXRequestID(string $xRequestID): self
     {
         $obj = clone $this;
-        $obj->x_request_id = $xRequestID;
+        $obj['x_request_id'] = $xRequestID;
 
         return $obj;
     }

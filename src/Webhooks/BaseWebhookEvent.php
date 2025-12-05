@@ -56,8 +56,8 @@ final class BaseWebhookEvent implements BaseModel
     {
         $obj = new self;
 
-        $obj->id = $id;
-        $obj->type = $type;
+        $obj['id'] = $id;
+        $obj['type'] = $type;
 
         return $obj;
     }
@@ -68,7 +68,7 @@ final class BaseWebhookEvent implements BaseModel
     public function withID(string $id): self
     {
         $obj = clone $this;
-        $obj->id = $id;
+        $obj['id'] = $id;
 
         return $obj;
     }
@@ -79,7 +79,7 @@ final class BaseWebhookEvent implements BaseModel
     public function withType(string $type): self
     {
         $obj = clone $this;
-        $obj->type = $type;
+        $obj['type'] = $type;
 
         return $obj;
     }

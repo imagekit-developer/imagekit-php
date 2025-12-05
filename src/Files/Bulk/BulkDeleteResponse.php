@@ -46,7 +46,7 @@ final class BulkDeleteResponse implements BaseModel, ResponseConverter
     {
         $obj = new self;
 
-        null !== $successfullyDeletedFileIds && $obj->successfullyDeletedFileIds = $successfullyDeletedFileIds;
+        null !== $successfullyDeletedFileIds && $obj['successfullyDeletedFileIds'] = $successfullyDeletedFileIds;
 
         return $obj;
     }
@@ -60,7 +60,7 @@ final class BulkDeleteResponse implements BaseModel, ResponseConverter
         array $successfullyDeletedFileIDs
     ): self {
         $obj = clone $this;
-        $obj->successfullyDeletedFileIds = $successfullyDeletedFileIDs;
+        $obj['successfullyDeletedFileIds'] = $successfullyDeletedFileIDs;
 
         return $obj;
     }

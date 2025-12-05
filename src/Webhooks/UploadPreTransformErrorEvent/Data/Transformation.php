@@ -43,20 +43,25 @@ final class Transformation implements BaseModel
      * Construct an instance from the required parameters.
      *
      * You must use named parameters to construct any parameters with a default value.
+     *
+     * @param Error|array{reason: string} $error
      */
-    public static function with(Error $error): self
+    public static function with(Error|array $error): self
     {
         $obj = new self;
 
-        $obj->error = $error;
+        $obj['error'] = $error;
 
         return $obj;
     }
 
-    public function withError(Error $error): self
+    /**
+     * @param Error|array{reason: string} $error
+     */
+    public function withError(Error|array $error): self
     {
         $obj = clone $this;
-        $obj->error = $error;
+        $obj['error'] = $error;
 
         return $obj;
     }

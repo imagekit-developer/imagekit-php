@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\Files\Metadata\Exif;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
@@ -45,82 +45,82 @@ final class Exif implements BaseModel
     /** @use SdkModel<ExifShape> */
     use SdkModel;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?float $ApertureValue;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $ColorSpace;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $CreateDate;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $CustomRendered;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $DateTimeOriginal;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $ExifImageHeight;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $ExifImageWidth;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $ExifVersion;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?float $ExposureCompensation;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $ExposureMode;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $ExposureProgram;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?float $ExposureTime;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $Flash;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $FlashpixVersion;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?float $FNumber;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $FocalLength;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $FocalPlaneResolutionUnit;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?float $FocalPlaneXResolution;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?float $FocalPlaneYResolution;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $InteropOffset;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $ISO;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $MeteringMode;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $SceneCaptureType;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?float $ShutterSpeedValue;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $SubSecTime;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $WhiteBalance;
 
     public function __construct()

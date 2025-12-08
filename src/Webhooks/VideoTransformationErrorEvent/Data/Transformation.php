@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Imagekit\Webhooks\VideoTransformationErrorEvent\Data;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Error;
@@ -34,19 +35,19 @@ final class Transformation implements BaseModel
      *
      * @var value-of<Type> $type
      */
-    #[Api(enum: Type::class)]
+    #[Required(enum: Type::class)]
     public string $type;
 
     /**
      * Details about the transformation error.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?Error $error;
 
     /**
      * Configuration options for video transformations.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?Options $options;
 
     /**

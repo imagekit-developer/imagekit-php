@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\CustomMetadataFields;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Concerns\SdkParams;
 use Imagekit\Core\Contracts\BaseModel;
@@ -40,16 +40,16 @@ final class CustomMetadataFieldCreateParams implements BaseModel
     /**
      * Human readable name of the custom metadata field. This should be unique across all non deleted custom metadata fields. This name is displayed as form field label to the users while setting field value on an asset in the media library UI.
      */
-    #[Api]
+    #[Required]
     public string $label;
 
     /**
      * API name of the custom metadata field. This should be unique across all (including deleted) custom metadata fields.
      */
-    #[Api]
+    #[Required]
     public string $name;
 
-    #[Api]
+    #[Required]
     public Schema $schema;
 
     /**

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\ExtensionItem;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
@@ -21,7 +21,7 @@ final class AIAutoDescription implements BaseModel
      *
      * @var 'ai-auto-description' $name
      */
-    #[Api]
+    #[Required]
     public string $name = 'ai-auto-description';
 
     public function __construct()

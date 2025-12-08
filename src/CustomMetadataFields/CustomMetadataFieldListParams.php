@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\CustomMetadataFields;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Concerns\SdkParams;
 use Imagekit\Core\Contracts\BaseModel;
@@ -29,13 +29,13 @@ final class CustomMetadataFieldListParams implements BaseModel
     /**
      * The folder path (e.g., `/path/to/folder`) for which to retrieve applicable custom metadata fields. Useful for determining path-specific field selections when the [Path policy](https://imagekit.io/docs/dam/path-policy) feature is in use.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $folderPath;
 
     /**
      * Set it to `true` to include deleted field objects in the API response.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $includeDeleted;
 
     public function __construct()

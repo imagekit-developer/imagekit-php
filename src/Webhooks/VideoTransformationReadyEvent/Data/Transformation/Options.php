@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\Webhooks\VideoTransformationReadyEvent\Data\Transformation;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Options\AudioCodec;
@@ -35,13 +35,13 @@ final class Options implements BaseModel
      *
      * @var value-of<AudioCodec>|null $audio_codec
      */
-    #[Api(enum: AudioCodec::class, optional: true)]
+    #[Optional(enum: AudioCodec::class)]
     public ?string $audio_codec;
 
     /**
      * Whether to automatically rotate the video based on metadata.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $auto_rotate;
 
     /**
@@ -49,13 +49,13 @@ final class Options implements BaseModel
      *
      * @var value-of<Format>|null $format
      */
-    #[Api(enum: Format::class, optional: true)]
+    #[Optional(enum: Format::class)]
     public ?string $format;
 
     /**
      * Quality setting for the output video.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $quality;
 
     /**
@@ -63,7 +63,7 @@ final class Options implements BaseModel
      *
      * @var value-of<StreamProtocol>|null $stream_protocol
      */
-    #[Api(enum: StreamProtocol::class, optional: true)]
+    #[Optional(enum: StreamProtocol::class)]
     public ?string $stream_protocol;
 
     /**
@@ -71,7 +71,7 @@ final class Options implements BaseModel
      *
      * @var list<string>|null $variants
      */
-    #[Api(list: 'string', optional: true)]
+    #[Optional(list: 'string')]
     public ?array $variants;
 
     /**
@@ -79,7 +79,7 @@ final class Options implements BaseModel
      *
      * @var value-of<VideoCodec>|null $video_codec
      */
-    #[Api(enum: VideoCodec::class, optional: true)]
+    #[Optional(enum: VideoCodec::class)]
     public ?string $video_codec;
 
     public function __construct()

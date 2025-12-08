@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\Files\Metadata;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Concerns\SdkParams;
 use Imagekit\Core\Contracts\BaseModel;
@@ -25,7 +25,7 @@ final class MetadataGetFromURLParams implements BaseModel
     /**
      * Should be a valid file URL. It should be accessible using your ImageKit.io account.
      */
-    #[Api]
+    #[Required]
     public string $url;
 
     /**

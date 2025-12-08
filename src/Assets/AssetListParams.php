@@ -7,7 +7,7 @@ namespace Imagekit\Assets;
 use Imagekit\Assets\AssetListParams\FileType;
 use Imagekit\Assets\AssetListParams\Sort;
 use Imagekit\Assets\AssetListParams\Type;
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Concerns\SdkParams;
 use Imagekit\Core\Contracts\BaseModel;
@@ -42,13 +42,13 @@ final class AssetListParams implements BaseModel
      *
      * @var value-of<FileType>|null $fileType
      */
-    #[Api(enum: FileType::class, optional: true)]
+    #[Optional(enum: FileType::class)]
     public ?string $fileType;
 
     /**
      * The maximum number of results to return in response.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $limit;
 
     /**
@@ -57,7 +57,7 @@ final class AssetListParams implements BaseModel
      * Note : If your use case involves searching within a folder as well as its subfolders, you can use `path` parameter in `searchQuery` with appropriate operator.
      * Checkout [Supported parameters](/docs/api-reference/digital-asset-management-dam/list-and-search-assets#supported-parameters) for more information.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $path;
 
     /**
@@ -71,13 +71,13 @@ final class AssetListParams implements BaseModel
      *
      * [Learn more](/docs/api-reference/digital-asset-management-dam/list-and-search-assets#advanced-search-queries) from examples.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $searchQuery;
 
     /**
      * The number of results to skip before returning results.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $skip;
 
     /**
@@ -85,7 +85,7 @@ final class AssetListParams implements BaseModel
      *
      * @var value-of<Sort>|null $sort
      */
-    #[Api(enum: Sort::class, optional: true)]
+    #[Optional(enum: Sort::class)]
     public ?string $sort;
 
     /**
@@ -98,7 +98,7 @@ final class AssetListParams implements BaseModel
      *
      * @var value-of<Type>|null $type
      */
-    #[Api(enum: Type::class, optional: true)]
+    #[Optional(enum: Type::class)]
     public ?string $type;
 
     public function __construct()

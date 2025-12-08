@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Imagekit;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
@@ -35,13 +36,13 @@ final class GetImageAttributesOptions implements BaseModel
      * Accepts a relative or absolute path of the resource. If a relative path is provided, it is appended to the `urlEndpoint`.
      * If an absolute path is provided, `urlEndpoint` is ignored.
      */
-    #[Api]
+    #[Required]
     public string $src;
 
     /**
      * Get your urlEndpoint from the [ImageKit dashboard](https://imagekit.io/dashboard/url-endpoints).
      */
-    #[Api]
+    #[Required]
     public string $urlEndpoint;
 
     /**
@@ -54,7 +55,7 @@ final class GetImageAttributesOptions implements BaseModel
      *
      * [Learn more](https://imagekit.io/docs/media-delivery-basic-security#how-to-generate-signed-urls).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?float $expiresIn;
 
     /**
@@ -64,7 +65,7 @@ final class GetImageAttributesOptions implements BaseModel
      *
      * @var array<string,string>|null $queryParameters
      */
-    #[Api(map: 'string', optional: true)]
+    #[Optional(map: 'string')]
     public ?array $queryParameters;
 
     /**
@@ -73,7 +74,7 @@ final class GetImageAttributesOptions implements BaseModel
      * Note: If `expiresIn` is set to any value above 0, the URL will always be signed regardless of this setting.
      * [Learn more](https://imagekit.io/docs/media-delivery-basic-security#how-to-generate-signed-urls).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $signed;
 
     /**
@@ -82,7 +83,7 @@ final class GetImageAttributesOptions implements BaseModel
      *
      * @var list<mixed>|null $transformation
      */
-    #[Api(list: Transformation::class, optional: true)]
+    #[Optional(list: Transformation::class)]
     public ?array $transformation;
 
     /**
@@ -92,7 +93,7 @@ final class GetImageAttributesOptions implements BaseModel
      *
      * @var value-of<TransformationPosition>|null $transformationPosition
      */
-    #[Api(enum: TransformationPosition::class, optional: true)]
+    #[Optional(enum: TransformationPosition::class)]
     public ?string $transformationPosition;
 
     /**
@@ -104,7 +105,7 @@ final class GetImageAttributesOptions implements BaseModel
      *
      * @var list<float>|null $deviceBreakpoints
      */
-    #[Api(list: 'float', optional: true)]
+    #[Optional(list: 'float')]
     public ?array $deviceBreakpoints;
 
     /**
@@ -117,7 +118,7 @@ final class GetImageAttributesOptions implements BaseModel
      *
      * @var list<float>|null $imageBreakpoints
      */
-    #[Api(list: 'float', optional: true)]
+    #[Optional(list: 'float')]
     public ?array $imageBreakpoints;
 
     /**
@@ -129,7 +130,7 @@ final class GetImageAttributesOptions implements BaseModel
      *
      * Enables a width-based strategy and generates `w` descriptors in `srcSet`.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $sizes;
 
     /**
@@ -140,7 +141,7 @@ final class GetImageAttributesOptions implements BaseModel
      *
      * Ignored if `sizes` is present.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?float $width;
 
     /**

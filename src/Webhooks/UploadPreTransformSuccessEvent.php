@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\Webhooks;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\Files\Metadata;
@@ -34,28 +34,28 @@ final class UploadPreTransformSuccessEvent implements BaseModel
     /**
      * Unique identifier for the event.
      */
-    #[Api]
+    #[Required]
     public string $id;
 
     /**
      * The type of webhook event.
      */
-    #[Api]
+    #[Required]
     public string $type;
 
     /**
      * Timestamp of when the event occurred in ISO8601 format.
      */
-    #[Api]
+    #[Required]
     public \DateTimeInterface $created_at;
 
     /**
      * Object containing details of a successful upload.
      */
-    #[Api]
+    #[Required]
     public Data $data;
 
-    #[Api]
+    #[Required]
     public Request $request;
 
     /**

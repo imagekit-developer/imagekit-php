@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\ExtensionItem;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\ExtensionItem\AutoTaggingExtension\Name;
@@ -22,13 +22,13 @@ final class AutoTaggingExtension implements BaseModel
     /**
      * Maximum number of tags to attach to the asset.
      */
-    #[Api]
+    #[Required]
     public int $maxTags;
 
     /**
      * Minimum confidence level for tags to be considered valid.
      */
-    #[Api]
+    #[Required]
     public int $minConfidence;
 
     /**
@@ -36,7 +36,7 @@ final class AutoTaggingExtension implements BaseModel
      *
      * @var value-of<Name> $name
      */
-    #[Api(enum: Name::class)]
+    #[Required(enum: Name::class)]
     public string $name;
 
     /**

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\OverlayPosition\Focus;
@@ -25,7 +25,7 @@ final class OverlayPosition implements BaseModel
      *
      * @var value-of<Focus>|null $focus
      */
-    #[Api(enum: Focus::class, optional: true)]
+    #[Optional(enum: Focus::class)]
     public ?string $focus;
 
     /**
@@ -34,7 +34,7 @@ final class OverlayPosition implements BaseModel
      * Maps to `lx` in the URL.
      * Learn about [Arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public float|string|null $x;
 
     /**
@@ -43,7 +43,7 @@ final class OverlayPosition implements BaseModel
      * Maps to `ly` in the URL.
      * Learn about [Arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public float|string|null $y;
 
     public function __construct()

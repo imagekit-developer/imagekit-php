@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\Files\Metadata\Exif;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
@@ -19,7 +19,7 @@ final class Gps implements BaseModel
     use SdkModel;
 
     /** @var list<int>|null $GPSVersionID */
-    #[Api(list: 'int', optional: true)]
+    #[Optional(list: 'int')]
     public ?array $GPSVersionID;
 
     public function __construct()

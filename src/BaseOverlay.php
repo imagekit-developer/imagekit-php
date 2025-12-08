@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\OverlayPosition\Focus;
@@ -19,10 +19,10 @@ final class BaseOverlay implements BaseModel
     /** @use SdkModel<BaseOverlayShape> */
     use SdkModel;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?OverlayPosition $position;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?OverlayTiming $timing;
 
     public function __construct()

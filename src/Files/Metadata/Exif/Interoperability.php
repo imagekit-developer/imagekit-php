@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\Files\Metadata\Exif;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
@@ -20,10 +20,10 @@ final class Interoperability implements BaseModel
     /** @use SdkModel<InteroperabilityShape> */
     use SdkModel;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $InteropIndex;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $InteropVersion;
 
     public function __construct()

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\Folders;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Concerns\SdkParams;
 use Imagekit\Core\Contracts\BaseModel;
@@ -25,7 +25,7 @@ final class FolderDeleteParams implements BaseModel
     /**
      * Full path to the folder you want to delete. For example `/folder/to/delete/`.
      */
-    #[Api]
+    #[Required]
     public string $folderPath;
 
     /**

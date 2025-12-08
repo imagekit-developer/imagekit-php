@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\Files\Versions;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Concerns\SdkParams;
 use Imagekit\Core\Contracts\BaseModel;
@@ -24,7 +24,7 @@ final class VersionDeleteParams implements BaseModel
     use SdkModel;
     use SdkParams;
 
-    #[Api]
+    #[Required]
     public string $fileId;
 
     /**

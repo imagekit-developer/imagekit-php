@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Imagekit\Files\FileUploadParams\Transformation\Post;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
@@ -21,14 +22,14 @@ final class GifToVideo implements BaseModel
      *
      * @var 'gif-to-video' $type
      */
-    #[Api]
+    #[Required]
     public string $type = 'gif-to-video';
 
     /**
      * Optional transformation string to apply to the output video.
      * **Example**: `q-80`.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $value;
 
     public function __construct()

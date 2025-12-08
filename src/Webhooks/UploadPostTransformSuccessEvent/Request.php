@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\Webhooks\UploadPostTransformSuccessEvent;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\Webhooks\UploadPostTransformSuccessEvent\Request\Transformation;
@@ -21,13 +21,13 @@ final class Request implements BaseModel
     /** @use SdkModel<RequestShape> */
     use SdkModel;
 
-    #[Api]
+    #[Required]
     public Transformation $transformation;
 
     /**
      * Unique identifier for the originating request.
      */
-    #[Api]
+    #[Required]
     public string $x_request_id;
 
     /**

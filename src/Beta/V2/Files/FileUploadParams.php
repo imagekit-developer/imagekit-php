@@ -9,7 +9,8 @@ use Imagekit\Beta\V2\Files\FileUploadParams\Transformation;
 use Imagekit\Beta\V2\Files\FileUploadParams\Transformation\Post\Abs;
 use Imagekit\Beta\V2\Files\FileUploadParams\Transformation\Post\GifToVideo;
 use Imagekit\Beta\V2\Files\FileUploadParams\Transformation\Post\Thumbnail;
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Concerns\SdkParams;
 use Imagekit\Core\Contracts\BaseModel;
@@ -83,13 +84,13 @@ final class FileUploadParams implements BaseModel
      *
      * When supplying a URL, the server must receive the response headers within 8 seconds; otherwise the request fails with 400 Bad Request.
      */
-    #[Api]
+    #[Required]
     public string $file;
 
     /**
      * The name with which the file has to be uploaded.
      */
-    #[Api]
+    #[Required]
     public string $fileName;
 
     /**
@@ -100,14 +101,14 @@ final class FileUploadParams implements BaseModel
      *
      * **⚠️Warning**: JWT must be generated on the server-side because it is generated using your account's private API key. This field is required for authentication when uploading a file from the client-side.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $token;
 
     /**
      * Server-side checks to run on the asset.
      * Read more about [Upload API checks](/docs/api-reference/upload-file/upload-file-v2#upload-api-checks).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $checks;
 
     /**
@@ -117,7 +118,7 @@ final class FileUploadParams implements BaseModel
      *   - Can be used with fo-customtransformation.
      *   - If this field is not specified and the file is overwritten, then customCoordinates will be removed.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $customCoordinates;
 
     /**
@@ -125,13 +126,13 @@ final class FileUploadParams implements BaseModel
      *
      * @var array<string,mixed>|null $customMetadata
      */
-    #[Api(map: 'mixed', optional: true)]
+    #[Optional(map: 'mixed')]
     public ?array $customMetadata;
 
     /**
      * Optional text to describe the contents of the file.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $description;
 
     /**
@@ -139,13 +140,13 @@ final class FileUploadParams implements BaseModel
      *
      * @var list<RemoveBg|AutoTaggingExtension|AIAutoDescription>|null $extensions
      */
-    #[Api(list: ExtensionItem::class, optional: true)]
+    #[Optional(list: ExtensionItem::class)]
     public ?array $extensions;
 
     /**
      * The folder path in which the image has to be uploaded. If the folder(s) didn't exist before, a new folder(s) is created. Using multiple `/` creates a nested folder.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $folder;
 
     /**
@@ -153,7 +154,7 @@ final class FileUploadParams implements BaseModel
      *
      * If `true`, the file is marked as private and is accessible only using named transformation or signed URL.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $isPrivateFile;
 
     /**
@@ -163,31 +164,31 @@ final class FileUploadParams implements BaseModel
      *
      * The option to upload in draft state is only available in custom enterprise pricing plans.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $isPublished;
 
     /**
      * If set to `true` and a file already exists at the exact location, its AITags will be removed. Set `overwriteAITags` to `false` to preserve AITags.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $overwriteAITags;
 
     /**
      * If the request does not have `customMetadata`, and a file already exists at the exact location, existing customMetadata will be removed.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $overwriteCustomMetadata;
 
     /**
      * If `false` and `useUniqueFileName` is also `false`, and a file already exists at the exact location, upload API will return an error immediately.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $overwriteFile;
 
     /**
      * If the request does not have `tags`, and a file already exists at the exact location, existing tags will be removed.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $overwriteTags;
 
     /**
@@ -195,7 +196,7 @@ final class FileUploadParams implements BaseModel
      *
      * @var list<value-of<ResponseField>>|null $responseFields
      */
-    #[Api(list: ResponseField::class, optional: true)]
+    #[Optional(list: ResponseField::class)]
     public ?array $responseFields;
 
     /**
@@ -205,7 +206,7 @@ final class FileUploadParams implements BaseModel
      *
      * @var list<string>|null $tags
      */
-    #[Api(list: 'string', optional: true)]
+    #[Optional(list: 'string')]
     public ?array $tags;
 
     /**
@@ -219,7 +220,7 @@ final class FileUploadParams implements BaseModel
      *
      * You can mix and match any combination of post-processing types.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?Transformation $transformation;
 
     /**
@@ -229,13 +230,13 @@ final class FileUploadParams implements BaseModel
      *
      * If `false`, then the image is uploaded with the provided filename parameter, and any existing file with the same name is replaced.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $useUniqueFileName;
 
     /**
      * The final status of extensions after they have completed execution will be delivered to this endpoint as a POST request. [Learn more](/docs/api-reference/digital-asset-management-dam/managing-assets/update-file-details#webhook-payload-structure) about the webhook payload structure.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $webhookUrl;
 
     /**

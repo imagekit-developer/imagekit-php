@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Imagekit\Accounts\Origins\OriginRequest;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
@@ -24,37 +25,37 @@ final class WebFolder implements BaseModel
     use SdkModel;
 
     /** @var 'WEB_FOLDER' $type */
-    #[Api]
+    #[Required]
     public string $type = 'WEB_FOLDER';
 
     /**
      * Root URL for the web folder origin.
      */
-    #[Api]
+    #[Required]
     public string $baseUrl;
 
     /**
      * Display name of the origin.
      */
-    #[Api]
+    #[Required]
     public string $name;
 
     /**
      * URL used in the Canonical header (if enabled).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $baseUrlForCanonicalHeader;
 
     /**
      * Forward the Host header to origin?
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $forwardHostHeaderToOrigin;
 
     /**
      * Whether to send a Canonical header.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $includeCanonicalHeader;
 
     /**

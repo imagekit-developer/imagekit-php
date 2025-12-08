@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\Files;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
@@ -19,7 +19,7 @@ final class FileRenameResponse implements BaseModel
     /**
      * Unique identifier of the purge request. This can be used to check the status of the purge request.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $purgeRequestId;
 
     public function __construct()

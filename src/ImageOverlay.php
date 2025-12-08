@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Imagekit;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\ImageOverlay\Encoding;
@@ -26,19 +27,19 @@ final class ImageOverlay implements BaseModel
     use SdkModel;
 
     /** @var 'image' $type */
-    #[Api]
+    #[Required]
     public string $type = 'image';
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?OverlayPosition $position;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?OverlayTiming $timing;
 
     /**
      * Specifies the relative path to the image used as an overlay.
      */
-    #[Api]
+    #[Required]
     public string $input;
 
     /**
@@ -49,7 +50,7 @@ final class ImageOverlay implements BaseModel
      *
      * @var value-of<Encoding>|null $encoding
      */
-    #[Api(enum: Encoding::class, optional: true)]
+    #[Optional(enum: Encoding::class)]
     public ?string $encoding;
 
     /**
@@ -58,7 +59,7 @@ final class ImageOverlay implements BaseModel
      *
      * @var list<mixed>|null $transformation
      */
-    #[Api(list: Transformation::class, optional: true)]
+    #[Optional(list: Transformation::class)]
     public ?array $transformation;
 
     /**

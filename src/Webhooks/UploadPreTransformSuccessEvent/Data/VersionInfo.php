@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
@@ -21,13 +21,13 @@ final class VersionInfo implements BaseModel
     /**
      * Unique identifier of the file version.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $id;
 
     /**
      * Name of the file version.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $name;
 
     public function __construct()

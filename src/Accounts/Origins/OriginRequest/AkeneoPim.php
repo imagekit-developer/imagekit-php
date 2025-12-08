@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Imagekit\Accounts\Origins\OriginRequest;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
@@ -27,55 +28,55 @@ final class AkeneoPim implements BaseModel
     use SdkModel;
 
     /** @var 'AKENEO_PIM' $type */
-    #[Api]
+    #[Required]
     public string $type = 'AKENEO_PIM';
 
     /**
      * Akeneo instance base URL.
      */
-    #[Api]
+    #[Required]
     public string $baseUrl;
 
     /**
      * Akeneo API client ID.
      */
-    #[Api]
+    #[Required]
     public string $clientId;
 
     /**
      * Akeneo API client secret.
      */
-    #[Api]
+    #[Required]
     public string $clientSecret;
 
     /**
      * Display name of the origin.
      */
-    #[Api]
+    #[Required]
     public string $name;
 
     /**
      * Akeneo API password.
      */
-    #[Api]
+    #[Required]
     public string $password;
 
     /**
      * Akeneo API username.
      */
-    #[Api]
+    #[Required]
     public string $username;
 
     /**
      * URL used in the Canonical header (if enabled).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $baseUrlForCanonicalHeader;
 
     /**
      * Whether to send a Canonical header.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $includeCanonicalHeader;
 
     /**

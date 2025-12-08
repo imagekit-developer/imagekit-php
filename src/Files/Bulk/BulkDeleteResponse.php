@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\Files\Bulk;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
@@ -23,7 +23,7 @@ final class BulkDeleteResponse implements BaseModel
      *
      * @var list<string>|null $successfullyDeletedFileIds
      */
-    #[Api(list: 'string', optional: true)]
+    #[Optional(list: 'string')]
     public ?array $successfullyDeletedFileIds;
 
     public function __construct()

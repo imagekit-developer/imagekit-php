@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\Files\FileUploadParams;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\Files\FileUploadParams\Transformation\Post;
@@ -41,13 +41,13 @@ final class Transformation implements BaseModel
      *
      * @var list<Post\Transformation|GifToVideo|Thumbnail|Abs>|null $post
      */
-    #[Api(list: Post::class, optional: true)]
+    #[Optional(list: Post::class)]
     public ?array $post;
 
     /**
      * Transformation string to apply before uploading the file to the Media Library. Useful for optimizing files at ingestion.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $pre;
 
     public function __construct()

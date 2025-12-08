@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\Webhooks\UploadPreTransformErrorEvent\Data\Transformation;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
@@ -19,7 +19,7 @@ final class Error implements BaseModel
     /**
      * Reason for the pre-transformation failure.
      */
-    #[Api]
+    #[Required]
     public string $reason;
 
     /**

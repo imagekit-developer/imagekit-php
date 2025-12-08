@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\Webhooks\VideoTransformationReadyEvent\Data;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
@@ -21,7 +21,7 @@ final class Asset implements BaseModel
     /**
      * URL to download or access the source video file.
      */
-    #[Api]
+    #[Required]
     public string $url;
 
     /**

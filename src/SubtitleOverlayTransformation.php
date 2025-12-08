@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\SubtitleOverlayTransformation\Typography;
@@ -32,7 +32,7 @@ final class SubtitleOverlayTransformation implements BaseModel
      *
      * [Subtitle styling options](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer)
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $background;
 
     /**
@@ -40,13 +40,13 @@ final class SubtitleOverlayTransformation implements BaseModel
      *
      * [Subtitle styling options](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer)
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $color;
 
     /**
      * Font family for subtitles. Refer to the [supported fonts](https://imagekit.io/docs/add-overlays-on-images#supported-text-font-list).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $fontFamily;
 
     /**
@@ -56,7 +56,7 @@ final class SubtitleOverlayTransformation implements BaseModel
      *
      * [Subtitle styling options](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer)
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $fontOutline;
 
     /**
@@ -66,7 +66,7 @@ final class SubtitleOverlayTransformation implements BaseModel
      *
      * [Subtitle styling options](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer)
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $fontShadow;
 
     /**
@@ -74,7 +74,7 @@ final class SubtitleOverlayTransformation implements BaseModel
      *
      * [Subtitle styling options](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer)
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?float $fontSize;
 
     /**
@@ -84,7 +84,7 @@ final class SubtitleOverlayTransformation implements BaseModel
      *
      * @var value-of<Typography>|null $typography
      */
-    #[Api(enum: Typography::class, optional: true)]
+    #[Optional(enum: Typography::class)]
     public ?string $typography;
 
     public function __construct()

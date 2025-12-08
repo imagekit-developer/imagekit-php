@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\Transformation\AudioCodec;
@@ -86,7 +86,7 @@ final class Transformation implements BaseModel
      * Not supported inside overlay.
      * See [AI Change Background](https://imagekit.io/docs/ai-transformations#change-background-e-changebg).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $aiChangeBackground;
 
     /**
@@ -96,7 +96,7 @@ final class Transformation implements BaseModel
      * Supported inside overlay.
      * See [AI Drop Shadow](https://imagekit.io/docs/ai-transformations#ai-drop-shadow-e-dropshadow).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public string|bool|null $aiDropShadow;
 
     /**
@@ -105,7 +105,7 @@ final class Transformation implements BaseModel
      * Not supported inside overlay.
      * See [AI Edit](https://imagekit.io/docs/ai-transformations#edit-image-e-edit).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $aiEdit;
 
     /**
@@ -113,7 +113,7 @@ final class Transformation implements BaseModel
      * Supported inside overlay.
      * See [AI Background Removal](https://imagekit.io/docs/ai-transformations#imagekit-background-removal-e-bgremove).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $aiRemoveBackground;
 
     /**
@@ -122,21 +122,21 @@ final class Transformation implements BaseModel
      * Supported inside overlay.
      * See [External Background Removal](https://imagekit.io/docs/ai-transformations#background-removal-e-removedotbg).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $aiRemoveBackgroundExternal;
 
     /**
      * Performs AI-based retouching to improve faces or product shots. Not supported inside overlay.
      * See [AI Retouch](https://imagekit.io/docs/ai-transformations#retouch-e-retouch).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $aiRetouch;
 
     /**
      * Upscales images beyond their original dimensions using AI. Not supported inside overlay.
      * See [AI Upscale](https://imagekit.io/docs/ai-transformations#upscale-e-upscale).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $aiUpscale;
 
     /**
@@ -144,7 +144,7 @@ final class Transformation implements BaseModel
      * such as changes in color, texture, and other visual elements, while preserving the structure and essence of the original image. Not supported inside overlay.
      * See [AI Generate Variations](https://imagekit.io/docs/ai-transformations#generate-variations-of-an-image-e-genvar).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $aiVariation;
 
     /**
@@ -152,7 +152,7 @@ final class Transformation implements BaseModel
      * For example: aspectRatio = `4:3`, `4_3`, or an expression like `iar_div_2`.
      * See [Image resize and crop – Aspect ratio](https://imagekit.io/docs/image-resize-and-crop#aspect-ratio---ar).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public float|string|null $aspectRatio;
 
     /**
@@ -160,7 +160,7 @@ final class Transformation implements BaseModel
      *
      * @var value-of<AudioCodec>|null $audioCodec
      */
-    #[Api(enum: AudioCodec::class, optional: true)]
+    #[Optional(enum: AudioCodec::class)]
     public ?string $audioCodec;
 
     /**
@@ -170,14 +170,14 @@ final class Transformation implements BaseModel
      * - Expand the image boundaries using generative fill: `genfill`. Not supported inside overlay. Optionally, control the background scene by passing a text prompt:
      *   `genfill[:-prompt-${text}]` or `genfill[:-prompte-${urlencoded_base64_encoded_text}]`. See [Generative fill background](https://imagekit.io/docs/ai-transformations#generative-fill-bg-genfill).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $background;
 
     /**
      * Specifies the Gaussian blur level. Accepts an integer value between 1 and 100, or an expression like `bl-10`.
      * See [Blur](https://imagekit.io/docs/effects-and-enhancements#blur---bl).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?float $blur;
 
     /**
@@ -185,21 +185,21 @@ final class Transformation implements BaseModel
      * (e.g., `5_FFF000` for a 5px yellow border), or an expression like `ih_div_20_FF00FF`.
      * See [Border](https://imagekit.io/docs/effects-and-enhancements#border---b).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $border;
 
     /**
      * Indicates whether the output image should retain the original color profile.
      * See [Color profile](https://imagekit.io/docs/image-optimization#color-profile---cp).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $colorProfile;
 
     /**
      * Automatically enhances the contrast of an image (contrast stretch).
      * See [Contrast Stretch](https://imagekit.io/docs/effects-and-enhancements#contrast-stretch---e-contrast).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $contrastStretch;
 
     /**
@@ -207,7 +207,7 @@ final class Transformation implements BaseModel
      *
      * @var value-of<Crop>|null $crop
      */
-    #[Api(enum: Crop::class, optional: true)]
+    #[Optional(enum: Crop::class)]
     public ?string $crop;
 
     /**
@@ -215,21 +215,21 @@ final class Transformation implements BaseModel
      *
      * @var value-of<CropMode>|null $cropMode
      */
-    #[Api(enum: CropMode::class, optional: true)]
+    #[Optional(enum: CropMode::class)]
     public ?string $cropMode;
 
     /**
      * Specifies a fallback image if the resource is not found, e.g., a URL or file path.
      * See [Default image](https://imagekit.io/docs/image-transformation#default-image---di).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $defaultImage;
 
     /**
      * Accepts values between 0.1 and 5, or `auto` for automatic device pixel ratio (DPR) calculation.
      * See [DPR](https://imagekit.io/docs/image-resize-and-crop#dpr---dpr).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?float $dpr;
 
     /**
@@ -237,7 +237,7 @@ final class Transformation implements BaseModel
      * Typically used with startOffset to indicate the length from the start offset. Arithmetic expressions are supported.
      * See [Trim videos – Duration](https://imagekit.io/docs/trim-videos#duration---du).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public float|string|null $duration;
 
     /**
@@ -245,7 +245,7 @@ final class Transformation implements BaseModel
      * Typically used with startOffset to define a time window. Arithmetic expressions are supported.
      * See [Trim videos – End offset](https://imagekit.io/docs/trim-videos#end-offset---eo).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public float|string|null $endOffset;
 
     /**
@@ -255,7 +255,7 @@ final class Transformation implements BaseModel
      *
      * @var value-of<Flip>|null $flip
      */
-    #[Api(enum: Flip::class, optional: true)]
+    #[Optional(enum: Flip::class)]
     public ?string $flip;
 
     /**
@@ -266,7 +266,7 @@ final class Transformation implements BaseModel
      * - See [Focus](https://imagekit.io/docs/image-resize-and-crop#focus---fo).
      * - [Object aware cropping](https://imagekit.io/docs/image-resize-and-crop#object-aware-cropping---fo-object-name).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $focus;
 
     /**
@@ -277,20 +277,20 @@ final class Transformation implements BaseModel
      *
      * @var value-of<Format>|null $format
      */
-    #[Api(enum: Format::class, optional: true)]
+    #[Optional(enum: Format::class)]
     public ?string $format;
 
     /**
      * Creates a linear gradient with two colors. Pass `true` for a default gradient, or provide a string for a custom gradient.
      * See [Gradient](https://imagekit.io/docs/effects-and-enhancements#gradient---e-gradient).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public string|bool|null $gradient;
 
     /**
      * Enables a grayscale effect for images. See [Grayscale](https://imagekit.io/docs/effects-and-enhancements#grayscale---e-grayscale).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $grayscale;
 
     /**
@@ -298,14 +298,14 @@ final class Transformation implements BaseModel
      * You can also supply arithmetic expressions (e.g., `ih_mul_0.5`).
      * Height transformation – [Images](https://imagekit.io/docs/image-resize-and-crop#height---h) · [Videos](https://imagekit.io/docs/video-resize-and-crop#height---h).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public float|string|null $height;
 
     /**
      * Specifies whether the output image (in JPEG or PNG) should be compressed losslessly.
      * See [Lossless compression](https://imagekit.io/docs/image-optimization#lossless-webp-and-png---lo).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $lossless;
 
     /**
@@ -313,26 +313,26 @@ final class Transformation implements BaseModel
      * Set this to true to preserve metadata.
      * See [Image metadata](https://imagekit.io/docs/image-optimization#image-metadata---md).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $metadata;
 
     /**
      * Named transformation reference. See [Named transformations](https://imagekit.io/docs/transformations#named-transformations).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $named;
 
     /**
      * Specifies the opacity level of the output image. See [Opacity](https://imagekit.io/docs/effects-and-enhancements#opacity---o).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?float $opacity;
 
     /**
      * If set to true, serves the original file without applying any transformations.
      * See [Deliver original file as-is](https://imagekit.io/docs/core-delivery-features#deliver-original-file-as-is---orig-true).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $original;
 
     /**
@@ -340,7 +340,7 @@ final class Transformation implements BaseModel
      * ImageKit supports overlays including images, text, videos, subtitles, and solid colors.
      * See [Overlay using layers](https://imagekit.io/docs/transformations#overlay-using-layers).
      */
-    #[Api(union: Overlay::class, optional: true)]
+    #[Optional(union: Overlay::class)]
     public ?Overlay $overlay;
 
     /**
@@ -349,7 +349,7 @@ final class Transformation implements BaseModel
      * or by name (e.g., `name-layer-4` for a PSD layer).
      * See [Thumbnail extraction](https://imagekit.io/docs/vector-and-animated-images#get-thumbnail-from-psd-pdf-ai-eps-and-animated-files).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public float|string|null $page;
 
     /**
@@ -357,7 +357,7 @@ final class Transformation implements BaseModel
      * pixelated version of the full image, which gradually improves to provide a faster perceived load time.
      * See [Progressive images](https://imagekit.io/docs/image-optimization#progressive-image---pr).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $progressive;
 
     /**
@@ -365,7 +365,7 @@ final class Transformation implements BaseModel
      * A higher quality value results in a larger file size with better quality, while a lower value produces a smaller file size with reduced quality.
      * See [Quality](https://imagekit.io/docs/image-optimization#quality---q).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?float $quality;
 
     /**
@@ -374,14 +374,14 @@ final class Transformation implements BaseModel
      *
      * @var float|'max'|null $radius
      */
-    #[Api(optional: true)]
+    #[Optional]
     public float|string|null $radius;
 
     /**
      * Pass any transformation not directly supported by the SDK.
      * This transformation string is appended to the URL as provided.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $raw;
 
     /**
@@ -390,7 +390,7 @@ final class Transformation implements BaseModel
      * For videos, only the following values are supported: 0, 90, 180, 270, or 360.
      * See [Rotate](https://imagekit.io/docs/effects-and-enhancements#rotate---rt).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public float|string|null $rotation;
 
     /**
@@ -399,7 +399,7 @@ final class Transformation implements BaseModel
      * Pass `true` for a default shadow, or provide a string for a custom shadow.
      * See [Shadow](https://imagekit.io/docs/effects-and-enhancements#shadow---e-shadow).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public string|bool|null $shadow;
 
     /**
@@ -407,7 +407,7 @@ final class Transformation implements BaseModel
      * Pass `true` for default sharpening, or provide a numeric value for custom sharpening.
      * See [Sharpen](https://imagekit.io/docs/effects-and-enhancements#sharpen---e-sharpen).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public float|bool|null $sharpen;
 
     /**
@@ -415,7 +415,7 @@ final class Transformation implements BaseModel
      * Arithmetic expressions are also supported.
      * See [Trim videos – Start offset](https://imagekit.io/docs/trim-videos#start-offset---so).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public float|string|null $startOffset;
 
     /**
@@ -424,7 +424,7 @@ final class Transformation implements BaseModel
      *
      * @var list<value-of<StreamingResolution>>|null $streamingResolutions
      */
-    #[Api(list: StreamingResolution::class, optional: true)]
+    #[Optional(list: StreamingResolution::class)]
     public ?array $streamingResolutions;
 
     /**
@@ -432,7 +432,7 @@ final class Transformation implements BaseModel
      * leaving only the central object in the output image.
      * See [Trim edges](https://imagekit.io/docs/effects-and-enhancements#trim-edges---t).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public float|bool|null $trim;
 
     /**
@@ -440,7 +440,7 @@ final class Transformation implements BaseModel
      * Pass `true` for a default unsharp mask, or provide a string for a custom unsharp mask.
      * See [Unsharp Mask](https://imagekit.io/docs/effects-and-enhancements#unsharp-mask---e-usm).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public string|bool|null $unsharpMask;
 
     /**
@@ -448,7 +448,7 @@ final class Transformation implements BaseModel
      *
      * @var value-of<VideoCodec>|null $videoCodec
      */
-    #[Api(enum: VideoCodec::class, optional: true)]
+    #[Optional(enum: VideoCodec::class)]
     public ?string $videoCodec;
 
     /**
@@ -456,31 +456,31 @@ final class Transformation implements BaseModel
      * You can also supply arithmetic expressions (e.g., `iw_div_2`).
      * Width transformation – [Images](https://imagekit.io/docs/image-resize-and-crop#width---w) · [Videos](https://imagekit.io/docs/video-resize-and-crop#width---w).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public float|string|null $width;
 
     /**
      * Focus using cropped image coordinates - X coordinate. See [Focus using cropped coordinates](https://imagekit.io/docs/image-resize-and-crop#example---focus-using-cropped-image-coordinates).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public float|string|null $x;
 
     /**
      * Focus using cropped image coordinates - X center coordinate. See [Focus using cropped coordinates](https://imagekit.io/docs/image-resize-and-crop#example---focus-using-cropped-image-coordinates).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public float|string|null $xCenter;
 
     /**
      * Focus using cropped image coordinates - Y coordinate. See [Focus using cropped coordinates](https://imagekit.io/docs/image-resize-and-crop#example---focus-using-cropped-image-coordinates).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public float|string|null $y;
 
     /**
      * Focus using cropped image coordinates - Y center coordinate. See [Focus using cropped coordinates](https://imagekit.io/docs/image-resize-and-crop#example---focus-using-cropped-image-coordinates).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public float|string|null $yCenter;
 
     /**
@@ -488,7 +488,7 @@ final class Transformation implements BaseModel
      * It should be used in conjunction with fo-face or fo-<object_name>.
      * See [Zoom](https://imagekit.io/docs/image-resize-and-crop#zoom---z).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?float $zoom;
 
     public function __construct()

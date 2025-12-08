@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\Files;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\Files\Metadata\Exif;
@@ -41,82 +41,82 @@ final class Metadata implements BaseModel
     /**
      * The audio codec used in the video (only for video).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $audioCodec;
 
     /**
      * The bit rate of the video in kbps (only for video).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $bitRate;
 
     /**
      * The density of the image in DPI.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $density;
 
     /**
      * The duration of the video in seconds (only for video).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $duration;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?Exif $exif;
 
     /**
      * The format of the file (e.g., 'jpg', 'mp4').
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $format;
 
     /**
      * Indicates if the image has a color profile.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $hasColorProfile;
 
     /**
      * Indicates if the image contains transparent areas.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $hasTransparency;
 
     /**
      * The height of the image or video in pixels.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $height;
 
     /**
      * Perceptual hash of the image.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $pHash;
 
     /**
      * The quality indicator of the image.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $quality;
 
     /**
      * The file size in bytes.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $size;
 
     /**
      * The video codec used in the video (only for video).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $videoCodec;
 
     /**
      * The width of the image or video in pixels.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $width;
 
     public function __construct()

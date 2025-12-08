@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Imagekit;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\OverlayPosition\Focus;
@@ -24,20 +25,20 @@ final class SolidColorOverlay implements BaseModel
     use SdkModel;
 
     /** @var 'solidColor' $type */
-    #[Api]
+    #[Required]
     public string $type = 'solidColor';
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?OverlayPosition $position;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?OverlayTiming $timing;
 
     /**
      * Specifies the color of the block using an RGB hex code (e.g., `FF0000`), an RGBA code (e.g., `FFAABB50`), or a color name (e.g., `red`).
      * If an 8-character value is provided, the last two characters represent the opacity level (from `00` for 0.00 to `99` for 0.99).
      */
-    #[Api]
+    #[Required]
     public string $color;
 
     /**
@@ -46,7 +47,7 @@ final class SolidColorOverlay implements BaseModel
      *
      * @var list<SolidColorOverlayTransformation>|null $transformation
      */
-    #[Api(list: SolidColorOverlayTransformation::class, optional: true)]
+    #[Optional(list: SolidColorOverlayTransformation::class)]
     public ?array $transformation;
 
     /**

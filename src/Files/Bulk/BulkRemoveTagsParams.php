@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\Files\Bulk;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Concerns\SdkParams;
 use Imagekit\Core\Contracts\BaseModel;
@@ -29,7 +29,7 @@ final class BulkRemoveTagsParams implements BaseModel
      *
      * @var list<string> $fileIds
      */
-    #[Api(list: 'string')]
+    #[Required(list: 'string')]
     public array $fileIds;
 
     /**
@@ -37,7 +37,7 @@ final class BulkRemoveTagsParams implements BaseModel
      *
      * @var list<string> $tags
      */
-    #[Api(list: 'string')]
+    #[Required(list: 'string')]
     public array $tags;
 
     /**

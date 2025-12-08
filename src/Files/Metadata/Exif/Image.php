@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\Files\Metadata\Exif;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
@@ -30,37 +30,37 @@ final class Image implements BaseModel
     /** @use SdkModel<ImageShape> */
     use SdkModel;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $ExifOffset;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $GPSInfo;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $Make;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $Model;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $ModifyDate;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $Orientation;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $ResolutionUnit;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $Software;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $XResolution;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $YCbCrPositioning;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $YResolution;
 
     public function __construct()

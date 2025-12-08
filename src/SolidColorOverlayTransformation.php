@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
@@ -26,27 +26,27 @@ final class SolidColorOverlayTransformation implements BaseModel
     /**
      * Specifies the transparency level of the solid color overlay. Accepts integers from `1` to `9`.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?float $alpha;
 
     /**
      * Specifies the background color of the solid color overlay. Accepts an RGB hex code (e.g., `FF0000`), an RGBA code (e.g., `FFAABB50`), or a color name.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $background;
 
     /**
      * Creates a linear gradient with two colors. Pass `true` for a default gradient, or provide a string for a custom gradient.
      * Only works if the base asset is an image. See [gradient](https://imagekit.io/docs/effects-and-enhancements#gradient---e-gradient).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public string|bool|null $gradient;
 
     /**
      * Controls the height of the solid color overlay. Accepts a numeric value or an arithmetic expression.
      * Learn about [arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public float|string|null $height;
 
     /**
@@ -55,14 +55,14 @@ final class SolidColorOverlayTransformation implements BaseModel
      *
      * @var float|'max'|null $radius
      */
-    #[Api(optional: true)]
+    #[Optional]
     public float|string|null $radius;
 
     /**
      * Controls the width of the solid color overlay. Accepts a numeric value or an arithmetic expression (e.g., `bw_mul_0.2` or `bh_div_2`).
      * Learn about [arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public float|string|null $width;
 
     public function __construct()

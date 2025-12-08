@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\Files\UpdateFileRequest;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\Files\UpdateFileRequest\ChangePublicationStatus\Publish;
@@ -20,7 +20,7 @@ final class ChangePublicationStatus implements BaseModel
     /**
      * Configure the publication status of a file and its versions.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?Publish $publish;
 
     public function __construct()

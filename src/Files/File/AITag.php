@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\Files\File;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
@@ -21,19 +21,19 @@ final class AITag implements BaseModel
     /**
      * Confidence score of the tag.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?float $confidence;
 
     /**
      * Name of the tag.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $name;
 
     /**
      * Source of the tag. Possible values are `google-auto-tagging` and `aws-auto-tagging`.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $source;
 
     public function __construct()

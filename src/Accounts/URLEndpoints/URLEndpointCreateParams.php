@@ -8,7 +8,8 @@ use Imagekit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter;
 use Imagekit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\Akamai;
 use Imagekit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\Cloudinary;
 use Imagekit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\Imgix;
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Concerns\SdkParams;
 use Imagekit\Core\Contracts\BaseModel;
@@ -37,7 +38,7 @@ final class URLEndpointCreateParams implements BaseModel
     /**
      * Description of the URL endpoint.
      */
-    #[Api]
+    #[Required]
     public string $description;
 
     /**
@@ -45,19 +46,19 @@ final class URLEndpointCreateParams implements BaseModel
      *
      * @var list<string>|null $origins
      */
-    #[Api(list: 'string', optional: true)]
+    #[Optional(list: 'string')]
     public ?array $origins;
 
     /**
      * Path segment appended to your base URL to form the endpoint (letters, digits, and hyphens only — or empty for the default endpoint).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $urlPrefix;
 
     /**
      * Configuration for third-party URL rewriting.
      */
-    #[Api(union: URLRewriter::class, optional: true)]
+    #[Optional(union: URLRewriter::class)]
     public Cloudinary|Imgix|Akamai|null $urlRewriter;
 
     /**

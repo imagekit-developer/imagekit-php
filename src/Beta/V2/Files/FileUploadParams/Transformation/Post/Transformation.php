@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\Beta\V2\Files\FileUploadParams\Transformation\Post;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
@@ -21,14 +21,14 @@ final class Transformation implements BaseModel
      *
      * @var 'transformation' $type
      */
-    #[Api]
+    #[Required]
     public string $type = 'transformation';
 
     /**
      * Transformation string (e.g. `w-200,h-200`).
      * Same syntax as ImageKit URL-based transformations.
      */
-    #[Api]
+    #[Required]
     public string $value;
 
     /**

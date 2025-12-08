@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Imagekit\Accounts\Origins\OriginRequest;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
@@ -22,25 +23,25 @@ final class WebProxy implements BaseModel
     use SdkModel;
 
     /** @var 'WEB_PROXY' $type */
-    #[Api]
+    #[Required]
     public string $type = 'WEB_PROXY';
 
     /**
      * Display name of the origin.
      */
-    #[Api]
+    #[Required]
     public string $name;
 
     /**
      * URL used in the Canonical header (if enabled).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $baseUrlForCanonicalHeader;
 
     /**
      * Whether to send a Canonical header.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $includeCanonicalHeader;
 
     /**

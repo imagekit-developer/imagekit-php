@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\Accounts\Usage;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Concerns\SdkParams;
 use Imagekit\Core\Contracts\BaseModel;
@@ -27,13 +27,13 @@ final class UsageGetParams implements BaseModel
     /**
      * Specify a `endDate` in `YYYY-MM-DD` format. It should be after the `startDate`. The difference between `startDate` and `endDate` should be less than 90 days.
      */
-    #[Api]
+    #[Required]
     public \DateTimeInterface $endDate;
 
     /**
      * Specify a `startDate` in `YYYY-MM-DD` format. It should be before the `endDate`. The difference between `startDate` and `endDate` should be less than 90 days.
      */
-    #[Api]
+    #[Required]
     public \DateTimeInterface $startDate;
 
     /**

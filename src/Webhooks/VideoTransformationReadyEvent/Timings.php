@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\Webhooks\VideoTransformationReadyEvent;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
@@ -23,13 +23,13 @@ final class Timings implements BaseModel
     /**
      * Time spent downloading the source video from your origin or media library, in milliseconds.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $download_duration;
 
     /**
      * Time spent encoding the video, in milliseconds.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $encoding_duration;
 
     public function __construct()

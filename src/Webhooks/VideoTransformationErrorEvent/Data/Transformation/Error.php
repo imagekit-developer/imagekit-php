@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\Webhooks\VideoTransformationErrorEvent\Data\Transformation;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Error\Reason;
@@ -27,7 +27,7 @@ final class Error implements BaseModel
      *
      * @var value-of<Reason> $reason
      */
-    #[Api(enum: Reason::class)]
+    #[Required(enum: Reason::class)]
     public string $reason;
 
     /**

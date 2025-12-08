@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
@@ -26,7 +26,7 @@ final class OverlayTiming implements BaseModel
      * Applies only if the base asset is a video.
      * Maps to `ldu` in the URL.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public float|string|null $duration;
 
     /**
@@ -36,7 +36,7 @@ final class OverlayTiming implements BaseModel
      * Applies only if the base asset is a video.
      * Maps to `leo` in the URL.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public float|string|null $end;
 
     /**
@@ -45,7 +45,7 @@ final class OverlayTiming implements BaseModel
      * Applies only if the base asset is a video.
      * Maps to `lso` in the URL.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public float|string|null $start;
 
     public function __construct()

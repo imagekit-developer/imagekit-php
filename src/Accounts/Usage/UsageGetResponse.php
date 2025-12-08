@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\Accounts\Usage;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
@@ -25,31 +25,31 @@ final class UsageGetResponse implements BaseModel
     /**
      * Amount of bandwidth used in bytes.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $bandwidthBytes;
 
     /**
      * Number of extension units used.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $extensionUnitsCount;
 
     /**
      * Storage used by media library in bytes.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $mediaLibraryStorageBytes;
 
     /**
      * Storage used by the original cache in bytes.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $originalCacheStorageBytes;
 
     /**
      * Number of video processing units used.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $videoProcessingUnitsCount;
 
     public function __construct()

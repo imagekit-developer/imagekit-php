@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
@@ -17,7 +17,7 @@ final class Akamai implements BaseModel
     use SdkModel;
 
     /** @var 'AKAMAI' $type */
-    #[Api]
+    #[Required]
     public string $type = 'AKAMAI';
 
     public function __construct()

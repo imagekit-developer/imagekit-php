@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\Files\Metadata\Exif;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
@@ -25,22 +25,22 @@ final class Thumbnail implements BaseModel
     /** @use SdkModel<ThumbnailShape> */
     use SdkModel;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $Compression;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $ResolutionUnit;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $ThumbnailLength;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $ThumbnailOffset;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $XResolution;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $YResolution;
 
     public function __construct()

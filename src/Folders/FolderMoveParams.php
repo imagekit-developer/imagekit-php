@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\Folders;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Concerns\SdkParams;
 use Imagekit\Core\Contracts\BaseModel;
@@ -27,13 +27,13 @@ final class FolderMoveParams implements BaseModel
     /**
      * Full path to the destination folder where you want to move the source folder into.
      */
-    #[Api]
+    #[Required]
     public string $destinationPath;
 
     /**
      * The full path to the source folder you want to move.
      */
-    #[Api]
+    #[Required]
     public string $sourceFolderPath;
 
     /**

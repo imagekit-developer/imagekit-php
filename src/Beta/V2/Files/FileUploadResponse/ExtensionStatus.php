@@ -8,7 +8,7 @@ use Imagekit\Beta\V2\Files\FileUploadResponse\ExtensionStatus\AIAutoDescription;
 use Imagekit\Beta\V2\Files\FileUploadResponse\ExtensionStatus\AwsAutoTagging;
 use Imagekit\Beta\V2\Files\FileUploadResponse\ExtensionStatus\GoogleAutoTagging;
 use Imagekit\Beta\V2\Files\FileUploadResponse\ExtensionStatus\RemoveBg;
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
@@ -34,19 +34,19 @@ final class ExtensionStatus implements BaseModel
     use SdkModel;
 
     /** @var value-of<AIAutoDescription>|null $ai_auto_description */
-    #[Api('ai-auto-description', enum: AIAutoDescription::class, optional: true)]
+    #[Optional('ai-auto-description', enum: AIAutoDescription::class)]
     public ?string $ai_auto_description;
 
     /** @var value-of<AwsAutoTagging>|null $aws_auto_tagging */
-    #[Api('aws-auto-tagging', enum: AwsAutoTagging::class, optional: true)]
+    #[Optional('aws-auto-tagging', enum: AwsAutoTagging::class)]
     public ?string $aws_auto_tagging;
 
     /** @var value-of<GoogleAutoTagging>|null $google_auto_tagging */
-    #[Api('google-auto-tagging', enum: GoogleAutoTagging::class, optional: true)]
+    #[Optional('google-auto-tagging', enum: GoogleAutoTagging::class)]
     public ?string $google_auto_tagging;
 
     /** @var value-of<RemoveBg>|null $remove_bg */
-    #[Api('remove-bg', enum: RemoveBg::class, optional: true)]
+    #[Optional('remove-bg', enum: RemoveBg::class)]
     public ?string $remove_bg;
 
     public function __construct()

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\Files;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Concerns\SdkParams;
 use Imagekit\Core\Contracts\BaseModel;
@@ -29,13 +29,13 @@ final class FileMoveParams implements BaseModel
     /**
      * Full path to the folder you want to move the above file into.
      */
-    #[Api]
+    #[Required]
     public string $destinationPath;
 
     /**
      * The full path of the file you want to move.
      */
-    #[Api]
+    #[Required]
     public string $sourceFilePath;
 
     /**

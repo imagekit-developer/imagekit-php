@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Imagekit;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
@@ -24,27 +25,27 @@ final class ResponsiveImageAttributes implements BaseModel
     /**
      * URL for the *largest* candidate (assigned to plain `src`).
      */
-    #[Api]
+    #[Required]
     public string $src;
 
     /**
      * `sizes` returned (or synthesised as `100vw`).
      * The value for the HTML `sizes` attribute.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $sizes;
 
     /**
      * Candidate set with `w` or `x` descriptors.
      * Multiple image URLs separated by commas, each with a descriptor.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $srcSet;
 
     /**
      * Width as a number (if `width` was provided in the input options).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?float $width;
 
     /**

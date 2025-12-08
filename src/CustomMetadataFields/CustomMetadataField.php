@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\CustomMetadataFields;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\CustomMetadataFields\CustomMetadataField\Schema;
@@ -25,25 +25,25 @@ final class CustomMetadataField implements BaseModel
     /**
      * Unique identifier for the custom metadata field. Use this to update the field.
      */
-    #[Api]
+    #[Required]
     public string $id;
 
     /**
      * Human readable name of the custom metadata field. This name is displayed as form field label to the users while setting field value on the asset in the media library UI.
      */
-    #[Api]
+    #[Required]
     public string $label;
 
     /**
      * API name of the custom metadata field. This becomes the key while setting `customMetadata` (key-value object) for an asset using upload or update API.
      */
-    #[Api]
+    #[Required]
     public string $name;
 
     /**
      * An object that describes the rules for the custom metadata field value.
      */
-    #[Api]
+    #[Required]
     public Schema $schema;
 
     /**

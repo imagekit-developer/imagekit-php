@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Imagekit;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\OverlayPosition\Focus;
@@ -27,19 +28,19 @@ final class SubtitleOverlay implements BaseModel
     use SdkModel;
 
     /** @var 'subtitle' $type */
-    #[Api]
+    #[Required]
     public string $type = 'subtitle';
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?OverlayPosition $position;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?OverlayTiming $timing;
 
     /**
      * Specifies the relative path to the subtitle file used as an overlay.
      */
-    #[Api]
+    #[Required]
     public string $input;
 
     /**
@@ -50,7 +51,7 @@ final class SubtitleOverlay implements BaseModel
      *
      * @var value-of<Encoding>|null $encoding
      */
-    #[Api(enum: Encoding::class, optional: true)]
+    #[Optional(enum: Encoding::class)]
     public ?string $encoding;
 
     /**
@@ -58,7 +59,7 @@ final class SubtitleOverlay implements BaseModel
      *
      * @var list<SubtitleOverlayTransformation>|null $transformation
      */
-    #[Api(list: SubtitleOverlayTransformation::class, optional: true)]
+    #[Optional(list: SubtitleOverlayTransformation::class)]
     public ?array $transformation;
 
     /**

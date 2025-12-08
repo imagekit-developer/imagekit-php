@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\Files\Metadata;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\Files\Metadata\Exif\Gps;
@@ -30,35 +30,35 @@ final class Exif implements BaseModel
     /**
      * Object containing Exif details.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?Exif\Exif $exif;
 
     /**
      * Object containing GPS information.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?Gps $gps;
 
     /**
      * Object containing EXIF image information.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?Image $image;
 
     /**
      * JSON object.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?Interoperability $interoperability;
 
     /** @var array<string,mixed>|null $makernote */
-    #[Api(map: 'mixed', optional: true)]
+    #[Optional(map: 'mixed')]
     public ?array $makernote;
 
     /**
      * Object containing Thumbnail information.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?Thumbnail $thumbnail;
 
     public function __construct()

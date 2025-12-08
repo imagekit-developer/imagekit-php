@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Imagekit\Webhooks\UploadPostTransformSuccessEvent\Request;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\Webhooks\UploadPostTransformSuccessEvent\Request\Transformation\Protocol;
@@ -25,7 +26,7 @@ final class Transformation implements BaseModel
      *
      * @var value-of<Type> $type
      */
-    #[Api(enum: Type::class)]
+    #[Required(enum: Type::class)]
     public string $type;
 
     /**
@@ -33,13 +34,13 @@ final class Transformation implements BaseModel
      *
      * @var value-of<Protocol>|null $protocol
      */
-    #[Api(enum: Protocol::class, optional: true)]
+    #[Optional(enum: Protocol::class)]
     public ?string $protocol;
 
     /**
      * Value for the requested transformation type.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $value;
 
     /**

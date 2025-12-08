@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Imagekit;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\OverlayPosition\Focus;
@@ -28,19 +29,19 @@ final class TextOverlay implements BaseModel
     use SdkModel;
 
     /** @var 'text' $type */
-    #[Api]
+    #[Required]
     public string $type = 'text';
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?OverlayPosition $position;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?OverlayTiming $timing;
 
     /**
      * Specifies the text to be displayed in the overlay. The SDK automatically handles special characters and encoding.
      */
-    #[Api]
+    #[Required]
     public string $text;
 
     /**
@@ -51,7 +52,7 @@ final class TextOverlay implements BaseModel
      *
      * @var value-of<Encoding>|null $encoding
      */
-    #[Api(enum: Encoding::class, optional: true)]
+    #[Optional(enum: Encoding::class)]
     public ?string $encoding;
 
     /**
@@ -59,7 +60,7 @@ final class TextOverlay implements BaseModel
      *
      * @var list<TextOverlayTransformation>|null $transformation
      */
-    #[Api(list: TextOverlayTransformation::class, optional: true)]
+    #[Optional(list: TextOverlayTransformation::class)]
     public ?array $transformation;
 
     /**

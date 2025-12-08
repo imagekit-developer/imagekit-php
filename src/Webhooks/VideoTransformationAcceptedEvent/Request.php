@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Imagekit\Webhooks\VideoTransformationAcceptedEvent;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
@@ -23,19 +24,19 @@ final class Request implements BaseModel
     /**
      * Full URL of the transformation request that was submitted.
      */
-    #[Api]
+    #[Required]
     public string $url;
 
     /**
      * Unique identifier for the originating transformation request.
      */
-    #[Api]
+    #[Required]
     public string $x_request_id;
 
     /**
      * User-Agent header from the original request that triggered the transformation.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $user_agent;
 
     /**

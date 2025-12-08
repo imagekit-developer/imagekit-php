@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Imagekit\Files\UpdateFileRequest\ChangePublicationStatus;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
@@ -23,13 +24,13 @@ final class Publish implements BaseModel
     /**
      * Set to `true` to publish the file. Set to `false` to unpublish the file.
      */
-    #[Api]
+    #[Required]
     public bool $isPublished;
 
     /**
      * Set to `true` to publish/unpublish all versions of the file. Set to `false` to publish/unpublish only the current version of the file.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $includeFileVersions;
 
     /**

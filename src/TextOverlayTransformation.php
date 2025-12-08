@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\TextOverlayTransformation\Flip;
@@ -35,14 +35,14 @@ final class TextOverlayTransformation implements BaseModel
     /**
      * Specifies the transparency level of the text overlay. Accepts integers from `1` to `9`.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?float $alpha;
 
     /**
      * Specifies the background color of the text overlay.
      * Accepts an RGB hex code, an RGBA code, or a color name.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $background;
 
     /**
@@ -50,26 +50,26 @@ final class TextOverlayTransformation implements BaseModel
      *
      * @var value-of<Flip>|null $flip
      */
-    #[Api(enum: Flip::class, optional: true)]
+    #[Optional(enum: Flip::class)]
     public ?string $flip;
 
     /**
      * Specifies the font color of the overlaid text. Accepts an RGB hex code (e.g., `FF0000`), an RGBA code (e.g., `FFAABB50`), or a color name.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $fontColor;
 
     /**
      * Specifies the font family of the overlaid text. Choose from the supported fonts list or use a custom font.
      * See [Supported fonts](https://imagekit.io/docs/add-overlays-on-images#supported-text-font-list) and [Custom font](https://imagekit.io/docs/add-overlays-on-images#change-font-family-in-text-overlay).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $fontFamily;
 
     /**
      * Specifies the font size of the overlaid text. Accepts a numeric value or an arithmetic expression.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public float|string|null $fontSize;
 
     /**
@@ -77,14 +77,14 @@ final class TextOverlayTransformation implements BaseModel
      *
      * @var value-of<InnerAlignment>|null $innerAlignment
      */
-    #[Api(enum: InnerAlignment::class, optional: true)]
+    #[Optional(enum: InnerAlignment::class)]
     public ?string $innerAlignment;
 
     /**
      * Specifies the line height of the text overlay.
      * Accepts integer values representing line height in points. It can also accept [arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations) such as `bw_mul_0.2`, or `bh_div_20`.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public float|string|null $lineHeight;
 
     /**
@@ -92,7 +92,7 @@ final class TextOverlayTransformation implements BaseModel
      * Can be provided as a single positive integer or multiple values separated by underscores (following CSS shorthand order).
      * Arithmetic expressions are also accepted.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public float|string|null $padding;
 
     /**
@@ -101,14 +101,14 @@ final class TextOverlayTransformation implements BaseModel
      *
      * @var float|'max'|null $radius
      */
-    #[Api(optional: true)]
+    #[Optional]
     public float|string|null $radius;
 
     /**
      * Specifies the rotation angle of the text overlay.
      * Accepts a numeric value for clockwise rotation or a string prefixed with "N" for counter-clockwise rotation.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public float|string|null $rotation;
 
     /**
@@ -117,14 +117,14 @@ final class TextOverlayTransformation implements BaseModel
      *   - Single styles: `b` (bold), `i` (italic), `strikethrough`.
      *   - Combinations: Any combination separated by underscores, e.g., `b_i`, `b_i_strikethrough`.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $typography;
 
     /**
      * Specifies the maximum width (in pixels) of the overlaid text. The text wraps automatically, and arithmetic expressions (e.g., `bw_mul_0.2` or `bh_div_2`) are supported. Useful when used in conjunction with the `background`.
      * Learn about [Arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public float|string|null $width;
 
     public function __construct()

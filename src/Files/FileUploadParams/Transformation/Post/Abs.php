@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\Files\FileUploadParams\Transformation\Post;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\Files\FileUploadParams\Transformation\Post\Abs\Protocol;
@@ -24,7 +24,7 @@ final class Abs implements BaseModel
      *
      * @var 'abs' $type
      */
-    #[Api]
+    #[Required]
     public string $type = 'abs';
 
     /**
@@ -32,13 +32,13 @@ final class Abs implements BaseModel
      *
      * @var value-of<Protocol> $protocol
      */
-    #[Api(enum: Protocol::class)]
+    #[Required(enum: Protocol::class)]
     public string $protocol;
 
     /**
      * List of different representations you want to create separated by an underscore.
      */
-    #[Api]
+    #[Required]
     public string $value;
 
     /**

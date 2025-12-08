@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\DefaultValue;
@@ -33,7 +34,7 @@ final class Schema implements BaseModel
      *
      * @var value-of<Type> $type
      */
-    #[Api(enum: Type::class)]
+    #[Required(enum: Type::class)]
     public string $type;
 
     /**
@@ -41,37 +42,37 @@ final class Schema implements BaseModel
      *
      * @var string|float|bool|list<string|float|bool>|null $defaultValue
      */
-    #[Api(union: DefaultValue::class, optional: true)]
+    #[Optional(union: DefaultValue::class)]
     public string|float|bool|array|null $defaultValue;
 
     /**
      * Sets this custom metadata field as required. Setting custom metadata fields on an asset will throw error if the value for all required fields are not present in upload or update asset API request body.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $isValueRequired;
 
     /**
      * Maximum length of string. Only set this property if `type` is set to `Text` or `Textarea`.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?float $maxLength;
 
     /**
      * Maximum value of the field. Only set this property if field type is `Date` or `Number`. For `Date` type field, set the minimum date in ISO8601 string format. For `Number` type field, set the minimum numeric value.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public string|float|null $maxValue;
 
     /**
      * Minimum length of string. Only set this property if `type` is set to `Text` or `Textarea`.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?float $minLength;
 
     /**
      * Minimum value of the field. Only set this property if field type is `Date` or `Number`. For `Date` type field, set the minimum date in ISO8601 string format. For `Number` type field, set the minimum numeric value.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public string|float|null $minValue;
 
     /**
@@ -79,7 +80,7 @@ final class Schema implements BaseModel
      *
      * @var list<string|float|bool>|null $selectOptions
      */
-    #[Api(list: SelectOption::class, optional: true)]
+    #[Optional(list: SelectOption::class)]
     public ?array $selectOptions;
 
     /**

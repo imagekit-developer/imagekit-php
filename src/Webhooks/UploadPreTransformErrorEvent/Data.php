@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\Webhooks\UploadPreTransformErrorEvent;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\Webhooks\UploadPreTransformErrorEvent\Data\Transformation;
@@ -23,16 +23,16 @@ final class Data implements BaseModel
     /**
      * Name of the file.
      */
-    #[Api]
+    #[Required]
     public string $name;
 
     /**
      * Path of the file.
      */
-    #[Api]
+    #[Required]
     public string $path;
 
-    #[Api]
+    #[Required]
     public Transformation $transformation;
 
     /**

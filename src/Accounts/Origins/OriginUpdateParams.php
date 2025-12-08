@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Imagekit\Accounts\Origins;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Concerns\SdkParams;
 use Imagekit\Core\Contracts\BaseModel;
@@ -46,106 +47,106 @@ final class OriginUpdateParams implements BaseModel
     use SdkParams;
 
     /** @var 'AKENEO_PIM' $type */
-    #[Api]
+    #[Required]
     public string $type = 'AKENEO_PIM';
 
     /**
      * Access key for the bucket.
      */
-    #[Api]
+    #[Required]
     public string $accessKey;
 
-    #[Api]
+    #[Required]
     public string $bucket;
 
     /**
      * Display name of the origin.
      */
-    #[Api]
+    #[Required]
     public string $name;
 
     /**
      * Secret key for the bucket.
      */
-    #[Api]
+    #[Required]
     public string $secretKey;
 
     /**
      * URL used in the Canonical header (if enabled).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $baseUrlForCanonicalHeader;
 
     /**
      * Whether to send a Canonical header.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $includeCanonicalHeader;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $prefix;
 
     /**
      * Custom S3-compatible endpoint.
      */
-    #[Api]
+    #[Required]
     public string $endpoint;
 
     /**
      * Use path-style S3 URLs?
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $s3ForcePathStyle;
 
     /**
      * Akeneo instance base URL.
      */
-    #[Api]
+    #[Required]
     public string $baseUrl;
 
     /**
      * Forward the Host header to origin?
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $forwardHostHeaderToOrigin;
 
-    #[Api]
+    #[Required]
     public string $clientEmail;
 
-    #[Api]
+    #[Required]
     public string $privateKey;
 
-    #[Api]
+    #[Required]
     public string $accountName;
 
-    #[Api]
+    #[Required]
     public string $container;
 
-    #[Api]
+    #[Required]
     public string $sasToken;
 
     /**
      * Akeneo API client ID.
      */
-    #[Api]
+    #[Required]
     public string $clientId;
 
     /**
      * Akeneo API client secret.
      */
-    #[Api]
+    #[Required]
     public string $clientSecret;
 
     /**
      * Akeneo API password.
      */
-    #[Api]
+    #[Required]
     public string $password;
 
     /**
      * Akeneo API username.
      */
-    #[Api]
+    #[Required]
     public string $username;
 
     /**

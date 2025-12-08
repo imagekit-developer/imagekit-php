@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\Cache\Invalidation;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Concerns\SdkParams;
 use Imagekit\Core\Contracts\BaseModel;
@@ -25,7 +25,7 @@ final class InvalidationCreateParams implements BaseModel
     /**
      * The full URL of the file to be purged.
      */
-    #[Api]
+    #[Required]
     public string $url;
 
     /**

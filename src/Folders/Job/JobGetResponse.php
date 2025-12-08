@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\Folders\Job;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\Folders\Job\JobGetResponse\Status;
@@ -26,13 +26,13 @@ final class JobGetResponse implements BaseModel
     /**
      * Unique identifier of the bulk job.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $jobId;
 
     /**
      * Unique identifier of the purge request. This will be present only if `purgeCache` is set to `true` in the rename folder API request.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $purgeRequestId;
 
     /**
@@ -40,7 +40,7 @@ final class JobGetResponse implements BaseModel
      *
      * @var value-of<Status>|null $status
      */
-    #[Api(enum: Status::class, optional: true)]
+    #[Optional(enum: Status::class)]
     public ?string $status;
 
     /**
@@ -48,7 +48,7 @@ final class JobGetResponse implements BaseModel
      *
      * @var value-of<Type>|null $type
      */
-    #[Api(enum: Type::class, optional: true)]
+    #[Optional(enum: Type::class)]
     public ?string $type;
 
     public function __construct()

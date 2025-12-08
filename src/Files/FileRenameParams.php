@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Imagekit\Files;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Concerns\SdkParams;
 use Imagekit\Core\Contracts\BaseModel;
@@ -29,7 +30,7 @@ final class FileRenameParams implements BaseModel
     /**
      * The full path of the file you want to rename.
      */
-    #[Api]
+    #[Required]
     public string $filePath;
 
     /**
@@ -40,7 +41,7 @@ final class FileRenameParams implements BaseModel
      *
      * Any other character, including space, will be replaced by `_`.
      */
-    #[Api]
+    #[Required]
     public string $newFileName;
 
     /**
@@ -54,7 +55,7 @@ final class FileRenameParams implements BaseModel
      *
      * Default value - `false`
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $purgeCache;
 
     /**

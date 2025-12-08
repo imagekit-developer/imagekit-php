@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Imagekit\Webhooks;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\Webhooks\VideoTransformationReadyEvent\Data;
@@ -33,34 +34,34 @@ final class VideoTransformationReadyEvent implements BaseModel
     /**
      * Unique identifier for the event.
      */
-    #[Api]
+    #[Required]
     public string $id;
 
     /**
      * The type of webhook event.
      */
-    #[Api]
+    #[Required]
     public string $type;
 
     /**
      * Timestamp when the event was created in ISO8601 format.
      */
-    #[Api]
+    #[Required]
     public \DateTimeInterface $created_at;
 
-    #[Api]
+    #[Required]
     public Data $data;
 
     /**
      * Information about the original request that triggered the video transformation.
      */
-    #[Api]
+    #[Required]
     public Request $request;
 
     /**
      * Performance metrics for the transformation process.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?Timings $timings;
 
     /**

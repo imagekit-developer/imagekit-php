@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\Webhooks\UploadPostTransformSuccessEvent;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
@@ -19,19 +19,19 @@ final class Data implements BaseModel
     /**
      * Unique identifier of the originally uploaded file.
      */
-    #[Api]
+    #[Required]
     public string $fileId;
 
     /**
      * Name of the file.
      */
-    #[Api]
+    #[Required]
     public string $name;
 
     /**
      * URL of the generated post-transformation.
      */
-    #[Api]
+    #[Required]
     public string $url;
 
     /**

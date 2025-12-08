@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\Beta\V2\Files\FileUploadResponse;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
@@ -21,19 +21,19 @@ final class AITag implements BaseModel
     /**
      * Confidence score of the tag.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?float $confidence;
 
     /**
      * Name of the tag.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $name;
 
     /**
      * Array of `AITags` associated with the image. If no `AITags` are set, it will be null. These tags can be added using the `google-auto-tagging` or `aws-auto-tagging` extensions.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $source;
 
     public function __construct()

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\ExtensionItem\RemoveBg;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
@@ -24,25 +24,25 @@ final class Options implements BaseModel
     /**
      * Whether to add an artificial shadow to the result. Default is false. Note: Adding shadows is currently only supported for car photos.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $add_shadow;
 
     /**
      * Specifies a solid color background using hex code (e.g., "81d4fa", "fff") or color name (e.g., "green"). If this parameter is set, `bg_image_url` must be empty.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $bg_color;
 
     /**
      * Sets a background image from a URL. If this parameter is set, `bg_color` must be empty.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $bg_image_url;
 
     /**
      * Allows semi-transparent regions in the result. Default is true. Note: Semitransparency is currently only supported for car windows.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $semitransparency;
 
     public function __construct()

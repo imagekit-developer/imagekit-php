@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\Files;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Concerns\SdkParams;
 use Imagekit\Core\Contracts\BaseModel;
@@ -46,7 +46,7 @@ final class FileUpdateParams implements BaseModel
     /**
      * Define an important area in the image in the format `x,y,width,height` e.g. `10,10,100,100`. Send `null` to unset this value.
      */
-    #[Api(nullable: true, optional: true)]
+    #[Optional(nullable: true)]
     public ?string $customCoordinates;
 
     /**
@@ -54,13 +54,13 @@ final class FileUpdateParams implements BaseModel
      *
      * @var array<string,mixed>|null $customMetadata
      */
-    #[Api(map: 'mixed', optional: true)]
+    #[Optional(map: 'mixed')]
     public ?array $customMetadata;
 
     /**
      * Optional text to describe the contents of the file.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $description;
 
     /**
@@ -68,7 +68,7 @@ final class FileUpdateParams implements BaseModel
      *
      * @var list<RemoveBg|AutoTaggingExtension|AIAutoDescription>|null $extensions
      */
-    #[Api(list: ExtensionItem::class, optional: true)]
+    #[Optional(list: ExtensionItem::class)]
     public ?array $extensions;
 
     /**
@@ -80,7 +80,7 @@ final class FileUpdateParams implements BaseModel
      *
      * @var 'all'|list<string>|null $removeAITags
      */
-    #[Api(union: RemoveAITags::class, optional: true)]
+    #[Optional(union: RemoveAITags::class)]
     public string|array|null $removeAITags;
 
     /**
@@ -88,19 +88,19 @@ final class FileUpdateParams implements BaseModel
      *
      * @var list<string>|null $tags
      */
-    #[Api(list: 'string', nullable: true, optional: true)]
+    #[Optional(list: 'string', nullable: true)]
     public ?array $tags;
 
     /**
      * The final status of extensions after they have completed execution will be delivered to this endpoint as a POST request. [Learn more](/docs/api-reference/digital-asset-management-dam/managing-assets/update-file-details#webhook-payload-structure) about the webhook payload structure.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $webhookUrl;
 
     /**
      * Configure the publication status of a file and its versions.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?Publish $publish;
 
     public function __construct()

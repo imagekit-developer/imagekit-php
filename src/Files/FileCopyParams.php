@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Imagekit\Files;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Concerns\SdkParams;
 use Imagekit\Core\Contracts\BaseModel;
@@ -29,19 +30,19 @@ final class FileCopyParams implements BaseModel
     /**
      * Full path to the folder you want to copy the above file into.
      */
-    #[Api]
+    #[Required]
     public string $destinationPath;
 
     /**
      * The full path of the file you want to copy.
      */
-    #[Api]
+    #[Required]
     public string $sourceFilePath;
 
     /**
      * Option to copy all versions of a file. By default, only the current version of the file is copied. When set to true, all versions of the file will be copied. Default value - `false`.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $includeFileVersions;
 
     /**

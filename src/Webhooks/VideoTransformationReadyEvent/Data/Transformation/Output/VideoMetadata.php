@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Output;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
@@ -23,25 +23,25 @@ final class VideoMetadata implements BaseModel
     /**
      * Bitrate of the output video in bits per second.
      */
-    #[Api]
+    #[Required]
     public int $bitrate;
 
     /**
      * Duration of the output video in seconds.
      */
-    #[Api]
+    #[Required]
     public float $duration;
 
     /**
      * Height of the output video in pixels.
      */
-    #[Api]
+    #[Required]
     public int $height;
 
     /**
      * Width of the output video in pixels.
      */
-    #[Api]
+    #[Required]
     public int $width;
 
     /**

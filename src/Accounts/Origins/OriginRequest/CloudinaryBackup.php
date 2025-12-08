@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Imagekit\Accounts\Origins\OriginRequest;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
@@ -26,49 +27,49 @@ final class CloudinaryBackup implements BaseModel
     use SdkModel;
 
     /** @var 'CLOUDINARY_BACKUP' $type */
-    #[Api]
+    #[Required]
     public string $type = 'CLOUDINARY_BACKUP';
 
     /**
      * Access key for the bucket.
      */
-    #[Api]
+    #[Required]
     public string $accessKey;
 
     /**
      * S3 bucket name.
      */
-    #[Api]
+    #[Required]
     public string $bucket;
 
     /**
      * Display name of the origin.
      */
-    #[Api]
+    #[Required]
     public string $name;
 
     /**
      * Secret key for the bucket.
      */
-    #[Api]
+    #[Required]
     public string $secretKey;
 
     /**
      * URL used in the Canonical header (if enabled).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $baseUrlForCanonicalHeader;
 
     /**
      * Whether to send a Canonical header.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $includeCanonicalHeader;
 
     /**
      * Path prefix inside the bucket.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $prefix;
 
     /**

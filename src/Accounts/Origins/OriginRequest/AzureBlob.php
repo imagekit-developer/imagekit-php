@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Imagekit\Accounts\Origins\OriginRequest;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
@@ -26,37 +27,37 @@ final class AzureBlob implements BaseModel
     use SdkModel;
 
     /** @var 'AZURE_BLOB' $type */
-    #[Api]
+    #[Required]
     public string $type = 'AZURE_BLOB';
 
-    #[Api]
+    #[Required]
     public string $accountName;
 
-    #[Api]
+    #[Required]
     public string $container;
 
     /**
      * Display name of the origin.
      */
-    #[Api]
+    #[Required]
     public string $name;
 
-    #[Api]
+    #[Required]
     public string $sasToken;
 
     /**
      * URL used in the Canonical header (if enabled).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $baseUrlForCanonicalHeader;
 
     /**
      * Whether to send a Canonical header.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $includeCanonicalHeader;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $prefix;
 
     /**

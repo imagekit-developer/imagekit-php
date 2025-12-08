@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\Files;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\Files\File\AITag;
@@ -57,19 +57,19 @@ final class FileUpdateResponse implements BaseModel
      *
      * @var list<AITag>|null $AITags
      */
-    #[Api(list: AITag::class, nullable: true, optional: true)]
+    #[Optional(list: AITag::class, nullable: true)]
     public ?array $AITags;
 
     /**
      * Date and time when the file was uploaded. The date and time is in ISO8601 format.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?\DateTimeInterface $createdAt;
 
     /**
      * An string with custom coordinates of the file.
      */
-    #[Api(nullable: true, optional: true)]
+    #[Optional(nullable: true)]
     public ?string $customCoordinates;
 
     /**
@@ -77,67 +77,67 @@ final class FileUpdateResponse implements BaseModel
      *
      * @var array<string,mixed>|null $customMetadata
      */
-    #[Api(map: 'mixed', optional: true)]
+    #[Optional(map: 'mixed')]
     public ?array $customMetadata;
 
     /**
      * Optional text to describe the contents of the file. Can be set by the user or the ai-auto-description extension.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $description;
 
     /**
      * Unique identifier of the asset.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $fileId;
 
     /**
      * Path of the file. This is the path you would use in the URL to access the file. For example, if the file is at the root of the media library, the path will be `/file.jpg`. If the file is inside a folder named `images`, the path will be `/images/file.jpg`.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $filePath;
 
     /**
      * Type of the file. Possible values are `image`, `non-image`.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $fileType;
 
     /**
      * Specifies if the image has an alpha channel.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $hasAlpha;
 
     /**
      * Height of the file.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?float $height;
 
     /**
      * Specifies if the file is private or not.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $isPrivateFile;
 
     /**
      * Specifies if the file is published or not.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $isPublished;
 
     /**
      * MIME type of the file.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $mime;
 
     /**
      * Name of the asset.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $name;
 
     /**
@@ -149,13 +149,13 @@ final class FileUpdateResponse implements BaseModel
      *
      * @var array<string,SelectedFieldsSchema>|null $selectedFieldsSchema
      */
-    #[Api(map: SelectedFieldsSchema::class, optional: true)]
+    #[Optional(map: SelectedFieldsSchema::class)]
     public ?array $selectedFieldsSchema;
 
     /**
      * Size of the file in bytes.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?float $size;
 
     /**
@@ -163,13 +163,13 @@ final class FileUpdateResponse implements BaseModel
      *
      * @var list<string>|null $tags
      */
-    #[Api(list: 'string', nullable: true, optional: true)]
+    #[Optional(list: 'string', nullable: true)]
     public ?array $tags;
 
     /**
      * URL of the thumbnail image. This URL is used to access the thumbnail image of the file in the media library.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $thumbnail;
 
     /**
@@ -177,34 +177,34 @@ final class FileUpdateResponse implements BaseModel
      *
      * @var value-of<Type>|null $type
      */
-    #[Api(enum: Type::class, optional: true)]
+    #[Optional(enum: Type::class)]
     public ?string $type;
 
     /**
      * Date and time when the file was last updated. The date and time is in ISO8601 format.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?\DateTimeInterface $updatedAt;
 
     /**
      * URL of the file.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $url;
 
     /**
      * An object with details of the file version.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?VersionInfo $versionInfo;
 
     /**
      * Width of the file.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?float $width;
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?ExtensionStatus $extensionStatus;
 
     public function __construct()

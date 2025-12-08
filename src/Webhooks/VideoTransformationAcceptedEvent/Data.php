@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\Webhooks\VideoTransformationAcceptedEvent;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\Webhooks\VideoTransformationAcceptedEvent\Data\Asset;
@@ -23,13 +23,13 @@ final class Data implements BaseModel
     /**
      * Information about the source video asset being transformed.
      */
-    #[Api]
+    #[Required]
     public Asset $asset;
 
     /**
      * Base information about a video transformation request.
      */
-    #[Api]
+    #[Required]
     public Transformation $transformation;
 
     /**

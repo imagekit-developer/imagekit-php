@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Imagekit\Cache\Invalidation;
 
 use Imagekit\Cache\Invalidation\InvalidationGetResponse\Status;
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
@@ -24,7 +24,7 @@ final class InvalidationGetResponse implements BaseModel
      *
      * @var value-of<Status>|null $status
      */
-    #[Api(enum: Status::class, optional: true)]
+    #[Optional(enum: Status::class)]
     public ?string $status;
 
     public function __construct()

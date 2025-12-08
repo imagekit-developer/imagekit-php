@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\Files;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\Files\Folder\Type;
@@ -27,25 +27,25 @@ final class Folder implements BaseModel
     /**
      * Date and time when the folder was created. The date and time is in ISO8601 format.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?\DateTimeInterface $createdAt;
 
     /**
      * Unique identifier of the asset.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $folderId;
 
     /**
      * Path of the folder. This is the path you would use in the URL to access the folder. For example, if the folder is at the root of the media library, the path will be /folder. If the folder is inside another folder named images, the path will be /images/folder.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $folderPath;
 
     /**
      * Name of the asset.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $name;
 
     /**
@@ -53,13 +53,13 @@ final class Folder implements BaseModel
      *
      * @var value-of<Type>|null $type
      */
-    #[Api(enum: Type::class, optional: true)]
+    #[Optional(enum: Type::class)]
     public ?string $type;
 
     /**
      * Date and time when the folder was last updated. The date and time is in ISO8601 format.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?\DateTimeInterface $updatedAt;
 
     public function __construct()

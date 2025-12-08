@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\CustomMetadataFields;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Concerns\SdkParams;
 use Imagekit\Core\Contracts\BaseModel;
@@ -37,13 +37,13 @@ final class CustomMetadataFieldUpdateParams implements BaseModel
     /**
      * Human readable name of the custom metadata field. This should be unique across all non deleted custom metadata fields. This name is displayed as form field label to the users while setting field value on an asset in the media library UI. This parameter is required if `schema` is not provided.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $label;
 
     /**
      * An object that describes the rules for the custom metadata key. This parameter is required if `label` is not provided. Note: `type` cannot be updated and will be ignored if sent with the `schema`. The schema will be validated as per the existing `type`.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?Schema $schema;
 
     public function __construct()

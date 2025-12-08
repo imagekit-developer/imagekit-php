@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\Folders;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Concerns\SdkParams;
 use Imagekit\Core\Contracts\BaseModel;
@@ -29,7 +29,7 @@ final class FolderCreateParams implements BaseModel
      *
      * All characters except alphabets and numbers (inclusive of unicode letters, marks, and numerals in other languages) will be replaced by an underscore i.e. `_`.
      */
-    #[Api]
+    #[Required]
     public string $folderName;
 
     /**
@@ -37,7 +37,7 @@ final class FolderCreateParams implements BaseModel
      *
      * Note: If any folder(s) is not present in the parentFolderPath parameter, it will be automatically created. For example, if you pass `/product/images/summer`, then `product`, `images`, and `summer` folders will be created if they don't already exist.
      */
-    #[Api]
+    #[Required]
     public string $parentFolderPath;
 
     /**

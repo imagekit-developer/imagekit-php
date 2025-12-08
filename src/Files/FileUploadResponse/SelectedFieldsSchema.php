@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Imagekit\Files\FileUploadResponse;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\Files\FileUploadResponse\SelectedFieldsSchema\DefaultValue;
@@ -35,7 +36,7 @@ final class SelectedFieldsSchema implements BaseModel
      *
      * @var value-of<Type> $type
      */
-    #[Api(enum: Type::class)]
+    #[Required(enum: Type::class)]
     public string $type;
 
     /**
@@ -43,43 +44,43 @@ final class SelectedFieldsSchema implements BaseModel
      *
      * @var string|float|bool|list<string|float|bool>|null $defaultValue
      */
-    #[Api(union: DefaultValue::class, optional: true)]
+    #[Optional(union: DefaultValue::class)]
     public string|float|bool|array|null $defaultValue;
 
     /**
      * Specifies if the custom metadata field is required or not.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $isValueRequired;
 
     /**
      * Maximum length of string. Only set if `type` is set to `Text` or `Textarea`.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?float $maxLength;
 
     /**
      * Maximum value of the field. Only set if field type is `Date` or `Number`. For `Date` type field, the value will be in ISO8601 string format. For `Number` type field, it will be a numeric value.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public string|float|null $maxValue;
 
     /**
      * Minimum length of string. Only set if `type` is set to `Text` or `Textarea`.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?float $minLength;
 
     /**
      * Minimum value of the field. Only set if field type is `Date` or `Number`. For `Date` type field, the value will be in ISO8601 string format. For `Number` type field, it will be a numeric value.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public string|float|null $minValue;
 
     /**
      * Indicates whether the custom metadata field is read only. A read only field cannot be modified after being set. This field is configurable only via the **Path policy** feature.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $readOnly;
 
     /**
@@ -87,13 +88,13 @@ final class SelectedFieldsSchema implements BaseModel
      *
      * @var list<string|float|bool>|null $selectOptions
      */
-    #[Api(list: SelectOption::class, optional: true)]
+    #[Optional(list: SelectOption::class)]
     public ?array $selectOptions;
 
     /**
      * Specifies if the selectOptions array is truncated. It is truncated when number of options are > 100.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $selectOptionsTruncated;
 
     /**

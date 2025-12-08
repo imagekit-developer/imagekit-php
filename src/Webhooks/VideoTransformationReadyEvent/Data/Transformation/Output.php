@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Imagekit\Webhooks\VideoTransformationReadyEvent\Data\Transformation;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Output\VideoMetadata;
@@ -24,13 +25,13 @@ final class Output implements BaseModel
     /**
      * URL to access the transformed video.
      */
-    #[Api]
+    #[Required]
     public string $url;
 
     /**
      * Metadata of the output video file.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?VideoMetadata $video_metadata;
 
     /**

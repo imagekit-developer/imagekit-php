@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Imagekit\Folders;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Concerns\SdkParams;
 use Imagekit\Core\Contracts\BaseModel;
@@ -27,7 +28,7 @@ final class FolderRenameParams implements BaseModel
     /**
      * The full path to the folder you want to rename.
      */
-    #[Api]
+    #[Required]
     public string $folderPath;
 
     /**
@@ -35,7 +36,7 @@ final class FolderRenameParams implements BaseModel
      *
      * All characters except alphabets and numbers (inclusive of unicode letters, marks, and numerals in other languages) and `-` will be replaced by an underscore i.e. `_`.
      */
-    #[Api]
+    #[Required]
     public string $newFolderName;
 
     /**
@@ -47,7 +48,7 @@ final class FolderRenameParams implements BaseModel
      *
      * Default value - `false`
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $purgeCache;
 
     /**

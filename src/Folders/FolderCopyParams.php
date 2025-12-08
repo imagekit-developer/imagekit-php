@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Imagekit\Folders;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Concerns\SdkParams;
 use Imagekit\Core\Contracts\BaseModel;
@@ -27,19 +28,19 @@ final class FolderCopyParams implements BaseModel
     /**
      * Full path to the destination folder where you want to copy the source folder into.
      */
-    #[Api]
+    #[Required]
     public string $destinationPath;
 
     /**
      * The full path to the source folder you want to copy.
      */
-    #[Api]
+    #[Required]
     public string $sourceFolderPath;
 
     /**
      * Option to copy all versions of files that are nested inside the selected folder. By default, only the current version of each file will be copied. When set to true, all versions of each file will be copied. Default value - `false`.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $includeVersions;
 
     /**

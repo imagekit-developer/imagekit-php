@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Imagekit\ExtensionItem;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\ExtensionItem\RemoveBg\Options;
@@ -22,10 +23,10 @@ final class RemoveBg implements BaseModel
      *
      * @var 'remove-bg' $name
      */
-    #[Api]
+    #[Required]
     public string $name = 'remove-bg';
 
-    #[Api(optional: true)]
+    #[Optional]
     public ?Options $options;
 
     public function __construct()

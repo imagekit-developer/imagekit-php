@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\Webhooks\UploadPostTransformErrorEvent\Data;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\Webhooks\UploadPostTransformErrorEvent\Data\Transformation\Error;
@@ -17,7 +17,7 @@ final class Transformation implements BaseModel
     /** @use SdkModel<TransformationShape> */
     use SdkModel;
 
-    #[Api]
+    #[Required]
     public Error $error;
 
     /**

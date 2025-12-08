@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Imagekit\Beta\V2\Files\FileUploadParams\Transformation\Post;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
@@ -21,14 +22,14 @@ final class Thumbnail implements BaseModel
      *
      * @var 'thumbnail' $type
      */
-    #[Api]
+    #[Required]
     public string $type = 'thumbnail';
 
     /**
      * Optional transformation string.
      * **Example**: `w-150,h-150`.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $value;
 
     public function __construct()

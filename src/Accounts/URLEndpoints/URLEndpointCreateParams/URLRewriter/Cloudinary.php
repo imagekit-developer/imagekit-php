@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Imagekit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
+use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
@@ -19,13 +20,13 @@ final class Cloudinary implements BaseModel
     use SdkModel;
 
     /** @var 'CLOUDINARY' $type */
-    #[Api]
+    #[Required]
     public string $type = 'CLOUDINARY';
 
     /**
      * Whether to preserve `<asset_type>/<delivery_type>` in the rewritten URL.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $preserveAssetDeliveryTypes;
 
     public function __construct()

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\Webhooks\UploadPreTransformSuccessEvent;
 
-use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\Files\Metadata;
@@ -60,25 +60,25 @@ final class Data implements BaseModel
      *
      * @var list<AITag>|null $AITags
      */
-    #[Api(list: AITag::class, nullable: true, optional: true)]
+    #[Optional(list: AITag::class, nullable: true)]
     public ?array $AITags;
 
     /**
      * The audio codec used in the video (only for video).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $audioCodec;
 
     /**
      * The bit rate of the video in kbps (only for video).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $bitRate;
 
     /**
      * Value of custom coordinates associated with the image in the format `x,y,width,height`. If `customCoordinates` are not defined, then it is `null`. Send `customCoordinates` in `responseFields` in API request to get the value of this field.
      */
-    #[Api(nullable: true, optional: true)]
+    #[Optional(nullable: true)]
     public ?string $customCoordinates;
 
     /**
@@ -86,19 +86,19 @@ final class Data implements BaseModel
      *
      * @var array<string,mixed>|null $customMetadata
      */
-    #[Api(map: 'mixed', optional: true)]
+    #[Optional(map: 'mixed')]
     public ?array $customMetadata;
 
     /**
      * Optional text to describe the contents of the file. Can be set by the user or the ai-auto-description extension.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $description;
 
     /**
      * The duration of the video in seconds (only for video).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?int $duration;
 
     /**
@@ -106,7 +106,7 @@ final class Data implements BaseModel
      *
      * @var array<string,mixed>|null $embeddedMetadata
      */
-    #[Api(map: 'mixed', optional: true)]
+    #[Optional(map: 'mixed')]
     public ?array $embeddedMetadata;
 
     /**
@@ -118,55 +118,55 @@ final class Data implements BaseModel
      *
      * If no extension was requested, then this parameter is not returned.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?ExtensionStatus $extensionStatus;
 
     /**
      * Unique fileId. Store this fileld in your database, as this will be used to perform update action on this file.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $fileId;
 
     /**
      * The relative path of the file in the media library e.g. `/marketing-assets/new-banner.jpg`.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $filePath;
 
     /**
      * Type of the uploaded file. Possible values are `image`, `non-image`.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $fileType;
 
     /**
      * Height of the image in pixels (Only for images).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?float $height;
 
     /**
      * Is the file marked as private. It can be either `true` or `false`. Send `isPrivateFile` in `responseFields` in API request to get the value of this field.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $isPrivateFile;
 
     /**
      * Is the file published or in draft state. It can be either `true` or `false`. Send `isPublished` in `responseFields` in API request to get the value of this field.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?bool $isPublished;
 
     /**
      * Legacy metadata. Send `metadata` in `responseFields` in API request to get metadata in the upload API response.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?Metadata $metadata;
 
     /**
      * Name of the asset.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $name;
 
     /**
@@ -178,13 +178,13 @@ final class Data implements BaseModel
      *
      * @var array<string,SelectedFieldsSchema>|null $selectedFieldsSchema
      */
-    #[Api(map: SelectedFieldsSchema::class, optional: true)]
+    #[Optional(map: SelectedFieldsSchema::class)]
     public ?array $selectedFieldsSchema;
 
     /**
      * Size of the image file in Bytes.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?float $size;
 
     /**
@@ -192,37 +192,37 @@ final class Data implements BaseModel
      *
      * @var list<string>|null $tags
      */
-    #[Api(list: 'string', nullable: true, optional: true)]
+    #[Optional(list: 'string', nullable: true)]
     public ?array $tags;
 
     /**
      * In the case of an image, a small thumbnail URL.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $thumbnailUrl;
 
     /**
      * A publicly accessible URL of the file.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $url;
 
     /**
      * An object containing the file or file version's `id` (versionId) and `name`.
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?VersionInfo $versionInfo;
 
     /**
      * The video codec used in the video (only for video).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?string $videoCodec;
 
     /**
      * Width of the image in pixels (Only for Images).
      */
-    #[Api(optional: true)]
+    #[Optional]
     public ?float $width;
 
     public function __construct()

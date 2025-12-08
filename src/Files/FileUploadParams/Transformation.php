@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files\FileUploadParams;
+namespace Imagekit\Files\FileUploadParams;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Files\FileUploadParams\Transformation\Post;
-use ImageKit\Files\FileUploadParams\Transformation\Post\Abs;
-use ImageKit\Files\FileUploadParams\Transformation\Post\Abs\Protocol;
-use ImageKit\Files\FileUploadParams\Transformation\Post\GifToVideo;
-use ImageKit\Files\FileUploadParams\Transformation\Post\Thumbnail;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\Files\FileUploadParams\Transformation\Post;
+use Imagekit\Files\FileUploadParams\Transformation\Post\Abs;
+use Imagekit\Files\FileUploadParams\Transformation\Post\Abs\Protocol;
+use Imagekit\Files\FileUploadParams\Transformation\Post\GifToVideo;
+use Imagekit\Files\FileUploadParams\Transformation\Post\Thumbnail;
 
 /**
  * Configure pre-processing (`pre`) and post-processing (`post`) transformations.
@@ -25,7 +25,7 @@ use ImageKit\Files\FileUploadParams\Transformation\Post\Thumbnail;
  * You can mix and match any combination of post-processing types.
  *
  * @phpstan-type TransformationShape = array{
- *   post?: list<\ImageKit\Files\FileUploadParams\Transformation\Post\Transformation|GifToVideo|Thumbnail|Abs>|null,
+ *   post?: list<\Imagekit\Files\FileUploadParams\Transformation\Post\Transformation|GifToVideo|Thumbnail|Abs>|null,
  *   pre?: string|null,
  * }
  */

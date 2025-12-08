@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation;
+namespace Imagekit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation;
 
 /**
  * Type of video transformation:

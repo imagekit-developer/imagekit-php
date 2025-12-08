@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files;
+namespace Imagekit\Files;
 
-use ImageKit\Core\Concerns\SdkUnion;
-use ImageKit\Core\Conversion\Contracts\Converter;
-use ImageKit\Core\Conversion\Contracts\ConverterSource;
-use ImageKit\Files\UpdateFileRequest\ChangePublicationStatus;
-use ImageKit\Files\UpdateFileRequest\UpdateFileDetails;
+use Imagekit\Core\Concerns\SdkUnion;
+use Imagekit\Core\Conversion\Contracts\Converter;
+use Imagekit\Core\Conversion\Contracts\ConverterSource;
+use Imagekit\Files\UpdateFileRequest\ChangePublicationStatus;
+use Imagekit\Files\UpdateFileRequest\UpdateFileDetails;
 
 /**
  * Schema for update file update request.

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files\UpdateFileRequest\ChangePublicationStatus;
+namespace Imagekit\Files\UpdateFileRequest\ChangePublicationStatus;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Contracts\BaseModel;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Contracts\BaseModel;
 
 /**
  * Configure the publication status of a file and its versions.

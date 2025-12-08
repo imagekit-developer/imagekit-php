@@ -1,9 +1,9 @@
 <?php
 
-namespace ImageKit\Core\Exceptions;
+namespace Imagekit\Core\Exceptions;
 
 class ConflictException extends APIStatusException
 {
     /** @var string */
-    protected const DESC = 'ImageKit Conflict Exception';
+    protected const DESC = 'Imagekit Conflict Exception';
 }

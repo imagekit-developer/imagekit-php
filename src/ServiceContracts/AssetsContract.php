@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\ServiceContracts;
+namespace Imagekit\ServiceContracts;
 
-use ImageKit\Assets\AssetListParams;
-use ImageKit\Core\Exceptions\APIException;
-use ImageKit\Files\File;
-use ImageKit\Files\Folder;
-use ImageKit\RequestOptions;
+use Imagekit\Assets\AssetListParams;
+use Imagekit\Core\Exceptions\APIException;
+use Imagekit\Files\File;
+use Imagekit\Files\Folder;
+use Imagekit\RequestOptions;
 
 interface AssetsContract
 {

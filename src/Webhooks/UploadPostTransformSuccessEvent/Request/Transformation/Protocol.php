@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Webhooks\UploadPostTransformSuccessEvent\Request\Transformation;
+namespace Imagekit\Webhooks\UploadPostTransformSuccessEvent\Request\Transformation;
 
 /**
  * Only applicable if transformation type is 'abs'. Streaming protocol used.

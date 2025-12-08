@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace ImageKit;
+namespace Imagekit;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\SubtitleOverlayTransformation\Typography;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\SubtitleOverlayTransformation\Typography;
 
 /**
  * Subtitle styling options. [Learn more](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer) from the docs.

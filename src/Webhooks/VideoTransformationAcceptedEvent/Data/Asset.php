@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data;
+namespace Imagekit\Webhooks\VideoTransformationAcceptedEvent\Data;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Contracts\BaseModel;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Contracts\BaseModel;
 
 /**
  * Information about the source video asset being transformed.

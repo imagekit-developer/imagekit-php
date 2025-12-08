@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Accounts\Origins;
+namespace Imagekit\Accounts\Origins;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Concerns\SdkParams;
-use ImageKit\Core\Contracts\BaseModel;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Concerns\SdkParams;
+use Imagekit\Core\Contracts\BaseModel;
 
 /**
  * **Note:** This API is currently in beta.
  * Updates the origin identified by `id` and returns the updated origin object.
  *
- * @see ImageKit\Services\Accounts\OriginsService::update()
+ * @see Imagekit\Services\Accounts\OriginsService::update()
  *
  * @phpstan-type OriginUpdateParamsShape = array{
  *   accessKey: string,

@@ -1,9 +1,9 @@
 <?php
 
-namespace ImageKit\Core\Exceptions;
+namespace Imagekit\Core\Exceptions;
 
 class UnprocessableEntityException extends APIStatusException
 {
     /** @var string */
-    protected const DESC = 'ImageKit Unprocessable Entity Exception';
+    protected const DESC = 'Imagekit Unprocessable Entity Exception';
 }

@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Core;
+namespace Imagekit\Core;
 
-use ImageKit\Core\Contracts\BasePage;
-use ImageKit\Core\Contracts\BaseStream;
-use ImageKit\Core\Conversion\Contracts\Converter;
-use ImageKit\Core\Conversion\Contracts\ConverterSource;
-use ImageKit\Core\Exceptions\APIConnectionException;
-use ImageKit\Core\Exceptions\APIStatusException;
-use ImageKit\RequestOptions;
+use Imagekit\Core\Contracts\BasePage;
+use Imagekit\Core\Contracts\BaseStream;
+use Imagekit\Core\Conversion\Contracts\Converter;
+use Imagekit\Core\Conversion\Contracts\ConverterSource;
+use Imagekit\Core\Exceptions\APIConnectionException;
+use Imagekit\Core\Exceptions\APIStatusException;
+use Imagekit\RequestOptions;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;

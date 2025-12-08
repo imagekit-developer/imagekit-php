@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\ServiceContracts\Files;
+namespace Imagekit\ServiceContracts\Files;
 
-use ImageKit\Core\Exceptions\APIException;
-use ImageKit\Files\File;
-use ImageKit\Files\Versions\VersionDeleteParams;
-use ImageKit\Files\Versions\VersionDeleteResponse;
-use ImageKit\Files\Versions\VersionGetParams;
-use ImageKit\Files\Versions\VersionRestoreParams;
-use ImageKit\RequestOptions;
+use Imagekit\Core\Exceptions\APIException;
+use Imagekit\Files\File;
+use Imagekit\Files\Versions\VersionDeleteParams;
+use Imagekit\Files\Versions\VersionDeleteResponse;
+use Imagekit\Files\Versions\VersionGetParams;
+use Imagekit\Files\Versions\VersionRestoreParams;
+use Imagekit\RequestOptions;
 
 interface VersionsContract
 {

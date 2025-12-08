@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files\FileUpdateResponse;
+namespace Imagekit\Files\FileUpdateResponse;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Files\FileUpdateResponse\ExtensionStatus\AIAutoDescription;
-use ImageKit\Files\FileUpdateResponse\ExtensionStatus\AwsAutoTagging;
-use ImageKit\Files\FileUpdateResponse\ExtensionStatus\GoogleAutoTagging;
-use ImageKit\Files\FileUpdateResponse\ExtensionStatus\RemoveBg;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\Files\FileUpdateResponse\ExtensionStatus\AIAutoDescription;
+use Imagekit\Files\FileUpdateResponse\ExtensionStatus\AwsAutoTagging;
+use Imagekit\Files\FileUpdateResponse\ExtensionStatus\GoogleAutoTagging;
+use Imagekit\Files\FileUpdateResponse\ExtensionStatus\RemoveBg;
 
 /**
  * @phpstan-type ExtensionStatusShape = array{

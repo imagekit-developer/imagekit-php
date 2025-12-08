@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Core\Concerns;
+namespace Imagekit\Core\Concerns;
 
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Core\Conversion;
-use ImageKit\Core\Conversion\CoerceState;
-use ImageKit\Core\Conversion\Contracts\Converter;
-use ImageKit\Core\Conversion\ModelOf;
-use ImageKit\Core\Util;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\Core\Conversion;
+use Imagekit\Core\Conversion\CoerceState;
+use Imagekit\Core\Conversion\Contracts\Converter;
+use Imagekit\Core\Conversion\ModelOf;
+use Imagekit\Core\Util;
 
 /**
  * @internal

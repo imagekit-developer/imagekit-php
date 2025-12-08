@@ -39,7 +39,7 @@ Parameters with a default value must be set by name.
 ```php
 <?php
 
-use ImageKit\Client;
+use Imagekit\Client;
 
 $client = new Client(
   privateKey: getenv('IMAGEKIT_PRIVATE_KEY') ?: 'My Private Key',
@@ -63,12 +63,12 @@ However, builders are also provided `(new Dog)->withName("Joey")`.
 
 ### Handling errors
 
-When the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `ImageKit\Core\Exceptions\APIException` will be thrown:
+When the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `Imagekit\Core\Exceptions\APIException` will be thrown:
 
 ```php
 <?php
 
-use ImageKit\Core\Exceptions\APIConnectionException;
+use Imagekit\Core\Exceptions\APIConnectionException;
 
 try {
   $response = $client->files->upload([
@@ -113,8 +113,8 @@ You can use the `maxRetries` option to configure or disable this:
 ```php
 <?php
 
-use ImageKit\Client;
-use ImageKit\RequestOptions;
+use Imagekit\Client;
+use Imagekit\RequestOptions;
 
 // Configure the default for all requests:
 $client = new Client(maxRetries: 0);
@@ -142,7 +142,7 @@ Note: the `extra*` parameters of the same name overrides the documented paramete
 ```php
 <?php
 
-use ImageKit\RequestOptions;
+use Imagekit\RequestOptions;
 
 $response = $client->files->upload(
   [

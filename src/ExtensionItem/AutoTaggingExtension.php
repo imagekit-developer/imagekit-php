@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\ExtensionItem;
+namespace Imagekit\ExtensionItem;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\ExtensionItem\AutoTaggingExtension\Name;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\ExtensionItem\AutoTaggingExtension\Name;
 
 /**
  * @phpstan-type AutoTaggingExtensionShape = array{

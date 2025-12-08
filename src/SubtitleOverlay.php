@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace ImageKit;
+namespace Imagekit;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\OverlayPosition\Focus;
-use ImageKit\SubtitleOverlay\Encoding;
-use ImageKit\SubtitleOverlayTransformation\Typography;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\OverlayPosition\Focus;
+use Imagekit\SubtitleOverlay\Encoding;
+use Imagekit\SubtitleOverlayTransformation\Typography;
 
 /**
  * @phpstan-type SubtitleOverlayShape = array{

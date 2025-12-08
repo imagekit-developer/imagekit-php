@@ -2,8 +2,8 @@
 
 namespace Tests\Services\Files;
 
-use ImageKit\Client;
-use ImageKit\Files\Metadata;
+use Imagekit\Client;
+use Imagekit\Files\Metadata;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;

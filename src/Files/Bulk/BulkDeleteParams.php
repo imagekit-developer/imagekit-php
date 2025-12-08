@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files\Bulk;
+namespace Imagekit\Files\Bulk;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Concerns\SdkParams;
-use ImageKit\Core\Contracts\BaseModel;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Concerns\SdkParams;
+use Imagekit\Core\Contracts\BaseModel;
 
 /**
  * This API deletes multiple files and all their file versions permanently.
@@ -16,7 +16,7 @@ use ImageKit\Core\Contracts\BaseModel;
  *
  * A maximum of 100 files can be deleted at a time.
  *
- * @see ImageKit\Services\Files\BulkService::delete()
+ * @see Imagekit\Services\Files\BulkService::delete()
  *
  * @phpstan-type BulkDeleteParamsShape = array{fileIds: list<string>}
  */

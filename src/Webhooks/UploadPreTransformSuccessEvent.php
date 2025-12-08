@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Webhooks;
+namespace Imagekit\Webhooks;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Files\Metadata;
-use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data;
-use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\AITag;
-use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\ExtensionStatus;
-use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema;
-use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\VersionInfo;
-use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Request;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\Files\Metadata;
+use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data;
+use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\AITag;
+use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\ExtensionStatus;
+use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema;
+use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\VersionInfo;
+use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Request;
 
 /**
  * Triggered when a pre-transformation completes successfully. The file has been processed with the requested transformation and is now available in the Media Library.

@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files;
+namespace Imagekit\Files;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Concerns\SdkParams;
-use ImageKit\Core\Contracts\BaseModel;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Concerns\SdkParams;
+use Imagekit\Core\Contracts\BaseModel;
 
 /**
  * This will move a file and all its versions from one folder to another.
  *
  * Note: If any file at the destination has the same name as the source file, then the source file and its versions will be appended to the destination file.
  *
- * @see ImageKit\Services\FilesService::move()
+ * @see Imagekit\Services\FilesService::move()
  *
  * @phpstan-type FileMoveParamsShape = array{
  *   destinationPath: string, sourceFilePath: string

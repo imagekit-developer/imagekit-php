@@ -1,9 +1,9 @@
 <?php
 
-namespace ImageKit\Core\Exceptions;
+namespace Imagekit\Core\Exceptions;
 
 class PermissionDeniedException extends APIStatusException
 {
     /** @var string */
-    protected const DESC = 'ImageKit Permission Denied Exception';
+    protected const DESC = 'Imagekit Permission Denied Exception';
 }

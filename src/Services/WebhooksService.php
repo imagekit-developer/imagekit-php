@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Services;
+namespace Imagekit\Services;
 
-use ImageKit\Client;
-use ImageKit\ServiceContracts\WebhooksContract;
+use Imagekit\Client;
+use Imagekit\ServiceContracts\WebhooksContract;
 
 final class WebhooksService implements WebhooksContract
 {

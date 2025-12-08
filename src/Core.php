@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Core;
+namespace Imagekit\Core;
 
-use ImageKit\Core\Implementation\Omit;
+use Imagekit\Core\Implementation\Omit;
 
 const OMIT = Omit::omit;

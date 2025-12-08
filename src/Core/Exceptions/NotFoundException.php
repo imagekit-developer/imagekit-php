@@ -1,9 +1,9 @@
 <?php
 
-namespace ImageKit\Core\Exceptions;
+namespace Imagekit\Core\Exceptions;
 
 class NotFoundException extends APIStatusException
 {
     /** @var string */
-    protected const DESC = 'ImageKit Not Found Exception';
+    protected const DESC = 'Imagekit Not Found Exception';
 }

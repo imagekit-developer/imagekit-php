@@ -2,9 +2,9 @@
 
 namespace Tests\Services\Files;
 
-use ImageKit\Client;
-use ImageKit\Files\File;
-use ImageKit\Files\Versions\VersionDeleteResponse;
+use Imagekit\Client;
+use Imagekit\Files\File;
+use Imagekit\Files\Versions\VersionDeleteResponse;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;

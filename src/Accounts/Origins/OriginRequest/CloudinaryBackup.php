@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Accounts\Origins\OriginRequest;
+namespace Imagekit\Accounts\Origins\OriginRequest;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Contracts\BaseModel;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Contracts\BaseModel;
 
 /**
  * @phpstan-type CloudinaryBackupShape = array{

@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\ServiceContracts\Files;
+namespace Imagekit\ServiceContracts\Files;
 
-use ImageKit\Core\Exceptions\APIException;
-use ImageKit\Files\Bulk\BulkAddTagsParams;
-use ImageKit\Files\Bulk\BulkAddTagsResponse;
-use ImageKit\Files\Bulk\BulkDeleteParams;
-use ImageKit\Files\Bulk\BulkDeleteResponse;
-use ImageKit\Files\Bulk\BulkRemoveAITagsParams;
-use ImageKit\Files\Bulk\BulkRemoveAITagsResponse;
-use ImageKit\Files\Bulk\BulkRemoveTagsParams;
-use ImageKit\Files\Bulk\BulkRemoveTagsResponse;
-use ImageKit\RequestOptions;
+use Imagekit\Core\Exceptions\APIException;
+use Imagekit\Files\Bulk\BulkAddTagsParams;
+use Imagekit\Files\Bulk\BulkAddTagsResponse;
+use Imagekit\Files\Bulk\BulkDeleteParams;
+use Imagekit\Files\Bulk\BulkDeleteResponse;
+use Imagekit\Files\Bulk\BulkRemoveAITagsParams;
+use Imagekit\Files\Bulk\BulkRemoveAITagsResponse;
+use Imagekit\Files\Bulk\BulkRemoveTagsParams;
+use Imagekit\Files\Bulk\BulkRemoveTagsResponse;
+use Imagekit\RequestOptions;
 
 interface BulkContract
 {

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Services;
+namespace Imagekit\Services;
 
-use ImageKit\Client;
-use ImageKit\ServiceContracts\CacheContract;
-use ImageKit\Services\Cache\InvalidationService;
+use Imagekit\Client;
+use Imagekit\ServiceContracts\CacheContract;
+use Imagekit\Services\Cache\InvalidationService;
 
 final class CacheService implements CacheContract
 {

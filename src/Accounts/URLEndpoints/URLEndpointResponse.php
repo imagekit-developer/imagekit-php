@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Accounts\URLEndpoints;
+namespace Imagekit\Accounts\URLEndpoints;
 
-use ImageKit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriter;
-use ImageKit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriter\Akamai;
-use ImageKit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriter\Cloudinary;
-use ImageKit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriter\Imgix;
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Concerns\SdkResponse;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Core\Conversion\Contracts\ResponseConverter;
+use Imagekit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriter;
+use Imagekit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriter\Akamai;
+use Imagekit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriter\Cloudinary;
+use Imagekit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriter\Imgix;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Concerns\SdkResponse;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
  * URL‑endpoint object as returned by the API.

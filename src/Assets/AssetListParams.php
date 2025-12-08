@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Assets;
+namespace Imagekit\Assets;
 
-use ImageKit\Assets\AssetListParams\FileType;
-use ImageKit\Assets\AssetListParams\Sort;
-use ImageKit\Assets\AssetListParams\Type;
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Concerns\SdkParams;
-use ImageKit\Core\Contracts\BaseModel;
+use Imagekit\Assets\AssetListParams\FileType;
+use Imagekit\Assets\AssetListParams\Sort;
+use Imagekit\Assets\AssetListParams\Type;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Concerns\SdkParams;
+use Imagekit\Core\Contracts\BaseModel;
 
 /**
  * This API can list all the uploaded files and folders in your ImageKit.io media library. In addition, you can fine-tune your query by specifying various filters by generating a query string in a Lucene-like syntax and provide this generated string as the value of the `searchQuery`.
  *
- * @see ImageKit\Services\AssetsService::list()
+ * @see Imagekit\Services\AssetsService::list()
  *
  * @phpstan-type AssetListParamsShape = array{
  *   fileType?: FileType|value-of<FileType>,

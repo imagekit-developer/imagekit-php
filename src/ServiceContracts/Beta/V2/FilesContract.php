@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\ServiceContracts\Beta\V2;
+namespace Imagekit\ServiceContracts\Beta\V2;
 
-use ImageKit\Beta\V2\Files\FileUploadParams;
-use ImageKit\Beta\V2\Files\FileUploadResponse;
-use ImageKit\Core\Exceptions\APIException;
-use ImageKit\RequestOptions;
+use Imagekit\Beta\V2\Files\FileUploadParams;
+use Imagekit\Beta\V2\Files\FileUploadResponse;
+use Imagekit\Core\Exceptions\APIException;
+use Imagekit\RequestOptions;
 
 interface FilesContract
 {

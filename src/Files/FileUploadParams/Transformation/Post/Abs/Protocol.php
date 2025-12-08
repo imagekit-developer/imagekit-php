@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files\FileUploadParams\Transformation\Post\Abs;
+namespace Imagekit\Files\FileUploadParams\Transformation\Post\Abs;
 
 /**
  * Streaming protocol to use (`hls` or `dash`).

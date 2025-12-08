@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Webhooks\UploadPreTransformErrorEvent;
+namespace Imagekit\Webhooks\UploadPreTransformErrorEvent;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Webhooks\UploadPreTransformErrorEvent\Data\Transformation;
-use ImageKit\Webhooks\UploadPreTransformErrorEvent\Data\Transformation\Error;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\Webhooks\UploadPreTransformErrorEvent\Data\Transformation;
+use Imagekit\Webhooks\UploadPreTransformErrorEvent\Data\Transformation\Error;
 
 /**
  * @phpstan-type DataShape = array{

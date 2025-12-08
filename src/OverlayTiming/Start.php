@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\OverlayTiming;
+namespace Imagekit\OverlayTiming;
 
-use ImageKit\Core\Concerns\SdkUnion;
-use ImageKit\Core\Conversion\Contracts\Converter;
-use ImageKit\Core\Conversion\Contracts\ConverterSource;
+use Imagekit\Core\Concerns\SdkUnion;
+use Imagekit\Core\Conversion\Contracts\Converter;
+use Imagekit\Core\Conversion\Contracts\ConverterSource;
 
 /**
  * Specifies the start time (in seconds) for when the overlay should appear on the base video.

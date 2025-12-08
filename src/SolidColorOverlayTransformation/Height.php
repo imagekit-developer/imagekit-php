@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\SolidColorOverlayTransformation;
+namespace Imagekit\SolidColorOverlayTransformation;
 
-use ImageKit\Core\Concerns\SdkUnion;
-use ImageKit\Core\Conversion\Contracts\Converter;
-use ImageKit\Core\Conversion\Contracts\ConverterSource;
+use Imagekit\Core\Concerns\SdkUnion;
+use Imagekit\Core\Conversion\Contracts\Converter;
+use Imagekit\Core\Conversion\Contracts\ConverterSource;
 
 /**
  * Controls the height of the solid color overlay. Accepts a numeric value or an arithmetic expression.

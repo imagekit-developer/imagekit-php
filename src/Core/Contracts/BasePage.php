@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Core\Contracts;
+namespace Imagekit\Core\Contracts;
 
-use ImageKit\Client;
-use ImageKit\Core\Conversion\Contracts\Converter;
-use ImageKit\Core\Conversion\Contracts\ConverterSource;
-use ImageKit\RequestOptions;
+use Imagekit\Client;
+use Imagekit\Core\Conversion\Contracts\Converter;
+use Imagekit\Core\Conversion\Contracts\ConverterSource;
+use Imagekit\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
 
 /**
  * @internal
  *
- * @phpstan-import-type normalized_request from \ImageKit\Core\BaseClient
+ * @phpstan-import-type normalized_request from \Imagekit\Core\BaseClient
  *
  * @template Item
  *

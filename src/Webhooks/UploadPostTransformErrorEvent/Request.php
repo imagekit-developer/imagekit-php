@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Webhooks\UploadPostTransformErrorEvent;
+namespace Imagekit\Webhooks\UploadPostTransformErrorEvent;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Webhooks\UploadPostTransformErrorEvent\Request\Transformation;
-use ImageKit\Webhooks\UploadPostTransformErrorEvent\Request\Transformation\Protocol;
-use ImageKit\Webhooks\UploadPostTransformErrorEvent\Request\Transformation\Type;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\Webhooks\UploadPostTransformErrorEvent\Request\Transformation;
+use Imagekit\Webhooks\UploadPostTransformErrorEvent\Request\Transformation\Protocol;
+use Imagekit\Webhooks\UploadPostTransformErrorEvent\Request\Transformation\Type;
 
 /**
  * @phpstan-type RequestShape = array{

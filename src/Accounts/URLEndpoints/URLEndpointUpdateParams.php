@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Accounts\URLEndpoints;
+namespace Imagekit\Accounts\URLEndpoints;
 
-use ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter;
-use ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\Akamai;
-use ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\Cloudinary;
-use ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\Imgix;
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Concerns\SdkParams;
-use ImageKit\Core\Contracts\BaseModel;
+use Imagekit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter;
+use Imagekit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\Akamai;
+use Imagekit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\Cloudinary;
+use Imagekit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\Imgix;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Concerns\SdkParams;
+use Imagekit\Core\Contracts\BaseModel;
 
 /**
  * **Note:** This API is currently in beta.
  * Updates the URL‑endpoint identified by `id` and returns the updated object.
  *
- * @see ImageKit\Services\Accounts\URLEndpointsService::update()
+ * @see Imagekit\Services\Accounts\URLEndpointsService::update()
  *
  * @phpstan-type URLEndpointUpdateParamsShape = array{
  *   description: string,

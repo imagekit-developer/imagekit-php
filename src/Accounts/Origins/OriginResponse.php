@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Accounts\Origins;
+namespace Imagekit\Accounts\Origins;
 
-use ImageKit\Accounts\Origins\OriginResponse\AkeneoPim;
-use ImageKit\Accounts\Origins\OriginResponse\AzureBlob;
-use ImageKit\Accounts\Origins\OriginResponse\CloudinaryBackup;
-use ImageKit\Accounts\Origins\OriginResponse\Gcs;
-use ImageKit\Accounts\Origins\OriginResponse\S3;
-use ImageKit\Accounts\Origins\OriginResponse\S3Compatible;
-use ImageKit\Accounts\Origins\OriginResponse\WebFolder;
-use ImageKit\Accounts\Origins\OriginResponse\WebProxy;
-use ImageKit\Core\Concerns\SdkUnion;
-use ImageKit\Core\Conversion\Contracts\Converter;
-use ImageKit\Core\Conversion\Contracts\ConverterSource;
+use Imagekit\Accounts\Origins\OriginResponse\AkeneoPim;
+use Imagekit\Accounts\Origins\OriginResponse\AzureBlob;
+use Imagekit\Accounts\Origins\OriginResponse\CloudinaryBackup;
+use Imagekit\Accounts\Origins\OriginResponse\Gcs;
+use Imagekit\Accounts\Origins\OriginResponse\S3;
+use Imagekit\Accounts\Origins\OriginResponse\S3Compatible;
+use Imagekit\Accounts\Origins\OriginResponse\WebFolder;
+use Imagekit\Accounts\Origins\OriginResponse\WebProxy;
+use Imagekit\Core\Concerns\SdkUnion;
+use Imagekit\Core\Conversion\Contracts\Converter;
+use Imagekit\Core\Conversion\Contracts\ConverterSource;
 
 /**
  * Origin object as returned by the API (sensitive fields removed).

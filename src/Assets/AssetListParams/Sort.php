@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Assets\AssetListParams;
+namespace Imagekit\Assets\AssetListParams;
 
 /**
  * Sort the results by one of the supported fields in ascending or descending order.

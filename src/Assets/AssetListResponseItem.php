@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Assets;
+namespace Imagekit\Assets;
 
-use ImageKit\Core\Concerns\SdkUnion;
-use ImageKit\Core\Conversion\Contracts\Converter;
-use ImageKit\Core\Conversion\Contracts\ConverterSource;
-use ImageKit\Files\File;
-use ImageKit\Files\Folder;
+use Imagekit\Core\Concerns\SdkUnion;
+use Imagekit\Core\Conversion\Contracts\Converter;
+use Imagekit\Core\Conversion\Contracts\ConverterSource;
+use Imagekit\Files\File;
+use Imagekit\Files\Folder;
 
 /**
  * Object containing details of a file or file version.

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data;
+namespace Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Contracts\BaseModel;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Contracts\BaseModel;
 
 /**
  * An object containing the file or file version's `id` (versionId) and `name`.

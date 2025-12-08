@@ -2,23 +2,23 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files;
+namespace Imagekit\Files;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Concerns\SdkParams;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\ExtensionItem;
-use ImageKit\ExtensionItem\AIAutoDescription;
-use ImageKit\ExtensionItem\AutoTaggingExtension;
-use ImageKit\ExtensionItem\AutoTaggingExtension\Name;
-use ImageKit\ExtensionItem\RemoveBg;
-use ImageKit\ExtensionItem\RemoveBg\Options;
-use ImageKit\Files\FileUploadParams\ResponseField;
-use ImageKit\Files\FileUploadParams\Transformation;
-use ImageKit\Files\FileUploadParams\Transformation\Post\Abs;
-use ImageKit\Files\FileUploadParams\Transformation\Post\GifToVideo;
-use ImageKit\Files\FileUploadParams\Transformation\Post\Thumbnail;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Concerns\SdkParams;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\ExtensionItem;
+use Imagekit\ExtensionItem\AIAutoDescription;
+use Imagekit\ExtensionItem\AutoTaggingExtension;
+use Imagekit\ExtensionItem\AutoTaggingExtension\Name;
+use Imagekit\ExtensionItem\RemoveBg;
+use Imagekit\ExtensionItem\RemoveBg\Options;
+use Imagekit\Files\FileUploadParams\ResponseField;
+use Imagekit\Files\FileUploadParams\Transformation;
+use Imagekit\Files\FileUploadParams\Transformation\Post\Abs;
+use Imagekit\Files\FileUploadParams\Transformation\Post\GifToVideo;
+use Imagekit\Files\FileUploadParams\Transformation\Post\Thumbnail;
 
 /**
  * ImageKit.io allows you to upload files directly from both the server and client sides. For server-side uploads, private API key authentication is used. For client-side uploads, generate a one-time `token`, `signature`, and `expire` from your secure backend using private API. [Learn more](/docs/api-reference/upload-file/upload-file#how-to-implement-client-side-file-upload) about how to implement client-side file upload.
@@ -36,7 +36,7 @@ use ImageKit\Files\FileUploadParams\Transformation\Post\Thumbnail;
  * - A full-fledged [upload widget using Uppy](https://github.com/imagekit-samples/uppy-uploader), supporting file selections from local storage, URL, Dropbox, Google Drive, Instagram, and more.
  * - [Quick start guides](/docs/quick-start-guides) for various frameworks and technologies.
  *
- * @see ImageKit\Services\FilesService::upload()
+ * @see Imagekit\Services\FilesService::upload()
  *
  * @phpstan-type FileUploadParamsShape = array{
  *   file: string,
@@ -64,7 +64,7 @@ use ImageKit\Files\FileUploadParams\Transformation\Post\Thumbnail;
  *   signature?: string,
  *   tags?: list<string>,
  *   transformation?: Transformation|array{
- *     post?: list<\ImageKit\Files\FileUploadParams\Transformation\Post\Transformation|GifToVideo|Thumbnail|Abs>|null,
+ *     post?: list<\Imagekit\Files\FileUploadParams\Transformation\Post\Transformation|GifToVideo|Thumbnail|Abs>|null,
  *     pre?: string|null,
  *   },
  *   useUniqueFileName?: bool,

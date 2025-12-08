@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation;
+namespace Imagekit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation\Options\AudioCodec;
-use ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation\Options\Format;
-use ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation\Options\StreamProtocol;
-use ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation\Options\VideoCodec;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation\Options\AudioCodec;
+use Imagekit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation\Options\Format;
+use Imagekit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation\Options\StreamProtocol;
+use Imagekit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation\Options\VideoCodec;
 
 /**
  * Configuration options for video transformations.

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Transformation;
+namespace Imagekit\Transformation;
 
 /**
  * Specifies the video codec, e.g., `h264`, `vp9`, `av1`, or `none`. See [Video codec](https://imagekit.io/docs/video-optimization#video-codec---vc).

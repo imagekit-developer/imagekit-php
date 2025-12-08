@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema;
+namespace Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema;
 
 /**
  * Type of the custom metadata field.

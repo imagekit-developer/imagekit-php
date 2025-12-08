@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Webhooks;
+namespace Imagekit\Webhooks;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Webhooks\UploadPostTransformSuccessEvent\Data;
-use ImageKit\Webhooks\UploadPostTransformSuccessEvent\Request;
-use ImageKit\Webhooks\UploadPostTransformSuccessEvent\Request\Transformation;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\Webhooks\UploadPostTransformSuccessEvent\Data;
+use Imagekit\Webhooks\UploadPostTransformSuccessEvent\Request;
+use Imagekit\Webhooks\UploadPostTransformSuccessEvent\Request\Transformation;
 
 /**
  * Triggered when a post-transformation completes successfully. The transformed version of the file is now ready and can be accessed via the provided URL. Note that each post-transformation generates a separate webhook event.

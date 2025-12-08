@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Core\Conversion;
+namespace Imagekit\Core\Conversion;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Core\Conversion;
-use ImageKit\Core\Conversion\Contracts\Converter;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\Core\Conversion;
+use Imagekit\Core\Conversion\Contracts\Converter;
 
 /**
  * @internal

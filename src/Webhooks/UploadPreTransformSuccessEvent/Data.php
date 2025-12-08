@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Webhooks\UploadPreTransformSuccessEvent;
+namespace Imagekit\Webhooks\UploadPreTransformSuccessEvent;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Files\Metadata;
-use ImageKit\Files\Metadata\Exif;
-use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\AITag;
-use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\ExtensionStatus;
-use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\ExtensionStatus\AIAutoDescription;
-use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\ExtensionStatus\AwsAutoTagging;
-use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\ExtensionStatus\GoogleAutoTagging;
-use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\ExtensionStatus\RemoveBg;
-use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema;
-use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema\Type;
-use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\VersionInfo;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\Files\Metadata;
+use Imagekit\Files\Metadata\Exif;
+use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\AITag;
+use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\ExtensionStatus;
+use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\ExtensionStatus\AIAutoDescription;
+use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\ExtensionStatus\AwsAutoTagging;
+use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\ExtensionStatus\GoogleAutoTagging;
+use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\ExtensionStatus\RemoveBg;
+use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema;
+use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema\Type;
+use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\VersionInfo;
 
 /**
  * Object containing details of a successful upload.

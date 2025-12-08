@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace ImageKit;
+namespace Imagekit;
 
-use ImageKit\Core\Concerns\SdkUnion;
-use ImageKit\Core\Conversion\Contracts\Converter;
-use ImageKit\Core\Conversion\Contracts\ConverterSource;
-use ImageKit\ExtensionItem\AIAutoDescription;
-use ImageKit\ExtensionItem\AutoTaggingExtension;
-use ImageKit\ExtensionItem\RemoveBg;
+use Imagekit\Core\Concerns\SdkUnion;
+use Imagekit\Core\Conversion\Contracts\Converter;
+use Imagekit\Core\Conversion\Contracts\ConverterSource;
+use Imagekit\ExtensionItem\AIAutoDescription;
+use Imagekit\ExtensionItem\AutoTaggingExtension;
+use Imagekit\ExtensionItem\RemoveBg;
 
 final class ExtensionItem implements ConverterSource
 {

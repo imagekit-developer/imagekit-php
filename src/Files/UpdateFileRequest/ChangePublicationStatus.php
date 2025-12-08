@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files\UpdateFileRequest;
+namespace Imagekit\Files\UpdateFileRequest;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Files\UpdateFileRequest\ChangePublicationStatus\Publish;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\Files\UpdateFileRequest\ChangePublicationStatus\Publish;
 
 /**
  * @phpstan-type ChangePublicationStatusShape = array{publish?: Publish|null}

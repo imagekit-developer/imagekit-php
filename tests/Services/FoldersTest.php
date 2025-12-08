@@ -2,12 +2,12 @@
 
 namespace Tests\Services;
 
-use ImageKit\Client;
-use ImageKit\Folders\FolderCopyResponse;
-use ImageKit\Folders\FolderDeleteResponse;
-use ImageKit\Folders\FolderMoveResponse;
-use ImageKit\Folders\FolderNewResponse;
-use ImageKit\Folders\FolderRenameResponse;
+use Imagekit\Client;
+use Imagekit\Folders\FolderCopyResponse;
+use Imagekit\Folders\FolderDeleteResponse;
+use Imagekit\Folders\FolderMoveResponse;
+use Imagekit\Folders\FolderNewResponse;
+use Imagekit\Folders\FolderRenameResponse;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;

@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Webhooks;
+namespace Imagekit\Webhooks;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Webhooks\VideoTransformationReadyEvent\Data;
-use ImageKit\Webhooks\VideoTransformationReadyEvent\Data\Asset;
-use ImageKit\Webhooks\VideoTransformationReadyEvent\Data\Transformation;
-use ImageKit\Webhooks\VideoTransformationReadyEvent\Request;
-use ImageKit\Webhooks\VideoTransformationReadyEvent\Timings;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\Webhooks\VideoTransformationReadyEvent\Data;
+use Imagekit\Webhooks\VideoTransformationReadyEvent\Data\Asset;
+use Imagekit\Webhooks\VideoTransformationReadyEvent\Data\Transformation;
+use Imagekit\Webhooks\VideoTransformationReadyEvent\Request;
+use Imagekit\Webhooks\VideoTransformationReadyEvent\Timings;
 
 /**
  * Triggered when video encoding is finished and the transformed resource is ready to be served. This is the key event to listen for - update your database or CMS flags when you receive this so your application can start showing the transformed video to users.

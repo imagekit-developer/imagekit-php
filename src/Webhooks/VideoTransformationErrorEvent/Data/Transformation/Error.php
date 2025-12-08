@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Webhooks\VideoTransformationErrorEvent\Data\Transformation;
+namespace Imagekit\Webhooks\VideoTransformationErrorEvent\Data\Transformation;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Error\Reason;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Error\Reason;
 
 /**
  * Details about the transformation error.

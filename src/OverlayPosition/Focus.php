@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\OverlayPosition;
+namespace Imagekit\OverlayPosition;
 
 /**
  * Specifies the position of the overlay relative to the parent image or video.

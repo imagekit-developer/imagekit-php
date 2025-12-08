@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation\Options;
+namespace Imagekit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation\Options;
 
 /**
  * Streaming protocol for adaptive bitrate streaming.

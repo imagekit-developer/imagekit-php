@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Transformation;
+namespace Imagekit\Transformation;
 
 /**
  * Crop modes for image resizing. See [Crop modes & focus](https://imagekit.io/docs/image-resize-and-crop#crop-crop-modes--focus).

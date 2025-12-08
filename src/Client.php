@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace ImageKit;
+namespace Imagekit;
 
 use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Discovery\Psr18ClientDiscovery;
-use ImageKit\Core\BaseClient;
-use ImageKit\Services\AccountsService;
-use ImageKit\Services\AssetsService;
-use ImageKit\Services\BetaService;
-use ImageKit\Services\CacheService;
-use ImageKit\Services\CustomMetadataFieldsService;
-use ImageKit\Services\FilesService;
-use ImageKit\Services\FoldersService;
-use ImageKit\Services\WebhooksService;
+use Imagekit\Core\BaseClient;
+use Imagekit\Services\AccountsService;
+use Imagekit\Services\AssetsService;
+use Imagekit\Services\BetaService;
+use Imagekit\Services\CacheService;
+use Imagekit\Services\CustomMetadataFieldsService;
+use Imagekit\Services\FilesService;
+use Imagekit\Services\FoldersService;
+use Imagekit\Services\WebhooksService;
 
 class Client extends BaseClient
 {

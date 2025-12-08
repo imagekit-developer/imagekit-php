@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Services\Cache;
+namespace Imagekit\Services\Cache;
 
-use ImageKit\Cache\Invalidation\InvalidationCreateParams;
-use ImageKit\Cache\Invalidation\InvalidationGetResponse;
-use ImageKit\Cache\Invalidation\InvalidationNewResponse;
-use ImageKit\Client;
-use ImageKit\Core\Exceptions\APIException;
-use ImageKit\RequestOptions;
-use ImageKit\ServiceContracts\Cache\InvalidationContract;
+use Imagekit\Cache\Invalidation\InvalidationCreateParams;
+use Imagekit\Cache\Invalidation\InvalidationGetResponse;
+use Imagekit\Cache\Invalidation\InvalidationNewResponse;
+use Imagekit\Client;
+use Imagekit\Core\Exceptions\APIException;
+use Imagekit\RequestOptions;
+use Imagekit\ServiceContracts\Cache\InvalidationContract;
 
 final class InvalidationService implements InvalidationContract
 {

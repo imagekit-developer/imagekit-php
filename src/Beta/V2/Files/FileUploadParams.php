@@ -2,23 +2,23 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Beta\V2\Files;
+namespace Imagekit\Beta\V2\Files;
 
-use ImageKit\Beta\V2\Files\FileUploadParams\ResponseField;
-use ImageKit\Beta\V2\Files\FileUploadParams\Transformation;
-use ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post\Abs;
-use ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post\GifToVideo;
-use ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post\Thumbnail;
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Concerns\SdkParams;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\ExtensionItem;
-use ImageKit\ExtensionItem\AIAutoDescription;
-use ImageKit\ExtensionItem\AutoTaggingExtension;
-use ImageKit\ExtensionItem\AutoTaggingExtension\Name;
-use ImageKit\ExtensionItem\RemoveBg;
-use ImageKit\ExtensionItem\RemoveBg\Options;
+use Imagekit\Beta\V2\Files\FileUploadParams\ResponseField;
+use Imagekit\Beta\V2\Files\FileUploadParams\Transformation;
+use Imagekit\Beta\V2\Files\FileUploadParams\Transformation\Post\Abs;
+use Imagekit\Beta\V2\Files\FileUploadParams\Transformation\Post\GifToVideo;
+use Imagekit\Beta\V2\Files\FileUploadParams\Transformation\Post\Thumbnail;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Concerns\SdkParams;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\ExtensionItem;
+use Imagekit\ExtensionItem\AIAutoDescription;
+use Imagekit\ExtensionItem\AutoTaggingExtension;
+use Imagekit\ExtensionItem\AutoTaggingExtension\Name;
+use Imagekit\ExtensionItem\RemoveBg;
+use Imagekit\ExtensionItem\RemoveBg\Options;
 
 /**
  * The V2 API enhances security by verifying the entire payload using JWT. This API is in beta.
@@ -36,7 +36,7 @@ use ImageKit\ExtensionItem\RemoveBg\Options;
  * - A full-fledged [upload widget using Uppy](https://github.com/imagekit-samples/uppy-uploader), supporting file selections from local storage, URL, Dropbox, Google Drive, Instagram, and more.
  * - [Quick start guides](/docs/quick-start-guides) for various frameworks and technologies.
  *
- * @see ImageKit\Services\Beta\V2\FilesService::upload()
+ * @see Imagekit\Services\Beta\V2\FilesService::upload()
  *
  * @phpstan-type FileUploadParamsShape = array{
  *   file: string,
@@ -61,7 +61,7 @@ use ImageKit\ExtensionItem\RemoveBg\Options;
  *   responseFields?: list<ResponseField|value-of<ResponseField>>,
  *   tags?: list<string>,
  *   transformation?: Transformation|array{
- *     post?: list<\ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post\Transformation|GifToVideo|Thumbnail|Abs>|null,
+ *     post?: list<\Imagekit\Beta\V2\Files\FileUploadParams\Transformation\Post\Transformation|GifToVideo|Thumbnail|Abs>|null,
  *     pre?: string|null,
  *   },
  *   useUniqueFileName?: bool,

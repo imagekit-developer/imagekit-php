@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\TextOverlay;
+namespace Imagekit\TextOverlay;
 
 /**
  * Text can be included in the layer as either `i-{input}` (plain text) or `ie-{base64_encoded_input}` (base64).

@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files\Metadata;
+namespace Imagekit\Files\Metadata;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Concerns\SdkParams;
-use ImageKit\Core\Contracts\BaseModel;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Concerns\SdkParams;
+use Imagekit\Core\Contracts\BaseModel;
 
 /**
  * Get image EXIF, pHash, and other metadata from ImageKit.io powered remote URL using this API.
  *
- * @see ImageKit\Services\Files\MetadataService::getFromURL()
+ * @see Imagekit\Services\Files\MetadataService::getFromURL()
  *
  * @phpstan-type MetadataGetFromURLParamsShape = array{url: string}
  */

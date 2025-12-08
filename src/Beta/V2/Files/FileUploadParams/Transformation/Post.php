@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Beta\V2\Files\FileUploadParams\Transformation;
+namespace Imagekit\Beta\V2\Files\FileUploadParams\Transformation;
 
-use ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post\Abs;
-use ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post\GifToVideo;
-use ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post\Thumbnail;
-use ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post\Transformation;
-use ImageKit\Core\Concerns\SdkUnion;
-use ImageKit\Core\Conversion\Contracts\Converter;
-use ImageKit\Core\Conversion\Contracts\ConverterSource;
+use Imagekit\Beta\V2\Files\FileUploadParams\Transformation\Post\Abs;
+use Imagekit\Beta\V2\Files\FileUploadParams\Transformation\Post\GifToVideo;
+use Imagekit\Beta\V2\Files\FileUploadParams\Transformation\Post\Thumbnail;
+use Imagekit\Beta\V2\Files\FileUploadParams\Transformation\Post\Transformation;
+use Imagekit\Core\Concerns\SdkUnion;
+use Imagekit\Core\Conversion\Contracts\Converter;
+use Imagekit\Core\Conversion\Contracts\ConverterSource;
 
 final class Post implements ConverterSource
 {

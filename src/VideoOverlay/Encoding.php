@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\VideoOverlay;
+namespace Imagekit\VideoOverlay;
 
 /**
  * The input path can be included in the layer as either `i-{input}` or `ie-{base64_encoded_input}`.

@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Folders;
+namespace Imagekit\Folders;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Concerns\SdkParams;
-use ImageKit\Core\Contracts\BaseModel;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Concerns\SdkParams;
+use Imagekit\Core\Contracts\BaseModel;
 
 /**
  * This will create a new folder. You can specify the folder name and location of the parent folder where this new folder should be created.
  *
- * @see ImageKit\Services\FoldersService::create()
+ * @see Imagekit\Services\FoldersService::create()
  *
  * @phpstan-type FolderCreateParamsShape = array{
  *   folderName: string, parentFolderPath: string

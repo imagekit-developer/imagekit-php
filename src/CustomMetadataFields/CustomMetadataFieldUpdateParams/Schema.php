@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams;
+namespace Imagekit\CustomMetadataFields\CustomMetadataFieldUpdateParams;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema\DefaultValue;
-use ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema\SelectOption;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema\DefaultValue;
+use Imagekit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema\SelectOption;
 
 /**
  * An object that describes the rules for the custom metadata key. This parameter is required if `label` is not provided. Note: `type` cannot be updated and will be ignored if sent with the `schema`. The schema will be validated as per the existing `type`.

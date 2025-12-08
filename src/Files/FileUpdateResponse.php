@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files;
+namespace Imagekit\Files;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Concerns\SdkResponse;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Core\Conversion\Contracts\ResponseConverter;
-use ImageKit\Files\File\AITag;
-use ImageKit\Files\File\SelectedFieldsSchema;
-use ImageKit\Files\File\Type;
-use ImageKit\Files\File\VersionInfo;
-use ImageKit\Files\FileUpdateResponse\ExtensionStatus;
-use ImageKit\Files\FileUpdateResponse\ExtensionStatus\AIAutoDescription;
-use ImageKit\Files\FileUpdateResponse\ExtensionStatus\AwsAutoTagging;
-use ImageKit\Files\FileUpdateResponse\ExtensionStatus\GoogleAutoTagging;
-use ImageKit\Files\FileUpdateResponse\ExtensionStatus\RemoveBg;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Concerns\SdkResponse;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\Core\Conversion\Contracts\ResponseConverter;
+use Imagekit\Files\File\AITag;
+use Imagekit\Files\File\SelectedFieldsSchema;
+use Imagekit\Files\File\Type;
+use Imagekit\Files\File\VersionInfo;
+use Imagekit\Files\FileUpdateResponse\ExtensionStatus;
+use Imagekit\Files\FileUpdateResponse\ExtensionStatus\AIAutoDescription;
+use Imagekit\Files\FileUpdateResponse\ExtensionStatus\AwsAutoTagging;
+use Imagekit\Files\FileUpdateResponse\ExtensionStatus\GoogleAutoTagging;
+use Imagekit\Files\FileUpdateResponse\ExtensionStatus\RemoveBg;
 
 /**
  * Object containing details of a file or file version.

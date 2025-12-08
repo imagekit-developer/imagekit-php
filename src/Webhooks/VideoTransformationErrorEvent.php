@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Webhooks;
+namespace Imagekit\Webhooks;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Webhooks\VideoTransformationErrorEvent\Data;
-use ImageKit\Webhooks\VideoTransformationErrorEvent\Data\Asset;
-use ImageKit\Webhooks\VideoTransformationErrorEvent\Data\Transformation;
-use ImageKit\Webhooks\VideoTransformationErrorEvent\Request;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\Webhooks\VideoTransformationErrorEvent\Data;
+use Imagekit\Webhooks\VideoTransformationErrorEvent\Data\Asset;
+use Imagekit\Webhooks\VideoTransformationErrorEvent\Data\Transformation;
+use Imagekit\Webhooks\VideoTransformationErrorEvent\Request;
 
 /**
  * Triggered when an error occurs during video encoding. Listen to this webhook to log error reasons and debug issues. Check your origin and URL endpoint settings if the reason is related to download failure. For other errors, contact ImageKit support.

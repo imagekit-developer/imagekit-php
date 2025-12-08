@@ -2,24 +2,24 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Services\Accounts;
+namespace Imagekit\Services\Accounts;
 
-use ImageKit\Accounts\Origins\OriginCreateParams;
-use ImageKit\Accounts\Origins\OriginResponse;
-use ImageKit\Accounts\Origins\OriginResponse\AkeneoPim;
-use ImageKit\Accounts\Origins\OriginResponse\AzureBlob;
-use ImageKit\Accounts\Origins\OriginResponse\CloudinaryBackup;
-use ImageKit\Accounts\Origins\OriginResponse\Gcs;
-use ImageKit\Accounts\Origins\OriginResponse\S3;
-use ImageKit\Accounts\Origins\OriginResponse\S3Compatible;
-use ImageKit\Accounts\Origins\OriginResponse\WebFolder;
-use ImageKit\Accounts\Origins\OriginResponse\WebProxy;
-use ImageKit\Accounts\Origins\OriginUpdateParams;
-use ImageKit\Client;
-use ImageKit\Core\Conversion\ListOf;
-use ImageKit\Core\Exceptions\APIException;
-use ImageKit\RequestOptions;
-use ImageKit\ServiceContracts\Accounts\OriginsContract;
+use Imagekit\Accounts\Origins\OriginCreateParams;
+use Imagekit\Accounts\Origins\OriginResponse;
+use Imagekit\Accounts\Origins\OriginResponse\AkeneoPim;
+use Imagekit\Accounts\Origins\OriginResponse\AzureBlob;
+use Imagekit\Accounts\Origins\OriginResponse\CloudinaryBackup;
+use Imagekit\Accounts\Origins\OriginResponse\Gcs;
+use Imagekit\Accounts\Origins\OriginResponse\S3;
+use Imagekit\Accounts\Origins\OriginResponse\S3Compatible;
+use Imagekit\Accounts\Origins\OriginResponse\WebFolder;
+use Imagekit\Accounts\Origins\OriginResponse\WebProxy;
+use Imagekit\Accounts\Origins\OriginUpdateParams;
+use Imagekit\Client;
+use Imagekit\Core\Conversion\ListOf;
+use Imagekit\Core\Exceptions\APIException;
+use Imagekit\RequestOptions;
+use Imagekit\ServiceContracts\Accounts\OriginsContract;
 
 final class OriginsService implements OriginsContract
 {

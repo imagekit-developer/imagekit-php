@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Core\Implementation;
+namespace Imagekit\Core\Implementation;
 
 /**
  * @internal

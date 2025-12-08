@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Core\Conversion\Concerns;
+namespace Imagekit\Core\Conversion\Concerns;
 
-use ImageKit\Core\Conversion;
-use ImageKit\Core\Conversion\CoerceState;
-use ImageKit\Core\Conversion\Contracts\Converter;
-use ImageKit\Core\Conversion\Contracts\ConverterSource;
-use ImageKit\Core\Conversion\DumpState;
+use Imagekit\Core\Conversion;
+use Imagekit\Core\Conversion\CoerceState;
+use Imagekit\Core\Conversion\Contracts\Converter;
+use Imagekit\Core\Conversion\Contracts\ConverterSource;
+use Imagekit\Core\Conversion\DumpState;
 
 /**
  * @internal

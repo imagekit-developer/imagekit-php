@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Accounts\URLEndpoints;
+namespace Imagekit\Accounts\URLEndpoints;
 
-use ImageKit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter;
-use ImageKit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\Akamai;
-use ImageKit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\Cloudinary;
-use ImageKit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\Imgix;
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Concerns\SdkParams;
-use ImageKit\Core\Contracts\BaseModel;
+use Imagekit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter;
+use Imagekit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\Akamai;
+use Imagekit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\Cloudinary;
+use Imagekit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\Imgix;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Concerns\SdkParams;
+use Imagekit\Core\Contracts\BaseModel;
 
 /**
  * **Note:** This API is currently in beta.
  * Creates a new URL‑endpoint and returns the resulting object.
  *
- * @see ImageKit\Services\Accounts\URLEndpointsService::create()
+ * @see Imagekit\Services\Accounts\URLEndpointsService::create()
  *
  * @phpstan-type URLEndpointCreateParamsShape = array{
  *   description: string,

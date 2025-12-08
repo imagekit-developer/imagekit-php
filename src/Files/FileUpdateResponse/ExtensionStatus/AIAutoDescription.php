@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files\FileUpdateResponse\ExtensionStatus;
+namespace Imagekit\Files\FileUpdateResponse\ExtensionStatus;
 
 enum AIAutoDescription: string
 {

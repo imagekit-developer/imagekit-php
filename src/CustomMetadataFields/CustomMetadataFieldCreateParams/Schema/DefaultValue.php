@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema;
+namespace Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema;
 
-use ImageKit\Core\Concerns\SdkUnion;
-use ImageKit\Core\Conversion\Contracts\Converter;
-use ImageKit\Core\Conversion\Contracts\ConverterSource;
-use ImageKit\Core\Conversion\ListOf;
-use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\DefaultValue\Mixed1;
+use Imagekit\Core\Concerns\SdkUnion;
+use Imagekit\Core\Conversion\Contracts\Converter;
+use Imagekit\Core\Conversion\Contracts\ConverterSource;
+use Imagekit\Core\Conversion\ListOf;
+use Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\DefaultValue\Mixed1;
 
 /**
  * The default value for this custom metadata field. This property is only required if `isValueRequired` property is set to `true`. The value should match the `type` of custom metadata field.

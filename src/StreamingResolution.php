@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit;
+namespace Imagekit;
 
 /**
  * Available streaming resolutions for [adaptive bitrate streaming](https://imagekit.io/docs/adaptive-bitrate-streaming).

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\OverlayPosition;
+namespace Imagekit\OverlayPosition;
 
-use ImageKit\Core\Concerns\SdkUnion;
-use ImageKit\Core\Conversion\Contracts\Converter;
-use ImageKit\Core\Conversion\Contracts\ConverterSource;
+use Imagekit\Core\Concerns\SdkUnion;
+use Imagekit\Core\Conversion\Contracts\Converter;
+use Imagekit\Core\Conversion\Contracts\ConverterSource;
 
 /**
  * Specifies the x-coordinate of the top-left corner of the base asset where the overlay's top-left corner will be positioned.

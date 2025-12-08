@@ -1,15 +1,15 @@
 <?php
 
-namespace ImageKit\Core\Exceptions;
+namespace Imagekit\Core\Exceptions;
 
-use ImageKit\Core\Util;
+use Imagekit\Core\Util;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
 class APIStatusException extends APIException
 {
     /** @var string */
-    protected const DESC = 'ImageKit API Status Error';
+    protected const DESC = 'Imagekit API Status Error';
 
     public ?int $status;
 

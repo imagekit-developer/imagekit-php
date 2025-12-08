@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\CustomMetadataFields;
+namespace Imagekit\CustomMetadataFields;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Concerns\SdkResponse;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Core\Conversion\Contracts\ResponseConverter;
-use ImageKit\CustomMetadataFields\CustomMetadataField\Schema;
-use ImageKit\CustomMetadataFields\CustomMetadataField\Schema\Type;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Concerns\SdkResponse;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\Core\Conversion\Contracts\ResponseConverter;
+use Imagekit\CustomMetadataFields\CustomMetadataField\Schema;
+use Imagekit\CustomMetadataFields\CustomMetadataField\Schema\Type;
 
 /**
  * Object containing details of a custom metadata field.

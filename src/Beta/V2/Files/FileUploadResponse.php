@@ -2,24 +2,24 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Beta\V2\Files;
+namespace Imagekit\Beta\V2\Files;
 
-use ImageKit\Beta\V2\Files\FileUploadResponse\AITag;
-use ImageKit\Beta\V2\Files\FileUploadResponse\ExtensionStatus;
-use ImageKit\Beta\V2\Files\FileUploadResponse\ExtensionStatus\AIAutoDescription;
-use ImageKit\Beta\V2\Files\FileUploadResponse\ExtensionStatus\AwsAutoTagging;
-use ImageKit\Beta\V2\Files\FileUploadResponse\ExtensionStatus\GoogleAutoTagging;
-use ImageKit\Beta\V2\Files\FileUploadResponse\ExtensionStatus\RemoveBg;
-use ImageKit\Beta\V2\Files\FileUploadResponse\SelectedFieldsSchema;
-use ImageKit\Beta\V2\Files\FileUploadResponse\SelectedFieldsSchema\Type;
-use ImageKit\Beta\V2\Files\FileUploadResponse\VersionInfo;
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Concerns\SdkResponse;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Core\Conversion\Contracts\ResponseConverter;
-use ImageKit\Files\Metadata;
-use ImageKit\Files\Metadata\Exif;
+use Imagekit\Beta\V2\Files\FileUploadResponse\AITag;
+use Imagekit\Beta\V2\Files\FileUploadResponse\ExtensionStatus;
+use Imagekit\Beta\V2\Files\FileUploadResponse\ExtensionStatus\AIAutoDescription;
+use Imagekit\Beta\V2\Files\FileUploadResponse\ExtensionStatus\AwsAutoTagging;
+use Imagekit\Beta\V2\Files\FileUploadResponse\ExtensionStatus\GoogleAutoTagging;
+use Imagekit\Beta\V2\Files\FileUploadResponse\ExtensionStatus\RemoveBg;
+use Imagekit\Beta\V2\Files\FileUploadResponse\SelectedFieldsSchema;
+use Imagekit\Beta\V2\Files\FileUploadResponse\SelectedFieldsSchema\Type;
+use Imagekit\Beta\V2\Files\FileUploadResponse\VersionInfo;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Concerns\SdkResponse;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\Core\Conversion\Contracts\ResponseConverter;
+use Imagekit\Files\Metadata;
+use Imagekit\Files\Metadata\Exif;
 
 /**
  * Object containing details of a successful upload.

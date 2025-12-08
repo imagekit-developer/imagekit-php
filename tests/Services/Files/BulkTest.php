@@ -2,11 +2,11 @@
 
 namespace Tests\Services\Files;
 
-use ImageKit\Client;
-use ImageKit\Files\Bulk\BulkAddTagsResponse;
-use ImageKit\Files\Bulk\BulkDeleteResponse;
-use ImageKit\Files\Bulk\BulkRemoveAITagsResponse;
-use ImageKit\Files\Bulk\BulkRemoveTagsResponse;
+use Imagekit\Client;
+use Imagekit\Files\Bulk\BulkAddTagsResponse;
+use Imagekit\Files\Bulk\BulkDeleteResponse;
+use Imagekit\Files\Bulk\BulkRemoveAITagsResponse;
+use Imagekit\Files\Bulk\BulkRemoveTagsResponse;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;

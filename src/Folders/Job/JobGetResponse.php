@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Folders\Job;
+namespace Imagekit\Folders\Job;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Concerns\SdkResponse;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Core\Conversion\Contracts\ResponseConverter;
-use ImageKit\Folders\Job\JobGetResponse\Status;
-use ImageKit\Folders\Job\JobGetResponse\Type;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Concerns\SdkResponse;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\Core\Conversion\Contracts\ResponseConverter;
+use Imagekit\Folders\Job\JobGetResponse\Status;
+use Imagekit\Folders\Job\JobGetResponse\Type;
 
 /**
  * @phpstan-type JobGetResponseShape = array{

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files\Folder;
+namespace Imagekit\Files\Folder;
 
 /**
  * Type of the asset.

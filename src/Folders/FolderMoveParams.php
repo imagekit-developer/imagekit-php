@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Folders;
+namespace Imagekit\Folders;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Concerns\SdkParams;
-use ImageKit\Core\Contracts\BaseModel;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Concerns\SdkParams;
+use Imagekit\Core\Contracts\BaseModel;
 
 /**
  * This will move one folder into another. The selected folder, its nested folders, files, and their versions are moved in this operation. Note: If any file at the destination has the same name as the source file, then the source file and its versions will be appended to the destination file version history.
  *
- * @see ImageKit\Services\FoldersService::move()
+ * @see Imagekit\Services\FoldersService::move()
  *
  * @phpstan-type FolderMoveParamsShape = array{
  *   destinationPath: string, sourceFolderPath: string

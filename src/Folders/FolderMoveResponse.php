@@ -6,21 +6,17 @@ namespace Imagekit\Folders;
 
 use Imagekit\Core\Attributes\Api;
 use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Concerns\SdkResponse;
 use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
  * Job submitted successfully. A `jobId` will be returned.
  *
  * @phpstan-type FolderMoveResponseShape = array{jobId: string}
  */
-final class FolderMoveResponse implements BaseModel, ResponseConverter
+final class FolderMoveResponse implements BaseModel
 {
     /** @use SdkModel<FolderMoveResponseShape> */
     use SdkModel;
-
-    use SdkResponse;
 
     /**
      * Unique identifier of the bulk job. This can be used to check the status of the bulk job.

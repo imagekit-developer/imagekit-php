@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Imagekit\Services;
 
 use Imagekit\Client;
+use Imagekit\Core\Contracts\BaseResponse;
 use Imagekit\Core\Conversion\ListOf;
 use Imagekit\Core\Exceptions\APIException;
 use Imagekit\CustomMetadataFields\CustomMetadataField;
@@ -53,14 +54,16 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<CustomMetadataField> */
+        $response = $this->client->request(
             method: 'post',
             path: 'v1/customMetadataFields',
             body: (object) $parsed,
             options: $options,
             convert: CustomMetadataField::class,
         );
+
+        return $response->parse();
     }
 
     /**
@@ -93,14 +96,16 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<CustomMetadataField> */
+        $response = $this->client->request(
             method: 'patch',
             path: ['v1/customMetadataFields/%1$s', $id],
             body: (object) $parsed,
             options: $options,
             convert: CustomMetadataField::class,
         );
+
+        return $response->parse();
     }
 
     /**
@@ -127,14 +132,16 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<list<CustomMetadataField>> */
+        $response = $this->client->request(
             method: 'get',
             path: 'v1/customMetadataFields',
             query: $parsed,
             options: $options,
             convert: new ListOf(CustomMetadataField::class),
         );
+
+        return $response->parse();
     }
 
     /**
@@ -148,12 +155,14 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
         string $id,
         ?RequestOptions $requestOptions = null
     ): CustomMetadataFieldDeleteResponse {
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<CustomMetadataFieldDeleteResponse> */
+        $response = $this->client->request(
             method: 'delete',
             path: ['v1/customMetadataFields/%1$s', $id],
             options: $requestOptions,
             convert: CustomMetadataFieldDeleteResponse::class,
         );
+
+        return $response->parse();
     }
 }

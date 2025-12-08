@@ -7,6 +7,7 @@ namespace Imagekit\Services\Beta\V2;
 use Imagekit\Beta\V2\Files\FileUploadParams;
 use Imagekit\Beta\V2\Files\FileUploadResponse;
 use Imagekit\Client;
+use Imagekit\Core\Contracts\BaseResponse;
 use Imagekit\Core\Exceptions\APIException;
 use Imagekit\RequestOptions;
 use Imagekit\ServiceContracts\Beta\V2\FilesContract;
@@ -73,8 +74,8 @@ final class FilesService implements FilesContract
             ->client
             ->baseUrlOverridden ? 'api/v2/files/upload' : 'https://upload.imagekit.io/api/v2/files/upload';
 
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<FileUploadResponse> */
+        $response = $this->client->request(
             method: 'post',
             path: $path,
             headers: ['Content-Type' => 'multipart/form-data'],
@@ -82,5 +83,7 @@ final class FilesService implements FilesContract
             options: $options,
             convert: FileUploadResponse::class,
         );
+
+        return $response->parse();
     }
 }

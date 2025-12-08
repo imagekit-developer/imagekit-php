@@ -8,6 +8,7 @@ use Imagekit\Assets\AssetListParams;
 use Imagekit\Assets\AssetListParams\Sort;
 use Imagekit\Assets\AssetListResponseItem;
 use Imagekit\Client;
+use Imagekit\Core\Contracts\BaseResponse;
 use Imagekit\Core\Conversion\ListOf;
 use Imagekit\Core\Exceptions\APIException;
 use Imagekit\Files\File;
@@ -50,13 +51,15 @@ final class AssetsService implements AssetsContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<list<File|Folder>> */
+        $response = $this->client->request(
             method: 'get',
             path: 'v1/files',
             query: $parsed,
             options: $options,
             convert: new ListOf(AssetListResponseItem::class),
         );
+
+        return $response->parse();
     }
 }

@@ -6,21 +6,17 @@ namespace Imagekit\Files\Bulk;
 
 use Imagekit\Core\Attributes\Api;
 use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Concerns\SdkResponse;
 use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
  * @phpstan-type BulkDeleteResponseShape = array{
  *   successfullyDeletedFileIds?: list<string>|null
  * }
  */
-final class BulkDeleteResponse implements BaseModel, ResponseConverter
+final class BulkDeleteResponse implements BaseModel
 {
     /** @use SdkModel<BulkDeleteResponseShape> */
     use SdkModel;
-
-    use SdkResponse;
 
     /**
      * An array of fileIds that were successfully deleted.

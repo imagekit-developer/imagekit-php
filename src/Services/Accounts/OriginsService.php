@@ -16,6 +16,7 @@ use Imagekit\Accounts\Origins\OriginResponse\WebFolder;
 use Imagekit\Accounts\Origins\OriginResponse\WebProxy;
 use Imagekit\Accounts\Origins\OriginUpdateParams;
 use Imagekit\Client;
+use Imagekit\Core\Contracts\BaseResponse;
 use Imagekit\Core\Conversion\ListOf;
 use Imagekit\Core\Exceptions\APIException;
 use Imagekit\RequestOptions;
@@ -45,14 +46,16 @@ final class OriginsService implements OriginsContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim,> */
+        $response = $this->client->request(
             method: 'post',
             path: 'v1/accounts/origins',
             body: (object) $parsed,
             options: $options,
             convert: OriginResponse::class,
         );
+
+        return $response->parse();
     }
 
     /**
@@ -73,14 +76,16 @@ final class OriginsService implements OriginsContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim,> */
+        $response = $this->client->request(
             method: 'put',
             path: ['v1/accounts/origins/%1$s', $id],
             body: (object) $parsed,
             options: $options,
             convert: OriginResponse::class,
         );
+
+        return $response->parse();
     }
 
     /**
@@ -95,13 +100,15 @@ final class OriginsService implements OriginsContract
      */
     public function list(?RequestOptions $requestOptions = null): array
     {
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<list<S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim>,> */
+        $response = $this->client->request(
             method: 'get',
             path: 'v1/accounts/origins',
             options: $requestOptions,
             convert: new ListOf(OriginResponse::class),
         );
+
+        return $response->parse();
     }
 
     /**
@@ -116,13 +123,15 @@ final class OriginsService implements OriginsContract
         string $id,
         ?RequestOptions $requestOptions = null
     ): mixed {
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<mixed> */
+        $response = $this->client->request(
             method: 'delete',
             path: ['v1/accounts/origins/%1$s', $id],
             options: $requestOptions,
             convert: null,
         );
+
+        return $response->parse();
     }
 
     /**
@@ -137,12 +146,14 @@ final class OriginsService implements OriginsContract
         string $id,
         ?RequestOptions $requestOptions = null
     ): S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim {
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim,> */
+        $response = $this->client->request(
             method: 'get',
             path: ['v1/accounts/origins/%1$s', $id],
             options: $requestOptions,
             convert: OriginResponse::class,
         );
+
+        return $response->parse();
     }
 }

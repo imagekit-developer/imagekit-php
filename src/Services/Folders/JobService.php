@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Imagekit\Services\Folders;
 
 use Imagekit\Client;
+use Imagekit\Core\Contracts\BaseResponse;
 use Imagekit\Core\Exceptions\APIException;
 use Imagekit\Folders\Job\JobGetResponse;
 use Imagekit\RequestOptions;
@@ -28,12 +29,14 @@ final class JobService implements JobContract
         string $jobID,
         ?RequestOptions $requestOptions = null
     ): JobGetResponse {
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<JobGetResponse> */
+        $response = $this->client->request(
             method: 'get',
             path: ['v1/bulkJobs/%1$s', $jobID],
             options: $requestOptions,
             convert: JobGetResponse::class,
         );
+
+        return $response->parse();
     }
 }

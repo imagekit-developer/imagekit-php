@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Imagekit\Services\Files;
 
 use Imagekit\Client;
+use Imagekit\Core\Contracts\BaseResponse;
 use Imagekit\Core\Exceptions\APIException;
 use Imagekit\Files\Bulk\BulkAddTagsParams;
 use Imagekit\Files\Bulk\BulkAddTagsResponse;
@@ -46,14 +47,16 @@ final class BulkService implements BulkContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<BulkDeleteResponse> */
+        $response = $this->client->request(
             method: 'post',
             path: 'v1/files/batch/deleteByFileIds',
             body: (object) $parsed,
             options: $options,
             convert: BulkDeleteResponse::class,
         );
+
+        return $response->parse();
     }
 
     /**
@@ -76,14 +79,16 @@ final class BulkService implements BulkContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<BulkAddTagsResponse> */
+        $response = $this->client->request(
             method: 'post',
             path: 'v1/files/addTags',
             body: (object) $parsed,
             options: $options,
             convert: BulkAddTagsResponse::class,
         );
+
+        return $response->parse();
     }
 
     /**
@@ -106,14 +111,16 @@ final class BulkService implements BulkContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<BulkRemoveAITagsResponse> */
+        $response = $this->client->request(
             method: 'post',
             path: 'v1/files/removeAITags',
             body: (object) $parsed,
             options: $options,
             convert: BulkRemoveAITagsResponse::class,
         );
+
+        return $response->parse();
     }
 
     /**
@@ -136,13 +143,15 @@ final class BulkService implements BulkContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<BulkRemoveTagsResponse> */
+        $response = $this->client->request(
             method: 'post',
             path: 'v1/files/removeTags',
             body: (object) $parsed,
             options: $options,
             convert: BulkRemoveTagsResponse::class,
         );
+
+        return $response->parse();
     }
 }

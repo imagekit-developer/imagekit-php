@@ -6,19 +6,15 @@ namespace Imagekit\Cache\Invalidation;
 
 use Imagekit\Core\Attributes\Api;
 use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Concerns\SdkResponse;
 use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
  * @phpstan-type InvalidationNewResponseShape = array{requestId?: string|null}
  */
-final class InvalidationNewResponse implements BaseModel, ResponseConverter
+final class InvalidationNewResponse implements BaseModel
 {
     /** @use SdkModel<InvalidationNewResponseShape> */
     use SdkModel;
-
-    use SdkResponse;
 
     /**
      * Unique identifier of the purge request. This can be used to check the status of the purge request.

@@ -2,23 +2,23 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files;
+namespace Imagekit\Files;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Concerns\SdkResponse;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Core\Conversion\Contracts\ResponseConverter;
-use ImageKit\Files\FileUploadResponse\AITag;
-use ImageKit\Files\FileUploadResponse\ExtensionStatus;
-use ImageKit\Files\FileUploadResponse\ExtensionStatus\AIAutoDescription;
-use ImageKit\Files\FileUploadResponse\ExtensionStatus\AwsAutoTagging;
-use ImageKit\Files\FileUploadResponse\ExtensionStatus\GoogleAutoTagging;
-use ImageKit\Files\FileUploadResponse\ExtensionStatus\RemoveBg;
-use ImageKit\Files\FileUploadResponse\SelectedFieldsSchema;
-use ImageKit\Files\FileUploadResponse\SelectedFieldsSchema\Type;
-use ImageKit\Files\FileUploadResponse\VersionInfo;
-use ImageKit\Files\Metadata\Exif;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Concerns\SdkResponse;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\Core\Conversion\Contracts\ResponseConverter;
+use Imagekit\Files\FileUploadResponse\AITag;
+use Imagekit\Files\FileUploadResponse\ExtensionStatus;
+use Imagekit\Files\FileUploadResponse\ExtensionStatus\AIAutoDescription;
+use Imagekit\Files\FileUploadResponse\ExtensionStatus\AwsAutoTagging;
+use Imagekit\Files\FileUploadResponse\ExtensionStatus\GoogleAutoTagging;
+use Imagekit\Files\FileUploadResponse\ExtensionStatus\RemoveBg;
+use Imagekit\Files\FileUploadResponse\SelectedFieldsSchema;
+use Imagekit\Files\FileUploadResponse\SelectedFieldsSchema\Type;
+use Imagekit\Files\FileUploadResponse\VersionInfo;
+use Imagekit\Files\Metadata\Exif;
 
 /**
  * Object containing details of a successful upload.

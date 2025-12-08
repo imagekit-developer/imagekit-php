@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Webhooks;
+namespace Imagekit\Webhooks;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data;
-use ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data\Asset;
-use ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation;
-use ImageKit\Webhooks\VideoTransformationAcceptedEvent\Request;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\Webhooks\VideoTransformationAcceptedEvent\Data;
+use Imagekit\Webhooks\VideoTransformationAcceptedEvent\Data\Asset;
+use Imagekit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation;
+use Imagekit\Webhooks\VideoTransformationAcceptedEvent\Request;
 
 /**
  * Triggered when a new video transformation request is accepted for processing. This event confirms that ImageKit has received and queued your transformation request. Use this for debugging and tracking transformation lifecycle.

@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Webhooks\VideoTransformationReadyEvent;
+namespace Imagekit\Webhooks\VideoTransformationReadyEvent;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Webhooks\VideoTransformationReadyEvent\Data\Asset;
-use ImageKit\Webhooks\VideoTransformationReadyEvent\Data\Transformation;
-use ImageKit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Options;
-use ImageKit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Output;
-use ImageKit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Type;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\Webhooks\VideoTransformationReadyEvent\Data\Asset;
+use Imagekit\Webhooks\VideoTransformationReadyEvent\Data\Transformation;
+use Imagekit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Options;
+use Imagekit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Output;
+use Imagekit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Type;
 
 /**
  * @phpstan-type DataShape = array{asset: Asset, transformation: Transformation}

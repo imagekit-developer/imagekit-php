@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Core\Concerns;
+namespace Imagekit\Core\Concerns;
 
-use ImageKit\Client;
-use ImageKit\Core\Conversion\Contracts\Converter;
-use ImageKit\Core\Conversion\Contracts\ConverterSource;
-use ImageKit\Core\Exceptions\APIStatusException;
-use ImageKit\RequestOptions;
+use Imagekit\Client;
+use Imagekit\Core\Conversion\Contracts\Converter;
+use Imagekit\Core\Conversion\Contracts\ConverterSource;
+use Imagekit\Core\Exceptions\APIStatusException;
+use Imagekit\RequestOptions;
 
 /**
  * @internal
  *
  * @template Item
  *
- * @phpstan-import-type normalized_request from \ImageKit\Core\BaseClient
+ * @phpstan-import-type normalized_request from \Imagekit\Core\BaseClient
  */
 trait SdkPage
 {

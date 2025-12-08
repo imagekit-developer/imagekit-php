@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files\Versions;
+namespace Imagekit\Files\Versions;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Concerns\SdkParams;
-use ImageKit\Core\Contracts\BaseModel;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Concerns\SdkParams;
+use Imagekit\Core\Contracts\BaseModel;
 
 /**
  * This API returns an object with details or attributes of a file version.
  *
- * @see ImageKit\Services\Files\VersionsService::get()
+ * @see Imagekit\Services\Files\VersionsService::get()
  *
  * @phpstan-type VersionGetParamsShape = array{fileId: string}
  */

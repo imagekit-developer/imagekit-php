@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Services\Accounts;
+namespace Imagekit\Services\Accounts;
 
-use ImageKit\Accounts\Usage\UsageGetParams;
-use ImageKit\Accounts\Usage\UsageGetResponse;
-use ImageKit\Client;
-use ImageKit\Core\Exceptions\APIException;
-use ImageKit\RequestOptions;
-use ImageKit\ServiceContracts\Accounts\UsageContract;
+use Imagekit\Accounts\Usage\UsageGetParams;
+use Imagekit\Accounts\Usage\UsageGetResponse;
+use Imagekit\Client;
+use Imagekit\Core\Exceptions\APIException;
+use Imagekit\RequestOptions;
+use Imagekit\ServiceContracts\Accounts\UsageContract;
 
 final class UsageService implements UsageContract
 {

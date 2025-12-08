@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Webhooks\VideoTransformationReadyEvent\Data;
+namespace Imagekit\Webhooks\VideoTransformationReadyEvent\Data;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Options;
-use ImageKit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Options\AudioCodec;
-use ImageKit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Options\Format;
-use ImageKit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Options\StreamProtocol;
-use ImageKit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Options\VideoCodec;
-use ImageKit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Output;
-use ImageKit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Output\VideoMetadata;
-use ImageKit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Type;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Options;
+use Imagekit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Options\AudioCodec;
+use Imagekit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Options\Format;
+use Imagekit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Options\StreamProtocol;
+use Imagekit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Options\VideoCodec;
+use Imagekit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Output;
+use Imagekit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Output\VideoMetadata;
+use Imagekit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Type;
 
 /**
  * @phpstan-type TransformationShape = array{

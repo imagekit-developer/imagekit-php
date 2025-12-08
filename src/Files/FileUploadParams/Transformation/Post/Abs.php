@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files\FileUploadParams\Transformation\Post;
+namespace Imagekit\Files\FileUploadParams\Transformation\Post;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Files\FileUploadParams\Transformation\Post\Abs\Protocol;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\Files\FileUploadParams\Transformation\Post\Abs\Protocol;
 
 /**
  * @phpstan-type AbsShape = array{

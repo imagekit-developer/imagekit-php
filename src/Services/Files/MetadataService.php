@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Services\Files;
+namespace Imagekit\Services\Files;
 
-use ImageKit\Client;
-use ImageKit\Core\Exceptions\APIException;
-use ImageKit\Files\Metadata;
-use ImageKit\Files\Metadata\MetadataGetFromURLParams;
-use ImageKit\RequestOptions;
-use ImageKit\ServiceContracts\Files\MetadataContract;
+use Imagekit\Client;
+use Imagekit\Core\Exceptions\APIException;
+use Imagekit\Files\Metadata;
+use Imagekit\Files\Metadata\MetadataGetFromURLParams;
+use Imagekit\RequestOptions;
+use Imagekit\ServiceContracts\Files\MetadataContract;
 
 final class MetadataService implements MetadataContract
 {

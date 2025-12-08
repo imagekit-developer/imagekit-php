@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Services\Folders;
+namespace Imagekit\Services\Folders;
 
-use ImageKit\Client;
-use ImageKit\Core\Exceptions\APIException;
-use ImageKit\Folders\Job\JobGetResponse;
-use ImageKit\RequestOptions;
-use ImageKit\ServiceContracts\Folders\JobContract;
+use Imagekit\Client;
+use Imagekit\Core\Exceptions\APIException;
+use Imagekit\Folders\Job\JobGetResponse;
+use Imagekit\RequestOptions;
+use Imagekit\ServiceContracts\Folders\JobContract;
 
 final class JobService implements JobContract
 {

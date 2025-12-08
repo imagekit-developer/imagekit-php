@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files;
+namespace Imagekit\Files;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Concerns\SdkResponse;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Core\Conversion\Contracts\ResponseConverter;
-use ImageKit\Files\File\AITag;
-use ImageKit\Files\File\SelectedFieldsSchema;
-use ImageKit\Files\File\Type;
-use ImageKit\Files\File\VersionInfo;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Concerns\SdkResponse;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\Core\Conversion\Contracts\ResponseConverter;
+use Imagekit\Files\File\AITag;
+use Imagekit\Files\File\SelectedFieldsSchema;
+use Imagekit\Files\File\Type;
+use Imagekit\Files\File\VersionInfo;
 
 /**
  * Object containing details of a file or file version.

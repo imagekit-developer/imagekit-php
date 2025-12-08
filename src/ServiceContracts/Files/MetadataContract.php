@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\ServiceContracts\Files;
+namespace Imagekit\ServiceContracts\Files;
 
-use ImageKit\Core\Exceptions\APIException;
-use ImageKit\Files\Metadata;
-use ImageKit\Files\Metadata\MetadataGetFromURLParams;
-use ImageKit\RequestOptions;
+use Imagekit\Core\Exceptions\APIException;
+use Imagekit\Files\Metadata;
+use Imagekit\Files\Metadata\MetadataGetFromURLParams;
+use Imagekit\RequestOptions;
 
 interface MetadataContract
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Folders\Job\JobGetResponse;
+namespace Imagekit\Folders\Job\JobGetResponse;
 
 /**
  * Type of the bulk job.

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Beta\V2\Files\FileUploadResponse\SelectedFieldsSchema\DefaultValue;
+namespace Imagekit\Beta\V2\Files\FileUploadResponse\SelectedFieldsSchema\DefaultValue;
 
-use ImageKit\Core\Concerns\SdkUnion;
-use ImageKit\Core\Conversion\Contracts\Converter;
-use ImageKit\Core\Conversion\Contracts\ConverterSource;
+use Imagekit\Core\Concerns\SdkUnion;
+use Imagekit\Core\Conversion\Contracts\Converter;
+use Imagekit\Core\Conversion\Contracts\ConverterSource;
 
 final class Mixed1 implements ConverterSource
 {

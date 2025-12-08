@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Accounts\Origins;
+namespace Imagekit\Accounts\Origins;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Concerns\SdkParams;
-use ImageKit\Core\Contracts\BaseModel;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Concerns\SdkParams;
+use Imagekit\Core\Contracts\BaseModel;
 
 /**
  * **Note:** This API is currently in beta.
  * Creates a new origin and returns the origin object.
  *
- * @see ImageKit\Services\Accounts\OriginsService::create()
+ * @see Imagekit\Services\Accounts\OriginsService::create()
  *
  * @phpstan-type OriginCreateParamsShape = array{
  *   accessKey: string,

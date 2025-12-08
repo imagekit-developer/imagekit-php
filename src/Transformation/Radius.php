@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Transformation;
+namespace Imagekit\Transformation;
 
-use ImageKit\Core\Concerns\SdkUnion;
-use ImageKit\Core\Conversion\Contracts\Converter;
-use ImageKit\Core\Conversion\Contracts\ConverterSource;
+use Imagekit\Core\Concerns\SdkUnion;
+use Imagekit\Core\Conversion\Contracts\Converter;
+use Imagekit\Core\Conversion\Contracts\ConverterSource;
 
 /**
  * Specifies the corner radius for rounded corners (e.g., 20) or `max` for circular or oval shape.

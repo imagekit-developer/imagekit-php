@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams;
+namespace Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\DefaultValue;
-use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\SelectOption;
-use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\Type;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\DefaultValue;
+use Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\SelectOption;
+use Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\Type;
 
 /**
  * @phpstan-type SchemaShape = array{

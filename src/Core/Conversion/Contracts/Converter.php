@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Core\Conversion\Contracts;
+namespace Imagekit\Core\Conversion\Contracts;
 
-use ImageKit\Core\Conversion\CoerceState;
-use ImageKit\Core\Conversion\DumpState;
+use Imagekit\Core\Conversion\CoerceState;
+use Imagekit\Core\Conversion\DumpState;
 
 /**
  * @internal

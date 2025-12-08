@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Webhooks;
+namespace Imagekit\Webhooks;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Webhooks\UploadPreTransformErrorEvent\Data;
-use ImageKit\Webhooks\UploadPreTransformErrorEvent\Data\Transformation;
-use ImageKit\Webhooks\UploadPreTransformErrorEvent\Request;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\Webhooks\UploadPreTransformErrorEvent\Data;
+use Imagekit\Webhooks\UploadPreTransformErrorEvent\Data\Transformation;
+use Imagekit\Webhooks\UploadPreTransformErrorEvent\Request;
 
 /**
  * Triggered when a pre-transformation fails. The file upload may have been accepted, but the requested transformation could not be applied.

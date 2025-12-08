@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Core\Conversion;
+namespace Imagekit\Core\Conversion;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Conversion\Contracts\Converter;
-use ImageKit\Core\Conversion\Contracts\ConverterSource;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Conversion\Contracts\Converter;
+use Imagekit\Core\Conversion\Contracts\ConverterSource;
 
 /**
  * @internal

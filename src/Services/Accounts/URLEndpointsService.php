@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Services\Accounts;
+namespace Imagekit\Services\Accounts;
 
-use ImageKit\Accounts\URLEndpoints\URLEndpointCreateParams;
-use ImageKit\Accounts\URLEndpoints\URLEndpointResponse;
-use ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams;
-use ImageKit\Client;
-use ImageKit\Core\Conversion\ListOf;
-use ImageKit\Core\Exceptions\APIException;
-use ImageKit\RequestOptions;
-use ImageKit\ServiceContracts\Accounts\URLEndpointsContract;
+use Imagekit\Accounts\URLEndpoints\URLEndpointCreateParams;
+use Imagekit\Accounts\URLEndpoints\URLEndpointResponse;
+use Imagekit\Accounts\URLEndpoints\URLEndpointUpdateParams;
+use Imagekit\Client;
+use Imagekit\Core\Conversion\ListOf;
+use Imagekit\Core\Exceptions\APIException;
+use Imagekit\RequestOptions;
+use Imagekit\ServiceContracts\Accounts\URLEndpointsContract;
 
 final class URLEndpointsService implements URLEndpointsContract
 {

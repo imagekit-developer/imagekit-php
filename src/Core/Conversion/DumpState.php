@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Core\Conversion;
+namespace Imagekit\Core\Conversion;
 
 /**
  * @internal

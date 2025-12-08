@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files\UpdateFileRequest;
+namespace Imagekit\Files\UpdateFileRequest;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\ExtensionItem;
-use ImageKit\ExtensionItem\AIAutoDescription;
-use ImageKit\ExtensionItem\AutoTaggingExtension;
-use ImageKit\ExtensionItem\AutoTaggingExtension\Name;
-use ImageKit\ExtensionItem\RemoveBg;
-use ImageKit\ExtensionItem\RemoveBg\Options;
-use ImageKit\Files\UpdateFileRequest\UpdateFileDetails\RemoveAITags;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\ExtensionItem;
+use Imagekit\ExtensionItem\AIAutoDescription;
+use Imagekit\ExtensionItem\AutoTaggingExtension;
+use Imagekit\ExtensionItem\AutoTaggingExtension\Name;
+use Imagekit\ExtensionItem\RemoveBg;
+use Imagekit\ExtensionItem\RemoveBg\Options;
+use Imagekit\Files\UpdateFileRequest\UpdateFileDetails\RemoveAITags;
 
 /**
  * @phpstan-type UpdateFileDetailsShape = array{

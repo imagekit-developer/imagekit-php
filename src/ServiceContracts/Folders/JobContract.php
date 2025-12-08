@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\ServiceContracts\Folders;
+namespace Imagekit\ServiceContracts\Folders;
 
-use ImageKit\Core\Exceptions\APIException;
-use ImageKit\Folders\Job\JobGetResponse;
-use ImageKit\RequestOptions;
+use Imagekit\Core\Exceptions\APIException;
+use Imagekit\Folders\Job\JobGetResponse;
+use Imagekit\RequestOptions;
 
 interface JobContract
 {

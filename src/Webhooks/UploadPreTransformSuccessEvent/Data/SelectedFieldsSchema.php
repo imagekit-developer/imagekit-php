@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data;
+namespace Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema\DefaultValue;
-use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema\SelectOption;
-use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema\Type;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema\DefaultValue;
+use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema\SelectOption;
+use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema\Type;
 
 /**
  * @phpstan-type SelectedFieldsSchemaShape = array{

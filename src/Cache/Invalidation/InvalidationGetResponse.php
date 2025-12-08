@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Cache\Invalidation;
+namespace Imagekit\Cache\Invalidation;
 
-use ImageKit\Cache\Invalidation\InvalidationGetResponse\Status;
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Concerns\SdkResponse;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Core\Conversion\Contracts\ResponseConverter;
+use Imagekit\Cache\Invalidation\InvalidationGetResponse\Status;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Concerns\SdkResponse;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
  * @phpstan-type InvalidationGetResponseShape = array{

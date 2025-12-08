@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Assets\AssetListParams;
+namespace Imagekit\Assets\AssetListParams;
 
 /**
  * Filter results by file type.

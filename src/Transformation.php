@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace ImageKit;
+namespace Imagekit;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Transformation\AudioCodec;
-use ImageKit\Transformation\Crop;
-use ImageKit\Transformation\CropMode;
-use ImageKit\Transformation\Flip;
-use ImageKit\Transformation\Format;
-use ImageKit\Transformation\VideoCodec;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\Transformation\AudioCodec;
+use Imagekit\Transformation\Crop;
+use Imagekit\Transformation\CropMode;
+use Imagekit\Transformation\Flip;
+use Imagekit\Transformation\Format;
+use Imagekit\Transformation\VideoCodec;
 
 /**
  * The SDK provides easy-to-use names for transformations. These names are converted to the corresponding transformation string before being added to the URL.

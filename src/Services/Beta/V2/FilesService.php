@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Services\Beta\V2;
+namespace Imagekit\Services\Beta\V2;
 
-use ImageKit\Beta\V2\Files\FileUploadParams;
-use ImageKit\Beta\V2\Files\FileUploadResponse;
-use ImageKit\Client;
-use ImageKit\Core\Exceptions\APIException;
-use ImageKit\RequestOptions;
-use ImageKit\ServiceContracts\Beta\V2\FilesContract;
+use Imagekit\Beta\V2\Files\FileUploadParams;
+use Imagekit\Beta\V2\Files\FileUploadResponse;
+use Imagekit\Client;
+use Imagekit\Core\Exceptions\APIException;
+use Imagekit\RequestOptions;
+use Imagekit\ServiceContracts\Beta\V2\FilesContract;
 
 final class FilesService implements FilesContract
 {

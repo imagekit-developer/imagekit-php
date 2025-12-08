@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace ImageKit;
+namespace Imagekit;
 
-use ImageKit\Core\Attributes\Api as Property;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Core\Implementation\Omit;
+use Imagekit\Core\Attributes\Api as Property;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\Core\Implementation\Omit;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Psr\Http\Message\UriFactoryInterface;
 
-use const ImageKit\Core\OMIT as omit;
+use const Imagekit\Core\OMIT as omit;
 
 /**
  * @phpstan-type request_options = array{

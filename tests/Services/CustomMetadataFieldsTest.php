@@ -2,9 +2,9 @@
 
 namespace Tests\Services;
 
-use ImageKit\Client;
-use ImageKit\CustomMetadataFields\CustomMetadataField;
-use ImageKit\CustomMetadataFields\CustomMetadataFieldDeleteResponse;
+use Imagekit\Client;
+use Imagekit\CustomMetadataFields\CustomMetadataField;
+use Imagekit\CustomMetadataFields\CustomMetadataFieldDeleteResponse;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;

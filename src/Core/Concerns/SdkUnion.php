@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Core\Concerns;
+namespace Imagekit\Core\Concerns;
 
-use ImageKit\Core\Conversion\Contracts\Converter;
-use ImageKit\Core\Conversion\Contracts\ConverterSource;
-use ImageKit\Core\Conversion\UnionOf;
+use Imagekit\Core\Conversion\Contracts\Converter;
+use Imagekit\Core\Conversion\Contracts\ConverterSource;
+use Imagekit\Core\Conversion\UnionOf;
 
 /**
  * @internal

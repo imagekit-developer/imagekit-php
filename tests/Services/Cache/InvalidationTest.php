@@ -2,9 +2,9 @@
 
 namespace Tests\Services\Cache;
 
-use ImageKit\Cache\Invalidation\InvalidationGetResponse;
-use ImageKit\Cache\Invalidation\InvalidationNewResponse;
-use ImageKit\Client;
+use Imagekit\Cache\Invalidation\InvalidationGetResponse;
+use Imagekit\Cache\Invalidation\InvalidationNewResponse;
+use Imagekit\Client;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;

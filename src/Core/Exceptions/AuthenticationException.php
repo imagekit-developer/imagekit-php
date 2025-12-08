@@ -1,9 +1,9 @@
 <?php
 
-namespace ImageKit\Core\Exceptions;
+namespace Imagekit\Core\Exceptions;
 
 class AuthenticationException extends APIStatusException
 {
     /** @var string */
-    protected const DESC = 'ImageKit Authentication Exception';
+    protected const DESC = 'Imagekit Authentication Exception';
 }

@@ -7,7 +7,7 @@
       "src/Client.php"
     ],
     "psr-4": {
-      "ImageKit\\": "src/"
+      "Imagekit\\": "src/"
     }
   },
   "autoload-dev": {

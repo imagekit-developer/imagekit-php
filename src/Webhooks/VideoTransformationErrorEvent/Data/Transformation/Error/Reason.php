@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Error;
+namespace Imagekit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Error;
 
 /**
  * Specific reason for the transformation failure:

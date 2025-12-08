@@ -2,6 +2,6 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\ServiceContracts\Beta;
+namespace Imagekit\ServiceContracts\Beta;
 
 interface V2Contract {}

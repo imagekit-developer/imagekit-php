@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter;
+namespace Imagekit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Contracts\BaseModel;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Contracts\BaseModel;
 
 /**
  * @phpstan-type CloudinaryShape = array{

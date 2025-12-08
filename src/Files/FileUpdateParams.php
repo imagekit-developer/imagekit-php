@@ -2,25 +2,25 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files;
+namespace Imagekit\Files;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Concerns\SdkParams;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\ExtensionItem;
-use ImageKit\ExtensionItem\AIAutoDescription;
-use ImageKit\ExtensionItem\AutoTaggingExtension;
-use ImageKit\ExtensionItem\AutoTaggingExtension\Name;
-use ImageKit\ExtensionItem\RemoveBg;
-use ImageKit\ExtensionItem\RemoveBg\Options;
-use ImageKit\Files\FileUpdateParams\Publish;
-use ImageKit\Files\FileUpdateParams\RemoveAITags;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Concerns\SdkParams;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\ExtensionItem;
+use Imagekit\ExtensionItem\AIAutoDescription;
+use Imagekit\ExtensionItem\AutoTaggingExtension;
+use Imagekit\ExtensionItem\AutoTaggingExtension\Name;
+use Imagekit\ExtensionItem\RemoveBg;
+use Imagekit\ExtensionItem\RemoveBg\Options;
+use Imagekit\Files\FileUpdateParams\Publish;
+use Imagekit\Files\FileUpdateParams\RemoveAITags;
 
 /**
  * This API updates the details or attributes of the current version of the file. You can update `tags`, `customCoordinates`, `customMetadata`, publication status, remove existing `AITags` and apply extensions using this API.
  *
- * @see ImageKit\Services\FilesService::update()
+ * @see Imagekit\Services\FilesService::update()
  *
  * @phpstan-type FileUpdateParamsShape = array{
  *   customCoordinates?: string|null,

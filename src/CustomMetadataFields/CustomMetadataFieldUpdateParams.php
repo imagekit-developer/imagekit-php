@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\CustomMetadataFields;
+namespace Imagekit\CustomMetadataFields;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Concerns\SdkParams;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Concerns\SdkParams;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema;
 
 /**
  * This API updates the label or schema of an existing custom metadata field.
  *
- * @see ImageKit\Services\CustomMetadataFieldsService::update()
+ * @see Imagekit\Services\CustomMetadataFieldsService::update()
  *
  * @phpstan-type CustomMetadataFieldUpdateParamsShape = array{
  *   label?: string,

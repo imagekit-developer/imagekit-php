@@ -2,26 +2,26 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Services;
+namespace Imagekit\Services;
 
-use ImageKit\Client;
-use ImageKit\Core\Exceptions\APIException;
-use ImageKit\Files\File;
-use ImageKit\Files\FileCopyParams;
-use ImageKit\Files\FileCopyResponse;
-use ImageKit\Files\FileMoveParams;
-use ImageKit\Files\FileMoveResponse;
-use ImageKit\Files\FileRenameParams;
-use ImageKit\Files\FileRenameResponse;
-use ImageKit\Files\FileUpdateParams;
-use ImageKit\Files\FileUpdateResponse;
-use ImageKit\Files\FileUploadParams;
-use ImageKit\Files\FileUploadResponse;
-use ImageKit\RequestOptions;
-use ImageKit\ServiceContracts\FilesContract;
-use ImageKit\Services\Files\BulkService;
-use ImageKit\Services\Files\MetadataService;
-use ImageKit\Services\Files\VersionsService;
+use Imagekit\Client;
+use Imagekit\Core\Exceptions\APIException;
+use Imagekit\Files\File;
+use Imagekit\Files\FileCopyParams;
+use Imagekit\Files\FileCopyResponse;
+use Imagekit\Files\FileMoveParams;
+use Imagekit\Files\FileMoveResponse;
+use Imagekit\Files\FileRenameParams;
+use Imagekit\Files\FileRenameResponse;
+use Imagekit\Files\FileUpdateParams;
+use Imagekit\Files\FileUpdateResponse;
+use Imagekit\Files\FileUploadParams;
+use Imagekit\Files\FileUploadResponse;
+use Imagekit\RequestOptions;
+use Imagekit\ServiceContracts\FilesContract;
+use Imagekit\Services\Files\BulkService;
+use Imagekit\Services\Files\MetadataService;
+use Imagekit\Services\Files\VersionsService;
 
 final class FilesService implements FilesContract
 {

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files\Versions;
+namespace Imagekit\Files\Versions;
 
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Concerns\SdkResponse;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Core\Conversion\Contracts\ResponseConverter;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Concerns\SdkResponse;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
  * @phpstan-type VersionDeleteResponseShape = array<string,mixed>

@@ -2,7 +2,7 @@
 
 namespace Tests\Services;
 
-use ImageKit\Client;
+use Imagekit\Client;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\TestCase;
 

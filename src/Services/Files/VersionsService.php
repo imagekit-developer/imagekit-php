@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Services\Files;
+namespace Imagekit\Services\Files;
 
-use ImageKit\Client;
-use ImageKit\Core\Conversion\ListOf;
-use ImageKit\Core\Exceptions\APIException;
-use ImageKit\Files\File;
-use ImageKit\Files\Versions\VersionDeleteParams;
-use ImageKit\Files\Versions\VersionDeleteResponse;
-use ImageKit\Files\Versions\VersionGetParams;
-use ImageKit\Files\Versions\VersionRestoreParams;
-use ImageKit\RequestOptions;
-use ImageKit\ServiceContracts\Files\VersionsContract;
+use Imagekit\Client;
+use Imagekit\Core\Conversion\ListOf;
+use Imagekit\Core\Exceptions\APIException;
+use Imagekit\Files\File;
+use Imagekit\Files\Versions\VersionDeleteParams;
+use Imagekit\Files\Versions\VersionDeleteResponse;
+use Imagekit\Files\Versions\VersionGetParams;
+use Imagekit\Files\Versions\VersionRestoreParams;
+use Imagekit\RequestOptions;
+use Imagekit\ServiceContracts\Files\VersionsContract;
 
 final class VersionsService implements VersionsContract
 {

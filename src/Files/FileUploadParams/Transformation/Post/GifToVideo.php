@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files\FileUploadParams\Transformation\Post;
+namespace Imagekit\Files\FileUploadParams\Transformation\Post;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Contracts\BaseModel;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Contracts\BaseModel;
 
 /**
  * @phpstan-type GifToVideoShape = array{type: 'gif-to-video', value?: string|null}

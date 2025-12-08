@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files\File;
+namespace Imagekit\Files\File;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Files\File\SelectedFieldsSchema\DefaultValue;
-use ImageKit\Files\File\SelectedFieldsSchema\SelectOption;
-use ImageKit\Files\File\SelectedFieldsSchema\Type;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\Files\File\SelectedFieldsSchema\DefaultValue;
+use Imagekit\Files\File\SelectedFieldsSchema\SelectOption;
+use Imagekit\Files\File\SelectedFieldsSchema\Type;
 
 /**
  * @phpstan-type SelectedFieldsSchemaShape = array{
- *   type: value-of<\ImageKit\Files\File\SelectedFieldsSchema\Type>,
+ *   type: value-of<\Imagekit\Files\File\SelectedFieldsSchema\Type>,
  *   defaultValue?: string|float|bool|null|list<string|float|bool>,
  *   isValueRequired?: bool|null,
  *   maxLength?: float|null,

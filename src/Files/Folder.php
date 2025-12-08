@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files;
+namespace Imagekit\Files;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Files\Folder\Type;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\Files\Folder\Type;
 
 /**
  * @phpstan-type FolderShape = array{

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Output;
+namespace Imagekit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Output;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Contracts\BaseModel;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Contracts\BaseModel;
 
 /**
  * Metadata of the output video file.

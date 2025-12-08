@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Transformation;
+namespace Imagekit\Transformation;
 
 /**
  * Specifies the output format for images or videos, e.g., `jpg`, `png`, `webp`, `mp4`, or `auto`.

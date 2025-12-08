@@ -1,8 +1,8 @@
 <?php
 
-namespace ImageKit\Core\Concerns;
+namespace Imagekit\Core\Concerns;
 
-use ImageKit\Core\Util;
+use Imagekit\Core\Util;
 use Psr\Http\Message\ResponseInterface;
 
 /**

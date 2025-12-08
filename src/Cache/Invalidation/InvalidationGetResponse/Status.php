@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Cache\Invalidation\InvalidationGetResponse;
+namespace Imagekit\Cache\Invalidation\InvalidationGetResponse;
 
 /**
  * Status of the purge request.

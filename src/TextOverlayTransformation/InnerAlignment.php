@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\TextOverlayTransformation;
+namespace Imagekit\TextOverlayTransformation;
 
 /**
  * Specifies the inner alignment of the text when width is more than the text length.

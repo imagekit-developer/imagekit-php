@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Core\Concerns;
+namespace Imagekit\Core\Concerns;
 
-use ImageKit\Core\Conversion\Contracts\Converter;
-use ImageKit\Core\Conversion\EnumOf;
+use Imagekit\Core\Conversion\Contracts\Converter;
+use Imagekit\Core\Conversion\EnumOf;
 
 /**
  * @internal

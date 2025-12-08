@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace ImageKit;
+namespace Imagekit;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\OverlayPosition\Focus;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\OverlayPosition\Focus;
 
 /**
  * @phpstan-type SolidColorOverlayShape = array{

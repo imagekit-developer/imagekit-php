@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Accounts\Usage;
+namespace Imagekit\Accounts\Usage;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Concerns\SdkParams;
-use ImageKit\Core\Contracts\BaseModel;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Concerns\SdkParams;
+use Imagekit\Core\Contracts\BaseModel;
 
 /**
  * Get the account usage information between two dates. Note that the API response includes data from the start date while excluding data from the end date. In other words, the data covers the period starting from the specified start date up to, but not including, the end date.
  *
- * @see ImageKit\Services\Accounts\UsageService::get()
+ * @see Imagekit\Services\Accounts\UsageService::get()
  *
  * @phpstan-type UsageGetParamsShape = array{
  *   endDate: \DateTimeInterface, startDate: \DateTimeInterface

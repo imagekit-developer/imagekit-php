@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Files\Metadata;
+namespace Imagekit\Files\Metadata;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Files\Metadata\Exif\Gps;
-use ImageKit\Files\Metadata\Exif\Image;
-use ImageKit\Files\Metadata\Exif\Interoperability;
-use ImageKit\Files\Metadata\Exif\Thumbnail;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\Files\Metadata\Exif\Gps;
+use Imagekit\Files\Metadata\Exif\Image;
+use Imagekit\Files\Metadata\Exif\Interoperability;
+use Imagekit\Files\Metadata\Exif\Thumbnail;
 
 /**
  * @phpstan-type ExifShape = array{
- *   exif?: \ImageKit\Files\Metadata\Exif\Exif|null,
+ *   exif?: \Imagekit\Files\Metadata\Exif\Exif|null,
  *   gps?: Gps|null,
  *   image?: Image|null,
  *   interoperability?: Interoperability|null,

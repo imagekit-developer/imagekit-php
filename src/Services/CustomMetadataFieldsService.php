@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Services;
+namespace Imagekit\Services;
 
-use ImageKit\Client;
-use ImageKit\Core\Conversion\ListOf;
-use ImageKit\Core\Exceptions\APIException;
-use ImageKit\CustomMetadataFields\CustomMetadataField;
-use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams;
-use ImageKit\CustomMetadataFields\CustomMetadataFieldDeleteResponse;
-use ImageKit\CustomMetadataFields\CustomMetadataFieldListParams;
-use ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams;
-use ImageKit\RequestOptions;
-use ImageKit\ServiceContracts\CustomMetadataFieldsContract;
+use Imagekit\Client;
+use Imagekit\Core\Conversion\ListOf;
+use Imagekit\Core\Exceptions\APIException;
+use Imagekit\CustomMetadataFields\CustomMetadataField;
+use Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams;
+use Imagekit\CustomMetadataFields\CustomMetadataFieldDeleteResponse;
+use Imagekit\CustomMetadataFields\CustomMetadataFieldListParams;
+use Imagekit\CustomMetadataFields\CustomMetadataFieldUpdateParams;
+use Imagekit\RequestOptions;
+use Imagekit\ServiceContracts\CustomMetadataFieldsContract;
 
 final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
 {

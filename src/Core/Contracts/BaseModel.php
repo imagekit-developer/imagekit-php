@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Core\Contracts;
+namespace Imagekit\Core\Contracts;
 
-use ImageKit\Core\Conversion\Contracts\ConverterSource;
+use Imagekit\Core\Conversion\Contracts\ConverterSource;
 
 /**
  * @internal

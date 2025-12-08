@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\ServiceContracts\Cache;
+namespace Imagekit\ServiceContracts\Cache;
 
-use ImageKit\Cache\Invalidation\InvalidationCreateParams;
-use ImageKit\Cache\Invalidation\InvalidationGetResponse;
-use ImageKit\Cache\Invalidation\InvalidationNewResponse;
-use ImageKit\Core\Exceptions\APIException;
-use ImageKit\RequestOptions;
+use Imagekit\Cache\Invalidation\InvalidationCreateParams;
+use Imagekit\Cache\Invalidation\InvalidationGetResponse;
+use Imagekit\Cache\Invalidation\InvalidationNewResponse;
+use Imagekit\Core\Exceptions\APIException;
+use Imagekit\RequestOptions;
 
 interface InvalidationContract
 {

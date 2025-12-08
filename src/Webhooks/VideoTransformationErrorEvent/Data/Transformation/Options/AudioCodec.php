@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Options;
+namespace Imagekit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Options;
 
 /**
  * Audio codec used for encoding (aac or opus).

@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\ServiceContracts;
+namespace Imagekit\ServiceContracts;
 
-use ImageKit\Core\Exceptions\APIException;
-use ImageKit\Folders\FolderCopyParams;
-use ImageKit\Folders\FolderCopyResponse;
-use ImageKit\Folders\FolderCreateParams;
-use ImageKit\Folders\FolderDeleteParams;
-use ImageKit\Folders\FolderDeleteResponse;
-use ImageKit\Folders\FolderMoveParams;
-use ImageKit\Folders\FolderMoveResponse;
-use ImageKit\Folders\FolderNewResponse;
-use ImageKit\Folders\FolderRenameParams;
-use ImageKit\Folders\FolderRenameResponse;
-use ImageKit\RequestOptions;
+use Imagekit\Core\Exceptions\APIException;
+use Imagekit\Folders\FolderCopyParams;
+use Imagekit\Folders\FolderCopyResponse;
+use Imagekit\Folders\FolderCreateParams;
+use Imagekit\Folders\FolderDeleteParams;
+use Imagekit\Folders\FolderDeleteResponse;
+use Imagekit\Folders\FolderMoveParams;
+use Imagekit\Folders\FolderMoveResponse;
+use Imagekit\Folders\FolderNewResponse;
+use Imagekit\Folders\FolderRenameParams;
+use Imagekit\Folders\FolderRenameResponse;
+use Imagekit\RequestOptions;
 
 interface FoldersContract
 {

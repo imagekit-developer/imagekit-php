@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\CustomMetadataFields\CustomMetadataField;
+namespace Imagekit\CustomMetadataFields\CustomMetadataField;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\CustomMetadataFields\CustomMetadataField\Schema\DefaultValue;
-use ImageKit\CustomMetadataFields\CustomMetadataField\Schema\SelectOption;
-use ImageKit\CustomMetadataFields\CustomMetadataField\Schema\Type;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\CustomMetadataFields\CustomMetadataField\Schema\DefaultValue;
+use Imagekit\CustomMetadataFields\CustomMetadataField\Schema\SelectOption;
+use Imagekit\CustomMetadataFields\CustomMetadataField\Schema\Type;
 
 /**
  * An object that describes the rules for the custom metadata field value.

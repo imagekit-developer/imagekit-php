@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Cache\Invalidation;
+namespace Imagekit\Cache\Invalidation;
 
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Concerns\SdkParams;
-use ImageKit\Core\Contracts\BaseModel;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Concerns\SdkParams;
+use Imagekit\Core\Contracts\BaseModel;
 
 /**
  * This API will purge CDN cache and ImageKit.io's internal cache for a file.  Note: Purge cache is an asynchronous process and it may take some time to reflect the changes.
  *
- * @see ImageKit\Services\Cache\InvalidationService::create()
+ * @see Imagekit\Services\Cache\InvalidationService::create()
  *
  * @phpstan-type InvalidationCreateParamsShape = array{url: string}
  */

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation\Options;
+namespace Imagekit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation\Options;
 
 /**
  * Output format for the transformed video or thumbnail.

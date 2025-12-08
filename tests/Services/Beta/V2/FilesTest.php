@@ -2,8 +2,8 @@
 
 namespace Tests\Services\Beta\V2;
 
-use ImageKit\Beta\V2\Files\FileUploadResponse;
-use ImageKit\Client;
+use Imagekit\Beta\V2\Files\FileUploadResponse;
+use Imagekit\Client;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;

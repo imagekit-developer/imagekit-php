@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace ImageKit\Accounts\URLEndpoints;
+namespace Imagekit\Accounts\URLEndpoints;
 
-use ImageKit\Accounts\URLEndpoints\URLEndpointRequest\URLRewriter;
-use ImageKit\Accounts\URLEndpoints\URLEndpointRequest\URLRewriter\Akamai;
-use ImageKit\Accounts\URLEndpoints\URLEndpointRequest\URLRewriter\Cloudinary;
-use ImageKit\Accounts\URLEndpoints\URLEndpointRequest\URLRewriter\Imgix;
-use ImageKit\Core\Attributes\Api;
-use ImageKit\Core\Concerns\SdkModel;
-use ImageKit\Core\Contracts\BaseModel;
+use Imagekit\Accounts\URLEndpoints\URLEndpointRequest\URLRewriter;
+use Imagekit\Accounts\URLEndpoints\URLEndpointRequest\URLRewriter\Akamai;
+use Imagekit\Accounts\URLEndpoints\URLEndpointRequest\URLRewriter\Cloudinary;
+use Imagekit\Accounts\URLEndpoints\URLEndpointRequest\URLRewriter\Imgix;
+use Imagekit\Core\Attributes\Api;
+use Imagekit\Core\Concerns\SdkModel;
+use Imagekit\Core\Contracts\BaseModel;
 
 /**
  * Schema for URL endpoint resource.

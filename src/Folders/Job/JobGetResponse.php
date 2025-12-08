@@ -6,9 +6,7 @@ namespace Imagekit\Folders\Job;
 
 use Imagekit\Core\Attributes\Api;
 use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Concerns\SdkResponse;
 use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Core\Conversion\Contracts\ResponseConverter;
 use Imagekit\Folders\Job\JobGetResponse\Status;
 use Imagekit\Folders\Job\JobGetResponse\Type;
 
@@ -20,12 +18,10 @@ use Imagekit\Folders\Job\JobGetResponse\Type;
  *   type?: value-of<Type>|null,
  * }
  */
-final class JobGetResponse implements BaseModel, ResponseConverter
+final class JobGetResponse implements BaseModel
 {
     /** @use SdkModel<JobGetResponseShape> */
     use SdkModel;
-
-    use SdkResponse;
 
     /**
      * Unique identifier of the bulk job.

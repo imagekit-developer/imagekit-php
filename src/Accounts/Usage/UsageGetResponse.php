@@ -6,9 +6,7 @@ namespace Imagekit\Accounts\Usage;
 
 use Imagekit\Core\Attributes\Api;
 use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Concerns\SdkResponse;
 use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
  * @phpstan-type UsageGetResponseShape = array{
@@ -19,12 +17,10 @@ use Imagekit\Core\Conversion\Contracts\ResponseConverter;
  *   videoProcessingUnitsCount?: int|null,
  * }
  */
-final class UsageGetResponse implements BaseModel, ResponseConverter
+final class UsageGetResponse implements BaseModel
 {
     /** @use SdkModel<UsageGetResponseShape> */
     use SdkModel;
-
-    use SdkResponse;
 
     /**
      * Amount of bandwidth used in bytes.

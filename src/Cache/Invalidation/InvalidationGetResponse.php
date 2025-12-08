@@ -7,21 +7,17 @@ namespace Imagekit\Cache\Invalidation;
 use Imagekit\Cache\Invalidation\InvalidationGetResponse\Status;
 use Imagekit\Core\Attributes\Api;
 use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Concerns\SdkResponse;
 use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
  * @phpstan-type InvalidationGetResponseShape = array{
  *   status?: value-of<Status>|null
  * }
  */
-final class InvalidationGetResponse implements BaseModel, ResponseConverter
+final class InvalidationGetResponse implements BaseModel
 {
     /** @use SdkModel<InvalidationGetResponseShape> */
     use SdkModel;
-
-    use SdkResponse;
 
     /**
      * Status of the purge request.

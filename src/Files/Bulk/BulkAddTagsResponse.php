@@ -6,21 +6,17 @@ namespace Imagekit\Files\Bulk;
 
 use Imagekit\Core\Attributes\Api;
 use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Concerns\SdkResponse;
 use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
  * @phpstan-type BulkAddTagsResponseShape = array{
  *   successfullyUpdatedFileIds?: list<string>|null
  * }
  */
-final class BulkAddTagsResponse implements BaseModel, ResponseConverter
+final class BulkAddTagsResponse implements BaseModel
 {
     /** @use SdkModel<BulkAddTagsResponseShape> */
     use SdkModel;
-
-    use SdkResponse;
 
     /**
      * An array of fileIds that in which tags were successfully added.

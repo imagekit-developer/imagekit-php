@@ -7,6 +7,7 @@ namespace Imagekit\Services\Accounts;
 use Imagekit\Accounts\Usage\UsageGetParams;
 use Imagekit\Accounts\Usage\UsageGetResponse;
 use Imagekit\Client;
+use Imagekit\Core\Contracts\BaseResponse;
 use Imagekit\Core\Exceptions\APIException;
 use Imagekit\RequestOptions;
 use Imagekit\ServiceContracts\Accounts\UsageContract;
@@ -38,13 +39,15 @@ final class UsageService implements UsageContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<UsageGetResponse> */
+        $response = $this->client->request(
             method: 'get',
             path: 'v1/accounts/usage',
             query: $parsed,
             options: $options,
             convert: UsageGetResponse::class,
         );
+
+        return $response->parse();
     }
 }

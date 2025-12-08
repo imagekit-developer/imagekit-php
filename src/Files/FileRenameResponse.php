@@ -6,19 +6,15 @@ namespace Imagekit\Files;
 
 use Imagekit\Core\Attributes\Api;
 use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Concerns\SdkResponse;
 use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
  * @phpstan-type FileRenameResponseShape = array{purgeRequestId?: string|null}
  */
-final class FileRenameResponse implements BaseModel, ResponseConverter
+final class FileRenameResponse implements BaseModel
 {
     /** @use SdkModel<FileRenameResponseShape> */
     use SdkModel;
-
-    use SdkResponse;
 
     /**
      * Unique identifier of the purge request. This can be used to check the status of the purge request.

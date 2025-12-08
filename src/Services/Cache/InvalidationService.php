@@ -8,6 +8,7 @@ use Imagekit\Cache\Invalidation\InvalidationCreateParams;
 use Imagekit\Cache\Invalidation\InvalidationGetResponse;
 use Imagekit\Cache\Invalidation\InvalidationNewResponse;
 use Imagekit\Client;
+use Imagekit\Core\Contracts\BaseResponse;
 use Imagekit\Core\Exceptions\APIException;
 use Imagekit\RequestOptions;
 use Imagekit\ServiceContracts\Cache\InvalidationContract;
@@ -37,14 +38,16 @@ final class InvalidationService implements InvalidationContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<InvalidationNewResponse> */
+        $response = $this->client->request(
             method: 'post',
             path: 'v1/files/purge',
             body: (object) $parsed,
             options: $options,
             convert: InvalidationNewResponse::class,
         );
+
+        return $response->parse();
     }
 
     /**
@@ -58,12 +61,14 @@ final class InvalidationService implements InvalidationContract
         string $requestID,
         ?RequestOptions $requestOptions = null
     ): InvalidationGetResponse {
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<InvalidationGetResponse> */
+        $response = $this->client->request(
             method: 'get',
             path: ['v1/files/purge/%1$s', $requestID],
             options: $requestOptions,
             convert: InvalidationGetResponse::class,
         );
+
+        return $response->parse();
     }
 }

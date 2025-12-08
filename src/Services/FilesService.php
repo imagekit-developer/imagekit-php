@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Imagekit\Services;
 
 use Imagekit\Client;
+use Imagekit\Core\Contracts\BaseResponse;
 use Imagekit\Core\Exceptions\APIException;
 use Imagekit\Files\File;
 use Imagekit\Files\FileCopyParams;
@@ -67,14 +68,16 @@ final class FilesService implements FilesContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<FileUpdateResponse> */
+        $response = $this->client->request(
             method: 'patch',
             path: ['v1/files/%1$s/details', $fileID],
             body: (object) $parsed,
             options: $options,
             convert: FileUpdateResponse::class,
         );
+
+        return $response->parse();
     }
 
     /**
@@ -90,13 +93,15 @@ final class FilesService implements FilesContract
         string $fileID,
         ?RequestOptions $requestOptions = null
     ): mixed {
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<mixed> */
+        $response = $this->client->request(
             method: 'delete',
             path: ['v1/files/%1$s', $fileID],
             options: $requestOptions,
             convert: null,
         );
+
+        return $response->parse();
     }
 
     /**
@@ -121,14 +126,16 @@ final class FilesService implements FilesContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<FileCopyResponse> */
+        $response = $this->client->request(
             method: 'post',
             path: 'v1/files/copy',
             body: (object) $parsed,
             options: $options,
             convert: FileCopyResponse::class,
         );
+
+        return $response->parse();
     }
 
     /**
@@ -142,13 +149,15 @@ final class FilesService implements FilesContract
         string $fileID,
         ?RequestOptions $requestOptions = null
     ): File {
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<File> */
+        $response = $this->client->request(
             method: 'get',
             path: ['v1/files/%1$s/details', $fileID],
             options: $requestOptions,
             convert: File::class,
         );
+
+        return $response->parse();
     }
 
     /**
@@ -173,14 +182,16 @@ final class FilesService implements FilesContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<FileMoveResponse> */
+        $response = $this->client->request(
             method: 'post',
             path: 'v1/files/move',
             body: (object) $parsed,
             options: $options,
             convert: FileMoveResponse::class,
         );
+
+        return $response->parse();
     }
 
     /**
@@ -205,14 +216,16 @@ final class FilesService implements FilesContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<FileRenameResponse> */
+        $response = $this->client->request(
             method: 'put',
             path: 'v1/files/rename',
             body: (object) $parsed,
             options: $options,
             convert: FileRenameResponse::class,
         );
+
+        return $response->parse();
     }
 
     /**
@@ -273,8 +286,8 @@ final class FilesService implements FilesContract
             ->client
             ->baseUrlOverridden ? 'api/v1/files/upload' : 'https://upload.imagekit.io/api/v1/files/upload';
 
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<FileUploadResponse> */
+        $response = $this->client->request(
             method: 'post',
             path: $path,
             headers: ['Content-Type' => 'multipart/form-data'],
@@ -282,5 +295,7 @@ final class FilesService implements FilesContract
             options: $options,
             convert: FileUploadResponse::class,
         );
+
+        return $response->parse();
     }
 }

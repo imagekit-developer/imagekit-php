@@ -5,19 +5,15 @@ declare(strict_types=1);
 namespace Imagekit\Files\Versions;
 
 use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Concerns\SdkResponse;
 use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
  * @phpstan-type VersionDeleteResponseShape = array<string,mixed>
  */
-final class VersionDeleteResponse implements BaseModel, ResponseConverter
+final class VersionDeleteResponse implements BaseModel
 {
     /** @use SdkModel<VersionDeleteResponseShape> */
     use SdkModel;
-
-    use SdkResponse;
 
     public function __construct()
     {

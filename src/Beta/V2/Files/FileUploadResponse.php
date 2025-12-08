@@ -15,9 +15,7 @@ use Imagekit\Beta\V2\Files\FileUploadResponse\SelectedFieldsSchema\Type;
 use Imagekit\Beta\V2\Files\FileUploadResponse\VersionInfo;
 use Imagekit\Core\Attributes\Api;
 use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Concerns\SdkResponse;
 use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Core\Conversion\Contracts\ResponseConverter;
 use Imagekit\Files\Metadata;
 use Imagekit\Files\Metadata\Exif;
 
@@ -52,12 +50,10 @@ use Imagekit\Files\Metadata\Exif;
  *   width?: float|null,
  * }
  */
-final class FileUploadResponse implements BaseModel, ResponseConverter
+final class FileUploadResponse implements BaseModel
 {
     /** @use SdkModel<FileUploadResponseShape> */
     use SdkModel;
-
-    use SdkResponse;
 
     /**
      * An array of tags assigned to the uploaded file by auto tagging.

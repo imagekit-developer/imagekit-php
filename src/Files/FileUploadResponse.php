@@ -6,9 +6,7 @@ namespace Imagekit\Files;
 
 use Imagekit\Core\Attributes\Api;
 use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Concerns\SdkResponse;
 use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Core\Conversion\Contracts\ResponseConverter;
 use Imagekit\Files\FileUploadResponse\AITag;
 use Imagekit\Files\FileUploadResponse\ExtensionStatus;
 use Imagekit\Files\FileUploadResponse\ExtensionStatus\AIAutoDescription;
@@ -51,12 +49,10 @@ use Imagekit\Files\Metadata\Exif;
  *   width?: float|null,
  * }
  */
-final class FileUploadResponse implements BaseModel, ResponseConverter
+final class FileUploadResponse implements BaseModel
 {
     /** @use SdkModel<FileUploadResponseShape> */
     use SdkModel;
-
-    use SdkResponse;
 
     /**
      * An array of tags assigned to the uploaded file by auto tagging.

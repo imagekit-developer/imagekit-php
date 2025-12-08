@@ -6,9 +6,7 @@ namespace Imagekit\Files;
 
 use Imagekit\Core\Attributes\Api;
 use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Concerns\SdkResponse;
 use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Core\Conversion\Contracts\ResponseConverter;
 use Imagekit\Files\File\AITag;
 use Imagekit\Files\File\SelectedFieldsSchema;
 use Imagekit\Files\File\Type;
@@ -49,12 +47,10 @@ use Imagekit\Files\FileUpdateResponse\ExtensionStatus\RemoveBg;
  *   extensionStatus?: ExtensionStatus|null,
  * }
  */
-final class FileUpdateResponse implements BaseModel, ResponseConverter
+final class FileUpdateResponse implements BaseModel
 {
     /** @use SdkModel<FileUpdateResponseShape> */
     use SdkModel;
-
-    use SdkResponse;
 
     /**
      * An array of tags assigned to the file by auto tagging.

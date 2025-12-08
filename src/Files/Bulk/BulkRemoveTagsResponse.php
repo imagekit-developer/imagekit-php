@@ -6,21 +6,17 @@ namespace Imagekit\Files\Bulk;
 
 use Imagekit\Core\Attributes\Api;
 use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Concerns\SdkResponse;
 use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
  * @phpstan-type BulkRemoveTagsResponseShape = array{
  *   successfullyUpdatedFileIds?: list<string>|null
  * }
  */
-final class BulkRemoveTagsResponse implements BaseModel, ResponseConverter
+final class BulkRemoveTagsResponse implements BaseModel
 {
     /** @use SdkModel<BulkRemoveTagsResponseShape> */
     use SdkModel;
-
-    use SdkResponse;
 
     /**
      * An array of fileIds that in which tags were successfully removed.

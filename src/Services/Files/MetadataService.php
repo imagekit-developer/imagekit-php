@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Imagekit\Services\Files;
 
 use Imagekit\Client;
+use Imagekit\Core\Contracts\BaseResponse;
 use Imagekit\Core\Exceptions\APIException;
 use Imagekit\Files\Metadata;
 use Imagekit\Files\Metadata\MetadataGetFromURLParams;
@@ -31,13 +32,15 @@ final class MetadataService implements MetadataContract
         string $fileID,
         ?RequestOptions $requestOptions = null
     ): Metadata {
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<Metadata> */
+        $response = $this->client->request(
             method: 'get',
             path: ['v1/files/%1$s/metadata', $fileID],
             options: $requestOptions,
             convert: Metadata::class,
         );
+
+        return $response->parse();
     }
 
     /**
@@ -58,13 +61,15 @@ final class MetadataService implements MetadataContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<Metadata> */
+        $response = $this->client->request(
             method: 'get',
             path: 'v1/files/metadata',
             query: $parsed,
             options: $options,
             convert: Metadata::class,
         );
+
+        return $response->parse();
     }
 }

@@ -6,9 +6,7 @@ namespace Imagekit\CustomMetadataFields;
 
 use Imagekit\Core\Attributes\Api;
 use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Concerns\SdkResponse;
 use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Core\Conversion\Contracts\ResponseConverter;
 use Imagekit\CustomMetadataFields\CustomMetadataField\Schema;
 use Imagekit\CustomMetadataFields\CustomMetadataField\Schema\Type;
 
@@ -19,12 +17,10 @@ use Imagekit\CustomMetadataFields\CustomMetadataField\Schema\Type;
  *   id: string, label: string, name: string, schema: Schema
  * }
  */
-final class CustomMetadataField implements BaseModel, ResponseConverter
+final class CustomMetadataField implements BaseModel
 {
     /** @use SdkModel<CustomMetadataFieldShape> */
     use SdkModel;
-
-    use SdkResponse;
 
     /**
      * Unique identifier for the custom metadata field. Use this to update the field.

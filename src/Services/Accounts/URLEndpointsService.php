@@ -8,6 +8,7 @@ use Imagekit\Accounts\URLEndpoints\URLEndpointCreateParams;
 use Imagekit\Accounts\URLEndpoints\URLEndpointResponse;
 use Imagekit\Accounts\URLEndpoints\URLEndpointUpdateParams;
 use Imagekit\Client;
+use Imagekit\Core\Contracts\BaseResponse;
 use Imagekit\Core\Conversion\ListOf;
 use Imagekit\Core\Exceptions\APIException;
 use Imagekit\RequestOptions;
@@ -44,14 +45,16 @@ final class URLEndpointsService implements URLEndpointsContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<URLEndpointResponse> */
+        $response = $this->client->request(
             method: 'post',
             path: 'v1/accounts/url-endpoints',
             body: (object) $parsed,
             options: $options,
             convert: URLEndpointResponse::class,
         );
+
+        return $response->parse();
     }
 
     /**
@@ -79,14 +82,16 @@ final class URLEndpointsService implements URLEndpointsContract
             $requestOptions,
         );
 
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<URLEndpointResponse> */
+        $response = $this->client->request(
             method: 'put',
             path: ['v1/accounts/url-endpoints/%1$s', $id],
             body: (object) $parsed,
             options: $options,
             convert: URLEndpointResponse::class,
         );
+
+        return $response->parse();
     }
 
     /**
@@ -101,13 +106,15 @@ final class URLEndpointsService implements URLEndpointsContract
      */
     public function list(?RequestOptions $requestOptions = null): array
     {
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<list<URLEndpointResponse>> */
+        $response = $this->client->request(
             method: 'get',
             path: 'v1/accounts/url-endpoints',
             options: $requestOptions,
             convert: new ListOf(URLEndpointResponse::class),
         );
+
+        return $response->parse();
     }
 
     /**
@@ -122,13 +129,15 @@ final class URLEndpointsService implements URLEndpointsContract
         string $id,
         ?RequestOptions $requestOptions = null
     ): mixed {
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<mixed> */
+        $response = $this->client->request(
             method: 'delete',
             path: ['v1/accounts/url-endpoints/%1$s', $id],
             options: $requestOptions,
             convert: null,
         );
+
+        return $response->parse();
     }
 
     /**
@@ -143,12 +152,14 @@ final class URLEndpointsService implements URLEndpointsContract
         string $id,
         ?RequestOptions $requestOptions = null
     ): URLEndpointResponse {
-        // @phpstan-ignore-next-line return.type
-        return $this->client->request(
+        /** @var BaseResponse<URLEndpointResponse> */
+        $response = $this->client->request(
             method: 'get',
             path: ['v1/accounts/url-endpoints/%1$s', $id],
             options: $requestOptions,
             convert: URLEndpointResponse::class,
         );
+
+        return $response->parse();
     }
 }

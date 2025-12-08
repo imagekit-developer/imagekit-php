@@ -7,9 +7,7 @@ namespace Imagekit\Core;
 use Imagekit\Core\Conversion\CoerceState;
 use Imagekit\Core\Conversion\Contracts\Converter;
 use Imagekit\Core\Conversion\Contracts\ConverterSource;
-use Imagekit\Core\Conversion\Contracts\ResponseConverter;
 use Imagekit\Core\Conversion\DumpState;
-use Psr\Http\Message\ResponseInterface;
 
 /**
  * @internal
@@ -41,15 +39,6 @@ final class Conversion
         }
 
         return $value;
-    }
-
-    public static function coerceResponse(Converter|ConverterSource|string $target, ResponseInterface $response): mixed
-    {
-        if (is_a($target, ResponseConverter::class, allow_string: true)) {
-            return $target::fromResponse($response);
-        }
-
-        return self::coerce($target, Util::decodeContent($response));
     }
 
     public static function coerce(Converter|ConverterSource|string $target, mixed $value, CoerceState $state = new CoerceState): mixed

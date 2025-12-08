@@ -5,19 +5,15 @@ declare(strict_types=1);
 namespace Imagekit\Files;
 
 use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Concerns\SdkResponse;
 use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
  * @phpstan-type FileCopyResponseShape = array<string,mixed>
  */
-final class FileCopyResponse implements BaseModel, ResponseConverter
+final class FileCopyResponse implements BaseModel
 {
     /** @use SdkModel<FileCopyResponseShape> */
     use SdkModel;
-
-    use SdkResponse;
 
     public function __construct()
     {

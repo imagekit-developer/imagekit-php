@@ -5,19 +5,15 @@ declare(strict_types=1);
 namespace Imagekit\CustomMetadataFields;
 
 use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Concerns\SdkResponse;
 use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Core\Conversion\Contracts\ResponseConverter;
 
 /**
  * @phpstan-type CustomMetadataFieldDeleteResponseShape = array<string,mixed>
  */
-final class CustomMetadataFieldDeleteResponse implements BaseModel, ResponseConverter
+final class CustomMetadataFieldDeleteResponse implements BaseModel
 {
     /** @use SdkModel<CustomMetadataFieldDeleteResponseShape> */
     use SdkModel;
-
-    use SdkResponse;
 
     public function __construct()
     {

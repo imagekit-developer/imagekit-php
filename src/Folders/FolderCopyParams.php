@@ -72,14 +72,14 @@ final class FolderCopyParams implements BaseModel
         string $sourceFolderPath,
         ?bool $includeVersions = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj['destinationPath'] = $destinationPath;
-        $obj['sourceFolderPath'] = $sourceFolderPath;
+        $self['destinationPath'] = $destinationPath;
+        $self['sourceFolderPath'] = $sourceFolderPath;
 
-        null !== $includeVersions && $obj['includeVersions'] = $includeVersions;
+        null !== $includeVersions && $self['includeVersions'] = $includeVersions;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -87,10 +87,10 @@ final class FolderCopyParams implements BaseModel
      */
     public function withDestinationPath(string $destinationPath): self
     {
-        $obj = clone $this;
-        $obj['destinationPath'] = $destinationPath;
+        $self = clone $this;
+        $self['destinationPath'] = $destinationPath;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -98,10 +98,10 @@ final class FolderCopyParams implements BaseModel
      */
     public function withSourceFolderPath(string $sourceFolderPath): self
     {
-        $obj = clone $this;
-        $obj['sourceFolderPath'] = $sourceFolderPath;
+        $self = clone $this;
+        $self['sourceFolderPath'] = $sourceFolderPath;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -109,9 +109,9 @@ final class FolderCopyParams implements BaseModel
      */
     public function withIncludeVersions(bool $includeVersions): self
     {
-        $obj = clone $this;
-        $obj['includeVersions'] = $includeVersions;
+        $self = clone $this;
+        $self['includeVersions'] = $includeVersions;
 
-        return $obj;
+        return $self;
     }
 }

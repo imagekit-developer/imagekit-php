@@ -85,16 +85,16 @@ final class SolidColorOverlayTransformation implements BaseModel
         float|string|null $radius = null,
         float|string|null $width = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $alpha && $obj['alpha'] = $alpha;
-        null !== $background && $obj['background'] = $background;
-        null !== $gradient && $obj['gradient'] = $gradient;
-        null !== $height && $obj['height'] = $height;
-        null !== $radius && $obj['radius'] = $radius;
-        null !== $width && $obj['width'] = $width;
+        null !== $alpha && $self['alpha'] = $alpha;
+        null !== $background && $self['background'] = $background;
+        null !== $gradient && $self['gradient'] = $gradient;
+        null !== $height && $self['height'] = $height;
+        null !== $radius && $self['radius'] = $radius;
+        null !== $width && $self['width'] = $width;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -102,10 +102,10 @@ final class SolidColorOverlayTransformation implements BaseModel
      */
     public function withAlpha(float $alpha): self
     {
-        $obj = clone $this;
-        $obj['alpha'] = $alpha;
+        $self = clone $this;
+        $self['alpha'] = $alpha;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -113,10 +113,10 @@ final class SolidColorOverlayTransformation implements BaseModel
      */
     public function withBackground(string $background): self
     {
-        $obj = clone $this;
-        $obj['background'] = $background;
+        $self = clone $this;
+        $self['background'] = $background;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -125,10 +125,10 @@ final class SolidColorOverlayTransformation implements BaseModel
      */
     public function withGradient(string|bool $gradient): self
     {
-        $obj = clone $this;
-        $obj['gradient'] = $gradient;
+        $self = clone $this;
+        $self['gradient'] = $gradient;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -137,10 +137,10 @@ final class SolidColorOverlayTransformation implements BaseModel
      */
     public function withHeight(float|string $height): self
     {
-        $obj = clone $this;
-        $obj['height'] = $height;
+        $self = clone $this;
+        $self['height'] = $height;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -151,10 +151,10 @@ final class SolidColorOverlayTransformation implements BaseModel
      */
     public function withRadius(float|string $radius): self
     {
-        $obj = clone $this;
-        $obj['radius'] = $radius;
+        $self = clone $this;
+        $self['radius'] = $radius;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -163,9 +163,9 @@ final class SolidColorOverlayTransformation implements BaseModel
      */
     public function withWidth(float|string $width): self
     {
-        $obj = clone $this;
-        $obj['width'] = $width;
+        $self = clone $this;
+        $self['width'] = $width;
 
-        return $obj;
+        return $self;
     }
 }

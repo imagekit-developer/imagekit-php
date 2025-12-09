@@ -128,18 +128,18 @@ final class SrcOptions implements BaseModel
         ?array $transformation = null,
         TransformationPosition|string|null $transformationPosition = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj['src'] = $src;
-        $obj['urlEndpoint'] = $urlEndpoint;
+        $self['src'] = $src;
+        $self['urlEndpoint'] = $urlEndpoint;
 
-        null !== $expiresIn && $obj['expiresIn'] = $expiresIn;
-        null !== $queryParameters && $obj['queryParameters'] = $queryParameters;
-        null !== $signed && $obj['signed'] = $signed;
-        null !== $transformation && $obj['transformation'] = $transformation;
-        null !== $transformationPosition && $obj['transformationPosition'] = $transformationPosition;
+        null !== $expiresIn && $self['expiresIn'] = $expiresIn;
+        null !== $queryParameters && $self['queryParameters'] = $queryParameters;
+        null !== $signed && $self['signed'] = $signed;
+        null !== $transformation && $self['transformation'] = $transformation;
+        null !== $transformationPosition && $self['transformationPosition'] = $transformationPosition;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -148,10 +148,10 @@ final class SrcOptions implements BaseModel
      */
     public function withSrc(string $src): self
     {
-        $obj = clone $this;
-        $obj['src'] = $src;
+        $self = clone $this;
+        $self['src'] = $src;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -159,10 +159,10 @@ final class SrcOptions implements BaseModel
      */
     public function withURLEndpoint(string $urlEndpoint): self
     {
-        $obj = clone $this;
-        $obj['urlEndpoint'] = $urlEndpoint;
+        $self = clone $this;
+        $self['urlEndpoint'] = $urlEndpoint;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -177,10 +177,10 @@ final class SrcOptions implements BaseModel
      */
     public function withExpiresIn(float $expiresIn): self
     {
-        $obj = clone $this;
-        $obj['expiresIn'] = $expiresIn;
+        $self = clone $this;
+        $self['expiresIn'] = $expiresIn;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -192,10 +192,10 @@ final class SrcOptions implements BaseModel
      */
     public function withQueryParameters(array $queryParameters): self
     {
-        $obj = clone $this;
-        $obj['queryParameters'] = $queryParameters;
+        $self = clone $this;
+        $self['queryParameters'] = $queryParameters;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -206,10 +206,10 @@ final class SrcOptions implements BaseModel
      */
     public function withSigned(bool $signed): self
     {
-        $obj = clone $this;
-        $obj['signed'] = $signed;
+        $self = clone $this;
+        $self['signed'] = $signed;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -220,10 +220,10 @@ final class SrcOptions implements BaseModel
      */
     public function withTransformation(array $transformation): self
     {
-        $obj = clone $this;
-        $obj['transformation'] = $transformation;
+        $self = clone $this;
+        $self['transformation'] = $transformation;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -236,9 +236,9 @@ final class SrcOptions implements BaseModel
     public function withTransformationPosition(
         TransformationPosition|string $transformationPosition
     ): self {
-        $obj = clone $this;
-        $obj['transformationPosition'] = $transformationPosition;
+        $self = clone $this;
+        $self['transformationPosition'] = $transformationPosition;
 
-        return $obj;
+        return $self;
     }
 }

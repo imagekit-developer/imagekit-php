@@ -109,18 +109,18 @@ final class AzureBlob implements BaseModel
         bool $includeCanonicalHeader = false,
         ?string $baseURLForCanonicalHeader = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj['id'] = $id;
-        $obj['accountName'] = $accountName;
-        $obj['container'] = $container;
-        $obj['includeCanonicalHeader'] = $includeCanonicalHeader;
-        $obj['name'] = $name;
-        $obj['prefix'] = $prefix;
+        $self['id'] = $id;
+        $self['accountName'] = $accountName;
+        $self['container'] = $container;
+        $self['includeCanonicalHeader'] = $includeCanonicalHeader;
+        $self['name'] = $name;
+        $self['prefix'] = $prefix;
 
-        null !== $baseURLForCanonicalHeader && $obj['baseURLForCanonicalHeader'] = $baseURLForCanonicalHeader;
+        null !== $baseURLForCanonicalHeader && $self['baseURLForCanonicalHeader'] = $baseURLForCanonicalHeader;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -128,26 +128,26 @@ final class AzureBlob implements BaseModel
      */
     public function withID(string $id): self
     {
-        $obj = clone $this;
-        $obj['id'] = $id;
+        $self = clone $this;
+        $self['id'] = $id;
 
-        return $obj;
+        return $self;
     }
 
     public function withAccountName(string $accountName): self
     {
-        $obj = clone $this;
-        $obj['accountName'] = $accountName;
+        $self = clone $this;
+        $self['accountName'] = $accountName;
 
-        return $obj;
+        return $self;
     }
 
     public function withContainer(string $container): self
     {
-        $obj = clone $this;
-        $obj['container'] = $container;
+        $self = clone $this;
+        $self['container'] = $container;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -156,10 +156,10 @@ final class AzureBlob implements BaseModel
     public function withIncludeCanonicalHeader(
         bool $includeCanonicalHeader
     ): self {
-        $obj = clone $this;
-        $obj['includeCanonicalHeader'] = $includeCanonicalHeader;
+        $self = clone $this;
+        $self['includeCanonicalHeader'] = $includeCanonicalHeader;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -167,18 +167,18 @@ final class AzureBlob implements BaseModel
      */
     public function withName(string $name): self
     {
-        $obj = clone $this;
-        $obj['name'] = $name;
+        $self = clone $this;
+        $self['name'] = $name;
 
-        return $obj;
+        return $self;
     }
 
     public function withPrefix(string $prefix): self
     {
-        $obj = clone $this;
-        $obj['prefix'] = $prefix;
+        $self = clone $this;
+        $self['prefix'] = $prefix;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -187,9 +187,9 @@ final class AzureBlob implements BaseModel
     public function withBaseURLForCanonicalHeader(
         string $baseURLForCanonicalHeader
     ): self {
-        $obj = clone $this;
-        $obj['baseURLForCanonicalHeader'] = $baseURLForCanonicalHeader;
+        $self = clone $this;
+        $self['baseURLForCanonicalHeader'] = $baseURLForCanonicalHeader;
 
-        return $obj;
+        return $self;
     }
 }

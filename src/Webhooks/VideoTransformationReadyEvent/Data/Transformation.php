@@ -91,14 +91,14 @@ final class Transformation implements BaseModel
         Options|array|null $options = null,
         Output|array|null $output = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj['type'] = $type;
+        $self['type'] = $type;
 
-        null !== $options && $obj['options'] = $options;
-        null !== $output && $obj['output'] = $output;
+        null !== $options && $self['options'] = $options;
+        null !== $output && $self['output'] = $output;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -111,10 +111,10 @@ final class Transformation implements BaseModel
      */
     public function withType(Type|string $type): self
     {
-        $obj = clone $this;
-        $obj['type'] = $type;
+        $self = clone $this;
+        $self['type'] = $type;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -132,10 +132,10 @@ final class Transformation implements BaseModel
      */
     public function withOptions(Options|array $options): self
     {
-        $obj = clone $this;
-        $obj['options'] = $options;
+        $self = clone $this;
+        $self['options'] = $options;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -145,9 +145,9 @@ final class Transformation implements BaseModel
      */
     public function withOutput(Output|array $output): self
     {
-        $obj = clone $this;
-        $obj['output'] = $output;
+        $self = clone $this;
+        $self['output'] = $output;
 
-        return $obj;
+        return $self;
     }
 }

@@ -69,15 +69,15 @@ final class UsageGetResponse implements BaseModel
         ?int $originalCacheStorageBytes = null,
         ?int $videoProcessingUnitsCount = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $bandwidthBytes && $obj['bandwidthBytes'] = $bandwidthBytes;
-        null !== $extensionUnitsCount && $obj['extensionUnitsCount'] = $extensionUnitsCount;
-        null !== $mediaLibraryStorageBytes && $obj['mediaLibraryStorageBytes'] = $mediaLibraryStorageBytes;
-        null !== $originalCacheStorageBytes && $obj['originalCacheStorageBytes'] = $originalCacheStorageBytes;
-        null !== $videoProcessingUnitsCount && $obj['videoProcessingUnitsCount'] = $videoProcessingUnitsCount;
+        null !== $bandwidthBytes && $self['bandwidthBytes'] = $bandwidthBytes;
+        null !== $extensionUnitsCount && $self['extensionUnitsCount'] = $extensionUnitsCount;
+        null !== $mediaLibraryStorageBytes && $self['mediaLibraryStorageBytes'] = $mediaLibraryStorageBytes;
+        null !== $originalCacheStorageBytes && $self['originalCacheStorageBytes'] = $originalCacheStorageBytes;
+        null !== $videoProcessingUnitsCount && $self['videoProcessingUnitsCount'] = $videoProcessingUnitsCount;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -85,10 +85,10 @@ final class UsageGetResponse implements BaseModel
      */
     public function withBandwidthBytes(int $bandwidthBytes): self
     {
-        $obj = clone $this;
-        $obj['bandwidthBytes'] = $bandwidthBytes;
+        $self = clone $this;
+        $self['bandwidthBytes'] = $bandwidthBytes;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -96,10 +96,10 @@ final class UsageGetResponse implements BaseModel
      */
     public function withExtensionUnitsCount(int $extensionUnitsCount): self
     {
-        $obj = clone $this;
-        $obj['extensionUnitsCount'] = $extensionUnitsCount;
+        $self = clone $this;
+        $self['extensionUnitsCount'] = $extensionUnitsCount;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -108,10 +108,10 @@ final class UsageGetResponse implements BaseModel
     public function withMediaLibraryStorageBytes(
         int $mediaLibraryStorageBytes
     ): self {
-        $obj = clone $this;
-        $obj['mediaLibraryStorageBytes'] = $mediaLibraryStorageBytes;
+        $self = clone $this;
+        $self['mediaLibraryStorageBytes'] = $mediaLibraryStorageBytes;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -120,10 +120,10 @@ final class UsageGetResponse implements BaseModel
     public function withOriginalCacheStorageBytes(
         int $originalCacheStorageBytes
     ): self {
-        $obj = clone $this;
-        $obj['originalCacheStorageBytes'] = $originalCacheStorageBytes;
+        $self = clone $this;
+        $self['originalCacheStorageBytes'] = $originalCacheStorageBytes;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -132,9 +132,9 @@ final class UsageGetResponse implements BaseModel
     public function withVideoProcessingUnitsCount(
         int $videoProcessingUnitsCount
     ): self {
-        $obj = clone $this;
-        $obj['videoProcessingUnitsCount'] = $videoProcessingUnitsCount;
+        $self = clone $this;
+        $self['videoProcessingUnitsCount'] = $videoProcessingUnitsCount;
 
-        return $obj;
+        return $self;
     }
 }

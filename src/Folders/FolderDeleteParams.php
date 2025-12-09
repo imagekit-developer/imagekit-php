@@ -54,11 +54,11 @@ final class FolderDeleteParams implements BaseModel
      */
     public static function with(string $folderPath): self
     {
-        $obj = new self;
+        $self = new self;
 
-        $obj['folderPath'] = $folderPath;
+        $self['folderPath'] = $folderPath;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -66,9 +66,9 @@ final class FolderDeleteParams implements BaseModel
      */
     public function withFolderPath(string $folderPath): self
     {
-        $obj = clone $this;
-        $obj['folderPath'] = $folderPath;
+        $self = clone $this;
+        $self['folderPath'] = $folderPath;
 
-        return $obj;
+        return $self;
     }
 }

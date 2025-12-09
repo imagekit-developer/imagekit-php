@@ -564,62 +564,62 @@ final class Transformation implements BaseModel
         float|string|null $yCenter = null,
         ?float $zoom = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $aiChangeBackground && $obj['aiChangeBackground'] = $aiChangeBackground;
-        null !== $aiDropShadow && $obj['aiDropShadow'] = $aiDropShadow;
-        null !== $aiEdit && $obj['aiEdit'] = $aiEdit;
-        null !== $aiRemoveBackground && $obj['aiRemoveBackground'] = $aiRemoveBackground;
-        null !== $aiRemoveBackgroundExternal && $obj['aiRemoveBackgroundExternal'] = $aiRemoveBackgroundExternal;
-        null !== $aiRetouch && $obj['aiRetouch'] = $aiRetouch;
-        null !== $aiUpscale && $obj['aiUpscale'] = $aiUpscale;
-        null !== $aiVariation && $obj['aiVariation'] = $aiVariation;
-        null !== $aspectRatio && $obj['aspectRatio'] = $aspectRatio;
-        null !== $audioCodec && $obj['audioCodec'] = $audioCodec;
-        null !== $background && $obj['background'] = $background;
-        null !== $blur && $obj['blur'] = $blur;
-        null !== $border && $obj['border'] = $border;
-        null !== $colorProfile && $obj['colorProfile'] = $colorProfile;
-        null !== $contrastStretch && $obj['contrastStretch'] = $contrastStretch;
-        null !== $crop && $obj['crop'] = $crop;
-        null !== $cropMode && $obj['cropMode'] = $cropMode;
-        null !== $defaultImage && $obj['defaultImage'] = $defaultImage;
-        null !== $dpr && $obj['dpr'] = $dpr;
-        null !== $duration && $obj['duration'] = $duration;
-        null !== $endOffset && $obj['endOffset'] = $endOffset;
-        null !== $flip && $obj['flip'] = $flip;
-        null !== $focus && $obj['focus'] = $focus;
-        null !== $format && $obj['format'] = $format;
-        null !== $gradient && $obj['gradient'] = $gradient;
-        null !== $grayscale && $obj['grayscale'] = $grayscale;
-        null !== $height && $obj['height'] = $height;
-        null !== $lossless && $obj['lossless'] = $lossless;
-        null !== $metadata && $obj['metadata'] = $metadata;
-        null !== $named && $obj['named'] = $named;
-        null !== $opacity && $obj['opacity'] = $opacity;
-        null !== $original && $obj['original'] = $original;
-        null !== $overlay && $obj['overlay'] = $overlay;
-        null !== $page && $obj['page'] = $page;
-        null !== $progressive && $obj['progressive'] = $progressive;
-        null !== $quality && $obj['quality'] = $quality;
-        null !== $radius && $obj['radius'] = $radius;
-        null !== $raw && $obj['raw'] = $raw;
-        null !== $rotation && $obj['rotation'] = $rotation;
-        null !== $shadow && $obj['shadow'] = $shadow;
-        null !== $sharpen && $obj['sharpen'] = $sharpen;
-        null !== $startOffset && $obj['startOffset'] = $startOffset;
-        null !== $streamingResolutions && $obj['streamingResolutions'] = $streamingResolutions;
-        null !== $trim && $obj['trim'] = $trim;
-        null !== $unsharpMask && $obj['unsharpMask'] = $unsharpMask;
-        null !== $videoCodec && $obj['videoCodec'] = $videoCodec;
-        null !== $width && $obj['width'] = $width;
-        null !== $x && $obj['x'] = $x;
-        null !== $xCenter && $obj['xCenter'] = $xCenter;
-        null !== $y && $obj['y'] = $y;
-        null !== $yCenter && $obj['yCenter'] = $yCenter;
-        null !== $zoom && $obj['zoom'] = $zoom;
+        null !== $aiChangeBackground && $self['aiChangeBackground'] = $aiChangeBackground;
+        null !== $aiDropShadow && $self['aiDropShadow'] = $aiDropShadow;
+        null !== $aiEdit && $self['aiEdit'] = $aiEdit;
+        null !== $aiRemoveBackground && $self['aiRemoveBackground'] = $aiRemoveBackground;
+        null !== $aiRemoveBackgroundExternal && $self['aiRemoveBackgroundExternal'] = $aiRemoveBackgroundExternal;
+        null !== $aiRetouch && $self['aiRetouch'] = $aiRetouch;
+        null !== $aiUpscale && $self['aiUpscale'] = $aiUpscale;
+        null !== $aiVariation && $self['aiVariation'] = $aiVariation;
+        null !== $aspectRatio && $self['aspectRatio'] = $aspectRatio;
+        null !== $audioCodec && $self['audioCodec'] = $audioCodec;
+        null !== $background && $self['background'] = $background;
+        null !== $blur && $self['blur'] = $blur;
+        null !== $border && $self['border'] = $border;
+        null !== $colorProfile && $self['colorProfile'] = $colorProfile;
+        null !== $contrastStretch && $self['contrastStretch'] = $contrastStretch;
+        null !== $crop && $self['crop'] = $crop;
+        null !== $cropMode && $self['cropMode'] = $cropMode;
+        null !== $defaultImage && $self['defaultImage'] = $defaultImage;
+        null !== $dpr && $self['dpr'] = $dpr;
+        null !== $duration && $self['duration'] = $duration;
+        null !== $endOffset && $self['endOffset'] = $endOffset;
+        null !== $flip && $self['flip'] = $flip;
+        null !== $focus && $self['focus'] = $focus;
+        null !== $format && $self['format'] = $format;
+        null !== $gradient && $self['gradient'] = $gradient;
+        null !== $grayscale && $self['grayscale'] = $grayscale;
+        null !== $height && $self['height'] = $height;
+        null !== $lossless && $self['lossless'] = $lossless;
+        null !== $metadata && $self['metadata'] = $metadata;
+        null !== $named && $self['named'] = $named;
+        null !== $opacity && $self['opacity'] = $opacity;
+        null !== $original && $self['original'] = $original;
+        null !== $overlay && $self['overlay'] = $overlay;
+        null !== $page && $self['page'] = $page;
+        null !== $progressive && $self['progressive'] = $progressive;
+        null !== $quality && $self['quality'] = $quality;
+        null !== $radius && $self['radius'] = $radius;
+        null !== $raw && $self['raw'] = $raw;
+        null !== $rotation && $self['rotation'] = $rotation;
+        null !== $shadow && $self['shadow'] = $shadow;
+        null !== $sharpen && $self['sharpen'] = $sharpen;
+        null !== $startOffset && $self['startOffset'] = $startOffset;
+        null !== $streamingResolutions && $self['streamingResolutions'] = $streamingResolutions;
+        null !== $trim && $self['trim'] = $trim;
+        null !== $unsharpMask && $self['unsharpMask'] = $unsharpMask;
+        null !== $videoCodec && $self['videoCodec'] = $videoCodec;
+        null !== $width && $self['width'] = $width;
+        null !== $x && $self['x'] = $x;
+        null !== $xCenter && $self['xCenter'] = $xCenter;
+        null !== $y && $self['y'] = $y;
+        null !== $yCenter && $self['yCenter'] = $yCenter;
+        null !== $zoom && $self['zoom'] = $zoom;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -630,10 +630,10 @@ final class Transformation implements BaseModel
      */
     public function withAIChangeBackground(string $aiChangeBackground): self
     {
-        $obj = clone $this;
-        $obj['aiChangeBackground'] = $aiChangeBackground;
+        $self = clone $this;
+        $self['aiChangeBackground'] = $aiChangeBackground;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -645,10 +645,10 @@ final class Transformation implements BaseModel
      */
     public function withAIDropShadow(string|bool $aiDropShadow): self
     {
-        $obj = clone $this;
-        $obj['aiDropShadow'] = $aiDropShadow;
+        $self = clone $this;
+        $self['aiDropShadow'] = $aiDropShadow;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -659,10 +659,10 @@ final class Transformation implements BaseModel
      */
     public function withAIEdit(string $aiEdit): self
     {
-        $obj = clone $this;
-        $obj['aiEdit'] = $aiEdit;
+        $self = clone $this;
+        $self['aiEdit'] = $aiEdit;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -672,10 +672,10 @@ final class Transformation implements BaseModel
      */
     public function withAIRemoveBackground(bool $aiRemoveBackground): self
     {
-        $obj = clone $this;
-        $obj['aiRemoveBackground'] = $aiRemoveBackground;
+        $self = clone $this;
+        $self['aiRemoveBackground'] = $aiRemoveBackground;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -687,10 +687,10 @@ final class Transformation implements BaseModel
     public function withAIRemoveBackgroundExternal(
         bool $aiRemoveBackgroundExternal
     ): self {
-        $obj = clone $this;
-        $obj['aiRemoveBackgroundExternal'] = $aiRemoveBackgroundExternal;
+        $self = clone $this;
+        $self['aiRemoveBackgroundExternal'] = $aiRemoveBackgroundExternal;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -699,10 +699,10 @@ final class Transformation implements BaseModel
      */
     public function withAIRetouch(bool $aiRetouch): self
     {
-        $obj = clone $this;
-        $obj['aiRetouch'] = $aiRetouch;
+        $self = clone $this;
+        $self['aiRetouch'] = $aiRetouch;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -711,10 +711,10 @@ final class Transformation implements BaseModel
      */
     public function withAIUpscale(bool $aiUpscale): self
     {
-        $obj = clone $this;
-        $obj['aiUpscale'] = $aiUpscale;
+        $self = clone $this;
+        $self['aiUpscale'] = $aiUpscale;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -724,10 +724,10 @@ final class Transformation implements BaseModel
      */
     public function withAIVariation(bool $aiVariation): self
     {
-        $obj = clone $this;
-        $obj['aiVariation'] = $aiVariation;
+        $self = clone $this;
+        $self['aiVariation'] = $aiVariation;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -737,10 +737,10 @@ final class Transformation implements BaseModel
      */
     public function withAspectRatio(float|string $aspectRatio): self
     {
-        $obj = clone $this;
-        $obj['aspectRatio'] = $aspectRatio;
+        $self = clone $this;
+        $self['aspectRatio'] = $aspectRatio;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -750,10 +750,10 @@ final class Transformation implements BaseModel
      */
     public function withAudioCodec(AudioCodec|string $audioCodec): self
     {
-        $obj = clone $this;
-        $obj['audioCodec'] = $audioCodec;
+        $self = clone $this;
+        $self['audioCodec'] = $audioCodec;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -765,10 +765,10 @@ final class Transformation implements BaseModel
      */
     public function withBackground(string $background): self
     {
-        $obj = clone $this;
-        $obj['background'] = $background;
+        $self = clone $this;
+        $self['background'] = $background;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -777,10 +777,10 @@ final class Transformation implements BaseModel
      */
     public function withBlur(float $blur): self
     {
-        $obj = clone $this;
-        $obj['blur'] = $blur;
+        $self = clone $this;
+        $self['blur'] = $blur;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -790,10 +790,10 @@ final class Transformation implements BaseModel
      */
     public function withBorder(string $border): self
     {
-        $obj = clone $this;
-        $obj['border'] = $border;
+        $self = clone $this;
+        $self['border'] = $border;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -802,10 +802,10 @@ final class Transformation implements BaseModel
      */
     public function withColorProfile(bool $colorProfile): self
     {
-        $obj = clone $this;
-        $obj['colorProfile'] = $colorProfile;
+        $self = clone $this;
+        $self['colorProfile'] = $colorProfile;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -814,10 +814,10 @@ final class Transformation implements BaseModel
      */
     public function withContrastStretch(bool $contrastStretch): self
     {
-        $obj = clone $this;
-        $obj['contrastStretch'] = $contrastStretch;
+        $self = clone $this;
+        $self['contrastStretch'] = $contrastStretch;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -827,10 +827,10 @@ final class Transformation implements BaseModel
      */
     public function withCrop(Crop|string $crop): self
     {
-        $obj = clone $this;
-        $obj['crop'] = $crop;
+        $self = clone $this;
+        $self['crop'] = $crop;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -840,10 +840,10 @@ final class Transformation implements BaseModel
      */
     public function withCropMode(CropMode|string $cropMode): self
     {
-        $obj = clone $this;
-        $obj['cropMode'] = $cropMode;
+        $self = clone $this;
+        $self['cropMode'] = $cropMode;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -852,10 +852,10 @@ final class Transformation implements BaseModel
      */
     public function withDefaultImage(string $defaultImage): self
     {
-        $obj = clone $this;
-        $obj['defaultImage'] = $defaultImage;
+        $self = clone $this;
+        $self['defaultImage'] = $defaultImage;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -864,10 +864,10 @@ final class Transformation implements BaseModel
      */
     public function withDpr(float $dpr): self
     {
-        $obj = clone $this;
-        $obj['dpr'] = $dpr;
+        $self = clone $this;
+        $self['dpr'] = $dpr;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -877,10 +877,10 @@ final class Transformation implements BaseModel
      */
     public function withDuration(float|string $duration): self
     {
-        $obj = clone $this;
-        $obj['duration'] = $duration;
+        $self = clone $this;
+        $self['duration'] = $duration;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -890,10 +890,10 @@ final class Transformation implements BaseModel
      */
     public function withEndOffset(float|string $endOffset): self
     {
-        $obj = clone $this;
-        $obj['endOffset'] = $endOffset;
+        $self = clone $this;
+        $self['endOffset'] = $endOffset;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -905,10 +905,10 @@ final class Transformation implements BaseModel
      */
     public function withFlip(Flip|string $flip): self
     {
-        $obj = clone $this;
-        $obj['flip'] = $flip;
+        $self = clone $this;
+        $self['flip'] = $flip;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -921,10 +921,10 @@ final class Transformation implements BaseModel
      */
     public function withFocus(string $focus): self
     {
-        $obj = clone $this;
-        $obj['focus'] = $focus;
+        $self = clone $this;
+        $self['focus'] = $focus;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -937,10 +937,10 @@ final class Transformation implements BaseModel
      */
     public function withFormat(Format|string $format): self
     {
-        $obj = clone $this;
-        $obj['format'] = $format;
+        $self = clone $this;
+        $self['format'] = $format;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -949,10 +949,10 @@ final class Transformation implements BaseModel
      */
     public function withGradient(string|bool $gradient): self
     {
-        $obj = clone $this;
-        $obj['gradient'] = $gradient;
+        $self = clone $this;
+        $self['gradient'] = $gradient;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -960,10 +960,10 @@ final class Transformation implements BaseModel
      */
     public function withGrayscale(bool $grayscale): self
     {
-        $obj = clone $this;
-        $obj['grayscale'] = $grayscale;
+        $self = clone $this;
+        $self['grayscale'] = $grayscale;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -973,10 +973,10 @@ final class Transformation implements BaseModel
      */
     public function withHeight(float|string $height): self
     {
-        $obj = clone $this;
-        $obj['height'] = $height;
+        $self = clone $this;
+        $self['height'] = $height;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -985,10 +985,10 @@ final class Transformation implements BaseModel
      */
     public function withLossless(bool $lossless): self
     {
-        $obj = clone $this;
-        $obj['lossless'] = $lossless;
+        $self = clone $this;
+        $self['lossless'] = $lossless;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -998,10 +998,10 @@ final class Transformation implements BaseModel
      */
     public function withMetadata(bool $metadata): self
     {
-        $obj = clone $this;
-        $obj['metadata'] = $metadata;
+        $self = clone $this;
+        $self['metadata'] = $metadata;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -1009,10 +1009,10 @@ final class Transformation implements BaseModel
      */
     public function withNamed(string $named): self
     {
-        $obj = clone $this;
-        $obj['named'] = $named;
+        $self = clone $this;
+        $self['named'] = $named;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -1020,10 +1020,10 @@ final class Transformation implements BaseModel
      */
     public function withOpacity(float $opacity): self
     {
-        $obj = clone $this;
-        $obj['opacity'] = $opacity;
+        $self = clone $this;
+        $self['opacity'] = $opacity;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -1032,10 +1032,10 @@ final class Transformation implements BaseModel
      */
     public function withOriginal(bool $original): self
     {
-        $obj = clone $this;
-        $obj['original'] = $original;
+        $self = clone $this;
+        $self['original'] = $original;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -1045,10 +1045,10 @@ final class Transformation implements BaseModel
      */
     public function withOverlay(Overlay $overlay): self
     {
-        $obj = clone $this;
-        $obj['overlay'] = $overlay;
+        $self = clone $this;
+        $self['overlay'] = $overlay;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -1059,10 +1059,10 @@ final class Transformation implements BaseModel
      */
     public function withPage(float|string $page): self
     {
-        $obj = clone $this;
-        $obj['page'] = $page;
+        $self = clone $this;
+        $self['page'] = $page;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -1072,10 +1072,10 @@ final class Transformation implements BaseModel
      */
     public function withProgressive(bool $progressive): self
     {
-        $obj = clone $this;
-        $obj['progressive'] = $progressive;
+        $self = clone $this;
+        $self['progressive'] = $progressive;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -1085,10 +1085,10 @@ final class Transformation implements BaseModel
      */
     public function withQuality(float $quality): self
     {
-        $obj = clone $this;
-        $obj['quality'] = $quality;
+        $self = clone $this;
+        $self['quality'] = $quality;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -1099,10 +1099,10 @@ final class Transformation implements BaseModel
      */
     public function withRadius(float|string $radius): self
     {
-        $obj = clone $this;
-        $obj['radius'] = $radius;
+        $self = clone $this;
+        $self['radius'] = $radius;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -1111,10 +1111,10 @@ final class Transformation implements BaseModel
      */
     public function withRaw(string $raw): self
     {
-        $obj = clone $this;
-        $obj['raw'] = $raw;
+        $self = clone $this;
+        $self['raw'] = $raw;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -1125,10 +1125,10 @@ final class Transformation implements BaseModel
      */
     public function withRotation(float|string $rotation): self
     {
-        $obj = clone $this;
-        $obj['rotation'] = $rotation;
+        $self = clone $this;
+        $self['rotation'] = $rotation;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -1139,10 +1139,10 @@ final class Transformation implements BaseModel
      */
     public function withShadow(string|bool $shadow): self
     {
-        $obj = clone $this;
-        $obj['shadow'] = $shadow;
+        $self = clone $this;
+        $self['shadow'] = $shadow;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -1152,10 +1152,10 @@ final class Transformation implements BaseModel
      */
     public function withSharpen(float|bool $sharpen): self
     {
-        $obj = clone $this;
-        $obj['sharpen'] = $sharpen;
+        $self = clone $this;
+        $self['sharpen'] = $sharpen;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -1165,10 +1165,10 @@ final class Transformation implements BaseModel
      */
     public function withStartOffset(float|string $startOffset): self
     {
-        $obj = clone $this;
-        $obj['startOffset'] = $startOffset;
+        $self = clone $this;
+        $self['startOffset'] = $startOffset;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -1179,10 +1179,10 @@ final class Transformation implements BaseModel
      */
     public function withStreamingResolutions(array $streamingResolutions): self
     {
-        $obj = clone $this;
-        $obj['streamingResolutions'] = $streamingResolutions;
+        $self = clone $this;
+        $self['streamingResolutions'] = $streamingResolutions;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -1192,10 +1192,10 @@ final class Transformation implements BaseModel
      */
     public function withTrim(float|bool $trim): self
     {
-        $obj = clone $this;
-        $obj['trim'] = $trim;
+        $self = clone $this;
+        $self['trim'] = $trim;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -1205,10 +1205,10 @@ final class Transformation implements BaseModel
      */
     public function withUnsharpMask(string|bool $unsharpMask): self
     {
-        $obj = clone $this;
-        $obj['unsharpMask'] = $unsharpMask;
+        $self = clone $this;
+        $self['unsharpMask'] = $unsharpMask;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -1218,10 +1218,10 @@ final class Transformation implements BaseModel
      */
     public function withVideoCodec(VideoCodec|string $videoCodec): self
     {
-        $obj = clone $this;
-        $obj['videoCodec'] = $videoCodec;
+        $self = clone $this;
+        $self['videoCodec'] = $videoCodec;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -1231,10 +1231,10 @@ final class Transformation implements BaseModel
      */
     public function withWidth(float|string $width): self
     {
-        $obj = clone $this;
-        $obj['width'] = $width;
+        $self = clone $this;
+        $self['width'] = $width;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -1242,10 +1242,10 @@ final class Transformation implements BaseModel
      */
     public function withX(float|string $x): self
     {
-        $obj = clone $this;
-        $obj['x'] = $x;
+        $self = clone $this;
+        $self['x'] = $x;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -1253,10 +1253,10 @@ final class Transformation implements BaseModel
      */
     public function withXCenter(float|string $xCenter): self
     {
-        $obj = clone $this;
-        $obj['xCenter'] = $xCenter;
+        $self = clone $this;
+        $self['xCenter'] = $xCenter;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -1264,10 +1264,10 @@ final class Transformation implements BaseModel
      */
     public function withY(float|string $y): self
     {
-        $obj = clone $this;
-        $obj['y'] = $y;
+        $self = clone $this;
+        $self['y'] = $y;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -1275,10 +1275,10 @@ final class Transformation implements BaseModel
      */
     public function withYCenter(float|string $yCenter): self
     {
-        $obj = clone $this;
-        $obj['yCenter'] = $yCenter;
+        $self = clone $this;
+        $self['yCenter'] = $yCenter;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -1288,9 +1288,9 @@ final class Transformation implements BaseModel
      */
     public function withZoom(float $zoom): self
     {
-        $obj = clone $this;
-        $obj['zoom'] = $zoom;
+        $self = clone $this;
+        $self['zoom'] = $zoom;
 
-        return $obj;
+        return $self;
     }
 }

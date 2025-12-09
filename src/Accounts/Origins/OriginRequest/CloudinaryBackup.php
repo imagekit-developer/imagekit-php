@@ -109,18 +109,18 @@ final class CloudinaryBackup implements BaseModel
         ?bool $includeCanonicalHeader = null,
         ?string $prefix = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj['accessKey'] = $accessKey;
-        $obj['bucket'] = $bucket;
-        $obj['name'] = $name;
-        $obj['secretKey'] = $secretKey;
+        $self['accessKey'] = $accessKey;
+        $self['bucket'] = $bucket;
+        $self['name'] = $name;
+        $self['secretKey'] = $secretKey;
 
-        null !== $baseURLForCanonicalHeader && $obj['baseURLForCanonicalHeader'] = $baseURLForCanonicalHeader;
-        null !== $includeCanonicalHeader && $obj['includeCanonicalHeader'] = $includeCanonicalHeader;
-        null !== $prefix && $obj['prefix'] = $prefix;
+        null !== $baseURLForCanonicalHeader && $self['baseURLForCanonicalHeader'] = $baseURLForCanonicalHeader;
+        null !== $includeCanonicalHeader && $self['includeCanonicalHeader'] = $includeCanonicalHeader;
+        null !== $prefix && $self['prefix'] = $prefix;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -128,10 +128,10 @@ final class CloudinaryBackup implements BaseModel
      */
     public function withAccessKey(string $accessKey): self
     {
-        $obj = clone $this;
-        $obj['accessKey'] = $accessKey;
+        $self = clone $this;
+        $self['accessKey'] = $accessKey;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -139,10 +139,10 @@ final class CloudinaryBackup implements BaseModel
      */
     public function withBucket(string $bucket): self
     {
-        $obj = clone $this;
-        $obj['bucket'] = $bucket;
+        $self = clone $this;
+        $self['bucket'] = $bucket;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -150,10 +150,10 @@ final class CloudinaryBackup implements BaseModel
      */
     public function withName(string $name): self
     {
-        $obj = clone $this;
-        $obj['name'] = $name;
+        $self = clone $this;
+        $self['name'] = $name;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -161,10 +161,10 @@ final class CloudinaryBackup implements BaseModel
      */
     public function withSecretKey(string $secretKey): self
     {
-        $obj = clone $this;
-        $obj['secretKey'] = $secretKey;
+        $self = clone $this;
+        $self['secretKey'] = $secretKey;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -173,10 +173,10 @@ final class CloudinaryBackup implements BaseModel
     public function withBaseURLForCanonicalHeader(
         string $baseURLForCanonicalHeader
     ): self {
-        $obj = clone $this;
-        $obj['baseURLForCanonicalHeader'] = $baseURLForCanonicalHeader;
+        $self = clone $this;
+        $self['baseURLForCanonicalHeader'] = $baseURLForCanonicalHeader;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -185,10 +185,10 @@ final class CloudinaryBackup implements BaseModel
     public function withIncludeCanonicalHeader(
         bool $includeCanonicalHeader
     ): self {
-        $obj = clone $this;
-        $obj['includeCanonicalHeader'] = $includeCanonicalHeader;
+        $self = clone $this;
+        $self['includeCanonicalHeader'] = $includeCanonicalHeader;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -196,9 +196,9 @@ final class CloudinaryBackup implements BaseModel
      */
     public function withPrefix(string $prefix): self
     {
-        $obj = clone $this;
-        $obj['prefix'] = $prefix;
+        $self = clone $this;
+        $self['prefix'] = $prefix;
 
-        return $obj;
+        return $self;
     }
 }

@@ -154,24 +154,24 @@ final class Metadata implements BaseModel
         ?string $videoCodec = null,
         ?int $width = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $audioCodec && $obj['audioCodec'] = $audioCodec;
-        null !== $bitRate && $obj['bitRate'] = $bitRate;
-        null !== $density && $obj['density'] = $density;
-        null !== $duration && $obj['duration'] = $duration;
-        null !== $exif && $obj['exif'] = $exif;
-        null !== $format && $obj['format'] = $format;
-        null !== $hasColorProfile && $obj['hasColorProfile'] = $hasColorProfile;
-        null !== $hasTransparency && $obj['hasTransparency'] = $hasTransparency;
-        null !== $height && $obj['height'] = $height;
-        null !== $pHash && $obj['pHash'] = $pHash;
-        null !== $quality && $obj['quality'] = $quality;
-        null !== $size && $obj['size'] = $size;
-        null !== $videoCodec && $obj['videoCodec'] = $videoCodec;
-        null !== $width && $obj['width'] = $width;
+        null !== $audioCodec && $self['audioCodec'] = $audioCodec;
+        null !== $bitRate && $self['bitRate'] = $bitRate;
+        null !== $density && $self['density'] = $density;
+        null !== $duration && $self['duration'] = $duration;
+        null !== $exif && $self['exif'] = $exif;
+        null !== $format && $self['format'] = $format;
+        null !== $hasColorProfile && $self['hasColorProfile'] = $hasColorProfile;
+        null !== $hasTransparency && $self['hasTransparency'] = $hasTransparency;
+        null !== $height && $self['height'] = $height;
+        null !== $pHash && $self['pHash'] = $pHash;
+        null !== $quality && $self['quality'] = $quality;
+        null !== $size && $self['size'] = $size;
+        null !== $videoCodec && $self['videoCodec'] = $videoCodec;
+        null !== $width && $self['width'] = $width;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -179,10 +179,10 @@ final class Metadata implements BaseModel
      */
     public function withAudioCodec(string $audioCodec): self
     {
-        $obj = clone $this;
-        $obj['audioCodec'] = $audioCodec;
+        $self = clone $this;
+        $self['audioCodec'] = $audioCodec;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -190,10 +190,10 @@ final class Metadata implements BaseModel
      */
     public function withBitRate(int $bitRate): self
     {
-        $obj = clone $this;
-        $obj['bitRate'] = $bitRate;
+        $self = clone $this;
+        $self['bitRate'] = $bitRate;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -201,10 +201,10 @@ final class Metadata implements BaseModel
      */
     public function withDensity(int $density): self
     {
-        $obj = clone $this;
-        $obj['density'] = $density;
+        $self = clone $this;
+        $self['density'] = $density;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -212,10 +212,10 @@ final class Metadata implements BaseModel
      */
     public function withDuration(int $duration): self
     {
-        $obj = clone $this;
-        $obj['duration'] = $duration;
+        $self = clone $this;
+        $self['duration'] = $duration;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -230,10 +230,10 @@ final class Metadata implements BaseModel
      */
     public function withExif(Exif|array $exif): self
     {
-        $obj = clone $this;
-        $obj['exif'] = $exif;
+        $self = clone $this;
+        $self['exif'] = $exif;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -241,10 +241,10 @@ final class Metadata implements BaseModel
      */
     public function withFormat(string $format): self
     {
-        $obj = clone $this;
-        $obj['format'] = $format;
+        $self = clone $this;
+        $self['format'] = $format;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -252,10 +252,10 @@ final class Metadata implements BaseModel
      */
     public function withHasColorProfile(bool $hasColorProfile): self
     {
-        $obj = clone $this;
-        $obj['hasColorProfile'] = $hasColorProfile;
+        $self = clone $this;
+        $self['hasColorProfile'] = $hasColorProfile;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -263,10 +263,10 @@ final class Metadata implements BaseModel
      */
     public function withHasTransparency(bool $hasTransparency): self
     {
-        $obj = clone $this;
-        $obj['hasTransparency'] = $hasTransparency;
+        $self = clone $this;
+        $self['hasTransparency'] = $hasTransparency;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -274,10 +274,10 @@ final class Metadata implements BaseModel
      */
     public function withHeight(int $height): self
     {
-        $obj = clone $this;
-        $obj['height'] = $height;
+        $self = clone $this;
+        $self['height'] = $height;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -285,10 +285,10 @@ final class Metadata implements BaseModel
      */
     public function withPHash(string $pHash): self
     {
-        $obj = clone $this;
-        $obj['pHash'] = $pHash;
+        $self = clone $this;
+        $self['pHash'] = $pHash;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -296,10 +296,10 @@ final class Metadata implements BaseModel
      */
     public function withQuality(int $quality): self
     {
-        $obj = clone $this;
-        $obj['quality'] = $quality;
+        $self = clone $this;
+        $self['quality'] = $quality;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -307,10 +307,10 @@ final class Metadata implements BaseModel
      */
     public function withSize(int $size): self
     {
-        $obj = clone $this;
-        $obj['size'] = $size;
+        $self = clone $this;
+        $self['size'] = $size;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -318,10 +318,10 @@ final class Metadata implements BaseModel
      */
     public function withVideoCodec(string $videoCodec): self
     {
-        $obj = clone $this;
-        $obj['videoCodec'] = $videoCodec;
+        $self = clone $this;
+        $self['videoCodec'] = $videoCodec;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -329,9 +329,9 @@ final class Metadata implements BaseModel
      */
     public function withWidth(int $width): self
     {
-        $obj = clone $this;
-        $obj['width'] = $width;
+        $self = clone $this;
+        $self['width'] = $width;
 
-        return $obj;
+        return $self;
     }
 }

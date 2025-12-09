@@ -187,22 +187,22 @@ final class GetImageAttributesOptions implements BaseModel
         ?string $sizes = null,
         ?float $width = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj['src'] = $src;
-        $obj['urlEndpoint'] = $urlEndpoint;
+        $self['src'] = $src;
+        $self['urlEndpoint'] = $urlEndpoint;
 
-        null !== $expiresIn && $obj['expiresIn'] = $expiresIn;
-        null !== $queryParameters && $obj['queryParameters'] = $queryParameters;
-        null !== $signed && $obj['signed'] = $signed;
-        null !== $transformation && $obj['transformation'] = $transformation;
-        null !== $transformationPosition && $obj['transformationPosition'] = $transformationPosition;
-        null !== $deviceBreakpoints && $obj['deviceBreakpoints'] = $deviceBreakpoints;
-        null !== $imageBreakpoints && $obj['imageBreakpoints'] = $imageBreakpoints;
-        null !== $sizes && $obj['sizes'] = $sizes;
-        null !== $width && $obj['width'] = $width;
+        null !== $expiresIn && $self['expiresIn'] = $expiresIn;
+        null !== $queryParameters && $self['queryParameters'] = $queryParameters;
+        null !== $signed && $self['signed'] = $signed;
+        null !== $transformation && $self['transformation'] = $transformation;
+        null !== $transformationPosition && $self['transformationPosition'] = $transformationPosition;
+        null !== $deviceBreakpoints && $self['deviceBreakpoints'] = $deviceBreakpoints;
+        null !== $imageBreakpoints && $self['imageBreakpoints'] = $imageBreakpoints;
+        null !== $sizes && $self['sizes'] = $sizes;
+        null !== $width && $self['width'] = $width;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -211,10 +211,10 @@ final class GetImageAttributesOptions implements BaseModel
      */
     public function withSrc(string $src): self
     {
-        $obj = clone $this;
-        $obj['src'] = $src;
+        $self = clone $this;
+        $self['src'] = $src;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -222,10 +222,10 @@ final class GetImageAttributesOptions implements BaseModel
      */
     public function withURLEndpoint(string $urlEndpoint): self
     {
-        $obj = clone $this;
-        $obj['urlEndpoint'] = $urlEndpoint;
+        $self = clone $this;
+        $self['urlEndpoint'] = $urlEndpoint;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -240,10 +240,10 @@ final class GetImageAttributesOptions implements BaseModel
      */
     public function withExpiresIn(float $expiresIn): self
     {
-        $obj = clone $this;
-        $obj['expiresIn'] = $expiresIn;
+        $self = clone $this;
+        $self['expiresIn'] = $expiresIn;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -255,10 +255,10 @@ final class GetImageAttributesOptions implements BaseModel
      */
     public function withQueryParameters(array $queryParameters): self
     {
-        $obj = clone $this;
-        $obj['queryParameters'] = $queryParameters;
+        $self = clone $this;
+        $self['queryParameters'] = $queryParameters;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -269,10 +269,10 @@ final class GetImageAttributesOptions implements BaseModel
      */
     public function withSigned(bool $signed): self
     {
-        $obj = clone $this;
-        $obj['signed'] = $signed;
+        $self = clone $this;
+        $self['signed'] = $signed;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -283,10 +283,10 @@ final class GetImageAttributesOptions implements BaseModel
      */
     public function withTransformation(array $transformation): self
     {
-        $obj = clone $this;
-        $obj['transformation'] = $transformation;
+        $self = clone $this;
+        $self['transformation'] = $transformation;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -299,10 +299,10 @@ final class GetImageAttributesOptions implements BaseModel
     public function withTransformationPosition(
         TransformationPosition|string $transformationPosition
     ): self {
-        $obj = clone $this;
-        $obj['transformationPosition'] = $transformationPosition;
+        $self = clone $this;
+        $self['transformationPosition'] = $transformationPosition;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -316,10 +316,10 @@ final class GetImageAttributesOptions implements BaseModel
      */
     public function withDeviceBreakpoints(array $deviceBreakpoints): self
     {
-        $obj = clone $this;
-        $obj['deviceBreakpoints'] = $deviceBreakpoints;
+        $self = clone $this;
+        $self['deviceBreakpoints'] = $deviceBreakpoints;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -334,10 +334,10 @@ final class GetImageAttributesOptions implements BaseModel
      */
     public function withImageBreakpoints(array $imageBreakpoints): self
     {
-        $obj = clone $this;
-        $obj['imageBreakpoints'] = $imageBreakpoints;
+        $self = clone $this;
+        $self['imageBreakpoints'] = $imageBreakpoints;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -351,10 +351,10 @@ final class GetImageAttributesOptions implements BaseModel
      */
     public function withSizes(string $sizes): self
     {
-        $obj = clone $this;
-        $obj['sizes'] = $sizes;
+        $self = clone $this;
+        $self['sizes'] = $sizes;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -367,9 +367,9 @@ final class GetImageAttributesOptions implements BaseModel
      */
     public function withWidth(float $width): self
     {
-        $obj = clone $this;
-        $obj['width'] = $width;
+        $self = clone $this;
+        $self['width'] = $width;
 
-        return $obj;
+        return $self;
     }
 }

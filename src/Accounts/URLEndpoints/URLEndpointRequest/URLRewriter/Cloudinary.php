@@ -41,11 +41,11 @@ final class Cloudinary implements BaseModel
      */
     public static function with(?bool $preserveAssetDeliveryTypes = null): self
     {
-        $obj = new self;
+        $self = new self;
 
-        null !== $preserveAssetDeliveryTypes && $obj['preserveAssetDeliveryTypes'] = $preserveAssetDeliveryTypes;
+        null !== $preserveAssetDeliveryTypes && $self['preserveAssetDeliveryTypes'] = $preserveAssetDeliveryTypes;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -54,9 +54,9 @@ final class Cloudinary implements BaseModel
     public function withPreserveAssetDeliveryTypes(
         bool $preserveAssetDeliveryTypes
     ): self {
-        $obj = clone $this;
-        $obj['preserveAssetDeliveryTypes'] = $preserveAssetDeliveryTypes;
+        $self = clone $this;
+        $self['preserveAssetDeliveryTypes'] = $preserveAssetDeliveryTypes;
 
-        return $obj;
+        return $self;
     }
 }

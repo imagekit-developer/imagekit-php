@@ -111,17 +111,17 @@ final class VideoTransformationReadyEvent implements BaseModel
         Request|array $request,
         Timings|array|null $timings = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj['id'] = $id;
-        $obj['type'] = $type;
-        $obj['createdAt'] = $createdAt;
-        $obj['data'] = $data;
-        $obj['request'] = $request;
+        $self['id'] = $id;
+        $self['type'] = $type;
+        $self['createdAt'] = $createdAt;
+        $self['data'] = $data;
+        $self['request'] = $request;
 
-        null !== $timings && $obj['timings'] = $timings;
+        null !== $timings && $self['timings'] = $timings;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -129,10 +129,10 @@ final class VideoTransformationReadyEvent implements BaseModel
      */
     public function withID(string $id): self
     {
-        $obj = clone $this;
-        $obj['id'] = $id;
+        $self = clone $this;
+        $self['id'] = $id;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -140,10 +140,10 @@ final class VideoTransformationReadyEvent implements BaseModel
      */
     public function withType(string $type): self
     {
-        $obj = clone $this;
-        $obj['type'] = $type;
+        $self = clone $this;
+        $self['type'] = $type;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -151,10 +151,10 @@ final class VideoTransformationReadyEvent implements BaseModel
      */
     public function withCreatedAt(\DateTimeInterface $createdAt): self
     {
-        $obj = clone $this;
-        $obj['createdAt'] = $createdAt;
+        $self = clone $this;
+        $self['createdAt'] = $createdAt;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -162,10 +162,10 @@ final class VideoTransformationReadyEvent implements BaseModel
      */
     public function withData(Data|array $data): self
     {
-        $obj = clone $this;
-        $obj['data'] = $data;
+        $self = clone $this;
+        $self['data'] = $data;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -177,10 +177,10 @@ final class VideoTransformationReadyEvent implements BaseModel
      */
     public function withRequest(Request|array $request): self
     {
-        $obj = clone $this;
-        $obj['request'] = $request;
+        $self = clone $this;
+        $self['request'] = $request;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -192,9 +192,9 @@ final class VideoTransformationReadyEvent implements BaseModel
      */
     public function withTimings(Timings|array $timings): self
     {
-        $obj = clone $this;
-        $obj['timings'] = $timings;
+        $self = clone $this;
+        $self['timings'] = $timings;
 
-        return $obj;
+        return $self;
     }
 }

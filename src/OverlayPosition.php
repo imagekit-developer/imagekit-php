@@ -63,13 +63,13 @@ final class OverlayPosition implements BaseModel
         float|string|null $x = null,
         float|string|null $y = null
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $focus && $obj['focus'] = $focus;
-        null !== $x && $obj['x'] = $x;
-        null !== $y && $obj['y'] = $y;
+        null !== $focus && $self['focus'] = $focus;
+        null !== $x && $self['x'] = $x;
+        null !== $y && $self['y'] = $y;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -80,10 +80,10 @@ final class OverlayPosition implements BaseModel
      */
     public function withFocus(Focus|string $focus): self
     {
-        $obj = clone $this;
-        $obj['focus'] = $focus;
+        $self = clone $this;
+        $self['focus'] = $focus;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -94,10 +94,10 @@ final class OverlayPosition implements BaseModel
      */
     public function withX(float|string $x): self
     {
-        $obj = clone $this;
-        $obj['x'] = $x;
+        $self = clone $this;
+        $self['x'] = $x;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -108,9 +108,9 @@ final class OverlayPosition implements BaseModel
      */
     public function withY(float|string $y): self
     {
-        $obj = clone $this;
-        $obj['y'] = $y;
+        $self = clone $this;
+        $self['y'] = $y;
 
-        return $obj;
+        return $self;
     }
 }

@@ -70,12 +70,12 @@ final class CustomMetadataFieldUpdateParams implements BaseModel
         ?string $label = null,
         Schema|array|null $schema = null
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $label && $obj['label'] = $label;
-        null !== $schema && $obj['schema'] = $schema;
+        null !== $label && $self['label'] = $label;
+        null !== $schema && $self['schema'] = $schema;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -83,10 +83,10 @@ final class CustomMetadataFieldUpdateParams implements BaseModel
      */
     public function withLabel(string $label): self
     {
-        $obj = clone $this;
-        $obj['label'] = $label;
+        $self = clone $this;
+        $self['label'] = $label;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -104,9 +104,9 @@ final class CustomMetadataFieldUpdateParams implements BaseModel
      */
     public function withSchema(Schema|array $schema): self
     {
-        $obj = clone $this;
-        $obj['schema'] = $schema;
+        $self = clone $this;
+        $self['schema'] = $schema;
 
-        return $obj;
+        return $self;
     }
 }

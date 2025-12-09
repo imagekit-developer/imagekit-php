@@ -68,12 +68,12 @@ final class Transformation implements BaseModel
      */
     public static function with(?array $post = null, ?string $pre = null): self
     {
-        $obj = new self;
+        $self = new self;
 
-        null !== $post && $obj['post'] = $post;
-        null !== $pre && $obj['pre'] = $pre;
+        null !== $post && $self['post'] = $post;
+        null !== $pre && $self['pre'] = $pre;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -89,10 +89,10 @@ final class Transformation implements BaseModel
      */
     public function withPost(array $post): self
     {
-        $obj = clone $this;
-        $obj['post'] = $post;
+        $self = clone $this;
+        $self['post'] = $post;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -100,9 +100,9 @@ final class Transformation implements BaseModel
      */
     public function withPre(string $pre): self
     {
-        $obj = clone $this;
-        $obj['pre'] = $pre;
+        $self = clone $this;
+        $self['pre'] = $pre;
 
-        return $obj;
+        return $self;
     }
 }

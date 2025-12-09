@@ -36,11 +36,11 @@ final class Gps implements BaseModel
      */
     public static function with(?array $gpsVersionID = null): self
     {
-        $obj = new self;
+        $self = new self;
 
-        null !== $gpsVersionID && $obj['gpsVersionID'] = $gpsVersionID;
+        null !== $gpsVersionID && $self['gpsVersionID'] = $gpsVersionID;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -48,9 +48,9 @@ final class Gps implements BaseModel
      */
     public function withGpsVersionID(array $gpsVersionID): self
     {
-        $obj = clone $this;
-        $obj['gpsVersionID'] = $gpsVersionID;
+        $self = clone $this;
+        $self['gpsVersionID'] = $gpsVersionID;
 
-        return $obj;
+        return $self;
     }
 }

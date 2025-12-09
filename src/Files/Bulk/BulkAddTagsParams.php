@@ -69,12 +69,12 @@ final class BulkAddTagsParams implements BaseModel
      */
     public static function with(array $fileIDs, array $tags): self
     {
-        $obj = new self;
+        $self = new self;
 
-        $obj['fileIDs'] = $fileIDs;
-        $obj['tags'] = $tags;
+        $self['fileIDs'] = $fileIDs;
+        $self['tags'] = $tags;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -84,10 +84,10 @@ final class BulkAddTagsParams implements BaseModel
      */
     public function withFileIDs(array $fileIDs): self
     {
-        $obj = clone $this;
-        $obj['fileIDs'] = $fileIDs;
+        $self = clone $this;
+        $self['fileIDs'] = $fileIDs;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -97,9 +97,9 @@ final class BulkAddTagsParams implements BaseModel
      */
     public function withTags(array $tags): self
     {
-        $obj = clone $this;
-        $obj['tags'] = $tags;
+        $self = clone $this;
+        $self['tags'] = $tags;
 
-        return $obj;
+        return $self;
     }
 }

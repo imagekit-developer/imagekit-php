@@ -48,11 +48,11 @@ final class RemoveBg implements BaseModel
      */
     public static function with(Options|array|null $options = null): self
     {
-        $obj = new self;
+        $self = new self;
 
-        null !== $options && $obj['options'] = $options;
+        null !== $options && $self['options'] = $options;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -65,9 +65,9 @@ final class RemoveBg implements BaseModel
      */
     public function withOptions(Options|array $options): self
     {
-        $obj = clone $this;
-        $obj['options'] = $options;
+        $self = clone $this;
+        $self['options'] = $options;
 
-        return $obj;
+        return $self;
     }
 }

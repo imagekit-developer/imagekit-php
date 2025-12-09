@@ -161,246 +161,246 @@ final class Exif implements BaseModel
         ?string $subSecTime = null,
         ?int $whiteBalance = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $apertureValue && $obj['apertureValue'] = $apertureValue;
-        null !== $colorSpace && $obj['colorSpace'] = $colorSpace;
-        null !== $createDate && $obj['createDate'] = $createDate;
-        null !== $customRendered && $obj['customRendered'] = $customRendered;
-        null !== $dateTimeOriginal && $obj['dateTimeOriginal'] = $dateTimeOriginal;
-        null !== $exifImageHeight && $obj['exifImageHeight'] = $exifImageHeight;
-        null !== $exifImageWidth && $obj['exifImageWidth'] = $exifImageWidth;
-        null !== $exifVersion && $obj['exifVersion'] = $exifVersion;
-        null !== $exposureCompensation && $obj['exposureCompensation'] = $exposureCompensation;
-        null !== $exposureMode && $obj['exposureMode'] = $exposureMode;
-        null !== $exposureProgram && $obj['exposureProgram'] = $exposureProgram;
-        null !== $exposureTime && $obj['exposureTime'] = $exposureTime;
-        null !== $flash && $obj['flash'] = $flash;
-        null !== $flashpixVersion && $obj['flashpixVersion'] = $flashpixVersion;
-        null !== $fNumber && $obj['fNumber'] = $fNumber;
-        null !== $focalLength && $obj['focalLength'] = $focalLength;
-        null !== $focalPlaneResolutionUnit && $obj['focalPlaneResolutionUnit'] = $focalPlaneResolutionUnit;
-        null !== $focalPlaneXResolution && $obj['focalPlaneXResolution'] = $focalPlaneXResolution;
-        null !== $focalPlaneYResolution && $obj['focalPlaneYResolution'] = $focalPlaneYResolution;
-        null !== $interopOffset && $obj['interopOffset'] = $interopOffset;
-        null !== $iso && $obj['iso'] = $iso;
-        null !== $meteringMode && $obj['meteringMode'] = $meteringMode;
-        null !== $sceneCaptureType && $obj['sceneCaptureType'] = $sceneCaptureType;
-        null !== $shutterSpeedValue && $obj['shutterSpeedValue'] = $shutterSpeedValue;
-        null !== $subSecTime && $obj['subSecTime'] = $subSecTime;
-        null !== $whiteBalance && $obj['whiteBalance'] = $whiteBalance;
+        null !== $apertureValue && $self['apertureValue'] = $apertureValue;
+        null !== $colorSpace && $self['colorSpace'] = $colorSpace;
+        null !== $createDate && $self['createDate'] = $createDate;
+        null !== $customRendered && $self['customRendered'] = $customRendered;
+        null !== $dateTimeOriginal && $self['dateTimeOriginal'] = $dateTimeOriginal;
+        null !== $exifImageHeight && $self['exifImageHeight'] = $exifImageHeight;
+        null !== $exifImageWidth && $self['exifImageWidth'] = $exifImageWidth;
+        null !== $exifVersion && $self['exifVersion'] = $exifVersion;
+        null !== $exposureCompensation && $self['exposureCompensation'] = $exposureCompensation;
+        null !== $exposureMode && $self['exposureMode'] = $exposureMode;
+        null !== $exposureProgram && $self['exposureProgram'] = $exposureProgram;
+        null !== $exposureTime && $self['exposureTime'] = $exposureTime;
+        null !== $flash && $self['flash'] = $flash;
+        null !== $flashpixVersion && $self['flashpixVersion'] = $flashpixVersion;
+        null !== $fNumber && $self['fNumber'] = $fNumber;
+        null !== $focalLength && $self['focalLength'] = $focalLength;
+        null !== $focalPlaneResolutionUnit && $self['focalPlaneResolutionUnit'] = $focalPlaneResolutionUnit;
+        null !== $focalPlaneXResolution && $self['focalPlaneXResolution'] = $focalPlaneXResolution;
+        null !== $focalPlaneYResolution && $self['focalPlaneYResolution'] = $focalPlaneYResolution;
+        null !== $interopOffset && $self['interopOffset'] = $interopOffset;
+        null !== $iso && $self['iso'] = $iso;
+        null !== $meteringMode && $self['meteringMode'] = $meteringMode;
+        null !== $sceneCaptureType && $self['sceneCaptureType'] = $sceneCaptureType;
+        null !== $shutterSpeedValue && $self['shutterSpeedValue'] = $shutterSpeedValue;
+        null !== $subSecTime && $self['subSecTime'] = $subSecTime;
+        null !== $whiteBalance && $self['whiteBalance'] = $whiteBalance;
 
-        return $obj;
+        return $self;
     }
 
     public function withApertureValue(float $apertureValue): self
     {
-        $obj = clone $this;
-        $obj['apertureValue'] = $apertureValue;
+        $self = clone $this;
+        $self['apertureValue'] = $apertureValue;
 
-        return $obj;
+        return $self;
     }
 
     public function withColorSpace(int $colorSpace): self
     {
-        $obj = clone $this;
-        $obj['colorSpace'] = $colorSpace;
+        $self = clone $this;
+        $self['colorSpace'] = $colorSpace;
 
-        return $obj;
+        return $self;
     }
 
     public function withCreateDate(string $createDate): self
     {
-        $obj = clone $this;
-        $obj['createDate'] = $createDate;
+        $self = clone $this;
+        $self['createDate'] = $createDate;
 
-        return $obj;
+        return $self;
     }
 
     public function withCustomRendered(int $customRendered): self
     {
-        $obj = clone $this;
-        $obj['customRendered'] = $customRendered;
+        $self = clone $this;
+        $self['customRendered'] = $customRendered;
 
-        return $obj;
+        return $self;
     }
 
     public function withDateTimeOriginal(string $dateTimeOriginal): self
     {
-        $obj = clone $this;
-        $obj['dateTimeOriginal'] = $dateTimeOriginal;
+        $self = clone $this;
+        $self['dateTimeOriginal'] = $dateTimeOriginal;
 
-        return $obj;
+        return $self;
     }
 
     public function withExifImageHeight(int $exifImageHeight): self
     {
-        $obj = clone $this;
-        $obj['exifImageHeight'] = $exifImageHeight;
+        $self = clone $this;
+        $self['exifImageHeight'] = $exifImageHeight;
 
-        return $obj;
+        return $self;
     }
 
     public function withExifImageWidth(int $exifImageWidth): self
     {
-        $obj = clone $this;
-        $obj['exifImageWidth'] = $exifImageWidth;
+        $self = clone $this;
+        $self['exifImageWidth'] = $exifImageWidth;
 
-        return $obj;
+        return $self;
     }
 
     public function withExifVersion(string $exifVersion): self
     {
-        $obj = clone $this;
-        $obj['exifVersion'] = $exifVersion;
+        $self = clone $this;
+        $self['exifVersion'] = $exifVersion;
 
-        return $obj;
+        return $self;
     }
 
     public function withExposureCompensation(float $exposureCompensation): self
     {
-        $obj = clone $this;
-        $obj['exposureCompensation'] = $exposureCompensation;
+        $self = clone $this;
+        $self['exposureCompensation'] = $exposureCompensation;
 
-        return $obj;
+        return $self;
     }
 
     public function withExposureMode(int $exposureMode): self
     {
-        $obj = clone $this;
-        $obj['exposureMode'] = $exposureMode;
+        $self = clone $this;
+        $self['exposureMode'] = $exposureMode;
 
-        return $obj;
+        return $self;
     }
 
     public function withExposureProgram(int $exposureProgram): self
     {
-        $obj = clone $this;
-        $obj['exposureProgram'] = $exposureProgram;
+        $self = clone $this;
+        $self['exposureProgram'] = $exposureProgram;
 
-        return $obj;
+        return $self;
     }
 
     public function withExposureTime(float $exposureTime): self
     {
-        $obj = clone $this;
-        $obj['exposureTime'] = $exposureTime;
+        $self = clone $this;
+        $self['exposureTime'] = $exposureTime;
 
-        return $obj;
+        return $self;
     }
 
     public function withFlash(int $flash): self
     {
-        $obj = clone $this;
-        $obj['flash'] = $flash;
+        $self = clone $this;
+        $self['flash'] = $flash;
 
-        return $obj;
+        return $self;
     }
 
     public function withFlashpixVersion(string $flashpixVersion): self
     {
-        $obj = clone $this;
-        $obj['flashpixVersion'] = $flashpixVersion;
+        $self = clone $this;
+        $self['flashpixVersion'] = $flashpixVersion;
 
-        return $obj;
+        return $self;
     }
 
     public function withFNumber(float $fNumber): self
     {
-        $obj = clone $this;
-        $obj['fNumber'] = $fNumber;
+        $self = clone $this;
+        $self['fNumber'] = $fNumber;
 
-        return $obj;
+        return $self;
     }
 
     public function withFocalLength(int $focalLength): self
     {
-        $obj = clone $this;
-        $obj['focalLength'] = $focalLength;
+        $self = clone $this;
+        $self['focalLength'] = $focalLength;
 
-        return $obj;
+        return $self;
     }
 
     public function withFocalPlaneResolutionUnit(
         int $focalPlaneResolutionUnit
     ): self {
-        $obj = clone $this;
-        $obj['focalPlaneResolutionUnit'] = $focalPlaneResolutionUnit;
+        $self = clone $this;
+        $self['focalPlaneResolutionUnit'] = $focalPlaneResolutionUnit;
 
-        return $obj;
+        return $self;
     }
 
     public function withFocalPlaneXResolution(
         float $focalPlaneXResolution
     ): self {
-        $obj = clone $this;
-        $obj['focalPlaneXResolution'] = $focalPlaneXResolution;
+        $self = clone $this;
+        $self['focalPlaneXResolution'] = $focalPlaneXResolution;
 
-        return $obj;
+        return $self;
     }
 
     public function withFocalPlaneYResolution(
         float $focalPlaneYResolution
     ): self {
-        $obj = clone $this;
-        $obj['focalPlaneYResolution'] = $focalPlaneYResolution;
+        $self = clone $this;
+        $self['focalPlaneYResolution'] = $focalPlaneYResolution;
 
-        return $obj;
+        return $self;
     }
 
     public function withInteropOffset(int $interopOffset): self
     {
-        $obj = clone $this;
-        $obj['interopOffset'] = $interopOffset;
+        $self = clone $this;
+        $self['interopOffset'] = $interopOffset;
 
-        return $obj;
+        return $self;
     }
 
     public function withISO(int $iso): self
     {
-        $obj = clone $this;
-        $obj['iso'] = $iso;
+        $self = clone $this;
+        $self['iso'] = $iso;
 
-        return $obj;
+        return $self;
     }
 
     public function withMeteringMode(int $meteringMode): self
     {
-        $obj = clone $this;
-        $obj['meteringMode'] = $meteringMode;
+        $self = clone $this;
+        $self['meteringMode'] = $meteringMode;
 
-        return $obj;
+        return $self;
     }
 
     public function withSceneCaptureType(int $sceneCaptureType): self
     {
-        $obj = clone $this;
-        $obj['sceneCaptureType'] = $sceneCaptureType;
+        $self = clone $this;
+        $self['sceneCaptureType'] = $sceneCaptureType;
 
-        return $obj;
+        return $self;
     }
 
     public function withShutterSpeedValue(float $shutterSpeedValue): self
     {
-        $obj = clone $this;
-        $obj['shutterSpeedValue'] = $shutterSpeedValue;
+        $self = clone $this;
+        $self['shutterSpeedValue'] = $shutterSpeedValue;
 
-        return $obj;
+        return $self;
     }
 
     public function withSubSecTime(string $subSecTime): self
     {
-        $obj = clone $this;
-        $obj['subSecTime'] = $subSecTime;
+        $self = clone $this;
+        $self['subSecTime'] = $subSecTime;
 
-        return $obj;
+        return $self;
     }
 
     public function withWhiteBalance(int $whiteBalance): self
     {
-        $obj = clone $this;
-        $obj['whiteBalance'] = $whiteBalance;
+        $self = clone $this;
+        $self['whiteBalance'] = $whiteBalance;
 
-        return $obj;
+        return $self;
     }
 }

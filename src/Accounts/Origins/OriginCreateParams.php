@@ -226,31 +226,31 @@ final class OriginCreateParams implements BaseModel
         ?bool $s3ForcePathStyle = null,
         ?bool $forwardHostHeaderToOrigin = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj['accessKey'] = $accessKey;
-        $obj['bucket'] = $bucket;
-        $obj['name'] = $name;
-        $obj['secretKey'] = $secretKey;
-        $obj['endpoint'] = $endpoint;
-        $obj['baseURL'] = $baseURL;
-        $obj['clientEmail'] = $clientEmail;
-        $obj['privateKey'] = $privateKey;
-        $obj['accountName'] = $accountName;
-        $obj['container'] = $container;
-        $obj['sasToken'] = $sasToken;
-        $obj['clientID'] = $clientID;
-        $obj['clientSecret'] = $clientSecret;
-        $obj['password'] = $password;
-        $obj['username'] = $username;
+        $self['accessKey'] = $accessKey;
+        $self['bucket'] = $bucket;
+        $self['name'] = $name;
+        $self['secretKey'] = $secretKey;
+        $self['endpoint'] = $endpoint;
+        $self['baseURL'] = $baseURL;
+        $self['clientEmail'] = $clientEmail;
+        $self['privateKey'] = $privateKey;
+        $self['accountName'] = $accountName;
+        $self['container'] = $container;
+        $self['sasToken'] = $sasToken;
+        $self['clientID'] = $clientID;
+        $self['clientSecret'] = $clientSecret;
+        $self['password'] = $password;
+        $self['username'] = $username;
 
-        null !== $baseURLForCanonicalHeader && $obj['baseURLForCanonicalHeader'] = $baseURLForCanonicalHeader;
-        null !== $includeCanonicalHeader && $obj['includeCanonicalHeader'] = $includeCanonicalHeader;
-        null !== $prefix && $obj['prefix'] = $prefix;
-        null !== $s3ForcePathStyle && $obj['s3ForcePathStyle'] = $s3ForcePathStyle;
-        null !== $forwardHostHeaderToOrigin && $obj['forwardHostHeaderToOrigin'] = $forwardHostHeaderToOrigin;
+        null !== $baseURLForCanonicalHeader && $self['baseURLForCanonicalHeader'] = $baseURLForCanonicalHeader;
+        null !== $includeCanonicalHeader && $self['includeCanonicalHeader'] = $includeCanonicalHeader;
+        null !== $prefix && $self['prefix'] = $prefix;
+        null !== $s3ForcePathStyle && $self['s3ForcePathStyle'] = $s3ForcePathStyle;
+        null !== $forwardHostHeaderToOrigin && $self['forwardHostHeaderToOrigin'] = $forwardHostHeaderToOrigin;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -258,18 +258,18 @@ final class OriginCreateParams implements BaseModel
      */
     public function withAccessKey(string $accessKey): self
     {
-        $obj = clone $this;
-        $obj['accessKey'] = $accessKey;
+        $self = clone $this;
+        $self['accessKey'] = $accessKey;
 
-        return $obj;
+        return $self;
     }
 
     public function withBucket(string $bucket): self
     {
-        $obj = clone $this;
-        $obj['bucket'] = $bucket;
+        $self = clone $this;
+        $self['bucket'] = $bucket;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -277,10 +277,10 @@ final class OriginCreateParams implements BaseModel
      */
     public function withName(string $name): self
     {
-        $obj = clone $this;
-        $obj['name'] = $name;
+        $self = clone $this;
+        $self['name'] = $name;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -288,10 +288,10 @@ final class OriginCreateParams implements BaseModel
      */
     public function withSecretKey(string $secretKey): self
     {
-        $obj = clone $this;
-        $obj['secretKey'] = $secretKey;
+        $self = clone $this;
+        $self['secretKey'] = $secretKey;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -300,10 +300,10 @@ final class OriginCreateParams implements BaseModel
     public function withBaseURLForCanonicalHeader(
         string $baseURLForCanonicalHeader
     ): self {
-        $obj = clone $this;
-        $obj['baseURLForCanonicalHeader'] = $baseURLForCanonicalHeader;
+        $self = clone $this;
+        $self['baseURLForCanonicalHeader'] = $baseURLForCanonicalHeader;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -312,18 +312,18 @@ final class OriginCreateParams implements BaseModel
     public function withIncludeCanonicalHeader(
         bool $includeCanonicalHeader
     ): self {
-        $obj = clone $this;
-        $obj['includeCanonicalHeader'] = $includeCanonicalHeader;
+        $self = clone $this;
+        $self['includeCanonicalHeader'] = $includeCanonicalHeader;
 
-        return $obj;
+        return $self;
     }
 
     public function withPrefix(string $prefix): self
     {
-        $obj = clone $this;
-        $obj['prefix'] = $prefix;
+        $self = clone $this;
+        $self['prefix'] = $prefix;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -331,10 +331,10 @@ final class OriginCreateParams implements BaseModel
      */
     public function withEndpoint(string $endpoint): self
     {
-        $obj = clone $this;
-        $obj['endpoint'] = $endpoint;
+        $self = clone $this;
+        $self['endpoint'] = $endpoint;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -342,10 +342,10 @@ final class OriginCreateParams implements BaseModel
      */
     public function withS3ForcePathStyle(bool $s3ForcePathStyle): self
     {
-        $obj = clone $this;
-        $obj['s3ForcePathStyle'] = $s3ForcePathStyle;
+        $self = clone $this;
+        $self['s3ForcePathStyle'] = $s3ForcePathStyle;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -353,10 +353,10 @@ final class OriginCreateParams implements BaseModel
      */
     public function withBaseURL(string $baseURL): self
     {
-        $obj = clone $this;
-        $obj['baseURL'] = $baseURL;
+        $self = clone $this;
+        $self['baseURL'] = $baseURL;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -365,50 +365,50 @@ final class OriginCreateParams implements BaseModel
     public function withForwardHostHeaderToOrigin(
         bool $forwardHostHeaderToOrigin
     ): self {
-        $obj = clone $this;
-        $obj['forwardHostHeaderToOrigin'] = $forwardHostHeaderToOrigin;
+        $self = clone $this;
+        $self['forwardHostHeaderToOrigin'] = $forwardHostHeaderToOrigin;
 
-        return $obj;
+        return $self;
     }
 
     public function withClientEmail(string $clientEmail): self
     {
-        $obj = clone $this;
-        $obj['clientEmail'] = $clientEmail;
+        $self = clone $this;
+        $self['clientEmail'] = $clientEmail;
 
-        return $obj;
+        return $self;
     }
 
     public function withPrivateKey(string $privateKey): self
     {
-        $obj = clone $this;
-        $obj['privateKey'] = $privateKey;
+        $self = clone $this;
+        $self['privateKey'] = $privateKey;
 
-        return $obj;
+        return $self;
     }
 
     public function withAccountName(string $accountName): self
     {
-        $obj = clone $this;
-        $obj['accountName'] = $accountName;
+        $self = clone $this;
+        $self['accountName'] = $accountName;
 
-        return $obj;
+        return $self;
     }
 
     public function withContainer(string $container): self
     {
-        $obj = clone $this;
-        $obj['container'] = $container;
+        $self = clone $this;
+        $self['container'] = $container;
 
-        return $obj;
+        return $self;
     }
 
     public function withSasToken(string $sasToken): self
     {
-        $obj = clone $this;
-        $obj['sasToken'] = $sasToken;
+        $self = clone $this;
+        $self['sasToken'] = $sasToken;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -416,10 +416,10 @@ final class OriginCreateParams implements BaseModel
      */
     public function withClientID(string $clientID): self
     {
-        $obj = clone $this;
-        $obj['clientID'] = $clientID;
+        $self = clone $this;
+        $self['clientID'] = $clientID;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -427,10 +427,10 @@ final class OriginCreateParams implements BaseModel
      */
     public function withClientSecret(string $clientSecret): self
     {
-        $obj = clone $this;
-        $obj['clientSecret'] = $clientSecret;
+        $self = clone $this;
+        $self['clientSecret'] = $clientSecret;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -438,10 +438,10 @@ final class OriginCreateParams implements BaseModel
      */
     public function withPassword(string $password): self
     {
-        $obj = clone $this;
-        $obj['password'] = $password;
+        $self = clone $this;
+        $self['password'] = $password;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -449,9 +449,9 @@ final class OriginCreateParams implements BaseModel
      */
     public function withUsername(string $username): self
     {
-        $obj = clone $this;
-        $obj['username'] = $username;
+        $self = clone $this;
+        $self['username'] = $username;
 
-        return $obj;
+        return $self;
     }
 }

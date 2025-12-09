@@ -80,14 +80,14 @@ final class FolderRenameParams implements BaseModel
         string $newFolderName,
         ?bool $purgeCache = null
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj['folderPath'] = $folderPath;
-        $obj['newFolderName'] = $newFolderName;
+        $self['folderPath'] = $folderPath;
+        $self['newFolderName'] = $newFolderName;
 
-        null !== $purgeCache && $obj['purgeCache'] = $purgeCache;
+        null !== $purgeCache && $self['purgeCache'] = $purgeCache;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -95,10 +95,10 @@ final class FolderRenameParams implements BaseModel
      */
     public function withFolderPath(string $folderPath): self
     {
-        $obj = clone $this;
-        $obj['folderPath'] = $folderPath;
+        $self = clone $this;
+        $self['folderPath'] = $folderPath;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -108,10 +108,10 @@ final class FolderRenameParams implements BaseModel
      */
     public function withNewFolderName(string $newFolderName): self
     {
-        $obj = clone $this;
-        $obj['newFolderName'] = $newFolderName;
+        $self = clone $this;
+        $self['newFolderName'] = $newFolderName;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -125,9 +125,9 @@ final class FolderRenameParams implements BaseModel
      */
     public function withPurgeCache(bool $purgeCache): self
     {
-        $obj = clone $this;
-        $obj['purgeCache'] = $purgeCache;
+        $self = clone $this;
+        $self['purgeCache'] = $purgeCache;
 
-        return $obj;
+        return $self;
     }
 }

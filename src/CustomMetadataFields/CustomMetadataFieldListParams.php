@@ -52,12 +52,12 @@ final class CustomMetadataFieldListParams implements BaseModel
         ?string $folderPath = null,
         ?bool $includeDeleted = null
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $folderPath && $obj['folderPath'] = $folderPath;
-        null !== $includeDeleted && $obj['includeDeleted'] = $includeDeleted;
+        null !== $folderPath && $self['folderPath'] = $folderPath;
+        null !== $includeDeleted && $self['includeDeleted'] = $includeDeleted;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -65,10 +65,10 @@ final class CustomMetadataFieldListParams implements BaseModel
      */
     public function withFolderPath(string $folderPath): self
     {
-        $obj = clone $this;
-        $obj['folderPath'] = $folderPath;
+        $self = clone $this;
+        $self['folderPath'] = $folderPath;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -76,9 +76,9 @@ final class CustomMetadataFieldListParams implements BaseModel
      */
     public function withIncludeDeleted(bool $includeDeleted): self
     {
-        $obj = clone $this;
-        $obj['includeDeleted'] = $includeDeleted;
+        $self = clone $this;
+        $self['includeDeleted'] = $includeDeleted;
 
-        return $obj;
+        return $self;
     }
 }

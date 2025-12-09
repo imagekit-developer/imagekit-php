@@ -107,17 +107,17 @@ final class Options implements BaseModel
         ?array $variants = null,
         VideoCodec|string|null $videoCodec = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $audioCodec && $obj['audioCodec'] = $audioCodec;
-        null !== $autoRotate && $obj['autoRotate'] = $autoRotate;
-        null !== $format && $obj['format'] = $format;
-        null !== $quality && $obj['quality'] = $quality;
-        null !== $streamProtocol && $obj['streamProtocol'] = $streamProtocol;
-        null !== $variants && $obj['variants'] = $variants;
-        null !== $videoCodec && $obj['videoCodec'] = $videoCodec;
+        null !== $audioCodec && $self['audioCodec'] = $audioCodec;
+        null !== $autoRotate && $self['autoRotate'] = $autoRotate;
+        null !== $format && $self['format'] = $format;
+        null !== $quality && $self['quality'] = $quality;
+        null !== $streamProtocol && $self['streamProtocol'] = $streamProtocol;
+        null !== $variants && $self['variants'] = $variants;
+        null !== $videoCodec && $self['videoCodec'] = $videoCodec;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -127,10 +127,10 @@ final class Options implements BaseModel
      */
     public function withAudioCodec(AudioCodec|string $audioCodec): self
     {
-        $obj = clone $this;
-        $obj['audioCodec'] = $audioCodec;
+        $self = clone $this;
+        $self['audioCodec'] = $audioCodec;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -138,10 +138,10 @@ final class Options implements BaseModel
      */
     public function withAutoRotate(bool $autoRotate): self
     {
-        $obj = clone $this;
-        $obj['autoRotate'] = $autoRotate;
+        $self = clone $this;
+        $self['autoRotate'] = $autoRotate;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -151,10 +151,10 @@ final class Options implements BaseModel
      */
     public function withFormat(Format|string $format): self
     {
-        $obj = clone $this;
-        $obj['format'] = $format;
+        $self = clone $this;
+        $self['format'] = $format;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -162,10 +162,10 @@ final class Options implements BaseModel
      */
     public function withQuality(int $quality): self
     {
-        $obj = clone $this;
-        $obj['quality'] = $quality;
+        $self = clone $this;
+        $self['quality'] = $quality;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -176,10 +176,10 @@ final class Options implements BaseModel
     public function withStreamProtocol(
         StreamProtocol|string $streamProtocol
     ): self {
-        $obj = clone $this;
-        $obj['streamProtocol'] = $streamProtocol;
+        $self = clone $this;
+        $self['streamProtocol'] = $streamProtocol;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -189,10 +189,10 @@ final class Options implements BaseModel
      */
     public function withVariants(array $variants): self
     {
-        $obj = clone $this;
-        $obj['variants'] = $variants;
+        $self = clone $this;
+        $self['variants'] = $variants;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -202,9 +202,9 @@ final class Options implements BaseModel
      */
     public function withVideoCodec(VideoCodec|string $videoCodec): self
     {
-        $obj = clone $this;
-        $obj['videoCodec'] = $videoCodec;
+        $self = clone $this;
+        $self['videoCodec'] = $videoCodec;
 
-        return $obj;
+        return $self;
     }
 }

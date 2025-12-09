@@ -108,17 +108,17 @@ final class SubtitleOverlayTransformation implements BaseModel
         ?float $fontSize = null,
         Typography|string|null $typography = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $background && $obj['background'] = $background;
-        null !== $color && $obj['color'] = $color;
-        null !== $fontFamily && $obj['fontFamily'] = $fontFamily;
-        null !== $fontOutline && $obj['fontOutline'] = $fontOutline;
-        null !== $fontShadow && $obj['fontShadow'] = $fontShadow;
-        null !== $fontSize && $obj['fontSize'] = $fontSize;
-        null !== $typography && $obj['typography'] = $typography;
+        null !== $background && $self['background'] = $background;
+        null !== $color && $self['color'] = $color;
+        null !== $fontFamily && $self['fontFamily'] = $fontFamily;
+        null !== $fontOutline && $self['fontOutline'] = $fontOutline;
+        null !== $fontShadow && $self['fontShadow'] = $fontShadow;
+        null !== $fontSize && $self['fontSize'] = $fontSize;
+        null !== $typography && $self['typography'] = $typography;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -128,10 +128,10 @@ final class SubtitleOverlayTransformation implements BaseModel
      */
     public function withBackground(string $background): self
     {
-        $obj = clone $this;
-        $obj['background'] = $background;
+        $self = clone $this;
+        $self['background'] = $background;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -141,10 +141,10 @@ final class SubtitleOverlayTransformation implements BaseModel
      */
     public function withColor(string $color): self
     {
-        $obj = clone $this;
-        $obj['color'] = $color;
+        $self = clone $this;
+        $self['color'] = $color;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -152,10 +152,10 @@ final class SubtitleOverlayTransformation implements BaseModel
      */
     public function withFontFamily(string $fontFamily): self
     {
-        $obj = clone $this;
-        $obj['fontFamily'] = $fontFamily;
+        $self = clone $this;
+        $self['fontFamily'] = $fontFamily;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -167,10 +167,10 @@ final class SubtitleOverlayTransformation implements BaseModel
      */
     public function withFontOutline(string $fontOutline): self
     {
-        $obj = clone $this;
-        $obj['fontOutline'] = $fontOutline;
+        $self = clone $this;
+        $self['fontOutline'] = $fontOutline;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -182,10 +182,10 @@ final class SubtitleOverlayTransformation implements BaseModel
      */
     public function withFontShadow(string $fontShadow): self
     {
-        $obj = clone $this;
-        $obj['fontShadow'] = $fontShadow;
+        $self = clone $this;
+        $self['fontShadow'] = $fontShadow;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -195,10 +195,10 @@ final class SubtitleOverlayTransformation implements BaseModel
      */
     public function withFontSize(float $fontSize): self
     {
-        $obj = clone $this;
-        $obj['fontSize'] = $fontSize;
+        $self = clone $this;
+        $self['fontSize'] = $fontSize;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -210,9 +210,9 @@ final class SubtitleOverlayTransformation implements BaseModel
      */
     public function withTypography(Typography|string $typography): self
     {
-        $obj = clone $this;
-        $obj['typography'] = $typography;
+        $self = clone $this;
+        $self['typography'] = $typography;
 
-        return $obj;
+        return $self;
     }
 }

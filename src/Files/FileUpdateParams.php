@@ -135,18 +135,18 @@ final class FileUpdateParams implements BaseModel
         ?string $webhookURL = null,
         Publish|array|null $publish = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $customCoordinates && $obj['customCoordinates'] = $customCoordinates;
-        null !== $customMetadata && $obj['customMetadata'] = $customMetadata;
-        null !== $description && $obj['description'] = $description;
-        null !== $extensions && $obj['extensions'] = $extensions;
-        null !== $removeAITags && $obj['removeAITags'] = $removeAITags;
-        null !== $tags && $obj['tags'] = $tags;
-        null !== $webhookURL && $obj['webhookURL'] = $webhookURL;
-        null !== $publish && $obj['publish'] = $publish;
+        null !== $customCoordinates && $self['customCoordinates'] = $customCoordinates;
+        null !== $customMetadata && $self['customMetadata'] = $customMetadata;
+        null !== $description && $self['description'] = $description;
+        null !== $extensions && $self['extensions'] = $extensions;
+        null !== $removeAITags && $self['removeAITags'] = $removeAITags;
+        null !== $tags && $self['tags'] = $tags;
+        null !== $webhookURL && $self['webhookURL'] = $webhookURL;
+        null !== $publish && $self['publish'] = $publish;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -154,10 +154,10 @@ final class FileUpdateParams implements BaseModel
      */
     public function withCustomCoordinates(?string $customCoordinates): self
     {
-        $obj = clone $this;
-        $obj['customCoordinates'] = $customCoordinates;
+        $self = clone $this;
+        $self['customCoordinates'] = $customCoordinates;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -167,10 +167,10 @@ final class FileUpdateParams implements BaseModel
      */
     public function withCustomMetadata(array $customMetadata): self
     {
-        $obj = clone $this;
-        $obj['customMetadata'] = $customMetadata;
+        $self = clone $this;
+        $self['customMetadata'] = $customMetadata;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -178,10 +178,10 @@ final class FileUpdateParams implements BaseModel
      */
     public function withDescription(string $description): self
     {
-        $obj = clone $this;
-        $obj['description'] = $description;
+        $self = clone $this;
+        $self['description'] = $description;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -195,10 +195,10 @@ final class FileUpdateParams implements BaseModel
      */
     public function withExtensions(array $extensions): self
     {
-        $obj = clone $this;
-        $obj['extensions'] = $extensions;
+        $self = clone $this;
+        $self['extensions'] = $extensions;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -212,10 +212,10 @@ final class FileUpdateParams implements BaseModel
      */
     public function withRemoveAITags(string|array $removeAITags): self
     {
-        $obj = clone $this;
-        $obj['removeAITags'] = $removeAITags;
+        $self = clone $this;
+        $self['removeAITags'] = $removeAITags;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -225,10 +225,10 @@ final class FileUpdateParams implements BaseModel
      */
     public function withTags(?array $tags): self
     {
-        $obj = clone $this;
-        $obj['tags'] = $tags;
+        $self = clone $this;
+        $self['tags'] = $tags;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -236,10 +236,10 @@ final class FileUpdateParams implements BaseModel
      */
     public function withWebhookURL(string $webhookURL): self
     {
-        $obj = clone $this;
-        $obj['webhookURL'] = $webhookURL;
+        $self = clone $this;
+        $self['webhookURL'] = $webhookURL;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -251,9 +251,9 @@ final class FileUpdateParams implements BaseModel
      */
     public function withPublish(Publish|array $publish): self
     {
-        $obj = clone $this;
-        $obj['publish'] = $publish;
+        $self = clone $this;
+        $self['publish'] = $publish;
 
-        return $obj;
+        return $self;
     }
 }

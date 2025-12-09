@@ -128,20 +128,20 @@ final class S3Compatible implements BaseModel
         ?string $prefix = null,
         ?bool $s3ForcePathStyle = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj['accessKey'] = $accessKey;
-        $obj['bucket'] = $bucket;
-        $obj['endpoint'] = $endpoint;
-        $obj['name'] = $name;
-        $obj['secretKey'] = $secretKey;
+        $self['accessKey'] = $accessKey;
+        $self['bucket'] = $bucket;
+        $self['endpoint'] = $endpoint;
+        $self['name'] = $name;
+        $self['secretKey'] = $secretKey;
 
-        null !== $baseURLForCanonicalHeader && $obj['baseURLForCanonicalHeader'] = $baseURLForCanonicalHeader;
-        null !== $includeCanonicalHeader && $obj['includeCanonicalHeader'] = $includeCanonicalHeader;
-        null !== $prefix && $obj['prefix'] = $prefix;
-        null !== $s3ForcePathStyle && $obj['s3ForcePathStyle'] = $s3ForcePathStyle;
+        null !== $baseURLForCanonicalHeader && $self['baseURLForCanonicalHeader'] = $baseURLForCanonicalHeader;
+        null !== $includeCanonicalHeader && $self['includeCanonicalHeader'] = $includeCanonicalHeader;
+        null !== $prefix && $self['prefix'] = $prefix;
+        null !== $s3ForcePathStyle && $self['s3ForcePathStyle'] = $s3ForcePathStyle;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -149,10 +149,10 @@ final class S3Compatible implements BaseModel
      */
     public function withAccessKey(string $accessKey): self
     {
-        $obj = clone $this;
-        $obj['accessKey'] = $accessKey;
+        $self = clone $this;
+        $self['accessKey'] = $accessKey;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -160,10 +160,10 @@ final class S3Compatible implements BaseModel
      */
     public function withBucket(string $bucket): self
     {
-        $obj = clone $this;
-        $obj['bucket'] = $bucket;
+        $self = clone $this;
+        $self['bucket'] = $bucket;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -171,10 +171,10 @@ final class S3Compatible implements BaseModel
      */
     public function withEndpoint(string $endpoint): self
     {
-        $obj = clone $this;
-        $obj['endpoint'] = $endpoint;
+        $self = clone $this;
+        $self['endpoint'] = $endpoint;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -182,10 +182,10 @@ final class S3Compatible implements BaseModel
      */
     public function withName(string $name): self
     {
-        $obj = clone $this;
-        $obj['name'] = $name;
+        $self = clone $this;
+        $self['name'] = $name;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -193,10 +193,10 @@ final class S3Compatible implements BaseModel
      */
     public function withSecretKey(string $secretKey): self
     {
-        $obj = clone $this;
-        $obj['secretKey'] = $secretKey;
+        $self = clone $this;
+        $self['secretKey'] = $secretKey;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -205,10 +205,10 @@ final class S3Compatible implements BaseModel
     public function withBaseURLForCanonicalHeader(
         string $baseURLForCanonicalHeader
     ): self {
-        $obj = clone $this;
-        $obj['baseURLForCanonicalHeader'] = $baseURLForCanonicalHeader;
+        $self = clone $this;
+        $self['baseURLForCanonicalHeader'] = $baseURLForCanonicalHeader;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -217,10 +217,10 @@ final class S3Compatible implements BaseModel
     public function withIncludeCanonicalHeader(
         bool $includeCanonicalHeader
     ): self {
-        $obj = clone $this;
-        $obj['includeCanonicalHeader'] = $includeCanonicalHeader;
+        $self = clone $this;
+        $self['includeCanonicalHeader'] = $includeCanonicalHeader;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -228,10 +228,10 @@ final class S3Compatible implements BaseModel
      */
     public function withPrefix(string $prefix): self
     {
-        $obj = clone $this;
-        $obj['prefix'] = $prefix;
+        $self = clone $this;
+        $self['prefix'] = $prefix;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -239,9 +239,9 @@ final class S3Compatible implements BaseModel
      */
     public function withS3ForcePathStyle(bool $s3ForcePathStyle): self
     {
-        $obj = clone $this;
-        $obj['s3ForcePathStyle'] = $s3ForcePathStyle;
+        $self = clone $this;
+        $self['s3ForcePathStyle'] = $s3ForcePathStyle;
 
-        return $obj;
+        return $self;
     }
 }

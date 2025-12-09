@@ -73,13 +73,13 @@ final class AutoTaggingExtension implements BaseModel
         int $minConfidence,
         Name|string $name
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj['maxTags'] = $maxTags;
-        $obj['minConfidence'] = $minConfidence;
-        $obj['name'] = $name;
+        $self['maxTags'] = $maxTags;
+        $self['minConfidence'] = $minConfidence;
+        $self['name'] = $name;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -87,10 +87,10 @@ final class AutoTaggingExtension implements BaseModel
      */
     public function withMaxTags(int $maxTags): self
     {
-        $obj = clone $this;
-        $obj['maxTags'] = $maxTags;
+        $self = clone $this;
+        $self['maxTags'] = $maxTags;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -98,10 +98,10 @@ final class AutoTaggingExtension implements BaseModel
      */
     public function withMinConfidence(int $minConfidence): self
     {
-        $obj = clone $this;
-        $obj['minConfidence'] = $minConfidence;
+        $self = clone $this;
+        $self['minConfidence'] = $minConfidence;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -111,9 +111,9 @@ final class AutoTaggingExtension implements BaseModel
      */
     public function withName(Name|string $name): self
     {
-        $obj = clone $this;
-        $obj['name'] = $name;
+        $self = clone $this;
+        $self['name'] = $name;
 
-        return $obj;
+        return $self;
     }
 }

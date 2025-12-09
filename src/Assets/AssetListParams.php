@@ -124,17 +124,17 @@ final class AssetListParams implements BaseModel
         Sort|string|null $sort = null,
         Type|string|null $type = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $fileType && $obj['fileType'] = $fileType;
-        null !== $limit && $obj['limit'] = $limit;
-        null !== $path && $obj['path'] = $path;
-        null !== $searchQuery && $obj['searchQuery'] = $searchQuery;
-        null !== $skip && $obj['skip'] = $skip;
-        null !== $sort && $obj['sort'] = $sort;
-        null !== $type && $obj['type'] = $type;
+        null !== $fileType && $self['fileType'] = $fileType;
+        null !== $limit && $self['limit'] = $limit;
+        null !== $path && $self['path'] = $path;
+        null !== $searchQuery && $self['searchQuery'] = $searchQuery;
+        null !== $skip && $self['skip'] = $skip;
+        null !== $sort && $self['sort'] = $sort;
+        null !== $type && $self['type'] = $type;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -148,10 +148,10 @@ final class AssetListParams implements BaseModel
      */
     public function withFileType(FileType|string $fileType): self
     {
-        $obj = clone $this;
-        $obj['fileType'] = $fileType;
+        $self = clone $this;
+        $self['fileType'] = $fileType;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -159,10 +159,10 @@ final class AssetListParams implements BaseModel
      */
     public function withLimit(int $limit): self
     {
-        $obj = clone $this;
-        $obj['limit'] = $limit;
+        $self = clone $this;
+        $self['limit'] = $limit;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -173,10 +173,10 @@ final class AssetListParams implements BaseModel
      */
     public function withPath(string $path): self
     {
-        $obj = clone $this;
-        $obj['path'] = $path;
+        $self = clone $this;
+        $self['path'] = $path;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -192,10 +192,10 @@ final class AssetListParams implements BaseModel
      */
     public function withSearchQuery(string $searchQuery): self
     {
-        $obj = clone $this;
-        $obj['searchQuery'] = $searchQuery;
+        $self = clone $this;
+        $self['searchQuery'] = $searchQuery;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -203,10 +203,10 @@ final class AssetListParams implements BaseModel
      */
     public function withSkip(int $skip): self
     {
-        $obj = clone $this;
-        $obj['skip'] = $skip;
+        $self = clone $this;
+        $self['skip'] = $skip;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -216,10 +216,10 @@ final class AssetListParams implements BaseModel
      */
     public function withSort(Sort|string $sort): self
     {
-        $obj = clone $this;
-        $obj['sort'] = $sort;
+        $self = clone $this;
+        $self['sort'] = $sort;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -234,9 +234,9 @@ final class AssetListParams implements BaseModel
      */
     public function withType(Type|string $type): self
     {
-        $obj = clone $this;
-        $obj['type'] = $type;
+        $self = clone $this;
+        $self['type'] = $type;
 
-        return $obj;
+        return $self;
     }
 }

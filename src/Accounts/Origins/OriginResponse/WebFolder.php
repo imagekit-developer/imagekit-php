@@ -108,17 +108,17 @@ final class WebFolder implements BaseModel
         bool $includeCanonicalHeader = false,
         ?string $baseURLForCanonicalHeader = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj['id'] = $id;
-        $obj['baseURL'] = $baseURL;
-        $obj['forwardHostHeaderToOrigin'] = $forwardHostHeaderToOrigin;
-        $obj['includeCanonicalHeader'] = $includeCanonicalHeader;
-        $obj['name'] = $name;
+        $self['id'] = $id;
+        $self['baseURL'] = $baseURL;
+        $self['forwardHostHeaderToOrigin'] = $forwardHostHeaderToOrigin;
+        $self['includeCanonicalHeader'] = $includeCanonicalHeader;
+        $self['name'] = $name;
 
-        null !== $baseURLForCanonicalHeader && $obj['baseURLForCanonicalHeader'] = $baseURLForCanonicalHeader;
+        null !== $baseURLForCanonicalHeader && $self['baseURLForCanonicalHeader'] = $baseURLForCanonicalHeader;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -126,10 +126,10 @@ final class WebFolder implements BaseModel
      */
     public function withID(string $id): self
     {
-        $obj = clone $this;
-        $obj['id'] = $id;
+        $self = clone $this;
+        $self['id'] = $id;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -137,10 +137,10 @@ final class WebFolder implements BaseModel
      */
     public function withBaseURL(string $baseURL): self
     {
-        $obj = clone $this;
-        $obj['baseURL'] = $baseURL;
+        $self = clone $this;
+        $self['baseURL'] = $baseURL;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -149,10 +149,10 @@ final class WebFolder implements BaseModel
     public function withForwardHostHeaderToOrigin(
         bool $forwardHostHeaderToOrigin
     ): self {
-        $obj = clone $this;
-        $obj['forwardHostHeaderToOrigin'] = $forwardHostHeaderToOrigin;
+        $self = clone $this;
+        $self['forwardHostHeaderToOrigin'] = $forwardHostHeaderToOrigin;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -161,10 +161,10 @@ final class WebFolder implements BaseModel
     public function withIncludeCanonicalHeader(
         bool $includeCanonicalHeader
     ): self {
-        $obj = clone $this;
-        $obj['includeCanonicalHeader'] = $includeCanonicalHeader;
+        $self = clone $this;
+        $self['includeCanonicalHeader'] = $includeCanonicalHeader;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -172,10 +172,10 @@ final class WebFolder implements BaseModel
      */
     public function withName(string $name): self
     {
-        $obj = clone $this;
-        $obj['name'] = $name;
+        $self = clone $this;
+        $self['name'] = $name;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -184,9 +184,9 @@ final class WebFolder implements BaseModel
     public function withBaseURLForCanonicalHeader(
         string $baseURLForCanonicalHeader
     ): self {
-        $obj = clone $this;
-        $obj['baseURLForCanonicalHeader'] = $baseURLForCanonicalHeader;
+        $self = clone $this;
+        $self['baseURLForCanonicalHeader'] = $baseURLForCanonicalHeader;
 
-        return $obj;
+        return $self;
     }
 }

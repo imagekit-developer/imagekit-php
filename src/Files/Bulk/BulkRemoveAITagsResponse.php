@@ -40,11 +40,11 @@ final class BulkRemoveAITagsResponse implements BaseModel
      */
     public static function with(?array $successfullyUpdatedFileIDs = null): self
     {
-        $obj = new self;
+        $self = new self;
 
-        null !== $successfullyUpdatedFileIDs && $obj['successfullyUpdatedFileIDs'] = $successfullyUpdatedFileIDs;
+        null !== $successfullyUpdatedFileIDs && $self['successfullyUpdatedFileIDs'] = $successfullyUpdatedFileIDs;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -55,9 +55,9 @@ final class BulkRemoveAITagsResponse implements BaseModel
     public function withSuccessfullyUpdatedFileIDs(
         array $successfullyUpdatedFileIDs
     ): self {
-        $obj = clone $this;
-        $obj['successfullyUpdatedFileIDs'] = $successfullyUpdatedFileIDs;
+        $self = clone $this;
+        $self['successfullyUpdatedFileIDs'] = $successfullyUpdatedFileIDs;
 
-        return $obj;
+        return $self;
     }
 }

@@ -61,63 +61,63 @@ final class Thumbnail implements BaseModel
         ?int $xResolution = null,
         ?int $yResolution = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $compression && $obj['compression'] = $compression;
-        null !== $resolutionUnit && $obj['resolutionUnit'] = $resolutionUnit;
-        null !== $thumbnailLength && $obj['thumbnailLength'] = $thumbnailLength;
-        null !== $thumbnailOffset && $obj['thumbnailOffset'] = $thumbnailOffset;
-        null !== $xResolution && $obj['xResolution'] = $xResolution;
-        null !== $yResolution && $obj['yResolution'] = $yResolution;
+        null !== $compression && $self['compression'] = $compression;
+        null !== $resolutionUnit && $self['resolutionUnit'] = $resolutionUnit;
+        null !== $thumbnailLength && $self['thumbnailLength'] = $thumbnailLength;
+        null !== $thumbnailOffset && $self['thumbnailOffset'] = $thumbnailOffset;
+        null !== $xResolution && $self['xResolution'] = $xResolution;
+        null !== $yResolution && $self['yResolution'] = $yResolution;
 
-        return $obj;
+        return $self;
     }
 
     public function withCompression(int $compression): self
     {
-        $obj = clone $this;
-        $obj['compression'] = $compression;
+        $self = clone $this;
+        $self['compression'] = $compression;
 
-        return $obj;
+        return $self;
     }
 
     public function withResolutionUnit(int $resolutionUnit): self
     {
-        $obj = clone $this;
-        $obj['resolutionUnit'] = $resolutionUnit;
+        $self = clone $this;
+        $self['resolutionUnit'] = $resolutionUnit;
 
-        return $obj;
+        return $self;
     }
 
     public function withThumbnailLength(int $thumbnailLength): self
     {
-        $obj = clone $this;
-        $obj['thumbnailLength'] = $thumbnailLength;
+        $self = clone $this;
+        $self['thumbnailLength'] = $thumbnailLength;
 
-        return $obj;
+        return $self;
     }
 
     public function withThumbnailOffset(int $thumbnailOffset): self
     {
-        $obj = clone $this;
-        $obj['thumbnailOffset'] = $thumbnailOffset;
+        $self = clone $this;
+        $self['thumbnailOffset'] = $thumbnailOffset;
 
-        return $obj;
+        return $self;
     }
 
     public function withXResolution(int $xResolution): self
     {
-        $obj = clone $this;
-        $obj['xResolution'] = $xResolution;
+        $self = clone $this;
+        $self['xResolution'] = $xResolution;
 
-        return $obj;
+        return $self;
     }
 
     public function withYResolution(int $yResolution): self
     {
-        $obj = clone $this;
-        $obj['yResolution'] = $yResolution;
+        $self = clone $this;
+        $self['yResolution'] = $yResolution;
 
-        return $obj;
+        return $self;
     }
 }

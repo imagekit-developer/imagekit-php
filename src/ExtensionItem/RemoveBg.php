@@ -11,7 +11,7 @@ use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\ExtensionItem\RemoveBg\Options;
 
 /**
- * @phpstan-type RemoveBgShape = array{name: 'remove-bg', options?: Options|null}
+ * @phpstan-type RemoveBgShape = array{name?: 'remove-bg', options?: Options|null}
  */
 final class RemoveBg implements BaseModel
 {

@@ -61,10 +61,10 @@ final class Transformation implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param list<Post\Transformation|array{
-     *   type: 'transformation', value: string
-     * }|GifToVideo|array{type: 'gif-to-video', value?: string|null}|Thumbnail|array{
-     *   type: 'thumbnail', value?: string|null
-     * }|Abs|array{protocol: value-of<Protocol>, type: 'abs', value: string}> $post
+     *   type?: 'transformation', value: string
+     * }|GifToVideo|array{type?: 'gif-to-video', value?: string|null}|Thumbnail|array{
+     *   type?: 'thumbnail', value?: string|null
+     * }|Abs|array{protocol: value-of<Protocol>, type?: 'abs', value: string}> $post
      */
     public static function with(?array $post = null, ?string $pre = null): self
     {
@@ -82,10 +82,10 @@ final class Transformation implements BaseModel
      * `transformation`, `gif-to-video`, `thumbnail`, `abs`.
      *
      * @param list<Post\Transformation|array{
-     *   type: 'transformation', value: string
-     * }|GifToVideo|array{type: 'gif-to-video', value?: string|null}|Thumbnail|array{
-     *   type: 'thumbnail', value?: string|null
-     * }|Abs|array{protocol: value-of<Protocol>, type: 'abs', value: string}> $post
+     *   type?: 'transformation', value: string
+     * }|GifToVideo|array{type?: 'gif-to-video', value?: string|null}|Thumbnail|array{
+     *   type?: 'thumbnail', value?: string|null
+     * }|Abs|array{protocol: value-of<Protocol>, type?: 'abs', value: string}> $post
      */
     public function withPost(array $post): self
     {

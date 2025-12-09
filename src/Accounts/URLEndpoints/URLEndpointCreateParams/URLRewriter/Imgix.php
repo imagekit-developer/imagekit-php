@@ -9,7 +9,7 @@ use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type ImgixShape = array{type: 'IMGIX'}
+ * @phpstan-type ImgixShape = array{type?: 'IMGIX'}
  */
 final class Imgix implements BaseModel
 {

@@ -10,6 +10,7 @@ use Imagekit\Core\Conversion\ListOf;
 use Imagekit\Core\Exceptions\APIException;
 use Imagekit\CustomMetadataFields\CustomMetadataField;
 use Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams;
+use Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\Type;
 use Imagekit\CustomMetadataFields\CustomMetadataFieldDeleteResponse;
 use Imagekit\CustomMetadataFields\CustomMetadataFieldListParams;
 use Imagekit\CustomMetadataFields\CustomMetadataFieldUpdateParams;
@@ -32,7 +33,7 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
      *   label: string,
      *   name: string,
      *   schema: array{
-     *     type: 'Text'|'Textarea'|'Number'|'Date'|'Boolean'|'SingleSelect'|'MultiSelect',
+     *     type: 'Text'|'Textarea'|'Number'|'Date'|'Boolean'|'SingleSelect'|'MultiSelect'|Type,
      *     defaultValue?: mixed,
      *     isValueRequired?: bool,
      *     maxLength?: float,

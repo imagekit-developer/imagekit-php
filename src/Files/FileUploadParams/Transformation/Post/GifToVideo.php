@@ -10,7 +10,9 @@ use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type GifToVideoShape = array{type: 'gif-to-video', value?: string|null}
+ * @phpstan-type GifToVideoShape = array{
+ *   type?: 'gif-to-video', value?: string|null
+ * }
  */
 final class GifToVideo implements BaseModel
 {

@@ -11,7 +11,7 @@ use Imagekit\Core\Contracts\BaseModel;
 
 /**
  * @phpstan-type AbsShape = array{
- *   protocol: value-of<Protocol>, type: 'abs', value: string
+ *   protocol: value-of<Protocol>, type?: 'abs', value: string
  * }
  */
 final class Abs implements BaseModel

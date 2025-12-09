@@ -11,7 +11,7 @@ use Imagekit\Files\FileUploadParams\Transformation\Post\Abs\Protocol;
 
 /**
  * @phpstan-type AbsShape = array{
- *   protocol: value-of<Protocol>, type: 'abs', value: string
+ *   protocol: value-of<Protocol>, type?: 'abs', value: string
  * }
  */
 final class Abs implements BaseModel

@@ -11,7 +11,7 @@ use Imagekit\Core\Contracts\BaseModel;
 
 /**
  * @phpstan-type CloudinaryShape = array{
- *   type: 'CLOUDINARY', preserveAssetDeliveryTypes?: bool|null
+ *   type?: 'CLOUDINARY', preserveAssetDeliveryTypes?: bool|null
  * }
  */
 final class Cloudinary implements BaseModel

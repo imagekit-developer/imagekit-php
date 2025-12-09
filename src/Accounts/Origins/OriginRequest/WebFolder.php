@@ -13,7 +13,7 @@ use Imagekit\Core\Contracts\BaseModel;
  * @phpstan-type WebFolderShape = array{
  *   baseUrl: string,
  *   name: string,
- *   type: 'WEB_FOLDER',
+ *   type?: 'WEB_FOLDER',
  *   baseUrlForCanonicalHeader?: string|null,
  *   forwardHostHeaderToOrigin?: bool|null,
  *   includeCanonicalHeader?: bool|null,

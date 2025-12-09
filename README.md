@@ -47,8 +47,7 @@ $client = new Client(
 );
 
 $response = $client->files->upload([
-  'file' => 'https://www.example.com/public-url.jpg',
-  'fileName' => 'file-name.jpg',
+  'file' => 'file', 'fileName' => 'file-name.jpg'
 ]);
 
 var_dump($response->videoCodec);
@@ -72,8 +71,7 @@ use Imagekit\Core\Exceptions\APIConnectionException;
 
 try {
   $response = $client->files->upload([
-    'file' => 'https://www.example.com/public-url.jpg',
-    'fileName' => 'file-name.jpg',
+    'file' => 'file', 'fileName' => 'file-name.jpg'
   ]);
 } catch (APIConnectionException $e) {
   echo "The server could not be reached", PHP_EOL;
@@ -121,10 +119,7 @@ $client = new Client(maxRetries: 0);
 
 // Or, configure per-request:
 $result = $client->files->upload(
-  [
-    'file' => 'https://www.example.com/public-url.jpg',
-    'fileName' => 'file-name.jpg',
-  ],
+  ['file' => 'file', 'fileName' => 'file-name.jpg'],
   RequestOptions::with(maxRetries: 5),
 );
 ```
@@ -145,10 +140,7 @@ Note: the `extra*` parameters of the same name overrides the documented paramete
 use Imagekit\RequestOptions;
 
 $response = $client->files->upload(
-  [
-    'file' => 'https://www.example.com/public-url.jpg',
-    'fileName' => 'file-name.jpg',
-  ],
+  ['file' => 'file', 'fileName' => 'file-name.jpg'],
   RequestOptions::with(
     extraQueryParams: ['my_query_parameter' => 'value'],
     extraBodyParams: ['my_body_parameter' => 'value'],

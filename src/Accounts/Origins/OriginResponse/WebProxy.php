@@ -14,7 +14,7 @@ use Imagekit\Core\Contracts\BaseModel;
  *   id: string,
  *   includeCanonicalHeader: bool,
  *   name: string,
- *   type: 'WEB_PROXY',
+ *   type?: 'WEB_PROXY',
  *   baseUrlForCanonicalHeader?: string|null,
  * }
  */

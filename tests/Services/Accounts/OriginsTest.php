@@ -42,6 +42,7 @@ final class OriginsTest extends TestCase
             'bucket' => 'test-bucket',
             'name' => 'My S3 Origin',
             'secretKey' => 'secrettest123',
+            'type' => 'S3',
         ]);
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
@@ -60,6 +61,7 @@ final class OriginsTest extends TestCase
             'bucket' => 'test-bucket',
             'name' => 'My S3 Origin',
             'secretKey' => 'secrettest123',
+            'type' => 'S3',
             'baseUrlForCanonicalHeader' => 'https://cdn.example.com',
             'includeCanonicalHeader' => false,
             'prefix' => 'images',
@@ -83,6 +85,7 @@ final class OriginsTest extends TestCase
                 'bucket' => 'test-bucket',
                 'name' => 'My S3 Origin',
                 'secretKey' => 'secrettest123',
+                'type' => 'S3',
             ],
         );
 
@@ -104,6 +107,7 @@ final class OriginsTest extends TestCase
                 'bucket' => 'test-bucket',
                 'name' => 'My S3 Origin',
                 'secretKey' => 'secrettest123',
+                'type' => 'S3',
                 'baseUrlForCanonicalHeader' => 'https://cdn.example.com',
                 'includeCanonicalHeader' => false,
                 'prefix' => 'images',

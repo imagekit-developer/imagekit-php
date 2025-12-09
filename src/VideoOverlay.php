@@ -16,7 +16,7 @@ use Imagekit\VideoOverlay\Encoding;
  *   position?: OverlayPosition|null,
  *   timing?: OverlayTiming|null,
  *   input: string,
- *   type: 'video',
+ *   type?: 'video',
  *   encoding?: value-of<Encoding>|null,
  *   transformation?: list<mixed>|null,
  * }

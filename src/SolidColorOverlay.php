@@ -15,7 +15,7 @@ use Imagekit\OverlayPosition\Focus;
  *   position?: OverlayPosition|null,
  *   timing?: OverlayTiming|null,
  *   color: string,
- *   type: 'solidColor',
+ *   type?: 'solidColor',
  *   transformation?: list<SolidColorOverlayTransformation>|null,
  * }
  */

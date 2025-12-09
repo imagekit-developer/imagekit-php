@@ -93,8 +93,8 @@ final class URLEndpointResponse implements BaseModel
      *
      * @param list<string> $origins
      * @param Cloudinary|array{
-     *   preserveAssetDeliveryTypes: bool, type: 'CLOUDINARY'
-     * }|Imgix|array{type: 'IMGIX'}|Akamai|array{type: 'AKAMAI'} $urlRewriter
+     *   preserveAssetDeliveryTypes: bool, type?: 'CLOUDINARY'
+     * }|Imgix|array{type?: 'IMGIX'}|Akamai|array{type?: 'AKAMAI'} $urlRewriter
      */
     public static function with(
         string $id,
@@ -165,8 +165,8 @@ final class URLEndpointResponse implements BaseModel
      * Configuration for third-party URL rewriting.
      *
      * @param Cloudinary|array{
-     *   preserveAssetDeliveryTypes: bool, type: 'CLOUDINARY'
-     * }|Imgix|array{type: 'IMGIX'}|Akamai|array{type: 'AKAMAI'} $urlRewriter
+     *   preserveAssetDeliveryTypes: bool, type?: 'CLOUDINARY'
+     * }|Imgix|array{type?: 'IMGIX'}|Akamai|array{type?: 'AKAMAI'} $urlRewriter
      */
     public function withURLRewriter(
         Cloudinary|array|Imgix|Akamai $urlRewriter

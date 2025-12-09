@@ -18,7 +18,7 @@ use Imagekit\Core\Contracts\BaseModel;
  *   name: string,
  *   prefix: string,
  *   s3ForcePathStyle: bool,
- *   type: 'S3_COMPATIBLE',
+ *   type?: 'S3_COMPATIBLE',
  *   baseUrlForCanonicalHeader?: string|null,
  * }
  */

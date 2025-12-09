@@ -16,7 +16,7 @@ use Imagekit\Core\Contracts\BaseModel;
  *   endpoint: string,
  *   name: string,
  *   secretKey: string,
- *   type: 'S3_COMPATIBLE',
+ *   type?: 'S3_COMPATIBLE',
  *   baseUrlForCanonicalHeader?: string|null,
  *   includeCanonicalHeader?: bool|null,
  *   prefix?: string|null,

@@ -17,7 +17,7 @@ use Imagekit\Core\Contracts\BaseModel;
  *   name: string,
  *   secretKey: string,
  *   type?: 'S3_COMPATIBLE',
- *   baseUrlForCanonicalHeader?: string|null,
+ *   baseURLForCanonicalHeader?: string|null,
  *   includeCanonicalHeader?: bool|null,
  *   prefix?: string|null,
  *   s3ForcePathStyle?: bool|null,
@@ -65,8 +65,8 @@ final class S3Compatible implements BaseModel
     /**
      * URL used in the Canonical header (if enabled).
      */
-    #[Optional]
-    public ?string $baseUrlForCanonicalHeader;
+    #[Optional('baseUrlForCanonicalHeader')]
+    public ?string $baseURLForCanonicalHeader;
 
     /**
      * Whether to send a Canonical header.
@@ -123,7 +123,7 @@ final class S3Compatible implements BaseModel
         string $endpoint,
         string $name,
         string $secretKey,
-        ?string $baseUrlForCanonicalHeader = null,
+        ?string $baseURLForCanonicalHeader = null,
         ?bool $includeCanonicalHeader = null,
         ?string $prefix = null,
         ?bool $s3ForcePathStyle = null,
@@ -136,7 +136,7 @@ final class S3Compatible implements BaseModel
         $obj['name'] = $name;
         $obj['secretKey'] = $secretKey;
 
-        null !== $baseUrlForCanonicalHeader && $obj['baseUrlForCanonicalHeader'] = $baseUrlForCanonicalHeader;
+        null !== $baseURLForCanonicalHeader && $obj['baseURLForCanonicalHeader'] = $baseURLForCanonicalHeader;
         null !== $includeCanonicalHeader && $obj['includeCanonicalHeader'] = $includeCanonicalHeader;
         null !== $prefix && $obj['prefix'] = $prefix;
         null !== $s3ForcePathStyle && $obj['s3ForcePathStyle'] = $s3ForcePathStyle;
@@ -206,7 +206,7 @@ final class S3Compatible implements BaseModel
         string $baseURLForCanonicalHeader
     ): self {
         $obj = clone $this;
-        $obj['baseUrlForCanonicalHeader'] = $baseURLForCanonicalHeader;
+        $obj['baseURLForCanonicalHeader'] = $baseURLForCanonicalHeader;
 
         return $obj;
     }

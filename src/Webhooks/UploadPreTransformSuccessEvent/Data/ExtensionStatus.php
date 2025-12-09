@@ -22,10 +22,10 @@ use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\ExtensionStatus\Remove
  * If no extension was requested, then this parameter is not returned.
  *
  * @phpstan-type ExtensionStatusShape = array{
- *   ai_auto_description?: value-of<AIAutoDescription>|null,
- *   aws_auto_tagging?: value-of<AwsAutoTagging>|null,
- *   google_auto_tagging?: value-of<GoogleAutoTagging>|null,
- *   remove_bg?: value-of<RemoveBg>|null,
+ *   aiAutoDescription?: value-of<AIAutoDescription>|null,
+ *   awsAutoTagging?: value-of<AwsAutoTagging>|null,
+ *   googleAutoTagging?: value-of<GoogleAutoTagging>|null,
+ *   removeBg?: value-of<RemoveBg>|null,
  * }
  */
 final class ExtensionStatus implements BaseModel
@@ -33,21 +33,21 @@ final class ExtensionStatus implements BaseModel
     /** @use SdkModel<ExtensionStatusShape> */
     use SdkModel;
 
-    /** @var value-of<AIAutoDescription>|null $ai_auto_description */
+    /** @var value-of<AIAutoDescription>|null $aiAutoDescription */
     #[Optional('ai-auto-description', enum: AIAutoDescription::class)]
-    public ?string $ai_auto_description;
+    public ?string $aiAutoDescription;
 
-    /** @var value-of<AwsAutoTagging>|null $aws_auto_tagging */
+    /** @var value-of<AwsAutoTagging>|null $awsAutoTagging */
     #[Optional('aws-auto-tagging', enum: AwsAutoTagging::class)]
-    public ?string $aws_auto_tagging;
+    public ?string $awsAutoTagging;
 
-    /** @var value-of<GoogleAutoTagging>|null $google_auto_tagging */
+    /** @var value-of<GoogleAutoTagging>|null $googleAutoTagging */
     #[Optional('google-auto-tagging', enum: GoogleAutoTagging::class)]
-    public ?string $google_auto_tagging;
+    public ?string $googleAutoTagging;
 
-    /** @var value-of<RemoveBg>|null $remove_bg */
+    /** @var value-of<RemoveBg>|null $removeBg */
     #[Optional('remove-bg', enum: RemoveBg::class)]
-    public ?string $remove_bg;
+    public ?string $removeBg;
 
     public function __construct()
     {
@@ -59,23 +59,23 @@ final class ExtensionStatus implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param AIAutoDescription|value-of<AIAutoDescription> $ai_auto_description
-     * @param AwsAutoTagging|value-of<AwsAutoTagging> $aws_auto_tagging
-     * @param GoogleAutoTagging|value-of<GoogleAutoTagging> $google_auto_tagging
-     * @param RemoveBg|value-of<RemoveBg> $remove_bg
+     * @param AIAutoDescription|value-of<AIAutoDescription> $aiAutoDescription
+     * @param AwsAutoTagging|value-of<AwsAutoTagging> $awsAutoTagging
+     * @param GoogleAutoTagging|value-of<GoogleAutoTagging> $googleAutoTagging
+     * @param RemoveBg|value-of<RemoveBg> $removeBg
      */
     public static function with(
-        AIAutoDescription|string|null $ai_auto_description = null,
-        AwsAutoTagging|string|null $aws_auto_tagging = null,
-        GoogleAutoTagging|string|null $google_auto_tagging = null,
-        RemoveBg|string|null $remove_bg = null,
+        AIAutoDescription|string|null $aiAutoDescription = null,
+        AwsAutoTagging|string|null $awsAutoTagging = null,
+        GoogleAutoTagging|string|null $googleAutoTagging = null,
+        RemoveBg|string|null $removeBg = null,
     ): self {
         $obj = new self;
 
-        null !== $ai_auto_description && $obj['ai_auto_description'] = $ai_auto_description;
-        null !== $aws_auto_tagging && $obj['aws_auto_tagging'] = $aws_auto_tagging;
-        null !== $google_auto_tagging && $obj['google_auto_tagging'] = $google_auto_tagging;
-        null !== $remove_bg && $obj['remove_bg'] = $remove_bg;
+        null !== $aiAutoDescription && $obj['aiAutoDescription'] = $aiAutoDescription;
+        null !== $awsAutoTagging && $obj['awsAutoTagging'] = $awsAutoTagging;
+        null !== $googleAutoTagging && $obj['googleAutoTagging'] = $googleAutoTagging;
+        null !== $removeBg && $obj['removeBg'] = $removeBg;
 
         return $obj;
     }
@@ -87,7 +87,7 @@ final class ExtensionStatus implements BaseModel
         AIAutoDescription|string $aiAutoDescription
     ): self {
         $obj = clone $this;
-        $obj['ai_auto_description'] = $aiAutoDescription;
+        $obj['aiAutoDescription'] = $aiAutoDescription;
 
         return $obj;
     }
@@ -99,7 +99,7 @@ final class ExtensionStatus implements BaseModel
         AwsAutoTagging|string $awsAutoTagging
     ): self {
         $obj = clone $this;
-        $obj['aws_auto_tagging'] = $awsAutoTagging;
+        $obj['awsAutoTagging'] = $awsAutoTagging;
 
         return $obj;
     }
@@ -111,7 +111,7 @@ final class ExtensionStatus implements BaseModel
         GoogleAutoTagging|string $googleAutoTagging
     ): self {
         $obj = clone $this;
-        $obj['google_auto_tagging'] = $googleAutoTagging;
+        $obj['googleAutoTagging'] = $googleAutoTagging;
 
         return $obj;
     }
@@ -122,7 +122,7 @@ final class ExtensionStatus implements BaseModel
     public function withRemoveBg(RemoveBg|string $removeBg): self
     {
         $obj = clone $this;
-        $obj['remove_bg'] = $removeBg;
+        $obj['removeBg'] = $removeBg;
 
         return $obj;
     }

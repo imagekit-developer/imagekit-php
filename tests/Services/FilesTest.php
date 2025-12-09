@@ -207,9 +207,9 @@ final class FilesTest extends TestCase
                 [
                     'name' => 'remove-bg',
                     'options' => [
-                        'add_shadow' => true,
-                        'bg_color' => 'bg_color',
-                        'bg_image_url' => 'bg_image_url',
+                        'addShadow' => true,
+                        'bgColor' => 'bg_color',
+                        'bgImageURL' => 'bg_image_url',
                         'semitransparency' => true,
                     ],
                 ],
@@ -241,7 +241,7 @@ final class FilesTest extends TestCase
                 'pre' => 'w-300,h-300,q-80',
             ],
             'useUniqueFileName' => true,
-            'webhookUrl' => 'https://example.com',
+            'webhookURL' => 'https://example.com',
         ]);
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType

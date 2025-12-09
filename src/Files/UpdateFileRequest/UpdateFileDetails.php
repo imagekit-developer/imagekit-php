@@ -23,7 +23,7 @@ use Imagekit\Files\UpdateFileRequest\UpdateFileDetails\RemoveAITags;
  *   extensions?: list<RemoveBg|AutoTaggingExtension|AIAutoDescription>|null,
  *   removeAITags?: null|'all'|list<string>,
  *   tags?: list<string>|null,
- *   webhookUrl?: string|null,
+ *   webhookURL?: string|null,
  * }
  */
 final class UpdateFileDetails implements BaseModel
@@ -82,8 +82,8 @@ final class UpdateFileDetails implements BaseModel
     /**
      * The final status of extensions after they have completed execution will be delivered to this endpoint as a POST request. [Learn more](/docs/api-reference/digital-asset-management-dam/managing-assets/update-file-details#webhook-payload-structure) about the webhook payload structure.
      */
-    #[Optional]
-    public ?string $webhookUrl;
+    #[Optional('webhookUrl')]
+    public ?string $webhookURL;
 
     public function __construct()
     {
@@ -111,7 +111,7 @@ final class UpdateFileDetails implements BaseModel
         ?array $extensions = null,
         string|array|null $removeAITags = null,
         ?array $tags = null,
-        ?string $webhookUrl = null,
+        ?string $webhookURL = null,
     ): self {
         $obj = new self;
 
@@ -121,7 +121,7 @@ final class UpdateFileDetails implements BaseModel
         null !== $extensions && $obj['extensions'] = $extensions;
         null !== $removeAITags && $obj['removeAITags'] = $removeAITags;
         null !== $tags && $obj['tags'] = $tags;
-        null !== $webhookUrl && $obj['webhookUrl'] = $webhookUrl;
+        null !== $webhookURL && $obj['webhookURL'] = $webhookURL;
 
         return $obj;
     }
@@ -214,7 +214,7 @@ final class UpdateFileDetails implements BaseModel
     public function withWebhookURL(string $webhookURL): self
     {
         $obj = clone $this;
-        $obj['webhookUrl'] = $webhookURL;
+        $obj['webhookURL'] = $webhookURL;
 
         return $obj;
     }

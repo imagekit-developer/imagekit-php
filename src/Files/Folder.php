@@ -12,7 +12,7 @@ use Imagekit\Files\Folder\Type;
 /**
  * @phpstan-type FolderShape = array{
  *   createdAt?: \DateTimeInterface|null,
- *   folderId?: string|null,
+ *   folderID?: string|null,
  *   folderPath?: string|null,
  *   name?: string|null,
  *   type?: value-of<Type>|null,
@@ -33,8 +33,8 @@ final class Folder implements BaseModel
     /**
      * Unique identifier of the asset.
      */
-    #[Optional]
-    public ?string $folderId;
+    #[Optional('folderId')]
+    public ?string $folderID;
 
     /**
      * Path of the folder. This is the path you would use in the URL to access the folder. For example, if the folder is at the root of the media library, the path will be /folder. If the folder is inside another folder named images, the path will be /images/folder.
@@ -76,7 +76,7 @@ final class Folder implements BaseModel
      */
     public static function with(
         ?\DateTimeInterface $createdAt = null,
-        ?string $folderId = null,
+        ?string $folderID = null,
         ?string $folderPath = null,
         ?string $name = null,
         Type|string|null $type = null,
@@ -85,7 +85,7 @@ final class Folder implements BaseModel
         $obj = new self;
 
         null !== $createdAt && $obj['createdAt'] = $createdAt;
-        null !== $folderId && $obj['folderId'] = $folderId;
+        null !== $folderID && $obj['folderID'] = $folderID;
         null !== $folderPath && $obj['folderPath'] = $folderPath;
         null !== $name && $obj['name'] = $name;
         null !== $type && $obj['type'] = $type;
@@ -111,7 +111,7 @@ final class Folder implements BaseModel
     public function withFolderID(string $folderID): self
     {
         $obj = clone $this;
-        $obj['folderId'] = $folderID;
+        $obj['folderID'] = $folderID;
 
         return $obj;
     }

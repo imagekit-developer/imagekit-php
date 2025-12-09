@@ -54,7 +54,7 @@ final class VersionsService implements VersionsContract
      *
      * Note: If you want to delete all versions of a file, use the delete file API.
      *
-     * @param array{fileId: string}|VersionDeleteParams $params
+     * @param array{fileID: string}|VersionDeleteParams $params
      *
      * @throws APIException
      */
@@ -67,8 +67,8 @@ final class VersionsService implements VersionsContract
             $params,
             $requestOptions,
         );
-        $fileID = $parsed['fileId'];
-        unset($parsed['fileId']);
+        $fileID = $parsed['fileID'];
+        unset($parsed['fileID']);
 
         /** @var BaseResponse<VersionDeleteResponse> */
         $response = $this->client->request(
@@ -86,7 +86,7 @@ final class VersionsService implements VersionsContract
      *
      * This API returns an object with details or attributes of a file version.
      *
-     * @param array{fileId: string}|VersionGetParams $params
+     * @param array{fileID: string}|VersionGetParams $params
      *
      * @throws APIException
      */
@@ -99,8 +99,8 @@ final class VersionsService implements VersionsContract
             $params,
             $requestOptions,
         );
-        $fileID = $parsed['fileId'];
-        unset($parsed['fileId']);
+        $fileID = $parsed['fileID'];
+        unset($parsed['fileID']);
 
         /** @var BaseResponse<File> */
         $response = $this->client->request(
@@ -118,7 +118,7 @@ final class VersionsService implements VersionsContract
      *
      * This API restores a file version as the current file version.
      *
-     * @param array{fileId: string}|VersionRestoreParams $params
+     * @param array{fileID: string}|VersionRestoreParams $params
      *
      * @throws APIException
      */
@@ -131,8 +131,8 @@ final class VersionsService implements VersionsContract
             $params,
             $requestOptions,
         );
-        $fileID = $parsed['fileId'];
-        unset($parsed['fileId']);
+        $fileID = $parsed['fileID'];
+        unset($parsed['fileID']);
 
         /** @var BaseResponse<File> */
         $response = $this->client->request(

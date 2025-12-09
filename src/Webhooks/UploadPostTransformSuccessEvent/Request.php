@@ -13,7 +13,7 @@ use Imagekit\Webhooks\UploadPostTransformSuccessEvent\Request\Transformation\Typ
 
 /**
  * @phpstan-type RequestShape = array{
- *   transformation: Transformation, x_request_id: string
+ *   transformation: Transformation, xRequestID: string
  * }
  */
 final class Request implements BaseModel
@@ -27,15 +27,15 @@ final class Request implements BaseModel
     /**
      * Unique identifier for the originating request.
      */
-    #[Required]
-    public string $x_request_id;
+    #[Required('x_request_id')]
+    public string $xRequestID;
 
     /**
      * `new Request()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * Request::with(transformation: ..., x_request_id: ...)
+     * Request::with(transformation: ..., xRequestID: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
@@ -60,12 +60,12 @@ final class Request implements BaseModel
      */
     public static function with(
         Transformation|array $transformation,
-        string $x_request_id
+        string $xRequestID
     ): self {
         $obj = new self;
 
         $obj['transformation'] = $transformation;
-        $obj['x_request_id'] = $x_request_id;
+        $obj['xRequestID'] = $xRequestID;
 
         return $obj;
     }
@@ -90,7 +90,7 @@ final class Request implements BaseModel
     public function withXRequestID(string $xRequestID): self
     {
         $obj = clone $this;
-        $obj['x_request_id'] = $xRequestID;
+        $obj['xRequestID'] = $xRequestID;
 
         return $obj;
     }

@@ -12,11 +12,11 @@ use Imagekit\Core\Contracts\BaseModel;
 /**
  * @phpstan-type AkeneoPimShape = array{
  *   id: string,
- *   baseUrl: string,
+ *   baseURL: string,
  *   includeCanonicalHeader: bool,
  *   name: string,
  *   type?: 'AKENEO_PIM',
- *   baseUrlForCanonicalHeader?: string|null,
+ *   baseURLForCanonicalHeader?: string|null,
  * }
  */
 final class AkeneoPim implements BaseModel
@@ -37,8 +37,8 @@ final class AkeneoPim implements BaseModel
     /**
      * Akeneo instance base URL.
      */
-    #[Required]
-    public string $baseUrl;
+    #[Required('baseUrl')]
+    public string $baseURL;
 
     /**
      * Whether to send a Canonical header.
@@ -55,15 +55,15 @@ final class AkeneoPim implements BaseModel
     /**
      * URL used in the Canonical header (if enabled).
      */
-    #[Optional]
-    public ?string $baseUrlForCanonicalHeader;
+    #[Optional('baseUrlForCanonicalHeader')]
+    public ?string $baseURLForCanonicalHeader;
 
     /**
      * `new AkeneoPim()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * AkeneoPim::with(id: ..., baseUrl: ..., includeCanonicalHeader: ..., name: ...)
+     * AkeneoPim::with(id: ..., baseURL: ..., includeCanonicalHeader: ..., name: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
@@ -88,19 +88,19 @@ final class AkeneoPim implements BaseModel
      */
     public static function with(
         string $id,
-        string $baseUrl,
+        string $baseURL,
         string $name,
         bool $includeCanonicalHeader = false,
-        ?string $baseUrlForCanonicalHeader = null,
+        ?string $baseURLForCanonicalHeader = null,
     ): self {
         $obj = new self;
 
         $obj['id'] = $id;
-        $obj['baseUrl'] = $baseUrl;
+        $obj['baseURL'] = $baseURL;
         $obj['includeCanonicalHeader'] = $includeCanonicalHeader;
         $obj['name'] = $name;
 
-        null !== $baseUrlForCanonicalHeader && $obj['baseUrlForCanonicalHeader'] = $baseUrlForCanonicalHeader;
+        null !== $baseURLForCanonicalHeader && $obj['baseURLForCanonicalHeader'] = $baseURLForCanonicalHeader;
 
         return $obj;
     }
@@ -122,7 +122,7 @@ final class AkeneoPim implements BaseModel
     public function withBaseURL(string $baseURL): self
     {
         $obj = clone $this;
-        $obj['baseUrl'] = $baseURL;
+        $obj['baseURL'] = $baseURL;
 
         return $obj;
     }
@@ -157,7 +157,7 @@ final class AkeneoPim implements BaseModel
         string $baseURLForCanonicalHeader
     ): self {
         $obj = clone $this;
-        $obj['baseUrlForCanonicalHeader'] = $baseURLForCanonicalHeader;
+        $obj['baseURLForCanonicalHeader'] = $baseURLForCanonicalHeader;
 
         return $obj;
     }

@@ -33,7 +33,7 @@ use Imagekit\Files\FileUpdateParams\RemoveAITags;
  *   }|AIAutoDescription|array{name?: 'ai-auto-description'}>,
  *   removeAITags?: 'all'|list<string>,
  *   tags?: list<string>|null,
- *   webhookUrl?: string,
+ *   webhookURL?: string,
  *   publish?: Publish|array{isPublished: bool, includeFileVersions?: bool|null},
  * }
  */
@@ -94,8 +94,8 @@ final class FileUpdateParams implements BaseModel
     /**
      * The final status of extensions after they have completed execution will be delivered to this endpoint as a POST request. [Learn more](/docs/api-reference/digital-asset-management-dam/managing-assets/update-file-details#webhook-payload-structure) about the webhook payload structure.
      */
-    #[Optional]
-    public ?string $webhookUrl;
+    #[Optional('webhookUrl')]
+    public ?string $webhookURL;
 
     /**
      * Configure the publication status of a file and its versions.
@@ -132,7 +132,7 @@ final class FileUpdateParams implements BaseModel
         ?array $extensions = null,
         string|array|null $removeAITags = null,
         ?array $tags = null,
-        ?string $webhookUrl = null,
+        ?string $webhookURL = null,
         Publish|array|null $publish = null,
     ): self {
         $obj = new self;
@@ -143,7 +143,7 @@ final class FileUpdateParams implements BaseModel
         null !== $extensions && $obj['extensions'] = $extensions;
         null !== $removeAITags && $obj['removeAITags'] = $removeAITags;
         null !== $tags && $obj['tags'] = $tags;
-        null !== $webhookUrl && $obj['webhookUrl'] = $webhookUrl;
+        null !== $webhookURL && $obj['webhookURL'] = $webhookURL;
         null !== $publish && $obj['publish'] = $publish;
 
         return $obj;
@@ -237,7 +237,7 @@ final class FileUpdateParams implements BaseModel
     public function withWebhookURL(string $webhookURL): self
     {
         $obj = clone $this;
-        $obj['webhookUrl'] = $webhookURL;
+        $obj['webhookURL'] = $webhookURL;
 
         return $obj;
     }

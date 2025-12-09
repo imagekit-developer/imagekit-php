@@ -15,7 +15,7 @@ use Imagekit\Core\Contracts\BaseModel;
  * @see Imagekit\Services\Files\BulkService::removeAITags()
  *
  * @phpstan-type BulkRemoveAITagsParamsShape = array{
- *   AITags: list<string>, fileIds: list<string>
+ *   aiTags: list<string>, fileIDs: list<string>
  * }
  */
 final class BulkRemoveAITagsParams implements BaseModel
@@ -27,25 +27,25 @@ final class BulkRemoveAITagsParams implements BaseModel
     /**
      * An array of AITags that you want to remove from the files.
      *
-     * @var list<string> $AITags
+     * @var list<string> $aiTags
      */
-    #[Required(list: 'string')]
-    public array $AITags;
+    #[Required('AITags', list: 'string')]
+    public array $aiTags;
 
     /**
      * An array of fileIds from which you want to remove AITags.
      *
-     * @var list<string> $fileIds
+     * @var list<string> $fileIDs
      */
-    #[Required(list: 'string')]
-    public array $fileIds;
+    #[Required('fileIds', list: 'string')]
+    public array $fileIDs;
 
     /**
      * `new BulkRemoveAITagsParams()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * BulkRemoveAITagsParams::with(AITags: ..., fileIds: ...)
+     * BulkRemoveAITagsParams::with(aiTags: ..., fileIDs: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
@@ -64,15 +64,15 @@ final class BulkRemoveAITagsParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<string> $AITags
-     * @param list<string> $fileIds
+     * @param list<string> $aiTags
+     * @param list<string> $fileIDs
      */
-    public static function with(array $AITags, array $fileIds): self
+    public static function with(array $aiTags, array $fileIDs): self
     {
         $obj = new self;
 
-        $obj['AITags'] = $AITags;
-        $obj['fileIds'] = $fileIds;
+        $obj['aiTags'] = $aiTags;
+        $obj['fileIDs'] = $fileIDs;
 
         return $obj;
     }
@@ -85,7 +85,7 @@ final class BulkRemoveAITagsParams implements BaseModel
     public function withAITags(array $aiTags): self
     {
         $obj = clone $this;
-        $obj['AITags'] = $aiTags;
+        $obj['aiTags'] = $aiTags;
 
         return $obj;
     }
@@ -98,7 +98,7 @@ final class BulkRemoveAITagsParams implements BaseModel
     public function withFileIDs(array $fileIDs): self
     {
         $obj = clone $this;
-        $obj['fileIds'] = $fileIDs;
+        $obj['fileIDs'] = $fileIDs;
 
         return $obj;
     }

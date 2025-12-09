@@ -66,7 +66,7 @@ use Imagekit\ExtensionItem\RemoveBg\Options;
  *     pre?: string|null,
  *   },
  *   useUniqueFileName?: bool,
- *   webhookUrl?: string,
+ *   webhookURL?: string,
  * }
  */
 final class FileUploadParams implements BaseModel
@@ -236,8 +236,8 @@ final class FileUploadParams implements BaseModel
     /**
      * The final status of extensions after they have completed execution will be delivered to this endpoint as a POST request. [Learn more](/docs/api-reference/digital-asset-management-dam/managing-assets/update-file-details#webhook-payload-structure) about the webhook payload structure.
      */
-    #[Optional]
-    public ?string $webhookUrl;
+    #[Optional('webhookUrl')]
+    public ?string $webhookURL;
 
     /**
      * `new FileUploadParams()` is missing required properties by the API.
@@ -296,7 +296,7 @@ final class FileUploadParams implements BaseModel
         ?array $tags = null,
         Transformation|array|null $transformation = null,
         ?bool $useUniqueFileName = null,
-        ?string $webhookUrl = null,
+        ?string $webhookURL = null,
     ): self {
         $obj = new self;
 
@@ -320,7 +320,7 @@ final class FileUploadParams implements BaseModel
         null !== $tags && $obj['tags'] = $tags;
         null !== $transformation && $obj['transformation'] = $transformation;
         null !== $useUniqueFileName && $obj['useUniqueFileName'] = $useUniqueFileName;
-        null !== $webhookUrl && $obj['webhookUrl'] = $webhookUrl;
+        null !== $webhookURL && $obj['webhookURL'] = $webhookURL;
 
         return $obj;
     }
@@ -595,7 +595,7 @@ final class FileUploadParams implements BaseModel
     public function withWebhookURL(string $webhookURL): self
     {
         $obj = clone $this;
-        $obj['webhookUrl'] = $webhookURL;
+        $obj['webhookURL'] = $webhookURL;
 
         return $obj;
     }

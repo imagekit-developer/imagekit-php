@@ -15,7 +15,7 @@ use Imagekit\Core\Contracts\BaseModel;
  *   includeCanonicalHeader: bool,
  *   name: string,
  *   type?: 'WEB_PROXY',
- *   baseUrlForCanonicalHeader?: string|null,
+ *   baseURLForCanonicalHeader?: string|null,
  * }
  */
 final class WebProxy implements BaseModel
@@ -48,8 +48,8 @@ final class WebProxy implements BaseModel
     /**
      * URL used in the Canonical header (if enabled).
      */
-    #[Optional]
-    public ?string $baseUrlForCanonicalHeader;
+    #[Optional('baseUrlForCanonicalHeader')]
+    public ?string $baseURLForCanonicalHeader;
 
     /**
      * `new WebProxy()` is missing required properties by the API.
@@ -79,7 +79,7 @@ final class WebProxy implements BaseModel
         string $id,
         string $name,
         bool $includeCanonicalHeader = false,
-        ?string $baseUrlForCanonicalHeader = null,
+        ?string $baseURLForCanonicalHeader = null,
     ): self {
         $obj = new self;
 
@@ -87,7 +87,7 @@ final class WebProxy implements BaseModel
         $obj['includeCanonicalHeader'] = $includeCanonicalHeader;
         $obj['name'] = $name;
 
-        null !== $baseUrlForCanonicalHeader && $obj['baseUrlForCanonicalHeader'] = $baseUrlForCanonicalHeader;
+        null !== $baseURLForCanonicalHeader && $obj['baseURLForCanonicalHeader'] = $baseURLForCanonicalHeader;
 
         return $obj;
     }
@@ -133,7 +133,7 @@ final class WebProxy implements BaseModel
         string $baseURLForCanonicalHeader
     ): self {
         $obj = clone $this;
-        $obj['baseUrlForCanonicalHeader'] = $baseURLForCanonicalHeader;
+        $obj['baseURLForCanonicalHeader'] = $baseURLForCanonicalHeader;
 
         return $obj;
     }

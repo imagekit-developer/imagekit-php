@@ -17,7 +17,7 @@ use Imagekit\Webhooks\UploadPostTransformErrorEvent\Request;
  * @phpstan-type UploadPostTransformErrorEventShape = array{
  *   id: string,
  *   type: string,
- *   created_at: \DateTimeInterface,
+ *   createdAt: \DateTimeInterface,
  *   data: Data,
  *   request: Request,
  * }
@@ -42,8 +42,8 @@ final class UploadPostTransformErrorEvent implements BaseModel
     /**
      * Timestamp of when the event occurred in ISO8601 format.
      */
-    #[Required]
-    public \DateTimeInterface $created_at;
+    #[Required('created_at')]
+    public \DateTimeInterface $createdAt;
 
     #[Required]
     public Data $data;
@@ -57,7 +57,7 @@ final class UploadPostTransformErrorEvent implements BaseModel
      * To enforce required parameters use
      * ```
      * UploadPostTransformErrorEvent::with(
-     *   id: ..., type: ..., created_at: ..., data: ..., request: ...
+     *   id: ..., type: ..., createdAt: ..., data: ..., request: ...
      * )
      * ```
      *
@@ -83,7 +83,7 @@ final class UploadPostTransformErrorEvent implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param Data|array{
-     *   fileId: string,
+     *   fileID: string,
      *   name: string,
      *   path: string,
      *   transformation: Transformation,
@@ -91,13 +91,13 @@ final class UploadPostTransformErrorEvent implements BaseModel
      * } $data
      * @param Request|array{
      *   transformation: Request\Transformation,
-     *   x_request_id: string,
+     *   xRequestID: string,
      * } $request
      */
     public static function with(
         string $id,
         string $type,
-        \DateTimeInterface $created_at,
+        \DateTimeInterface $createdAt,
         Data|array $data,
         Request|array $request,
     ): self {
@@ -105,7 +105,7 @@ final class UploadPostTransformErrorEvent implements BaseModel
 
         $obj['id'] = $id;
         $obj['type'] = $type;
-        $obj['created_at'] = $created_at;
+        $obj['createdAt'] = $createdAt;
         $obj['data'] = $data;
         $obj['request'] = $request;
 
@@ -140,14 +140,14 @@ final class UploadPostTransformErrorEvent implements BaseModel
     public function withCreatedAt(\DateTimeInterface $createdAt): self
     {
         $obj = clone $this;
-        $obj['created_at'] = $createdAt;
+        $obj['createdAt'] = $createdAt;
 
         return $obj;
     }
 
     /**
      * @param Data|array{
-     *   fileId: string,
+     *   fileID: string,
      *   name: string,
      *   path: string,
      *   transformation: Transformation,
@@ -165,7 +165,7 @@ final class UploadPostTransformErrorEvent implements BaseModel
     /**
      * @param Request|array{
      *   transformation: Request\Transformation,
-     *   x_request_id: string,
+     *   xRequestID: string,
      * } $request
      */
     public function withRequest(Request|array $request): self

@@ -10,9 +10,9 @@ use Imagekit\Core\Contracts\BaseModel;
 
 /**
  * @phpstan-type OptionsShape = array{
- *   add_shadow?: bool|null,
- *   bg_color?: string|null,
- *   bg_image_url?: string|null,
+ *   addShadow?: bool|null,
+ *   bgColor?: string|null,
+ *   bgImageURL?: string|null,
  *   semitransparency?: bool|null,
  * }
  */
@@ -24,20 +24,20 @@ final class Options implements BaseModel
     /**
      * Whether to add an artificial shadow to the result. Default is false. Note: Adding shadows is currently only supported for car photos.
      */
-    #[Optional]
-    public ?bool $add_shadow;
+    #[Optional('add_shadow')]
+    public ?bool $addShadow;
 
     /**
      * Specifies a solid color background using hex code (e.g., "81d4fa", "fff") or color name (e.g., "green"). If this parameter is set, `bg_image_url` must be empty.
      */
-    #[Optional]
-    public ?string $bg_color;
+    #[Optional('bg_color')]
+    public ?string $bgColor;
 
     /**
      * Sets a background image from a URL. If this parameter is set, `bg_color` must be empty.
      */
-    #[Optional]
-    public ?string $bg_image_url;
+    #[Optional('bg_image_url')]
+    public ?string $bgImageURL;
 
     /**
      * Allows semi-transparent regions in the result. Default is true. Note: Semitransparency is currently only supported for car windows.
@@ -56,16 +56,16 @@ final class Options implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      */
     public static function with(
-        ?bool $add_shadow = null,
-        ?string $bg_color = null,
-        ?string $bg_image_url = null,
+        ?bool $addShadow = null,
+        ?string $bgColor = null,
+        ?string $bgImageURL = null,
         ?bool $semitransparency = null,
     ): self {
         $obj = new self;
 
-        null !== $add_shadow && $obj['add_shadow'] = $add_shadow;
-        null !== $bg_color && $obj['bg_color'] = $bg_color;
-        null !== $bg_image_url && $obj['bg_image_url'] = $bg_image_url;
+        null !== $addShadow && $obj['addShadow'] = $addShadow;
+        null !== $bgColor && $obj['bgColor'] = $bgColor;
+        null !== $bgImageURL && $obj['bgImageURL'] = $bgImageURL;
         null !== $semitransparency && $obj['semitransparency'] = $semitransparency;
 
         return $obj;
@@ -77,7 +77,7 @@ final class Options implements BaseModel
     public function withAddShadow(bool $addShadow): self
     {
         $obj = clone $this;
-        $obj['add_shadow'] = $addShadow;
+        $obj['addShadow'] = $addShadow;
 
         return $obj;
     }
@@ -88,7 +88,7 @@ final class Options implements BaseModel
     public function withBgColor(string $bgColor): self
     {
         $obj = clone $this;
-        $obj['bg_color'] = $bgColor;
+        $obj['bgColor'] = $bgColor;
 
         return $obj;
     }
@@ -99,7 +99,7 @@ final class Options implements BaseModel
     public function withBgImageURL(string $bgImageURL): self
     {
         $obj = clone $this;
-        $obj['bg_image_url'] = $bgImageURL;
+        $obj['bgImageURL'] = $bgImageURL;
 
         return $obj;
     }

@@ -34,7 +34,7 @@ final class BulkService implements BulkContract
      *
      * A maximum of 100 files can be deleted at a time.
      *
-     * @param array{fileIds: list<string>}|BulkDeleteParams $params
+     * @param array{fileIDs: list<string>}|BulkDeleteParams $params
      *
      * @throws APIException
      */
@@ -65,7 +65,7 @@ final class BulkService implements BulkContract
      * This API adds tags to multiple files in bulk. A maximum of 50 files can be specified at a time.
      *
      * @param array{
-     *   fileIds: list<string>, tags: list<string>
+     *   fileIDs: list<string>, tags: list<string>
      * }|BulkAddTagsParams $params
      *
      * @throws APIException
@@ -97,7 +97,7 @@ final class BulkService implements BulkContract
      * This API removes AITags from multiple files in bulk. A maximum of 50 files can be specified at a time.
      *
      * @param array{
-     *   AITags: list<string>, fileIds: list<string>
+     *   aiTags: list<string>, fileIDs: list<string>
      * }|BulkRemoveAITagsParams $params
      *
      * @throws APIException
@@ -129,7 +129,7 @@ final class BulkService implements BulkContract
      * This API removes tags from multiple files in bulk. A maximum of 50 files can be specified at a time.
      *
      * @param array{
-     *   fileIds: list<string>, tags: list<string>
+     *   fileIDs: list<string>, tags: list<string>
      * }|BulkRemoveTagsParams $params
      *
      * @throws APIException

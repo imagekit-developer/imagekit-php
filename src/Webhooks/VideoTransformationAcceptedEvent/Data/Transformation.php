@@ -70,13 +70,13 @@ final class Transformation implements BaseModel
      *
      * @param Type|value-of<Type> $type
      * @param Options|array{
-     *   audio_codec?: value-of<AudioCodec>|null,
-     *   auto_rotate?: bool|null,
+     *   audioCodec?: value-of<AudioCodec>|null,
+     *   autoRotate?: bool|null,
      *   format?: value-of<Format>|null,
      *   quality?: int|null,
-     *   stream_protocol?: value-of<StreamProtocol>|null,
+     *   streamProtocol?: value-of<StreamProtocol>|null,
      *   variants?: list<string>|null,
-     *   video_codec?: value-of<VideoCodec>|null,
+     *   videoCodec?: value-of<VideoCodec>|null,
      * } $options
      */
     public static function with(
@@ -112,13 +112,13 @@ final class Transformation implements BaseModel
      * Configuration options for video transformations.
      *
      * @param Options|array{
-     *   audio_codec?: value-of<AudioCodec>|null,
-     *   auto_rotate?: bool|null,
+     *   audioCodec?: value-of<AudioCodec>|null,
+     *   autoRotate?: bool|null,
      *   format?: value-of<Format>|null,
      *   quality?: int|null,
-     *   stream_protocol?: value-of<StreamProtocol>|null,
+     *   streamProtocol?: value-of<StreamProtocol>|null,
      *   variants?: list<string>|null,
-     *   video_codec?: value-of<VideoCodec>|null,
+     *   videoCodec?: value-of<VideoCodec>|null,
      * } $options
      */
     public function withOptions(Options|array $options): self

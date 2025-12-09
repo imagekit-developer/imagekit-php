@@ -35,10 +35,34 @@ final class OriginsService implements OriginsContract
      * **Note:** This API is currently in beta.
      * Creates a new origin and returns the origin object.
      *
+     * @param array{
+     *   accessKey: string,
+     *   bucket: string,
+     *   name: string,
+     *   secretKey: string,
+     *   type?: 'AKENEO_PIM',
+     *   baseURLForCanonicalHeader?: string,
+     *   includeCanonicalHeader?: bool,
+     *   prefix?: string,
+     *   endpoint: string,
+     *   s3ForcePathStyle?: bool,
+     *   baseURL: string,
+     *   forwardHostHeaderToOrigin?: bool,
+     *   clientEmail: string,
+     *   privateKey: string,
+     *   accountName: string,
+     *   container: string,
+     *   sasToken: string,
+     *   clientID: string,
+     *   clientSecret: string,
+     *   password: string,
+     *   username: string,
+     * }|OriginCreateParams $params
+     *
      * @throws APIException
      */
     public function create(
-        mixed $params,
+        array|OriginCreateParams $params,
         ?RequestOptions $requestOptions = null
     ): S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim {
         [$parsed, $options] = OriginCreateParams::parseRequest(
@@ -64,12 +88,36 @@ final class OriginsService implements OriginsContract
      * **Note:** This API is currently in beta.
      * Updates the origin identified by `id` and returns the updated origin object.
      *
+     * @param array{
+     *   accessKey: string,
+     *   bucket: string,
+     *   name: string,
+     *   secretKey: string,
+     *   type?: 'AKENEO_PIM',
+     *   baseURLForCanonicalHeader?: string,
+     *   includeCanonicalHeader?: bool,
+     *   prefix?: string,
+     *   endpoint: string,
+     *   s3ForcePathStyle?: bool,
+     *   baseURL: string,
+     *   forwardHostHeaderToOrigin?: bool,
+     *   clientEmail: string,
+     *   privateKey: string,
+     *   accountName: string,
+     *   container: string,
+     *   sasToken: string,
+     *   clientID: string,
+     *   clientSecret: string,
+     *   password: string,
+     *   username: string,
+     * }|OriginUpdateParams $params
+     *
      * @throws APIException
      */
     public function update(
         string $id,
-        mixed $params,
-        ?RequestOptions $requestOptions = null
+        array|OriginUpdateParams $params,
+        ?RequestOptions $requestOptions = null,
     ): S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim {
         [$parsed, $options] = OriginUpdateParams::parseRequest(
             $params,

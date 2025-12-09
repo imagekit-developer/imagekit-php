@@ -12,7 +12,7 @@ use Imagekit\Webhooks\UploadPostTransformErrorEvent\Data\Transformation\Error;
 
 /**
  * @phpstan-type DataShape = array{
- *   fileId: string,
+ *   fileID: string,
  *   name: string,
  *   path: string,
  *   transformation: Transformation,
@@ -27,8 +27,8 @@ final class Data implements BaseModel
     /**
      * Unique identifier of the originally uploaded file.
      */
-    #[Required]
-    public string $fileId;
+    #[Required('fileId')]
+    public string $fileID;
 
     /**
      * Name of the file.
@@ -56,7 +56,7 @@ final class Data implements BaseModel
      *
      * To enforce required parameters use
      * ```
-     * Data::with(fileId: ..., name: ..., path: ..., transformation: ..., url: ...)
+     * Data::with(fileID: ..., name: ..., path: ..., transformation: ..., url: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
@@ -83,7 +83,7 @@ final class Data implements BaseModel
      * @param Transformation|array{error: Error} $transformation
      */
     public static function with(
-        string $fileId,
+        string $fileID,
         string $name,
         string $path,
         Transformation|array $transformation,
@@ -91,7 +91,7 @@ final class Data implements BaseModel
     ): self {
         $obj = new self;
 
-        $obj['fileId'] = $fileId;
+        $obj['fileID'] = $fileID;
         $obj['name'] = $name;
         $obj['path'] = $path;
         $obj['transformation'] = $transformation;
@@ -106,7 +106,7 @@ final class Data implements BaseModel
     public function withFileID(string $fileID): self
     {
         $obj = clone $this;
-        $obj['fileId'] = $fileID;
+        $obj['fileID'] = $fileID;
 
         return $obj;
     }

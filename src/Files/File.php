@@ -16,12 +16,12 @@ use Imagekit\Files\File\VersionInfo;
  * Object containing details of a file or file version.
  *
  * @phpstan-type FileShape = array{
- *   AITags?: list<AITag>|null,
+ *   aiTags?: list<AITag>|null,
  *   createdAt?: \DateTimeInterface|null,
  *   customCoordinates?: string|null,
  *   customMetadata?: array<string,mixed>|null,
  *   description?: string|null,
- *   fileId?: string|null,
+ *   fileID?: string|null,
  *   filePath?: string|null,
  *   fileType?: string|null,
  *   hasAlpha?: bool|null,
@@ -49,10 +49,10 @@ final class File implements BaseModel
     /**
      * An array of tags assigned to the file by auto tagging.
      *
-     * @var list<AITag>|null $AITags
+     * @var list<AITag>|null $aiTags
      */
-    #[Optional(list: AITag::class, nullable: true)]
-    public ?array $AITags;
+    #[Optional('AITags', list: AITag::class, nullable: true)]
+    public ?array $aiTags;
 
     /**
      * Date and time when the file was uploaded. The date and time is in ISO8601 format.
@@ -83,8 +83,8 @@ final class File implements BaseModel
     /**
      * Unique identifier of the asset.
      */
-    #[Optional]
-    public ?string $fileId;
+    #[Optional('fileId')]
+    public ?string $fileID;
 
     /**
      * Path of the file. This is the path you would use in the URL to access the file. For example, if the file is at the root of the media library, the path will be `/file.jpg`. If the file is inside a folder named `images`, the path will be `/images/file.jpg`.
@@ -210,7 +210,7 @@ final class File implements BaseModel
      *
      * @param list<AITag|array{
      *   confidence?: float|null, name?: string|null, source?: string|null
-     * }>|null $AITags
+     * }>|null $aiTags
      * @param array<string,mixed> $customMetadata
      * @param array<string,SelectedFieldsSchema|array{
      *   type: value-of<SelectedFieldsSchema\Type>,
@@ -229,12 +229,12 @@ final class File implements BaseModel
      * @param VersionInfo|array{id?: string|null, name?: string|null} $versionInfo
      */
     public static function with(
-        ?array $AITags = null,
+        ?array $aiTags = null,
         ?\DateTimeInterface $createdAt = null,
         ?string $customCoordinates = null,
         ?array $customMetadata = null,
         ?string $description = null,
-        ?string $fileId = null,
+        ?string $fileID = null,
         ?string $filePath = null,
         ?string $fileType = null,
         ?bool $hasAlpha = null,
@@ -255,12 +255,12 @@ final class File implements BaseModel
     ): self {
         $obj = new self;
 
-        null !== $AITags && $obj['AITags'] = $AITags;
+        null !== $aiTags && $obj['aiTags'] = $aiTags;
         null !== $createdAt && $obj['createdAt'] = $createdAt;
         null !== $customCoordinates && $obj['customCoordinates'] = $customCoordinates;
         null !== $customMetadata && $obj['customMetadata'] = $customMetadata;
         null !== $description && $obj['description'] = $description;
-        null !== $fileId && $obj['fileId'] = $fileId;
+        null !== $fileID && $obj['fileID'] = $fileID;
         null !== $filePath && $obj['filePath'] = $filePath;
         null !== $fileType && $obj['fileType'] = $fileType;
         null !== $hasAlpha && $obj['hasAlpha'] = $hasAlpha;
@@ -292,7 +292,7 @@ final class File implements BaseModel
     public function withAITags(?array $aiTags): self
     {
         $obj = clone $this;
-        $obj['AITags'] = $aiTags;
+        $obj['aiTags'] = $aiTags;
 
         return $obj;
     }
@@ -349,7 +349,7 @@ final class File implements BaseModel
     public function withFileID(string $fileID): self
     {
         $obj = clone $this;
-        $obj['fileId'] = $fileID;
+        $obj['fileID'] = $fileID;
 
         return $obj;
     }

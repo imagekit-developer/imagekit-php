@@ -20,7 +20,7 @@ use Imagekit\Webhooks\VideoTransformationReadyEvent\Timings;
  * @phpstan-type VideoTransformationReadyEventShape = array{
  *   id: string,
  *   type: string,
- *   created_at: \DateTimeInterface,
+ *   createdAt: \DateTimeInterface,
  *   data: Data,
  *   request: Request,
  *   timings?: Timings|null,
@@ -46,8 +46,8 @@ final class VideoTransformationReadyEvent implements BaseModel
     /**
      * Timestamp when the event was created in ISO8601 format.
      */
-    #[Required]
-    public \DateTimeInterface $created_at;
+    #[Required('created_at')]
+    public \DateTimeInterface $createdAt;
 
     #[Required]
     public Data $data;
@@ -70,7 +70,7 @@ final class VideoTransformationReadyEvent implements BaseModel
      * To enforce required parameters use
      * ```
      * VideoTransformationReadyEvent::with(
-     *   id: ..., type: ..., created_at: ..., data: ..., request: ...
+     *   id: ..., type: ..., createdAt: ..., data: ..., request: ...
      * )
      * ```
      *
@@ -97,16 +97,16 @@ final class VideoTransformationReadyEvent implements BaseModel
      *
      * @param Data|array{asset: Asset, transformation: Transformation} $data
      * @param Request|array{
-     *   url: string, x_request_id: string, user_agent?: string|null
+     *   url: string, xRequestID: string, userAgent?: string|null
      * } $request
      * @param Timings|array{
-     *   download_duration?: int|null, encoding_duration?: int|null
+     *   downloadDuration?: int|null, encodingDuration?: int|null
      * } $timings
      */
     public static function with(
         string $id,
         string $type,
-        \DateTimeInterface $created_at,
+        \DateTimeInterface $createdAt,
         Data|array $data,
         Request|array $request,
         Timings|array|null $timings = null,
@@ -115,7 +115,7 @@ final class VideoTransformationReadyEvent implements BaseModel
 
         $obj['id'] = $id;
         $obj['type'] = $type;
-        $obj['created_at'] = $created_at;
+        $obj['createdAt'] = $createdAt;
         $obj['data'] = $data;
         $obj['request'] = $request;
 
@@ -152,7 +152,7 @@ final class VideoTransformationReadyEvent implements BaseModel
     public function withCreatedAt(\DateTimeInterface $createdAt): self
     {
         $obj = clone $this;
-        $obj['created_at'] = $createdAt;
+        $obj['createdAt'] = $createdAt;
 
         return $obj;
     }
@@ -172,7 +172,7 @@ final class VideoTransformationReadyEvent implements BaseModel
      * Information about the original request that triggered the video transformation.
      *
      * @param Request|array{
-     *   url: string, x_request_id: string, user_agent?: string|null
+     *   url: string, xRequestID: string, userAgent?: string|null
      * } $request
      */
     public function withRequest(Request|array $request): self
@@ -187,7 +187,7 @@ final class VideoTransformationReadyEvent implements BaseModel
      * Performance metrics for the transformation process.
      *
      * @param Timings|array{
-     *   download_duration?: int|null, encoding_duration?: int|null
+     *   downloadDuration?: int|null, encodingDuration?: int|null
      * } $timings
      */
     public function withTimings(Timings|array $timings): self

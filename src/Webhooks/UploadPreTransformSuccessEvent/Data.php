@@ -23,7 +23,7 @@ use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\VersionInfo;
  * Object containing details of a successful upload.
  *
  * @phpstan-type DataShape = array{
- *   AITags?: list<AITag>|null,
+ *   aiTags?: list<AITag>|null,
  *   audioCodec?: string|null,
  *   bitRate?: int|null,
  *   customCoordinates?: string|null,
@@ -32,7 +32,7 @@ use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\VersionInfo;
  *   duration?: int|null,
  *   embeddedMetadata?: array<string,mixed>|null,
  *   extensionStatus?: ExtensionStatus|null,
- *   fileId?: string|null,
+ *   fileID?: string|null,
  *   filePath?: string|null,
  *   fileType?: string|null,
  *   height?: float|null,
@@ -43,7 +43,7 @@ use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\VersionInfo;
  *   selectedFieldsSchema?: array<string,SelectedFieldsSchema>|null,
  *   size?: float|null,
  *   tags?: list<string>|null,
- *   thumbnailUrl?: string|null,
+ *   thumbnailURL?: string|null,
  *   url?: string|null,
  *   versionInfo?: VersionInfo|null,
  *   videoCodec?: string|null,
@@ -58,10 +58,10 @@ final class Data implements BaseModel
     /**
      * An array of tags assigned to the uploaded file by auto tagging.
      *
-     * @var list<AITag>|null $AITags
+     * @var list<AITag>|null $aiTags
      */
-    #[Optional(list: AITag::class, nullable: true)]
-    public ?array $AITags;
+    #[Optional('AITags', list: AITag::class, nullable: true)]
+    public ?array $aiTags;
 
     /**
      * The audio codec used in the video (only for video).
@@ -124,8 +124,8 @@ final class Data implements BaseModel
     /**
      * Unique fileId. Store this fileld in your database, as this will be used to perform update action on this file.
      */
-    #[Optional]
-    public ?string $fileId;
+    #[Optional('fileId')]
+    public ?string $fileID;
 
     /**
      * The relative path of the file in the media library e.g. `/marketing-assets/new-banner.jpg`.
@@ -198,8 +198,8 @@ final class Data implements BaseModel
     /**
      * In the case of an image, a small thumbnail URL.
      */
-    #[Optional]
-    public ?string $thumbnailUrl;
+    #[Optional('thumbnailUrl')]
+    public ?string $thumbnailURL;
 
     /**
      * A publicly accessible URL of the file.
@@ -237,14 +237,14 @@ final class Data implements BaseModel
      *
      * @param list<AITag|array{
      *   confidence?: float|null, name?: string|null, source?: string|null
-     * }>|null $AITags
+     * }>|null $aiTags
      * @param array<string,mixed> $customMetadata
      * @param array<string,mixed> $embeddedMetadata
      * @param ExtensionStatus|array{
-     *   ai_auto_description?: value-of<AIAutoDescription>|null,
-     *   aws_auto_tagging?: value-of<AwsAutoTagging>|null,
-     *   google_auto_tagging?: value-of<GoogleAutoTagging>|null,
-     *   remove_bg?: value-of<RemoveBg>|null,
+     *   aiAutoDescription?: value-of<AIAutoDescription>|null,
+     *   awsAutoTagging?: value-of<AwsAutoTagging>|null,
+     *   googleAutoTagging?: value-of<GoogleAutoTagging>|null,
+     *   removeBg?: value-of<RemoveBg>|null,
      * } $extensionStatus
      * @param Metadata|array{
      *   audioCodec?: string|null,
@@ -278,7 +278,7 @@ final class Data implements BaseModel
      * @param VersionInfo|array{id?: string|null, name?: string|null} $versionInfo
      */
     public static function with(
-        ?array $AITags = null,
+        ?array $aiTags = null,
         ?string $audioCodec = null,
         ?int $bitRate = null,
         ?string $customCoordinates = null,
@@ -287,7 +287,7 @@ final class Data implements BaseModel
         ?int $duration = null,
         ?array $embeddedMetadata = null,
         ExtensionStatus|array|null $extensionStatus = null,
-        ?string $fileId = null,
+        ?string $fileID = null,
         ?string $filePath = null,
         ?string $fileType = null,
         ?float $height = null,
@@ -298,7 +298,7 @@ final class Data implements BaseModel
         ?array $selectedFieldsSchema = null,
         ?float $size = null,
         ?array $tags = null,
-        ?string $thumbnailUrl = null,
+        ?string $thumbnailURL = null,
         ?string $url = null,
         VersionInfo|array|null $versionInfo = null,
         ?string $videoCodec = null,
@@ -306,7 +306,7 @@ final class Data implements BaseModel
     ): self {
         $obj = new self;
 
-        null !== $AITags && $obj['AITags'] = $AITags;
+        null !== $aiTags && $obj['aiTags'] = $aiTags;
         null !== $audioCodec && $obj['audioCodec'] = $audioCodec;
         null !== $bitRate && $obj['bitRate'] = $bitRate;
         null !== $customCoordinates && $obj['customCoordinates'] = $customCoordinates;
@@ -315,7 +315,7 @@ final class Data implements BaseModel
         null !== $duration && $obj['duration'] = $duration;
         null !== $embeddedMetadata && $obj['embeddedMetadata'] = $embeddedMetadata;
         null !== $extensionStatus && $obj['extensionStatus'] = $extensionStatus;
-        null !== $fileId && $obj['fileId'] = $fileId;
+        null !== $fileID && $obj['fileID'] = $fileID;
         null !== $filePath && $obj['filePath'] = $filePath;
         null !== $fileType && $obj['fileType'] = $fileType;
         null !== $height && $obj['height'] = $height;
@@ -326,7 +326,7 @@ final class Data implements BaseModel
         null !== $selectedFieldsSchema && $obj['selectedFieldsSchema'] = $selectedFieldsSchema;
         null !== $size && $obj['size'] = $size;
         null !== $tags && $obj['tags'] = $tags;
-        null !== $thumbnailUrl && $obj['thumbnailUrl'] = $thumbnailUrl;
+        null !== $thumbnailURL && $obj['thumbnailURL'] = $thumbnailURL;
         null !== $url && $obj['url'] = $url;
         null !== $versionInfo && $obj['versionInfo'] = $versionInfo;
         null !== $videoCodec && $obj['videoCodec'] = $videoCodec;
@@ -345,7 +345,7 @@ final class Data implements BaseModel
     public function withAITags(?array $aiTags): self
     {
         $obj = clone $this;
-        $obj['AITags'] = $aiTags;
+        $obj['aiTags'] = $aiTags;
 
         return $obj;
     }
@@ -441,10 +441,10 @@ final class Data implements BaseModel
      * If no extension was requested, then this parameter is not returned.
      *
      * @param ExtensionStatus|array{
-     *   ai_auto_description?: value-of<AIAutoDescription>|null,
-     *   aws_auto_tagging?: value-of<AwsAutoTagging>|null,
-     *   google_auto_tagging?: value-of<GoogleAutoTagging>|null,
-     *   remove_bg?: value-of<RemoveBg>|null,
+     *   aiAutoDescription?: value-of<AIAutoDescription>|null,
+     *   awsAutoTagging?: value-of<AwsAutoTagging>|null,
+     *   googleAutoTagging?: value-of<GoogleAutoTagging>|null,
+     *   removeBg?: value-of<RemoveBg>|null,
      * } $extensionStatus
      */
     public function withExtensionStatus(
@@ -462,7 +462,7 @@ final class Data implements BaseModel
     public function withFileID(string $fileID): self
     {
         $obj = clone $this;
-        $obj['fileId'] = $fileID;
+        $obj['fileID'] = $fileID;
 
         return $obj;
     }
@@ -619,7 +619,7 @@ final class Data implements BaseModel
     public function withThumbnailURL(string $thumbnailURL): self
     {
         $obj = clone $this;
-        $obj['thumbnailUrl'] = $thumbnailURL;
+        $obj['thumbnailURL'] = $thumbnailURL;
 
         return $obj;
     }

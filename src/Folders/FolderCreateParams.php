@@ -68,12 +68,12 @@ final class FolderCreateParams implements BaseModel
         string $folderName,
         string $parentFolderPath
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj['folderName'] = $folderName;
-        $obj['parentFolderPath'] = $parentFolderPath;
+        $self['folderName'] = $folderName;
+        $self['parentFolderPath'] = $parentFolderPath;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -83,10 +83,10 @@ final class FolderCreateParams implements BaseModel
      */
     public function withFolderName(string $folderName): self
     {
-        $obj = clone $this;
-        $obj['folderName'] = $folderName;
+        $self = clone $this;
+        $self['folderName'] = $folderName;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -96,9 +96,9 @@ final class FolderCreateParams implements BaseModel
      */
     public function withParentFolderPath(string $parentFolderPath): self
     {
-        $obj = clone $this;
-        $obj['parentFolderPath'] = $parentFolderPath;
+        $self = clone $this;
+        $self['parentFolderPath'] = $parentFolderPath;
 
-        return $obj;
+        return $self;
     }
 }

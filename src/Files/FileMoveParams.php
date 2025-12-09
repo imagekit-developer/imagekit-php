@@ -66,12 +66,12 @@ final class FileMoveParams implements BaseModel
         string $destinationPath,
         string $sourceFilePath
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj['destinationPath'] = $destinationPath;
-        $obj['sourceFilePath'] = $sourceFilePath;
+        $self['destinationPath'] = $destinationPath;
+        $self['sourceFilePath'] = $sourceFilePath;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -79,10 +79,10 @@ final class FileMoveParams implements BaseModel
      */
     public function withDestinationPath(string $destinationPath): self
     {
-        $obj = clone $this;
-        $obj['destinationPath'] = $destinationPath;
+        $self = clone $this;
+        $self['destinationPath'] = $destinationPath;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -90,9 +90,9 @@ final class FileMoveParams implements BaseModel
      */
     public function withSourceFilePath(string $sourceFilePath): self
     {
-        $obj = clone $this;
-        $obj['sourceFilePath'] = $sourceFilePath;
+        $self = clone $this;
+        $self['sourceFilePath'] = $sourceFilePath;
 
-        return $obj;
+        return $self;
     }
 }

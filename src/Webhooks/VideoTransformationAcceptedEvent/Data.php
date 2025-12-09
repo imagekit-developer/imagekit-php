@@ -65,12 +65,12 @@ final class Data implements BaseModel
         Asset|array $asset,
         Transformation|array $transformation
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj['asset'] = $asset;
-        $obj['transformation'] = $transformation;
+        $self['asset'] = $asset;
+        $self['transformation'] = $transformation;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -80,10 +80,10 @@ final class Data implements BaseModel
      */
     public function withAsset(Asset|array $asset): self
     {
-        $obj = clone $this;
-        $obj['asset'] = $asset;
+        $self = clone $this;
+        $self['asset'] = $asset;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -96,9 +96,9 @@ final class Data implements BaseModel
     public function withTransformation(
         Transformation|array $transformation
     ): self {
-        $obj = clone $this;
-        $obj['transformation'] = $transformation;
+        $self = clone $this;
+        $self['transformation'] = $transformation;
 
-        return $obj;
+        return $self;
     }
 }

@@ -156,23 +156,23 @@ final class TextOverlayTransformation implements BaseModel
         ?string $typography = null,
         float|string|null $width = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $alpha && $obj['alpha'] = $alpha;
-        null !== $background && $obj['background'] = $background;
-        null !== $flip && $obj['flip'] = $flip;
-        null !== $fontColor && $obj['fontColor'] = $fontColor;
-        null !== $fontFamily && $obj['fontFamily'] = $fontFamily;
-        null !== $fontSize && $obj['fontSize'] = $fontSize;
-        null !== $innerAlignment && $obj['innerAlignment'] = $innerAlignment;
-        null !== $lineHeight && $obj['lineHeight'] = $lineHeight;
-        null !== $padding && $obj['padding'] = $padding;
-        null !== $radius && $obj['radius'] = $radius;
-        null !== $rotation && $obj['rotation'] = $rotation;
-        null !== $typography && $obj['typography'] = $typography;
-        null !== $width && $obj['width'] = $width;
+        null !== $alpha && $self['alpha'] = $alpha;
+        null !== $background && $self['background'] = $background;
+        null !== $flip && $self['flip'] = $flip;
+        null !== $fontColor && $self['fontColor'] = $fontColor;
+        null !== $fontFamily && $self['fontFamily'] = $fontFamily;
+        null !== $fontSize && $self['fontSize'] = $fontSize;
+        null !== $innerAlignment && $self['innerAlignment'] = $innerAlignment;
+        null !== $lineHeight && $self['lineHeight'] = $lineHeight;
+        null !== $padding && $self['padding'] = $padding;
+        null !== $radius && $self['radius'] = $radius;
+        null !== $rotation && $self['rotation'] = $rotation;
+        null !== $typography && $self['typography'] = $typography;
+        null !== $width && $self['width'] = $width;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -180,10 +180,10 @@ final class TextOverlayTransformation implements BaseModel
      */
     public function withAlpha(float $alpha): self
     {
-        $obj = clone $this;
-        $obj['alpha'] = $alpha;
+        $self = clone $this;
+        $self['alpha'] = $alpha;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -192,10 +192,10 @@ final class TextOverlayTransformation implements BaseModel
      */
     public function withBackground(string $background): self
     {
-        $obj = clone $this;
-        $obj['background'] = $background;
+        $self = clone $this;
+        $self['background'] = $background;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -205,10 +205,10 @@ final class TextOverlayTransformation implements BaseModel
      */
     public function withFlip(Flip|string $flip): self
     {
-        $obj = clone $this;
-        $obj['flip'] = $flip;
+        $self = clone $this;
+        $self['flip'] = $flip;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -216,10 +216,10 @@ final class TextOverlayTransformation implements BaseModel
      */
     public function withFontColor(string $fontColor): self
     {
-        $obj = clone $this;
-        $obj['fontColor'] = $fontColor;
+        $self = clone $this;
+        $self['fontColor'] = $fontColor;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -228,10 +228,10 @@ final class TextOverlayTransformation implements BaseModel
      */
     public function withFontFamily(string $fontFamily): self
     {
-        $obj = clone $this;
-        $obj['fontFamily'] = $fontFamily;
+        $self = clone $this;
+        $self['fontFamily'] = $fontFamily;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -239,10 +239,10 @@ final class TextOverlayTransformation implements BaseModel
      */
     public function withFontSize(float|string $fontSize): self
     {
-        $obj = clone $this;
-        $obj['fontSize'] = $fontSize;
+        $self = clone $this;
+        $self['fontSize'] = $fontSize;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -253,10 +253,10 @@ final class TextOverlayTransformation implements BaseModel
     public function withInnerAlignment(
         InnerAlignment|string $innerAlignment
     ): self {
-        $obj = clone $this;
-        $obj['innerAlignment'] = $innerAlignment;
+        $self = clone $this;
+        $self['innerAlignment'] = $innerAlignment;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -265,10 +265,10 @@ final class TextOverlayTransformation implements BaseModel
      */
     public function withLineHeight(float|string $lineHeight): self
     {
-        $obj = clone $this;
-        $obj['lineHeight'] = $lineHeight;
+        $self = clone $this;
+        $self['lineHeight'] = $lineHeight;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -278,10 +278,10 @@ final class TextOverlayTransformation implements BaseModel
      */
     public function withPadding(float|string $padding): self
     {
-        $obj = clone $this;
-        $obj['padding'] = $padding;
+        $self = clone $this;
+        $self['padding'] = $padding;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -292,10 +292,10 @@ final class TextOverlayTransformation implements BaseModel
      */
     public function withRadius(float|string $radius): self
     {
-        $obj = clone $this;
-        $obj['radius'] = $radius;
+        $self = clone $this;
+        $self['radius'] = $radius;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -304,10 +304,10 @@ final class TextOverlayTransformation implements BaseModel
      */
     public function withRotation(float|string $rotation): self
     {
-        $obj = clone $this;
-        $obj['rotation'] = $rotation;
+        $self = clone $this;
+        $self['rotation'] = $rotation;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -318,10 +318,10 @@ final class TextOverlayTransformation implements BaseModel
      */
     public function withTypography(string $typography): self
     {
-        $obj = clone $this;
-        $obj['typography'] = $typography;
+        $self = clone $this;
+        $self['typography'] = $typography;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -330,9 +330,9 @@ final class TextOverlayTransformation implements BaseModel
      */
     public function withWidth(float|string $width): self
     {
-        $obj = clone $this;
-        $obj['width'] = $width;
+        $self = clone $this;
+        $self['width'] = $width;
 
-        return $obj;
+        return $self;
     }
 }

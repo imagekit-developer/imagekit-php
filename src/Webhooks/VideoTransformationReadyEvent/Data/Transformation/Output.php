@@ -66,13 +66,13 @@ final class Output implements BaseModel
         string $url,
         VideoMetadata|array|null $videoMetadata = null
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj['url'] = $url;
+        $self['url'] = $url;
 
-        null !== $videoMetadata && $obj['videoMetadata'] = $videoMetadata;
+        null !== $videoMetadata && $self['videoMetadata'] = $videoMetadata;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -80,10 +80,10 @@ final class Output implements BaseModel
      */
     public function withURL(string $url): self
     {
-        $obj = clone $this;
-        $obj['url'] = $url;
+        $self = clone $this;
+        $self['url'] = $url;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -95,9 +95,9 @@ final class Output implements BaseModel
      */
     public function withVideoMetadata(VideoMetadata|array $videoMetadata): self
     {
-        $obj = clone $this;
-        $obj['videoMetadata'] = $videoMetadata;
+        $self = clone $this;
+        $self['videoMetadata'] = $videoMetadata;
 
-        return $obj;
+        return $self;
     }
 }

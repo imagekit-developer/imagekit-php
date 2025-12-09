@@ -74,14 +74,14 @@ final class FileCopyParams implements BaseModel
         string $sourceFilePath,
         ?bool $includeFileVersions = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj['destinationPath'] = $destinationPath;
-        $obj['sourceFilePath'] = $sourceFilePath;
+        $self['destinationPath'] = $destinationPath;
+        $self['sourceFilePath'] = $sourceFilePath;
 
-        null !== $includeFileVersions && $obj['includeFileVersions'] = $includeFileVersions;
+        null !== $includeFileVersions && $self['includeFileVersions'] = $includeFileVersions;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -89,10 +89,10 @@ final class FileCopyParams implements BaseModel
      */
     public function withDestinationPath(string $destinationPath): self
     {
-        $obj = clone $this;
-        $obj['destinationPath'] = $destinationPath;
+        $self = clone $this;
+        $self['destinationPath'] = $destinationPath;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -100,10 +100,10 @@ final class FileCopyParams implements BaseModel
      */
     public function withSourceFilePath(string $sourceFilePath): self
     {
-        $obj = clone $this;
-        $obj['sourceFilePath'] = $sourceFilePath;
+        $self = clone $this;
+        $self['sourceFilePath'] = $sourceFilePath;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -111,9 +111,9 @@ final class FileCopyParams implements BaseModel
      */
     public function withIncludeFileVersions(bool $includeFileVersions): self
     {
-        $obj = clone $this;
-        $obj['includeFileVersions'] = $includeFileVersions;
+        $self = clone $this;
+        $self['includeFileVersions'] = $includeFileVersions;
 
-        return $obj;
+        return $self;
     }
 }

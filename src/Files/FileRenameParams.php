@@ -87,14 +87,14 @@ final class FileRenameParams implements BaseModel
         string $newFileName,
         ?bool $purgeCache = null
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj['filePath'] = $filePath;
-        $obj['newFileName'] = $newFileName;
+        $self['filePath'] = $filePath;
+        $self['newFileName'] = $newFileName;
 
-        null !== $purgeCache && $obj['purgeCache'] = $purgeCache;
+        null !== $purgeCache && $self['purgeCache'] = $purgeCache;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -102,10 +102,10 @@ final class FileRenameParams implements BaseModel
      */
     public function withFilePath(string $filePath): self
     {
-        $obj = clone $this;
-        $obj['filePath'] = $filePath;
+        $self = clone $this;
+        $self['filePath'] = $filePath;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -118,10 +118,10 @@ final class FileRenameParams implements BaseModel
      */
     public function withNewFileName(string $newFileName): self
     {
-        $obj = clone $this;
-        $obj['newFileName'] = $newFileName;
+        $self = clone $this;
+        $self['newFileName'] = $newFileName;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -137,9 +137,9 @@ final class FileRenameParams implements BaseModel
      */
     public function withPurgeCache(bool $purgeCache): self
     {
-        $obj = clone $this;
-        $obj['purgeCache'] = $purgeCache;
+        $self = clone $this;
+        $self['purgeCache'] = $purgeCache;
 
-        return $obj;
+        return $self;
     }
 }

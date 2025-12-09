@@ -58,11 +58,11 @@ final class Error implements BaseModel
      */
     public static function with(Reason|string $reason): self
     {
-        $obj = new self;
+        $self = new self;
 
-        $obj['reason'] = $reason;
+        $self['reason'] = $reason;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -75,9 +75,9 @@ final class Error implements BaseModel
      */
     public function withReason(Reason|string $reason): self
     {
-        $obj = clone $this;
-        $obj['reason'] = $reason;
+        $self = clone $this;
+        $self['reason'] = $reason;
 
-        return $obj;
+        return $self;
     }
 }

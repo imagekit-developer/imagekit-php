@@ -78,14 +78,14 @@ final class VideoMetadata implements BaseModel
         int $height,
         int $width
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj['bitrate'] = $bitrate;
-        $obj['duration'] = $duration;
-        $obj['height'] = $height;
-        $obj['width'] = $width;
+        $self['bitrate'] = $bitrate;
+        $self['duration'] = $duration;
+        $self['height'] = $height;
+        $self['width'] = $width;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -93,10 +93,10 @@ final class VideoMetadata implements BaseModel
      */
     public function withBitrate(int $bitrate): self
     {
-        $obj = clone $this;
-        $obj['bitrate'] = $bitrate;
+        $self = clone $this;
+        $self['bitrate'] = $bitrate;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -104,10 +104,10 @@ final class VideoMetadata implements BaseModel
      */
     public function withDuration(float $duration): self
     {
-        $obj = clone $this;
-        $obj['duration'] = $duration;
+        $self = clone $this;
+        $self['duration'] = $duration;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -115,10 +115,10 @@ final class VideoMetadata implements BaseModel
      */
     public function withHeight(int $height): self
     {
-        $obj = clone $this;
-        $obj['height'] = $height;
+        $self = clone $this;
+        $self['height'] = $height;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -126,9 +126,9 @@ final class VideoMetadata implements BaseModel
      */
     public function withWidth(int $width): self
     {
-        $obj = clone $this;
-        $obj['width'] = $width;
+        $self = clone $this;
+        $self['width'] = $width;
 
-        return $obj;
+        return $self;
     }
 }

@@ -61,13 +61,13 @@ final class Publish implements BaseModel
         bool $isPublished,
         ?bool $includeFileVersions = null
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj['isPublished'] = $isPublished;
+        $self['isPublished'] = $isPublished;
 
-        null !== $includeFileVersions && $obj['includeFileVersions'] = $includeFileVersions;
+        null !== $includeFileVersions && $self['includeFileVersions'] = $includeFileVersions;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -75,10 +75,10 @@ final class Publish implements BaseModel
      */
     public function withIsPublished(bool $isPublished): self
     {
-        $obj = clone $this;
-        $obj['isPublished'] = $isPublished;
+        $self = clone $this;
+        $self['isPublished'] = $isPublished;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -86,9 +86,9 @@ final class Publish implements BaseModel
      */
     public function withIncludeFileVersions(bool $includeFileVersions): self
     {
-        $obj = clone $this;
-        $obj['includeFileVersions'] = $includeFileVersions;
+        $self = clone $this;
+        $self['includeFileVersions'] = $includeFileVersions;
 
-        return $obj;
+        return $self;
     }
 }

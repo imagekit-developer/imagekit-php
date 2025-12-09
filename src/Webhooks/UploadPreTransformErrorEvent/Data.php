@@ -66,13 +66,13 @@ final class Data implements BaseModel
         string $path,
         Transformation|array $transformation
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj['name'] = $name;
-        $obj['path'] = $path;
-        $obj['transformation'] = $transformation;
+        $self['name'] = $name;
+        $self['path'] = $path;
+        $self['transformation'] = $transformation;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -80,10 +80,10 @@ final class Data implements BaseModel
      */
     public function withName(string $name): self
     {
-        $obj = clone $this;
-        $obj['name'] = $name;
+        $self = clone $this;
+        $self['name'] = $name;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -91,10 +91,10 @@ final class Data implements BaseModel
      */
     public function withPath(string $path): self
     {
-        $obj = clone $this;
-        $obj['path'] = $path;
+        $self = clone $this;
+        $self['path'] = $path;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -103,9 +103,9 @@ final class Data implements BaseModel
     public function withTransformation(
         Transformation|array $transformation
     ): self {
-        $obj = clone $this;
-        $obj['transformation'] = $transformation;
+        $self = clone $this;
+        $self['transformation'] = $transformation;
 
-        return $obj;
+        return $self;
     }
 }

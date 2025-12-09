@@ -39,11 +39,11 @@ final class ChangePublicationStatus implements BaseModel
      */
     public static function with(Publish|array|null $publish = null): self
     {
-        $obj = new self;
+        $self = new self;
 
-        null !== $publish && $obj['publish'] = $publish;
+        null !== $publish && $self['publish'] = $publish;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -55,9 +55,9 @@ final class ChangePublicationStatus implements BaseModel
      */
     public function withPublish(Publish|array $publish): self
     {
-        $obj = clone $this;
-        $obj['publish'] = $publish;
+        $self = clone $this;
+        $self['publish'] = $publish;
 
-        return $obj;
+        return $self;
     }
 }

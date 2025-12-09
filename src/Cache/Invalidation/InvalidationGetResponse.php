@@ -41,11 +41,11 @@ final class InvalidationGetResponse implements BaseModel
      */
     public static function with(Status|string|null $status = null): self
     {
-        $obj = new self;
+        $self = new self;
 
-        null !== $status && $obj['status'] = $status;
+        null !== $status && $self['status'] = $status;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -55,9 +55,9 @@ final class InvalidationGetResponse implements BaseModel
      */
     public function withStatus(Status|string $status): self
     {
-        $obj = clone $this;
-        $obj['status'] = $status;
+        $self = clone $this;
+        $self['status'] = $status;
 
-        return $obj;
+        return $self;
     }
 }

@@ -134,16 +134,16 @@ final class Exif implements BaseModel
         ?array $makernote = null,
         Thumbnail|array|null $thumbnail = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $exif && $obj['exif'] = $exif;
-        null !== $gps && $obj['gps'] = $gps;
-        null !== $image && $obj['image'] = $image;
-        null !== $interoperability && $obj['interoperability'] = $interoperability;
-        null !== $makernote && $obj['makernote'] = $makernote;
-        null !== $thumbnail && $obj['thumbnail'] = $thumbnail;
+        null !== $exif && $self['exif'] = $exif;
+        null !== $gps && $self['gps'] = $gps;
+        null !== $image && $self['image'] = $image;
+        null !== $interoperability && $self['interoperability'] = $interoperability;
+        null !== $makernote && $self['makernote'] = $makernote;
+        null !== $thumbnail && $self['thumbnail'] = $thumbnail;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -181,10 +181,10 @@ final class Exif implements BaseModel
     public function withExif(
         Exif\Exif|array $exif
     ): self {
-        $obj = clone $this;
-        $obj['exif'] = $exif;
+        $self = clone $this;
+        $self['exif'] = $exif;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -194,10 +194,10 @@ final class Exif implements BaseModel
      */
     public function withGps(Gps|array $gps): self
     {
-        $obj = clone $this;
-        $obj['gps'] = $gps;
+        $self = clone $this;
+        $self['gps'] = $gps;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -219,10 +219,10 @@ final class Exif implements BaseModel
      */
     public function withImage(Image|array $image): self
     {
-        $obj = clone $this;
-        $obj['image'] = $image;
+        $self = clone $this;
+        $self['image'] = $image;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -235,10 +235,10 @@ final class Exif implements BaseModel
     public function withInteroperability(
         Interoperability|array $interoperability
     ): self {
-        $obj = clone $this;
-        $obj['interoperability'] = $interoperability;
+        $self = clone $this;
+        $self['interoperability'] = $interoperability;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -246,10 +246,10 @@ final class Exif implements BaseModel
      */
     public function withMakernote(array $makernote): self
     {
-        $obj = clone $this;
-        $obj['makernote'] = $makernote;
+        $self = clone $this;
+        $self['makernote'] = $makernote;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -266,9 +266,9 @@ final class Exif implements BaseModel
      */
     public function withThumbnail(Thumbnail|array $thumbnail): self
     {
-        $obj = clone $this;
-        $obj['thumbnail'] = $thumbnail;
+        $self = clone $this;
+        $self['thumbnail'] = $thumbnail;
 
-        return $obj;
+        return $self;
     }
 }

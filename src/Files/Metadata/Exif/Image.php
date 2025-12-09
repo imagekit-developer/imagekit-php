@@ -86,108 +86,108 @@ final class Image implements BaseModel
         ?int $yCbCrPositioning = null,
         ?int $yResolution = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $exifOffset && $obj['exifOffset'] = $exifOffset;
-        null !== $gpsInfo && $obj['gpsInfo'] = $gpsInfo;
-        null !== $make && $obj['make'] = $make;
-        null !== $model && $obj['model'] = $model;
-        null !== $modifyDate && $obj['modifyDate'] = $modifyDate;
-        null !== $orientation && $obj['orientation'] = $orientation;
-        null !== $resolutionUnit && $obj['resolutionUnit'] = $resolutionUnit;
-        null !== $software && $obj['software'] = $software;
-        null !== $xResolution && $obj['xResolution'] = $xResolution;
-        null !== $yCbCrPositioning && $obj['yCbCrPositioning'] = $yCbCrPositioning;
-        null !== $yResolution && $obj['yResolution'] = $yResolution;
+        null !== $exifOffset && $self['exifOffset'] = $exifOffset;
+        null !== $gpsInfo && $self['gpsInfo'] = $gpsInfo;
+        null !== $make && $self['make'] = $make;
+        null !== $model && $self['model'] = $model;
+        null !== $modifyDate && $self['modifyDate'] = $modifyDate;
+        null !== $orientation && $self['orientation'] = $orientation;
+        null !== $resolutionUnit && $self['resolutionUnit'] = $resolutionUnit;
+        null !== $software && $self['software'] = $software;
+        null !== $xResolution && $self['xResolution'] = $xResolution;
+        null !== $yCbCrPositioning && $self['yCbCrPositioning'] = $yCbCrPositioning;
+        null !== $yResolution && $self['yResolution'] = $yResolution;
 
-        return $obj;
+        return $self;
     }
 
     public function withExifOffset(int $exifOffset): self
     {
-        $obj = clone $this;
-        $obj['exifOffset'] = $exifOffset;
+        $self = clone $this;
+        $self['exifOffset'] = $exifOffset;
 
-        return $obj;
+        return $self;
     }
 
     public function withGpsInfo(int $gpsInfo): self
     {
-        $obj = clone $this;
-        $obj['gpsInfo'] = $gpsInfo;
+        $self = clone $this;
+        $self['gpsInfo'] = $gpsInfo;
 
-        return $obj;
+        return $self;
     }
 
     public function withMake(string $make): self
     {
-        $obj = clone $this;
-        $obj['make'] = $make;
+        $self = clone $this;
+        $self['make'] = $make;
 
-        return $obj;
+        return $self;
     }
 
     public function withModel(string $model): self
     {
-        $obj = clone $this;
-        $obj['model'] = $model;
+        $self = clone $this;
+        $self['model'] = $model;
 
-        return $obj;
+        return $self;
     }
 
     public function withModifyDate(string $modifyDate): self
     {
-        $obj = clone $this;
-        $obj['modifyDate'] = $modifyDate;
+        $self = clone $this;
+        $self['modifyDate'] = $modifyDate;
 
-        return $obj;
+        return $self;
     }
 
     public function withOrientation(int $orientation): self
     {
-        $obj = clone $this;
-        $obj['orientation'] = $orientation;
+        $self = clone $this;
+        $self['orientation'] = $orientation;
 
-        return $obj;
+        return $self;
     }
 
     public function withResolutionUnit(int $resolutionUnit): self
     {
-        $obj = clone $this;
-        $obj['resolutionUnit'] = $resolutionUnit;
+        $self = clone $this;
+        $self['resolutionUnit'] = $resolutionUnit;
 
-        return $obj;
+        return $self;
     }
 
     public function withSoftware(string $software): self
     {
-        $obj = clone $this;
-        $obj['software'] = $software;
+        $self = clone $this;
+        $self['software'] = $software;
 
-        return $obj;
+        return $self;
     }
 
     public function withXResolution(int $xResolution): self
     {
-        $obj = clone $this;
-        $obj['xResolution'] = $xResolution;
+        $self = clone $this;
+        $self['xResolution'] = $xResolution;
 
-        return $obj;
+        return $self;
     }
 
     public function withYCbCrPositioning(int $yCbCrPositioning): self
     {
-        $obj = clone $this;
-        $obj['yCbCrPositioning'] = $yCbCrPositioning;
+        $self = clone $this;
+        $self['yCbCrPositioning'] = $yCbCrPositioning;
 
-        return $obj;
+        return $self;
     }
 
     public function withYResolution(int $yResolution): self
     {
-        $obj = clone $this;
-        $obj['yResolution'] = $yResolution;
+        $self = clone $this;
+        $self['yResolution'] = $yResolution;
 
-        return $obj;
+        return $self;
     }
 }

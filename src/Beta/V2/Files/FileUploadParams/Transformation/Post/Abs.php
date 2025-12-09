@@ -69,12 +69,12 @@ final class Abs implements BaseModel
      */
     public static function with(Protocol|string $protocol, string $value): self
     {
-        $obj = new self;
+        $self = new self;
 
-        $obj['protocol'] = $protocol;
-        $obj['value'] = $value;
+        $self['protocol'] = $protocol;
+        $self['value'] = $value;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -84,10 +84,10 @@ final class Abs implements BaseModel
      */
     public function withProtocol(Protocol|string $protocol): self
     {
-        $obj = clone $this;
-        $obj['protocol'] = $protocol;
+        $self = clone $this;
+        $self['protocol'] = $protocol;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -95,9 +95,9 @@ final class Abs implements BaseModel
      */
     public function withValue(string $value): self
     {
-        $obj = clone $this;
-        $obj['value'] = $value;
+        $self = clone $this;
+        $self['value'] = $value;
 
-        return $obj;
+        return $self;
     }
 }

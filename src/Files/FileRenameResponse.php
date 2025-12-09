@@ -34,11 +34,11 @@ final class FileRenameResponse implements BaseModel
      */
     public static function with(?string $purgeRequestID = null): self
     {
-        $obj = new self;
+        $self = new self;
 
-        null !== $purgeRequestID && $obj['purgeRequestID'] = $purgeRequestID;
+        null !== $purgeRequestID && $self['purgeRequestID'] = $purgeRequestID;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -46,9 +46,9 @@ final class FileRenameResponse implements BaseModel
      */
     public function withPurgeRequestID(string $purgeRequestID): self
     {
-        $obj = clone $this;
-        $obj['purgeRequestID'] = $purgeRequestID;
+        $self = clone $this;
+        $self['purgeRequestID'] = $purgeRequestID;
 
-        return $obj;
+        return $self;
     }
 }

@@ -63,13 +63,13 @@ final class OverlayTiming implements BaseModel
         float|string|null $end = null,
         float|string|null $start = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $duration && $obj['duration'] = $duration;
-        null !== $end && $obj['end'] = $end;
-        null !== $start && $obj['start'] = $start;
+        null !== $duration && $self['duration'] = $duration;
+        null !== $end && $self['end'] = $end;
+        null !== $start && $self['start'] = $start;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -80,10 +80,10 @@ final class OverlayTiming implements BaseModel
      */
     public function withDuration(float|string $duration): self
     {
-        $obj = clone $this;
-        $obj['duration'] = $duration;
+        $self = clone $this;
+        $self['duration'] = $duration;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -95,10 +95,10 @@ final class OverlayTiming implements BaseModel
      */
     public function withEnd(float|string $end): self
     {
-        $obj = clone $this;
-        $obj['end'] = $end;
+        $self = clone $this;
+        $self['end'] = $end;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -109,9 +109,9 @@ final class OverlayTiming implements BaseModel
      */
     public function withStart(float|string $start): self
     {
-        $obj = clone $this;
-        $obj['start'] = $start;
+        $self = clone $this;
+        $self['start'] = $start;
 
-        return $obj;
+        return $self;
     }
 }

@@ -304,35 +304,35 @@ final class Data implements BaseModel
         ?string $videoCodec = null,
         ?float $width = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $aiTags && $obj['aiTags'] = $aiTags;
-        null !== $audioCodec && $obj['audioCodec'] = $audioCodec;
-        null !== $bitRate && $obj['bitRate'] = $bitRate;
-        null !== $customCoordinates && $obj['customCoordinates'] = $customCoordinates;
-        null !== $customMetadata && $obj['customMetadata'] = $customMetadata;
-        null !== $description && $obj['description'] = $description;
-        null !== $duration && $obj['duration'] = $duration;
-        null !== $embeddedMetadata && $obj['embeddedMetadata'] = $embeddedMetadata;
-        null !== $extensionStatus && $obj['extensionStatus'] = $extensionStatus;
-        null !== $fileID && $obj['fileID'] = $fileID;
-        null !== $filePath && $obj['filePath'] = $filePath;
-        null !== $fileType && $obj['fileType'] = $fileType;
-        null !== $height && $obj['height'] = $height;
-        null !== $isPrivateFile && $obj['isPrivateFile'] = $isPrivateFile;
-        null !== $isPublished && $obj['isPublished'] = $isPublished;
-        null !== $metadata && $obj['metadata'] = $metadata;
-        null !== $name && $obj['name'] = $name;
-        null !== $selectedFieldsSchema && $obj['selectedFieldsSchema'] = $selectedFieldsSchema;
-        null !== $size && $obj['size'] = $size;
-        null !== $tags && $obj['tags'] = $tags;
-        null !== $thumbnailURL && $obj['thumbnailURL'] = $thumbnailURL;
-        null !== $url && $obj['url'] = $url;
-        null !== $versionInfo && $obj['versionInfo'] = $versionInfo;
-        null !== $videoCodec && $obj['videoCodec'] = $videoCodec;
-        null !== $width && $obj['width'] = $width;
+        null !== $aiTags && $self['aiTags'] = $aiTags;
+        null !== $audioCodec && $self['audioCodec'] = $audioCodec;
+        null !== $bitRate && $self['bitRate'] = $bitRate;
+        null !== $customCoordinates && $self['customCoordinates'] = $customCoordinates;
+        null !== $customMetadata && $self['customMetadata'] = $customMetadata;
+        null !== $description && $self['description'] = $description;
+        null !== $duration && $self['duration'] = $duration;
+        null !== $embeddedMetadata && $self['embeddedMetadata'] = $embeddedMetadata;
+        null !== $extensionStatus && $self['extensionStatus'] = $extensionStatus;
+        null !== $fileID && $self['fileID'] = $fileID;
+        null !== $filePath && $self['filePath'] = $filePath;
+        null !== $fileType && $self['fileType'] = $fileType;
+        null !== $height && $self['height'] = $height;
+        null !== $isPrivateFile && $self['isPrivateFile'] = $isPrivateFile;
+        null !== $isPublished && $self['isPublished'] = $isPublished;
+        null !== $metadata && $self['metadata'] = $metadata;
+        null !== $name && $self['name'] = $name;
+        null !== $selectedFieldsSchema && $self['selectedFieldsSchema'] = $selectedFieldsSchema;
+        null !== $size && $self['size'] = $size;
+        null !== $tags && $self['tags'] = $tags;
+        null !== $thumbnailURL && $self['thumbnailURL'] = $thumbnailURL;
+        null !== $url && $self['url'] = $url;
+        null !== $versionInfo && $self['versionInfo'] = $versionInfo;
+        null !== $videoCodec && $self['videoCodec'] = $videoCodec;
+        null !== $width && $self['width'] = $width;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -344,10 +344,10 @@ final class Data implements BaseModel
      */
     public function withAITags(?array $aiTags): self
     {
-        $obj = clone $this;
-        $obj['aiTags'] = $aiTags;
+        $self = clone $this;
+        $self['aiTags'] = $aiTags;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -355,10 +355,10 @@ final class Data implements BaseModel
      */
     public function withAudioCodec(string $audioCodec): self
     {
-        $obj = clone $this;
-        $obj['audioCodec'] = $audioCodec;
+        $self = clone $this;
+        $self['audioCodec'] = $audioCodec;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -366,10 +366,10 @@ final class Data implements BaseModel
      */
     public function withBitRate(int $bitRate): self
     {
-        $obj = clone $this;
-        $obj['bitRate'] = $bitRate;
+        $self = clone $this;
+        $self['bitRate'] = $bitRate;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -377,10 +377,10 @@ final class Data implements BaseModel
      */
     public function withCustomCoordinates(?string $customCoordinates): self
     {
-        $obj = clone $this;
-        $obj['customCoordinates'] = $customCoordinates;
+        $self = clone $this;
+        $self['customCoordinates'] = $customCoordinates;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -390,10 +390,10 @@ final class Data implements BaseModel
      */
     public function withCustomMetadata(array $customMetadata): self
     {
-        $obj = clone $this;
-        $obj['customMetadata'] = $customMetadata;
+        $self = clone $this;
+        $self['customMetadata'] = $customMetadata;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -401,10 +401,10 @@ final class Data implements BaseModel
      */
     public function withDescription(string $description): self
     {
-        $obj = clone $this;
-        $obj['description'] = $description;
+        $self = clone $this;
+        $self['description'] = $description;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -412,10 +412,10 @@ final class Data implements BaseModel
      */
     public function withDuration(int $duration): self
     {
-        $obj = clone $this;
-        $obj['duration'] = $duration;
+        $self = clone $this;
+        $self['duration'] = $duration;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -425,10 +425,10 @@ final class Data implements BaseModel
      */
     public function withEmbeddedMetadata(array $embeddedMetadata): self
     {
-        $obj = clone $this;
-        $obj['embeddedMetadata'] = $embeddedMetadata;
+        $self = clone $this;
+        $self['embeddedMetadata'] = $embeddedMetadata;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -450,10 +450,10 @@ final class Data implements BaseModel
     public function withExtensionStatus(
         ExtensionStatus|array $extensionStatus
     ): self {
-        $obj = clone $this;
-        $obj['extensionStatus'] = $extensionStatus;
+        $self = clone $this;
+        $self['extensionStatus'] = $extensionStatus;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -461,10 +461,10 @@ final class Data implements BaseModel
      */
     public function withFileID(string $fileID): self
     {
-        $obj = clone $this;
-        $obj['fileID'] = $fileID;
+        $self = clone $this;
+        $self['fileID'] = $fileID;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -472,10 +472,10 @@ final class Data implements BaseModel
      */
     public function withFilePath(string $filePath): self
     {
-        $obj = clone $this;
-        $obj['filePath'] = $filePath;
+        $self = clone $this;
+        $self['filePath'] = $filePath;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -483,10 +483,10 @@ final class Data implements BaseModel
      */
     public function withFileType(string $fileType): self
     {
-        $obj = clone $this;
-        $obj['fileType'] = $fileType;
+        $self = clone $this;
+        $self['fileType'] = $fileType;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -494,10 +494,10 @@ final class Data implements BaseModel
      */
     public function withHeight(float $height): self
     {
-        $obj = clone $this;
-        $obj['height'] = $height;
+        $self = clone $this;
+        $self['height'] = $height;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -505,10 +505,10 @@ final class Data implements BaseModel
      */
     public function withIsPrivateFile(bool $isPrivateFile): self
     {
-        $obj = clone $this;
-        $obj['isPrivateFile'] = $isPrivateFile;
+        $self = clone $this;
+        $self['isPrivateFile'] = $isPrivateFile;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -516,10 +516,10 @@ final class Data implements BaseModel
      */
     public function withIsPublished(bool $isPublished): self
     {
-        $obj = clone $this;
-        $obj['isPublished'] = $isPublished;
+        $self = clone $this;
+        $self['isPublished'] = $isPublished;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -544,10 +544,10 @@ final class Data implements BaseModel
      */
     public function withMetadata(Metadata|array $metadata): self
     {
-        $obj = clone $this;
-        $obj['metadata'] = $metadata;
+        $self = clone $this;
+        $self['metadata'] = $metadata;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -555,10 +555,10 @@ final class Data implements BaseModel
      */
     public function withName(string $name): self
     {
-        $obj = clone $this;
-        $obj['name'] = $name;
+        $self = clone $this;
+        $self['name'] = $name;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -583,10 +583,10 @@ final class Data implements BaseModel
      */
     public function withSelectedFieldsSchema(array $selectedFieldsSchema): self
     {
-        $obj = clone $this;
-        $obj['selectedFieldsSchema'] = $selectedFieldsSchema;
+        $self = clone $this;
+        $self['selectedFieldsSchema'] = $selectedFieldsSchema;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -594,10 +594,10 @@ final class Data implements BaseModel
      */
     public function withSize(float $size): self
     {
-        $obj = clone $this;
-        $obj['size'] = $size;
+        $self = clone $this;
+        $self['size'] = $size;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -607,10 +607,10 @@ final class Data implements BaseModel
      */
     public function withTags(?array $tags): self
     {
-        $obj = clone $this;
-        $obj['tags'] = $tags;
+        $self = clone $this;
+        $self['tags'] = $tags;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -618,10 +618,10 @@ final class Data implements BaseModel
      */
     public function withThumbnailURL(string $thumbnailURL): self
     {
-        $obj = clone $this;
-        $obj['thumbnailURL'] = $thumbnailURL;
+        $self = clone $this;
+        $self['thumbnailURL'] = $thumbnailURL;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -629,10 +629,10 @@ final class Data implements BaseModel
      */
     public function withURL(string $url): self
     {
-        $obj = clone $this;
-        $obj['url'] = $url;
+        $self = clone $this;
+        $self['url'] = $url;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -642,10 +642,10 @@ final class Data implements BaseModel
      */
     public function withVersionInfo(VersionInfo|array $versionInfo): self
     {
-        $obj = clone $this;
-        $obj['versionInfo'] = $versionInfo;
+        $self = clone $this;
+        $self['versionInfo'] = $versionInfo;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -653,10 +653,10 @@ final class Data implements BaseModel
      */
     public function withVideoCodec(string $videoCodec): self
     {
-        $obj = clone $this;
-        $obj['videoCodec'] = $videoCodec;
+        $self = clone $this;
+        $self['videoCodec'] = $videoCodec;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -664,9 +664,9 @@ final class Data implements BaseModel
      */
     public function withWidth(float $width): self
     {
-        $obj = clone $this;
-        $obj['width'] = $width;
+        $self = clone $this;
+        $self['width'] = $width;
 
-        return $obj;
+        return $self;
     }
 }

@@ -64,12 +64,12 @@ final class UsageGetParams implements BaseModel
         \DateTimeInterface $endDate,
         \DateTimeInterface $startDate
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj['endDate'] = $endDate;
-        $obj['startDate'] = $startDate;
+        $self['endDate'] = $endDate;
+        $self['startDate'] = $startDate;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -77,10 +77,10 @@ final class UsageGetParams implements BaseModel
      */
     public function withEndDate(\DateTimeInterface $endDate): self
     {
-        $obj = clone $this;
-        $obj['endDate'] = $endDate;
+        $self = clone $this;
+        $self['endDate'] = $endDate;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -88,9 +88,9 @@ final class UsageGetParams implements BaseModel
      */
     public function withStartDate(\DateTimeInterface $startDate): self
     {
-        $obj = clone $this;
-        $obj['startDate'] = $startDate;
+        $self = clone $this;
+        $self['startDate'] = $startDate;
 
-        return $obj;
+        return $self;
     }
 }

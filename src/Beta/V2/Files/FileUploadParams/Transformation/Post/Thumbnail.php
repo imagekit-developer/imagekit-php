@@ -44,11 +44,11 @@ final class Thumbnail implements BaseModel
      */
     public static function with(?string $value = null): self
     {
-        $obj = new self;
+        $self = new self;
 
-        null !== $value && $obj['value'] = $value;
+        null !== $value && $self['value'] = $value;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -57,9 +57,9 @@ final class Thumbnail implements BaseModel
      */
     public function withValue(string $value): self
     {
-        $obj = clone $this;
-        $obj['value'] = $value;
+        $self = clone $this;
+        $self['value'] = $value;
 
-        return $obj;
+        return $self;
     }
 }

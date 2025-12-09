@@ -70,14 +70,14 @@ final class ExtensionStatus implements BaseModel
         GoogleAutoTagging|string|null $googleAutoTagging = null,
         RemoveBg|string|null $removeBg = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $aiAutoDescription && $obj['aiAutoDescription'] = $aiAutoDescription;
-        null !== $awsAutoTagging && $obj['awsAutoTagging'] = $awsAutoTagging;
-        null !== $googleAutoTagging && $obj['googleAutoTagging'] = $googleAutoTagging;
-        null !== $removeBg && $obj['removeBg'] = $removeBg;
+        null !== $aiAutoDescription && $self['aiAutoDescription'] = $aiAutoDescription;
+        null !== $awsAutoTagging && $self['awsAutoTagging'] = $awsAutoTagging;
+        null !== $googleAutoTagging && $self['googleAutoTagging'] = $googleAutoTagging;
+        null !== $removeBg && $self['removeBg'] = $removeBg;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -86,10 +86,10 @@ final class ExtensionStatus implements BaseModel
     public function withAIAutoDescription(
         AIAutoDescription|string $aiAutoDescription
     ): self {
-        $obj = clone $this;
-        $obj['aiAutoDescription'] = $aiAutoDescription;
+        $self = clone $this;
+        $self['aiAutoDescription'] = $aiAutoDescription;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -98,10 +98,10 @@ final class ExtensionStatus implements BaseModel
     public function withAwsAutoTagging(
         AwsAutoTagging|string $awsAutoTagging
     ): self {
-        $obj = clone $this;
-        $obj['awsAutoTagging'] = $awsAutoTagging;
+        $self = clone $this;
+        $self['awsAutoTagging'] = $awsAutoTagging;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -110,10 +110,10 @@ final class ExtensionStatus implements BaseModel
     public function withGoogleAutoTagging(
         GoogleAutoTagging|string $googleAutoTagging
     ): self {
-        $obj = clone $this;
-        $obj['googleAutoTagging'] = $googleAutoTagging;
+        $self = clone $this;
+        $self['googleAutoTagging'] = $googleAutoTagging;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -121,9 +121,9 @@ final class ExtensionStatus implements BaseModel
      */
     public function withRemoveBg(RemoveBg|string $removeBg): self
     {
-        $obj = clone $this;
-        $obj['removeBg'] = $removeBg;
+        $self = clone $this;
+        $self['removeBg'] = $removeBg;
 
-        return $obj;
+        return $self;
     }
 }

@@ -298,31 +298,31 @@ final class FileUploadParams implements BaseModel
         ?bool $useUniqueFileName = null,
         ?string $webhookURL = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj['file'] = $file;
-        $obj['fileName'] = $fileName;
+        $self['file'] = $file;
+        $self['fileName'] = $fileName;
 
-        null !== $token && $obj['token'] = $token;
-        null !== $checks && $obj['checks'] = $checks;
-        null !== $customCoordinates && $obj['customCoordinates'] = $customCoordinates;
-        null !== $customMetadata && $obj['customMetadata'] = $customMetadata;
-        null !== $description && $obj['description'] = $description;
-        null !== $extensions && $obj['extensions'] = $extensions;
-        null !== $folder && $obj['folder'] = $folder;
-        null !== $isPrivateFile && $obj['isPrivateFile'] = $isPrivateFile;
-        null !== $isPublished && $obj['isPublished'] = $isPublished;
-        null !== $overwriteAITags && $obj['overwriteAITags'] = $overwriteAITags;
-        null !== $overwriteCustomMetadata && $obj['overwriteCustomMetadata'] = $overwriteCustomMetadata;
-        null !== $overwriteFile && $obj['overwriteFile'] = $overwriteFile;
-        null !== $overwriteTags && $obj['overwriteTags'] = $overwriteTags;
-        null !== $responseFields && $obj['responseFields'] = $responseFields;
-        null !== $tags && $obj['tags'] = $tags;
-        null !== $transformation && $obj['transformation'] = $transformation;
-        null !== $useUniqueFileName && $obj['useUniqueFileName'] = $useUniqueFileName;
-        null !== $webhookURL && $obj['webhookURL'] = $webhookURL;
+        null !== $token && $self['token'] = $token;
+        null !== $checks && $self['checks'] = $checks;
+        null !== $customCoordinates && $self['customCoordinates'] = $customCoordinates;
+        null !== $customMetadata && $self['customMetadata'] = $customMetadata;
+        null !== $description && $self['description'] = $description;
+        null !== $extensions && $self['extensions'] = $extensions;
+        null !== $folder && $self['folder'] = $folder;
+        null !== $isPrivateFile && $self['isPrivateFile'] = $isPrivateFile;
+        null !== $isPublished && $self['isPublished'] = $isPublished;
+        null !== $overwriteAITags && $self['overwriteAITags'] = $overwriteAITags;
+        null !== $overwriteCustomMetadata && $self['overwriteCustomMetadata'] = $overwriteCustomMetadata;
+        null !== $overwriteFile && $self['overwriteFile'] = $overwriteFile;
+        null !== $overwriteTags && $self['overwriteTags'] = $overwriteTags;
+        null !== $responseFields && $self['responseFields'] = $responseFields;
+        null !== $tags && $self['tags'] = $tags;
+        null !== $transformation && $self['transformation'] = $transformation;
+        null !== $useUniqueFileName && $self['useUniqueFileName'] = $useUniqueFileName;
+        null !== $webhookURL && $self['webhookURL'] = $webhookURL;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -336,10 +336,10 @@ final class FileUploadParams implements BaseModel
      */
     public function withFile(string $file): self
     {
-        $obj = clone $this;
-        $obj['file'] = $file;
+        $self = clone $this;
+        $self['file'] = $file;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -347,10 +347,10 @@ final class FileUploadParams implements BaseModel
      */
     public function withFileName(string $fileName): self
     {
-        $obj = clone $this;
-        $obj['fileName'] = $fileName;
+        $self = clone $this;
+        $self['fileName'] = $fileName;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -363,10 +363,10 @@ final class FileUploadParams implements BaseModel
      */
     public function withToken(string $token): self
     {
-        $obj = clone $this;
-        $obj['token'] = $token;
+        $self = clone $this;
+        $self['token'] = $token;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -375,10 +375,10 @@ final class FileUploadParams implements BaseModel
      */
     public function withChecks(string $checks): self
     {
-        $obj = clone $this;
-        $obj['checks'] = $checks;
+        $self = clone $this;
+        $self['checks'] = $checks;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -390,10 +390,10 @@ final class FileUploadParams implements BaseModel
      */
     public function withCustomCoordinates(string $customCoordinates): self
     {
-        $obj = clone $this;
-        $obj['customCoordinates'] = $customCoordinates;
+        $self = clone $this;
+        $self['customCoordinates'] = $customCoordinates;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -403,10 +403,10 @@ final class FileUploadParams implements BaseModel
      */
     public function withCustomMetadata(array $customMetadata): self
     {
-        $obj = clone $this;
-        $obj['customMetadata'] = $customMetadata;
+        $self = clone $this;
+        $self['customMetadata'] = $customMetadata;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -414,10 +414,10 @@ final class FileUploadParams implements BaseModel
      */
     public function withDescription(string $description): self
     {
-        $obj = clone $this;
-        $obj['description'] = $description;
+        $self = clone $this;
+        $self['description'] = $description;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -431,10 +431,10 @@ final class FileUploadParams implements BaseModel
      */
     public function withExtensions(array $extensions): self
     {
-        $obj = clone $this;
-        $obj['extensions'] = $extensions;
+        $self = clone $this;
+        $self['extensions'] = $extensions;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -442,10 +442,10 @@ final class FileUploadParams implements BaseModel
      */
     public function withFolder(string $folder): self
     {
-        $obj = clone $this;
-        $obj['folder'] = $folder;
+        $self = clone $this;
+        $self['folder'] = $folder;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -455,10 +455,10 @@ final class FileUploadParams implements BaseModel
      */
     public function withIsPrivateFile(bool $isPrivateFile): self
     {
-        $obj = clone $this;
-        $obj['isPrivateFile'] = $isPrivateFile;
+        $self = clone $this;
+        $self['isPrivateFile'] = $isPrivateFile;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -470,10 +470,10 @@ final class FileUploadParams implements BaseModel
      */
     public function withIsPublished(bool $isPublished): self
     {
-        $obj = clone $this;
-        $obj['isPublished'] = $isPublished;
+        $self = clone $this;
+        $self['isPublished'] = $isPublished;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -481,10 +481,10 @@ final class FileUploadParams implements BaseModel
      */
     public function withOverwriteAITags(bool $overwriteAITags): self
     {
-        $obj = clone $this;
-        $obj['overwriteAITags'] = $overwriteAITags;
+        $self = clone $this;
+        $self['overwriteAITags'] = $overwriteAITags;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -493,10 +493,10 @@ final class FileUploadParams implements BaseModel
     public function withOverwriteCustomMetadata(
         bool $overwriteCustomMetadata
     ): self {
-        $obj = clone $this;
-        $obj['overwriteCustomMetadata'] = $overwriteCustomMetadata;
+        $self = clone $this;
+        $self['overwriteCustomMetadata'] = $overwriteCustomMetadata;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -504,10 +504,10 @@ final class FileUploadParams implements BaseModel
      */
     public function withOverwriteFile(bool $overwriteFile): self
     {
-        $obj = clone $this;
-        $obj['overwriteFile'] = $overwriteFile;
+        $self = clone $this;
+        $self['overwriteFile'] = $overwriteFile;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -515,10 +515,10 @@ final class FileUploadParams implements BaseModel
      */
     public function withOverwriteTags(bool $overwriteTags): self
     {
-        $obj = clone $this;
-        $obj['overwriteTags'] = $overwriteTags;
+        $self = clone $this;
+        $self['overwriteTags'] = $overwriteTags;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -528,10 +528,10 @@ final class FileUploadParams implements BaseModel
      */
     public function withResponseFields(array $responseFields): self
     {
-        $obj = clone $this;
-        $obj['responseFields'] = $responseFields;
+        $self = clone $this;
+        $self['responseFields'] = $responseFields;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -543,10 +543,10 @@ final class FileUploadParams implements BaseModel
      */
     public function withTags(array $tags): self
     {
-        $obj = clone $this;
-        $obj['tags'] = $tags;
+        $self = clone $this;
+        $self['tags'] = $tags;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -568,10 +568,10 @@ final class FileUploadParams implements BaseModel
     public function withTransformation(
         Transformation|array $transformation
     ): self {
-        $obj = clone $this;
-        $obj['transformation'] = $transformation;
+        $self = clone $this;
+        $self['transformation'] = $transformation;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -583,10 +583,10 @@ final class FileUploadParams implements BaseModel
      */
     public function withUseUniqueFileName(bool $useUniqueFileName): self
     {
-        $obj = clone $this;
-        $obj['useUniqueFileName'] = $useUniqueFileName;
+        $self = clone $this;
+        $self['useUniqueFileName'] = $useUniqueFileName;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -594,9 +594,9 @@ final class FileUploadParams implements BaseModel
      */
     public function withWebhookURL(string $webhookURL): self
     {
-        $obj = clone $this;
-        $obj['webhookURL'] = $webhookURL;
+        $self = clone $this;
+        $self['webhookURL'] = $webhookURL;
 
-        return $obj;
+        return $self;
     }
 }

@@ -34,11 +34,11 @@ final class InvalidationNewResponse implements BaseModel
      */
     public static function with(?string $requestID = null): self
     {
-        $obj = new self;
+        $self = new self;
 
-        null !== $requestID && $obj['requestID'] = $requestID;
+        null !== $requestID && $self['requestID'] = $requestID;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -46,9 +46,9 @@ final class InvalidationNewResponse implements BaseModel
      */
     public function withRequestID(string $requestID): self
     {
-        $obj = clone $this;
-        $obj['requestID'] = $requestID;
+        $self = clone $this;
+        $self['requestID'] = $requestID;
 
-        return $obj;
+        return $self;
     }
 }

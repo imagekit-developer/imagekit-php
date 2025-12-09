@@ -97,15 +97,15 @@ final class SolidColorOverlay implements BaseModel
         OverlayTiming|array|null $timing = null,
         ?array $transformation = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj['color'] = $color;
+        $self['color'] = $color;
 
-        null !== $position && $obj['position'] = $position;
-        null !== $timing && $obj['timing'] = $timing;
-        null !== $transformation && $obj['transformation'] = $transformation;
+        null !== $position && $self['position'] = $position;
+        null !== $timing && $self['timing'] = $timing;
+        null !== $transformation && $self['transformation'] = $transformation;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -115,10 +115,10 @@ final class SolidColorOverlay implements BaseModel
      */
     public function withPosition(OverlayPosition|array $position): self
     {
-        $obj = clone $this;
-        $obj['position'] = $position;
+        $self = clone $this;
+        $self['position'] = $position;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -130,10 +130,10 @@ final class SolidColorOverlay implements BaseModel
      */
     public function withTiming(OverlayTiming|array $timing): self
     {
-        $obj = clone $this;
-        $obj['timing'] = $timing;
+        $self = clone $this;
+        $self['timing'] = $timing;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -142,10 +142,10 @@ final class SolidColorOverlay implements BaseModel
      */
     public function withColor(string $color): self
     {
-        $obj = clone $this;
-        $obj['color'] = $color;
+        $self = clone $this;
+        $self['color'] = $color;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -163,9 +163,9 @@ final class SolidColorOverlay implements BaseModel
      */
     public function withTransformation(array $transformation): self
     {
-        $obj = clone $this;
-        $obj['transformation'] = $transformation;
+        $self = clone $this;
+        $self['transformation'] = $transformation;
 
-        return $obj;
+        return $self;
     }
 }

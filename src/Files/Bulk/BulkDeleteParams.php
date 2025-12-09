@@ -62,11 +62,11 @@ final class BulkDeleteParams implements BaseModel
      */
     public static function with(array $fileIDs): self
     {
-        $obj = new self;
+        $self = new self;
 
-        $obj['fileIDs'] = $fileIDs;
+        $self['fileIDs'] = $fileIDs;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -76,9 +76,9 @@ final class BulkDeleteParams implements BaseModel
      */
     public function withFileIDs(array $fileIDs): self
     {
-        $obj = clone $this;
-        $obj['fileIDs'] = $fileIDs;
+        $self = clone $this;
+        $self['fileIDs'] = $fileIDs;
 
-        return $obj;
+        return $self;
     }
 }

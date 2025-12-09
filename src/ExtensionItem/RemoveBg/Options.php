@@ -61,14 +61,14 @@ final class Options implements BaseModel
         ?string $bgImageURL = null,
         ?bool $semitransparency = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $addShadow && $obj['addShadow'] = $addShadow;
-        null !== $bgColor && $obj['bgColor'] = $bgColor;
-        null !== $bgImageURL && $obj['bgImageURL'] = $bgImageURL;
-        null !== $semitransparency && $obj['semitransparency'] = $semitransparency;
+        null !== $addShadow && $self['addShadow'] = $addShadow;
+        null !== $bgColor && $self['bgColor'] = $bgColor;
+        null !== $bgImageURL && $self['bgImageURL'] = $bgImageURL;
+        null !== $semitransparency && $self['semitransparency'] = $semitransparency;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -76,10 +76,10 @@ final class Options implements BaseModel
      */
     public function withAddShadow(bool $addShadow): self
     {
-        $obj = clone $this;
-        $obj['addShadow'] = $addShadow;
+        $self = clone $this;
+        $self['addShadow'] = $addShadow;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -87,10 +87,10 @@ final class Options implements BaseModel
      */
     public function withBgColor(string $bgColor): self
     {
-        $obj = clone $this;
-        $obj['bgColor'] = $bgColor;
+        $self = clone $this;
+        $self['bgColor'] = $bgColor;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -98,10 +98,10 @@ final class Options implements BaseModel
      */
     public function withBgImageURL(string $bgImageURL): self
     {
-        $obj = clone $this;
-        $obj['bgImageURL'] = $bgImageURL;
+        $self = clone $this;
+        $self['bgImageURL'] = $bgImageURL;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -109,9 +109,9 @@ final class Options implements BaseModel
      */
     public function withSemitransparency(bool $semitransparency): self
     {
-        $obj = clone $this;
-        $obj['semitransparency'] = $semitransparency;
+        $self = clone $this;
+        $self['semitransparency'] = $semitransparency;
 
-        return $obj;
+        return $self;
     }
 }

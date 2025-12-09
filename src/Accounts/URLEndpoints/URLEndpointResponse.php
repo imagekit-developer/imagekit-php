@@ -103,16 +103,16 @@ final class URLEndpointResponse implements BaseModel
         string $urlPrefix = '',
         Cloudinary|array|Imgix|Akamai|null $urlRewriter = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj['id'] = $id;
-        $obj['description'] = $description;
-        $obj['origins'] = $origins;
-        $obj['urlPrefix'] = $urlPrefix;
+        $self['id'] = $id;
+        $self['description'] = $description;
+        $self['origins'] = $origins;
+        $self['urlPrefix'] = $urlPrefix;
 
-        null !== $urlRewriter && $obj['urlRewriter'] = $urlRewriter;
+        null !== $urlRewriter && $self['urlRewriter'] = $urlRewriter;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -120,10 +120,10 @@ final class URLEndpointResponse implements BaseModel
      */
     public function withID(string $id): self
     {
-        $obj = clone $this;
-        $obj['id'] = $id;
+        $self = clone $this;
+        $self['id'] = $id;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -131,10 +131,10 @@ final class URLEndpointResponse implements BaseModel
      */
     public function withDescription(string $description): self
     {
-        $obj = clone $this;
-        $obj['description'] = $description;
+        $self = clone $this;
+        $self['description'] = $description;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -144,10 +144,10 @@ final class URLEndpointResponse implements BaseModel
      */
     public function withOrigins(array $origins): self
     {
-        $obj = clone $this;
-        $obj['origins'] = $origins;
+        $self = clone $this;
+        $self['origins'] = $origins;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -155,10 +155,10 @@ final class URLEndpointResponse implements BaseModel
      */
     public function withURLPrefix(string $urlPrefix): self
     {
-        $obj = clone $this;
-        $obj['urlPrefix'] = $urlPrefix;
+        $self = clone $this;
+        $self['urlPrefix'] = $urlPrefix;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -171,9 +171,9 @@ final class URLEndpointResponse implements BaseModel
     public function withURLRewriter(
         Cloudinary|array|Imgix|Akamai $urlRewriter
     ): self {
-        $obj = clone $this;
-        $obj['urlRewriter'] = $urlRewriter;
+        $self = clone $this;
+        $self['urlRewriter'] = $urlRewriter;
 
-        return $obj;
+        return $self;
     }
 }

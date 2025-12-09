@@ -48,11 +48,11 @@ final class Transformation implements BaseModel
      */
     public static function with(Error|array $error): self
     {
-        $obj = new self;
+        $self = new self;
 
-        $obj['error'] = $error;
+        $self['error'] = $error;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -60,9 +60,9 @@ final class Transformation implements BaseModel
      */
     public function withError(Error|array $error): self
     {
-        $obj = clone $this;
-        $obj['error'] = $error;
+        $self = clone $this;
+        $self['error'] = $error;
 
-        return $obj;
+        return $self;
     }
 }

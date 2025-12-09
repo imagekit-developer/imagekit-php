@@ -121,19 +121,19 @@ final class Schema implements BaseModel
         string|float|null $minValue = null,
         ?array $selectOptions = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj['type'] = $type;
+        $self['type'] = $type;
 
-        null !== $defaultValue && $obj['defaultValue'] = $defaultValue;
-        null !== $isValueRequired && $obj['isValueRequired'] = $isValueRequired;
-        null !== $maxLength && $obj['maxLength'] = $maxLength;
-        null !== $maxValue && $obj['maxValue'] = $maxValue;
-        null !== $minLength && $obj['minLength'] = $minLength;
-        null !== $minValue && $obj['minValue'] = $minValue;
-        null !== $selectOptions && $obj['selectOptions'] = $selectOptions;
+        null !== $defaultValue && $self['defaultValue'] = $defaultValue;
+        null !== $isValueRequired && $self['isValueRequired'] = $isValueRequired;
+        null !== $maxLength && $self['maxLength'] = $maxLength;
+        null !== $maxValue && $self['maxValue'] = $maxValue;
+        null !== $minLength && $self['minLength'] = $minLength;
+        null !== $minValue && $self['minValue'] = $minValue;
+        null !== $selectOptions && $self['selectOptions'] = $selectOptions;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -143,10 +143,10 @@ final class Schema implements BaseModel
      */
     public function withType(Type|string $type): self
     {
-        $obj = clone $this;
-        $obj['type'] = $type;
+        $self = clone $this;
+        $self['type'] = $type;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -157,10 +157,10 @@ final class Schema implements BaseModel
     public function withDefaultValue(
         string|float|bool|array $defaultValue
     ): self {
-        $obj = clone $this;
-        $obj['defaultValue'] = $defaultValue;
+        $self = clone $this;
+        $self['defaultValue'] = $defaultValue;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -168,10 +168,10 @@ final class Schema implements BaseModel
      */
     public function withIsValueRequired(bool $isValueRequired): self
     {
-        $obj = clone $this;
-        $obj['isValueRequired'] = $isValueRequired;
+        $self = clone $this;
+        $self['isValueRequired'] = $isValueRequired;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -179,10 +179,10 @@ final class Schema implements BaseModel
      */
     public function withMaxLength(float $maxLength): self
     {
-        $obj = clone $this;
-        $obj['maxLength'] = $maxLength;
+        $self = clone $this;
+        $self['maxLength'] = $maxLength;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -190,10 +190,10 @@ final class Schema implements BaseModel
      */
     public function withMaxValue(string|float $maxValue): self
     {
-        $obj = clone $this;
-        $obj['maxValue'] = $maxValue;
+        $self = clone $this;
+        $self['maxValue'] = $maxValue;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -201,10 +201,10 @@ final class Schema implements BaseModel
      */
     public function withMinLength(float $minLength): self
     {
-        $obj = clone $this;
-        $obj['minLength'] = $minLength;
+        $self = clone $this;
+        $self['minLength'] = $minLength;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -212,10 +212,10 @@ final class Schema implements BaseModel
      */
     public function withMinValue(string|float $minValue): self
     {
-        $obj = clone $this;
-        $obj['minValue'] = $minValue;
+        $self = clone $this;
+        $self['minValue'] = $minValue;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -225,9 +225,9 @@ final class Schema implements BaseModel
      */
     public function withSelectOptions(array $selectOptions): self
     {
-        $obj = clone $this;
-        $obj['selectOptions'] = $selectOptions;
+        $self = clone $this;
+        $self['selectOptions'] = $selectOptions;
 
-        return $obj;
+        return $self;
     }
 }

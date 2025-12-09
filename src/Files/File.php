@@ -253,33 +253,33 @@ final class File implements BaseModel
         VersionInfo|array|null $versionInfo = null,
         ?float $width = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $aiTags && $obj['aiTags'] = $aiTags;
-        null !== $createdAt && $obj['createdAt'] = $createdAt;
-        null !== $customCoordinates && $obj['customCoordinates'] = $customCoordinates;
-        null !== $customMetadata && $obj['customMetadata'] = $customMetadata;
-        null !== $description && $obj['description'] = $description;
-        null !== $fileID && $obj['fileID'] = $fileID;
-        null !== $filePath && $obj['filePath'] = $filePath;
-        null !== $fileType && $obj['fileType'] = $fileType;
-        null !== $hasAlpha && $obj['hasAlpha'] = $hasAlpha;
-        null !== $height && $obj['height'] = $height;
-        null !== $isPrivateFile && $obj['isPrivateFile'] = $isPrivateFile;
-        null !== $isPublished && $obj['isPublished'] = $isPublished;
-        null !== $mime && $obj['mime'] = $mime;
-        null !== $name && $obj['name'] = $name;
-        null !== $selectedFieldsSchema && $obj['selectedFieldsSchema'] = $selectedFieldsSchema;
-        null !== $size && $obj['size'] = $size;
-        null !== $tags && $obj['tags'] = $tags;
-        null !== $thumbnail && $obj['thumbnail'] = $thumbnail;
-        null !== $type && $obj['type'] = $type;
-        null !== $updatedAt && $obj['updatedAt'] = $updatedAt;
-        null !== $url && $obj['url'] = $url;
-        null !== $versionInfo && $obj['versionInfo'] = $versionInfo;
-        null !== $width && $obj['width'] = $width;
+        null !== $aiTags && $self['aiTags'] = $aiTags;
+        null !== $createdAt && $self['createdAt'] = $createdAt;
+        null !== $customCoordinates && $self['customCoordinates'] = $customCoordinates;
+        null !== $customMetadata && $self['customMetadata'] = $customMetadata;
+        null !== $description && $self['description'] = $description;
+        null !== $fileID && $self['fileID'] = $fileID;
+        null !== $filePath && $self['filePath'] = $filePath;
+        null !== $fileType && $self['fileType'] = $fileType;
+        null !== $hasAlpha && $self['hasAlpha'] = $hasAlpha;
+        null !== $height && $self['height'] = $height;
+        null !== $isPrivateFile && $self['isPrivateFile'] = $isPrivateFile;
+        null !== $isPublished && $self['isPublished'] = $isPublished;
+        null !== $mime && $self['mime'] = $mime;
+        null !== $name && $self['name'] = $name;
+        null !== $selectedFieldsSchema && $self['selectedFieldsSchema'] = $selectedFieldsSchema;
+        null !== $size && $self['size'] = $size;
+        null !== $tags && $self['tags'] = $tags;
+        null !== $thumbnail && $self['thumbnail'] = $thumbnail;
+        null !== $type && $self['type'] = $type;
+        null !== $updatedAt && $self['updatedAt'] = $updatedAt;
+        null !== $url && $self['url'] = $url;
+        null !== $versionInfo && $self['versionInfo'] = $versionInfo;
+        null !== $width && $self['width'] = $width;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -291,10 +291,10 @@ final class File implements BaseModel
      */
     public function withAITags(?array $aiTags): self
     {
-        $obj = clone $this;
-        $obj['aiTags'] = $aiTags;
+        $self = clone $this;
+        $self['aiTags'] = $aiTags;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -302,10 +302,10 @@ final class File implements BaseModel
      */
     public function withCreatedAt(\DateTimeInterface $createdAt): self
     {
-        $obj = clone $this;
-        $obj['createdAt'] = $createdAt;
+        $self = clone $this;
+        $self['createdAt'] = $createdAt;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -313,10 +313,10 @@ final class File implements BaseModel
      */
     public function withCustomCoordinates(?string $customCoordinates): self
     {
-        $obj = clone $this;
-        $obj['customCoordinates'] = $customCoordinates;
+        $self = clone $this;
+        $self['customCoordinates'] = $customCoordinates;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -326,10 +326,10 @@ final class File implements BaseModel
      */
     public function withCustomMetadata(array $customMetadata): self
     {
-        $obj = clone $this;
-        $obj['customMetadata'] = $customMetadata;
+        $self = clone $this;
+        $self['customMetadata'] = $customMetadata;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -337,10 +337,10 @@ final class File implements BaseModel
      */
     public function withDescription(string $description): self
     {
-        $obj = clone $this;
-        $obj['description'] = $description;
+        $self = clone $this;
+        $self['description'] = $description;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -348,10 +348,10 @@ final class File implements BaseModel
      */
     public function withFileID(string $fileID): self
     {
-        $obj = clone $this;
-        $obj['fileID'] = $fileID;
+        $self = clone $this;
+        $self['fileID'] = $fileID;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -359,10 +359,10 @@ final class File implements BaseModel
      */
     public function withFilePath(string $filePath): self
     {
-        $obj = clone $this;
-        $obj['filePath'] = $filePath;
+        $self = clone $this;
+        $self['filePath'] = $filePath;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -370,10 +370,10 @@ final class File implements BaseModel
      */
     public function withFileType(string $fileType): self
     {
-        $obj = clone $this;
-        $obj['fileType'] = $fileType;
+        $self = clone $this;
+        $self['fileType'] = $fileType;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -381,10 +381,10 @@ final class File implements BaseModel
      */
     public function withHasAlpha(bool $hasAlpha): self
     {
-        $obj = clone $this;
-        $obj['hasAlpha'] = $hasAlpha;
+        $self = clone $this;
+        $self['hasAlpha'] = $hasAlpha;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -392,10 +392,10 @@ final class File implements BaseModel
      */
     public function withHeight(float $height): self
     {
-        $obj = clone $this;
-        $obj['height'] = $height;
+        $self = clone $this;
+        $self['height'] = $height;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -403,10 +403,10 @@ final class File implements BaseModel
      */
     public function withIsPrivateFile(bool $isPrivateFile): self
     {
-        $obj = clone $this;
-        $obj['isPrivateFile'] = $isPrivateFile;
+        $self = clone $this;
+        $self['isPrivateFile'] = $isPrivateFile;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -414,10 +414,10 @@ final class File implements BaseModel
      */
     public function withIsPublished(bool $isPublished): self
     {
-        $obj = clone $this;
-        $obj['isPublished'] = $isPublished;
+        $self = clone $this;
+        $self['isPublished'] = $isPublished;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -425,10 +425,10 @@ final class File implements BaseModel
      */
     public function withMime(string $mime): self
     {
-        $obj = clone $this;
-        $obj['mime'] = $mime;
+        $self = clone $this;
+        $self['mime'] = $mime;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -436,10 +436,10 @@ final class File implements BaseModel
      */
     public function withName(string $name): self
     {
-        $obj = clone $this;
-        $obj['name'] = $name;
+        $self = clone $this;
+        $self['name'] = $name;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -464,10 +464,10 @@ final class File implements BaseModel
      */
     public function withSelectedFieldsSchema(array $selectedFieldsSchema): self
     {
-        $obj = clone $this;
-        $obj['selectedFieldsSchema'] = $selectedFieldsSchema;
+        $self = clone $this;
+        $self['selectedFieldsSchema'] = $selectedFieldsSchema;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -475,10 +475,10 @@ final class File implements BaseModel
      */
     public function withSize(float $size): self
     {
-        $obj = clone $this;
-        $obj['size'] = $size;
+        $self = clone $this;
+        $self['size'] = $size;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -488,10 +488,10 @@ final class File implements BaseModel
      */
     public function withTags(?array $tags): self
     {
-        $obj = clone $this;
-        $obj['tags'] = $tags;
+        $self = clone $this;
+        $self['tags'] = $tags;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -499,10 +499,10 @@ final class File implements BaseModel
      */
     public function withThumbnail(string $thumbnail): self
     {
-        $obj = clone $this;
-        $obj['thumbnail'] = $thumbnail;
+        $self = clone $this;
+        $self['thumbnail'] = $thumbnail;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -512,10 +512,10 @@ final class File implements BaseModel
      */
     public function withType(Type|string $type): self
     {
-        $obj = clone $this;
-        $obj['type'] = $type;
+        $self = clone $this;
+        $self['type'] = $type;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -523,10 +523,10 @@ final class File implements BaseModel
      */
     public function withUpdatedAt(\DateTimeInterface $updatedAt): self
     {
-        $obj = clone $this;
-        $obj['updatedAt'] = $updatedAt;
+        $self = clone $this;
+        $self['updatedAt'] = $updatedAt;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -534,10 +534,10 @@ final class File implements BaseModel
      */
     public function withURL(string $url): self
     {
-        $obj = clone $this;
-        $obj['url'] = $url;
+        $self = clone $this;
+        $self['url'] = $url;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -547,10 +547,10 @@ final class File implements BaseModel
      */
     public function withVersionInfo(VersionInfo|array $versionInfo): self
     {
-        $obj = clone $this;
-        $obj['versionInfo'] = $versionInfo;
+        $self = clone $this;
+        $self['versionInfo'] = $versionInfo;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -558,9 +558,9 @@ final class File implements BaseModel
      */
     public function withWidth(float $width): self
     {
-        $obj = clone $this;
-        $obj['width'] = $width;
+        $self = clone $this;
+        $self['width'] = $width;
 
-        return $obj;
+        return $self;
     }
 }

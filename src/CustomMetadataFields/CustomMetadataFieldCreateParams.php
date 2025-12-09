@@ -95,13 +95,13 @@ final class CustomMetadataFieldCreateParams implements BaseModel
         string $name,
         Schema|array $schema
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj['label'] = $label;
-        $obj['name'] = $name;
-        $obj['schema'] = $schema;
+        $self['label'] = $label;
+        $self['name'] = $name;
+        $self['schema'] = $schema;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -109,10 +109,10 @@ final class CustomMetadataFieldCreateParams implements BaseModel
      */
     public function withLabel(string $label): self
     {
-        $obj = clone $this;
-        $obj['label'] = $label;
+        $self = clone $this;
+        $self['label'] = $label;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -120,10 +120,10 @@ final class CustomMetadataFieldCreateParams implements BaseModel
      */
     public function withName(string $name): self
     {
-        $obj = clone $this;
-        $obj['name'] = $name;
+        $self = clone $this;
+        $self['name'] = $name;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -140,9 +140,9 @@ final class CustomMetadataFieldCreateParams implements BaseModel
      */
     public function withSchema(Schema|array $schema): self
     {
-        $obj = clone $this;
-        $obj['schema'] = $schema;
+        $self = clone $this;
+        $self['schema'] = $schema;
 
-        return $obj;
+        return $self;
     }
 }

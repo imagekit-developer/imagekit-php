@@ -89,15 +89,15 @@ final class URLEndpointRequest implements BaseModel
         ?string $urlPrefix = null,
         Cloudinary|array|Imgix|Akamai|null $urlRewriter = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        $obj['description'] = $description;
+        $self['description'] = $description;
 
-        null !== $origins && $obj['origins'] = $origins;
-        null !== $urlPrefix && $obj['urlPrefix'] = $urlPrefix;
-        null !== $urlRewriter && $obj['urlRewriter'] = $urlRewriter;
+        null !== $origins && $self['origins'] = $origins;
+        null !== $urlPrefix && $self['urlPrefix'] = $urlPrefix;
+        null !== $urlRewriter && $self['urlRewriter'] = $urlRewriter;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -105,10 +105,10 @@ final class URLEndpointRequest implements BaseModel
      */
     public function withDescription(string $description): self
     {
-        $obj = clone $this;
-        $obj['description'] = $description;
+        $self = clone $this;
+        $self['description'] = $description;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -118,10 +118,10 @@ final class URLEndpointRequest implements BaseModel
      */
     public function withOrigins(array $origins): self
     {
-        $obj = clone $this;
-        $obj['origins'] = $origins;
+        $self = clone $this;
+        $self['origins'] = $origins;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -129,10 +129,10 @@ final class URLEndpointRequest implements BaseModel
      */
     public function withURLPrefix(string $urlPrefix): self
     {
-        $obj = clone $this;
-        $obj['urlPrefix'] = $urlPrefix;
+        $self = clone $this;
+        $self['urlPrefix'] = $urlPrefix;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -145,9 +145,9 @@ final class URLEndpointRequest implements BaseModel
     public function withURLRewriter(
         Cloudinary|array|Imgix|Akamai $urlRewriter
     ): self {
-        $obj = clone $this;
-        $obj['urlRewriter'] = $urlRewriter;
+        $self = clone $this;
+        $self['urlRewriter'] = $urlRewriter;
 
-        return $obj;
+        return $self;
     }
 }

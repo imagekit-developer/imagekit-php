@@ -40,11 +40,11 @@ final class BulkDeleteResponse implements BaseModel
      */
     public static function with(?array $successfullyDeletedFileIDs = null): self
     {
-        $obj = new self;
+        $self = new self;
 
-        null !== $successfullyDeletedFileIDs && $obj['successfullyDeletedFileIDs'] = $successfullyDeletedFileIDs;
+        null !== $successfullyDeletedFileIDs && $self['successfullyDeletedFileIDs'] = $successfullyDeletedFileIDs;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -55,9 +55,9 @@ final class BulkDeleteResponse implements BaseModel
     public function withSuccessfullyDeletedFileIDs(
         array $successfullyDeletedFileIDs
     ): self {
-        $obj = clone $this;
-        $obj['successfullyDeletedFileIDs'] = $successfullyDeletedFileIDs;
+        $self = clone $this;
+        $self['successfullyDeletedFileIDs'] = $successfullyDeletedFileIDs;
 
-        return $obj;
+        return $self;
     }
 }

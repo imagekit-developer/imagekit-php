@@ -70,14 +70,14 @@ final class JobGetResponse implements BaseModel
         Status|string|null $status = null,
         Type|string|null $type = null,
     ): self {
-        $obj = new self;
+        $self = new self;
 
-        null !== $jobID && $obj['jobID'] = $jobID;
-        null !== $purgeRequestID && $obj['purgeRequestID'] = $purgeRequestID;
-        null !== $status && $obj['status'] = $status;
-        null !== $type && $obj['type'] = $type;
+        null !== $jobID && $self['jobID'] = $jobID;
+        null !== $purgeRequestID && $self['purgeRequestID'] = $purgeRequestID;
+        null !== $status && $self['status'] = $status;
+        null !== $type && $self['type'] = $type;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -85,10 +85,10 @@ final class JobGetResponse implements BaseModel
      */
     public function withJobID(string $jobID): self
     {
-        $obj = clone $this;
-        $obj['jobID'] = $jobID;
+        $self = clone $this;
+        $self['jobID'] = $jobID;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -96,10 +96,10 @@ final class JobGetResponse implements BaseModel
      */
     public function withPurgeRequestID(string $purgeRequestID): self
     {
-        $obj = clone $this;
-        $obj['purgeRequestID'] = $purgeRequestID;
+        $self = clone $this;
+        $self['purgeRequestID'] = $purgeRequestID;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -109,10 +109,10 @@ final class JobGetResponse implements BaseModel
      */
     public function withStatus(Status|string $status): self
     {
-        $obj = clone $this;
-        $obj['status'] = $status;
+        $self = clone $this;
+        $self['status'] = $status;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -122,9 +122,9 @@ final class JobGetResponse implements BaseModel
      */
     public function withType(Type|string $type): self
     {
-        $obj = clone $this;
-        $obj['type'] = $type;
+        $self = clone $this;
+        $self['type'] = $type;
 
-        return $obj;
+        return $self;
     }
 }

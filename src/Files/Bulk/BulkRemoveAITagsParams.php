@@ -69,12 +69,12 @@ final class BulkRemoveAITagsParams implements BaseModel
      */
     public static function with(array $aiTags, array $fileIDs): self
     {
-        $obj = new self;
+        $self = new self;
 
-        $obj['aiTags'] = $aiTags;
-        $obj['fileIDs'] = $fileIDs;
+        $self['aiTags'] = $aiTags;
+        $self['fileIDs'] = $fileIDs;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -84,10 +84,10 @@ final class BulkRemoveAITagsParams implements BaseModel
      */
     public function withAITags(array $aiTags): self
     {
-        $obj = clone $this;
-        $obj['aiTags'] = $aiTags;
+        $self = clone $this;
+        $self['aiTags'] = $aiTags;
 
-        return $obj;
+        return $self;
     }
 
     /**
@@ -97,9 +97,9 @@ final class BulkRemoveAITagsParams implements BaseModel
      */
     public function withFileIDs(array $fileIDs): self
     {
-        $obj = clone $this;
-        $obj['fileIDs'] = $fileIDs;
+        $self = clone $this;
+        $self['fileIDs'] = $fileIDs;
 
-        return $obj;
+        return $self;
     }
 }

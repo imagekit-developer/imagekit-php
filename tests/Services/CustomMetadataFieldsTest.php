@@ -39,9 +39,11 @@ final class CustomMetadataFieldsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->customMetadataFields->create([
-            'label' => 'price', 'name' => 'price', 'schema' => ['type' => 'Number'],
-        ]);
+        $result = $this->client->customMetadataFields->create(
+            label: 'price',
+            name: 'price',
+            schema: ['type' => 'Number']
+        );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(CustomMetadataField::class, $result);
@@ -54,10 +56,10 @@ final class CustomMetadataFieldsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->customMetadataFields->create([
-            'label' => 'price',
-            'name' => 'price',
-            'schema' => [
+        $result = $this->client->customMetadataFields->create(
+            label: 'price',
+            name: 'price',
+            schema: [
                 'type' => 'Number',
                 'defaultValue' => 'string',
                 'isValueRequired' => true,
@@ -67,7 +69,7 @@ final class CustomMetadataFieldsTest extends TestCase
                 'minValue' => 1000,
                 'selectOptions' => ['small', 'medium', 'large', 30, 40, true],
             ],
-        ]);
+        );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(CustomMetadataField::class, $result);
@@ -80,7 +82,7 @@ final class CustomMetadataFieldsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->customMetadataFields->update('id', []);
+        $result = $this->client->customMetadataFields->update('id');
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(CustomMetadataField::class, $result);
@@ -93,7 +95,7 @@ final class CustomMetadataFieldsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->customMetadataFields->list([]);
+        $result = $this->client->customMetadataFields->list();
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertIsList($result);

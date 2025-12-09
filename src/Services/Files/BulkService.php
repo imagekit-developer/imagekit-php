@@ -5,15 +5,10 @@ declare(strict_types=1);
 namespace Imagekit\Services\Files;
 
 use Imagekit\Client;
-use Imagekit\Core\Contracts\BaseResponse;
 use Imagekit\Core\Exceptions\APIException;
-use Imagekit\Files\Bulk\BulkAddTagsParams;
 use Imagekit\Files\Bulk\BulkAddTagsResponse;
-use Imagekit\Files\Bulk\BulkDeleteParams;
 use Imagekit\Files\Bulk\BulkDeleteResponse;
-use Imagekit\Files\Bulk\BulkRemoveAITagsParams;
 use Imagekit\Files\Bulk\BulkRemoveAITagsResponse;
-use Imagekit\Files\Bulk\BulkRemoveTagsParams;
 use Imagekit\Files\Bulk\BulkRemoveTagsResponse;
 use Imagekit\RequestOptions;
 use Imagekit\ServiceContracts\Files\BulkContract;
@@ -21,9 +16,17 @@ use Imagekit\ServiceContracts\Files\BulkContract;
 final class BulkService implements BulkContract
 {
     /**
+     * @api
+     */
+    public BulkRawService $raw;
+
+    /**
      * @internal
      */
-    public function __construct(private Client $client) {}
+    public function __construct(private Client $client)
+    {
+        $this->raw = new BulkRawService($client);
+    }
 
     /**
      * @api
@@ -34,27 +37,18 @@ final class BulkService implements BulkContract
      *
      * A maximum of 100 files can be deleted at a time.
      *
-     * @param array{fileIDs: list<string>}|BulkDeleteParams $params
+     * @param list<string> $fileIDs an array of fileIds which you want to delete
      *
      * @throws APIException
      */
     public function delete(
-        array|BulkDeleteParams $params,
+        array $fileIDs,
         ?RequestOptions $requestOptions = null
     ): BulkDeleteResponse {
-        [$parsed, $options] = BulkDeleteParams::parseRequest(
-            $params,
-            $requestOptions,
-        );
+        $params = ['fileIDs' => $fileIDs];
 
-        /** @var BaseResponse<BulkDeleteResponse> */
-        $response = $this->client->request(
-            method: 'post',
-            path: 'v1/files/batch/deleteByFileIds',
-            body: (object) $parsed,
-            options: $options,
-            convert: BulkDeleteResponse::class,
-        );
+        // @phpstan-ignore-next-line argument.type
+        $response = $this->raw->delete(params: $params, requestOptions: $requestOptions);
 
         return $response->parse();
     }
@@ -64,29 +58,20 @@ final class BulkService implements BulkContract
      *
      * This API adds tags to multiple files in bulk. A maximum of 50 files can be specified at a time.
      *
-     * @param array{
-     *   fileIDs: list<string>, tags: list<string>
-     * }|BulkAddTagsParams $params
+     * @param list<string> $fileIDs an array of fileIds to which you want to add tags
+     * @param list<string> $tags an array of tags that you want to add to the files
      *
      * @throws APIException
      */
     public function addTags(
-        array|BulkAddTagsParams $params,
+        array $fileIDs,
+        array $tags,
         ?RequestOptions $requestOptions = null
     ): BulkAddTagsResponse {
-        [$parsed, $options] = BulkAddTagsParams::parseRequest(
-            $params,
-            $requestOptions,
-        );
+        $params = ['fileIDs' => $fileIDs, 'tags' => $tags];
 
-        /** @var BaseResponse<BulkAddTagsResponse> */
-        $response = $this->client->request(
-            method: 'post',
-            path: 'v1/files/addTags',
-            body: (object) $parsed,
-            options: $options,
-            convert: BulkAddTagsResponse::class,
-        );
+        // @phpstan-ignore-next-line argument.type
+        $response = $this->raw->addTags(params: $params, requestOptions: $requestOptions);
 
         return $response->parse();
     }
@@ -96,29 +81,20 @@ final class BulkService implements BulkContract
      *
      * This API removes AITags from multiple files in bulk. A maximum of 50 files can be specified at a time.
      *
-     * @param array{
-     *   aiTags: list<string>, fileIDs: list<string>
-     * }|BulkRemoveAITagsParams $params
+     * @param list<string> $aiTags an array of AITags that you want to remove from the files
+     * @param list<string> $fileIDs an array of fileIds from which you want to remove AITags
      *
      * @throws APIException
      */
     public function removeAITags(
-        array|BulkRemoveAITagsParams $params,
+        array $aiTags,
+        array $fileIDs,
         ?RequestOptions $requestOptions = null
     ): BulkRemoveAITagsResponse {
-        [$parsed, $options] = BulkRemoveAITagsParams::parseRequest(
-            $params,
-            $requestOptions,
-        );
+        $params = ['aiTags' => $aiTags, 'fileIDs' => $fileIDs];
 
-        /** @var BaseResponse<BulkRemoveAITagsResponse> */
-        $response = $this->client->request(
-            method: 'post',
-            path: 'v1/files/removeAITags',
-            body: (object) $parsed,
-            options: $options,
-            convert: BulkRemoveAITagsResponse::class,
-        );
+        // @phpstan-ignore-next-line argument.type
+        $response = $this->raw->removeAITags(params: $params, requestOptions: $requestOptions);
 
         return $response->parse();
     }
@@ -128,29 +104,20 @@ final class BulkService implements BulkContract
      *
      * This API removes tags from multiple files in bulk. A maximum of 50 files can be specified at a time.
      *
-     * @param array{
-     *   fileIDs: list<string>, tags: list<string>
-     * }|BulkRemoveTagsParams $params
+     * @param list<string> $fileIDs an array of fileIds from which you want to remove tags
+     * @param list<string> $tags an array of tags that you want to remove from the files
      *
      * @throws APIException
      */
     public function removeTags(
-        array|BulkRemoveTagsParams $params,
+        array $fileIDs,
+        array $tags,
         ?RequestOptions $requestOptions = null
     ): BulkRemoveTagsResponse {
-        [$parsed, $options] = BulkRemoveTagsParams::parseRequest(
-            $params,
-            $requestOptions,
-        );
+        $params = ['fileIDs' => $fileIDs, 'tags' => $tags];
 
-        /** @var BaseResponse<BulkRemoveTagsResponse> */
-        $response = $this->client->request(
-            method: 'post',
-            path: 'v1/files/removeTags',
-            body: (object) $parsed,
-            options: $options,
-            convert: BulkRemoveTagsResponse::class,
-        );
+        // @phpstan-ignore-next-line argument.type
+        $response = $this->raw->removeTags(params: $params, requestOptions: $requestOptions);
 
         return $response->parse();
     }

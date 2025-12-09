@@ -6,16 +6,15 @@ namespace Imagekit\ServiceContracts\Files;
 
 use Imagekit\Core\Exceptions\APIException;
 use Imagekit\Files\File;
-use Imagekit\Files\Versions\VersionDeleteParams;
 use Imagekit\Files\Versions\VersionDeleteResponse;
-use Imagekit\Files\Versions\VersionGetParams;
-use Imagekit\Files\Versions\VersionRestoreParams;
 use Imagekit\RequestOptions;
 
 interface VersionsContract
 {
     /**
      * @api
+     *
+     * @param string $fileID The unique `fileId` of the uploaded file. `fileId` is returned in list and search assets API and upload API.
      *
      * @return list<File>
      *
@@ -29,39 +28,42 @@ interface VersionsContract
     /**
      * @api
      *
-     * @param array<mixed>|VersionDeleteParams $params
+     * @param string $versionID The unique `versionId` of the uploaded file. `versionId` is returned in list and search assets API and upload API.
+     * @param string $fileID The unique `fileId` of the uploaded file. `fileId` is returned in list and search assets API and upload API.
      *
      * @throws APIException
      */
     public function delete(
         string $versionID,
-        array|VersionDeleteParams $params,
-        ?RequestOptions $requestOptions = null,
+        string $fileID,
+        ?RequestOptions $requestOptions = null
     ): VersionDeleteResponse;
 
     /**
      * @api
      *
-     * @param array<mixed>|VersionGetParams $params
+     * @param string $versionID The unique `versionId` of the uploaded file. `versionId` is returned in list and search assets API and upload API.
+     * @param string $fileID The unique `fileId` of the uploaded file. `fileId` is returned in list and search assets API and upload API.
      *
      * @throws APIException
      */
     public function get(
         string $versionID,
-        array|VersionGetParams $params,
-        ?RequestOptions $requestOptions = null,
+        string $fileID,
+        ?RequestOptions $requestOptions = null
     ): File;
 
     /**
      * @api
      *
-     * @param array<mixed>|VersionRestoreParams $params
+     * @param string $versionID The unique `versionId` of the uploaded file. `versionId` is returned in list and search assets API and upload API.
+     * @param string $fileID The unique `fileId` of the uploaded file. `fileId` is returned in list and search assets API and upload API.
      *
      * @throws APIException
      */
     public function restore(
         string $versionID,
-        array|VersionRestoreParams $params,
-        ?RequestOptions $requestOptions = null,
+        string $fileID,
+        ?RequestOptions $requestOptions = null
     ): File;
 }

@@ -13,6 +13,8 @@ interface JobContract
     /**
      * @api
      *
+     * @param string $jobID The `jobId` is returned in the response of bulk job API e.g. copy folder or move folder API.
+     *
      * @throws APIException
      */
     public function get(

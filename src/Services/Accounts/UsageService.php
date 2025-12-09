@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace Imagekit\Services\Accounts;
 
-use Imagekit\Accounts\Usage\UsageGetParams;
 use Imagekit\Accounts\Usage\UsageGetResponse;
 use Imagekit\Client;
-use Imagekit\Core\Contracts\BaseResponse;
 use Imagekit\Core\Exceptions\APIException;
 use Imagekit\RequestOptions;
 use Imagekit\ServiceContracts\Accounts\UsageContract;
@@ -15,38 +13,37 @@ use Imagekit\ServiceContracts\Accounts\UsageContract;
 final class UsageService implements UsageContract
 {
     /**
+     * @api
+     */
+    public UsageRawService $raw;
+
+    /**
      * @internal
      */
-    public function __construct(private Client $client) {}
+    public function __construct(private Client $client)
+    {
+        $this->raw = new UsageRawService($client);
+    }
 
     /**
      * @api
      *
      * Get the account usage information between two dates. Note that the API response includes data from the start date while excluding data from the end date. In other words, the data covers the period starting from the specified start date up to, but not including, the end date.
      *
-     * @param array{
-     *   endDate: string|\DateTimeInterface, startDate: string|\DateTimeInterface
-     * }|UsageGetParams $params
+     * @param string|\DateTimeInterface $endDate Specify a `endDate` in `YYYY-MM-DD` format. It should be after the `startDate`. The difference between `startDate` and `endDate` should be less than 90 days.
+     * @param string|\DateTimeInterface $startDate Specify a `startDate` in `YYYY-MM-DD` format. It should be before the `endDate`. The difference between `startDate` and `endDate` should be less than 90 days.
      *
      * @throws APIException
      */
     public function get(
-        array|UsageGetParams $params,
-        ?RequestOptions $requestOptions = null
+        string|\DateTimeInterface $endDate,
+        string|\DateTimeInterface $startDate,
+        ?RequestOptions $requestOptions = null,
     ): UsageGetResponse {
-        [$parsed, $options] = UsageGetParams::parseRequest(
-            $params,
-            $requestOptions,
-        );
+        $params = ['endDate' => $endDate, 'startDate' => $startDate];
 
-        /** @var BaseResponse<UsageGetResponse> */
-        $response = $this->client->request(
-            method: 'get',
-            path: 'v1/accounts/usage',
-            query: $parsed,
-            options: $options,
-            convert: UsageGetResponse::class,
-        );
+        // @phpstan-ignore-next-line argument.type
+        $response = $this->raw->get(params: $params, requestOptions: $requestOptions);
 
         return $response->parse();
     }

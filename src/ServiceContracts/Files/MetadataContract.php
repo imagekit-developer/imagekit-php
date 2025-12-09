@@ -6,13 +6,14 @@ namespace Imagekit\ServiceContracts\Files;
 
 use Imagekit\Core\Exceptions\APIException;
 use Imagekit\Files\Metadata;
-use Imagekit\Files\Metadata\MetadataGetFromURLParams;
 use Imagekit\RequestOptions;
 
 interface MetadataContract
 {
     /**
      * @api
+     *
+     * @param string $fileID The unique `fileId` of the uploaded file. `fileId` is returned in the list and search assets API and upload API.
      *
      * @throws APIException
      */
@@ -24,12 +25,12 @@ interface MetadataContract
     /**
      * @api
      *
-     * @param array<mixed>|MetadataGetFromURLParams $params
+     * @param string $url Should be a valid file URL. It should be accessible using your ImageKit.io account.
      *
      * @throws APIException
      */
     public function getFromURL(
-        array|MetadataGetFromURLParams $params,
-        ?RequestOptions $requestOptions = null,
+        string $url,
+        ?RequestOptions $requestOptions = null
     ): Metadata;
 }

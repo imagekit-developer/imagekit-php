@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Imagekit\ServiceContracts\Cache;
 
-use Imagekit\Cache\Invalidation\InvalidationCreateParams;
 use Imagekit\Cache\Invalidation\InvalidationGetResponse;
 use Imagekit\Cache\Invalidation\InvalidationNewResponse;
 use Imagekit\Core\Exceptions\APIException;
@@ -15,17 +14,19 @@ interface InvalidationContract
     /**
      * @api
      *
-     * @param array<mixed>|InvalidationCreateParams $params
+     * @param string $url the full URL of the file to be purged
      *
      * @throws APIException
      */
     public function create(
-        array|InvalidationCreateParams $params,
-        ?RequestOptions $requestOptions = null,
+        string $url,
+        ?RequestOptions $requestOptions = null
     ): InvalidationNewResponse;
 
     /**
      * @api
+     *
+     * @param string $requestID should be a valid requestId
      *
      * @throws APIException
      */

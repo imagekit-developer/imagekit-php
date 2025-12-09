@@ -13,6 +13,11 @@ final class CacheService implements CacheContract
     /**
      * @api
      */
+    public CacheRawService $raw;
+
+    /**
+     * @api
+     */
     public InvalidationService $invalidation;
 
     /**
@@ -20,6 +25,7 @@ final class CacheService implements CacheContract
      */
     public function __construct(private Client $client)
     {
+        $this->raw = new CacheRawService($client);
         $this->invalidation = new InvalidationService($client);
     }
 }

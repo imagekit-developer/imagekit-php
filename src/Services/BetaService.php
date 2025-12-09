@@ -13,6 +13,11 @@ final class BetaService implements BetaContract
     /**
      * @api
      */
+    public BetaRawService $raw;
+
+    /**
+     * @api
+     */
     public V2Service $v2;
 
     /**
@@ -20,6 +25,7 @@ final class BetaService implements BetaContract
      */
     public function __construct(private Client $client)
     {
+        $this->raw = new BetaRawService($client);
         $this->v2 = new V2Service($client);
     }
 }

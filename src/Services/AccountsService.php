@@ -15,6 +15,11 @@ final class AccountsService implements AccountsContract
     /**
      * @api
      */
+    public AccountsRawService $raw;
+
+    /**
+     * @api
+     */
     public UsageService $usage;
 
     /**
@@ -32,6 +37,7 @@ final class AccountsService implements AccountsContract
      */
     public function __construct(private Client $client)
     {
+        $this->raw = new AccountsRawService($client);
         $this->usage = new UsageService($client);
         $this->origins = new OriginsService($client);
         $this->urlEndpoints = new URLEndpointsService($client);

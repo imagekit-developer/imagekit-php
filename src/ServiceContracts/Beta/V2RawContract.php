@@ -1,0 +1,7 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Imagekit\ServiceContracts\Beta;
+
+interface V2RawContract {}

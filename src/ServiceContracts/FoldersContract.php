@@ -5,15 +5,10 @@ declare(strict_types=1);
 namespace Imagekit\ServiceContracts;
 
 use Imagekit\Core\Exceptions\APIException;
-use Imagekit\Folders\FolderCopyParams;
 use Imagekit\Folders\FolderCopyResponse;
-use Imagekit\Folders\FolderCreateParams;
-use Imagekit\Folders\FolderDeleteParams;
 use Imagekit\Folders\FolderDeleteResponse;
-use Imagekit\Folders\FolderMoveParams;
 use Imagekit\Folders\FolderMoveResponse;
 use Imagekit\Folders\FolderNewResponse;
-use Imagekit\Folders\FolderRenameParams;
 use Imagekit\Folders\FolderRenameResponse;
 use Imagekit\RequestOptions;
 
@@ -22,60 +17,84 @@ interface FoldersContract
     /**
      * @api
      *
-     * @param array<mixed>|FolderCreateParams $params
+     * @param string $folderName The folder will be created with this name.
+     *
+     * All characters except alphabets and numbers (inclusive of unicode letters, marks, and numerals in other languages) will be replaced by an underscore i.e. `_`.
+     * @param string $parentFolderPath The folder where the new folder should be created, for root use `/` else the path e.g. `containing/folder/`.
+     *
+     * Note: If any folder(s) is not present in the parentFolderPath parameter, it will be automatically created. For example, if you pass `/product/images/summer`, then `product`, `images`, and `summer` folders will be created if they don't already exist.
      *
      * @throws APIException
      */
     public function create(
-        array|FolderCreateParams $params,
-        ?RequestOptions $requestOptions = null
+        string $folderName,
+        string $parentFolderPath,
+        ?RequestOptions $requestOptions = null,
     ): FolderNewResponse;
 
     /**
      * @api
      *
-     * @param array<mixed>|FolderDeleteParams $params
+     * @param string $folderPath Full path to the folder you want to delete. For example `/folder/to/delete/`.
      *
      * @throws APIException
      */
     public function delete(
-        array|FolderDeleteParams $params,
+        string $folderPath,
         ?RequestOptions $requestOptions = null
     ): FolderDeleteResponse;
 
     /**
      * @api
      *
-     * @param array<mixed>|FolderCopyParams $params
+     * @param string $destinationPath full path to the destination folder where you want to copy the source folder into
+     * @param string $sourceFolderPath the full path to the source folder you want to copy
+     * @param bool $includeVersions Option to copy all versions of files that are nested inside the selected folder. By default, only the current version of each file will be copied. When set to true, all versions of each file will be copied. Default value - `false`.
      *
      * @throws APIException
      */
     public function copy(
-        array|FolderCopyParams $params,
-        ?RequestOptions $requestOptions = null
+        string $destinationPath,
+        string $sourceFolderPath,
+        ?bool $includeVersions = null,
+        ?RequestOptions $requestOptions = null,
     ): FolderCopyResponse;
 
     /**
      * @api
      *
-     * @param array<mixed>|FolderMoveParams $params
+     * @param string $destinationPath full path to the destination folder where you want to move the source folder into
+     * @param string $sourceFolderPath the full path to the source folder you want to move
      *
      * @throws APIException
      */
     public function move(
-        array|FolderMoveParams $params,
-        ?RequestOptions $requestOptions = null
+        string $destinationPath,
+        string $sourceFolderPath,
+        ?RequestOptions $requestOptions = null,
     ): FolderMoveResponse;
 
     /**
      * @api
      *
-     * @param array<mixed>|FolderRenameParams $params
+     * @param string $folderPath the full path to the folder you want to rename
+     * @param string $newFolderName The new name for the folder.
+     *
+     * All characters except alphabets and numbers (inclusive of unicode letters, marks, and numerals in other languages) and `-` will be replaced by an underscore i.e. `_`.
+     * @param bool $purgeCache Option to purge cache for the old nested files and their versions' URLs.
+     *
+     * When set to true, it will internally issue a purge cache request on CDN to remove the cached content of the old nested files and their versions. There will only be one purge request for all the nested files, which will be counted against your monthly purge quota.
+     *
+     * Note: A purge cache request will be issued against `https://ik.imagekit.io/old/folder/path*` (with a wildcard at the end). This will remove all nested files, their versions' URLs, and any transformations made using query parameters on these files or their versions. However, the cache for file transformations made using path parameters will persist. You can purge them using the purge API. For more details, refer to the purge API documentation.
+     *
+     * Default value - `false`
      *
      * @throws APIException
      */
     public function rename(
-        array|FolderRenameParams $params,
-        ?RequestOptions $requestOptions = null
+        string $folderPath,
+        string $newFolderName,
+        ?bool $purgeCache = null,
+        ?RequestOptions $requestOptions = null,
     ): FolderRenameResponse;
 }

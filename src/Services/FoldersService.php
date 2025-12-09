@@ -5,17 +5,11 @@ declare(strict_types=1);
 namespace Imagekit\Services;
 
 use Imagekit\Client;
-use Imagekit\Core\Contracts\BaseResponse;
 use Imagekit\Core\Exceptions\APIException;
-use Imagekit\Folders\FolderCopyParams;
 use Imagekit\Folders\FolderCopyResponse;
-use Imagekit\Folders\FolderCreateParams;
-use Imagekit\Folders\FolderDeleteParams;
 use Imagekit\Folders\FolderDeleteResponse;
-use Imagekit\Folders\FolderMoveParams;
 use Imagekit\Folders\FolderMoveResponse;
 use Imagekit\Folders\FolderNewResponse;
-use Imagekit\Folders\FolderRenameParams;
 use Imagekit\Folders\FolderRenameResponse;
 use Imagekit\RequestOptions;
 use Imagekit\ServiceContracts\FoldersContract;
@@ -26,6 +20,11 @@ final class FoldersService implements FoldersContract
     /**
      * @api
      */
+    public FoldersRawService $raw;
+
+    /**
+     * @api
+     */
     public JobService $job;
 
     /**
@@ -33,6 +32,7 @@ final class FoldersService implements FoldersContract
      */
     public function __construct(private Client $client)
     {
+        $this->raw = new FoldersRawService($client);
         $this->job = new JobService($client);
     }
 
@@ -41,29 +41,26 @@ final class FoldersService implements FoldersContract
      *
      * This will create a new folder. You can specify the folder name and location of the parent folder where this new folder should be created.
      *
-     * @param array{
-     *   folderName: string, parentFolderPath: string
-     * }|FolderCreateParams $params
+     * @param string $folderName The folder will be created with this name.
+     *
+     * All characters except alphabets and numbers (inclusive of unicode letters, marks, and numerals in other languages) will be replaced by an underscore i.e. `_`.
+     * @param string $parentFolderPath The folder where the new folder should be created, for root use `/` else the path e.g. `containing/folder/`.
+     *
+     * Note: If any folder(s) is not present in the parentFolderPath parameter, it will be automatically created. For example, if you pass `/product/images/summer`, then `product`, `images`, and `summer` folders will be created if they don't already exist.
      *
      * @throws APIException
      */
     public function create(
-        array|FolderCreateParams $params,
-        ?RequestOptions $requestOptions = null
+        string $folderName,
+        string $parentFolderPath,
+        ?RequestOptions $requestOptions = null,
     ): FolderNewResponse {
-        [$parsed, $options] = FolderCreateParams::parseRequest(
-            $params,
-            $requestOptions,
-        );
+        $params = [
+            'folderName' => $folderName, 'parentFolderPath' => $parentFolderPath,
+        ];
 
-        /** @var BaseResponse<FolderNewResponse> */
-        $response = $this->client->request(
-            method: 'post',
-            path: 'v1/folder',
-            body: (object) $parsed,
-            options: $options,
-            convert: FolderNewResponse::class,
-        );
+        // @phpstan-ignore-next-line argument.type
+        $response = $this->raw->create(params: $params, requestOptions: $requestOptions);
 
         return $response->parse();
     }
@@ -73,27 +70,18 @@ final class FoldersService implements FoldersContract
      *
      * This will delete a folder and all its contents permanently. The API returns an empty response.
      *
-     * @param array{folderPath: string}|FolderDeleteParams $params
+     * @param string $folderPath Full path to the folder you want to delete. For example `/folder/to/delete/`.
      *
      * @throws APIException
      */
     public function delete(
-        array|FolderDeleteParams $params,
+        string $folderPath,
         ?RequestOptions $requestOptions = null
     ): FolderDeleteResponse {
-        [$parsed, $options] = FolderDeleteParams::parseRequest(
-            $params,
-            $requestOptions,
-        );
+        $params = ['folderPath' => $folderPath];
 
-        /** @var BaseResponse<FolderDeleteResponse> */
-        $response = $this->client->request(
-            method: 'delete',
-            path: 'v1/folder',
-            body: (object) $parsed,
-            options: $options,
-            convert: FolderDeleteResponse::class,
-        );
+        // @phpstan-ignore-next-line argument.type
+        $response = $this->raw->delete(params: $params, requestOptions: $requestOptions);
 
         return $response->parse();
     }
@@ -103,29 +91,28 @@ final class FoldersService implements FoldersContract
      *
      * This will copy one folder into another. The selected folder, its nested folders, files, and their versions (in `includeVersions` is set to true) are copied in this operation. Note: If any file at the destination has the same name as the source file, then the source file and its versions will be appended to the destination file version history.
      *
-     * @param array{
-     *   destinationPath: string, sourceFolderPath: string, includeVersions?: bool
-     * }|FolderCopyParams $params
+     * @param string $destinationPath full path to the destination folder where you want to copy the source folder into
+     * @param string $sourceFolderPath the full path to the source folder you want to copy
+     * @param bool $includeVersions Option to copy all versions of files that are nested inside the selected folder. By default, only the current version of each file will be copied. When set to true, all versions of each file will be copied. Default value - `false`.
      *
      * @throws APIException
      */
     public function copy(
-        array|FolderCopyParams $params,
-        ?RequestOptions $requestOptions = null
+        string $destinationPath,
+        string $sourceFolderPath,
+        ?bool $includeVersions = null,
+        ?RequestOptions $requestOptions = null,
     ): FolderCopyResponse {
-        [$parsed, $options] = FolderCopyParams::parseRequest(
-            $params,
-            $requestOptions,
-        );
+        $params = [
+            'destinationPath' => $destinationPath,
+            'sourceFolderPath' => $sourceFolderPath,
+            'includeVersions' => $includeVersions,
+        ];
+        // @phpstan-ignore-next-line function.impossibleType
+        $params = array_filter($params, callback: static fn ($v) => !is_null($v));
 
-        /** @var BaseResponse<FolderCopyResponse> */
-        $response = $this->client->request(
-            method: 'post',
-            path: 'v1/bulkJobs/copyFolder',
-            body: (object) $parsed,
-            options: $options,
-            convert: FolderCopyResponse::class,
-        );
+        // @phpstan-ignore-next-line argument.type
+        $response = $this->raw->copy(params: $params, requestOptions: $requestOptions);
 
         return $response->parse();
     }
@@ -135,29 +122,23 @@ final class FoldersService implements FoldersContract
      *
      * This will move one folder into another. The selected folder, its nested folders, files, and their versions are moved in this operation. Note: If any file at the destination has the same name as the source file, then the source file and its versions will be appended to the destination file version history.
      *
-     * @param array{
-     *   destinationPath: string, sourceFolderPath: string
-     * }|FolderMoveParams $params
+     * @param string $destinationPath full path to the destination folder where you want to move the source folder into
+     * @param string $sourceFolderPath the full path to the source folder you want to move
      *
      * @throws APIException
      */
     public function move(
-        array|FolderMoveParams $params,
-        ?RequestOptions $requestOptions = null
+        string $destinationPath,
+        string $sourceFolderPath,
+        ?RequestOptions $requestOptions = null,
     ): FolderMoveResponse {
-        [$parsed, $options] = FolderMoveParams::parseRequest(
-            $params,
-            $requestOptions,
-        );
+        $params = [
+            'destinationPath' => $destinationPath,
+            'sourceFolderPath' => $sourceFolderPath,
+        ];
 
-        /** @var BaseResponse<FolderMoveResponse> */
-        $response = $this->client->request(
-            method: 'post',
-            path: 'v1/bulkJobs/moveFolder',
-            body: (object) $parsed,
-            options: $options,
-            convert: FolderMoveResponse::class,
-        );
+        // @phpstan-ignore-next-line argument.type
+        $response = $this->raw->move(params: $params, requestOptions: $requestOptions);
 
         return $response->parse();
     }
@@ -167,29 +148,36 @@ final class FoldersService implements FoldersContract
      *
      * This API allows you to rename an existing folder. The folder and all its nested assets and sub-folders will remain unchanged, but their paths will be updated to reflect the new folder name.
      *
-     * @param array{
-     *   folderPath: string, newFolderName: string, purgeCache?: bool
-     * }|FolderRenameParams $params
+     * @param string $folderPath the full path to the folder you want to rename
+     * @param string $newFolderName The new name for the folder.
+     *
+     * All characters except alphabets and numbers (inclusive of unicode letters, marks, and numerals in other languages) and `-` will be replaced by an underscore i.e. `_`.
+     * @param bool $purgeCache Option to purge cache for the old nested files and their versions' URLs.
+     *
+     * When set to true, it will internally issue a purge cache request on CDN to remove the cached content of the old nested files and their versions. There will only be one purge request for all the nested files, which will be counted against your monthly purge quota.
+     *
+     * Note: A purge cache request will be issued against `https://ik.imagekit.io/old/folder/path*` (with a wildcard at the end). This will remove all nested files, their versions' URLs, and any transformations made using query parameters on these files or their versions. However, the cache for file transformations made using path parameters will persist. You can purge them using the purge API. For more details, refer to the purge API documentation.
+     *
+     * Default value - `false`
      *
      * @throws APIException
      */
     public function rename(
-        array|FolderRenameParams $params,
-        ?RequestOptions $requestOptions = null
+        string $folderPath,
+        string $newFolderName,
+        ?bool $purgeCache = null,
+        ?RequestOptions $requestOptions = null,
     ): FolderRenameResponse {
-        [$parsed, $options] = FolderRenameParams::parseRequest(
-            $params,
-            $requestOptions,
-        );
+        $params = [
+            'folderPath' => $folderPath,
+            'newFolderName' => $newFolderName,
+            'purgeCache' => $purgeCache,
+        ];
+        // @phpstan-ignore-next-line function.impossibleType
+        $params = array_filter($params, callback: static fn ($v) => !is_null($v));
 
-        /** @var BaseResponse<FolderRenameResponse> */
-        $response = $this->client->request(
-            method: 'post',
-            path: 'v1/bulkJobs/renameFolder',
-            body: (object) $parsed,
-            options: $options,
-            convert: FolderRenameResponse::class,
-        );
+        // @phpstan-ignore-next-line argument.type
+        $response = $this->raw->rename(params: $params, requestOptions: $requestOptions);
 
         return $response->parse();
     }

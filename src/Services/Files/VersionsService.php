@@ -5,28 +5,33 @@ declare(strict_types=1);
 namespace Imagekit\Services\Files;
 
 use Imagekit\Client;
-use Imagekit\Core\Contracts\BaseResponse;
-use Imagekit\Core\Conversion\ListOf;
 use Imagekit\Core\Exceptions\APIException;
 use Imagekit\Files\File;
-use Imagekit\Files\Versions\VersionDeleteParams;
 use Imagekit\Files\Versions\VersionDeleteResponse;
-use Imagekit\Files\Versions\VersionGetParams;
-use Imagekit\Files\Versions\VersionRestoreParams;
 use Imagekit\RequestOptions;
 use Imagekit\ServiceContracts\Files\VersionsContract;
 
 final class VersionsService implements VersionsContract
 {
     /**
+     * @api
+     */
+    public VersionsRawService $raw;
+
+    /**
      * @internal
      */
-    public function __construct(private Client $client) {}
+    public function __construct(private Client $client)
+    {
+        $this->raw = new VersionsRawService($client);
+    }
 
     /**
      * @api
      *
      * This API returns details of all versions of a file.
+     *
+     * @param string $fileID The unique `fileId` of the uploaded file. `fileId` is returned in list and search assets API and upload API.
      *
      * @return list<File>
      *
@@ -36,13 +41,8 @@ final class VersionsService implements VersionsContract
         string $fileID,
         ?RequestOptions $requestOptions = null
     ): array {
-        /** @var BaseResponse<list<File>> */
-        $response = $this->client->request(
-            method: 'get',
-            path: ['v1/files/%1$s/versions', $fileID],
-            options: $requestOptions,
-            convert: new ListOf(File::class),
-        );
+        // @phpstan-ignore-next-line argument.type
+        $response = $this->raw->list($fileID, requestOptions: $requestOptions);
 
         return $response->parse();
     }
@@ -54,29 +54,20 @@ final class VersionsService implements VersionsContract
      *
      * Note: If you want to delete all versions of a file, use the delete file API.
      *
-     * @param array{fileID: string}|VersionDeleteParams $params
+     * @param string $versionID The unique `versionId` of the uploaded file. `versionId` is returned in list and search assets API and upload API.
+     * @param string $fileID The unique `fileId` of the uploaded file. `fileId` is returned in list and search assets API and upload API.
      *
      * @throws APIException
      */
     public function delete(
         string $versionID,
-        array|VersionDeleteParams $params,
-        ?RequestOptions $requestOptions = null,
+        string $fileID,
+        ?RequestOptions $requestOptions = null
     ): VersionDeleteResponse {
-        [$parsed, $options] = VersionDeleteParams::parseRequest(
-            $params,
-            $requestOptions,
-        );
-        $fileID = $parsed['fileID'];
-        unset($parsed['fileID']);
+        $params = ['fileID' => $fileID];
 
-        /** @var BaseResponse<VersionDeleteResponse> */
-        $response = $this->client->request(
-            method: 'delete',
-            path: ['v1/files/%1$s/versions/%2$s', $fileID, $versionID],
-            options: $options,
-            convert: VersionDeleteResponse::class,
-        );
+        // @phpstan-ignore-next-line argument.type
+        $response = $this->raw->delete($versionID, params: $params, requestOptions: $requestOptions);
 
         return $response->parse();
     }
@@ -86,29 +77,20 @@ final class VersionsService implements VersionsContract
      *
      * This API returns an object with details or attributes of a file version.
      *
-     * @param array{fileID: string}|VersionGetParams $params
+     * @param string $versionID The unique `versionId` of the uploaded file. `versionId` is returned in list and search assets API and upload API.
+     * @param string $fileID The unique `fileId` of the uploaded file. `fileId` is returned in list and search assets API and upload API.
      *
      * @throws APIException
      */
     public function get(
         string $versionID,
-        array|VersionGetParams $params,
-        ?RequestOptions $requestOptions = null,
+        string $fileID,
+        ?RequestOptions $requestOptions = null
     ): File {
-        [$parsed, $options] = VersionGetParams::parseRequest(
-            $params,
-            $requestOptions,
-        );
-        $fileID = $parsed['fileID'];
-        unset($parsed['fileID']);
+        $params = ['fileID' => $fileID];
 
-        /** @var BaseResponse<File> */
-        $response = $this->client->request(
-            method: 'get',
-            path: ['v1/files/%1$s/versions/%2$s', $fileID, $versionID],
-            options: $options,
-            convert: File::class,
-        );
+        // @phpstan-ignore-next-line argument.type
+        $response = $this->raw->get($versionID, params: $params, requestOptions: $requestOptions);
 
         return $response->parse();
     }
@@ -118,29 +100,20 @@ final class VersionsService implements VersionsContract
      *
      * This API restores a file version as the current file version.
      *
-     * @param array{fileID: string}|VersionRestoreParams $params
+     * @param string $versionID The unique `versionId` of the uploaded file. `versionId` is returned in list and search assets API and upload API.
+     * @param string $fileID The unique `fileId` of the uploaded file. `fileId` is returned in list and search assets API and upload API.
      *
      * @throws APIException
      */
     public function restore(
         string $versionID,
-        array|VersionRestoreParams $params,
-        ?RequestOptions $requestOptions = null,
+        string $fileID,
+        ?RequestOptions $requestOptions = null
     ): File {
-        [$parsed, $options] = VersionRestoreParams::parseRequest(
-            $params,
-            $requestOptions,
-        );
-        $fileID = $parsed['fileID'];
-        unset($parsed['fileID']);
+        $params = ['fileID' => $fileID];
 
-        /** @var BaseResponse<File> */
-        $response = $this->client->request(
-            method: 'put',
-            path: ['v1/files/%1$s/versions/%2$s/restore', $fileID, $versionID],
-            options: $options,
-            convert: File::class,
-        );
+        // @phpstan-ignore-next-line argument.type
+        $response = $this->raw->restore($versionID, params: $params, requestOptions: $requestOptions);
 
         return $response->parse();
     }

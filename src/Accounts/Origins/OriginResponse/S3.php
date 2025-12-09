@@ -17,7 +17,7 @@ use Imagekit\Core\Contracts\BaseModel;
  *   name: string,
  *   prefix: string,
  *   type?: 'S3',
- *   baseUrlForCanonicalHeader?: string|null,
+ *   baseURLForCanonicalHeader?: string|null,
  * }
  */
 final class S3 implements BaseModel
@@ -62,8 +62,8 @@ final class S3 implements BaseModel
     /**
      * URL used in the Canonical header (if enabled).
      */
-    #[Optional]
-    public ?string $baseUrlForCanonicalHeader;
+    #[Optional('baseUrlForCanonicalHeader')]
+    public ?string $baseURLForCanonicalHeader;
 
     /**
      * `new S3()` is missing required properties by the API.
@@ -102,7 +102,7 @@ final class S3 implements BaseModel
         string $name,
         string $prefix,
         bool $includeCanonicalHeader = false,
-        ?string $baseUrlForCanonicalHeader = null,
+        ?string $baseURLForCanonicalHeader = null,
     ): self {
         $obj = new self;
 
@@ -112,7 +112,7 @@ final class S3 implements BaseModel
         $obj['name'] = $name;
         $obj['prefix'] = $prefix;
 
-        null !== $baseUrlForCanonicalHeader && $obj['baseUrlForCanonicalHeader'] = $baseUrlForCanonicalHeader;
+        null !== $baseURLForCanonicalHeader && $obj['baseURLForCanonicalHeader'] = $baseURLForCanonicalHeader;
 
         return $obj;
     }
@@ -180,7 +180,7 @@ final class S3 implements BaseModel
         string $baseURLForCanonicalHeader
     ): self {
         $obj = clone $this;
-        $obj['baseUrlForCanonicalHeader'] = $baseURLForCanonicalHeader;
+        $obj['baseURLForCanonicalHeader'] = $baseURLForCanonicalHeader;
 
         return $obj;
     }

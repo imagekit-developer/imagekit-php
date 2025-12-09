@@ -11,7 +11,7 @@ use Imagekit\Core\Contracts\BaseModel;
 /**
  * Job submitted successfully. A `jobId` will be returned.
  *
- * @phpstan-type FolderRenameResponseShape = array{jobId: string}
+ * @phpstan-type FolderRenameResponseShape = array{jobID: string}
  */
 final class FolderRenameResponse implements BaseModel
 {
@@ -21,15 +21,15 @@ final class FolderRenameResponse implements BaseModel
     /**
      * Unique identifier of the bulk job. This can be used to check the status of the bulk job.
      */
-    #[Required]
-    public string $jobId;
+    #[Required('jobId')]
+    public string $jobID;
 
     /**
      * `new FolderRenameResponse()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * FolderRenameResponse::with(jobId: ...)
+     * FolderRenameResponse::with(jobID: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
@@ -48,11 +48,11 @@ final class FolderRenameResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function with(string $jobId): self
+    public static function with(string $jobID): self
     {
         $obj = new self;
 
-        $obj['jobId'] = $jobId;
+        $obj['jobID'] = $jobID;
 
         return $obj;
     }
@@ -63,7 +63,7 @@ final class FolderRenameResponse implements BaseModel
     public function withJobID(string $jobID): self
     {
         $obj = clone $this;
-        $obj['jobId'] = $jobID;
+        $obj['jobID'] = $jobID;
 
         return $obj;
     }

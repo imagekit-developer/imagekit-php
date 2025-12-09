@@ -58,7 +58,7 @@ final class FilesService implements FilesContract
      *   tags?: list<string>,
      *   transformation?: array{post?: list<array<string,mixed>>, pre?: string},
      *   useUniqueFileName?: bool,
-     *   webhookUrl?: string,
+     *   webhookURL?: string,
      * }|FileUploadParams $params
      *
      * @throws APIException

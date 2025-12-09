@@ -16,7 +16,7 @@ use Imagekit\Core\Contracts\BaseModel;
  *   name: string,
  *   sasToken: string,
  *   type?: 'AZURE_BLOB',
- *   baseUrlForCanonicalHeader?: string|null,
+ *   baseURLForCanonicalHeader?: string|null,
  *   includeCanonicalHeader?: bool|null,
  *   prefix?: string|null,
  * }
@@ -48,8 +48,8 @@ final class AzureBlob implements BaseModel
     /**
      * URL used in the Canonical header (if enabled).
      */
-    #[Optional]
-    public ?string $baseUrlForCanonicalHeader;
+    #[Optional('baseUrlForCanonicalHeader')]
+    public ?string $baseURLForCanonicalHeader;
 
     /**
      * Whether to send a Canonical header.
@@ -93,7 +93,7 @@ final class AzureBlob implements BaseModel
         string $container,
         string $name,
         string $sasToken,
-        ?string $baseUrlForCanonicalHeader = null,
+        ?string $baseURLForCanonicalHeader = null,
         ?bool $includeCanonicalHeader = null,
         ?string $prefix = null,
     ): self {
@@ -104,7 +104,7 @@ final class AzureBlob implements BaseModel
         $obj['name'] = $name;
         $obj['sasToken'] = $sasToken;
 
-        null !== $baseUrlForCanonicalHeader && $obj['baseUrlForCanonicalHeader'] = $baseUrlForCanonicalHeader;
+        null !== $baseURLForCanonicalHeader && $obj['baseURLForCanonicalHeader'] = $baseURLForCanonicalHeader;
         null !== $includeCanonicalHeader && $obj['includeCanonicalHeader'] = $includeCanonicalHeader;
         null !== $prefix && $obj['prefix'] = $prefix;
 
@@ -153,7 +153,7 @@ final class AzureBlob implements BaseModel
         string $baseURLForCanonicalHeader
     ): self {
         $obj = clone $this;
-        $obj['baseUrlForCanonicalHeader'] = $baseURLForCanonicalHeader;
+        $obj['baseURLForCanonicalHeader'] = $baseURLForCanonicalHeader;
 
         return $obj;
     }

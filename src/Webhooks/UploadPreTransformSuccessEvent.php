@@ -21,7 +21,7 @@ use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Request;
  * @phpstan-type UploadPreTransformSuccessEventShape = array{
  *   id: string,
  *   type: string,
- *   created_at: \DateTimeInterface,
+ *   createdAt: \DateTimeInterface,
  *   data: Data,
  *   request: Request,
  * }
@@ -46,8 +46,8 @@ final class UploadPreTransformSuccessEvent implements BaseModel
     /**
      * Timestamp of when the event occurred in ISO8601 format.
      */
-    #[Required]
-    public \DateTimeInterface $created_at;
+    #[Required('created_at')]
+    public \DateTimeInterface $createdAt;
 
     /**
      * Object containing details of a successful upload.
@@ -64,7 +64,7 @@ final class UploadPreTransformSuccessEvent implements BaseModel
      * To enforce required parameters use
      * ```
      * UploadPreTransformSuccessEvent::with(
-     *   id: ..., type: ..., created_at: ..., data: ..., request: ...
+     *   id: ..., type: ..., createdAt: ..., data: ..., request: ...
      * )
      * ```
      *
@@ -90,7 +90,7 @@ final class UploadPreTransformSuccessEvent implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param Data|array{
-     *   AITags?: list<AITag>|null,
+     *   aiTags?: list<AITag>|null,
      *   audioCodec?: string|null,
      *   bitRate?: int|null,
      *   customCoordinates?: string|null,
@@ -99,7 +99,7 @@ final class UploadPreTransformSuccessEvent implements BaseModel
      *   duration?: int|null,
      *   embeddedMetadata?: array<string,mixed>|null,
      *   extensionStatus?: ExtensionStatus|null,
-     *   fileId?: string|null,
+     *   fileID?: string|null,
      *   filePath?: string|null,
      *   fileType?: string|null,
      *   height?: float|null,
@@ -110,18 +110,18 @@ final class UploadPreTransformSuccessEvent implements BaseModel
      *   selectedFieldsSchema?: array<string,SelectedFieldsSchema>|null,
      *   size?: float|null,
      *   tags?: list<string>|null,
-     *   thumbnailUrl?: string|null,
+     *   thumbnailURL?: string|null,
      *   url?: string|null,
      *   versionInfo?: VersionInfo|null,
      *   videoCodec?: string|null,
      *   width?: float|null,
      * } $data
-     * @param Request|array{transformation: string, x_request_id: string} $request
+     * @param Request|array{transformation: string, xRequestID: string} $request
      */
     public static function with(
         string $id,
         string $type,
-        \DateTimeInterface $created_at,
+        \DateTimeInterface $createdAt,
         Data|array $data,
         Request|array $request,
     ): self {
@@ -129,7 +129,7 @@ final class UploadPreTransformSuccessEvent implements BaseModel
 
         $obj['id'] = $id;
         $obj['type'] = $type;
-        $obj['created_at'] = $created_at;
+        $obj['createdAt'] = $createdAt;
         $obj['data'] = $data;
         $obj['request'] = $request;
 
@@ -164,7 +164,7 @@ final class UploadPreTransformSuccessEvent implements BaseModel
     public function withCreatedAt(\DateTimeInterface $createdAt): self
     {
         $obj = clone $this;
-        $obj['created_at'] = $createdAt;
+        $obj['createdAt'] = $createdAt;
 
         return $obj;
     }
@@ -173,7 +173,7 @@ final class UploadPreTransformSuccessEvent implements BaseModel
      * Object containing details of a successful upload.
      *
      * @param Data|array{
-     *   AITags?: list<AITag>|null,
+     *   aiTags?: list<AITag>|null,
      *   audioCodec?: string|null,
      *   bitRate?: int|null,
      *   customCoordinates?: string|null,
@@ -182,7 +182,7 @@ final class UploadPreTransformSuccessEvent implements BaseModel
      *   duration?: int|null,
      *   embeddedMetadata?: array<string,mixed>|null,
      *   extensionStatus?: ExtensionStatus|null,
-     *   fileId?: string|null,
+     *   fileID?: string|null,
      *   filePath?: string|null,
      *   fileType?: string|null,
      *   height?: float|null,
@@ -193,7 +193,7 @@ final class UploadPreTransformSuccessEvent implements BaseModel
      *   selectedFieldsSchema?: array<string,SelectedFieldsSchema>|null,
      *   size?: float|null,
      *   tags?: list<string>|null,
-     *   thumbnailUrl?: string|null,
+     *   thumbnailURL?: string|null,
      *   url?: string|null,
      *   versionInfo?: VersionInfo|null,
      *   videoCodec?: string|null,
@@ -209,7 +209,7 @@ final class UploadPreTransformSuccessEvent implements BaseModel
     }
 
     /**
-     * @param Request|array{transformation: string, x_request_id: string} $request
+     * @param Request|array{transformation: string, xRequestID: string} $request
      */
     public function withRequest(Request|array $request): self
     {

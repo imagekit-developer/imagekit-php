@@ -10,7 +10,7 @@ use Imagekit\Core\Contracts\BaseModel;
 
 /**
  * @phpstan-type BulkAddTagsResponseShape = array{
- *   successfullyUpdatedFileIds?: list<string>|null
+ *   successfullyUpdatedFileIDs?: list<string>|null
  * }
  */
 final class BulkAddTagsResponse implements BaseModel
@@ -21,10 +21,10 @@ final class BulkAddTagsResponse implements BaseModel
     /**
      * An array of fileIds that in which tags were successfully added.
      *
-     * @var list<string>|null $successfullyUpdatedFileIds
+     * @var list<string>|null $successfullyUpdatedFileIDs
      */
-    #[Optional(list: 'string')]
-    public ?array $successfullyUpdatedFileIds;
+    #[Optional('successfullyUpdatedFileIds', list: 'string')]
+    public ?array $successfullyUpdatedFileIDs;
 
     public function __construct()
     {
@@ -36,13 +36,13 @@ final class BulkAddTagsResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<string> $successfullyUpdatedFileIds
+     * @param list<string> $successfullyUpdatedFileIDs
      */
-    public static function with(?array $successfullyUpdatedFileIds = null): self
+    public static function with(?array $successfullyUpdatedFileIDs = null): self
     {
         $obj = new self;
 
-        null !== $successfullyUpdatedFileIds && $obj['successfullyUpdatedFileIds'] = $successfullyUpdatedFileIds;
+        null !== $successfullyUpdatedFileIDs && $obj['successfullyUpdatedFileIDs'] = $successfullyUpdatedFileIDs;
 
         return $obj;
     }
@@ -56,7 +56,7 @@ final class BulkAddTagsResponse implements BaseModel
         array $successfullyUpdatedFileIDs
     ): self {
         $obj = clone $this;
-        $obj['successfullyUpdatedFileIds'] = $successfullyUpdatedFileIDs;
+        $obj['successfullyUpdatedFileIDs'] = $successfullyUpdatedFileIDs;
 
         return $obj;
     }

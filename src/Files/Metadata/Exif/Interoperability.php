@@ -12,7 +12,7 @@ use Imagekit\Core\Contracts\BaseModel;
  * JSON object.
  *
  * @phpstan-type InteroperabilityShape = array{
- *   InteropIndex?: string|null, InteropVersion?: string|null
+ *   interopIndex?: string|null, interopVersion?: string|null
  * }
  */
 final class Interoperability implements BaseModel
@@ -20,11 +20,11 @@ final class Interoperability implements BaseModel
     /** @use SdkModel<InteroperabilityShape> */
     use SdkModel;
 
-    #[Optional]
-    public ?string $InteropIndex;
+    #[Optional('InteropIndex')]
+    public ?string $interopIndex;
 
-    #[Optional]
-    public ?string $InteropVersion;
+    #[Optional('InteropVersion')]
+    public ?string $interopVersion;
 
     public function __construct()
     {
@@ -37,13 +37,13 @@ final class Interoperability implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      */
     public static function with(
-        ?string $InteropIndex = null,
-        ?string $InteropVersion = null
+        ?string $interopIndex = null,
+        ?string $interopVersion = null
     ): self {
         $obj = new self;
 
-        null !== $InteropIndex && $obj['InteropIndex'] = $InteropIndex;
-        null !== $InteropVersion && $obj['InteropVersion'] = $InteropVersion;
+        null !== $interopIndex && $obj['interopIndex'] = $interopIndex;
+        null !== $interopVersion && $obj['interopVersion'] = $interopVersion;
 
         return $obj;
     }
@@ -51,7 +51,7 @@ final class Interoperability implements BaseModel
     public function withInteropIndex(string $interopIndex): self
     {
         $obj = clone $this;
-        $obj['InteropIndex'] = $interopIndex;
+        $obj['interopIndex'] = $interopIndex;
 
         return $obj;
     }
@@ -59,7 +59,7 @@ final class Interoperability implements BaseModel
     public function withInteropVersion(string $interopVersion): self
     {
         $obj = clone $this;
-        $obj['InteropVersion'] = $interopVersion;
+        $obj['interopVersion'] = $interopVersion;
 
         return $obj;
     }

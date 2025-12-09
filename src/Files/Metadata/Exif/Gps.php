@@ -11,16 +11,16 @@ use Imagekit\Core\Contracts\BaseModel;
 /**
  * Object containing GPS information.
  *
- * @phpstan-type GpsShape = array{GPSVersionID?: list<int>|null}
+ * @phpstan-type GpsShape = array{gpsVersionID?: list<int>|null}
  */
 final class Gps implements BaseModel
 {
     /** @use SdkModel<GpsShape> */
     use SdkModel;
 
-    /** @var list<int>|null $GPSVersionID */
-    #[Optional(list: 'int')]
-    public ?array $GPSVersionID;
+    /** @var list<int>|null $gpsVersionID */
+    #[Optional('GPSVersionID', list: 'int')]
+    public ?array $gpsVersionID;
 
     public function __construct()
     {
@@ -32,13 +32,13 @@ final class Gps implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<int> $GPSVersionID
+     * @param list<int> $gpsVersionID
      */
-    public static function with(?array $GPSVersionID = null): self
+    public static function with(?array $gpsVersionID = null): self
     {
         $obj = new self;
 
-        null !== $GPSVersionID && $obj['GPSVersionID'] = $GPSVersionID;
+        null !== $gpsVersionID && $obj['gpsVersionID'] = $gpsVersionID;
 
         return $obj;
     }
@@ -49,7 +49,7 @@ final class Gps implements BaseModel
     public function withGpsVersionID(array $gpsVersionID): self
     {
         $obj = clone $this;
-        $obj['GPSVersionID'] = $gpsVersionID;
+        $obj['gpsVersionID'] = $gpsVersionID;
 
         return $obj;
     }

@@ -72,58 +72,58 @@ final class Exif implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param Exif\Exif|array{
-     *   ApertureValue?: float|null,
-     *   ColorSpace?: int|null,
-     *   CreateDate?: string|null,
-     *   CustomRendered?: int|null,
-     *   DateTimeOriginal?: string|null,
-     *   ExifImageHeight?: int|null,
-     *   ExifImageWidth?: int|null,
-     *   ExifVersion?: string|null,
-     *   ExposureCompensation?: float|null,
-     *   ExposureMode?: int|null,
-     *   ExposureProgram?: int|null,
-     *   ExposureTime?: float|null,
-     *   Flash?: int|null,
-     *   FlashpixVersion?: string|null,
-     *   FNumber?: float|null,
-     *   FocalLength?: int|null,
-     *   FocalPlaneResolutionUnit?: int|null,
-     *   FocalPlaneXResolution?: float|null,
-     *   FocalPlaneYResolution?: float|null,
-     *   InteropOffset?: int|null,
-     *   ISO?: int|null,
-     *   MeteringMode?: int|null,
-     *   SceneCaptureType?: int|null,
-     *   ShutterSpeedValue?: float|null,
-     *   SubSecTime?: string|null,
-     *   WhiteBalance?: int|null,
+     *   apertureValue?: float|null,
+     *   colorSpace?: int|null,
+     *   createDate?: string|null,
+     *   customRendered?: int|null,
+     *   dateTimeOriginal?: string|null,
+     *   exifImageHeight?: int|null,
+     *   exifImageWidth?: int|null,
+     *   exifVersion?: string|null,
+     *   exposureCompensation?: float|null,
+     *   exposureMode?: int|null,
+     *   exposureProgram?: int|null,
+     *   exposureTime?: float|null,
+     *   flash?: int|null,
+     *   flashpixVersion?: string|null,
+     *   fNumber?: float|null,
+     *   focalLength?: int|null,
+     *   focalPlaneResolutionUnit?: int|null,
+     *   focalPlaneXResolution?: float|null,
+     *   focalPlaneYResolution?: float|null,
+     *   interopOffset?: int|null,
+     *   iso?: int|null,
+     *   meteringMode?: int|null,
+     *   sceneCaptureType?: int|null,
+     *   shutterSpeedValue?: float|null,
+     *   subSecTime?: string|null,
+     *   whiteBalance?: int|null,
      * } $exif
-     * @param Gps|array{GPSVersionID?: list<int>|null} $gps
+     * @param Gps|array{gpsVersionID?: list<int>|null} $gps
      * @param Image|array{
-     *   ExifOffset?: int|null,
-     *   GPSInfo?: int|null,
-     *   Make?: string|null,
-     *   Model?: string|null,
-     *   ModifyDate?: string|null,
-     *   Orientation?: int|null,
-     *   ResolutionUnit?: int|null,
-     *   Software?: string|null,
-     *   XResolution?: int|null,
-     *   YCbCrPositioning?: int|null,
-     *   YResolution?: int|null,
+     *   exifOffset?: int|null,
+     *   gpsInfo?: int|null,
+     *   make?: string|null,
+     *   model?: string|null,
+     *   modifyDate?: string|null,
+     *   orientation?: int|null,
+     *   resolutionUnit?: int|null,
+     *   software?: string|null,
+     *   xResolution?: int|null,
+     *   yCbCrPositioning?: int|null,
+     *   yResolution?: int|null,
      * } $image
      * @param Interoperability|array{
-     *   InteropIndex?: string|null, InteropVersion?: string|null
+     *   interopIndex?: string|null, interopVersion?: string|null
      * } $interoperability
      * @param array<string,mixed> $makernote
      * @param Thumbnail|array{
-     *   Compression?: int|null,
-     *   ResolutionUnit?: int|null,
-     *   ThumbnailLength?: int|null,
-     *   ThumbnailOffset?: int|null,
-     *   XResolution?: int|null,
-     *   YResolution?: int|null,
+     *   compression?: int|null,
+     *   resolutionUnit?: int|null,
+     *   thumbnailLength?: int|null,
+     *   thumbnailOffset?: int|null,
+     *   xResolution?: int|null,
+     *   yResolution?: int|null,
      * } $thumbnail
      */
     public static function with(
@@ -150,32 +150,32 @@ final class Exif implements BaseModel
      * Object containing Exif details.
      *
      * @param Exif\Exif|array{
-     *   ApertureValue?: float|null,
-     *   ColorSpace?: int|null,
-     *   CreateDate?: string|null,
-     *   CustomRendered?: int|null,
-     *   DateTimeOriginal?: string|null,
-     *   ExifImageHeight?: int|null,
-     *   ExifImageWidth?: int|null,
-     *   ExifVersion?: string|null,
-     *   ExposureCompensation?: float|null,
-     *   ExposureMode?: int|null,
-     *   ExposureProgram?: int|null,
-     *   ExposureTime?: float|null,
-     *   Flash?: int|null,
-     *   FlashpixVersion?: string|null,
-     *   FNumber?: float|null,
-     *   FocalLength?: int|null,
-     *   FocalPlaneResolutionUnit?: int|null,
-     *   FocalPlaneXResolution?: float|null,
-     *   FocalPlaneYResolution?: float|null,
-     *   InteropOffset?: int|null,
-     *   ISO?: int|null,
-     *   MeteringMode?: int|null,
-     *   SceneCaptureType?: int|null,
-     *   ShutterSpeedValue?: float|null,
-     *   SubSecTime?: string|null,
-     *   WhiteBalance?: int|null,
+     *   apertureValue?: float|null,
+     *   colorSpace?: int|null,
+     *   createDate?: string|null,
+     *   customRendered?: int|null,
+     *   dateTimeOriginal?: string|null,
+     *   exifImageHeight?: int|null,
+     *   exifImageWidth?: int|null,
+     *   exifVersion?: string|null,
+     *   exposureCompensation?: float|null,
+     *   exposureMode?: int|null,
+     *   exposureProgram?: int|null,
+     *   exposureTime?: float|null,
+     *   flash?: int|null,
+     *   flashpixVersion?: string|null,
+     *   fNumber?: float|null,
+     *   focalLength?: int|null,
+     *   focalPlaneResolutionUnit?: int|null,
+     *   focalPlaneXResolution?: float|null,
+     *   focalPlaneYResolution?: float|null,
+     *   interopOffset?: int|null,
+     *   iso?: int|null,
+     *   meteringMode?: int|null,
+     *   sceneCaptureType?: int|null,
+     *   shutterSpeedValue?: float|null,
+     *   subSecTime?: string|null,
+     *   whiteBalance?: int|null,
      * } $exif
      */
     public function withExif(
@@ -190,7 +190,7 @@ final class Exif implements BaseModel
     /**
      * Object containing GPS information.
      *
-     * @param Gps|array{GPSVersionID?: list<int>|null} $gps
+     * @param Gps|array{gpsVersionID?: list<int>|null} $gps
      */
     public function withGps(Gps|array $gps): self
     {
@@ -204,17 +204,17 @@ final class Exif implements BaseModel
      * Object containing EXIF image information.
      *
      * @param Image|array{
-     *   ExifOffset?: int|null,
-     *   GPSInfo?: int|null,
-     *   Make?: string|null,
-     *   Model?: string|null,
-     *   ModifyDate?: string|null,
-     *   Orientation?: int|null,
-     *   ResolutionUnit?: int|null,
-     *   Software?: string|null,
-     *   XResolution?: int|null,
-     *   YCbCrPositioning?: int|null,
-     *   YResolution?: int|null,
+     *   exifOffset?: int|null,
+     *   gpsInfo?: int|null,
+     *   make?: string|null,
+     *   model?: string|null,
+     *   modifyDate?: string|null,
+     *   orientation?: int|null,
+     *   resolutionUnit?: int|null,
+     *   software?: string|null,
+     *   xResolution?: int|null,
+     *   yCbCrPositioning?: int|null,
+     *   yResolution?: int|null,
      * } $image
      */
     public function withImage(Image|array $image): self
@@ -229,7 +229,7 @@ final class Exif implements BaseModel
      * JSON object.
      *
      * @param Interoperability|array{
-     *   InteropIndex?: string|null, InteropVersion?: string|null
+     *   interopIndex?: string|null, interopVersion?: string|null
      * } $interoperability
      */
     public function withInteroperability(
@@ -256,12 +256,12 @@ final class Exif implements BaseModel
      * Object containing Thumbnail information.
      *
      * @param Thumbnail|array{
-     *   Compression?: int|null,
-     *   ResolutionUnit?: int|null,
-     *   ThumbnailLength?: int|null,
-     *   ThumbnailOffset?: int|null,
-     *   XResolution?: int|null,
-     *   YResolution?: int|null,
+     *   compression?: int|null,
+     *   resolutionUnit?: int|null,
+     *   thumbnailLength?: int|null,
+     *   thumbnailOffset?: int|null,
+     *   xResolution?: int|null,
+     *   yResolution?: int|null,
      * } $thumbnail
      */
     public function withThumbnail(Thumbnail|array $thumbnail): self

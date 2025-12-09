@@ -42,7 +42,7 @@ final class BulkTest extends TestCase
         }
 
         $result = $this->client->files->bulk->delete([
-            'fileIds' => ['598821f949c0a938d57563bd', '598821f949c0a938d57563be'],
+            'fileIDs' => ['598821f949c0a938d57563bd', '598821f949c0a938d57563be'],
         ]);
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
@@ -57,7 +57,7 @@ final class BulkTest extends TestCase
         }
 
         $result = $this->client->files->bulk->delete([
-            'fileIds' => ['598821f949c0a938d57563bd', '598821f949c0a938d57563be'],
+            'fileIDs' => ['598821f949c0a938d57563bd', '598821f949c0a938d57563be'],
         ]);
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
@@ -72,7 +72,7 @@ final class BulkTest extends TestCase
         }
 
         $result = $this->client->files->bulk->addTags([
-            'fileIds' => ['598821f949c0a938d57563bd', '598821f949c0a938d57563be'],
+            'fileIDs' => ['598821f949c0a938d57563bd', '598821f949c0a938d57563be'],
             'tags' => ['t-shirt', 'round-neck', 'sale2019'],
         ]);
 
@@ -88,7 +88,7 @@ final class BulkTest extends TestCase
         }
 
         $result = $this->client->files->bulk->addTags([
-            'fileIds' => ['598821f949c0a938d57563bd', '598821f949c0a938d57563be'],
+            'fileIDs' => ['598821f949c0a938d57563bd', '598821f949c0a938d57563be'],
             'tags' => ['t-shirt', 'round-neck', 'sale2019'],
         ]);
 
@@ -104,8 +104,8 @@ final class BulkTest extends TestCase
         }
 
         $result = $this->client->files->bulk->removeAITags([
-            'AITags' => ['t-shirt', 'round-neck', 'sale2019'],
-            'fileIds' => ['598821f949c0a938d57563bd', '598821f949c0a938d57563be'],
+            'aiTags' => ['t-shirt', 'round-neck', 'sale2019'],
+            'fileIDs' => ['598821f949c0a938d57563bd', '598821f949c0a938d57563be'],
         ]);
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
@@ -120,8 +120,8 @@ final class BulkTest extends TestCase
         }
 
         $result = $this->client->files->bulk->removeAITags([
-            'AITags' => ['t-shirt', 'round-neck', 'sale2019'],
-            'fileIds' => ['598821f949c0a938d57563bd', '598821f949c0a938d57563be'],
+            'aiTags' => ['t-shirt', 'round-neck', 'sale2019'],
+            'fileIDs' => ['598821f949c0a938d57563bd', '598821f949c0a938d57563be'],
         ]);
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
@@ -136,7 +136,7 @@ final class BulkTest extends TestCase
         }
 
         $result = $this->client->files->bulk->removeTags([
-            'fileIds' => ['598821f949c0a938d57563bd', '598821f949c0a938d57563be'],
+            'fileIDs' => ['598821f949c0a938d57563bd', '598821f949c0a938d57563be'],
             'tags' => ['t-shirt', 'round-neck', 'sale2019'],
         ]);
 
@@ -152,7 +152,7 @@ final class BulkTest extends TestCase
         }
 
         $result = $this->client->files->bulk->removeTags([
-            'fileIds' => ['598821f949c0a938d57563bd', '598821f949c0a938d57563be'],
+            'fileIDs' => ['598821f949c0a938d57563bd', '598821f949c0a938d57563be'],
             'tags' => ['t-shirt', 'round-neck', 'sale2019'],
         ]);
 

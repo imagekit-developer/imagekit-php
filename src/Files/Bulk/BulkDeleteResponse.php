@@ -10,7 +10,7 @@ use Imagekit\Core\Contracts\BaseModel;
 
 /**
  * @phpstan-type BulkDeleteResponseShape = array{
- *   successfullyDeletedFileIds?: list<string>|null
+ *   successfullyDeletedFileIDs?: list<string>|null
  * }
  */
 final class BulkDeleteResponse implements BaseModel
@@ -21,10 +21,10 @@ final class BulkDeleteResponse implements BaseModel
     /**
      * An array of fileIds that were successfully deleted.
      *
-     * @var list<string>|null $successfullyDeletedFileIds
+     * @var list<string>|null $successfullyDeletedFileIDs
      */
-    #[Optional(list: 'string')]
-    public ?array $successfullyDeletedFileIds;
+    #[Optional('successfullyDeletedFileIds', list: 'string')]
+    public ?array $successfullyDeletedFileIDs;
 
     public function __construct()
     {
@@ -36,13 +36,13 @@ final class BulkDeleteResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<string> $successfullyDeletedFileIds
+     * @param list<string> $successfullyDeletedFileIDs
      */
-    public static function with(?array $successfullyDeletedFileIds = null): self
+    public static function with(?array $successfullyDeletedFileIDs = null): self
     {
         $obj = new self;
 
-        null !== $successfullyDeletedFileIds && $obj['successfullyDeletedFileIds'] = $successfullyDeletedFileIds;
+        null !== $successfullyDeletedFileIDs && $obj['successfullyDeletedFileIDs'] = $successfullyDeletedFileIDs;
 
         return $obj;
     }
@@ -56,7 +56,7 @@ final class BulkDeleteResponse implements BaseModel
         array $successfullyDeletedFileIDs
     ): self {
         $obj = clone $this;
-        $obj['successfullyDeletedFileIds'] = $successfullyDeletedFileIDs;
+        $obj['successfullyDeletedFileIDs'] = $successfullyDeletedFileIDs;
 
         return $obj;
     }

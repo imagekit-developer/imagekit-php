@@ -57,12 +57,23 @@ final class FilesService implements FilesContract
      *
      * This API updates the details or attributes of the current version of the file. You can update `tags`, `customCoordinates`, `customMetadata`, publication status, remove existing `AITags` and apply extensions using this API.
      *
+     * @param array{
+     *   customCoordinates?: string|null,
+     *   customMetadata?: array<string,mixed>,
+     *   description?: string,
+     *   extensions?: list<array<string,mixed>>,
+     *   removeAITags?: 'all'|list<string>,
+     *   tags?: list<string>|null,
+     *   webhookURL?: string,
+     *   publish?: array{isPublished: bool, includeFileVersions?: bool},
+     * }|FileUpdateParams $params
+     *
      * @throws APIException
      */
     public function update(
         string $fileID,
-        mixed $params,
-        ?RequestOptions $requestOptions = null
+        array|FileUpdateParams $params,
+        ?RequestOptions $requestOptions = null,
     ): FileUpdateResponse {
         [$parsed, $options] = FileUpdateParams::parseRequest(
             $params,
@@ -270,7 +281,7 @@ final class FilesService implements FilesContract
      *   tags?: list<string>,
      *   transformation?: array{post?: list<array<string,mixed>>, pre?: string},
      *   useUniqueFileName?: bool,
-     *   webhookUrl?: string,
+     *   webhookURL?: string,
      * }|FileUploadParams $params
      *
      * @throws APIException

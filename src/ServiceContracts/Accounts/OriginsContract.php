@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Imagekit\ServiceContracts\Accounts;
 
+use Imagekit\Accounts\Origins\OriginCreateParams;
 use Imagekit\Accounts\Origins\OriginResponse\AkeneoPim;
 use Imagekit\Accounts\Origins\OriginResponse\AzureBlob;
 use Imagekit\Accounts\Origins\OriginResponse\CloudinaryBackup;
@@ -12,6 +13,7 @@ use Imagekit\Accounts\Origins\OriginResponse\S3;
 use Imagekit\Accounts\Origins\OriginResponse\S3Compatible;
 use Imagekit\Accounts\Origins\OriginResponse\WebFolder;
 use Imagekit\Accounts\Origins\OriginResponse\WebProxy;
+use Imagekit\Accounts\Origins\OriginUpdateParams;
 use Imagekit\Core\Exceptions\APIException;
 use Imagekit\RequestOptions;
 
@@ -20,22 +22,26 @@ interface OriginsContract
     /**
      * @api
      *
+     * @param array<mixed>|OriginCreateParams $params
+     *
      * @throws APIException
      */
     public function create(
-        mixed $params,
+        array|OriginCreateParams $params,
         ?RequestOptions $requestOptions = null
     ): S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim;
 
     /**
      * @api
      *
+     * @param array<mixed>|OriginUpdateParams $params
+     *
      * @throws APIException
      */
     public function update(
         string $id,
-        mixed $params,
-        ?RequestOptions $requestOptions = null
+        array|OriginUpdateParams $params,
+        ?RequestOptions $requestOptions = null,
     ): S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim;
 
     /**

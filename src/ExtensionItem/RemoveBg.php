@@ -40,9 +40,9 @@ final class RemoveBg implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param Options|array{
-     *   add_shadow?: bool|null,
-     *   bg_color?: string|null,
-     *   bg_image_url?: string|null,
+     *   addShadow?: bool|null,
+     *   bgColor?: string|null,
+     *   bgImageURL?: string|null,
      *   semitransparency?: bool|null,
      * } $options
      */
@@ -57,9 +57,9 @@ final class RemoveBg implements BaseModel
 
     /**
      * @param Options|array{
-     *   add_shadow?: bool|null,
-     *   bg_color?: string|null,
-     *   bg_image_url?: string|null,
+     *   addShadow?: bool|null,
+     *   bgColor?: string|null,
+     *   bgImageURL?: string|null,
      *   semitransparency?: bool|null,
      * } $options
      */

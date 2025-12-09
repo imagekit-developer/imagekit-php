@@ -12,8 +12,8 @@ use Imagekit\Folders\Job\JobGetResponse\Type;
 
 /**
  * @phpstan-type JobGetResponseShape = array{
- *   jobId?: string|null,
- *   purgeRequestId?: string|null,
+ *   jobID?: string|null,
+ *   purgeRequestID?: string|null,
  *   status?: value-of<Status>|null,
  *   type?: value-of<Type>|null,
  * }
@@ -26,14 +26,14 @@ final class JobGetResponse implements BaseModel
     /**
      * Unique identifier of the bulk job.
      */
-    #[Optional]
-    public ?string $jobId;
+    #[Optional('jobId')]
+    public ?string $jobID;
 
     /**
      * Unique identifier of the purge request. This will be present only if `purgeCache` is set to `true` in the rename folder API request.
      */
-    #[Optional]
-    public ?string $purgeRequestId;
+    #[Optional('purgeRequestId')]
+    public ?string $purgeRequestID;
 
     /**
      * Status of the bulk job.
@@ -65,15 +65,15 @@ final class JobGetResponse implements BaseModel
      * @param Type|value-of<Type> $type
      */
     public static function with(
-        ?string $jobId = null,
-        ?string $purgeRequestId = null,
+        ?string $jobID = null,
+        ?string $purgeRequestID = null,
         Status|string|null $status = null,
         Type|string|null $type = null,
     ): self {
         $obj = new self;
 
-        null !== $jobId && $obj['jobId'] = $jobId;
-        null !== $purgeRequestId && $obj['purgeRequestId'] = $purgeRequestId;
+        null !== $jobID && $obj['jobID'] = $jobID;
+        null !== $purgeRequestID && $obj['purgeRequestID'] = $purgeRequestID;
         null !== $status && $obj['status'] = $status;
         null !== $type && $obj['type'] = $type;
 
@@ -86,7 +86,7 @@ final class JobGetResponse implements BaseModel
     public function withJobID(string $jobID): self
     {
         $obj = clone $this;
-        $obj['jobId'] = $jobID;
+        $obj['jobID'] = $jobID;
 
         return $obj;
     }
@@ -97,7 +97,7 @@ final class JobGetResponse implements BaseModel
     public function withPurgeRequestID(string $purgeRequestID): self
     {
         $obj = clone $this;
-        $obj['purgeRequestId'] = $purgeRequestID;
+        $obj['purgeRequestID'] = $purgeRequestID;
 
         return $obj;
     }

@@ -12,6 +12,7 @@ use Imagekit\Files\FileMoveParams;
 use Imagekit\Files\FileMoveResponse;
 use Imagekit\Files\FileRenameParams;
 use Imagekit\Files\FileRenameResponse;
+use Imagekit\Files\FileUpdateParams;
 use Imagekit\Files\FileUpdateResponse;
 use Imagekit\Files\FileUploadParams;
 use Imagekit\Files\FileUploadResponse;
@@ -22,12 +23,14 @@ interface FilesContract
     /**
      * @api
      *
+     * @param array<mixed>|FileUpdateParams $params
+     *
      * @throws APIException
      */
     public function update(
         string $fileID,
-        mixed $params,
-        ?RequestOptions $requestOptions = null
+        array|FileUpdateParams $params,
+        ?RequestOptions $requestOptions = null,
     ): FileUpdateResponse;
 
     /**

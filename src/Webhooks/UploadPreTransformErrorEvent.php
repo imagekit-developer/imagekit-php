@@ -17,7 +17,7 @@ use Imagekit\Webhooks\UploadPreTransformErrorEvent\Request;
  * @phpstan-type UploadPreTransformErrorEventShape = array{
  *   id: string,
  *   type: string,
- *   created_at: \DateTimeInterface,
+ *   createdAt: \DateTimeInterface,
  *   data: Data,
  *   request: Request,
  * }
@@ -42,8 +42,8 @@ final class UploadPreTransformErrorEvent implements BaseModel
     /**
      * Timestamp of when the event occurred in ISO8601 format.
      */
-    #[Required]
-    public \DateTimeInterface $created_at;
+    #[Required('created_at')]
+    public \DateTimeInterface $createdAt;
 
     #[Required]
     public Data $data;
@@ -57,7 +57,7 @@ final class UploadPreTransformErrorEvent implements BaseModel
      * To enforce required parameters use
      * ```
      * UploadPreTransformErrorEvent::with(
-     *   id: ..., type: ..., created_at: ..., data: ..., request: ...
+     *   id: ..., type: ..., createdAt: ..., data: ..., request: ...
      * )
      * ```
      *
@@ -85,12 +85,12 @@ final class UploadPreTransformErrorEvent implements BaseModel
      * @param Data|array{
      *   name: string, path: string, transformation: Transformation
      * } $data
-     * @param Request|array{transformation: string, x_request_id: string} $request
+     * @param Request|array{transformation: string, xRequestID: string} $request
      */
     public static function with(
         string $id,
         string $type,
-        \DateTimeInterface $created_at,
+        \DateTimeInterface $createdAt,
         Data|array $data,
         Request|array $request,
     ): self {
@@ -98,7 +98,7 @@ final class UploadPreTransformErrorEvent implements BaseModel
 
         $obj['id'] = $id;
         $obj['type'] = $type;
-        $obj['created_at'] = $created_at;
+        $obj['createdAt'] = $createdAt;
         $obj['data'] = $data;
         $obj['request'] = $request;
 
@@ -133,7 +133,7 @@ final class UploadPreTransformErrorEvent implements BaseModel
     public function withCreatedAt(\DateTimeInterface $createdAt): self
     {
         $obj = clone $this;
-        $obj['created_at'] = $createdAt;
+        $obj['createdAt'] = $createdAt;
 
         return $obj;
     }
@@ -152,7 +152,7 @@ final class UploadPreTransformErrorEvent implements BaseModel
     }
 
     /**
-     * @param Request|array{transformation: string, x_request_id: string} $request
+     * @param Request|array{transformation: string, xRequestID: string} $request
      */
     public function withRequest(Request|array $request): self
     {

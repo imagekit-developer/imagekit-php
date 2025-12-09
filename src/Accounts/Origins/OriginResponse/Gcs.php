@@ -18,7 +18,7 @@ use Imagekit\Core\Contracts\BaseModel;
  *   name: string,
  *   prefix: string,
  *   type?: 'GCS',
- *   baseUrlForCanonicalHeader?: string|null,
+ *   baseURLForCanonicalHeader?: string|null,
  * }
  */
 final class Gcs implements BaseModel
@@ -60,8 +60,8 @@ final class Gcs implements BaseModel
     /**
      * URL used in the Canonical header (if enabled).
      */
-    #[Optional]
-    public ?string $baseUrlForCanonicalHeader;
+    #[Optional('baseUrlForCanonicalHeader')]
+    public ?string $baseURLForCanonicalHeader;
 
     /**
      * `new Gcs()` is missing required properties by the API.
@@ -107,7 +107,7 @@ final class Gcs implements BaseModel
         string $name,
         string $prefix,
         bool $includeCanonicalHeader = false,
-        ?string $baseUrlForCanonicalHeader = null,
+        ?string $baseURLForCanonicalHeader = null,
     ): self {
         $obj = new self;
 
@@ -118,7 +118,7 @@ final class Gcs implements BaseModel
         $obj['name'] = $name;
         $obj['prefix'] = $prefix;
 
-        null !== $baseUrlForCanonicalHeader && $obj['baseUrlForCanonicalHeader'] = $baseUrlForCanonicalHeader;
+        null !== $baseURLForCanonicalHeader && $obj['baseURLForCanonicalHeader'] = $baseURLForCanonicalHeader;
 
         return $obj;
     }
@@ -188,7 +188,7 @@ final class Gcs implements BaseModel
         string $baseURLForCanonicalHeader
     ): self {
         $obj = clone $this;
-        $obj['baseUrlForCanonicalHeader'] = $baseURLForCanonicalHeader;
+        $obj['baseURLForCanonicalHeader'] = $baseURLForCanonicalHeader;
 
         return $obj;
     }

@@ -9,7 +9,7 @@ use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type InvalidationNewResponseShape = array{requestId?: string|null}
+ * @phpstan-type InvalidationNewResponseShape = array{requestID?: string|null}
  */
 final class InvalidationNewResponse implements BaseModel
 {
@@ -19,8 +19,8 @@ final class InvalidationNewResponse implements BaseModel
     /**
      * Unique identifier of the purge request. This can be used to check the status of the purge request.
      */
-    #[Optional]
-    public ?string $requestId;
+    #[Optional('requestId')]
+    public ?string $requestID;
 
     public function __construct()
     {
@@ -32,11 +32,11 @@ final class InvalidationNewResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function with(?string $requestId = null): self
+    public static function with(?string $requestID = null): self
     {
         $obj = new self;
 
-        null !== $requestId && $obj['requestId'] = $requestId;
+        null !== $requestID && $obj['requestID'] = $requestID;
 
         return $obj;
     }
@@ -47,7 +47,7 @@ final class InvalidationNewResponse implements BaseModel
     public function withRequestID(string $requestID): self
     {
         $obj = clone $this;
-        $obj['requestId'] = $requestID;
+        $obj['requestID'] = $requestID;
 
         return $obj;
     }

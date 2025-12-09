@@ -27,10 +27,10 @@ use Imagekit\Files\FileUpdateParams\RemoveAITags;
  *   customMetadata?: array<string,mixed>,
  *   description?: string,
  *   extensions?: list<RemoveBg|array{
- *     name: 'remove-bg', options?: Options|null
+ *     name?: 'remove-bg', options?: Options|null
  *   }|AutoTaggingExtension|array{
  *     maxTags: int, minConfidence: int, name: value-of<Name>
- *   }|AIAutoDescription|array{name: 'ai-auto-description'}>,
+ *   }|AIAutoDescription|array{name?: 'ai-auto-description'}>,
  *   removeAITags?: 'all'|list<string>,
  *   tags?: list<string>|null,
  *   webhookUrl?: string,
@@ -115,10 +115,10 @@ final class FileUpdateParams implements BaseModel
      *
      * @param array<string,mixed> $customMetadata
      * @param list<RemoveBg|array{
-     *   name: 'remove-bg', options?: Options|null
+     *   name?: 'remove-bg', options?: Options|null
      * }|AutoTaggingExtension|array{
      *   maxTags: int, minConfidence: int, name: value-of<Name>
-     * }|AIAutoDescription|array{name: 'ai-auto-description'}> $extensions
+     * }|AIAutoDescription|array{name?: 'ai-auto-description'}> $extensions
      * @param 'all'|list<string> $removeAITags
      * @param list<string>|null $tags
      * @param Publish|array{
@@ -188,10 +188,10 @@ final class FileUpdateParams implements BaseModel
      * Array of extensions to be applied to the asset. Each extension can be configured with specific parameters based on the extension type.
      *
      * @param list<RemoveBg|array{
-     *   name: 'remove-bg', options?: Options|null
+     *   name?: 'remove-bg', options?: Options|null
      * }|AutoTaggingExtension|array{
      *   maxTags: int, minConfidence: int, name: value-of<Name>
-     * }|AIAutoDescription|array{name: 'ai-auto-description'}> $extensions
+     * }|AIAutoDescription|array{name?: 'ai-auto-description'}> $extensions
      */
     public function withExtensions(array $extensions): self
     {

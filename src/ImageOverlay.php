@@ -16,7 +16,7 @@ use Imagekit\OverlayPosition\Focus;
  *   position?: OverlayPosition|null,
  *   timing?: OverlayTiming|null,
  *   input: string,
- *   type: 'image',
+ *   type?: 'image',
  *   encoding?: value-of<Encoding>|null,
  *   transformation?: list<mixed>|null,
  * }

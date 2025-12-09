@@ -12,7 +12,7 @@ use Imagekit\Core\Contracts\BaseModel;
 /**
  * @phpstan-type WebProxyShape = array{
  *   name: string,
- *   type: 'WEB_PROXY',
+ *   type?: 'WEB_PROXY',
  *   baseUrlForCanonicalHeader?: string|null,
  *   includeCanonicalHeader?: bool|null,
  * }

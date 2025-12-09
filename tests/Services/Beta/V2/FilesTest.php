@@ -39,7 +39,7 @@ final class FilesTest extends TestCase
         }
 
         $result = $this->client->beta->v2->files->upload([
-            'file' => file_get_contents(__FILE__) ?: '', 'fileName' => 'fileName',
+            'file' => 'file', 'fileName' => 'fileName',
         ]);
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
@@ -54,7 +54,7 @@ final class FilesTest extends TestCase
         }
 
         $result = $this->client->beta->v2->files->upload([
-            'file' => file_get_contents(__FILE__) ?: '',
+            'file' => 'file',
             'fileName' => 'fileName',
             'token' => 'token',
             'checks' => '"request.folder" : "marketing/"\n',

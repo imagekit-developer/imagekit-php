@@ -10,7 +10,7 @@ use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type ThumbnailShape = array{type: 'thumbnail', value?: string|null}
+ * @phpstan-type ThumbnailShape = array{type?: 'thumbnail', value?: string|null}
  */
 final class Thumbnail implements BaseModel
 {

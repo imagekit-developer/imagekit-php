@@ -9,7 +9,7 @@ use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type AkamaiShape = array{type: 'AKAMAI'}
+ * @phpstan-type AkamaiShape = array{type?: 'AKAMAI'}
  */
 final class Akamai implements BaseModel
 {

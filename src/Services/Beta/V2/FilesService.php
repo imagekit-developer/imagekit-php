@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Imagekit\Services\Beta\V2;
 
 use Imagekit\Beta\V2\Files\FileUploadParams;
+use Imagekit\Beta\V2\Files\FileUploadParams\ResponseField;
 use Imagekit\Beta\V2\Files\FileUploadResponse;
 use Imagekit\Client;
 use Imagekit\Core\Contracts\BaseResponse;
@@ -53,7 +54,7 @@ final class FilesService implements FilesContract
      *   overwriteCustomMetadata?: bool,
      *   overwriteFile?: bool,
      *   overwriteTags?: bool,
-     *   responseFields?: list<'tags'|'customCoordinates'|'isPrivateFile'|'embeddedMetadata'|'isPublished'|'customMetadata'|'metadata'|'selectedFieldsSchema'>,
+     *   responseFields?: list<'tags'|'customCoordinates'|'isPrivateFile'|'embeddedMetadata'|'isPublished'|'customMetadata'|'metadata'|'selectedFieldsSchema'|ResponseField>,
      *   tags?: list<string>,
      *   transformation?: array{post?: list<array<string,mixed>>, pre?: string},
      *   useUniqueFileName?: bool,

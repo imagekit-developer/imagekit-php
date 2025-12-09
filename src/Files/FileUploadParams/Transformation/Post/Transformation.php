@@ -9,7 +9,9 @@ use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type TransformationShape = array{type: 'transformation', value: string}
+ * @phpstan-type TransformationShape = array{
+ *   type?: 'transformation', value: string
+ * }
  */
 final class Transformation implements BaseModel
 {

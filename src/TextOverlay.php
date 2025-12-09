@@ -18,7 +18,7 @@ use Imagekit\TextOverlayTransformation\InnerAlignment;
  *   position?: OverlayPosition|null,
  *   timing?: OverlayTiming|null,
  *   text: string,
- *   type: 'text',
+ *   type?: 'text',
  *   encoding?: value-of<Encoding>|null,
  *   transformation?: list<TextOverlayTransformation>|null,
  * }

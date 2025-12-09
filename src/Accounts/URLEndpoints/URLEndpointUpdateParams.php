@@ -25,8 +25,8 @@ use Imagekit\Core\Contracts\BaseModel;
  *   origins?: list<string>,
  *   urlPrefix?: string,
  *   urlRewriter?: Cloudinary|array{
- *     type: 'CLOUDINARY', preserveAssetDeliveryTypes?: bool|null
- *   }|Imgix|array{type: 'IMGIX'}|Akamai|array{type: 'AKAMAI'},
+ *     type?: 'CLOUDINARY', preserveAssetDeliveryTypes?: bool|null
+ *   }|Imgix|array{type?: 'IMGIX'}|Akamai|array{type?: 'AKAMAI'},
  * }
  */
 final class URLEndpointUpdateParams implements BaseModel
@@ -87,8 +87,8 @@ final class URLEndpointUpdateParams implements BaseModel
      *
      * @param list<string> $origins
      * @param Cloudinary|array{
-     *   type: 'CLOUDINARY', preserveAssetDeliveryTypes?: bool|null
-     * }|Imgix|array{type: 'IMGIX'}|Akamai|array{type: 'AKAMAI'} $urlRewriter
+     *   type?: 'CLOUDINARY', preserveAssetDeliveryTypes?: bool|null
+     * }|Imgix|array{type?: 'IMGIX'}|Akamai|array{type?: 'AKAMAI'} $urlRewriter
      */
     public static function with(
         string $description,
@@ -146,8 +146,8 @@ final class URLEndpointUpdateParams implements BaseModel
      * Configuration for third-party URL rewriting.
      *
      * @param Cloudinary|array{
-     *   type: 'CLOUDINARY', preserveAssetDeliveryTypes?: bool|null
-     * }|Imgix|array{type: 'IMGIX'}|Akamai|array{type: 'AKAMAI'} $urlRewriter
+     *   type?: 'CLOUDINARY', preserveAssetDeliveryTypes?: bool|null
+     * }|Imgix|array{type?: 'IMGIX'}|Akamai|array{type?: 'AKAMAI'} $urlRewriter
      */
     public function withURLRewriter(
         Cloudinary|array|Imgix|Akamai $urlRewriter

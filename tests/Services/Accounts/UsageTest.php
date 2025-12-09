@@ -39,7 +39,8 @@ final class UsageTest extends TestCase
         }
 
         $result = $this->client->accounts->usage->get([
-            'endDate' => '2019-12-27', 'startDate' => '2019-12-27',
+            'endDate' => new \DateTimeImmutable('2019-12-27'),
+            'startDate' => new \DateTimeImmutable('2019-12-27'),
         ]);
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
@@ -54,7 +55,8 @@ final class UsageTest extends TestCase
         }
 
         $result = $this->client->accounts->usage->get([
-            'endDate' => '2019-12-27', 'startDate' => '2019-12-27',
+            'endDate' => new \DateTimeImmutable('2019-12-27'),
+            'startDate' => new \DateTimeImmutable('2019-12-27'),
         ]);
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType

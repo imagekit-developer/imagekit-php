@@ -17,6 +17,7 @@ use Imagekit\Files\FileRenameResponse;
 use Imagekit\Files\FileUpdateParams;
 use Imagekit\Files\FileUpdateResponse;
 use Imagekit\Files\FileUploadParams;
+use Imagekit\Files\FileUploadParams\ResponseField;
 use Imagekit\Files\FileUploadResponse;
 use Imagekit\RequestOptions;
 use Imagekit\ServiceContracts\FilesContract;
@@ -264,7 +265,7 @@ final class FilesService implements FilesContract
      *   overwriteFile?: bool,
      *   overwriteTags?: bool,
      *   publicKey?: string,
-     *   responseFields?: list<'tags'|'customCoordinates'|'isPrivateFile'|'embeddedMetadata'|'isPublished'|'customMetadata'|'metadata'|'selectedFieldsSchema'>,
+     *   responseFields?: list<'tags'|'customCoordinates'|'isPrivateFile'|'embeddedMetadata'|'isPublished'|'customMetadata'|'metadata'|'selectedFieldsSchema'|ResponseField>,
      *   signature?: string,
      *   tags?: list<string>,
      *   transformation?: array{post?: list<array<string,mixed>>, pre?: string},

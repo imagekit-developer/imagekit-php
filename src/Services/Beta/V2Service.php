@@ -13,6 +13,11 @@ final class V2Service implements V2Contract
     /**
      * @api
      */
+    public V2RawService $raw;
+
+    /**
+     * @api
+     */
     public FilesService $files;
 
     /**
@@ -20,6 +25,7 @@ final class V2Service implements V2Contract
      */
     public function __construct(private Client $client)
     {
+        $this->raw = new V2RawService($client);
         $this->files = new FilesService($client);
     }
 }

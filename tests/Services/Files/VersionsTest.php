@@ -54,7 +54,7 @@ final class VersionsTest extends TestCase
 
         $result = $this->client->files->versions->delete(
             'versionId',
-            ['fileID' => 'fileId']
+            fileID: 'fileId'
         );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
@@ -70,7 +70,7 @@ final class VersionsTest extends TestCase
 
         $result = $this->client->files->versions->delete(
             'versionId',
-            ['fileID' => 'fileId']
+            fileID: 'fileId'
         );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
@@ -86,7 +86,7 @@ final class VersionsTest extends TestCase
 
         $result = $this->client->files->versions->get(
             'versionId',
-            ['fileID' => 'fileId']
+            fileID: 'fileId'
         );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
@@ -102,7 +102,7 @@ final class VersionsTest extends TestCase
 
         $result = $this->client->files->versions->get(
             'versionId',
-            ['fileID' => 'fileId']
+            fileID: 'fileId'
         );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
@@ -118,7 +118,7 @@ final class VersionsTest extends TestCase
 
         $result = $this->client->files->versions->restore(
             'versionId',
-            ['fileID' => 'fileId']
+            fileID: 'fileId'
         );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
@@ -134,7 +134,7 @@ final class VersionsTest extends TestCase
 
         $result = $this->client->files->versions->restore(
             'versionId',
-            ['fileID' => 'fileId']
+            fileID: 'fileId'
         );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType

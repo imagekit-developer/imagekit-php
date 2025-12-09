@@ -38,9 +38,10 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->beta->v2->files->upload([
-            'file' => 'file', 'fileName' => 'fileName',
-        ]);
+        $result = $this->client->beta->v2->files->upload(
+            file: 'file',
+            fileName: 'fileName'
+        );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(FileUploadResponse::class, $result);
@@ -53,15 +54,15 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->beta->v2->files->upload([
-            'file' => 'file',
-            'fileName' => 'fileName',
-            'token' => 'token',
-            'checks' => '"request.folder" : "marketing/"\n',
-            'customCoordinates' => 'customCoordinates',
-            'customMetadata' => ['brand' => 'bar', 'color' => 'bar'],
-            'description' => 'Running shoes',
-            'extensions' => [
+        $result = $this->client->beta->v2->files->upload(
+            file: 'file',
+            fileName: 'fileName',
+            token: 'token',
+            checks: '"request.folder" : "marketing/"\n',
+            customCoordinates: 'customCoordinates',
+            customMetadata: ['brand' => 'bar', 'color' => 'bar'],
+            description: 'Running shoes',
+            extensions: [
                 [
                     'name' => 'remove-bg',
                     'options' => [
@@ -76,16 +77,16 @@ final class FilesTest extends TestCase
                 ],
                 ['name' => 'ai-auto-description'],
             ],
-            'folder' => 'folder',
-            'isPrivateFile' => true,
-            'isPublished' => true,
-            'overwriteAITags' => true,
-            'overwriteCustomMetadata' => true,
-            'overwriteFile' => true,
-            'overwriteTags' => true,
-            'responseFields' => ['tags', 'customCoordinates', 'isPrivateFile'],
-            'tags' => ['t-shirt', 'round-neck', 'men'],
-            'transformation' => [
+            folder: 'folder',
+            isPrivateFile: true,
+            isPublished: true,
+            overwriteAITags: true,
+            overwriteCustomMetadata: true,
+            overwriteFile: true,
+            overwriteTags: true,
+            responseFields: ['tags', 'customCoordinates', 'isPrivateFile'],
+            tags: ['t-shirt', 'round-neck', 'men'],
+            transformation: [
                 'post' => [
                     ['type' => 'thumbnail', 'value' => 'w-150,h-150'],
                     [
@@ -96,9 +97,9 @@ final class FilesTest extends TestCase
                 ],
                 'pre' => 'w-300,h-300,q-80',
             ],
-            'useUniqueFileName' => true,
-            'webhookURL' => 'https://example.com',
-        ]);
+            useUniqueFileName: true,
+            webhookURL: 'https://example.com',
+        );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(FileUploadResponse::class, $result);

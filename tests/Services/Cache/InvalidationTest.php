@@ -39,9 +39,9 @@ final class InvalidationTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->cache->invalidation->create([
-            'url' => 'https://ik.imagekit.io/your_imagekit_id/default-image.jpg',
-        ]);
+        $result = $this->client->cache->invalidation->create(
+            url: 'https://ik.imagekit.io/your_imagekit_id/default-image.jpg'
+        );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(InvalidationNewResponse::class, $result);
@@ -54,9 +54,9 @@ final class InvalidationTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->cache->invalidation->create([
-            'url' => 'https://ik.imagekit.io/your_imagekit_id/default-image.jpg',
-        ]);
+        $result = $this->client->cache->invalidation->create(
+            url: 'https://ik.imagekit.io/your_imagekit_id/default-image.jpg'
+        );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(InvalidationNewResponse::class, $result);

@@ -37,7 +37,7 @@ final class AssetsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->assets->list([]);
+        $result = $this->client->assets->list();
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertIsList($result);

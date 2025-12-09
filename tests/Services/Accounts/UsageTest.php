@@ -38,10 +38,10 @@ final class UsageTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->accounts->usage->get([
-            'endDate' => new \DateTimeImmutable('2019-12-27'),
-            'startDate' => new \DateTimeImmutable('2019-12-27'),
-        ]);
+        $result = $this->client->accounts->usage->get(
+            endDate: new \DateTimeImmutable('2019-12-27'),
+            startDate: new \DateTimeImmutable('2019-12-27'),
+        );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(UsageGetResponse::class, $result);
@@ -54,10 +54,10 @@ final class UsageTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->accounts->usage->get([
-            'endDate' => new \DateTimeImmutable('2019-12-27'),
-            'startDate' => new \DateTimeImmutable('2019-12-27'),
-        ]);
+        $result = $this->client->accounts->usage->get(
+            endDate: new \DateTimeImmutable('2019-12-27'),
+            startDate: new \DateTimeImmutable('2019-12-27'),
+        );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(UsageGetResponse::class, $result);

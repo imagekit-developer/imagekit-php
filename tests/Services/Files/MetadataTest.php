@@ -51,9 +51,9 @@ final class MetadataTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->files->metadata->getFromURL([
-            'url' => 'https://example.com',
-        ]);
+        $result = $this->client->files->metadata->getFromURL(
+            url: 'https://example.com'
+        );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(Metadata::class, $result);
@@ -66,9 +66,9 @@ final class MetadataTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->files->metadata->getFromURL([
-            'url' => 'https://example.com',
-        ]);
+        $result = $this->client->files->metadata->getFromURL(
+            url: 'https://example.com'
+        );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(Metadata::class, $result);

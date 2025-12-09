@@ -37,23 +37,23 @@ final class OriginsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->accounts->origins->create([
-            'accessKey' => 'AKIAIOSFODNN7EXAMPLE',
-            'bucket' => 'gcs-media',
-            'name' => 'US S3 Storage',
-            'secretKey' => 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY',
-            'endpoint' => 'https://s3.eu-central-1.wasabisys.com',
-            'baseURL' => 'https://akeneo.company.com',
-            'clientEmail' => 'service-account@project.iam.gserviceaccount.com',
-            'privateKey' => '-----BEGIN PRIVATE KEY-----\nMIIEv...',
-            'accountName' => 'account123',
-            'container' => 'images',
-            'sasToken' => '?sv=2023-01-03&sr=c&sig=abc123',
-            'clientID' => 'akeneo-client-id',
-            'clientSecret' => 'akeneo-client-secret',
-            'password' => 'strongpassword123',
-            'username' => 'integration-user',
-        ]);
+        $result = $this->client->accounts->origins->create(
+            accessKey: 'AKIAIOSFODNN7EXAMPLE',
+            bucket: 'gcs-media',
+            name: 'US S3 Storage',
+            secretKey: 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY',
+            endpoint: 'https://s3.eu-central-1.wasabisys.com',
+            baseURL: 'https://akeneo.company.com',
+            clientEmail: 'service-account@project.iam.gserviceaccount.com',
+            privateKey: '-----BEGIN PRIVATE KEY-----\nMIIEv...',
+            accountName: 'account123',
+            container: 'images',
+            sasToken: '?sv=2023-01-03&sr=c&sig=abc123',
+            clientID: 'akeneo-client-id',
+            clientSecret: 'akeneo-client-secret',
+            password: 'strongpassword123',
+            username: 'integration-user',
+        );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertNotNull($result);
@@ -66,29 +66,29 @@ final class OriginsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->accounts->origins->create([
-            'accessKey' => 'AKIAIOSFODNN7EXAMPLE',
-            'bucket' => 'gcs-media',
-            'name' => 'US S3 Storage',
-            'secretKey' => 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY',
-            'type' => 'AKENEO_PIM',
-            'baseURLForCanonicalHeader' => 'https://cdn.example.com',
-            'includeCanonicalHeader' => false,
-            'prefix' => 'uploads',
-            'endpoint' => 'https://s3.eu-central-1.wasabisys.com',
-            's3ForcePathStyle' => true,
-            'baseURL' => 'https://akeneo.company.com',
-            'forwardHostHeaderToOrigin' => false,
-            'clientEmail' => 'service-account@project.iam.gserviceaccount.com',
-            'privateKey' => '-----BEGIN PRIVATE KEY-----\nMIIEv...',
-            'accountName' => 'account123',
-            'container' => 'images',
-            'sasToken' => '?sv=2023-01-03&sr=c&sig=abc123',
-            'clientID' => 'akeneo-client-id',
-            'clientSecret' => 'akeneo-client-secret',
-            'password' => 'strongpassword123',
-            'username' => 'integration-user',
-        ]);
+        $result = $this->client->accounts->origins->create(
+            accessKey: 'AKIAIOSFODNN7EXAMPLE',
+            bucket: 'gcs-media',
+            name: 'US S3 Storage',
+            secretKey: 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY',
+            type: 'AKENEO_PIM',
+            baseURLForCanonicalHeader: 'https://cdn.example.com',
+            includeCanonicalHeader: false,
+            prefix: 'uploads',
+            endpoint: 'https://s3.eu-central-1.wasabisys.com',
+            s3ForcePathStyle: true,
+            baseURL: 'https://akeneo.company.com',
+            forwardHostHeaderToOrigin: false,
+            clientEmail: 'service-account@project.iam.gserviceaccount.com',
+            privateKey: '-----BEGIN PRIVATE KEY-----\nMIIEv...',
+            accountName: 'account123',
+            container: 'images',
+            sasToken: '?sv=2023-01-03&sr=c&sig=abc123',
+            clientID: 'akeneo-client-id',
+            clientSecret: 'akeneo-client-secret',
+            password: 'strongpassword123',
+            username: 'integration-user',
+        );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertNotNull($result);
@@ -103,23 +103,21 @@ final class OriginsTest extends TestCase
 
         $result = $this->client->accounts->origins->update(
             'id',
-            [
-                'accessKey' => 'AKIAIOSFODNN7EXAMPLE',
-                'bucket' => 'gcs-media',
-                'name' => 'US S3 Storage',
-                'secretKey' => 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY',
-                'endpoint' => 'https://s3.eu-central-1.wasabisys.com',
-                'baseURL' => 'https://akeneo.company.com',
-                'clientEmail' => 'service-account@project.iam.gserviceaccount.com',
-                'privateKey' => '-----BEGIN PRIVATE KEY-----\nMIIEv...',
-                'accountName' => 'account123',
-                'container' => 'images',
-                'sasToken' => '?sv=2023-01-03&sr=c&sig=abc123',
-                'clientID' => 'akeneo-client-id',
-                'clientSecret' => 'akeneo-client-secret',
-                'password' => 'strongpassword123',
-                'username' => 'integration-user',
-            ],
+            accessKey: 'AKIAIOSFODNN7EXAMPLE',
+            bucket: 'gcs-media',
+            name: 'US S3 Storage',
+            secretKey: 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY',
+            endpoint: 'https://s3.eu-central-1.wasabisys.com',
+            baseURL: 'https://akeneo.company.com',
+            clientEmail: 'service-account@project.iam.gserviceaccount.com',
+            privateKey: '-----BEGIN PRIVATE KEY-----\nMIIEv...',
+            accountName: 'account123',
+            container: 'images',
+            sasToken: '?sv=2023-01-03&sr=c&sig=abc123',
+            clientID: 'akeneo-client-id',
+            clientSecret: 'akeneo-client-secret',
+            password: 'strongpassword123',
+            username: 'integration-user',
         );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
@@ -135,29 +133,27 @@ final class OriginsTest extends TestCase
 
         $result = $this->client->accounts->origins->update(
             'id',
-            [
-                'accessKey' => 'AKIAIOSFODNN7EXAMPLE',
-                'bucket' => 'gcs-media',
-                'name' => 'US S3 Storage',
-                'secretKey' => 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY',
-                'type' => 'AKENEO_PIM',
-                'baseURLForCanonicalHeader' => 'https://cdn.example.com',
-                'includeCanonicalHeader' => false,
-                'prefix' => 'uploads',
-                'endpoint' => 'https://s3.eu-central-1.wasabisys.com',
-                's3ForcePathStyle' => true,
-                'baseURL' => 'https://akeneo.company.com',
-                'forwardHostHeaderToOrigin' => false,
-                'clientEmail' => 'service-account@project.iam.gserviceaccount.com',
-                'privateKey' => '-----BEGIN PRIVATE KEY-----\nMIIEv...',
-                'accountName' => 'account123',
-                'container' => 'images',
-                'sasToken' => '?sv=2023-01-03&sr=c&sig=abc123',
-                'clientID' => 'akeneo-client-id',
-                'clientSecret' => 'akeneo-client-secret',
-                'password' => 'strongpassword123',
-                'username' => 'integration-user',
-            ],
+            accessKey: 'AKIAIOSFODNN7EXAMPLE',
+            bucket: 'gcs-media',
+            name: 'US S3 Storage',
+            secretKey: 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY',
+            type: 'AKENEO_PIM',
+            baseURLForCanonicalHeader: 'https://cdn.example.com',
+            includeCanonicalHeader: false,
+            prefix: 'uploads',
+            endpoint: 'https://s3.eu-central-1.wasabisys.com',
+            s3ForcePathStyle: true,
+            baseURL: 'https://akeneo.company.com',
+            forwardHostHeaderToOrigin: false,
+            clientEmail: 'service-account@project.iam.gserviceaccount.com',
+            privateKey: '-----BEGIN PRIVATE KEY-----\nMIIEv...',
+            accountName: 'account123',
+            container: 'images',
+            sasToken: '?sv=2023-01-03&sr=c&sig=abc123',
+            clientID: 'akeneo-client-id',
+            clientSecret: 'akeneo-client-secret',
+            password: 'strongpassword123',
+            username: 'integration-user',
         );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType

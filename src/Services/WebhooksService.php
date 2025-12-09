@@ -10,7 +10,15 @@ use Imagekit\ServiceContracts\WebhooksContract;
 final class WebhooksService implements WebhooksContract
 {
     /**
+     * @api
+     */
+    public WebhooksRawService $raw;
+
+    /**
      * @internal
      */
-    public function __construct(private Client $client) {}
+    public function __construct(private Client $client)
+    {
+        $this->raw = new WebhooksRawService($client);
+    }
 }

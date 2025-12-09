@@ -43,7 +43,7 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->files->update('fileId', []);
+        $result = $this->client->files->update('fileId');
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(FileUpdateResponse::class, $result);
@@ -69,10 +69,10 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->files->copy([
-            'destinationPath' => '/folder/to/copy/into/',
-            'sourceFilePath' => '/path/to/file.jpg',
-        ]);
+        $result = $this->client->files->copy(
+            destinationPath: '/folder/to/copy/into/',
+            sourceFilePath: '/path/to/file.jpg',
+        );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(FileCopyResponse::class, $result);
@@ -85,11 +85,11 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->files->copy([
-            'destinationPath' => '/folder/to/copy/into/',
-            'sourceFilePath' => '/path/to/file.jpg',
-            'includeFileVersions' => false,
-        ]);
+        $result = $this->client->files->copy(
+            destinationPath: '/folder/to/copy/into/',
+            sourceFilePath: '/path/to/file.jpg',
+            includeFileVersions: false,
+        );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(FileCopyResponse::class, $result);
@@ -115,10 +115,10 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->files->move([
-            'destinationPath' => '/folder/to/move/into/',
-            'sourceFilePath' => '/path/to/file.jpg',
-        ]);
+        $result = $this->client->files->move(
+            destinationPath: '/folder/to/move/into/',
+            sourceFilePath: '/path/to/file.jpg',
+        );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(FileMoveResponse::class, $result);
@@ -131,10 +131,10 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->files->move([
-            'destinationPath' => '/folder/to/move/into/',
-            'sourceFilePath' => '/path/to/file.jpg',
-        ]);
+        $result = $this->client->files->move(
+            destinationPath: '/folder/to/move/into/',
+            sourceFilePath: '/path/to/file.jpg',
+        );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(FileMoveResponse::class, $result);
@@ -147,9 +147,10 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->files->rename([
-            'filePath' => '/path/to/file.jpg', 'newFileName' => 'newFileName.jpg',
-        ]);
+        $result = $this->client->files->rename(
+            filePath: '/path/to/file.jpg',
+            newFileName: 'newFileName.jpg'
+        );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(FileRenameResponse::class, $result);
@@ -162,11 +163,11 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->files->rename([
-            'filePath' => '/path/to/file.jpg',
-            'newFileName' => 'newFileName.jpg',
-            'purgeCache' => true,
-        ]);
+        $result = $this->client->files->rename(
+            filePath: '/path/to/file.jpg',
+            newFileName: 'newFileName.jpg',
+            purgeCache: true,
+        );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(FileRenameResponse::class, $result);
@@ -179,9 +180,7 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->files->upload([
-            'file' => 'file', 'fileName' => 'fileName',
-        ]);
+        $result = $this->client->files->upload(file: 'file', fileName: 'fileName');
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(FileUploadResponse::class, $result);
@@ -194,16 +193,16 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->files->upload([
-            'file' => 'file',
-            'fileName' => 'fileName',
-            'token' => 'token',
-            'checks' => '"request.folder" : "marketing/"\n',
-            'customCoordinates' => 'customCoordinates',
-            'customMetadata' => ['brand' => 'bar', 'color' => 'bar'],
-            'description' => 'Running shoes',
-            'expire' => 0,
-            'extensions' => [
+        $result = $this->client->files->upload(
+            file: 'file',
+            fileName: 'fileName',
+            token: 'token',
+            checks: '"request.folder" : "marketing/"\n',
+            customCoordinates: 'customCoordinates',
+            customMetadata: ['brand' => 'bar', 'color' => 'bar'],
+            description: 'Running shoes',
+            expire: 0,
+            extensions: [
                 [
                     'name' => 'remove-bg',
                     'options' => [
@@ -218,18 +217,18 @@ final class FilesTest extends TestCase
                 ],
                 ['name' => 'ai-auto-description'],
             ],
-            'folder' => 'folder',
-            'isPrivateFile' => true,
-            'isPublished' => true,
-            'overwriteAITags' => true,
-            'overwriteCustomMetadata' => true,
-            'overwriteFile' => true,
-            'overwriteTags' => true,
-            'publicKey' => 'publicKey',
-            'responseFields' => ['tags', 'customCoordinates', 'isPrivateFile'],
-            'signature' => 'signature',
-            'tags' => ['t-shirt', 'round-neck', 'men'],
-            'transformation' => [
+            folder: 'folder',
+            isPrivateFile: true,
+            isPublished: true,
+            overwriteAITags: true,
+            overwriteCustomMetadata: true,
+            overwriteFile: true,
+            overwriteTags: true,
+            publicKey: 'publicKey',
+            responseFields: ['tags', 'customCoordinates', 'isPrivateFile'],
+            signature: 'signature',
+            tags: ['t-shirt', 'round-neck', 'men'],
+            transformation: [
                 'post' => [
                     ['type' => 'thumbnail', 'value' => 'w-150,h-150'],
                     [
@@ -240,9 +239,9 @@ final class FilesTest extends TestCase
                 ],
                 'pre' => 'w-300,h-300,q-80',
             ],
-            'useUniqueFileName' => true,
-            'webhookURL' => 'https://example.com',
-        ]);
+            useUniqueFileName: true,
+            webhookURL: 'https://example.com',
+        );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(FileUploadResponse::class, $result);

@@ -42,9 +42,10 @@ final class FoldersTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->folders->create([
-            'folderName' => 'summer', 'parentFolderPath' => '/product/images/',
-        ]);
+        $result = $this->client->folders->create(
+            folderName: 'summer',
+            parentFolderPath: '/product/images/'
+        );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(FolderNewResponse::class, $result);
@@ -57,9 +58,10 @@ final class FoldersTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->folders->create([
-            'folderName' => 'summer', 'parentFolderPath' => '/product/images/',
-        ]);
+        $result = $this->client->folders->create(
+            folderName: 'summer',
+            parentFolderPath: '/product/images/'
+        );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(FolderNewResponse::class, $result);
@@ -72,9 +74,7 @@ final class FoldersTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->folders->delete([
-            'folderPath' => '/folder/to/delete/',
-        ]);
+        $result = $this->client->folders->delete(folderPath: '/folder/to/delete/');
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(FolderDeleteResponse::class, $result);
@@ -87,9 +87,7 @@ final class FoldersTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->folders->delete([
-            'folderPath' => '/folder/to/delete/',
-        ]);
+        $result = $this->client->folders->delete(folderPath: '/folder/to/delete/');
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(FolderDeleteResponse::class, $result);
@@ -102,10 +100,10 @@ final class FoldersTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->folders->copy([
-            'destinationPath' => '/path/of/destination/folder',
-            'sourceFolderPath' => '/path/of/source/folder',
-        ]);
+        $result = $this->client->folders->copy(
+            destinationPath: '/path/of/destination/folder',
+            sourceFolderPath: '/path/of/source/folder',
+        );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(FolderCopyResponse::class, $result);
@@ -118,11 +116,11 @@ final class FoldersTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->folders->copy([
-            'destinationPath' => '/path/of/destination/folder',
-            'sourceFolderPath' => '/path/of/source/folder',
-            'includeVersions' => true,
-        ]);
+        $result = $this->client->folders->copy(
+            destinationPath: '/path/of/destination/folder',
+            sourceFolderPath: '/path/of/source/folder',
+            includeVersions: true,
+        );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(FolderCopyResponse::class, $result);
@@ -135,10 +133,10 @@ final class FoldersTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->folders->move([
-            'destinationPath' => '/path/of/destination/folder',
-            'sourceFolderPath' => '/path/of/source/folder',
-        ]);
+        $result = $this->client->folders->move(
+            destinationPath: '/path/of/destination/folder',
+            sourceFolderPath: '/path/of/source/folder',
+        );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(FolderMoveResponse::class, $result);
@@ -151,10 +149,10 @@ final class FoldersTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->folders->move([
-            'destinationPath' => '/path/of/destination/folder',
-            'sourceFolderPath' => '/path/of/source/folder',
-        ]);
+        $result = $this->client->folders->move(
+            destinationPath: '/path/of/destination/folder',
+            sourceFolderPath: '/path/of/source/folder',
+        );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(FolderMoveResponse::class, $result);
@@ -167,9 +165,10 @@ final class FoldersTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->folders->rename([
-            'folderPath' => '/path/of/folder', 'newFolderName' => 'new-folder-name',
-        ]);
+        $result = $this->client->folders->rename(
+            folderPath: '/path/of/folder',
+            newFolderName: 'new-folder-name'
+        );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(FolderRenameResponse::class, $result);
@@ -182,11 +181,11 @@ final class FoldersTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->folders->rename([
-            'folderPath' => '/path/of/folder',
-            'newFolderName' => 'new-folder-name',
-            'purgeCache' => true,
-        ]);
+        $result = $this->client->folders->rename(
+            folderPath: '/path/of/folder',
+            newFolderName: 'new-folder-name',
+            purgeCache: true,
+        );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(FolderRenameResponse::class, $result);

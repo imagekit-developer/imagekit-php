@@ -46,9 +46,7 @@ $client = new Client(
   password: getenv('OPTIONAL_IMAGEKIT_IGNORES_THIS') ?: 'do_not_set',
 );
 
-$response = $client->files->upload([
-  'file' => 'file', 'fileName' => 'file-name.jpg'
-]);
+$response = $client->files->upload(file: 'file', fileName: 'file-name.jpg');
 
 var_dump($response->videoCodec);
 ```
@@ -70,13 +68,11 @@ When the library is unable to connect to the API, or if the API returns a non-su
 use Imagekit\Core\Exceptions\APIConnectionException;
 
 try {
-  $response = $client->files->upload([
-    'file' => 'file', 'fileName' => 'file-name.jpg'
-  ]);
+  $response = $client->files->upload(file: 'file', fileName: 'file-name.jpg');
 } catch (APIConnectionException $e) {
   echo "The server could not be reached", PHP_EOL;
   var_dump($e->getPrevious());
-} catch (RateLimitError $_) {
+} catch (RateLimitError $e) {
   echo "A 429 status code was received; we should back off a bit.", PHP_EOL;
 } catch (APIStatusError $e) {
   echo "Another non-200-range status code was received", PHP_EOL;
@@ -119,8 +115,9 @@ $client = new Client(maxRetries: 0);
 
 // Or, configure per-request:
 $result = $client->files->upload(
-  ['file' => 'file', 'fileName' => 'file-name.jpg'],
-  RequestOptions::with(maxRetries: 5),
+  file: 'file',
+  fileName: 'file-name.jpg',
+  requestOptions: RequestOptions::with(maxRetries: 5),
 );
 ```
 
@@ -140,8 +137,9 @@ Note: the `extra*` parameters of the same name overrides the documented paramete
 use Imagekit\RequestOptions;
 
 $response = $client->files->upload(
-  ['file' => 'file', 'fileName' => 'file-name.jpg'],
-  RequestOptions::with(
+  file: 'file',
+  fileName: 'file-name.jpg',
+  requestOptions: RequestOptions::with(
     extraQueryParams: ['my_query_parameter' => 'value'],
     extraBodyParams: ['my_body_parameter' => 'value'],
     extraHeaders: ['my-header' => 'value'],

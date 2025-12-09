@@ -38,9 +38,9 @@ final class URLEndpointsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->accounts->urlEndpoints->create([
-            'description' => 'My custom URL endpoint',
-        ]);
+        $result = $this->client->accounts->urlEndpoints->create(
+            description: 'My custom URL endpoint'
+        );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(URLEndpointResponse::class, $result);
@@ -53,14 +53,14 @@ final class URLEndpointsTest extends TestCase
             $this->markTestSkipped('Prism tests are disabled');
         }
 
-        $result = $this->client->accounts->urlEndpoints->create([
-            'description' => 'My custom URL endpoint',
-            'origins' => ['origin-id-1'],
-            'urlPrefix' => 'product-images',
-            'urlRewriter' => [
+        $result = $this->client->accounts->urlEndpoints->create(
+            description: 'My custom URL endpoint',
+            origins: ['origin-id-1'],
+            urlPrefix: 'product-images',
+            urlRewriter: [
                 'type' => 'CLOUDINARY', 'preserveAssetDeliveryTypes' => true,
             ],
-        ]);
+        );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(URLEndpointResponse::class, $result);
@@ -75,7 +75,7 @@ final class URLEndpointsTest extends TestCase
 
         $result = $this->client->accounts->urlEndpoints->update(
             'id',
-            ['description' => 'My custom URL endpoint']
+            description: 'My custom URL endpoint'
         );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
@@ -91,13 +91,11 @@ final class URLEndpointsTest extends TestCase
 
         $result = $this->client->accounts->urlEndpoints->update(
             'id',
-            [
-                'description' => 'My custom URL endpoint',
-                'origins' => ['origin-id-1'],
-                'urlPrefix' => 'product-images',
-                'urlRewriter' => [
-                    'type' => 'CLOUDINARY', 'preserveAssetDeliveryTypes' => true,
-                ],
+            description: 'My custom URL endpoint',
+            origins: ['origin-id-1'],
+            urlPrefix: 'product-images',
+            urlRewriter: [
+                'type' => 'CLOUDINARY', 'preserveAssetDeliveryTypes' => true,
             ],
         );
 

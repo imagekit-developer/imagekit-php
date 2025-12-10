@@ -14,9 +14,7 @@ use Imagekit\Core\Contracts\BaseModel;
  *
  * @see Imagekit\Services\Accounts\UsageService::get()
  *
- * @phpstan-type UsageGetParamsShape = array{
- *   endDate: \DateTimeInterface, startDate: \DateTimeInterface
- * }
+ * @phpstan-type UsageGetParamsShape = array{endDate: string, startDate: string}
  */
 final class UsageGetParams implements BaseModel
 {
@@ -28,13 +26,13 @@ final class UsageGetParams implements BaseModel
      * Specify a `endDate` in `YYYY-MM-DD` format. It should be after the `startDate`. The difference between `startDate` and `endDate` should be less than 90 days.
      */
     #[Required]
-    public \DateTimeInterface $endDate;
+    public string $endDate;
 
     /**
      * Specify a `startDate` in `YYYY-MM-DD` format. It should be before the `endDate`. The difference between `startDate` and `endDate` should be less than 90 days.
      */
     #[Required]
-    public \DateTimeInterface $startDate;
+    public string $startDate;
 
     /**
      * `new UsageGetParams()` is missing required properties by the API.
@@ -60,10 +58,8 @@ final class UsageGetParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function with(
-        \DateTimeInterface $endDate,
-        \DateTimeInterface $startDate
-    ): self {
+    public static function with(string $endDate, string $startDate): self
+    {
         $self = new self;
 
         $self['endDate'] = $endDate;
@@ -75,7 +71,7 @@ final class UsageGetParams implements BaseModel
     /**
      * Specify a `endDate` in `YYYY-MM-DD` format. It should be after the `startDate`. The difference between `startDate` and `endDate` should be less than 90 days.
      */
-    public function withEndDate(\DateTimeInterface $endDate): self
+    public function withEndDate(string $endDate): self
     {
         $self = clone $this;
         $self['endDate'] = $endDate;
@@ -86,7 +82,7 @@ final class UsageGetParams implements BaseModel
     /**
      * Specify a `startDate` in `YYYY-MM-DD` format. It should be before the `endDate`. The difference between `startDate` and `endDate` should be less than 90 days.
      */
-    public function withStartDate(\DateTimeInterface $startDate): self
+    public function withStartDate(string $startDate): self
     {
         $self = clone $this;
         $self['startDate'] = $startDate;

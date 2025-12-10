@@ -9,11 +9,11 @@ use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Concerns\SdkParams;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\ExtensionItem;
-use Imagekit\ExtensionItem\AIAutoDescription;
+use Imagekit\ExtensionItem\AutoDescriptionExtension;
 use Imagekit\ExtensionItem\AutoTaggingExtension;
 use Imagekit\ExtensionItem\AutoTaggingExtension\Name;
-use Imagekit\ExtensionItem\RemoveBg;
-use Imagekit\ExtensionItem\RemoveBg\Options;
+use Imagekit\ExtensionItem\RemovedotBgExtension;
+use Imagekit\ExtensionItem\RemovedotBgExtension\Options;
 use Imagekit\Files\FileUpdateParams\Publish;
 use Imagekit\Files\FileUpdateParams\RemoveAITags;
 
@@ -26,11 +26,11 @@ use Imagekit\Files\FileUpdateParams\RemoveAITags;
  *   customCoordinates?: string|null,
  *   customMetadata?: array<string,mixed>,
  *   description?: string,
- *   extensions?: list<RemoveBg|array{
+ *   extensions?: list<RemovedotBgExtension|array{
  *     name?: 'remove-bg', options?: Options|null
  *   }|AutoTaggingExtension|array{
  *     maxTags: int, minConfidence: int, name: value-of<Name>
- *   }|AIAutoDescription|array{name?: 'ai-auto-description'}>,
+ *   }|AutoDescriptionExtension|array{name?: 'ai-auto-description'}>,
  *   removeAITags?: 'all'|list<string>,
  *   tags?: list<string>|null,
  *   webhookURL?: string,
@@ -66,7 +66,7 @@ final class FileUpdateParams implements BaseModel
     /**
      * Array of extensions to be applied to the asset. Each extension can be configured with specific parameters based on the extension type.
      *
-     * @var list<RemoveBg|AutoTaggingExtension|AIAutoDescription>|null $extensions
+     * @var list<RemovedotBgExtension|AutoTaggingExtension|AutoDescriptionExtension>|null $extensions
      */
     #[Optional(list: ExtensionItem::class)]
     public ?array $extensions;
@@ -114,11 +114,11 @@ final class FileUpdateParams implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param array<string,mixed> $customMetadata
-     * @param list<RemoveBg|array{
+     * @param list<RemovedotBgExtension|array{
      *   name?: 'remove-bg', options?: Options|null
      * }|AutoTaggingExtension|array{
      *   maxTags: int, minConfidence: int, name: value-of<Name>
-     * }|AIAutoDescription|array{name?: 'ai-auto-description'}> $extensions
+     * }|AutoDescriptionExtension|array{name?: 'ai-auto-description'}> $extensions
      * @param 'all'|list<string> $removeAITags
      * @param list<string>|null $tags
      * @param Publish|array{
@@ -187,11 +187,11 @@ final class FileUpdateParams implements BaseModel
     /**
      * Array of extensions to be applied to the asset. Each extension can be configured with specific parameters based on the extension type.
      *
-     * @param list<RemoveBg|array{
+     * @param list<RemovedotBgExtension|array{
      *   name?: 'remove-bg', options?: Options|null
      * }|AutoTaggingExtension|array{
      *   maxTags: int, minConfidence: int, name: value-of<Name>
-     * }|AIAutoDescription|array{name?: 'ai-auto-description'}> $extensions
+     * }|AutoDescriptionExtension|array{name?: 'ai-auto-description'}> $extensions
      */
     public function withExtensions(array $extensions): self
     {

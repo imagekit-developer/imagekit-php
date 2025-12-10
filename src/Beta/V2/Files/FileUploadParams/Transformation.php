@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace Imagekit\Beta\V2\Files\FileUploadParams;
 
 use Imagekit\Beta\V2\Files\FileUploadParams\Transformation\Post;
-use Imagekit\Beta\V2\Files\FileUploadParams\Transformation\Post\Abs;
-use Imagekit\Beta\V2\Files\FileUploadParams\Transformation\Post\Abs\Protocol;
-use Imagekit\Beta\V2\Files\FileUploadParams\Transformation\Post\GifToVideo;
-use Imagekit\Beta\V2\Files\FileUploadParams\Transformation\Post\Thumbnail;
+use Imagekit\Beta\V2\Files\FileUploadParams\Transformation\Post\AdaptiveBitrateStreaming;
+use Imagekit\Beta\V2\Files\FileUploadParams\Transformation\Post\AdaptiveBitrateStreaming\Protocol;
+use Imagekit\Beta\V2\Files\FileUploadParams\Transformation\Post\ConvertGifToVideo;
+use Imagekit\Beta\V2\Files\FileUploadParams\Transformation\Post\GenerateAThumbnail;
+use Imagekit\Beta\V2\Files\FileUploadParams\Transformation\Post\SimplePostTransformation;
 use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
@@ -25,7 +26,7 @@ use Imagekit\Core\Contracts\BaseModel;
  * You can mix and match any combination of post-processing types.
  *
  * @phpstan-type TransformationShape = array{
- *   post?: list<\Imagekit\Beta\V2\Files\FileUploadParams\Transformation\Post\Transformation|GifToVideo|Thumbnail|Abs>|null,
+ *   post?: list<SimplePostTransformation|ConvertGifToVideo|GenerateAThumbnail|AdaptiveBitrateStreaming>|null,
  *   pre?: string|null,
  * }
  */
@@ -39,7 +40,7 @@ final class Transformation implements BaseModel
      * Each item must match one of the following types:
      * `transformation`, `gif-to-video`, `thumbnail`, `abs`.
      *
-     * @var list<Post\Transformation|GifToVideo|Thumbnail|Abs>|null $post
+     * @var list<SimplePostTransformation|ConvertGifToVideo|GenerateAThumbnail|AdaptiveBitrateStreaming>|null $post
      */
     #[Optional(list: Post::class)]
     public ?array $post;
@@ -60,11 +61,15 @@ final class Transformation implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<Post\Transformation|array{
+     * @param list<SimplePostTransformation|array{
      *   type?: 'transformation', value: string
-     * }|GifToVideo|array{type?: 'gif-to-video', value?: string|null}|Thumbnail|array{
+     * }|ConvertGifToVideo|array{
+     *   type?: 'gif-to-video', value?: string|null
+     * }|GenerateAThumbnail|array{
      *   type?: 'thumbnail', value?: string|null
-     * }|Abs|array{protocol: value-of<Protocol>, type?: 'abs', value: string}> $post
+     * }|AdaptiveBitrateStreaming|array{
+     *   protocol: value-of<Protocol>, type?: 'abs', value: string
+     * }> $post
      */
     public static function with(?array $post = null, ?string $pre = null): self
     {
@@ -81,11 +86,15 @@ final class Transformation implements BaseModel
      * Each item must match one of the following types:
      * `transformation`, `gif-to-video`, `thumbnail`, `abs`.
      *
-     * @param list<Post\Transformation|array{
+     * @param list<SimplePostTransformation|array{
      *   type?: 'transformation', value: string
-     * }|GifToVideo|array{type?: 'gif-to-video', value?: string|null}|Thumbnail|array{
+     * }|ConvertGifToVideo|array{
+     *   type?: 'gif-to-video', value?: string|null
+     * }|GenerateAThumbnail|array{
      *   type?: 'thumbnail', value?: string|null
-     * }|Abs|array{protocol: value-of<Protocol>, type?: 'abs', value: string}> $post
+     * }|AdaptiveBitrateStreaming|array{
+     *   protocol: value-of<Protocol>, type?: 'abs', value: string
+     * }> $post
      */
     public function withPost(array $post): self
     {

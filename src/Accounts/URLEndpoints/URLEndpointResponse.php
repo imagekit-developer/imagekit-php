@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Imagekit\Accounts\URLEndpoints;
 
 use Imagekit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriter;
-use Imagekit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriter\Akamai;
-use Imagekit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriter\Cloudinary;
-use Imagekit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriter\Imgix;
+use Imagekit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriter\AkamaiURLRewriter;
+use Imagekit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriter\CloudinaryURLRewriter;
+use Imagekit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriter\ImgixURLRewriter;
 use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
@@ -21,7 +21,7 @@ use Imagekit\Core\Contracts\BaseModel;
  *   description: string,
  *   origins: list<string>,
  *   urlPrefix: string,
- *   urlRewriter?: null|Cloudinary|Imgix|Akamai,
+ *   urlRewriter?: null|CloudinaryURLRewriter|ImgixURLRewriter|AkamaiURLRewriter,
  * }
  */
 final class URLEndpointResponse implements BaseModel
@@ -59,7 +59,7 @@ final class URLEndpointResponse implements BaseModel
      * Configuration for third-party URL rewriting.
      */
     #[Optional(union: URLRewriter::class)]
-    public Cloudinary|Imgix|Akamai|null $urlRewriter;
+    public CloudinaryURLRewriter|ImgixURLRewriter|AkamaiURLRewriter|null $urlRewriter;
 
     /**
      * `new URLEndpointResponse()` is missing required properties by the API.
@@ -92,16 +92,18 @@ final class URLEndpointResponse implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param list<string> $origins
-     * @param Cloudinary|array{
+     * @param CloudinaryURLRewriter|array{
      *   preserveAssetDeliveryTypes: bool, type?: 'CLOUDINARY'
-     * }|Imgix|array{type?: 'IMGIX'}|Akamai|array{type?: 'AKAMAI'} $urlRewriter
+     * }|ImgixURLRewriter|array{type?: 'IMGIX'}|AkamaiURLRewriter|array{
+     *   type?: 'AKAMAI'
+     * } $urlRewriter
      */
     public static function with(
         string $id,
         string $description,
         array $origins = [],
         string $urlPrefix = '',
-        Cloudinary|array|Imgix|Akamai|null $urlRewriter = null,
+        CloudinaryURLRewriter|array|ImgixURLRewriter|AkamaiURLRewriter|null $urlRewriter = null,
     ): self {
         $self = new self;
 
@@ -164,12 +166,14 @@ final class URLEndpointResponse implements BaseModel
     /**
      * Configuration for third-party URL rewriting.
      *
-     * @param Cloudinary|array{
+     * @param CloudinaryURLRewriter|array{
      *   preserveAssetDeliveryTypes: bool, type?: 'CLOUDINARY'
-     * }|Imgix|array{type?: 'IMGIX'}|Akamai|array{type?: 'AKAMAI'} $urlRewriter
+     * }|ImgixURLRewriter|array{type?: 'IMGIX'}|AkamaiURLRewriter|array{
+     *   type?: 'AKAMAI'
+     * } $urlRewriter
      */
     public function withURLRewriter(
-        Cloudinary|array|Imgix|Akamai $urlRewriter
+        CloudinaryURLRewriter|array|ImgixURLRewriter|AkamaiURLRewriter $urlRewriter
     ): self {
         $self = clone $this;
         $self['urlRewriter'] = $urlRewriter;

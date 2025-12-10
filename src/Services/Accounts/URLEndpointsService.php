@@ -7,6 +7,7 @@ namespace Imagekit\Services\Accounts;
 use Imagekit\Accounts\URLEndpoints\URLEndpointResponse;
 use Imagekit\Client;
 use Imagekit\Core\Exceptions\APIException;
+use Imagekit\Core\Util;
 use Imagekit\RequestOptions;
 use Imagekit\ServiceContracts\Accounts\URLEndpointsContract;
 
@@ -45,14 +46,14 @@ final class URLEndpointsService implements URLEndpointsContract
         ?array $urlRewriter = null,
         ?RequestOptions $requestOptions = null,
     ): URLEndpointResponse {
-        $params = [
-            'description' => $description,
-            'origins' => $origins,
-            'urlPrefix' => $urlPrefix,
-            'urlRewriter' => $urlRewriter,
-        ];
-        // @phpstan-ignore-next-line function.impossibleType
-        $params = array_filter($params, callback: static fn ($v) => !is_null($v));
+        $params = Util::removeNulls(
+            [
+                'description' => $description,
+                'origins' => $origins,
+                'urlPrefix' => $urlPrefix,
+                'urlRewriter' => $urlRewriter,
+            ],
+        );
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->create(params: $params, requestOptions: $requestOptions);
@@ -82,14 +83,14 @@ final class URLEndpointsService implements URLEndpointsContract
         ?array $urlRewriter = null,
         ?RequestOptions $requestOptions = null,
     ): URLEndpointResponse {
-        $params = [
-            'description' => $description,
-            'origins' => $origins,
-            'urlPrefix' => $urlPrefix,
-            'urlRewriter' => $urlRewriter,
-        ];
-        // @phpstan-ignore-next-line function.impossibleType
-        $params = array_filter($params, callback: static fn ($v) => !is_null($v));
+        $params = Util::removeNulls(
+            [
+                'description' => $description,
+                'origins' => $origins,
+                'urlPrefix' => $urlPrefix,
+                'urlRewriter' => $urlRewriter,
+            ],
+        );
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->update($id, params: $params, requestOptions: $requestOptions);

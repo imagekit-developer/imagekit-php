@@ -8,6 +8,7 @@ use Imagekit\Cache\Invalidation\InvalidationGetResponse;
 use Imagekit\Cache\Invalidation\InvalidationNewResponse;
 use Imagekit\Client;
 use Imagekit\Core\Exceptions\APIException;
+use Imagekit\Core\Util;
 use Imagekit\RequestOptions;
 use Imagekit\ServiceContracts\Cache\InvalidationContract;
 
@@ -39,7 +40,7 @@ final class InvalidationService implements InvalidationContract
         string $url,
         ?RequestOptions $requestOptions = null
     ): InvalidationNewResponse {
-        $params = ['url' => $url];
+        $params = Util::removeNulls(['url' => $url]);
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->create(params: $params, requestOptions: $requestOptions);

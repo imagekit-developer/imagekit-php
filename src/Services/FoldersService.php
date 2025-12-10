@@ -6,6 +6,7 @@ namespace Imagekit\Services;
 
 use Imagekit\Client;
 use Imagekit\Core\Exceptions\APIException;
+use Imagekit\Core\Util;
 use Imagekit\Folders\FolderCopyResponse;
 use Imagekit\Folders\FolderDeleteResponse;
 use Imagekit\Folders\FolderMoveResponse;
@@ -55,9 +56,9 @@ final class FoldersService implements FoldersContract
         string $parentFolderPath,
         ?RequestOptions $requestOptions = null,
     ): FolderNewResponse {
-        $params = [
-            'folderName' => $folderName, 'parentFolderPath' => $parentFolderPath,
-        ];
+        $params = Util::removeNulls(
+            ['folderName' => $folderName, 'parentFolderPath' => $parentFolderPath]
+        );
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->create(params: $params, requestOptions: $requestOptions);
@@ -78,7 +79,7 @@ final class FoldersService implements FoldersContract
         string $folderPath,
         ?RequestOptions $requestOptions = null
     ): FolderDeleteResponse {
-        $params = ['folderPath' => $folderPath];
+        $params = Util::removeNulls(['folderPath' => $folderPath]);
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->delete(params: $params, requestOptions: $requestOptions);
@@ -103,13 +104,13 @@ final class FoldersService implements FoldersContract
         ?bool $includeVersions = null,
         ?RequestOptions $requestOptions = null,
     ): FolderCopyResponse {
-        $params = [
-            'destinationPath' => $destinationPath,
-            'sourceFolderPath' => $sourceFolderPath,
-            'includeVersions' => $includeVersions,
-        ];
-        // @phpstan-ignore-next-line function.impossibleType
-        $params = array_filter($params, callback: static fn ($v) => !is_null($v));
+        $params = Util::removeNulls(
+            [
+                'destinationPath' => $destinationPath,
+                'sourceFolderPath' => $sourceFolderPath,
+                'includeVersions' => $includeVersions,
+            ],
+        );
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->copy(params: $params, requestOptions: $requestOptions);
@@ -132,10 +133,12 @@ final class FoldersService implements FoldersContract
         string $sourceFolderPath,
         ?RequestOptions $requestOptions = null,
     ): FolderMoveResponse {
-        $params = [
-            'destinationPath' => $destinationPath,
-            'sourceFolderPath' => $sourceFolderPath,
-        ];
+        $params = Util::removeNulls(
+            [
+                'destinationPath' => $destinationPath,
+                'sourceFolderPath' => $sourceFolderPath,
+            ],
+        );
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->move(params: $params, requestOptions: $requestOptions);
@@ -168,13 +171,13 @@ final class FoldersService implements FoldersContract
         ?bool $purgeCache = null,
         ?RequestOptions $requestOptions = null,
     ): FolderRenameResponse {
-        $params = [
-            'folderPath' => $folderPath,
-            'newFolderName' => $newFolderName,
-            'purgeCache' => $purgeCache,
-        ];
-        // @phpstan-ignore-next-line function.impossibleType
-        $params = array_filter($params, callback: static fn ($v) => !is_null($v));
+        $params = Util::removeNulls(
+            [
+                'folderPath' => $folderPath,
+                'newFolderName' => $newFolderName,
+                'purgeCache' => $purgeCache,
+            ],
+        );
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->rename(params: $params, requestOptions: $requestOptions);

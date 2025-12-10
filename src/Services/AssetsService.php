@@ -9,6 +9,7 @@ use Imagekit\Assets\AssetListParams\Sort;
 use Imagekit\Assets\AssetListParams\Type;
 use Imagekit\Client;
 use Imagekit\Core\Exceptions\APIException;
+use Imagekit\Core\Util;
 use Imagekit\Files\File;
 use Imagekit\Files\Folder;
 use Imagekit\RequestOptions;
@@ -76,17 +77,17 @@ final class AssetsService implements AssetsContract
         string|Type $type = 'file',
         ?RequestOptions $requestOptions = null,
     ): array {
-        $params = [
-            'fileType' => $fileType,
-            'limit' => $limit,
-            'path' => $path,
-            'searchQuery' => $searchQuery,
-            'skip' => $skip,
-            'sort' => $sort,
-            'type' => $type,
-        ];
-        // @phpstan-ignore-next-line function.impossibleType
-        $params = array_filter($params, callback: static fn ($v) => !is_null($v));
+        $params = Util::removeNulls(
+            [
+                'fileType' => $fileType,
+                'limit' => $limit,
+                'path' => $path,
+                'searchQuery' => $searchQuery,
+                'skip' => $skip,
+                'sort' => $sort,
+                'type' => $type,
+            ],
+        );
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->list(params: $params, requestOptions: $requestOptions);

@@ -6,6 +6,7 @@ namespace Imagekit\Services\Files;
 
 use Imagekit\Client;
 use Imagekit\Core\Exceptions\APIException;
+use Imagekit\Core\Util;
 use Imagekit\Files\Bulk\BulkAddTagsResponse;
 use Imagekit\Files\Bulk\BulkDeleteResponse;
 use Imagekit\Files\Bulk\BulkRemoveAITagsResponse;
@@ -45,7 +46,7 @@ final class BulkService implements BulkContract
         array $fileIDs,
         ?RequestOptions $requestOptions = null
     ): BulkDeleteResponse {
-        $params = ['fileIDs' => $fileIDs];
+        $params = Util::removeNulls(['fileIDs' => $fileIDs]);
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->delete(params: $params, requestOptions: $requestOptions);
@@ -68,7 +69,7 @@ final class BulkService implements BulkContract
         array $tags,
         ?RequestOptions $requestOptions = null
     ): BulkAddTagsResponse {
-        $params = ['fileIDs' => $fileIDs, 'tags' => $tags];
+        $params = Util::removeNulls(['fileIDs' => $fileIDs, 'tags' => $tags]);
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->addTags(params: $params, requestOptions: $requestOptions);
@@ -91,7 +92,7 @@ final class BulkService implements BulkContract
         array $fileIDs,
         ?RequestOptions $requestOptions = null
     ): BulkRemoveAITagsResponse {
-        $params = ['aiTags' => $aiTags, 'fileIDs' => $fileIDs];
+        $params = Util::removeNulls(['aiTags' => $aiTags, 'fileIDs' => $fileIDs]);
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->removeAITags(params: $params, requestOptions: $requestOptions);
@@ -114,7 +115,7 @@ final class BulkService implements BulkContract
         array $tags,
         ?RequestOptions $requestOptions = null
     ): BulkRemoveTagsResponse {
-        $params = ['fileIDs' => $fileIDs, 'tags' => $tags];
+        $params = Util::removeNulls(['fileIDs' => $fileIDs, 'tags' => $tags]);
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->removeTags(params: $params, requestOptions: $requestOptions);

@@ -7,10 +7,10 @@ namespace Imagekit\Files\FileUploadParams\Transformation;
 use Imagekit\Core\Concerns\SdkUnion;
 use Imagekit\Core\Conversion\Contracts\Converter;
 use Imagekit\Core\Conversion\Contracts\ConverterSource;
-use Imagekit\Files\FileUploadParams\Transformation\Post\Abs;
-use Imagekit\Files\FileUploadParams\Transformation\Post\GifToVideo;
-use Imagekit\Files\FileUploadParams\Transformation\Post\Thumbnail;
-use Imagekit\Files\FileUploadParams\Transformation\Post\Transformation;
+use Imagekit\Files\FileUploadParams\Transformation\Post\AdaptiveBitrateStreaming;
+use Imagekit\Files\FileUploadParams\Transformation\Post\ConvertGifToVideo;
+use Imagekit\Files\FileUploadParams\Transformation\Post\GenerateAThumbnail;
+use Imagekit\Files\FileUploadParams\Transformation\Post\SimplePostTransformation;
 
 final class Post implements ConverterSource
 {
@@ -27,10 +27,10 @@ final class Post implements ConverterSource
     public static function variants(): array
     {
         return [
-            'transformation' => Transformation::class,
-            'gif-to-video' => GifToVideo::class,
-            'thumbnail' => Thumbnail::class,
-            'abs' => Abs::class,
+            'transformation' => SimplePostTransformation::class,
+            'gif-to-video' => ConvertGifToVideo::class,
+            'thumbnail' => GenerateAThumbnail::class,
+            'abs' => AdaptiveBitrateStreaming::class,
         ];
     }
 }

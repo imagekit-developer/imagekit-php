@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Imagekit\Accounts\URLEndpoints\URLEndpointCreateParams;
 
-use Imagekit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\Akamai;
-use Imagekit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\Cloudinary;
-use Imagekit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\Imgix;
+use Imagekit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\AkamaiURLRewriter;
+use Imagekit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\CloudinaryURLRewriter;
+use Imagekit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\ImgixURLRewriter;
 use Imagekit\Core\Concerns\SdkUnion;
 use Imagekit\Core\Conversion\Contracts\Converter;
 use Imagekit\Core\Conversion\Contracts\ConverterSource;
@@ -29,9 +29,9 @@ final class URLRewriter implements ConverterSource
     public static function variants(): array
     {
         return [
-            'CLOUDINARY' => Cloudinary::class,
-            'IMGIX' => Imgix::class,
-            'AKAMAI' => Akamai::class,
+            'CLOUDINARY' => CloudinaryURLRewriter::class,
+            'IMGIX' => ImgixURLRewriter::class,
+            'AKAMAI' => AkamaiURLRewriter::class,
         ];
     }
 }

@@ -7,9 +7,9 @@ namespace Imagekit;
 use Imagekit\Core\Concerns\SdkUnion;
 use Imagekit\Core\Conversion\Contracts\Converter;
 use Imagekit\Core\Conversion\Contracts\ConverterSource;
-use Imagekit\ExtensionItem\AIAutoDescription;
+use Imagekit\ExtensionItem\AutoDescriptionExtension;
 use Imagekit\ExtensionItem\AutoTaggingExtension;
-use Imagekit\ExtensionItem\RemoveBg;
+use Imagekit\ExtensionItem\RemovedotBgExtension;
 
 final class ExtensionItem implements ConverterSource
 {
@@ -27,8 +27,8 @@ final class ExtensionItem implements ConverterSource
     {
         return [
             AutoTaggingExtension::class,
-            'remove-bg' => RemoveBg::class,
-            'ai-auto-description' => AIAutoDescription::class,
+            'remove-bg' => RemovedotBgExtension::class,
+            'ai-auto-description' => AutoDescriptionExtension::class,
         ];
     }
 }

@@ -10,16 +10,17 @@ use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Concerns\SdkParams;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\ExtensionItem;
-use Imagekit\ExtensionItem\AIAutoDescription;
+use Imagekit\ExtensionItem\AutoDescriptionExtension;
 use Imagekit\ExtensionItem\AutoTaggingExtension;
 use Imagekit\ExtensionItem\AutoTaggingExtension\Name;
-use Imagekit\ExtensionItem\RemoveBg;
-use Imagekit\ExtensionItem\RemoveBg\Options;
+use Imagekit\ExtensionItem\RemovedotBgExtension;
+use Imagekit\ExtensionItem\RemovedotBgExtension\Options;
 use Imagekit\Files\FileUploadParams\ResponseField;
 use Imagekit\Files\FileUploadParams\Transformation;
-use Imagekit\Files\FileUploadParams\Transformation\Post\Abs;
-use Imagekit\Files\FileUploadParams\Transformation\Post\GifToVideo;
-use Imagekit\Files\FileUploadParams\Transformation\Post\Thumbnail;
+use Imagekit\Files\FileUploadParams\Transformation\Post\AdaptiveBitrateStreaming;
+use Imagekit\Files\FileUploadParams\Transformation\Post\ConvertGifToVideo;
+use Imagekit\Files\FileUploadParams\Transformation\Post\GenerateAThumbnail;
+use Imagekit\Files\FileUploadParams\Transformation\Post\SimplePostTransformation;
 
 /**
  * ImageKit.io allows you to upload files directly from both the server and client sides. For server-side uploads, private API key authentication is used. For client-side uploads, generate a one-time `token`, `signature`, and `expire` from your secure backend using private API. [Learn more](/docs/api-reference/upload-file/upload-file#how-to-implement-client-side-file-upload) about how to implement client-side file upload.
@@ -48,11 +49,11 @@ use Imagekit\Files\FileUploadParams\Transformation\Post\Thumbnail;
  *   customMetadata?: array<string,mixed>,
  *   description?: string,
  *   expire?: int,
- *   extensions?: list<RemoveBg|array{
+ *   extensions?: list<RemovedotBgExtension|array{
  *     name?: 'remove-bg', options?: Options|null
  *   }|AutoTaggingExtension|array{
  *     maxTags: int, minConfidence: int, name: value-of<Name>
- *   }|AIAutoDescription|array{name?: 'ai-auto-description'}>,
+ *   }|AutoDescriptionExtension|array{name?: 'ai-auto-description'}>,
  *   folder?: string,
  *   isPrivateFile?: bool,
  *   isPublished?: bool,
@@ -65,7 +66,7 @@ use Imagekit\Files\FileUploadParams\Transformation\Post\Thumbnail;
  *   signature?: string,
  *   tags?: list<string>,
  *   transformation?: Transformation|array{
- *     post?: list<\Imagekit\Files\FileUploadParams\Transformation\Post\Transformation|GifToVideo|Thumbnail|Abs>|null,
+ *     post?: list<SimplePostTransformation|ConvertGifToVideo|GenerateAThumbnail|AdaptiveBitrateStreaming>|null,
  *     pre?: string|null,
  *   },
  *   useUniqueFileName?: bool,
@@ -150,7 +151,7 @@ final class FileUploadParams implements BaseModel
     /**
      * Array of extensions to be applied to the asset. Each extension can be configured with specific parameters based on the extension type.
      *
-     * @var list<RemoveBg|AutoTaggingExtension|AIAutoDescription>|null $extensions
+     * @var list<RemovedotBgExtension|AutoTaggingExtension|AutoDescriptionExtension>|null $extensions
      */
     #[Optional(list: ExtensionItem::class)]
     public ?array $extensions;
@@ -297,15 +298,15 @@ final class FileUploadParams implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param array<string,mixed> $customMetadata
-     * @param list<RemoveBg|array{
+     * @param list<RemovedotBgExtension|array{
      *   name?: 'remove-bg', options?: Options|null
      * }|AutoTaggingExtension|array{
      *   maxTags: int, minConfidence: int, name: value-of<Name>
-     * }|AIAutoDescription|array{name?: 'ai-auto-description'}> $extensions
+     * }|AutoDescriptionExtension|array{name?: 'ai-auto-description'}> $extensions
      * @param list<ResponseField|value-of<ResponseField>> $responseFields
      * @param list<string> $tags
      * @param Transformation|array{
-     *   post?: list<Transformation\Post\Transformation|GifToVideo|Thumbnail|Abs>|null,
+     *   post?: list<SimplePostTransformation|ConvertGifToVideo|GenerateAThumbnail|AdaptiveBitrateStreaming>|null,
      *   pre?: string|null,
      * } $transformation
      */
@@ -476,11 +477,11 @@ final class FileUploadParams implements BaseModel
     /**
      * Array of extensions to be applied to the asset. Each extension can be configured with specific parameters based on the extension type.
      *
-     * @param list<RemoveBg|array{
+     * @param list<RemovedotBgExtension|array{
      *   name?: 'remove-bg', options?: Options|null
      * }|AutoTaggingExtension|array{
      *   maxTags: int, minConfidence: int, name: value-of<Name>
-     * }|AIAutoDescription|array{name?: 'ai-auto-description'}> $extensions
+     * }|AutoDescriptionExtension|array{name?: 'ai-auto-description'}> $extensions
      */
     public function withExtensions(array $extensions): self
     {
@@ -645,7 +646,7 @@ final class FileUploadParams implements BaseModel
      * You can mix and match any combination of post-processing types.
      *
      * @param Transformation|array{
-     *   post?: list<Transformation\Post\Transformation|GifToVideo|Thumbnail|Abs>|null,
+     *   post?: list<SimplePostTransformation|ConvertGifToVideo|GenerateAThumbnail|AdaptiveBitrateStreaming>|null,
      *   pre?: string|null,
      * } $transformation
      */

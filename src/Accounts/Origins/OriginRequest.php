@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Imagekit\Accounts\Origins;
 
 use Imagekit\Accounts\Origins\OriginRequest\AkeneoPim;
-use Imagekit\Accounts\Origins\OriginRequest\AzureBlob;
+use Imagekit\Accounts\Origins\OriginRequest\AzureBlobStorage;
 use Imagekit\Accounts\Origins\OriginRequest\CloudinaryBackup;
-use Imagekit\Accounts\Origins\OriginRequest\Gcs;
+use Imagekit\Accounts\Origins\OriginRequest\GoogleCloudStorageGcs;
 use Imagekit\Accounts\Origins\OriginRequest\S3;
 use Imagekit\Accounts\Origins\OriginRequest\S3Compatible;
 use Imagekit\Accounts\Origins\OriginRequest\WebFolder;
@@ -39,8 +39,8 @@ final class OriginRequest implements ConverterSource
             'CLOUDINARY_BACKUP' => CloudinaryBackup::class,
             'WEB_FOLDER' => WebFolder::class,
             'WEB_PROXY' => WebProxy::class,
-            'GCS' => Gcs::class,
-            'AZURE_BLOB' => AzureBlob::class,
+            'GCS' => GoogleCloudStorageGcs::class,
+            'AZURE_BLOB' => AzureBlobStorage::class,
             'AKENEO_PIM' => AkeneoPim::class,
         ];
     }

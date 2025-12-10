@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Imagekit\Services\Accounts;
 
 use Imagekit\Accounts\Origins\OriginResponse\AkeneoPim;
-use Imagekit\Accounts\Origins\OriginResponse\AzureBlob;
+use Imagekit\Accounts\Origins\OriginResponse\AzureBlobStorage;
 use Imagekit\Accounts\Origins\OriginResponse\CloudinaryBackup;
-use Imagekit\Accounts\Origins\OriginResponse\Gcs;
+use Imagekit\Accounts\Origins\OriginResponse\GoogleCloudStorageGcs;
 use Imagekit\Accounts\Origins\OriginResponse\S3;
 use Imagekit\Accounts\Origins\OriginResponse\S3Compatible;
 use Imagekit\Accounts\Origins\OriginResponse\WebFolder;
@@ -79,7 +79,7 @@ final class OriginsService implements OriginsContract
         bool $s3ForcePathStyle = false,
         bool $forwardHostHeaderToOrigin = false,
         ?RequestOptions $requestOptions = null,
-    ): S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim {
+    ): S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|GoogleCloudStorageGcs|AzureBlobStorage|AkeneoPim {
         $params = Util::removeNulls(
             [
                 'accessKey' => $accessKey,
@@ -160,7 +160,7 @@ final class OriginsService implements OriginsContract
         bool $s3ForcePathStyle = false,
         bool $forwardHostHeaderToOrigin = false,
         ?RequestOptions $requestOptions = null,
-    ): S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim {
+    ): S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|GoogleCloudStorageGcs|AzureBlobStorage|AkeneoPim {
         $params = Util::removeNulls(
             [
                 'accessKey' => $accessKey,
@@ -199,7 +199,7 @@ final class OriginsService implements OriginsContract
      * **Note:** This API is currently in beta.
      * Returns an array of all configured origins for the current account.
      *
-     * @return list<S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim>
+     * @return list<S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|GoogleCloudStorageGcs|AzureBlobStorage|AkeneoPim>
      *
      * @throws APIException
      */
@@ -244,7 +244,7 @@ final class OriginsService implements OriginsContract
     public function get(
         string $id,
         ?RequestOptions $requestOptions = null
-    ): S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim {
+    ): S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|GoogleCloudStorageGcs|AzureBlobStorage|AkeneoPim {
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->get($id, requestOptions: $requestOptions);
 

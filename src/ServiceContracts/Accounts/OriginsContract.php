@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Imagekit\ServiceContracts\Accounts;
 
 use Imagekit\Accounts\Origins\OriginResponse\AkeneoPim;
-use Imagekit\Accounts\Origins\OriginResponse\AzureBlob;
+use Imagekit\Accounts\Origins\OriginResponse\AzureBlobStorage;
 use Imagekit\Accounts\Origins\OriginResponse\CloudinaryBackup;
-use Imagekit\Accounts\Origins\OriginResponse\Gcs;
+use Imagekit\Accounts\Origins\OriginResponse\GoogleCloudStorageGcs;
 use Imagekit\Accounts\Origins\OriginResponse\S3;
 use Imagekit\Accounts\Origins\OriginResponse\S3Compatible;
 use Imagekit\Accounts\Origins\OriginResponse\WebFolder;
@@ -60,7 +60,7 @@ interface OriginsContract
         bool $s3ForcePathStyle = false,
         bool $forwardHostHeaderToOrigin = false,
         ?RequestOptions $requestOptions = null,
-    ): S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim;
+    ): S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|GoogleCloudStorageGcs|AzureBlobStorage|AkeneoPim;
 
     /**
      * @api
@@ -107,12 +107,12 @@ interface OriginsContract
         bool $s3ForcePathStyle = false,
         bool $forwardHostHeaderToOrigin = false,
         ?RequestOptions $requestOptions = null,
-    ): S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim;
+    ): S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|GoogleCloudStorageGcs|AzureBlobStorage|AkeneoPim;
 
     /**
      * @api
      *
-     * @return list<S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim>
+     * @return list<S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|GoogleCloudStorageGcs|AzureBlobStorage|AkeneoPim>
      *
      * @throws APIException
      */
@@ -140,5 +140,5 @@ interface OriginsContract
     public function get(
         string $id,
         ?RequestOptions $requestOptions = null
-    ): S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim;
+    ): S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|GoogleCloudStorageGcs|AzureBlobStorage|AkeneoPim;
 }

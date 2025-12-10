@@ -6,6 +6,7 @@ namespace Imagekit\Services\Files;
 
 use Imagekit\Client;
 use Imagekit\Core\Exceptions\APIException;
+use Imagekit\Core\Util;
 use Imagekit\Files\Metadata;
 use Imagekit\RequestOptions;
 use Imagekit\ServiceContracts\Files\MetadataContract;
@@ -59,7 +60,7 @@ final class MetadataService implements MetadataContract
         string $url,
         ?RequestOptions $requestOptions = null
     ): Metadata {
-        $params = ['url' => $url];
+        $params = Util::removeNulls(['url' => $url]);
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->getFromURL(params: $params, requestOptions: $requestOptions);

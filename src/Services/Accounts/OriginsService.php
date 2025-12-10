@@ -14,6 +14,7 @@ use Imagekit\Accounts\Origins\OriginResponse\WebFolder;
 use Imagekit\Accounts\Origins\OriginResponse\WebProxy;
 use Imagekit\Client;
 use Imagekit\Core\Exceptions\APIException;
+use Imagekit\Core\Util;
 use Imagekit\RequestOptions;
 use Imagekit\ServiceContracts\Accounts\OriginsContract;
 
@@ -79,31 +80,31 @@ final class OriginsService implements OriginsContract
         bool $forwardHostHeaderToOrigin = false,
         ?RequestOptions $requestOptions = null,
     ): S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim {
-        $params = [
-            'accessKey' => $accessKey,
-            'bucket' => $bucket,
-            'name' => $name,
-            'secretKey' => $secretKey,
-            'type' => $type,
-            'baseURLForCanonicalHeader' => $baseURLForCanonicalHeader,
-            'includeCanonicalHeader' => $includeCanonicalHeader,
-            'prefix' => $prefix,
-            'endpoint' => $endpoint,
-            's3ForcePathStyle' => $s3ForcePathStyle,
-            'baseURL' => $baseURL,
-            'forwardHostHeaderToOrigin' => $forwardHostHeaderToOrigin,
-            'clientEmail' => $clientEmail,
-            'privateKey' => $privateKey,
-            'accountName' => $accountName,
-            'container' => $container,
-            'sasToken' => $sasToken,
-            'clientID' => $clientID,
-            'clientSecret' => $clientSecret,
-            'password' => $password,
-            'username' => $username,
-        ];
-        // @phpstan-ignore-next-line function.impossibleType
-        $params = array_filter($params, callback: static fn ($v) => !is_null($v));
+        $params = Util::removeNulls(
+            [
+                'accessKey' => $accessKey,
+                'bucket' => $bucket,
+                'name' => $name,
+                'secretKey' => $secretKey,
+                'type' => $type,
+                'baseURLForCanonicalHeader' => $baseURLForCanonicalHeader,
+                'includeCanonicalHeader' => $includeCanonicalHeader,
+                'prefix' => $prefix,
+                'endpoint' => $endpoint,
+                's3ForcePathStyle' => $s3ForcePathStyle,
+                'baseURL' => $baseURL,
+                'forwardHostHeaderToOrigin' => $forwardHostHeaderToOrigin,
+                'clientEmail' => $clientEmail,
+                'privateKey' => $privateKey,
+                'accountName' => $accountName,
+                'container' => $container,
+                'sasToken' => $sasToken,
+                'clientID' => $clientID,
+                'clientSecret' => $clientSecret,
+                'password' => $password,
+                'username' => $username,
+            ],
+        );
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->create(params: $params, requestOptions: $requestOptions);
@@ -160,31 +161,31 @@ final class OriginsService implements OriginsContract
         bool $forwardHostHeaderToOrigin = false,
         ?RequestOptions $requestOptions = null,
     ): S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|Gcs|AzureBlob|AkeneoPim {
-        $params = [
-            'accessKey' => $accessKey,
-            'bucket' => $bucket,
-            'name' => $name,
-            'secretKey' => $secretKey,
-            'type' => $type,
-            'baseURLForCanonicalHeader' => $baseURLForCanonicalHeader,
-            'includeCanonicalHeader' => $includeCanonicalHeader,
-            'prefix' => $prefix,
-            'endpoint' => $endpoint,
-            's3ForcePathStyle' => $s3ForcePathStyle,
-            'baseURL' => $baseURL,
-            'forwardHostHeaderToOrigin' => $forwardHostHeaderToOrigin,
-            'clientEmail' => $clientEmail,
-            'privateKey' => $privateKey,
-            'accountName' => $accountName,
-            'container' => $container,
-            'sasToken' => $sasToken,
-            'clientID' => $clientID,
-            'clientSecret' => $clientSecret,
-            'password' => $password,
-            'username' => $username,
-        ];
-        // @phpstan-ignore-next-line function.impossibleType
-        $params = array_filter($params, callback: static fn ($v) => !is_null($v));
+        $params = Util::removeNulls(
+            [
+                'accessKey' => $accessKey,
+                'bucket' => $bucket,
+                'name' => $name,
+                'secretKey' => $secretKey,
+                'type' => $type,
+                'baseURLForCanonicalHeader' => $baseURLForCanonicalHeader,
+                'includeCanonicalHeader' => $includeCanonicalHeader,
+                'prefix' => $prefix,
+                'endpoint' => $endpoint,
+                's3ForcePathStyle' => $s3ForcePathStyle,
+                'baseURL' => $baseURL,
+                'forwardHostHeaderToOrigin' => $forwardHostHeaderToOrigin,
+                'clientEmail' => $clientEmail,
+                'privateKey' => $privateKey,
+                'accountName' => $accountName,
+                'container' => $container,
+                'sasToken' => $sasToken,
+                'clientID' => $clientID,
+                'clientSecret' => $clientSecret,
+                'password' => $password,
+                'username' => $username,
+            ],
+        );
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->update($id, params: $params, requestOptions: $requestOptions);

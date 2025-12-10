@@ -8,6 +8,7 @@ use Imagekit\Beta\V2\Files\FileUploadParams\ResponseField;
 use Imagekit\Beta\V2\Files\FileUploadResponse;
 use Imagekit\Client;
 use Imagekit\Core\Exceptions\APIException;
+use Imagekit\Core\Util;
 use Imagekit\RequestOptions;
 use Imagekit\ServiceContracts\Beta\V2\FilesContract;
 
@@ -123,30 +124,30 @@ final class FilesService implements FilesContract
         ?string $webhookURL = null,
         ?RequestOptions $requestOptions = null,
     ): FileUploadResponse {
-        $params = [
-            'file' => $file,
-            'fileName' => $fileName,
-            'token' => $token,
-            'checks' => $checks,
-            'customCoordinates' => $customCoordinates,
-            'customMetadata' => $customMetadata,
-            'description' => $description,
-            'extensions' => $extensions,
-            'folder' => $folder,
-            'isPrivateFile' => $isPrivateFile,
-            'isPublished' => $isPublished,
-            'overwriteAITags' => $overwriteAITags,
-            'overwriteCustomMetadata' => $overwriteCustomMetadata,
-            'overwriteFile' => $overwriteFile,
-            'overwriteTags' => $overwriteTags,
-            'responseFields' => $responseFields,
-            'tags' => $tags,
-            'transformation' => $transformation,
-            'useUniqueFileName' => $useUniqueFileName,
-            'webhookURL' => $webhookURL,
-        ];
-        // @phpstan-ignore-next-line function.impossibleType
-        $params = array_filter($params, callback: static fn ($v) => !is_null($v));
+        $params = Util::removeNulls(
+            [
+                'file' => $file,
+                'fileName' => $fileName,
+                'token' => $token,
+                'checks' => $checks,
+                'customCoordinates' => $customCoordinates,
+                'customMetadata' => $customMetadata,
+                'description' => $description,
+                'extensions' => $extensions,
+                'folder' => $folder,
+                'isPrivateFile' => $isPrivateFile,
+                'isPublished' => $isPublished,
+                'overwriteAITags' => $overwriteAITags,
+                'overwriteCustomMetadata' => $overwriteCustomMetadata,
+                'overwriteFile' => $overwriteFile,
+                'overwriteTags' => $overwriteTags,
+                'responseFields' => $responseFields,
+                'tags' => $tags,
+                'transformation' => $transformation,
+                'useUniqueFileName' => $useUniqueFileName,
+                'webhookURL' => $webhookURL,
+            ],
+        );
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->upload(params: $params, requestOptions: $requestOptions);

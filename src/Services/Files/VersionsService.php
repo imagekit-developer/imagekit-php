@@ -6,6 +6,7 @@ namespace Imagekit\Services\Files;
 
 use Imagekit\Client;
 use Imagekit\Core\Exceptions\APIException;
+use Imagekit\Core\Util;
 use Imagekit\Files\File;
 use Imagekit\Files\Versions\VersionDeleteResponse;
 use Imagekit\RequestOptions;
@@ -64,7 +65,7 @@ final class VersionsService implements VersionsContract
         string $fileID,
         ?RequestOptions $requestOptions = null
     ): VersionDeleteResponse {
-        $params = ['fileID' => $fileID];
+        $params = Util::removeNulls(['fileID' => $fileID]);
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->delete($versionID, params: $params, requestOptions: $requestOptions);
@@ -87,7 +88,7 @@ final class VersionsService implements VersionsContract
         string $fileID,
         ?RequestOptions $requestOptions = null
     ): File {
-        $params = ['fileID' => $fileID];
+        $params = Util::removeNulls(['fileID' => $fileID]);
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->get($versionID, params: $params, requestOptions: $requestOptions);
@@ -110,7 +111,7 @@ final class VersionsService implements VersionsContract
         string $fileID,
         ?RequestOptions $requestOptions = null
     ): File {
-        $params = ['fileID' => $fileID];
+        $params = Util::removeNulls(['fileID' => $fileID]);
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->restore($versionID, params: $params, requestOptions: $requestOptions);

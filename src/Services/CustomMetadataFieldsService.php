@@ -6,6 +6,7 @@ namespace Imagekit\Services;
 
 use Imagekit\Client;
 use Imagekit\Core\Exceptions\APIException;
+use Imagekit\Core\Util;
 use Imagekit\CustomMetadataFields\CustomMetadataField;
 use Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\Type;
 use Imagekit\CustomMetadataFields\CustomMetadataFieldDeleteResponse;
@@ -53,7 +54,9 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
         array $schema,
         ?RequestOptions $requestOptions = null,
     ): CustomMetadataField {
-        $params = ['label' => $label, 'name' => $name, 'schema' => $schema];
+        $params = Util::removeNulls(
+            ['label' => $label, 'name' => $name, 'schema' => $schema]
+        );
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->create(params: $params, requestOptions: $requestOptions);
@@ -86,9 +89,7 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
         ?array $schema = null,
         ?RequestOptions $requestOptions = null,
     ): CustomMetadataField {
-        $params = ['label' => $label, 'schema' => $schema];
-        // @phpstan-ignore-next-line function.impossibleType
-        $params = array_filter($params, callback: static fn ($v) => !is_null($v));
+        $params = Util::removeNulls(['label' => $label, 'schema' => $schema]);
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->update($id, params: $params, requestOptions: $requestOptions);
@@ -115,11 +116,9 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
         bool $includeDeleted = false,
         ?RequestOptions $requestOptions = null,
     ): array {
-        $params = [
-            'folderPath' => $folderPath, 'includeDeleted' => $includeDeleted,
-        ];
-        // @phpstan-ignore-next-line function.impossibleType
-        $params = array_filter($params, callback: static fn ($v) => !is_null($v));
+        $params = Util::removeNulls(
+            ['folderPath' => $folderPath, 'includeDeleted' => $includeDeleted]
+        );
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->list(params: $params, requestOptions: $requestOptions);

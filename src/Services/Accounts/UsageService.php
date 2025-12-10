@@ -7,6 +7,7 @@ namespace Imagekit\Services\Accounts;
 use Imagekit\Accounts\Usage\UsageGetResponse;
 use Imagekit\Client;
 use Imagekit\Core\Exceptions\APIException;
+use Imagekit\Core\Util;
 use Imagekit\RequestOptions;
 use Imagekit\ServiceContracts\Accounts\UsageContract;
 
@@ -40,7 +41,9 @@ final class UsageService implements UsageContract
         string $startDate,
         ?RequestOptions $requestOptions = null
     ): UsageGetResponse {
-        $params = ['endDate' => $endDate, 'startDate' => $startDate];
+        $params = Util::removeNulls(
+            ['endDate' => $endDate, 'startDate' => $startDate]
+        );
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->get(params: $params, requestOptions: $requestOptions);

@@ -8,7 +8,7 @@ use Imagekit\Core\Concerns\SdkUnion;
 use Imagekit\Core\Conversion\Contracts\Converter;
 use Imagekit\Core\Conversion\Contracts\ConverterSource;
 use Imagekit\Core\Conversion\ListOf;
-use Imagekit\CustomMetadataFields\CustomMetadataField\Schema\DefaultValue\Mixed1;
+use Imagekit\CustomMetadataFields\CustomMetadataField\Schema\DefaultValue\Mixed_;
 
 /**
  * The default value for this custom metadata field. Data type of default value depends on the field type.
@@ -22,6 +22,6 @@ final class DefaultValue implements ConverterSource
      */
     public static function variants(): array
     {
-        return ['string', 'float', 'bool', new ListOf(Mixed1::class)];
+        return ['string', 'float', 'bool', new ListOf(Mixed_::class)];
     }
 }

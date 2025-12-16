@@ -12,6 +12,8 @@ use Imagekit\Core\Conversion\Contracts\ConverterSource;
  * Specifies the end offset (in seconds) for trimming videos, e.g., `5` or `10.5`.
  * Typically used with startOffset to define a time window. Arithmetic expressions are supported.
  * See [Trim videos – End offset](https://imagekit.io/docs/trim-videos#end-offset---eo).
+ *
+ * @phpstan-type EndOffsetShape = float|string
  */
 final class EndOffset implements ConverterSource
 {

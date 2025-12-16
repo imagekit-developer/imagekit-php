@@ -16,7 +16,7 @@ use Imagekit\Core\Contracts\BaseModel;
  *   clientSecret: string,
  *   name: string,
  *   password: string,
- *   type?: 'AKENEO_PIM',
+ *   type: 'AKENEO_PIM',
  *   username: string,
  *   baseURLForCanonicalHeader?: string|null,
  *   includeCanonicalHeader?: bool|null,

@@ -16,7 +16,7 @@ interface InvalidationRawContract
     /**
      * @api
      *
-     * @param array<mixed>|InvalidationCreateParams $params
+     * @param array<string,mixed>|InvalidationCreateParams $params
      *
      * @return BaseResponse<InvalidationNewResponse>
      *

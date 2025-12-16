@@ -17,7 +17,7 @@ use Imagekit\Core\Contracts\BaseModel;
  * @see Imagekit\Services\CustomMetadataFieldsService::list()
  *
  * @phpstan-type CustomMetadataFieldListParamsShape = array{
- *   folderPath?: string, includeDeleted?: bool
+ *   folderPath?: string|null, includeDeleted?: bool|null
  * }
  */
 final class CustomMetadataFieldListParams implements BaseModel

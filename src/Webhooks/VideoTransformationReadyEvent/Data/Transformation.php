@@ -9,17 +9,17 @@ use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Options;
-use Imagekit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Options\AudioCodec;
-use Imagekit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Options\Format;
-use Imagekit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Options\StreamProtocol;
-use Imagekit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Options\VideoCodec;
 use Imagekit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Output;
-use Imagekit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Output\VideoMetadata;
 use Imagekit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Type;
 
 /**
+ * @phpstan-import-type OptionsShape from \Imagekit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Options
+ * @phpstan-import-type OutputShape from \Imagekit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Output
+ *
  * @phpstan-type TransformationShape = array{
- *   type: value-of<Type>, options?: Options|null, output?: Output|null
+ *   type: Type|value-of<Type>,
+ *   options?: null|Options|OptionsShape,
+ *   output?: null|Output|OutputShape,
  * }
  */
 final class Transformation implements BaseModel
@@ -75,16 +75,8 @@ final class Transformation implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param Type|value-of<Type> $type
-     * @param Options|array{
-     *   audioCodec?: value-of<AudioCodec>|null,
-     *   autoRotate?: bool|null,
-     *   format?: value-of<Format>|null,
-     *   quality?: int|null,
-     *   streamProtocol?: value-of<StreamProtocol>|null,
-     *   variants?: list<string>|null,
-     *   videoCodec?: value-of<VideoCodec>|null,
-     * } $options
-     * @param Output|array{url: string, videoMetadata?: VideoMetadata|null} $output
+     * @param OptionsShape $options
+     * @param OutputShape $output
      */
     public static function with(
         Type|string $type,
@@ -120,15 +112,7 @@ final class Transformation implements BaseModel
     /**
      * Configuration options for video transformations.
      *
-     * @param Options|array{
-     *   audioCodec?: value-of<AudioCodec>|null,
-     *   autoRotate?: bool|null,
-     *   format?: value-of<Format>|null,
-     *   quality?: int|null,
-     *   streamProtocol?: value-of<StreamProtocol>|null,
-     *   variants?: list<string>|null,
-     *   videoCodec?: value-of<VideoCodec>|null,
-     * } $options
+     * @param OptionsShape $options
      */
     public function withOptions(Options|array $options): self
     {
@@ -141,7 +125,7 @@ final class Transformation implements BaseModel
     /**
      * Information about the transformed output video.
      *
-     * @param Output|array{url: string, videoMetadata?: VideoMetadata|null} $output
+     * @param OutputShape $output
      */
     public function withOutput(Output|array $output): self
     {

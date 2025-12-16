@@ -13,6 +13,8 @@ use Imagekit\Core\Conversion\Contracts\ConverterSource;
  * For AI-based drop shadows, refer to aiDropShadow.
  * Pass `true` for a default shadow, or provide a string for a custom shadow.
  * See [Shadow](https://imagekit.io/docs/effects-and-enhancements#shadow---e-shadow).
+ *
+ * @phpstan-type ShadowShape = string|bool
  */
 final class Shadow implements ConverterSource
 {

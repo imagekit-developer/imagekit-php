@@ -15,7 +15,7 @@ use Imagekit\Core\Contracts\BaseModel;
  *   clientEmail: string,
  *   name: string,
  *   privateKey: string,
- *   type?: 'GCS',
+ *   type: 'GCS',
  *   baseURLForCanonicalHeader?: string|null,
  *   includeCanonicalHeader?: bool|null,
  *   prefix?: string|null,

@@ -14,6 +14,8 @@ use Imagekit\Core\Conversion\Contracts\ConverterSource;
  * Pass `true` for the default drop shadow, or provide a string for a custom drop shadow.
  * Supported inside overlay.
  * See [AI Drop Shadow](https://imagekit.io/docs/ai-transformations#ai-drop-shadow-e-dropshadow).
+ *
+ * @phpstan-type AIDropShadowShape = string|bool
  */
 final class AIDropShadow implements ConverterSource
 {

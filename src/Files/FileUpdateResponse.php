@@ -12,16 +12,17 @@ use Imagekit\Files\File\SelectedFieldsSchema;
 use Imagekit\Files\File\Type;
 use Imagekit\Files\File\VersionInfo;
 use Imagekit\Files\FileUpdateResponse\ExtensionStatus;
-use Imagekit\Files\FileUpdateResponse\ExtensionStatus\AIAutoDescription;
-use Imagekit\Files\FileUpdateResponse\ExtensionStatus\AwsAutoTagging;
-use Imagekit\Files\FileUpdateResponse\ExtensionStatus\GoogleAutoTagging;
-use Imagekit\Files\FileUpdateResponse\ExtensionStatus\RemoveBg;
 
 /**
  * Object containing details of a file or file version.
  *
+ * @phpstan-import-type AITagShape from \Imagekit\Files\File\AITag
+ * @phpstan-import-type SelectedFieldsSchemaShape from \Imagekit\Files\File\SelectedFieldsSchema
+ * @phpstan-import-type VersionInfoShape from \Imagekit\Files\File\VersionInfo
+ * @phpstan-import-type ExtensionStatusShape from \Imagekit\Files\FileUpdateResponse\ExtensionStatus
+ *
  * @phpstan-type FileUpdateResponseShape = array{
- *   aiTags?: list<AITag>|null,
+ *   aiTags?: list<AITagShape>|null,
  *   createdAt?: \DateTimeInterface|null,
  *   customCoordinates?: string|null,
  *   customMetadata?: array<string,mixed>|null,
@@ -35,16 +36,16 @@ use Imagekit\Files\FileUpdateResponse\ExtensionStatus\RemoveBg;
  *   isPublished?: bool|null,
  *   mime?: string|null,
  *   name?: string|null,
- *   selectedFieldsSchema?: array<string,SelectedFieldsSchema>|null,
+ *   selectedFieldsSchema?: array<string,SelectedFieldsSchemaShape>|null,
  *   size?: float|null,
  *   tags?: list<string>|null,
  *   thumbnail?: string|null,
- *   type?: value-of<Type>|null,
+ *   type?: null|Type|value-of<Type>,
  *   updatedAt?: \DateTimeInterface|null,
  *   url?: string|null,
- *   versionInfo?: VersionInfo|null,
+ *   versionInfo?: null|VersionInfo|VersionInfoShape,
  *   width?: float|null,
- *   extensionStatus?: ExtensionStatus|null,
+ *   extensionStatus?: null|ExtensionStatus|ExtensionStatusShape,
  * }
  */
 final class FileUpdateResponse implements BaseModel
@@ -217,31 +218,13 @@ final class FileUpdateResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<AITag|array{
-     *   confidence?: float|null, name?: string|null, source?: string|null
-     * }>|null $aiTags
+     * @param list<AITagShape>|null $aiTags
      * @param array<string,mixed> $customMetadata
-     * @param array<string,SelectedFieldsSchema|array{
-     *   type: value-of<SelectedFieldsSchema\Type>,
-     *   defaultValue?: string|float|bool|list<string|float|bool>|null,
-     *   isValueRequired?: bool|null,
-     *   maxLength?: float|null,
-     *   maxValue?: string|float|null,
-     *   minLength?: float|null,
-     *   minValue?: string|float|null,
-     *   readOnly?: bool|null,
-     *   selectOptions?: list<string|float|bool>|null,
-     *   selectOptionsTruncated?: bool|null,
-     * }> $selectedFieldsSchema
+     * @param array<string,SelectedFieldsSchemaShape> $selectedFieldsSchema
      * @param list<string>|null $tags
      * @param Type|value-of<Type> $type
-     * @param VersionInfo|array{id?: string|null, name?: string|null} $versionInfo
-     * @param ExtensionStatus|array{
-     *   aiAutoDescription?: value-of<AIAutoDescription>|null,
-     *   awsAutoTagging?: value-of<AwsAutoTagging>|null,
-     *   googleAutoTagging?: value-of<GoogleAutoTagging>|null,
-     *   removeBg?: value-of<RemoveBg>|null,
-     * } $extensionStatus
+     * @param VersionInfoShape $versionInfo
+     * @param ExtensionStatusShape $extensionStatus
      */
     public static function with(
         ?array $aiTags = null,
@@ -302,9 +285,7 @@ final class FileUpdateResponse implements BaseModel
     /**
      * An array of tags assigned to the file by auto tagging.
      *
-     * @param list<AITag|array{
-     *   confidence?: float|null, name?: string|null, source?: string|null
-     * }>|null $aiTags
+     * @param list<AITagShape>|null $aiTags
      */
     public function withAITags(?array $aiTags): self
     {
@@ -466,18 +447,7 @@ final class FileUpdateResponse implements BaseModel
      *
      * Keys are the names of the custom metadata fields; the value object has details about the custom metadata schema.
      *
-     * @param array<string,SelectedFieldsSchema|array{
-     *   type: value-of<SelectedFieldsSchema\Type>,
-     *   defaultValue?: string|float|bool|list<string|float|bool>|null,
-     *   isValueRequired?: bool|null,
-     *   maxLength?: float|null,
-     *   maxValue?: string|float|null,
-     *   minLength?: float|null,
-     *   minValue?: string|float|null,
-     *   readOnly?: bool|null,
-     *   selectOptions?: list<string|float|bool>|null,
-     *   selectOptionsTruncated?: bool|null,
-     * }> $selectedFieldsSchema
+     * @param array<string,SelectedFieldsSchemaShape> $selectedFieldsSchema
      */
     public function withSelectedFieldsSchema(array $selectedFieldsSchema): self
     {
@@ -560,7 +530,7 @@ final class FileUpdateResponse implements BaseModel
     /**
      * An object with details of the file version.
      *
-     * @param VersionInfo|array{id?: string|null, name?: string|null} $versionInfo
+     * @param VersionInfoShape $versionInfo
      */
     public function withVersionInfo(VersionInfo|array $versionInfo): self
     {
@@ -582,12 +552,7 @@ final class FileUpdateResponse implements BaseModel
     }
 
     /**
-     * @param ExtensionStatus|array{
-     *   aiAutoDescription?: value-of<AIAutoDescription>|null,
-     *   awsAutoTagging?: value-of<AwsAutoTagging>|null,
-     *   googleAutoTagging?: value-of<GoogleAutoTagging>|null,
-     *   removeBg?: value-of<RemoveBg>|null,
-     * } $extensionStatus
+     * @param ExtensionStatusShape $extensionStatus
      */
     public function withExtensionStatus(
         ExtensionStatus|array $extensionStatus

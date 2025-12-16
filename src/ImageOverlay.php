@@ -9,15 +9,17 @@ use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\ImageOverlay\Encoding;
-use Imagekit\OverlayPosition\Focus;
 
 /**
+ * @phpstan-import-type OverlayPositionShape from \Imagekit\OverlayPosition
+ * @phpstan-import-type OverlayTimingShape from \Imagekit\OverlayTiming
+ *
  * @phpstan-type ImageOverlayShape = array{
- *   position?: OverlayPosition|null,
- *   timing?: OverlayTiming|null,
+ *   position?: null|OverlayPosition|OverlayPositionShape,
+ *   timing?: null|OverlayTiming|OverlayTimingShape,
  *   input: string,
- *   type?: 'image',
- *   encoding?: value-of<Encoding>|null,
+ *   type: 'image',
+ *   encoding?: null|Encoding|value-of<Encoding>,
  *   transformation?: list<mixed>|null,
  * }
  */
@@ -86,14 +88,8 @@ final class ImageOverlay implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param OverlayPosition|array{
-     *   focus?: value-of<Focus>|null, x?: float|string|null, y?: float|string|null
-     * } $position
-     * @param OverlayTiming|array{
-     *   duration?: float|string|null,
-     *   end?: float|string|null,
-     *   start?: float|string|null,
-     * } $timing
+     * @param OverlayPositionShape $position
+     * @param OverlayTimingShape $timing
      * @param Encoding|value-of<Encoding> $encoding
      * @param list<mixed> $transformation
      */
@@ -117,9 +113,7 @@ final class ImageOverlay implements BaseModel
     }
 
     /**
-     * @param OverlayPosition|array{
-     *   focus?: value-of<Focus>|null, x?: float|string|null, y?: float|string|null
-     * } $position
+     * @param OverlayPositionShape $position
      */
     public function withPosition(OverlayPosition|array $position): self
     {
@@ -130,11 +124,7 @@ final class ImageOverlay implements BaseModel
     }
 
     /**
-     * @param OverlayTiming|array{
-     *   duration?: float|string|null,
-     *   end?: float|string|null,
-     *   start?: float|string|null,
-     * } $timing
+     * @param OverlayTimingShape $timing
      */
     public function withTiming(OverlayTiming|array $timing): self
     {

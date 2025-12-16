@@ -10,8 +10,11 @@ use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\OverlayPosition\Focus;
 
 /**
+ * @phpstan-import-type XShape from \Imagekit\OverlayPosition\X
+ * @phpstan-import-type YShape from \Imagekit\OverlayPosition\Y
+ *
  * @phpstan-type OverlayPositionShape = array{
- *   focus?: value-of<Focus>|null, x?: float|string|null, y?: float|string|null
+ *   focus?: null|Focus|value-of<Focus>, x?: XShape|null, y?: YShape|null
  * }
  */
 final class OverlayPosition implements BaseModel
@@ -57,6 +60,8 @@ final class OverlayPosition implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param Focus|value-of<Focus> $focus
+     * @param XShape $x
+     * @param YShape $y
      */
     public static function with(
         Focus|string|null $focus = null,
@@ -91,6 +96,8 @@ final class OverlayPosition implements BaseModel
      * It also accepts arithmetic expressions such as `bw_mul_0.4` or `bw_sub_cw`.
      * Maps to `lx` in the URL.
      * Learn about [Arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
+     *
+     * @param XShape $x
      */
     public function withX(float|string $x): self
     {
@@ -105,6 +112,8 @@ final class OverlayPosition implements BaseModel
      * It also accepts arithmetic expressions such as `bh_mul_0.4` or `bh_sub_ch`.
      * Maps to `ly` in the URL.
      * Learn about [Arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
+     *
+     * @param YShape $y
      */
     public function withY(float|string $y): self
     {

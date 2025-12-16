@@ -9,11 +9,14 @@ use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\Webhooks\VideoTransformationAcceptedEvent\Data\Asset;
 use Imagekit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation;
-use Imagekit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation\Options;
-use Imagekit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation\Type;
 
 /**
- * @phpstan-type DataShape = array{asset: Asset, transformation: Transformation}
+ * @phpstan-import-type AssetShape from \Imagekit\Webhooks\VideoTransformationAcceptedEvent\Data\Asset
+ * @phpstan-import-type TransformationShape from \Imagekit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation
+ *
+ * @phpstan-type DataShape = array{
+ *   asset: Asset|AssetShape, transformation: Transformation|TransformationShape
+ * }
  */
 final class Data implements BaseModel
 {
@@ -56,10 +59,8 @@ final class Data implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Asset|array{url: string} $asset
-     * @param Transformation|array{
-     *   type: value-of<Type>, options?: Options|null
-     * } $transformation
+     * @param AssetShape $asset
+     * @param TransformationShape $transformation
      */
     public static function with(
         Asset|array $asset,
@@ -76,7 +77,7 @@ final class Data implements BaseModel
     /**
      * Information about the source video asset being transformed.
      *
-     * @param Asset|array{url: string} $asset
+     * @param AssetShape $asset
      */
     public function withAsset(Asset|array $asset): self
     {
@@ -89,9 +90,7 @@ final class Data implements BaseModel
     /**
      * Base information about a video transformation request.
      *
-     * @param Transformation|array{
-     *   type: value-of<Type>, options?: Options|null
-     * } $transformation
+     * @param TransformationShape $transformation
      */
     public function withTransformation(
         Transformation|array $transformation

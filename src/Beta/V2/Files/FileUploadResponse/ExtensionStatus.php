@@ -22,10 +22,10 @@ use Imagekit\Core\Contracts\BaseModel;
  * If no extension was requested, then this parameter is not returned.
  *
  * @phpstan-type ExtensionStatusShape = array{
- *   aiAutoDescription?: value-of<AIAutoDescription>|null,
- *   awsAutoTagging?: value-of<AwsAutoTagging>|null,
- *   googleAutoTagging?: value-of<GoogleAutoTagging>|null,
- *   removeBg?: value-of<RemoveBg>|null,
+ *   aiAutoDescription?: null|AIAutoDescription|value-of<AIAutoDescription>,
+ *   awsAutoTagging?: null|AwsAutoTagging|value-of<AwsAutoTagging>,
+ *   googleAutoTagging?: null|GoogleAutoTagging|value-of<GoogleAutoTagging>,
+ *   removeBg?: null|RemoveBg|value-of<RemoveBg>,
  * }
  */
 final class ExtensionStatus implements BaseModel

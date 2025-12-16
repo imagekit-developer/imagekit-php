@@ -16,12 +16,14 @@ use Imagekit\Core\Contracts\BaseModel;
 /**
  * URL‑endpoint object as returned by the API.
  *
+ * @phpstan-import-type URLRewriterShape from \Imagekit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriter
+ *
  * @phpstan-type URLEndpointResponseShape = array{
  *   id: string,
  *   description: string,
  *   origins: list<string>,
  *   urlPrefix: string,
- *   urlRewriter?: null|CloudinaryURLRewriter|ImgixURLRewriter|AkamaiURLRewriter,
+ *   urlRewriter?: null|URLRewriterShape|CloudinaryURLRewriter|ImgixURLRewriter|AkamaiURLRewriter,
  * }
  */
 final class URLEndpointResponse implements BaseModel
@@ -92,11 +94,7 @@ final class URLEndpointResponse implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param list<string> $origins
-     * @param CloudinaryURLRewriter|array{
-     *   preserveAssetDeliveryTypes: bool, type?: 'CLOUDINARY'
-     * }|ImgixURLRewriter|array{type?: 'IMGIX'}|AkamaiURLRewriter|array{
-     *   type?: 'AKAMAI'
-     * } $urlRewriter
+     * @param URLRewriterShape $urlRewriter
      */
     public static function with(
         string $id,
@@ -166,11 +164,7 @@ final class URLEndpointResponse implements BaseModel
     /**
      * Configuration for third-party URL rewriting.
      *
-     * @param CloudinaryURLRewriter|array{
-     *   preserveAssetDeliveryTypes: bool, type?: 'CLOUDINARY'
-     * }|ImgixURLRewriter|array{type?: 'IMGIX'}|AkamaiURLRewriter|array{
-     *   type?: 'AKAMAI'
-     * } $urlRewriter
+     * @param URLRewriterShape $urlRewriter
      */
     public function withURLRewriter(
         CloudinaryURLRewriter|array|ImgixURLRewriter|AkamaiURLRewriter $urlRewriter

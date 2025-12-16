@@ -13,14 +13,19 @@ use Imagekit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema\SelectO
 /**
  * An object that describes the rules for the custom metadata key. This parameter is required if `label` is not provided. Note: `type` cannot be updated and will be ignored if sent with the `schema`. The schema will be validated as per the existing `type`.
  *
+ * @phpstan-import-type DefaultValueShape from \Imagekit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema\DefaultValue
+ * @phpstan-import-type MaxValueShape from \Imagekit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema\MaxValue
+ * @phpstan-import-type MinValueShape from \Imagekit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema\MinValue
+ * @phpstan-import-type SelectOptionShape from \Imagekit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema\SelectOption
+ *
  * @phpstan-type SchemaShape = array{
- *   defaultValue?: string|float|bool|null|list<string|float|bool>,
+ *   defaultValue?: DefaultValueShape|null,
  *   isValueRequired?: bool|null,
  *   maxLength?: float|null,
- *   maxValue?: string|float|null,
+ *   maxValue?: MaxValueShape|null,
  *   minLength?: float|null,
- *   minValue?: string|float|null,
- *   selectOptions?: list<string|float|bool>|null,
+ *   minValue?: MinValueShape|null,
+ *   selectOptions?: list<SelectOptionShape>|null,
  * }
  */
 final class Schema implements BaseModel
@@ -84,8 +89,10 @@ final class Schema implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param string|float|bool|list<string|float|bool> $defaultValue
-     * @param list<string|float|bool> $selectOptions
+     * @param DefaultValueShape $defaultValue
+     * @param MaxValueShape $maxValue
+     * @param MinValueShape $minValue
+     * @param list<SelectOptionShape> $selectOptions
      */
     public static function with(
         string|float|bool|array|null $defaultValue = null,
@@ -112,7 +119,7 @@ final class Schema implements BaseModel
     /**
      * The default value for this custom metadata field. This property is only required if `isValueRequired` property is set to `true`. The value should match the `type` of custom metadata field.
      *
-     * @param string|float|bool|list<string|float|bool> $defaultValue
+     * @param DefaultValueShape $defaultValue
      */
     public function withDefaultValue(
         string|float|bool|array $defaultValue
@@ -147,6 +154,8 @@ final class Schema implements BaseModel
 
     /**
      * Maximum value of the field. Only set this property if field type is `Date` or `Number`. For `Date` type field, set the minimum date in ISO8601 string format. For `Number` type field, set the minimum numeric value.
+     *
+     * @param MaxValueShape $maxValue
      */
     public function withMaxValue(string|float $maxValue): self
     {
@@ -169,6 +178,8 @@ final class Schema implements BaseModel
 
     /**
      * Minimum value of the field. Only set this property if field type is `Date` or `Number`. For `Date` type field, set the minimum date in ISO8601 string format. For `Number` type field, set the minimum numeric value.
+     *
+     * @param MinValueShape $minValue
      */
     public function withMinValue(string|float $minValue): self
     {
@@ -181,7 +192,7 @@ final class Schema implements BaseModel
     /**
      * An array of allowed values. This property is only required if `type` property is set to `SingleSelect` or `MultiSelect`.
      *
-     * @param list<string|float|bool> $selectOptions
+     * @param list<SelectOptionShape> $selectOptions
      */
     public function withSelectOptions(array $selectOptions): self
     {

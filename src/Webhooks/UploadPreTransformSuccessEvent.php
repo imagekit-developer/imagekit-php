@@ -7,23 +7,21 @@ namespace Imagekit\Webhooks;
 use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Files\Metadata;
 use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data;
-use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\AITag;
-use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\ExtensionStatus;
-use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema;
-use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\VersionInfo;
 use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Request;
 
 /**
  * Triggered when a pre-transformation completes successfully. The file has been processed with the requested transformation and is now available in the Media Library.
  *
+ * @phpstan-import-type DataShape from \Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data
+ * @phpstan-import-type RequestShape from \Imagekit\Webhooks\UploadPreTransformSuccessEvent\Request
+ *
  * @phpstan-type UploadPreTransformSuccessEventShape = array{
  *   id: string,
  *   type: string,
  *   createdAt: \DateTimeInterface,
- *   data: Data,
- *   request: Request,
+ *   data: Data|DataShape,
+ *   request: Request|RequestShape,
  * }
  */
 final class UploadPreTransformSuccessEvent implements BaseModel
@@ -89,34 +87,8 @@ final class UploadPreTransformSuccessEvent implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Data|array{
-     *   aiTags?: list<AITag>|null,
-     *   audioCodec?: string|null,
-     *   bitRate?: int|null,
-     *   customCoordinates?: string|null,
-     *   customMetadata?: array<string,mixed>|null,
-     *   description?: string|null,
-     *   duration?: int|null,
-     *   embeddedMetadata?: array<string,mixed>|null,
-     *   extensionStatus?: ExtensionStatus|null,
-     *   fileID?: string|null,
-     *   filePath?: string|null,
-     *   fileType?: string|null,
-     *   height?: float|null,
-     *   isPrivateFile?: bool|null,
-     *   isPublished?: bool|null,
-     *   metadata?: Metadata|null,
-     *   name?: string|null,
-     *   selectedFieldsSchema?: array<string,SelectedFieldsSchema>|null,
-     *   size?: float|null,
-     *   tags?: list<string>|null,
-     *   thumbnailURL?: string|null,
-     *   url?: string|null,
-     *   versionInfo?: VersionInfo|null,
-     *   videoCodec?: string|null,
-     *   width?: float|null,
-     * } $data
-     * @param Request|array{transformation: string, xRequestID: string} $request
+     * @param DataShape $data
+     * @param RequestShape $request
      */
     public static function with(
         string $id,
@@ -172,33 +144,7 @@ final class UploadPreTransformSuccessEvent implements BaseModel
     /**
      * Object containing details of a successful upload.
      *
-     * @param Data|array{
-     *   aiTags?: list<AITag>|null,
-     *   audioCodec?: string|null,
-     *   bitRate?: int|null,
-     *   customCoordinates?: string|null,
-     *   customMetadata?: array<string,mixed>|null,
-     *   description?: string|null,
-     *   duration?: int|null,
-     *   embeddedMetadata?: array<string,mixed>|null,
-     *   extensionStatus?: ExtensionStatus|null,
-     *   fileID?: string|null,
-     *   filePath?: string|null,
-     *   fileType?: string|null,
-     *   height?: float|null,
-     *   isPrivateFile?: bool|null,
-     *   isPublished?: bool|null,
-     *   metadata?: Metadata|null,
-     *   name?: string|null,
-     *   selectedFieldsSchema?: array<string,SelectedFieldsSchema>|null,
-     *   size?: float|null,
-     *   tags?: list<string>|null,
-     *   thumbnailURL?: string|null,
-     *   url?: string|null,
-     *   versionInfo?: VersionInfo|null,
-     *   videoCodec?: string|null,
-     *   width?: float|null,
-     * } $data
+     * @param DataShape $data
      */
     public function withData(Data|array $data): self
     {
@@ -209,7 +155,7 @@ final class UploadPreTransformSuccessEvent implements BaseModel
     }
 
     /**
-     * @param Request|array{transformation: string, xRequestID: string} $request
+     * @param RequestShape $request
      */
     public function withRequest(Request|array $request): self
     {

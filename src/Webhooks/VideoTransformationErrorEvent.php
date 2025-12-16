@@ -8,19 +8,20 @@ use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\Webhooks\VideoTransformationErrorEvent\Data;
-use Imagekit\Webhooks\VideoTransformationErrorEvent\Data\Asset;
-use Imagekit\Webhooks\VideoTransformationErrorEvent\Data\Transformation;
 use Imagekit\Webhooks\VideoTransformationErrorEvent\Request;
 
 /**
  * Triggered when an error occurs during video encoding. Listen to this webhook to log error reasons and debug issues. Check your origin and URL endpoint settings if the reason is related to download failure. For other errors, contact ImageKit support.
  *
+ * @phpstan-import-type DataShape from \Imagekit\Webhooks\VideoTransformationErrorEvent\Data
+ * @phpstan-import-type RequestShape from \Imagekit\Webhooks\VideoTransformationErrorEvent\Request
+ *
  * @phpstan-type VideoTransformationErrorEventShape = array{
  *   id: string,
  *   type: string,
  *   createdAt: \DateTimeInterface,
- *   data: Data,
- *   request: Request,
+ *   data: Data|DataShape,
+ *   request: Request|RequestShape,
  * }
  */
 final class VideoTransformationErrorEvent implements BaseModel
@@ -86,10 +87,8 @@ final class VideoTransformationErrorEvent implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Data|array{asset: Asset, transformation: Transformation} $data
-     * @param Request|array{
-     *   url: string, xRequestID: string, userAgent?: string|null
-     * } $request
+     * @param DataShape $data
+     * @param RequestShape $request
      */
     public static function with(
         string $id,
@@ -143,7 +142,7 @@ final class VideoTransformationErrorEvent implements BaseModel
     }
 
     /**
-     * @param Data|array{asset: Asset, transformation: Transformation} $data
+     * @param DataShape $data
      */
     public function withData(Data|array $data): self
     {
@@ -156,9 +155,7 @@ final class VideoTransformationErrorEvent implements BaseModel
     /**
      * Information about the original request that triggered the video transformation.
      *
-     * @param Request|array{
-     *   url: string, xRequestID: string, userAgent?: string|null
-     * } $request
+     * @param RequestShape $request
      */
     public function withRequest(Request|array $request): self
     {

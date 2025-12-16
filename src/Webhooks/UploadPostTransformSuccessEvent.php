@@ -9,17 +9,19 @@ use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\Webhooks\UploadPostTransformSuccessEvent\Data;
 use Imagekit\Webhooks\UploadPostTransformSuccessEvent\Request;
-use Imagekit\Webhooks\UploadPostTransformSuccessEvent\Request\Transformation;
 
 /**
  * Triggered when a post-transformation completes successfully. The transformed version of the file is now ready and can be accessed via the provided URL. Note that each post-transformation generates a separate webhook event.
+ *
+ * @phpstan-import-type DataShape from \Imagekit\Webhooks\UploadPostTransformSuccessEvent\Data
+ * @phpstan-import-type RequestShape from \Imagekit\Webhooks\UploadPostTransformSuccessEvent\Request
  *
  * @phpstan-type UploadPostTransformSuccessEventShape = array{
  *   id: string,
  *   type: string,
  *   createdAt: \DateTimeInterface,
- *   data: Data,
- *   request: Request,
+ *   data: Data|DataShape,
+ *   request: Request|RequestShape,
  * }
  */
 final class UploadPostTransformSuccessEvent implements BaseModel
@@ -82,10 +84,8 @@ final class UploadPostTransformSuccessEvent implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Data|array{fileID: string, name: string, url: string} $data
-     * @param Request|array{
-     *   transformation: Transformation, xRequestID: string
-     * } $request
+     * @param DataShape $data
+     * @param RequestShape $request
      */
     public static function with(
         string $id,
@@ -139,7 +139,7 @@ final class UploadPostTransformSuccessEvent implements BaseModel
     }
 
     /**
-     * @param Data|array{fileID: string, name: string, url: string} $data
+     * @param DataShape $data
      */
     public function withData(Data|array $data): self
     {
@@ -150,9 +150,7 @@ final class UploadPostTransformSuccessEvent implements BaseModel
     }
 
     /**
-     * @param Request|array{
-     *   transformation: Transformation, xRequestID: string
-     * } $request
+     * @param RequestShape $request
      */
     public function withRequest(Request|array $request): self
     {

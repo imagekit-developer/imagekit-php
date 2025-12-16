@@ -14,8 +14,8 @@ use Imagekit\Folders\Job\JobGetResponse\Type;
  * @phpstan-type JobGetResponseShape = array{
  *   jobID?: string|null,
  *   purgeRequestID?: string|null,
- *   status?: value-of<Status>|null,
- *   type?: value-of<Type>|null,
+ *   status?: null|Status|value-of<Status>,
+ *   type?: null|Type|value-of<Type>,
  * }
  */
 final class JobGetResponse implements BaseModel

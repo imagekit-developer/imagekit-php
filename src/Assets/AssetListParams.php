@@ -18,13 +18,13 @@ use Imagekit\Core\Contracts\BaseModel;
  * @see Imagekit\Services\AssetsService::list()
  *
  * @phpstan-type AssetListParamsShape = array{
- *   fileType?: FileType|value-of<FileType>,
- *   limit?: int,
- *   path?: string,
- *   searchQuery?: string,
- *   skip?: int,
- *   sort?: Sort|value-of<Sort>,
- *   type?: Type|value-of<Type>,
+ *   fileType?: null|FileType|value-of<FileType>,
+ *   limit?: int|null,
+ *   path?: string|null,
+ *   searchQuery?: string|null,
+ *   skip?: int|null,
+ *   sort?: null|Sort|value-of<Sort>,
+ *   type?: null|Type|value-of<Type>,
  * }
  */
 final class AssetListParams implements BaseModel

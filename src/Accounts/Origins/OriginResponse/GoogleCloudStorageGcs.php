@@ -17,7 +17,7 @@ use Imagekit\Core\Contracts\BaseModel;
  *   includeCanonicalHeader: bool,
  *   name: string,
  *   prefix: string,
- *   type?: 'GCS',
+ *   type: 'GCS',
  *   baseURLForCanonicalHeader?: string|null,
  * }
  */

@@ -9,10 +9,12 @@ use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
 /**
+ * @phpstan-import-type DurationShape from \Imagekit\OverlayTiming\Duration
+ * @phpstan-import-type EndShape from \Imagekit\OverlayTiming\End
+ * @phpstan-import-type StartShape from \Imagekit\OverlayTiming\Start
+ *
  * @phpstan-type OverlayTimingShape = array{
- *   duration?: float|string|null,
- *   end?: float|string|null,
- *   start?: float|string|null,
+ *   duration?: DurationShape|null, end?: EndShape|null, start?: StartShape|null
  * }
  */
 final class OverlayTiming implements BaseModel
@@ -57,6 +59,10 @@ final class OverlayTiming implements BaseModel
      * Construct an instance from the required parameters.
      *
      * You must use named parameters to construct any parameters with a default value.
+     *
+     * @param DurationShape $duration
+     * @param EndShape $end
+     * @param StartShape $start
      */
     public static function with(
         float|string|null $duration = null,
@@ -77,6 +83,8 @@ final class OverlayTiming implements BaseModel
      * Accepts a positive number up to two decimal places (e.g., `20` or `20.50`) and arithmetic expressions such as `bdu_mul_0.4` or `bdu_sub_idu`.
      * Applies only if the base asset is a video.
      * Maps to `ldu` in the URL.
+     *
+     * @param DurationShape $duration
      */
     public function withDuration(float|string $duration): self
     {
@@ -92,6 +100,8 @@ final class OverlayTiming implements BaseModel
      * Accepts a positive number up to two decimal places (e.g., `20` or `20.50`) and arithmetic expressions such as `bdu_mul_0.4` or `bdu_sub_idu`.
      * Applies only if the base asset is a video.
      * Maps to `leo` in the URL.
+     *
+     * @param EndShape $end
      */
     public function withEnd(float|string $end): self
     {
@@ -106,6 +116,8 @@ final class OverlayTiming implements BaseModel
      * Accepts a positive number up to two decimal places (e.g., `20` or `20.50`) and arithmetic expressions such as `bdu_mul_0.4` or `bdu_sub_idu`.
      * Applies only if the base asset is a video.
      * Maps to `lso` in the URL.
+     *
+     * @param StartShape $start
      */
     public function withStart(float|string $start): self
     {

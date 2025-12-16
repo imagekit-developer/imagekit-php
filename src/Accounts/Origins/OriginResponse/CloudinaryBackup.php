@@ -16,7 +16,7 @@ use Imagekit\Core\Contracts\BaseModel;
  *   includeCanonicalHeader: bool,
  *   name: string,
  *   prefix: string,
- *   type?: 'CLOUDINARY_BACKUP',
+ *   type: 'CLOUDINARY_BACKUP',
  *   baseURLForCanonicalHeader?: string|null,
  * }
  */

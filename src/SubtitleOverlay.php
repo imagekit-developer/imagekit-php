@@ -8,18 +8,20 @@ use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\OverlayPosition\Focus;
 use Imagekit\SubtitleOverlay\Encoding;
-use Imagekit\SubtitleOverlayTransformation\Typography;
 
 /**
+ * @phpstan-import-type OverlayPositionShape from \Imagekit\OverlayPosition
+ * @phpstan-import-type OverlayTimingShape from \Imagekit\OverlayTiming
+ * @phpstan-import-type SubtitleOverlayTransformationShape from \Imagekit\SubtitleOverlayTransformation
+ *
  * @phpstan-type SubtitleOverlayShape = array{
- *   position?: OverlayPosition|null,
- *   timing?: OverlayTiming|null,
+ *   position?: null|OverlayPosition|OverlayPositionShape,
+ *   timing?: null|OverlayTiming|OverlayTimingShape,
  *   input: string,
- *   type?: 'subtitle',
- *   encoding?: value-of<Encoding>|null,
- *   transformation?: list<SubtitleOverlayTransformation>|null,
+ *   type: 'subtitle',
+ *   encoding?: null|Encoding|value-of<Encoding>,
+ *   transformation?: list<SubtitleOverlayTransformationShape>|null,
  * }
  */
 final class SubtitleOverlay implements BaseModel
@@ -86,24 +88,10 @@ final class SubtitleOverlay implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param OverlayPosition|array{
-     *   focus?: value-of<Focus>|null, x?: float|string|null, y?: float|string|null
-     * } $position
-     * @param OverlayTiming|array{
-     *   duration?: float|string|null,
-     *   end?: float|string|null,
-     *   start?: float|string|null,
-     * } $timing
+     * @param OverlayPositionShape $position
+     * @param OverlayTimingShape $timing
      * @param Encoding|value-of<Encoding> $encoding
-     * @param list<SubtitleOverlayTransformation|array{
-     *   background?: string|null,
-     *   color?: string|null,
-     *   fontFamily?: string|null,
-     *   fontOutline?: string|null,
-     *   fontShadow?: string|null,
-     *   fontSize?: float|null,
-     *   typography?: value-of<Typography>|null,
-     * }> $transformation
+     * @param list<SubtitleOverlayTransformationShape> $transformation
      */
     public static function with(
         string $input,
@@ -125,9 +113,7 @@ final class SubtitleOverlay implements BaseModel
     }
 
     /**
-     * @param OverlayPosition|array{
-     *   focus?: value-of<Focus>|null, x?: float|string|null, y?: float|string|null
-     * } $position
+     * @param OverlayPositionShape $position
      */
     public function withPosition(OverlayPosition|array $position): self
     {
@@ -138,11 +124,7 @@ final class SubtitleOverlay implements BaseModel
     }
 
     /**
-     * @param OverlayTiming|array{
-     *   duration?: float|string|null,
-     *   end?: float|string|null,
-     *   start?: float|string|null,
-     * } $timing
+     * @param OverlayTimingShape $timing
      */
     public function withTiming(OverlayTiming|array $timing): self
     {
@@ -182,15 +164,7 @@ final class SubtitleOverlay implements BaseModel
     /**
      * Control styling of the subtitle. See [Styling subtitles](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer).
      *
-     * @param list<SubtitleOverlayTransformation|array{
-     *   background?: string|null,
-     *   color?: string|null,
-     *   fontFamily?: string|null,
-     *   fontOutline?: string|null,
-     *   fontShadow?: string|null,
-     *   fontSize?: float|null,
-     *   typography?: value-of<Typography>|null,
-     * }> $transformation
+     * @param list<SubtitleOverlayTransformationShape> $transformation
      */
     public function withTransformation(array $transformation): self
     {

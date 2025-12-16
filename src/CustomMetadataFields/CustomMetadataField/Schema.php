@@ -15,15 +15,20 @@ use Imagekit\CustomMetadataFields\CustomMetadataField\Schema\Type;
 /**
  * An object that describes the rules for the custom metadata field value.
  *
+ * @phpstan-import-type DefaultValueShape from \Imagekit\CustomMetadataFields\CustomMetadataField\Schema\DefaultValue
+ * @phpstan-import-type MaxValueShape from \Imagekit\CustomMetadataFields\CustomMetadataField\Schema\MaxValue
+ * @phpstan-import-type MinValueShape from \Imagekit\CustomMetadataFields\CustomMetadataField\Schema\MinValue
+ * @phpstan-import-type SelectOptionShape from \Imagekit\CustomMetadataFields\CustomMetadataField\Schema\SelectOption
+ *
  * @phpstan-type SchemaShape = array{
- *   type: value-of<Type>,
- *   defaultValue?: string|float|bool|null|list<string|float|bool>,
+ *   type: Type|value-of<Type>,
+ *   defaultValue?: DefaultValueShape|null,
  *   isValueRequired?: bool|null,
  *   maxLength?: float|null,
- *   maxValue?: string|float|null,
+ *   maxValue?: MaxValueShape|null,
  *   minLength?: float|null,
- *   minValue?: string|float|null,
- *   selectOptions?: list<string|float|bool>|null,
+ *   minValue?: MinValueShape|null,
+ *   selectOptions?: list<SelectOptionShape>|null,
  * }
  */
 final class Schema implements BaseModel
@@ -110,8 +115,10 @@ final class Schema implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param Type|value-of<Type> $type
-     * @param string|float|bool|list<string|float|bool> $defaultValue
-     * @param list<string|float|bool> $selectOptions
+     * @param DefaultValueShape $defaultValue
+     * @param MaxValueShape $maxValue
+     * @param MinValueShape $minValue
+     * @param list<SelectOptionShape> $selectOptions
      */
     public static function with(
         Type|string $type,
@@ -154,7 +161,7 @@ final class Schema implements BaseModel
     /**
      * The default value for this custom metadata field. Data type of default value depends on the field type.
      *
-     * @param string|float|bool|list<string|float|bool> $defaultValue
+     * @param DefaultValueShape $defaultValue
      */
     public function withDefaultValue(
         string|float|bool|array $defaultValue
@@ -189,6 +196,8 @@ final class Schema implements BaseModel
 
     /**
      * Maximum value of the field. Only set if field type is `Date` or `Number`. For `Date` type field, the value will be in ISO8601 string format. For `Number` type field, it will be a numeric value.
+     *
+     * @param MaxValueShape $maxValue
      */
     public function withMaxValue(string|float $maxValue): self
     {
@@ -211,6 +220,8 @@ final class Schema implements BaseModel
 
     /**
      * Minimum value of the field. Only set if field type is `Date` or `Number`. For `Date` type field, the value will be in ISO8601 string format. For `Number` type field, it will be a numeric value.
+     *
+     * @param MinValueShape $minValue
      */
     public function withMinValue(string|float $minValue): self
     {
@@ -223,7 +234,7 @@ final class Schema implements BaseModel
     /**
      * An array of allowed values when field type is `SingleSelect` or `MultiSelect`.
      *
-     * @param list<string|float|bool> $selectOptions
+     * @param list<SelectOptionShape> $selectOptions
      */
     public function withSelectOptions(array $selectOptions): self
     {

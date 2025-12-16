@@ -11,7 +11,7 @@ use Imagekit\Core\Contracts\BaseModel;
 
 /**
  * @phpstan-type GenerateAThumbnailShape = array{
- *   type?: 'thumbnail', value?: string|null
+ *   type: 'thumbnail', value?: string|null
  * }
  */
 final class GenerateAThumbnail implements BaseModel

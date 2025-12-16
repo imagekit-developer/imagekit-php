@@ -15,7 +15,7 @@ interface UsageRawContract
     /**
      * @api
      *
-     * @param array<mixed>|UsageGetParams $params
+     * @param array<string,mixed>|UsageGetParams $params
      *
      * @return BaseResponse<UsageGetResponse>
      *

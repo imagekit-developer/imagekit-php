@@ -18,7 +18,7 @@ interface CustomMetadataFieldsRawContract
     /**
      * @api
      *
-     * @param array<mixed>|CustomMetadataFieldCreateParams $params
+     * @param array<string,mixed>|CustomMetadataFieldCreateParams $params
      *
      * @return BaseResponse<CustomMetadataField>
      *
@@ -33,7 +33,7 @@ interface CustomMetadataFieldsRawContract
      * @api
      *
      * @param string $id should be a valid custom metadata field id
-     * @param array<mixed>|CustomMetadataFieldUpdateParams $params
+     * @param array<string,mixed>|CustomMetadataFieldUpdateParams $params
      *
      * @return BaseResponse<CustomMetadataField>
      *
@@ -48,7 +48,7 @@ interface CustomMetadataFieldsRawContract
     /**
      * @api
      *
-     * @param array<mixed>|CustomMetadataFieldListParams $params
+     * @param array<string,mixed>|CustomMetadataFieldListParams $params
      *
      * @return BaseResponse<list<CustomMetadataField>>
      *

@@ -8,6 +8,9 @@ use Imagekit\Core\Concerns\SdkUnion;
 use Imagekit\Core\Conversion\Contracts\Converter;
 use Imagekit\Core\Conversion\Contracts\ConverterSource;
 
+/**
+ * @phpstan-type MixedShape = string|float|bool
+ */
 final class Mixed_ implements ConverterSource
 {
     use SdkUnion;

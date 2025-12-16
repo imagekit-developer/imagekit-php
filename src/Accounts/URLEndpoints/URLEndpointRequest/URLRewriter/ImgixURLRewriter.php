@@ -9,7 +9,7 @@ use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type ImgixURLRewriterShape = array{type?: 'IMGIX'}
+ * @phpstan-type ImgixURLRewriterShape = array{type: 'IMGIX'}
  */
 final class ImgixURLRewriter implements BaseModel
 {

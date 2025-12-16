@@ -21,7 +21,7 @@ interface BulkRawContract
     /**
      * @api
      *
-     * @param array<mixed>|BulkDeleteParams $params
+     * @param array<string,mixed>|BulkDeleteParams $params
      *
      * @return BaseResponse<BulkDeleteResponse>
      *
@@ -35,7 +35,7 @@ interface BulkRawContract
     /**
      * @api
      *
-     * @param array<mixed>|BulkAddTagsParams $params
+     * @param array<string,mixed>|BulkAddTagsParams $params
      *
      * @return BaseResponse<BulkAddTagsResponse>
      *
@@ -49,7 +49,7 @@ interface BulkRawContract
     /**
      * @api
      *
-     * @param array<mixed>|BulkRemoveAITagsParams $params
+     * @param array<string,mixed>|BulkRemoveAITagsParams $params
      *
      * @return BaseResponse<BulkRemoveAITagsResponse>
      *
@@ -63,7 +63,7 @@ interface BulkRawContract
     /**
      * @api
      *
-     * @param array<mixed>|BulkRemoveTagsParams $params
+     * @param array<string,mixed>|BulkRemoveTagsParams $params
      *
      * @return BaseResponse<BulkRemoveTagsResponse>
      *

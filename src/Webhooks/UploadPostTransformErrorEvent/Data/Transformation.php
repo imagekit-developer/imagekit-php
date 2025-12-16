@@ -10,7 +10,9 @@ use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\Webhooks\UploadPostTransformErrorEvent\Data\Transformation\Error;
 
 /**
- * @phpstan-type TransformationShape = array{error: Error}
+ * @phpstan-import-type ErrorShape from \Imagekit\Webhooks\UploadPostTransformErrorEvent\Data\Transformation\Error
+ *
+ * @phpstan-type TransformationShape = array{error: Error|ErrorShape}
  */
 final class Transformation implements BaseModel
 {
@@ -44,7 +46,7 @@ final class Transformation implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Error|array{reason: string} $error
+     * @param ErrorShape $error
      */
     public static function with(Error|array $error): self
     {
@@ -56,7 +58,7 @@ final class Transformation implements BaseModel
     }
 
     /**
-     * @param Error|array{reason: string} $error
+     * @param ErrorShape $error
      */
     public function withError(Error|array $error): self
     {

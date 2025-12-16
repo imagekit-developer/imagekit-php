@@ -16,7 +16,7 @@ interface AssetsRawContract
     /**
      * @api
      *
-     * @param array<mixed>|AssetListParams $params
+     * @param array<string,mixed>|AssetListParams $params
      *
      * @return BaseResponse<list<File|Folder>>
      *

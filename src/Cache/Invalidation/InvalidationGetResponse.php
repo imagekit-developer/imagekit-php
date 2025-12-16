@@ -11,7 +11,7 @@ use Imagekit\Core\Contracts\BaseModel;
 
 /**
  * @phpstan-type InvalidationGetResponseShape = array{
- *   status?: value-of<Status>|null
+ *   status?: null|Status|value-of<Status>
  * }
  */
 final class InvalidationGetResponse implements BaseModel

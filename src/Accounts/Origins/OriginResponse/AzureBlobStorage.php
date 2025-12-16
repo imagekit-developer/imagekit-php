@@ -17,7 +17,7 @@ use Imagekit\Core\Contracts\BaseModel;
  *   includeCanonicalHeader: bool,
  *   name: string,
  *   prefix: string,
- *   type?: 'AZURE_BLOB',
+ *   type: 'AZURE_BLOB',
  *   baseURLForCanonicalHeader?: string|null,
  * }
  */

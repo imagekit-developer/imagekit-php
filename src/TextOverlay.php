@@ -8,19 +8,20 @@ use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\OverlayPosition\Focus;
 use Imagekit\TextOverlay\Encoding;
-use Imagekit\TextOverlayTransformation\Flip;
-use Imagekit\TextOverlayTransformation\InnerAlignment;
 
 /**
+ * @phpstan-import-type OverlayPositionShape from \Imagekit\OverlayPosition
+ * @phpstan-import-type OverlayTimingShape from \Imagekit\OverlayTiming
+ * @phpstan-import-type TextOverlayTransformationShape from \Imagekit\TextOverlayTransformation
+ *
  * @phpstan-type TextOverlayShape = array{
- *   position?: OverlayPosition|null,
- *   timing?: OverlayTiming|null,
+ *   position?: null|OverlayPosition|OverlayPositionShape,
+ *   timing?: null|OverlayTiming|OverlayTimingShape,
  *   text: string,
- *   type?: 'text',
- *   encoding?: value-of<Encoding>|null,
- *   transformation?: list<TextOverlayTransformation>|null,
+ *   type: 'text',
+ *   encoding?: null|Encoding|value-of<Encoding>,
+ *   transformation?: list<TextOverlayTransformationShape>|null,
  * }
  */
 final class TextOverlay implements BaseModel
@@ -87,30 +88,10 @@ final class TextOverlay implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param OverlayPosition|array{
-     *   focus?: value-of<Focus>|null, x?: float|string|null, y?: float|string|null
-     * } $position
-     * @param OverlayTiming|array{
-     *   duration?: float|string|null,
-     *   end?: float|string|null,
-     *   start?: float|string|null,
-     * } $timing
+     * @param OverlayPositionShape $position
+     * @param OverlayTimingShape $timing
      * @param Encoding|value-of<Encoding> $encoding
-     * @param list<TextOverlayTransformation|array{
-     *   alpha?: float|null,
-     *   background?: string|null,
-     *   flip?: value-of<Flip>|null,
-     *   fontColor?: string|null,
-     *   fontFamily?: string|null,
-     *   fontSize?: float|string|null,
-     *   innerAlignment?: value-of<InnerAlignment>|null,
-     *   lineHeight?: float|string|null,
-     *   padding?: float|string|null,
-     *   radius?: float|'max'|null,
-     *   rotation?: float|string|null,
-     *   typography?: string|null,
-     *   width?: float|string|null,
-     * }> $transformation
+     * @param list<TextOverlayTransformationShape> $transformation
      */
     public static function with(
         string $text,
@@ -132,9 +113,7 @@ final class TextOverlay implements BaseModel
     }
 
     /**
-     * @param OverlayPosition|array{
-     *   focus?: value-of<Focus>|null, x?: float|string|null, y?: float|string|null
-     * } $position
+     * @param OverlayPositionShape $position
      */
     public function withPosition(OverlayPosition|array $position): self
     {
@@ -145,11 +124,7 @@ final class TextOverlay implements BaseModel
     }
 
     /**
-     * @param OverlayTiming|array{
-     *   duration?: float|string|null,
-     *   end?: float|string|null,
-     *   start?: float|string|null,
-     * } $timing
+     * @param OverlayTimingShape $timing
      */
     public function withTiming(OverlayTiming|array $timing): self
     {
@@ -189,21 +164,7 @@ final class TextOverlay implements BaseModel
     /**
      * Control styling of the text overlay. See [Text overlays](https://imagekit.io/docs/add-overlays-on-images#text-overlay).
      *
-     * @param list<TextOverlayTransformation|array{
-     *   alpha?: float|null,
-     *   background?: string|null,
-     *   flip?: value-of<Flip>|null,
-     *   fontColor?: string|null,
-     *   fontFamily?: string|null,
-     *   fontSize?: float|string|null,
-     *   innerAlignment?: value-of<InnerAlignment>|null,
-     *   lineHeight?: float|string|null,
-     *   padding?: float|string|null,
-     *   radius?: float|'max'|null,
-     *   rotation?: float|string|null,
-     *   typography?: string|null,
-     *   width?: float|string|null,
-     * }> $transformation
+     * @param list<TextOverlayTransformationShape> $transformation
      */
     public function withTransformation(array $transformation): self
     {

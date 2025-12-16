@@ -18,7 +18,7 @@ use Imagekit\Core\Contracts\BaseModel;
  * @see Imagekit\Services\FilesService::rename()
  *
  * @phpstan-type FileRenameParamsShape = array{
- *   filePath: string, newFileName: string, purgeCache?: bool
+ *   filePath: string, newFileName: string, purgeCache?: bool|null
  * }
  */
 final class FileRenameParams implements BaseModel

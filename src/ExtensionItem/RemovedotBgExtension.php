@@ -11,8 +11,10 @@ use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\ExtensionItem\RemovedotBgExtension\Options;
 
 /**
+ * @phpstan-import-type OptionsShape from \Imagekit\ExtensionItem\RemovedotBgExtension\Options
+ *
  * @phpstan-type RemovedotBgExtensionShape = array{
- *   name?: 'remove-bg', options?: Options|null
+ *   name: 'remove-bg', options?: null|Options|OptionsShape
  * }
  */
 final class RemovedotBgExtension implements BaseModel
@@ -41,12 +43,7 @@ final class RemovedotBgExtension implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Options|array{
-     *   addShadow?: bool|null,
-     *   bgColor?: string|null,
-     *   bgImageURL?: string|null,
-     *   semitransparency?: bool|null,
-     * } $options
+     * @param OptionsShape $options
      */
     public static function with(Options|array|null $options = null): self
     {
@@ -58,12 +55,7 @@ final class RemovedotBgExtension implements BaseModel
     }
 
     /**
-     * @param Options|array{
-     *   addShadow?: bool|null,
-     *   bgColor?: string|null,
-     *   bgImageURL?: string|null,
-     *   semitransparency?: bool|null,
-     * } $options
+     * @param OptionsShape $options
      */
     public function withOptions(Options|array $options): self
     {

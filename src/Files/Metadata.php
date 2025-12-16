@@ -8,20 +8,18 @@ use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\Files\Metadata\Exif;
-use Imagekit\Files\Metadata\Exif\Gps;
-use Imagekit\Files\Metadata\Exif\Image;
-use Imagekit\Files\Metadata\Exif\Interoperability;
-use Imagekit\Files\Metadata\Exif\Thumbnail;
 
 /**
  * JSON object containing metadata.
+ *
+ * @phpstan-import-type ExifShape from \Imagekit\Files\Metadata\Exif
  *
  * @phpstan-type MetadataShape = array{
  *   audioCodec?: string|null,
  *   bitRate?: int|null,
  *   density?: int|null,
  *   duration?: int|null,
- *   exif?: Exif|null,
+ *   exif?: null|Exif|ExifShape,
  *   format?: string|null,
  *   hasColorProfile?: bool|null,
  *   hasTransparency?: bool|null,
@@ -129,14 +127,7 @@ final class Metadata implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Exif|array{
-     *   exif?: Exif\Exif|null,
-     *   gps?: Gps|null,
-     *   image?: Image|null,
-     *   interoperability?: Interoperability|null,
-     *   makernote?: array<string,mixed>|null,
-     *   thumbnail?: Thumbnail|null,
-     * } $exif
+     * @param ExifShape $exif
      */
     public static function with(
         ?string $audioCodec = null,
@@ -219,14 +210,7 @@ final class Metadata implements BaseModel
     }
 
     /**
-     * @param Exif|array{
-     *   exif?: Exif\Exif|null,
-     *   gps?: Gps|null,
-     *   image?: Image|null,
-     *   interoperability?: Interoperability|null,
-     *   makernote?: array<string,mixed>|null,
-     *   thumbnail?: Thumbnail|null,
-     * } $exif
+     * @param ExifShape $exif
      */
     public function withExif(Exif|array $exif): self
     {

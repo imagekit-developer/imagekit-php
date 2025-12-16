@@ -11,9 +11,7 @@ use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\ExtensionItem;
 use Imagekit\ExtensionItem\AutoDescriptionExtension;
 use Imagekit\ExtensionItem\AutoTaggingExtension;
-use Imagekit\ExtensionItem\AutoTaggingExtension\Name;
 use Imagekit\ExtensionItem\RemovedotBgExtension;
-use Imagekit\ExtensionItem\RemovedotBgExtension\Options;
 use Imagekit\Files\FileUpdateParams\Publish;
 use Imagekit\Files\FileUpdateParams\RemoveAITags;
 
@@ -22,19 +20,19 @@ use Imagekit\Files\FileUpdateParams\RemoveAITags;
  *
  * @see Imagekit\Services\FilesService::update()
  *
+ * @phpstan-import-type ExtensionItemShape from \Imagekit\ExtensionItem
+ * @phpstan-import-type RemoveAITagsShape from \Imagekit\Files\FileUpdateParams\RemoveAITags
+ * @phpstan-import-type PublishShape from \Imagekit\Files\FileUpdateParams\Publish
+ *
  * @phpstan-type FileUpdateParamsShape = array{
  *   customCoordinates?: string|null,
- *   customMetadata?: array<string,mixed>,
- *   description?: string,
- *   extensions?: list<RemovedotBgExtension|array{
- *     name?: 'remove-bg', options?: Options|null
- *   }|AutoTaggingExtension|array{
- *     maxTags: int, minConfidence: int, name: value-of<Name>
- *   }|AutoDescriptionExtension|array{name?: 'ai-auto-description'}>,
- *   removeAITags?: 'all'|list<string>,
+ *   customMetadata?: array<string,mixed>|null,
+ *   description?: string|null,
+ *   extensions?: list<ExtensionItemShape>|null,
+ *   removeAITags?: RemoveAITagsShape|null,
  *   tags?: list<string>|null,
- *   webhookURL?: string,
- *   publish?: Publish|array{isPublished: bool, includeFileVersions?: bool|null},
+ *   webhookURL?: string|null,
+ *   publish?: PublishShape|null,
  * }
  */
 final class FileUpdateParams implements BaseModel
@@ -114,16 +112,10 @@ final class FileUpdateParams implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param array<string,mixed> $customMetadata
-     * @param list<RemovedotBgExtension|array{
-     *   name?: 'remove-bg', options?: Options|null
-     * }|AutoTaggingExtension|array{
-     *   maxTags: int, minConfidence: int, name: value-of<Name>
-     * }|AutoDescriptionExtension|array{name?: 'ai-auto-description'}> $extensions
-     * @param 'all'|list<string> $removeAITags
+     * @param list<ExtensionItemShape> $extensions
+     * @param RemoveAITagsShape $removeAITags
      * @param list<string>|null $tags
-     * @param Publish|array{
-     *   isPublished: bool, includeFileVersions?: bool|null
-     * } $publish
+     * @param PublishShape $publish
      */
     public static function with(
         ?string $customCoordinates = null,
@@ -187,11 +179,7 @@ final class FileUpdateParams implements BaseModel
     /**
      * Array of extensions to be applied to the asset. Each extension can be configured with specific parameters based on the extension type.
      *
-     * @param list<RemovedotBgExtension|array{
-     *   name?: 'remove-bg', options?: Options|null
-     * }|AutoTaggingExtension|array{
-     *   maxTags: int, minConfidence: int, name: value-of<Name>
-     * }|AutoDescriptionExtension|array{name?: 'ai-auto-description'}> $extensions
+     * @param list<ExtensionItemShape> $extensions
      */
     public function withExtensions(array $extensions): self
     {
@@ -208,7 +196,7 @@ final class FileUpdateParams implements BaseModel
      *
      * Note: The remove operation for `AITags` executes before any of the `extensions` are processed.
      *
-     * @param 'all'|list<string> $removeAITags
+     * @param RemoveAITagsShape $removeAITags
      */
     public function withRemoveAITags(string|array $removeAITags): self
     {
@@ -245,9 +233,7 @@ final class FileUpdateParams implements BaseModel
     /**
      * Configure the publication status of a file and its versions.
      *
-     * @param Publish|array{
-     *   isPublished: bool, includeFileVersions?: bool|null
-     * } $publish
+     * @param PublishShape $publish
      */
     public function withPublish(Publish|array $publish): self
     {

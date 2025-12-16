@@ -29,7 +29,7 @@ interface MetadataRawContract
     /**
      * @api
      *
-     * @param array<mixed>|MetadataGetFromURLParams $params
+     * @param array<string,mixed>|MetadataGetFromURLParams $params
      *
      * @return BaseResponse<Metadata>
      *

@@ -10,7 +10,7 @@ use Imagekit\Core\Contracts\BaseModel;
 
 /**
  * @phpstan-type CloudinaryURLRewriterShape = array{
- *   preserveAssetDeliveryTypes: bool, type?: 'CLOUDINARY'
+ *   preserveAssetDeliveryTypes: bool, type: 'CLOUDINARY'
  * }
  */
 final class CloudinaryURLRewriter implements BaseModel

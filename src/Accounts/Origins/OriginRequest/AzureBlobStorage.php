@@ -15,7 +15,7 @@ use Imagekit\Core\Contracts\BaseModel;
  *   container: string,
  *   name: string,
  *   sasToken: string,
- *   type?: 'AZURE_BLOB',
+ *   type: 'AZURE_BLOB',
  *   baseURLForCanonicalHeader?: string|null,
  *   includeCanonicalHeader?: bool|null,
  *   prefix?: string|null,

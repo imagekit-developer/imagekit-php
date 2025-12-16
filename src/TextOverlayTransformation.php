@@ -11,20 +11,27 @@ use Imagekit\TextOverlayTransformation\Flip;
 use Imagekit\TextOverlayTransformation\InnerAlignment;
 
 /**
+ * @phpstan-import-type FontSizeShape from \Imagekit\TextOverlayTransformation\FontSize
+ * @phpstan-import-type LineHeightShape from \Imagekit\TextOverlayTransformation\LineHeight
+ * @phpstan-import-type PaddingShape from \Imagekit\TextOverlayTransformation\Padding
+ * @phpstan-import-type RadiusShape from \Imagekit\TextOverlayTransformation\Radius
+ * @phpstan-import-type RotationShape from \Imagekit\TextOverlayTransformation\Rotation
+ * @phpstan-import-type WidthShape from \Imagekit\TextOverlayTransformation\Width
+ *
  * @phpstan-type TextOverlayTransformationShape = array{
  *   alpha?: float|null,
  *   background?: string|null,
- *   flip?: value-of<Flip>|null,
+ *   flip?: null|Flip|value-of<Flip>,
  *   fontColor?: string|null,
  *   fontFamily?: string|null,
- *   fontSize?: float|string|null,
- *   innerAlignment?: value-of<InnerAlignment>|null,
- *   lineHeight?: float|string|null,
- *   padding?: float|string|null,
- *   radius?: float|null|'max',
- *   rotation?: float|string|null,
+ *   fontSize?: FontSizeShape|null,
+ *   innerAlignment?: null|InnerAlignment|value-of<InnerAlignment>,
+ *   lineHeight?: LineHeightShape|null,
+ *   padding?: PaddingShape|null,
+ *   radius?: RadiusShape|null,
+ *   rotation?: RotationShape|null,
  *   typography?: string|null,
- *   width?: float|string|null,
+ *   width?: WidthShape|null,
  * }
  */
 final class TextOverlayTransformation implements BaseModel
@@ -138,8 +145,13 @@ final class TextOverlayTransformation implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param Flip|value-of<Flip> $flip
+     * @param FontSizeShape $fontSize
      * @param InnerAlignment|value-of<InnerAlignment> $innerAlignment
-     * @param float|'max' $radius
+     * @param LineHeightShape $lineHeight
+     * @param PaddingShape $padding
+     * @param RadiusShape $radius
+     * @param RotationShape $rotation
+     * @param WidthShape $width
      */
     public static function with(
         ?float $alpha = null,
@@ -236,6 +248,8 @@ final class TextOverlayTransformation implements BaseModel
 
     /**
      * Specifies the font size of the overlaid text. Accepts a numeric value or an arithmetic expression.
+     *
+     * @param FontSizeShape $fontSize
      */
     public function withFontSize(float|string $fontSize): self
     {
@@ -262,6 +276,8 @@ final class TextOverlayTransformation implements BaseModel
     /**
      * Specifies the line height of the text overlay.
      * Accepts integer values representing line height in points. It can also accept [arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations) such as `bw_mul_0.2`, or `bh_div_20`.
+     *
+     * @param LineHeightShape $lineHeight
      */
     public function withLineHeight(float|string $lineHeight): self
     {
@@ -275,6 +291,8 @@ final class TextOverlayTransformation implements BaseModel
      * Specifies the padding around the overlaid text.
      * Can be provided as a single positive integer or multiple values separated by underscores (following CSS shorthand order).
      * Arithmetic expressions are also accepted.
+     *
+     * @param PaddingShape $padding
      */
     public function withPadding(float|string $padding): self
     {
@@ -288,7 +306,7 @@ final class TextOverlayTransformation implements BaseModel
      * Specifies the corner radius of the text overlay.
      * Set to `max` to achieve a circular or oval shape.
      *
-     * @param float|'max' $radius
+     * @param RadiusShape $radius
      */
     public function withRadius(float|string $radius): self
     {
@@ -301,6 +319,8 @@ final class TextOverlayTransformation implements BaseModel
     /**
      * Specifies the rotation angle of the text overlay.
      * Accepts a numeric value for clockwise rotation or a string prefixed with "N" for counter-clockwise rotation.
+     *
+     * @param RotationShape $rotation
      */
     public function withRotation(float|string $rotation): self
     {
@@ -327,6 +347,8 @@ final class TextOverlayTransformation implements BaseModel
     /**
      * Specifies the maximum width (in pixels) of the overlaid text. The text wraps automatically, and arithmetic expressions (e.g., `bw_mul_0.2` or `bh_div_2`) are supported. Useful when used in conjunction with the `background`.
      * Learn about [Arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
+     *
+     * @param WidthShape $width
      */
     public function withWidth(float|string $width): self
     {

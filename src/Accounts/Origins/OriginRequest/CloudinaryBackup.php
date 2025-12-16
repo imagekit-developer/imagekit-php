@@ -15,7 +15,7 @@ use Imagekit\Core\Contracts\BaseModel;
  *   bucket: string,
  *   name: string,
  *   secretKey: string,
- *   type?: 'CLOUDINARY_BACKUP',
+ *   type: 'CLOUDINARY_BACKUP',
  *   baseURLForCanonicalHeader?: string|null,
  *   includeCanonicalHeader?: bool|null,
  *   prefix?: string|null,

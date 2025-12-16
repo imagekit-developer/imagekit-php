@@ -12,6 +12,11 @@ use Imagekit\Files\Folder;
 
 /**
  * Object containing details of a file or file version.
+ *
+ * @phpstan-import-type FileShape from \Imagekit\Files\File
+ * @phpstan-import-type FolderShape from \Imagekit\Files\Folder
+ *
+ * @phpstan-type AssetListResponseItemShape = FileShape|FolderShape
  */
 final class AssetListResponseItem implements ConverterSource
 {

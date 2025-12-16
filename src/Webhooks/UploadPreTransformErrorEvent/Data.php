@@ -8,11 +8,12 @@ use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\Webhooks\UploadPreTransformErrorEvent\Data\Transformation;
-use Imagekit\Webhooks\UploadPreTransformErrorEvent\Data\Transformation\Error;
 
 /**
+ * @phpstan-import-type TransformationShape from \Imagekit\Webhooks\UploadPreTransformErrorEvent\Data\Transformation
+ *
  * @phpstan-type DataShape = array{
- *   name: string, path: string, transformation: Transformation
+ *   name: string, path: string, transformation: Transformation|TransformationShape
  * }
  */
 final class Data implements BaseModel
@@ -59,7 +60,7 @@ final class Data implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Transformation|array{error: Error} $transformation
+     * @param TransformationShape $transformation
      */
     public static function with(
         string $name,
@@ -98,7 +99,7 @@ final class Data implements BaseModel
     }
 
     /**
-     * @param Transformation|array{error: Error} $transformation
+     * @param TransformationShape $transformation
      */
     public function withTransformation(
         Transformation|array $transformation

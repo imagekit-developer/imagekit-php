@@ -12,7 +12,7 @@ use Imagekit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Error\Re
 /**
  * Details about the transformation error.
  *
- * @phpstan-type ErrorShape = array{reason: value-of<Reason>}
+ * @phpstan-type ErrorShape = array{reason: Reason|value-of<Reason>}
  */
 final class Error implements BaseModel
 {

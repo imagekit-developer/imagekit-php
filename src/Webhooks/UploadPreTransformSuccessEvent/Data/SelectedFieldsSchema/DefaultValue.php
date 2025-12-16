@@ -12,6 +12,10 @@ use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema\D
 
 /**
  * The default value for this custom metadata field. The value should match the `type` of custom metadata field.
+ *
+ * @phpstan-import-type MixedShape from \Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema\DefaultValue\Mixed_
+ *
+ * @phpstan-type DefaultValueShape = string|float|bool|list<MixedShape>
  */
 final class DefaultValue implements ConverterSource
 {

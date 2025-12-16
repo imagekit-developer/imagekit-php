@@ -11,6 +11,8 @@ use Imagekit\Core\Conversion\Contracts\ConverterSource;
 /**
  * Specifies the line height of the text overlay.
  * Accepts integer values representing line height in points. It can also accept [arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations) such as `bw_mul_0.2`, or `bh_div_20`.
+ *
+ * @phpstan-type LineHeightShape = float|string
  */
 final class LineHeight implements ConverterSource
 {

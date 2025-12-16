@@ -12,6 +12,10 @@ use Imagekit\Core\Conversion\ListOf;
 
 /**
  * The default value for this custom metadata field. The value should match the `type` of custom metadata field.
+ *
+ * @phpstan-import-type MixedShape from \Imagekit\Beta\V2\Files\FileUploadResponse\SelectedFieldsSchema\DefaultValue\Mixed_
+ *
+ * @phpstan-type DefaultValueShape = string|float|bool|list<MixedShape>
  */
 final class DefaultValue implements ConverterSource
 {

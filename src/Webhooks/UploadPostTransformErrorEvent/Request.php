@@ -8,12 +8,12 @@ use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\Webhooks\UploadPostTransformErrorEvent\Request\Transformation;
-use Imagekit\Webhooks\UploadPostTransformErrorEvent\Request\Transformation\Protocol;
-use Imagekit\Webhooks\UploadPostTransformErrorEvent\Request\Transformation\Type;
 
 /**
+ * @phpstan-import-type TransformationShape from \Imagekit\Webhooks\UploadPostTransformErrorEvent\Request\Transformation
+ *
  * @phpstan-type RequestShape = array{
- *   transformation: Transformation, xRequestID: string
+ *   transformation: Transformation|TransformationShape, xRequestID: string
  * }
  */
 final class Request implements BaseModel
@@ -54,9 +54,7 @@ final class Request implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Transformation|array{
-     *   type: value-of<Type>, protocol?: value-of<Protocol>|null, value?: string|null
-     * } $transformation
+     * @param TransformationShape $transformation
      */
     public static function with(
         Transformation|array $transformation,
@@ -71,9 +69,7 @@ final class Request implements BaseModel
     }
 
     /**
-     * @param Transformation|array{
-     *   type: value-of<Type>, protocol?: value-of<Protocol>|null, value?: string|null
-     * } $transformation
+     * @param TransformationShape $transformation
      */
     public function withTransformation(
         Transformation|array $transformation

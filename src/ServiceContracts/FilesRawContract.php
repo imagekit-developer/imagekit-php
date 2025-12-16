@@ -25,7 +25,7 @@ interface FilesRawContract
      * @api
      *
      * @param string $fileID The unique `fileId` of the uploaded file. `fileId` is returned in list and search assets API and upload API.
-     * @param array<mixed>|FileUpdateParams $params
+     * @param array<string,mixed>|FileUpdateParams $params
      *
      * @return BaseResponse<FileUpdateResponse>
      *
@@ -54,7 +54,7 @@ interface FilesRawContract
     /**
      * @api
      *
-     * @param array<mixed>|FileCopyParams $params
+     * @param array<string,mixed>|FileCopyParams $params
      *
      * @return BaseResponse<FileCopyResponse>
      *
@@ -82,7 +82,7 @@ interface FilesRawContract
     /**
      * @api
      *
-     * @param array<mixed>|FileMoveParams $params
+     * @param array<string,mixed>|FileMoveParams $params
      *
      * @return BaseResponse<FileMoveResponse>
      *
@@ -96,7 +96,7 @@ interface FilesRawContract
     /**
      * @api
      *
-     * @param array<mixed>|FileRenameParams $params
+     * @param array<string,mixed>|FileRenameParams $params
      *
      * @return BaseResponse<FileRenameResponse>
      *
@@ -110,7 +110,7 @@ interface FilesRawContract
     /**
      * @api
      *
-     * @param array<mixed>|FileUploadParams $params
+     * @param array<string,mixed>|FileUploadParams $params
      *
      * @return BaseResponse<FileUploadResponse>
      *

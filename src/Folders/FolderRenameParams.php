@@ -16,7 +16,7 @@ use Imagekit\Core\Contracts\BaseModel;
  * @see Imagekit\Services\FoldersService::rename()
  *
  * @phpstan-type FolderRenameParamsShape = array{
- *   folderPath: string, newFolderName: string, purgeCache?: bool
+ *   folderPath: string, newFolderName: string, purgeCache?: bool|null
  * }
  */
 final class FolderRenameParams implements BaseModel

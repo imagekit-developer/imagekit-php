@@ -20,7 +20,7 @@ use Imagekit\Core\Contracts\BaseModel;
  *   queryParameters?: array<string,string>|null,
  *   signed?: bool|null,
  *   transformation?: list<mixed>|null,
- *   transformationPosition?: value-of<TransformationPosition>|null,
+ *   transformationPosition?: null|TransformationPosition|value-of<TransformationPosition>,
  *   deviceBreakpoints?: list<float>|null,
  *   imageBreakpoints?: list<float>|null,
  *   sizes?: string|null,

@@ -20,58 +20,78 @@ use Imagekit\Transformation\VideoCodec;
  * You can use the `raw` parameter to pass the transformation string directly.
  * See the [Transformations documentation](https://imagekit.io/docs/transformations).
  *
+ * @phpstan-import-type AIDropShadowShape from \Imagekit\Transformation\AIDropShadow
+ * @phpstan-import-type AspectRatioShape from \Imagekit\Transformation\AspectRatio
+ * @phpstan-import-type DurationShape from \Imagekit\Transformation\Duration
+ * @phpstan-import-type EndOffsetShape from \Imagekit\Transformation\EndOffset
+ * @phpstan-import-type GradientShape from \Imagekit\Transformation\Gradient
+ * @phpstan-import-type HeightShape from \Imagekit\Transformation\Height
+ * @phpstan-import-type PageShape from \Imagekit\Transformation\Page
+ * @phpstan-import-type RadiusShape from \Imagekit\Transformation\Radius
+ * @phpstan-import-type RotationShape from \Imagekit\Transformation\Rotation
+ * @phpstan-import-type ShadowShape from \Imagekit\Transformation\Shadow
+ * @phpstan-import-type SharpenShape from \Imagekit\Transformation\Sharpen
+ * @phpstan-import-type StartOffsetShape from \Imagekit\Transformation\StartOffset
+ * @phpstan-import-type TrimShape from \Imagekit\Transformation\Trim
+ * @phpstan-import-type UnsharpMaskShape from \Imagekit\Transformation\UnsharpMask
+ * @phpstan-import-type WidthShape from \Imagekit\Transformation\Width
+ * @phpstan-import-type XShape from \Imagekit\Transformation\X
+ * @phpstan-import-type XCenterShape from \Imagekit\Transformation\XCenter
+ * @phpstan-import-type YShape from \Imagekit\Transformation\Y
+ * @phpstan-import-type YCenterShape from \Imagekit\Transformation\YCenter
+ *
  * @phpstan-type TransformationShape = array{
  *   aiChangeBackground?: string|null,
- *   aiDropShadow?: string|null|bool,
+ *   aiDropShadow?: AIDropShadowShape|null,
  *   aiEdit?: string|null,
  *   aiRemoveBackground?: bool|null,
  *   aiRemoveBackgroundExternal?: bool|null,
  *   aiRetouch?: bool|null,
  *   aiUpscale?: bool|null,
  *   aiVariation?: bool|null,
- *   aspectRatio?: float|string|null,
- *   audioCodec?: value-of<AudioCodec>|null,
+ *   aspectRatio?: AspectRatioShape|null,
+ *   audioCodec?: null|AudioCodec|value-of<AudioCodec>,
  *   background?: string|null,
  *   blur?: float|null,
  *   border?: string|null,
  *   colorProfile?: bool|null,
  *   contrastStretch?: bool|null,
- *   crop?: value-of<Crop>|null,
- *   cropMode?: value-of<CropMode>|null,
+ *   crop?: null|Crop|value-of<Crop>,
+ *   cropMode?: null|CropMode|value-of<CropMode>,
  *   defaultImage?: string|null,
  *   dpr?: float|null,
- *   duration?: float|string|null,
- *   endOffset?: float|string|null,
- *   flip?: value-of<Flip>|null,
+ *   duration?: DurationShape|null,
+ *   endOffset?: EndOffsetShape|null,
+ *   flip?: null|Flip|value-of<Flip>,
  *   focus?: string|null,
- *   format?: value-of<Format>|null,
- *   gradient?: string|null|bool,
+ *   format?: null|Format|value-of<Format>,
+ *   gradient?: GradientShape|null,
  *   grayscale?: bool|null,
- *   height?: float|string|null,
+ *   height?: HeightShape|null,
  *   lossless?: bool|null,
  *   metadata?: bool|null,
  *   named?: string|null,
  *   opacity?: float|null,
  *   original?: bool|null,
- *   overlay?: Overlay|null,
- *   page?: float|string|null,
+ *   overlay?: null|Overlay,
+ *   page?: PageShape|null,
  *   progressive?: bool|null,
  *   quality?: float|null,
- *   radius?: float|null|'max',
+ *   radius?: RadiusShape|null,
  *   raw?: string|null,
- *   rotation?: float|string|null,
- *   shadow?: string|null|bool,
- *   sharpen?: float|null|bool,
- *   startOffset?: float|string|null,
- *   streamingResolutions?: list<value-of<StreamingResolution>>|null,
- *   trim?: float|null|bool,
- *   unsharpMask?: string|null|bool,
- *   videoCodec?: value-of<VideoCodec>|null,
- *   width?: float|string|null,
- *   x?: float|string|null,
- *   xCenter?: float|string|null,
- *   y?: float|string|null,
- *   yCenter?: float|string|null,
+ *   rotation?: RotationShape|null,
+ *   shadow?: ShadowShape|null,
+ *   sharpen?: SharpenShape|null,
+ *   startOffset?: StartOffsetShape|null,
+ *   streamingResolutions?: list<StreamingResolution|value-of<StreamingResolution>>|null,
+ *   trim?: TrimShape|null,
+ *   unsharpMask?: UnsharpMaskShape|null,
+ *   videoCodec?: null|VideoCodec|value-of<VideoCodec>,
+ *   width?: WidthShape|null,
+ *   x?: XShape|null,
+ *   xCenter?: XCenterShape|null,
+ *   y?: YShape|null,
+ *   yCenter?: YCenterShape|null,
  *   zoom?: float|null,
  * }
  */
@@ -501,14 +521,32 @@ final class Transformation implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
+     * @param AIDropShadowShape $aiDropShadow
+     * @param AspectRatioShape $aspectRatio
      * @param AudioCodec|value-of<AudioCodec> $audioCodec
      * @param Crop|value-of<Crop> $crop
      * @param CropMode|value-of<CropMode> $cropMode
+     * @param DurationShape $duration
+     * @param EndOffsetShape $endOffset
      * @param Flip|value-of<Flip> $flip
      * @param Format|value-of<Format> $format
-     * @param float|'max' $radius
+     * @param GradientShape $gradient
+     * @param HeightShape $height
+     * @param PageShape $page
+     * @param RadiusShape $radius
+     * @param RotationShape $rotation
+     * @param ShadowShape $shadow
+     * @param SharpenShape $sharpen
+     * @param StartOffsetShape $startOffset
      * @param list<StreamingResolution|value-of<StreamingResolution>> $streamingResolutions
+     * @param TrimShape $trim
+     * @param UnsharpMaskShape $unsharpMask
      * @param VideoCodec|value-of<VideoCodec> $videoCodec
+     * @param WidthShape $width
+     * @param XShape $x
+     * @param XCenterShape $xCenter
+     * @param YShape $y
+     * @param YCenterShape $yCenter
      */
     public static function with(
         ?string $aiChangeBackground = null,
@@ -642,6 +680,8 @@ final class Transformation implements BaseModel
      * Pass `true` for the default drop shadow, or provide a string for a custom drop shadow.
      * Supported inside overlay.
      * See [AI Drop Shadow](https://imagekit.io/docs/ai-transformations#ai-drop-shadow-e-dropshadow).
+     *
+     * @param AIDropShadowShape $aiDropShadow
      */
     public function withAIDropShadow(string|bool $aiDropShadow): self
     {
@@ -734,6 +774,8 @@ final class Transformation implements BaseModel
      * Specifies the aspect ratio for the output, e.g., "ar-4-3". Typically used with either width or height (but not both).
      * For example: aspectRatio = `4:3`, `4_3`, or an expression like `iar_div_2`.
      * See [Image resize and crop – Aspect ratio](https://imagekit.io/docs/image-resize-and-crop#aspect-ratio---ar).
+     *
+     * @param AspectRatioShape $aspectRatio
      */
     public function withAspectRatio(float|string $aspectRatio): self
     {
@@ -874,6 +916,8 @@ final class Transformation implements BaseModel
      * Specifies the duration (in seconds) for trimming videos, e.g., `5` or `10.5`.
      * Typically used with startOffset to indicate the length from the start offset. Arithmetic expressions are supported.
      * See [Trim videos – Duration](https://imagekit.io/docs/trim-videos#duration---du).
+     *
+     * @param DurationShape $duration
      */
     public function withDuration(float|string $duration): self
     {
@@ -887,6 +931,8 @@ final class Transformation implements BaseModel
      * Specifies the end offset (in seconds) for trimming videos, e.g., `5` or `10.5`.
      * Typically used with startOffset to define a time window. Arithmetic expressions are supported.
      * See [Trim videos – End offset](https://imagekit.io/docs/trim-videos#end-offset---eo).
+     *
+     * @param EndOffsetShape $endOffset
      */
     public function withEndOffset(float|string $endOffset): self
     {
@@ -946,6 +992,8 @@ final class Transformation implements BaseModel
     /**
      * Creates a linear gradient with two colors. Pass `true` for a default gradient, or provide a string for a custom gradient.
      * See [Gradient](https://imagekit.io/docs/effects-and-enhancements#gradient---e-gradient).
+     *
+     * @param GradientShape $gradient
      */
     public function withGradient(string|bool $gradient): self
     {
@@ -970,6 +1018,8 @@ final class Transformation implements BaseModel
      * Specifies the height of the output. If a value between 0 and 1 is provided, it is treated as a percentage (e.g., `0.5` represents 50% of the original height).
      * You can also supply arithmetic expressions (e.g., `ih_mul_0.5`).
      * Height transformation – [Images](https://imagekit.io/docs/image-resize-and-crop#height---h) · [Videos](https://imagekit.io/docs/video-resize-and-crop#height---h).
+     *
+     * @param HeightShape $height
      */
     public function withHeight(float|string $height): self
     {
@@ -1056,6 +1106,8 @@ final class Transformation implements BaseModel
      * For example, specify by number (e.g., `2`), a range (e.g., `3-4` for the 2nd and 3rd layers),
      * or by name (e.g., `name-layer-4` for a PSD layer).
      * See [Thumbnail extraction](https://imagekit.io/docs/vector-and-animated-images#get-thumbnail-from-psd-pdf-ai-eps-and-animated-files).
+     *
+     * @param PageShape $page
      */
     public function withPage(float|string $page): self
     {
@@ -1095,7 +1147,7 @@ final class Transformation implements BaseModel
      * Specifies the corner radius for rounded corners (e.g., 20) or `max` for circular or oval shape.
      * See [Radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
      *
-     * @param float|'max' $radius
+     * @param RadiusShape $radius
      */
     public function withRadius(float|string $radius): self
     {
@@ -1122,6 +1174,8 @@ final class Transformation implements BaseModel
      * or `auto` to use the orientation specified in the image's EXIF data.
      * For videos, only the following values are supported: 0, 90, 180, 270, or 360.
      * See [Rotate](https://imagekit.io/docs/effects-and-enhancements#rotate---rt).
+     *
+     * @param RotationShape $rotation
      */
     public function withRotation(float|string $rotation): self
     {
@@ -1136,6 +1190,8 @@ final class Transformation implements BaseModel
      * For AI-based drop shadows, refer to aiDropShadow.
      * Pass `true` for a default shadow, or provide a string for a custom shadow.
      * See [Shadow](https://imagekit.io/docs/effects-and-enhancements#shadow---e-shadow).
+     *
+     * @param ShadowShape $shadow
      */
     public function withShadow(string|bool $shadow): self
     {
@@ -1149,6 +1205,8 @@ final class Transformation implements BaseModel
      * Sharpens the input image, highlighting edges and finer details.
      * Pass `true` for default sharpening, or provide a numeric value for custom sharpening.
      * See [Sharpen](https://imagekit.io/docs/effects-and-enhancements#sharpen---e-sharpen).
+     *
+     * @param SharpenShape $sharpen
      */
     public function withSharpen(float|bool $sharpen): self
     {
@@ -1162,6 +1220,8 @@ final class Transformation implements BaseModel
      * Specifies the start offset (in seconds) for trimming videos, e.g., `5` or `10.5`.
      * Arithmetic expressions are also supported.
      * See [Trim videos – Start offset](https://imagekit.io/docs/trim-videos#start-offset---so).
+     *
+     * @param StartOffsetShape $startOffset
      */
     public function withStartOffset(float|string $startOffset): self
     {
@@ -1189,6 +1249,8 @@ final class Transformation implements BaseModel
      * Useful for images with a solid or nearly solid background and a central object. This parameter trims the background,
      * leaving only the central object in the output image.
      * See [Trim edges](https://imagekit.io/docs/effects-and-enhancements#trim-edges---t).
+     *
+     * @param TrimShape $trim
      */
     public function withTrim(float|bool $trim): self
     {
@@ -1202,6 +1264,8 @@ final class Transformation implements BaseModel
      * Applies Unsharp Masking (USM), an image sharpening technique.
      * Pass `true` for a default unsharp mask, or provide a string for a custom unsharp mask.
      * See [Unsharp Mask](https://imagekit.io/docs/effects-and-enhancements#unsharp-mask---e-usm).
+     *
+     * @param UnsharpMaskShape $unsharpMask
      */
     public function withUnsharpMask(string|bool $unsharpMask): self
     {
@@ -1228,6 +1292,8 @@ final class Transformation implements BaseModel
      * Specifies the width of the output. If a value between 0 and 1 is provided, it is treated as a percentage (e.g., `0.4` represents 40% of the original width).
      * You can also supply arithmetic expressions (e.g., `iw_div_2`).
      * Width transformation – [Images](https://imagekit.io/docs/image-resize-and-crop#width---w) · [Videos](https://imagekit.io/docs/video-resize-and-crop#width---w).
+     *
+     * @param WidthShape $width
      */
     public function withWidth(float|string $width): self
     {
@@ -1239,6 +1305,8 @@ final class Transformation implements BaseModel
 
     /**
      * Focus using cropped image coordinates - X coordinate. See [Focus using cropped coordinates](https://imagekit.io/docs/image-resize-and-crop#example---focus-using-cropped-image-coordinates).
+     *
+     * @param XShape $x
      */
     public function withX(float|string $x): self
     {
@@ -1250,6 +1318,8 @@ final class Transformation implements BaseModel
 
     /**
      * Focus using cropped image coordinates - X center coordinate. See [Focus using cropped coordinates](https://imagekit.io/docs/image-resize-and-crop#example---focus-using-cropped-image-coordinates).
+     *
+     * @param XCenterShape $xCenter
      */
     public function withXCenter(float|string $xCenter): self
     {
@@ -1261,6 +1331,8 @@ final class Transformation implements BaseModel
 
     /**
      * Focus using cropped image coordinates - Y coordinate. See [Focus using cropped coordinates](https://imagekit.io/docs/image-resize-and-crop#example---focus-using-cropped-image-coordinates).
+     *
+     * @param YShape $y
      */
     public function withY(float|string $y): self
     {
@@ -1272,6 +1344,8 @@ final class Transformation implements BaseModel
 
     /**
      * Focus using cropped image coordinates - Y center coordinate. See [Focus using cropped coordinates](https://imagekit.io/docs/image-resize-and-crop#example---focus-using-cropped-image-coordinates).
+     *
+     * @param YCenterShape $yCenter
      */
     public function withYCenter(float|string $yCenter): self
     {

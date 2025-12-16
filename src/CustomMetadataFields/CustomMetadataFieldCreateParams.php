@@ -9,26 +9,16 @@ use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Concerns\SdkParams;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema;
-use Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\Type;
 
 /**
  * This API creates a new custom metadata field. Once a custom metadata field is created either through this API or using the dashboard UI, its value can be set on the assets. The value of a field for an asset can be set using the media library UI or programmatically through upload or update assets API.
  *
  * @see Imagekit\Services\CustomMetadataFieldsService::create()
  *
+ * @phpstan-import-type SchemaShape from \Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema
+ *
  * @phpstan-type CustomMetadataFieldCreateParamsShape = array{
- *   label: string,
- *   name: string,
- *   schema: Schema|array{
- *     type: value-of<Type>,
- *     defaultValue?: string|float|bool|null|list<string|float|bool>,
- *     isValueRequired?: bool|null,
- *     maxLength?: float|null,
- *     maxValue?: string|float|null,
- *     minLength?: float|null,
- *     minValue?: string|float|null,
- *     selectOptions?: list<string|float|bool>|null,
- *   },
+ *   label: string, name: string, schema: SchemaShape
  * }
  */
 final class CustomMetadataFieldCreateParams implements BaseModel
@@ -79,16 +69,7 @@ final class CustomMetadataFieldCreateParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Schema|array{
-     *   type: value-of<Type>,
-     *   defaultValue?: string|float|bool|list<string|float|bool>|null,
-     *   isValueRequired?: bool|null,
-     *   maxLength?: float|null,
-     *   maxValue?: string|float|null,
-     *   minLength?: float|null,
-     *   minValue?: string|float|null,
-     *   selectOptions?: list<string|float|bool>|null,
-     * } $schema
+     * @param SchemaShape $schema
      */
     public static function with(
         string $label,
@@ -127,16 +108,7 @@ final class CustomMetadataFieldCreateParams implements BaseModel
     }
 
     /**
-     * @param Schema|array{
-     *   type: value-of<Type>,
-     *   defaultValue?: string|float|bool|list<string|float|bool>|null,
-     *   isValueRequired?: bool|null,
-     *   maxLength?: float|null,
-     *   maxValue?: string|float|null,
-     *   minLength?: float|null,
-     *   minValue?: string|float|null,
-     *   selectOptions?: list<string|float|bool>|null,
-     * } $schema
+     * @param SchemaShape $schema
      */
     public function withSchema(Schema|array $schema): self
     {

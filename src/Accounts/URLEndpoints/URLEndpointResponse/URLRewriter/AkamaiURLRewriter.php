@@ -9,7 +9,7 @@ use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type AkamaiURLRewriterShape = array{type?: 'AKAMAI'}
+ * @phpstan-type AkamaiURLRewriterShape = array{type: 'AKAMAI'}
  */
 final class AkamaiURLRewriter implements BaseModel
 {

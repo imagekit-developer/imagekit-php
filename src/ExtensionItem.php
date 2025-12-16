@@ -11,6 +11,13 @@ use Imagekit\ExtensionItem\AutoDescriptionExtension;
 use Imagekit\ExtensionItem\AutoTaggingExtension;
 use Imagekit\ExtensionItem\RemovedotBgExtension;
 
+/**
+ * @phpstan-import-type RemovedotBgExtensionShape from \Imagekit\ExtensionItem\RemovedotBgExtension
+ * @phpstan-import-type AutoTaggingExtensionShape from \Imagekit\ExtensionItem\AutoTaggingExtension
+ * @phpstan-import-type AutoDescriptionExtensionShape from \Imagekit\ExtensionItem\AutoDescriptionExtension
+ *
+ * @phpstan-type ExtensionItemShape = RemovedotBgExtensionShape|AutoTaggingExtensionShape|AutoDescriptionExtensionShape
+ */
 final class ExtensionItem implements ConverterSource
 {
     use SdkUnion;

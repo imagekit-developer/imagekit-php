@@ -16,7 +16,7 @@ use Imagekit\Core\Contracts\BaseModel;
  *   includeCanonicalHeader: bool,
  *   name: string,
  *   prefix: string,
- *   type?: 'S3',
+ *   type: 'S3',
  *   baseURLForCanonicalHeader?: string|null,
  * }
  */

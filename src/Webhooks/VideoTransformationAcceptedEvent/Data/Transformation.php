@@ -9,17 +9,15 @@ use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation\Options;
-use Imagekit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation\Options\AudioCodec;
-use Imagekit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation\Options\Format;
-use Imagekit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation\Options\StreamProtocol;
-use Imagekit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation\Options\VideoCodec;
 use Imagekit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation\Type;
 
 /**
  * Base information about a video transformation request.
  *
+ * @phpstan-import-type OptionsShape from \Imagekit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation\Options
+ *
  * @phpstan-type TransformationShape = array{
- *   type: value-of<Type>, options?: Options|null
+ *   type: Type|value-of<Type>, options?: null|Options|OptionsShape
  * }
  */
 final class Transformation implements BaseModel
@@ -69,15 +67,7 @@ final class Transformation implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param Type|value-of<Type> $type
-     * @param Options|array{
-     *   audioCodec?: value-of<AudioCodec>|null,
-     *   autoRotate?: bool|null,
-     *   format?: value-of<Format>|null,
-     *   quality?: int|null,
-     *   streamProtocol?: value-of<StreamProtocol>|null,
-     *   variants?: list<string>|null,
-     *   videoCodec?: value-of<VideoCodec>|null,
-     * } $options
+     * @param OptionsShape $options
      */
     public static function with(
         Type|string $type,
@@ -111,15 +101,7 @@ final class Transformation implements BaseModel
     /**
      * Configuration options for video transformations.
      *
-     * @param Options|array{
-     *   audioCodec?: value-of<AudioCodec>|null,
-     *   autoRotate?: bool|null,
-     *   format?: value-of<Format>|null,
-     *   quality?: int|null,
-     *   streamProtocol?: value-of<StreamProtocol>|null,
-     *   variants?: list<string>|null,
-     *   videoCodec?: value-of<VideoCodec>|null,
-     * } $options
+     * @param OptionsShape $options
      */
     public function withOptions(Options|array $options): self
     {

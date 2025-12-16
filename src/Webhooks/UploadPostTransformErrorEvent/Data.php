@@ -8,14 +8,15 @@ use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\Webhooks\UploadPostTransformErrorEvent\Data\Transformation;
-use Imagekit\Webhooks\UploadPostTransformErrorEvent\Data\Transformation\Error;
 
 /**
+ * @phpstan-import-type TransformationShape from \Imagekit\Webhooks\UploadPostTransformErrorEvent\Data\Transformation
+ *
  * @phpstan-type DataShape = array{
  *   fileID: string,
  *   name: string,
  *   path: string,
- *   transformation: Transformation,
+ *   transformation: Transformation|TransformationShape,
  *   url: string,
  * }
  */
@@ -80,7 +81,7 @@ final class Data implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Transformation|array{error: Error} $transformation
+     * @param TransformationShape $transformation
      */
     public static function with(
         string $fileID,
@@ -134,7 +135,7 @@ final class Data implements BaseModel
     }
 
     /**
-     * @param Transformation|array{error: Error} $transformation
+     * @param TransformationShape $transformation
      */
     public function withTransformation(
         Transformation|array $transformation

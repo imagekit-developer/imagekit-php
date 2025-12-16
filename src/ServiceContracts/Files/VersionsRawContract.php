@@ -33,7 +33,7 @@ interface VersionsRawContract
      * @api
      *
      * @param string $versionID The unique `versionId` of the uploaded file. `versionId` is returned in list and search assets API and upload API.
-     * @param array<mixed>|VersionDeleteParams $params
+     * @param array<string,mixed>|VersionDeleteParams $params
      *
      * @return BaseResponse<VersionDeleteResponse>
      *
@@ -49,7 +49,7 @@ interface VersionsRawContract
      * @api
      *
      * @param string $versionID The unique `versionId` of the uploaded file. `versionId` is returned in list and search assets API and upload API.
-     * @param array<mixed>|VersionGetParams $params
+     * @param array<string,mixed>|VersionGetParams $params
      *
      * @return BaseResponse<File>
      *
@@ -65,7 +65,7 @@ interface VersionsRawContract
      * @api
      *
      * @param string $versionID The unique `versionId` of the uploaded file. `versionId` is returned in list and search assets API and upload API.
-     * @param array<mixed>|VersionRestoreParams $params
+     * @param array<string,mixed>|VersionRestoreParams $params
      *
      * @return BaseResponse<File>
      *

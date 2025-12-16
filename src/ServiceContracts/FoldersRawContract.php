@@ -23,7 +23,7 @@ interface FoldersRawContract
     /**
      * @api
      *
-     * @param array<mixed>|FolderCreateParams $params
+     * @param array<string,mixed>|FolderCreateParams $params
      *
      * @return BaseResponse<FolderNewResponse>
      *
@@ -37,7 +37,7 @@ interface FoldersRawContract
     /**
      * @api
      *
-     * @param array<mixed>|FolderDeleteParams $params
+     * @param array<string,mixed>|FolderDeleteParams $params
      *
      * @return BaseResponse<FolderDeleteResponse>
      *
@@ -51,7 +51,7 @@ interface FoldersRawContract
     /**
      * @api
      *
-     * @param array<mixed>|FolderCopyParams $params
+     * @param array<string,mixed>|FolderCopyParams $params
      *
      * @return BaseResponse<FolderCopyResponse>
      *
@@ -65,7 +65,7 @@ interface FoldersRawContract
     /**
      * @api
      *
-     * @param array<mixed>|FolderMoveParams $params
+     * @param array<string,mixed>|FolderMoveParams $params
      *
      * @return BaseResponse<FolderMoveResponse>
      *
@@ -79,7 +79,7 @@ interface FoldersRawContract
     /**
      * @api
      *
-     * @param array<mixed>|FolderRenameParams $params
+     * @param array<string,mixed>|FolderRenameParams $params
      *
      * @return BaseResponse<FolderRenameResponse>
      *

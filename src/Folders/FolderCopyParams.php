@@ -16,7 +16,7 @@ use Imagekit\Core\Contracts\BaseModel;
  * @see Imagekit\Services\FoldersService::copy()
  *
  * @phpstan-type FolderCopyParamsShape = array{
- *   destinationPath: string, sourceFolderPath: string, includeVersions?: bool
+ *   destinationPath: string, sourceFolderPath: string, includeVersions?: bool|null
  * }
  */
 final class FolderCopyParams implements BaseModel

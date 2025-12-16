@@ -13,6 +13,8 @@ use Imagekit\Core\Conversion\Contracts\ConverterSource;
  * It also accepts arithmetic expressions such as `bh_mul_0.4` or `bh_sub_ch`.
  * Maps to `ly` in the URL.
  * Learn about [Arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
+ *
+ * @phpstan-type YShape = float|string
  */
 final class Y implements ConverterSource
 {

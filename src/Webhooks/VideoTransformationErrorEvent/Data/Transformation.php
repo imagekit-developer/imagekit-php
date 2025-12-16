@@ -9,17 +9,17 @@ use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Error;
-use Imagekit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Error\Reason;
 use Imagekit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Options;
-use Imagekit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Options\AudioCodec;
-use Imagekit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Options\Format;
-use Imagekit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Options\StreamProtocol;
-use Imagekit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Options\VideoCodec;
 use Imagekit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Type;
 
 /**
+ * @phpstan-import-type ErrorShape from \Imagekit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Error
+ * @phpstan-import-type OptionsShape from \Imagekit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Options
+ *
  * @phpstan-type TransformationShape = array{
- *   type: value-of<Type>, error?: Error|null, options?: Options|null
+ *   type: Type|value-of<Type>,
+ *   error?: null|Error|ErrorShape,
+ *   options?: null|Options|OptionsShape,
  * }
  */
 final class Transformation implements BaseModel
@@ -75,16 +75,8 @@ final class Transformation implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param Type|value-of<Type> $type
-     * @param Error|array{reason: value-of<Reason>} $error
-     * @param Options|array{
-     *   audioCodec?: value-of<AudioCodec>|null,
-     *   autoRotate?: bool|null,
-     *   format?: value-of<Format>|null,
-     *   quality?: int|null,
-     *   streamProtocol?: value-of<StreamProtocol>|null,
-     *   variants?: list<string>|null,
-     *   videoCodec?: value-of<VideoCodec>|null,
-     * } $options
+     * @param ErrorShape $error
+     * @param OptionsShape $options
      */
     public static function with(
         Type|string $type,
@@ -120,7 +112,7 @@ final class Transformation implements BaseModel
     /**
      * Details about the transformation error.
      *
-     * @param Error|array{reason: value-of<Reason>} $error
+     * @param ErrorShape $error
      */
     public function withError(Error|array $error): self
     {
@@ -133,15 +125,7 @@ final class Transformation implements BaseModel
     /**
      * Configuration options for video transformations.
      *
-     * @param Options|array{
-     *   audioCodec?: value-of<AudioCodec>|null,
-     *   autoRotate?: bool|null,
-     *   format?: value-of<Format>|null,
-     *   quality?: int|null,
-     *   streamProtocol?: value-of<StreamProtocol>|null,
-     *   variants?: list<string>|null,
-     *   videoCodec?: value-of<VideoCodec>|null,
-     * } $options
+     * @param OptionsShape $options
      */
     public function withOptions(Options|array $options): self
     {

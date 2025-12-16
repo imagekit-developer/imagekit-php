@@ -8,15 +8,18 @@ use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\OverlayPosition\Focus;
 
 /**
+ * @phpstan-import-type OverlayPositionShape from \Imagekit\OverlayPosition
+ * @phpstan-import-type OverlayTimingShape from \Imagekit\OverlayTiming
+ * @phpstan-import-type SolidColorOverlayTransformationShape from \Imagekit\SolidColorOverlayTransformation
+ *
  * @phpstan-type SolidColorOverlayShape = array{
- *   position?: OverlayPosition|null,
- *   timing?: OverlayTiming|null,
+ *   position?: null|OverlayPosition|OverlayPositionShape,
+ *   timing?: null|OverlayTiming|OverlayTimingShape,
  *   color: string,
- *   type?: 'solidColor',
- *   transformation?: list<SolidColorOverlayTransformation>|null,
+ *   type: 'solidColor',
+ *   transformation?: list<SolidColorOverlayTransformationShape>|null,
  * }
  */
 final class SolidColorOverlay implements BaseModel
@@ -74,22 +77,9 @@ final class SolidColorOverlay implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param OverlayPosition|array{
-     *   focus?: value-of<Focus>|null, x?: float|string|null, y?: float|string|null
-     * } $position
-     * @param OverlayTiming|array{
-     *   duration?: float|string|null,
-     *   end?: float|string|null,
-     *   start?: float|string|null,
-     * } $timing
-     * @param list<SolidColorOverlayTransformation|array{
-     *   alpha?: float|null,
-     *   background?: string|null,
-     *   gradient?: string|bool|null,
-     *   height?: float|string|null,
-     *   radius?: float|'max'|null,
-     *   width?: float|string|null,
-     * }> $transformation
+     * @param OverlayPositionShape $position
+     * @param OverlayTimingShape $timing
+     * @param list<SolidColorOverlayTransformationShape> $transformation
      */
     public static function with(
         string $color,
@@ -109,9 +99,7 @@ final class SolidColorOverlay implements BaseModel
     }
 
     /**
-     * @param OverlayPosition|array{
-     *   focus?: value-of<Focus>|null, x?: float|string|null, y?: float|string|null
-     * } $position
+     * @param OverlayPositionShape $position
      */
     public function withPosition(OverlayPosition|array $position): self
     {
@@ -122,11 +110,7 @@ final class SolidColorOverlay implements BaseModel
     }
 
     /**
-     * @param OverlayTiming|array{
-     *   duration?: float|string|null,
-     *   end?: float|string|null,
-     *   start?: float|string|null,
-     * } $timing
+     * @param OverlayTimingShape $timing
      */
     public function withTiming(OverlayTiming|array $timing): self
     {
@@ -152,14 +136,7 @@ final class SolidColorOverlay implements BaseModel
      * Control width and height of the solid color overlay. Supported transformations depend on the base/parent asset.
      * See overlays on [Images](https://imagekit.io/docs/add-overlays-on-images#apply-transformation-on-solid-color-overlay) and [Videos](https://imagekit.io/docs/add-overlays-on-videos#apply-transformations-on-solid-color-block-overlay).
      *
-     * @param list<SolidColorOverlayTransformation|array{
-     *   alpha?: float|null,
-     *   background?: string|null,
-     *   gradient?: string|bool|null,
-     *   height?: float|string|null,
-     *   radius?: float|'max'|null,
-     *   width?: float|string|null,
-     * }> $transformation
+     * @param list<SolidColorOverlayTransformationShape> $transformation
      */
     public function withTransformation(array $transformation): self
     {

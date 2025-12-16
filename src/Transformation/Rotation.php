@@ -13,6 +13,8 @@ use Imagekit\Core\Conversion\Contracts\ConverterSource;
  * or `auto` to use the orientation specified in the image's EXIF data.
  * For videos, only the following values are supported: 0, 90, 180, 270, or 360.
  * See [Rotate](https://imagekit.io/docs/effects-and-enhancements#rotate---rt).
+ *
+ * @phpstan-type RotationShape = float|string
  */
 final class Rotation implements ConverterSource
 {

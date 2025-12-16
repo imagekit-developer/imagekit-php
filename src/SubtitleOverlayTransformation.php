@@ -19,7 +19,7 @@ use Imagekit\SubtitleOverlayTransformation\Typography;
  *   fontOutline?: string|null,
  *   fontShadow?: string|null,
  *   fontSize?: float|null,
- *   typography?: value-of<Typography>|null,
+ *   typography?: null|Typography|value-of<Typography>,
  * }
  */
 final class SubtitleOverlayTransformation implements BaseModel

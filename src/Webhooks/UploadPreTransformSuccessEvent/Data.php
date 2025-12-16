@@ -8,22 +8,22 @@ use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\Files\Metadata;
-use Imagekit\Files\Metadata\Exif;
 use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\AITag;
 use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\ExtensionStatus;
-use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\ExtensionStatus\AIAutoDescription;
-use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\ExtensionStatus\AwsAutoTagging;
-use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\ExtensionStatus\GoogleAutoTagging;
-use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\ExtensionStatus\RemoveBg;
 use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema;
-use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema\Type;
 use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\VersionInfo;
 
 /**
  * Object containing details of a successful upload.
  *
+ * @phpstan-import-type AITagShape from \Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\AITag
+ * @phpstan-import-type ExtensionStatusShape from \Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\ExtensionStatus
+ * @phpstan-import-type MetadataShape from \Imagekit\Files\Metadata
+ * @phpstan-import-type SelectedFieldsSchemaShape from \Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema
+ * @phpstan-import-type VersionInfoShape from \Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\VersionInfo
+ *
  * @phpstan-type DataShape = array{
- *   aiTags?: list<AITag>|null,
+ *   aiTags?: list<AITagShape>|null,
  *   audioCodec?: string|null,
  *   bitRate?: int|null,
  *   customCoordinates?: string|null,
@@ -31,21 +31,21 @@ use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\VersionInfo;
  *   description?: string|null,
  *   duration?: int|null,
  *   embeddedMetadata?: array<string,mixed>|null,
- *   extensionStatus?: ExtensionStatus|null,
+ *   extensionStatus?: null|ExtensionStatus|ExtensionStatusShape,
  *   fileID?: string|null,
  *   filePath?: string|null,
  *   fileType?: string|null,
  *   height?: float|null,
  *   isPrivateFile?: bool|null,
  *   isPublished?: bool|null,
- *   metadata?: Metadata|null,
+ *   metadata?: null|Metadata|MetadataShape,
  *   name?: string|null,
- *   selectedFieldsSchema?: array<string,SelectedFieldsSchema>|null,
+ *   selectedFieldsSchema?: array<string,SelectedFieldsSchemaShape>|null,
  *   size?: float|null,
  *   tags?: list<string>|null,
  *   thumbnailURL?: string|null,
  *   url?: string|null,
- *   versionInfo?: VersionInfo|null,
+ *   versionInfo?: null|VersionInfo|VersionInfoShape,
  *   videoCodec?: string|null,
  *   width?: float|null,
  * }
@@ -235,47 +235,14 @@ final class Data implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<AITag|array{
-     *   confidence?: float|null, name?: string|null, source?: string|null
-     * }>|null $aiTags
+     * @param list<AITagShape>|null $aiTags
      * @param array<string,mixed> $customMetadata
      * @param array<string,mixed> $embeddedMetadata
-     * @param ExtensionStatus|array{
-     *   aiAutoDescription?: value-of<AIAutoDescription>|null,
-     *   awsAutoTagging?: value-of<AwsAutoTagging>|null,
-     *   googleAutoTagging?: value-of<GoogleAutoTagging>|null,
-     *   removeBg?: value-of<RemoveBg>|null,
-     * } $extensionStatus
-     * @param Metadata|array{
-     *   audioCodec?: string|null,
-     *   bitRate?: int|null,
-     *   density?: int|null,
-     *   duration?: int|null,
-     *   exif?: Exif|null,
-     *   format?: string|null,
-     *   hasColorProfile?: bool|null,
-     *   hasTransparency?: bool|null,
-     *   height?: int|null,
-     *   pHash?: string|null,
-     *   quality?: int|null,
-     *   size?: int|null,
-     *   videoCodec?: string|null,
-     *   width?: int|null,
-     * } $metadata
-     * @param array<string,SelectedFieldsSchema|array{
-     *   type: value-of<Type>,
-     *   defaultValue?: string|float|bool|list<string|float|bool>|null,
-     *   isValueRequired?: bool|null,
-     *   maxLength?: float|null,
-     *   maxValue?: string|float|null,
-     *   minLength?: float|null,
-     *   minValue?: string|float|null,
-     *   readOnly?: bool|null,
-     *   selectOptions?: list<string|float|bool>|null,
-     *   selectOptionsTruncated?: bool|null,
-     * }> $selectedFieldsSchema
+     * @param ExtensionStatusShape $extensionStatus
+     * @param MetadataShape $metadata
+     * @param array<string,SelectedFieldsSchemaShape> $selectedFieldsSchema
      * @param list<string>|null $tags
-     * @param VersionInfo|array{id?: string|null, name?: string|null} $versionInfo
+     * @param VersionInfoShape $versionInfo
      */
     public static function with(
         ?array $aiTags = null,
@@ -338,9 +305,7 @@ final class Data implements BaseModel
     /**
      * An array of tags assigned to the uploaded file by auto tagging.
      *
-     * @param list<AITag|array{
-     *   confidence?: float|null, name?: string|null, source?: string|null
-     * }>|null $aiTags
+     * @param list<AITagShape>|null $aiTags
      */
     public function withAITags(?array $aiTags): self
     {
@@ -440,12 +405,7 @@ final class Data implements BaseModel
      *
      * If no extension was requested, then this parameter is not returned.
      *
-     * @param ExtensionStatus|array{
-     *   aiAutoDescription?: value-of<AIAutoDescription>|null,
-     *   awsAutoTagging?: value-of<AwsAutoTagging>|null,
-     *   googleAutoTagging?: value-of<GoogleAutoTagging>|null,
-     *   removeBg?: value-of<RemoveBg>|null,
-     * } $extensionStatus
+     * @param ExtensionStatusShape $extensionStatus
      */
     public function withExtensionStatus(
         ExtensionStatus|array $extensionStatus
@@ -525,22 +485,7 @@ final class Data implements BaseModel
     /**
      * Legacy metadata. Send `metadata` in `responseFields` in API request to get metadata in the upload API response.
      *
-     * @param Metadata|array{
-     *   audioCodec?: string|null,
-     *   bitRate?: int|null,
-     *   density?: int|null,
-     *   duration?: int|null,
-     *   exif?: Exif|null,
-     *   format?: string|null,
-     *   hasColorProfile?: bool|null,
-     *   hasTransparency?: bool|null,
-     *   height?: int|null,
-     *   pHash?: string|null,
-     *   quality?: int|null,
-     *   size?: int|null,
-     *   videoCodec?: string|null,
-     *   width?: int|null,
-     * } $metadata
+     * @param MetadataShape $metadata
      */
     public function withMetadata(Metadata|array $metadata): self
     {
@@ -568,18 +513,7 @@ final class Data implements BaseModel
      *
      * Keys are the names of the custom metadata fields; the value object has details about the custom metadata schema.
      *
-     * @param array<string,SelectedFieldsSchema|array{
-     *   type: value-of<Type>,
-     *   defaultValue?: string|float|bool|list<string|float|bool>|null,
-     *   isValueRequired?: bool|null,
-     *   maxLength?: float|null,
-     *   maxValue?: string|float|null,
-     *   minLength?: float|null,
-     *   minValue?: string|float|null,
-     *   readOnly?: bool|null,
-     *   selectOptions?: list<string|float|bool>|null,
-     *   selectOptionsTruncated?: bool|null,
-     * }> $selectedFieldsSchema
+     * @param array<string,SelectedFieldsSchemaShape> $selectedFieldsSchema
      */
     public function withSelectedFieldsSchema(array $selectedFieldsSchema): self
     {
@@ -638,7 +572,7 @@ final class Data implements BaseModel
     /**
      * An object containing the file or file version's `id` (versionId) and `name`.
      *
-     * @param VersionInfo|array{id?: string|null, name?: string|null} $versionInfo
+     * @param VersionInfoShape $versionInfo
      */
     public function withVersionInfo(VersionInfo|array $versionInfo): self
     {

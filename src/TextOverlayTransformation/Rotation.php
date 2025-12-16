@@ -11,6 +11,8 @@ use Imagekit\Core\Conversion\Contracts\ConverterSource;
 /**
  * Specifies the rotation angle of the text overlay.
  * Accepts a numeric value for clockwise rotation or a string prefixed with "N" for counter-clockwise rotation.
+ *
+ * @phpstan-type RotationShape = float|string
  */
 final class Rotation implements ConverterSource
 {

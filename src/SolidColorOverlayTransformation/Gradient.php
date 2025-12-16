@@ -11,6 +11,8 @@ use Imagekit\Core\Conversion\Contracts\ConverterSource;
 /**
  * Creates a linear gradient with two colors. Pass `true` for a default gradient, or provide a string for a custom gradient.
  * Only works if the base asset is an image. See [gradient](https://imagekit.io/docs/effects-and-enhancements#gradient---e-gradient).
+ *
+ * @phpstan-type GradientShape = string|bool
  */
 final class Gradient implements ConverterSource
 {

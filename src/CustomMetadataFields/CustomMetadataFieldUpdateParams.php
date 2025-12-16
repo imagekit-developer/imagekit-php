@@ -15,17 +15,10 @@ use Imagekit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema;
  *
  * @see Imagekit\Services\CustomMetadataFieldsService::update()
  *
+ * @phpstan-import-type SchemaShape from \Imagekit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema
+ *
  * @phpstan-type CustomMetadataFieldUpdateParamsShape = array{
- *   label?: string,
- *   schema?: Schema|array{
- *     defaultValue?: string|float|bool|null|list<string|float|bool>,
- *     isValueRequired?: bool|null,
- *     maxLength?: float|null,
- *     maxValue?: string|float|null,
- *     minLength?: float|null,
- *     minValue?: string|float|null,
- *     selectOptions?: list<string|float|bool>|null,
- *   },
+ *   label?: string|null, schema?: SchemaShape|null
  * }
  */
 final class CustomMetadataFieldUpdateParams implements BaseModel
@@ -56,15 +49,7 @@ final class CustomMetadataFieldUpdateParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Schema|array{
-     *   defaultValue?: string|float|bool|list<string|float|bool>|null,
-     *   isValueRequired?: bool|null,
-     *   maxLength?: float|null,
-     *   maxValue?: string|float|null,
-     *   minLength?: float|null,
-     *   minValue?: string|float|null,
-     *   selectOptions?: list<string|float|bool>|null,
-     * } $schema
+     * @param SchemaShape $schema
      */
     public static function with(
         ?string $label = null,
@@ -92,15 +77,7 @@ final class CustomMetadataFieldUpdateParams implements BaseModel
     /**
      * An object that describes the rules for the custom metadata key. This parameter is required if `label` is not provided. Note: `type` cannot be updated and will be ignored if sent with the `schema`. The schema will be validated as per the existing `type`.
      *
-     * @param Schema|array{
-     *   defaultValue?: string|float|bool|list<string|float|bool>|null,
-     *   isValueRequired?: bool|null,
-     *   maxLength?: float|null,
-     *   maxValue?: string|float|null,
-     *   minLength?: float|null,
-     *   minValue?: string|float|null,
-     *   selectOptions?: list<string|float|bool>|null,
-     * } $schema
+     * @param SchemaShape $schema
      */
     public function withSchema(Schema|array $schema): self
     {

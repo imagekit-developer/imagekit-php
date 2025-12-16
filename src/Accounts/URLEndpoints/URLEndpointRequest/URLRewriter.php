@@ -13,6 +13,12 @@ use Imagekit\Core\Conversion\Contracts\ConverterSource;
 
 /**
  * Configuration for third-party URL rewriting.
+ *
+ * @phpstan-import-type CloudinaryURLRewriterShape from \Imagekit\Accounts\URLEndpoints\URLEndpointRequest\URLRewriter\CloudinaryURLRewriter
+ * @phpstan-import-type ImgixURLRewriterShape from \Imagekit\Accounts\URLEndpoints\URLEndpointRequest\URLRewriter\ImgixURLRewriter
+ * @phpstan-import-type AkamaiURLRewriterShape from \Imagekit\Accounts\URLEndpoints\URLEndpointRequest\URLRewriter\AkamaiURLRewriter
+ *
+ * @phpstan-type URLRewriterShape = CloudinaryURLRewriterShape|ImgixURLRewriterShape|AkamaiURLRewriterShape
  */
 final class URLRewriter implements ConverterSource
 {

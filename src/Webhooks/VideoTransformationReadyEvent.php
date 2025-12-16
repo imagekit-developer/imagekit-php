@@ -9,21 +9,23 @@ use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\Webhooks\VideoTransformationReadyEvent\Data;
-use Imagekit\Webhooks\VideoTransformationReadyEvent\Data\Asset;
-use Imagekit\Webhooks\VideoTransformationReadyEvent\Data\Transformation;
 use Imagekit\Webhooks\VideoTransformationReadyEvent\Request;
 use Imagekit\Webhooks\VideoTransformationReadyEvent\Timings;
 
 /**
  * Triggered when video encoding is finished and the transformed resource is ready to be served. This is the key event to listen for - update your database or CMS flags when you receive this so your application can start showing the transformed video to users.
  *
+ * @phpstan-import-type DataShape from \Imagekit\Webhooks\VideoTransformationReadyEvent\Data
+ * @phpstan-import-type RequestShape from \Imagekit\Webhooks\VideoTransformationReadyEvent\Request
+ * @phpstan-import-type TimingsShape from \Imagekit\Webhooks\VideoTransformationReadyEvent\Timings
+ *
  * @phpstan-type VideoTransformationReadyEventShape = array{
  *   id: string,
  *   type: string,
  *   createdAt: \DateTimeInterface,
- *   data: Data,
- *   request: Request,
- *   timings?: Timings|null,
+ *   data: Data|DataShape,
+ *   request: Request|RequestShape,
+ *   timings?: null|Timings|TimingsShape,
  * }
  */
 final class VideoTransformationReadyEvent implements BaseModel
@@ -95,13 +97,9 @@ final class VideoTransformationReadyEvent implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Data|array{asset: Asset, transformation: Transformation} $data
-     * @param Request|array{
-     *   url: string, xRequestID: string, userAgent?: string|null
-     * } $request
-     * @param Timings|array{
-     *   downloadDuration?: int|null, encodingDuration?: int|null
-     * } $timings
+     * @param DataShape $data
+     * @param RequestShape $request
+     * @param TimingsShape $timings
      */
     public static function with(
         string $id,
@@ -158,7 +156,7 @@ final class VideoTransformationReadyEvent implements BaseModel
     }
 
     /**
-     * @param Data|array{asset: Asset, transformation: Transformation} $data
+     * @param DataShape $data
      */
     public function withData(Data|array $data): self
     {
@@ -171,9 +169,7 @@ final class VideoTransformationReadyEvent implements BaseModel
     /**
      * Information about the original request that triggered the video transformation.
      *
-     * @param Request|array{
-     *   url: string, xRequestID: string, userAgent?: string|null
-     * } $request
+     * @param RequestShape $request
      */
     public function withRequest(Request|array $request): self
     {
@@ -186,9 +182,7 @@ final class VideoTransformationReadyEvent implements BaseModel
     /**
      * Performance metrics for the transformation process.
      *
-     * @param Timings|array{
-     *   downloadDuration?: int|null, encodingDuration?: int|null
-     * } $timings
+     * @param TimingsShape $timings
      */
     public function withTimings(Timings|array $timings): self
     {

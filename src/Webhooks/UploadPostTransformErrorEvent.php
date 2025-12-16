@@ -8,18 +8,20 @@ use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\Webhooks\UploadPostTransformErrorEvent\Data;
-use Imagekit\Webhooks\UploadPostTransformErrorEvent\Data\Transformation;
 use Imagekit\Webhooks\UploadPostTransformErrorEvent\Request;
 
 /**
  * Triggered when a post-transformation fails. The original file remains available, but the requested transformation could not be generated.
  *
+ * @phpstan-import-type DataShape from \Imagekit\Webhooks\UploadPostTransformErrorEvent\Data
+ * @phpstan-import-type RequestShape from \Imagekit\Webhooks\UploadPostTransformErrorEvent\Request
+ *
  * @phpstan-type UploadPostTransformErrorEventShape = array{
  *   id: string,
  *   type: string,
  *   createdAt: \DateTimeInterface,
- *   data: Data,
- *   request: Request,
+ *   data: Data|DataShape,
+ *   request: Request|RequestShape,
  * }
  */
 final class UploadPostTransformErrorEvent implements BaseModel
@@ -82,17 +84,8 @@ final class UploadPostTransformErrorEvent implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Data|array{
-     *   fileID: string,
-     *   name: string,
-     *   path: string,
-     *   transformation: Transformation,
-     *   url: string,
-     * } $data
-     * @param Request|array{
-     *   transformation: Request\Transformation,
-     *   xRequestID: string,
-     * } $request
+     * @param DataShape $data
+     * @param RequestShape $request
      */
     public static function with(
         string $id,
@@ -146,13 +139,7 @@ final class UploadPostTransformErrorEvent implements BaseModel
     }
 
     /**
-     * @param Data|array{
-     *   fileID: string,
-     *   name: string,
-     *   path: string,
-     *   transformation: Transformation,
-     *   url: string,
-     * } $data
+     * @param DataShape $data
      */
     public function withData(Data|array $data): self
     {
@@ -163,10 +150,7 @@ final class UploadPostTransformErrorEvent implements BaseModel
     }
 
     /**
-     * @param Request|array{
-     *   transformation: Request\Transformation,
-     *   xRequestID: string,
-     * } $request
+     * @param RequestShape $request
      */
     public function withRequest(Request|array $request): self
     {

@@ -15,7 +15,7 @@ interface FilesRawContract
     /**
      * @api
      *
-     * @param array<mixed>|FileUploadParams $params
+     * @param array<string,mixed>|FileUploadParams $params
      *
      * @return BaseResponse<FileUploadResponse>
      *

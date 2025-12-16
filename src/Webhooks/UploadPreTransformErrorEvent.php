@@ -8,18 +8,20 @@ use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\Webhooks\UploadPreTransformErrorEvent\Data;
-use Imagekit\Webhooks\UploadPreTransformErrorEvent\Data\Transformation;
 use Imagekit\Webhooks\UploadPreTransformErrorEvent\Request;
 
 /**
  * Triggered when a pre-transformation fails. The file upload may have been accepted, but the requested transformation could not be applied.
  *
+ * @phpstan-import-type DataShape from \Imagekit\Webhooks\UploadPreTransformErrorEvent\Data
+ * @phpstan-import-type RequestShape from \Imagekit\Webhooks\UploadPreTransformErrorEvent\Request
+ *
  * @phpstan-type UploadPreTransformErrorEventShape = array{
  *   id: string,
  *   type: string,
  *   createdAt: \DateTimeInterface,
- *   data: Data,
- *   request: Request,
+ *   data: Data|DataShape,
+ *   request: Request|RequestShape,
  * }
  */
 final class UploadPreTransformErrorEvent implements BaseModel
@@ -82,10 +84,8 @@ final class UploadPreTransformErrorEvent implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Data|array{
-     *   name: string, path: string, transformation: Transformation
-     * } $data
-     * @param Request|array{transformation: string, xRequestID: string} $request
+     * @param DataShape $data
+     * @param RequestShape $request
      */
     public static function with(
         string $id,
@@ -139,9 +139,7 @@ final class UploadPreTransformErrorEvent implements BaseModel
     }
 
     /**
-     * @param Data|array{
-     *   name: string, path: string, transformation: Transformation
-     * } $data
+     * @param DataShape $data
      */
     public function withData(Data|array $data): self
     {
@@ -152,7 +150,7 @@ final class UploadPreTransformErrorEvent implements BaseModel
     }
 
     /**
-     * @param Request|array{transformation: string, xRequestID: string} $request
+     * @param RequestShape $request
      */
     public function withRequest(Request|array $request): self
     {

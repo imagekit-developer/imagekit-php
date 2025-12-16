@@ -10,7 +10,7 @@ use Imagekit\Core\Contracts\BaseModel;
 
 /**
  * @phpstan-type SimplePostTransformationShape = array{
- *   type?: 'transformation', value: string
+ *   type: 'transformation', value: string
  * }
  */
 final class SimplePostTransformation implements BaseModel

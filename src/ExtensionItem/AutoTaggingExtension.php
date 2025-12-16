@@ -11,7 +11,7 @@ use Imagekit\ExtensionItem\AutoTaggingExtension\Name;
 
 /**
  * @phpstan-type AutoTaggingExtensionShape = array{
- *   maxTags: int, minConfidence: int, name: value-of<Name>
+ *   maxTags: int, minConfidence: int, name: Name|value-of<Name>
  * }
  */
 final class AutoTaggingExtension implements BaseModel

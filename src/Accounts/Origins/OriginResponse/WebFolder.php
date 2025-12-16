@@ -16,7 +16,7 @@ use Imagekit\Core\Contracts\BaseModel;
  *   forwardHostHeaderToOrigin: bool,
  *   includeCanonicalHeader: bool,
  *   name: string,
- *   type?: 'WEB_FOLDER',
+ *   type: 'WEB_FOLDER',
  *   baseURLForCanonicalHeader?: string|null,
  * }
  */

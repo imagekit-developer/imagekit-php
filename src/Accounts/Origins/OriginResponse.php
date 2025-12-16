@@ -18,6 +18,17 @@ use Imagekit\Core\Conversion\Contracts\ConverterSource;
 
 /**
  * Origin object as returned by the API (sensitive fields removed).
+ *
+ * @phpstan-import-type S3Shape from \Imagekit\Accounts\Origins\OriginResponse\S3
+ * @phpstan-import-type S3CompatibleShape from \Imagekit\Accounts\Origins\OriginResponse\S3Compatible
+ * @phpstan-import-type CloudinaryBackupShape from \Imagekit\Accounts\Origins\OriginResponse\CloudinaryBackup
+ * @phpstan-import-type WebFolderShape from \Imagekit\Accounts\Origins\OriginResponse\WebFolder
+ * @phpstan-import-type WebProxyShape from \Imagekit\Accounts\Origins\OriginResponse\WebProxy
+ * @phpstan-import-type GoogleCloudStorageGcsShape from \Imagekit\Accounts\Origins\OriginResponse\GoogleCloudStorageGcs
+ * @phpstan-import-type AzureBlobStorageShape from \Imagekit\Accounts\Origins\OriginResponse\AzureBlobStorage
+ * @phpstan-import-type AkeneoPimShape from \Imagekit\Accounts\Origins\OriginResponse\AkeneoPim
+ *
+ * @phpstan-type OriginResponseShape = S3Shape|S3CompatibleShape|CloudinaryBackupShape|WebFolderShape|WebProxyShape|GoogleCloudStorageGcsShape|AzureBlobStorageShape|AkeneoPimShape
  */
 final class OriginResponse implements ConverterSource
 {

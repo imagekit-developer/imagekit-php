@@ -11,7 +11,7 @@ use Imagekit\Core\Contracts\BaseModel;
 
 /**
  * @phpstan-type ConvertGifToVideoShape = array{
- *   type?: 'gif-to-video', value?: string|null
+ *   type: 'gif-to-video', value?: string|null
  * }
  */
 final class ConvertGifToVideo implements BaseModel

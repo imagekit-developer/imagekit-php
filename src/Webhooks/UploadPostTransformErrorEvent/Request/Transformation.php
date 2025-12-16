@@ -13,7 +13,9 @@ use Imagekit\Webhooks\UploadPostTransformErrorEvent\Request\Transformation\Type;
 
 /**
  * @phpstan-type TransformationShape = array{
- *   type: value-of<Type>, protocol?: value-of<Protocol>|null, value?: string|null
+ *   type: Type|value-of<Type>,
+ *   protocol?: null|Protocol|value-of<Protocol>,
+ *   value?: string|null,
  * }
  */
 final class Transformation implements BaseModel

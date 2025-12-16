@@ -13,6 +13,8 @@ use Imagekit\Core\Conversion\Contracts\ConverterSource;
  * It also accepts arithmetic expressions such as `bw_mul_0.4` or `bw_sub_cw`.
  * Maps to `lx` in the URL.
  * Learn about [Arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
+ *
+ * @phpstan-type XShape = float|string
  */
 final class X implements ConverterSource
 {

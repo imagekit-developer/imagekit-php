@@ -10,7 +10,11 @@ use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\Files\UpdateFileRequest\ChangePublicationStatus\Publish;
 
 /**
- * @phpstan-type ChangePublicationStatusShape = array{publish?: Publish|null}
+ * @phpstan-import-type PublishShape from \Imagekit\Files\UpdateFileRequest\ChangePublicationStatus\Publish
+ *
+ * @phpstan-type ChangePublicationStatusShape = array{
+ *   publish?: null|Publish|PublishShape
+ * }
  */
 final class ChangePublicationStatus implements BaseModel
 {
@@ -33,9 +37,7 @@ final class ChangePublicationStatus implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Publish|array{
-     *   isPublished: bool, includeFileVersions?: bool|null
-     * } $publish
+     * @param PublishShape $publish
      */
     public static function with(Publish|array|null $publish = null): self
     {
@@ -49,9 +51,7 @@ final class ChangePublicationStatus implements BaseModel
     /**
      * Configure the publication status of a file and its versions.
      *
-     * @param Publish|array{
-     *   isPublished: bool, includeFileVersions?: bool|null
-     * } $publish
+     * @param PublishShape $publish
      */
     public function withPublish(Publish|array $publish): self
     {

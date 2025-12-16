@@ -12,6 +12,14 @@ use Imagekit\Core\Concerns\SdkUnion;
 use Imagekit\Core\Conversion\Contracts\Converter;
 use Imagekit\Core\Conversion\Contracts\ConverterSource;
 
+/**
+ * @phpstan-import-type SimplePostTransformationShape from \Imagekit\Beta\V2\Files\FileUploadParams\Transformation\Post\SimplePostTransformation
+ * @phpstan-import-type ConvertGifToVideoShape from \Imagekit\Beta\V2\Files\FileUploadParams\Transformation\Post\ConvertGifToVideo
+ * @phpstan-import-type GenerateAThumbnailShape from \Imagekit\Beta\V2\Files\FileUploadParams\Transformation\Post\GenerateAThumbnail
+ * @phpstan-import-type AdaptiveBitrateStreamingShape from \Imagekit\Beta\V2\Files\FileUploadParams\Transformation\Post\AdaptiveBitrateStreaming
+ *
+ * @phpstan-type PostShape = SimplePostTransformationShape|ConvertGifToVideoShape|GenerateAThumbnailShape|AdaptiveBitrateStreamingShape
+ */
 final class Post implements ConverterSource
 {
     use SdkUnion;

@@ -11,7 +11,7 @@ use Imagekit\Files\FileUploadParams\Transformation\Post\AdaptiveBitrateStreaming
 
 /**
  * @phpstan-type AdaptiveBitrateStreamingShape = array{
- *   protocol: value-of<Protocol>, type?: 'abs', value: string
+ *   protocol: Protocol|value-of<Protocol>, type: 'abs', value: string
  * }
  */
 final class AdaptiveBitrateStreaming implements BaseModel

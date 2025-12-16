@@ -15,7 +15,7 @@ use Imagekit\Files\Folder\Type;
  *   folderID?: string|null,
  *   folderPath?: string|null,
  *   name?: string|null,
- *   type?: value-of<Type>|null,
+ *   type?: null|Type|value-of<Type>,
  *   updatedAt?: \DateTimeInterface|null,
  * }
  */

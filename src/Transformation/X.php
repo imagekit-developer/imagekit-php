@@ -10,6 +10,8 @@ use Imagekit\Core\Conversion\Contracts\ConverterSource;
 
 /**
  * Focus using cropped image coordinates - X coordinate. See [Focus using cropped coordinates](https://imagekit.io/docs/image-resize-and-crop#example---focus-using-cropped-image-coordinates).
+ *
+ * @phpstan-type XShape = float|string
  */
 final class X implements ConverterSource
 {

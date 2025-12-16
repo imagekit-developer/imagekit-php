@@ -15,6 +15,8 @@ use Imagekit\Core\Conversion\ListOf;
  * If you want to remove all AITags associated with the file, send a string - "all".
  *
  * Note: The remove operation for `AITags` executes before any of the `extensions` are processed.
+ *
+ * @phpstan-type RemoveAITagsShape = 'all'|list<string>
  */
 final class RemoveAITags implements ConverterSource
 {

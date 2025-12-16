@@ -15,7 +15,7 @@ use Imagekit\Core\Contracts\BaseModel;
  *   baseURL: string,
  *   includeCanonicalHeader: bool,
  *   name: string,
- *   type?: 'AKENEO_PIM',
+ *   type: 'AKENEO_PIM',
  *   baseURLForCanonicalHeader?: string|null,
  * }
  */

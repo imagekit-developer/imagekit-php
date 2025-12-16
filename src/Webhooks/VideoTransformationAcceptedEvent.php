@@ -8,19 +8,20 @@ use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\Webhooks\VideoTransformationAcceptedEvent\Data;
-use Imagekit\Webhooks\VideoTransformationAcceptedEvent\Data\Asset;
-use Imagekit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation;
 use Imagekit\Webhooks\VideoTransformationAcceptedEvent\Request;
 
 /**
  * Triggered when a new video transformation request is accepted for processing. This event confirms that ImageKit has received and queued your transformation request. Use this for debugging and tracking transformation lifecycle.
  *
+ * @phpstan-import-type DataShape from \Imagekit\Webhooks\VideoTransformationAcceptedEvent\Data
+ * @phpstan-import-type RequestShape from \Imagekit\Webhooks\VideoTransformationAcceptedEvent\Request
+ *
  * @phpstan-type VideoTransformationAcceptedEventShape = array{
  *   id: string,
  *   type: string,
  *   createdAt: \DateTimeInterface,
- *   data: Data,
- *   request: Request,
+ *   data: Data|DataShape,
+ *   request: Request|RequestShape,
  * }
  */
 final class VideoTransformationAcceptedEvent implements BaseModel
@@ -86,10 +87,8 @@ final class VideoTransformationAcceptedEvent implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Data|array{asset: Asset, transformation: Transformation} $data
-     * @param Request|array{
-     *   url: string, xRequestID: string, userAgent?: string|null
-     * } $request
+     * @param DataShape $data
+     * @param RequestShape $request
      */
     public static function with(
         string $id,
@@ -143,7 +142,7 @@ final class VideoTransformationAcceptedEvent implements BaseModel
     }
 
     /**
-     * @param Data|array{asset: Asset, transformation: Transformation} $data
+     * @param DataShape $data
      */
     public function withData(Data|array $data): self
     {
@@ -156,9 +155,7 @@ final class VideoTransformationAcceptedEvent implements BaseModel
     /**
      * Information about the original request that triggered the video transformation.
      *
-     * @param Request|array{
-     *   url: string, xRequestID: string, userAgent?: string|null
-     * } $request
+     * @param RequestShape $request
      */
     public function withRequest(Request|array $request): self
     {

@@ -9,9 +9,7 @@ use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type AutoDescriptionExtensionShape = array{
- *   name?: 'ai-auto-description'
- * }
+ * @phpstan-type AutoDescriptionExtensionShape = array{name: 'ai-auto-description'}
  */
 final class AutoDescriptionExtension implements BaseModel
 {

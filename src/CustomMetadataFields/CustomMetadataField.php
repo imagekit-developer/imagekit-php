@@ -8,13 +8,14 @@ use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\CustomMetadataFields\CustomMetadataField\Schema;
-use Imagekit\CustomMetadataFields\CustomMetadataField\Schema\Type;
 
 /**
  * Object containing details of a custom metadata field.
  *
+ * @phpstan-import-type SchemaShape from \Imagekit\CustomMetadataFields\CustomMetadataField\Schema
+ *
  * @phpstan-type CustomMetadataFieldShape = array{
- *   id: string, label: string, name: string, schema: Schema
+ *   id: string, label: string, name: string, schema: Schema|SchemaShape
  * }
  */
 final class CustomMetadataField implements BaseModel
@@ -74,16 +75,7 @@ final class CustomMetadataField implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Schema|array{
-     *   type: value-of<Type>,
-     *   defaultValue?: string|float|bool|list<string|float|bool>|null,
-     *   isValueRequired?: bool|null,
-     *   maxLength?: float|null,
-     *   maxValue?: string|float|null,
-     *   minLength?: float|null,
-     *   minValue?: string|float|null,
-     *   selectOptions?: list<string|float|bool>|null,
-     * } $schema
+     * @param SchemaShape $schema
      */
     public static function with(
         string $id,
@@ -137,16 +129,7 @@ final class CustomMetadataField implements BaseModel
     /**
      * An object that describes the rules for the custom metadata field value.
      *
-     * @param Schema|array{
-     *   type: value-of<Type>,
-     *   defaultValue?: string|float|bool|list<string|float|bool>|null,
-     *   isValueRequired?: bool|null,
-     *   maxLength?: float|null,
-     *   maxValue?: string|float|null,
-     *   minLength?: float|null,
-     *   minValue?: string|float|null,
-     *   selectOptions?: list<string|float|bool>|null,
-     * } $schema
+     * @param SchemaShape $schema
      */
     public function withSchema(Schema|array $schema): self
     {

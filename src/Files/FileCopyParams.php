@@ -18,7 +18,9 @@ use Imagekit\Core\Contracts\BaseModel;
  * @see Imagekit\Services\FilesService::copy()
  *
  * @phpstan-type FileCopyParamsShape = array{
- *   destinationPath: string, sourceFilePath: string, includeFileVersions?: bool
+ *   destinationPath: string,
+ *   sourceFilePath: string,
+ *   includeFileVersions?: bool|null,
  * }
  */
 final class FileCopyParams implements BaseModel

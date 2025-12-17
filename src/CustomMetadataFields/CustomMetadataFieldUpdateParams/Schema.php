@@ -89,10 +89,10 @@ final class Schema implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param DefaultValueShape $defaultValue
-     * @param MaxValueShape $maxValue
-     * @param MinValueShape $minValue
-     * @param list<SelectOptionShape> $selectOptions
+     * @param DefaultValueShape|null $defaultValue
+     * @param MaxValueShape|null $maxValue
+     * @param MinValueShape|null $minValue
+     * @param list<SelectOptionShape>|null $selectOptions
      */
     public static function with(
         string|float|bool|array|null $defaultValue = null,

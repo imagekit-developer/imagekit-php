@@ -38,8 +38,8 @@ final class BaseOverlay implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param OverlayPositionShape $position
-     * @param OverlayTimingShape $timing
+     * @param OverlayPosition|OverlayPositionShape|null $position
+     * @param OverlayTiming|OverlayTimingShape|null $timing
      */
     public static function with(
         OverlayPosition|array|null $position = null,
@@ -54,7 +54,7 @@ final class BaseOverlay implements BaseModel
     }
 
     /**
-     * @param OverlayPositionShape $position
+     * @param OverlayPosition|OverlayPositionShape $position
      */
     public function withPosition(OverlayPosition|array $position): self
     {
@@ -65,7 +65,7 @@ final class BaseOverlay implements BaseModel
     }
 
     /**
-     * @param OverlayTimingShape $timing
+     * @param OverlayTiming|OverlayTimingShape $timing
      */
     public function withTiming(OverlayTiming|array $timing): self
     {

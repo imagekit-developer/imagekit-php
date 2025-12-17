@@ -61,7 +61,7 @@ final class Transformation implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<PostShape> $post
+     * @param list<PostShape>|null $post
      */
     public static function with(?array $post = null, ?string $pre = null): self
     {

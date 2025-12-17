@@ -75,8 +75,8 @@ final class Transformation implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param Type|value-of<Type> $type
-     * @param ErrorShape $error
-     * @param OptionsShape $options
+     * @param Error|ErrorShape|null $error
+     * @param Options|OptionsShape|null $options
      */
     public static function with(
         Type|string $type,
@@ -112,7 +112,7 @@ final class Transformation implements BaseModel
     /**
      * Details about the transformation error.
      *
-     * @param ErrorShape $error
+     * @param Error|ErrorShape $error
      */
     public function withError(Error|array $error): self
     {
@@ -125,7 +125,7 @@ final class Transformation implements BaseModel
     /**
      * Configuration options for video transformations.
      *
-     * @param OptionsShape $options
+     * @param Options|OptionsShape $options
      */
     public function withOptions(Options|array $options): self
     {

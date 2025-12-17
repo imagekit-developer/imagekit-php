@@ -75,7 +75,7 @@ final class CustomMetadataField implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param SchemaShape $schema
+     * @param Schema|SchemaShape $schema
      */
     public static function with(
         string $id,
@@ -129,7 +129,7 @@ final class CustomMetadataField implements BaseModel
     /**
      * An object that describes the rules for the custom metadata field value.
      *
-     * @param SchemaShape $schema
+     * @param Schema|SchemaShape $schema
      */
     public function withSchema(Schema|array $schema): self
     {

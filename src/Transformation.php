@@ -73,7 +73,7 @@ use Imagekit\Transformation\VideoCodec;
  *   named?: string|null,
  *   opacity?: float|null,
  *   original?: bool|null,
- *   overlay?: null|Overlay,
+ *   overlay?: mixed,
  *   page?: PageShape|null,
  *   progressive?: bool|null,
  *   quality?: float|null,
@@ -521,32 +521,33 @@ final class Transformation implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param AIDropShadowShape $aiDropShadow
-     * @param AspectRatioShape $aspectRatio
-     * @param AudioCodec|value-of<AudioCodec> $audioCodec
-     * @param Crop|value-of<Crop> $crop
-     * @param CropMode|value-of<CropMode> $cropMode
-     * @param DurationShape $duration
-     * @param EndOffsetShape $endOffset
-     * @param Flip|value-of<Flip> $flip
-     * @param Format|value-of<Format> $format
-     * @param GradientShape $gradient
-     * @param HeightShape $height
-     * @param PageShape $page
-     * @param RadiusShape $radius
-     * @param RotationShape $rotation
-     * @param ShadowShape $shadow
-     * @param SharpenShape $sharpen
-     * @param StartOffsetShape $startOffset
-     * @param list<StreamingResolution|value-of<StreamingResolution>> $streamingResolutions
-     * @param TrimShape $trim
-     * @param UnsharpMaskShape $unsharpMask
-     * @param VideoCodec|value-of<VideoCodec> $videoCodec
-     * @param WidthShape $width
-     * @param XShape $x
-     * @param XCenterShape $xCenter
-     * @param YShape $y
-     * @param YCenterShape $yCenter
+     * @param AIDropShadowShape|null $aiDropShadow
+     * @param AspectRatioShape|null $aspectRatio
+     * @param AudioCodec|value-of<AudioCodec>|null $audioCodec
+     * @param Crop|value-of<Crop>|null $crop
+     * @param CropMode|value-of<CropMode>|null $cropMode
+     * @param DurationShape|null $duration
+     * @param EndOffsetShape|null $endOffset
+     * @param Flip|value-of<Flip>|null $flip
+     * @param Format|value-of<Format>|null $format
+     * @param GradientShape|null $gradient
+     * @param HeightShape|null $height
+     * @param mixed $overlay
+     * @param PageShape|null $page
+     * @param RadiusShape|null $radius
+     * @param RotationShape|null $rotation
+     * @param ShadowShape|null $shadow
+     * @param SharpenShape|null $sharpen
+     * @param StartOffsetShape|null $startOffset
+     * @param list<StreamingResolution|value-of<StreamingResolution>>|null $streamingResolutions
+     * @param TrimShape|null $trim
+     * @param UnsharpMaskShape|null $unsharpMask
+     * @param VideoCodec|value-of<VideoCodec>|null $videoCodec
+     * @param WidthShape|null $width
+     * @param XShape|null $x
+     * @param XCenterShape|null $xCenter
+     * @param YShape|null $y
+     * @param YCenterShape|null $yCenter
      */
     public static function with(
         ?string $aiChangeBackground = null,
@@ -1092,6 +1093,8 @@ final class Transformation implements BaseModel
      * Specifies an overlay to be applied on the parent image or video.
      * ImageKit supports overlays including images, text, videos, subtitles, and solid colors.
      * See [Overlay using layers](https://imagekit.io/docs/transformations#overlay-using-layers).
+     *
+     * @param mixed $overlay
      */
     public function withOverlay(Overlay $overlay): self
     {

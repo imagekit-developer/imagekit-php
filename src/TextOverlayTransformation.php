@@ -144,14 +144,14 @@ final class TextOverlayTransformation implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Flip|value-of<Flip> $flip
-     * @param FontSizeShape $fontSize
-     * @param InnerAlignment|value-of<InnerAlignment> $innerAlignment
-     * @param LineHeightShape $lineHeight
-     * @param PaddingShape $padding
-     * @param RadiusShape $radius
-     * @param RotationShape $rotation
-     * @param WidthShape $width
+     * @param Flip|value-of<Flip>|null $flip
+     * @param FontSizeShape|null $fontSize
+     * @param InnerAlignment|value-of<InnerAlignment>|null $innerAlignment
+     * @param LineHeightShape|null $lineHeight
+     * @param PaddingShape|null $padding
+     * @param RadiusShape|null $radius
+     * @param RotationShape|null $rotation
+     * @param WidthShape|null $width
      */
     public static function with(
         ?float $alpha = null,

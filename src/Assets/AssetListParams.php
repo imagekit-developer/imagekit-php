@@ -111,9 +111,9 @@ final class AssetListParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param FileType|value-of<FileType> $fileType
-     * @param Sort|value-of<Sort> $sort
-     * @param Type|value-of<Type> $type
+     * @param FileType|value-of<FileType>|null $fileType
+     * @param Sort|value-of<Sort>|null $sort
+     * @param Type|value-of<Type>|null $type
      */
     public static function with(
         FileType|string|null $fileType = null,

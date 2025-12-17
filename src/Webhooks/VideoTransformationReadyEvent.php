@@ -97,9 +97,9 @@ final class VideoTransformationReadyEvent implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param DataShape $data
-     * @param RequestShape $request
-     * @param TimingsShape $timings
+     * @param Data|DataShape $data
+     * @param Request|RequestShape $request
+     * @param Timings|TimingsShape|null $timings
      */
     public static function with(
         string $id,
@@ -156,7 +156,7 @@ final class VideoTransformationReadyEvent implements BaseModel
     }
 
     /**
-     * @param DataShape $data
+     * @param Data|DataShape $data
      */
     public function withData(Data|array $data): self
     {
@@ -169,7 +169,7 @@ final class VideoTransformationReadyEvent implements BaseModel
     /**
      * Information about the original request that triggered the video transformation.
      *
-     * @param RequestShape $request
+     * @param Request|RequestShape $request
      */
     public function withRequest(Request|array $request): self
     {
@@ -182,7 +182,7 @@ final class VideoTransformationReadyEvent implements BaseModel
     /**
      * Performance metrics for the transformation process.
      *
-     * @param TimingsShape $timings
+     * @param Timings|TimingsShape $timings
      */
     public function withTimings(Timings|array $timings): self
     {

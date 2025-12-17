@@ -235,13 +235,13 @@ final class FileUploadResponse implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param list<AITagShape>|null $aiTags
-     * @param array<string,mixed> $customMetadata
-     * @param array<string,mixed> $embeddedMetadata
-     * @param ExtensionStatusShape $extensionStatus
-     * @param MetadataShape $metadata
-     * @param array<string,SelectedFieldsSchemaShape> $selectedFieldsSchema
+     * @param array<string,mixed>|null $customMetadata
+     * @param array<string,mixed>|null $embeddedMetadata
+     * @param ExtensionStatus|ExtensionStatusShape|null $extensionStatus
+     * @param Metadata|MetadataShape|null $metadata
+     * @param array<string,SelectedFieldsSchemaShape>|null $selectedFieldsSchema
      * @param list<string>|null $tags
-     * @param VersionInfoShape $versionInfo
+     * @param VersionInfo|VersionInfoShape|null $versionInfo
      */
     public static function with(
         ?array $aiTags = null,
@@ -404,7 +404,7 @@ final class FileUploadResponse implements BaseModel
      *
      * If no extension was requested, then this parameter is not returned.
      *
-     * @param ExtensionStatusShape $extensionStatus
+     * @param ExtensionStatus|ExtensionStatusShape $extensionStatus
      */
     public function withExtensionStatus(
         ExtensionStatus|array $extensionStatus
@@ -484,7 +484,7 @@ final class FileUploadResponse implements BaseModel
     /**
      * Legacy metadata. Send `metadata` in `responseFields` in API request to get metadata in the upload API response.
      *
-     * @param MetadataShape $metadata
+     * @param Metadata|MetadataShape $metadata
      */
     public function withMetadata(Metadata|array $metadata): self
     {
@@ -571,7 +571,7 @@ final class FileUploadResponse implements BaseModel
     /**
      * An object containing the file or file version's `id` (versionId) and `name`.
      *
-     * @param VersionInfoShape $versionInfo
+     * @param VersionInfo|VersionInfoShape $versionInfo
      */
     public function withVersionInfo(VersionInfo|array $versionInfo): self
     {

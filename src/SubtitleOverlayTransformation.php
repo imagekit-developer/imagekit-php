@@ -97,7 +97,7 @@ final class SubtitleOverlayTransformation implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Typography|value-of<Typography> $typography
+     * @param Typography|value-of<Typography>|null $typography
      */
     public static function with(
         ?string $background = null,

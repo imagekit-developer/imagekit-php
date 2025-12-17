@@ -32,7 +32,7 @@ final class Gps implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<int> $gpsVersionID
+     * @param list<int>|null $gpsVersionID
      */
     public static function with(?array $gpsVersionID = null): self
     {

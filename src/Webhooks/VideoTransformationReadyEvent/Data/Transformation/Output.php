@@ -60,7 +60,7 @@ final class Output implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param VideoMetadataShape $videoMetadata
+     * @param VideoMetadata|VideoMetadataShape|null $videoMetadata
      */
     public static function with(
         string $url,
@@ -89,7 +89,7 @@ final class Output implements BaseModel
     /**
      * Metadata of the output video file.
      *
-     * @param VideoMetadataShape $videoMetadata
+     * @param VideoMetadata|VideoMetadataShape $videoMetadata
      */
     public function withVideoMetadata(VideoMetadata|array $videoMetadata): self
     {

@@ -80,10 +80,10 @@ final class SolidColorOverlayTransformation implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param GradientShape $gradient
-     * @param HeightShape $height
-     * @param RadiusShape $radius
-     * @param WidthShape $width
+     * @param GradientShape|null $gradient
+     * @param HeightShape|null $height
+     * @param RadiusShape|null $radius
+     * @param WidthShape|null $width
      */
     public static function with(
         ?float $alpha = null,

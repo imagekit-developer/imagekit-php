@@ -22,7 +22,7 @@ use Imagekit\Core\Contracts\BaseModel;
  *   description: string,
  *   origins?: list<string>|null,
  *   urlPrefix?: string|null,
- *   urlRewriter?: null|URLRewriterShape|CloudinaryURLRewriter|ImgixURLRewriter|AkamaiURLRewriter,
+ *   urlRewriter?: URLRewriterShape|null,
  * }
  */
 final class URLEndpointRequest implements BaseModel
@@ -80,8 +80,8 @@ final class URLEndpointRequest implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<string> $origins
-     * @param URLRewriterShape $urlRewriter
+     * @param list<string>|null $origins
+     * @param URLRewriterShape|null $urlRewriter
      */
     public static function with(
         string $description,

@@ -115,9 +115,9 @@ final class SrcOptions implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param array<string,string> $queryParameters
-     * @param list<mixed> $transformation
-     * @param TransformationPosition|value-of<TransformationPosition> $transformationPosition
+     * @param array<string,string>|null $queryParameters
+     * @param list<mixed>|null $transformation
+     * @param TransformationPosition|value-of<TransformationPosition>|null $transformationPosition
      */
     public static function with(
         string $src,

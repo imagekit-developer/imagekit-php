@@ -55,7 +55,7 @@ use Imagekit\ExtensionItem\RemovedotBgExtension;
  *   overwriteTags?: bool|null,
  *   responseFields?: list<ResponseField|value-of<ResponseField>>|null,
  *   tags?: list<string>|null,
- *   transformation?: TransformationShape|null,
+ *   transformation?: null|Transformation|TransformationShape,
  *   useUniqueFileName?: bool|null,
  *   webhookURL?: string|null,
  * }
@@ -254,11 +254,11 @@ final class FileUploadParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param array<string,mixed> $customMetadata
-     * @param list<ExtensionItemShape> $extensions
-     * @param list<ResponseField|value-of<ResponseField>> $responseFields
-     * @param list<string> $tags
-     * @param TransformationShape $transformation
+     * @param array<string,mixed>|null $customMetadata
+     * @param list<ExtensionItemShape>|null $extensions
+     * @param list<ResponseField|value-of<ResponseField>>|null $responseFields
+     * @param list<string>|null $tags
+     * @param Transformation|TransformationShape|null $transformation
      */
     public static function with(
         string $file,
@@ -540,7 +540,7 @@ final class FileUploadParams implements BaseModel
      *
      * You can mix and match any combination of post-processing types.
      *
-     * @param TransformationShape $transformation
+     * @param Transformation|TransformationShape $transformation
      */
     public function withTransformation(
         Transformation|array $transformation

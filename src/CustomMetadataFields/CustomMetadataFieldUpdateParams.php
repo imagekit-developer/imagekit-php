@@ -18,7 +18,7 @@ use Imagekit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema;
  * @phpstan-import-type SchemaShape from \Imagekit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema
  *
  * @phpstan-type CustomMetadataFieldUpdateParamsShape = array{
- *   label?: string|null, schema?: SchemaShape|null
+ *   label?: string|null, schema?: null|Schema|SchemaShape
  * }
  */
 final class CustomMetadataFieldUpdateParams implements BaseModel
@@ -49,7 +49,7 @@ final class CustomMetadataFieldUpdateParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param SchemaShape $schema
+     * @param Schema|SchemaShape|null $schema
      */
     public static function with(
         ?string $label = null,
@@ -77,7 +77,7 @@ final class CustomMetadataFieldUpdateParams implements BaseModel
     /**
      * An object that describes the rules for the custom metadata key. This parameter is required if `label` is not provided. Note: `type` cannot be updated and will be ignored if sent with the `schema`. The schema will be validated as per the existing `type`.
      *
-     * @param SchemaShape $schema
+     * @param Schema|SchemaShape $schema
      */
     public function withSchema(Schema|array $schema): self
     {

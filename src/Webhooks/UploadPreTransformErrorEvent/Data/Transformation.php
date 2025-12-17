@@ -46,7 +46,7 @@ final class Transformation implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param ErrorShape $error
+     * @param Error|ErrorShape $error
      */
     public static function with(Error|array $error): self
     {
@@ -58,7 +58,7 @@ final class Transformation implements BaseModel
     }
 
     /**
-     * @param ErrorShape $error
+     * @param Error|ErrorShape $error
      */
     public function withError(Error|array $error): self
     {

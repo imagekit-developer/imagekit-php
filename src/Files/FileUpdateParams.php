@@ -32,7 +32,7 @@ use Imagekit\Files\FileUpdateParams\RemoveAITags;
  *   removeAITags?: RemoveAITagsShape|null,
  *   tags?: list<string>|null,
  *   webhookURL?: string|null,
- *   publish?: PublishShape|null,
+ *   publish?: null|Publish|PublishShape,
  * }
  */
 final class FileUpdateParams implements BaseModel
@@ -111,11 +111,11 @@ final class FileUpdateParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param array<string,mixed> $customMetadata
-     * @param list<ExtensionItemShape> $extensions
-     * @param RemoveAITagsShape $removeAITags
+     * @param array<string,mixed>|null $customMetadata
+     * @param list<ExtensionItemShape>|null $extensions
+     * @param RemoveAITagsShape|null $removeAITags
      * @param list<string>|null $tags
-     * @param PublishShape $publish
+     * @param Publish|PublishShape|null $publish
      */
     public static function with(
         ?string $customCoordinates = null,
@@ -233,7 +233,7 @@ final class FileUpdateParams implements BaseModel
     /**
      * Configure the publication status of a file and its versions.
      *
-     * @param PublishShape $publish
+     * @param Publish|PublishShape $publish
      */
     public function withPublish(Publish|array $publish): self
     {

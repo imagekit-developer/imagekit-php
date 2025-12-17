@@ -77,12 +77,12 @@ final class Exif implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param ExifShape1 $exif
-     * @param GpsShape $gps
-     * @param ImageShape $image
-     * @param InteroperabilityShape $interoperability
-     * @param array<string,mixed> $makernote
-     * @param ThumbnailShape $thumbnail
+     * @param Exif\Exif|ExifShape1|null $exif
+     * @param Gps|GpsShape|null $gps
+     * @param Image|ImageShape|null $image
+     * @param Interoperability|InteroperabilityShape|null $interoperability
+     * @param array<string,mixed>|null $makernote
+     * @param Thumbnail|ThumbnailShape|null $thumbnail
      */
     public static function with(
         Exif\Exif|array|null $exif = null,
@@ -107,7 +107,7 @@ final class Exif implements BaseModel
     /**
      * Object containing Exif details.
      *
-     * @param ExifShape1 $exif
+     * @param Exif\Exif|ExifShape1 $exif
      */
     public function withExif(
         Exif\Exif|array $exif
@@ -121,7 +121,7 @@ final class Exif implements BaseModel
     /**
      * Object containing GPS information.
      *
-     * @param GpsShape $gps
+     * @param Gps|GpsShape $gps
      */
     public function withGps(Gps|array $gps): self
     {
@@ -134,7 +134,7 @@ final class Exif implements BaseModel
     /**
      * Object containing EXIF image information.
      *
-     * @param ImageShape $image
+     * @param Image|ImageShape $image
      */
     public function withImage(Image|array $image): self
     {
@@ -147,7 +147,7 @@ final class Exif implements BaseModel
     /**
      * JSON object.
      *
-     * @param InteroperabilityShape $interoperability
+     * @param Interoperability|InteroperabilityShape $interoperability
      */
     public function withInteroperability(
         Interoperability|array $interoperability
@@ -172,7 +172,7 @@ final class Exif implements BaseModel
     /**
      * Object containing Thumbnail information.
      *
-     * @param ThumbnailShape $thumbnail
+     * @param Thumbnail|ThumbnailShape $thumbnail
      */
     public function withThumbnail(Thumbnail|array $thumbnail): self
     {

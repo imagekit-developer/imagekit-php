@@ -70,7 +70,7 @@ final class Transformation implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param Type|value-of<Type> $type
-     * @param Protocol|value-of<Protocol> $protocol
+     * @param Protocol|value-of<Protocol>|null $protocol
      */
     public static function with(
         Type|string $type,

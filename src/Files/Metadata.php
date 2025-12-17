@@ -127,7 +127,7 @@ final class Metadata implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param ExifShape $exif
+     * @param Exif|ExifShape|null $exif
      */
     public static function with(
         ?string $audioCodec = null,
@@ -210,7 +210,7 @@ final class Metadata implements BaseModel
     }
 
     /**
-     * @param ExifShape $exif
+     * @param Exif|ExifShape $exif
      */
     public function withExif(Exif|array $exif): self
     {

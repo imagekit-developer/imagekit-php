@@ -43,7 +43,7 @@ final class RemovedotBgExtension implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param OptionsShape $options
+     * @param Options|OptionsShape|null $options
      */
     public static function with(Options|array|null $options = null): self
     {
@@ -55,7 +55,7 @@ final class RemovedotBgExtension implements BaseModel
     }
 
     /**
-     * @param OptionsShape $options
+     * @param Options|OptionsShape $options
      */
     public function withOptions(Options|array $options): self
     {

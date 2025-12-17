@@ -87,8 +87,8 @@ final class UploadPreTransformSuccessEvent implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param DataShape $data
-     * @param RequestShape $request
+     * @param Data|DataShape $data
+     * @param Request|RequestShape $request
      */
     public static function with(
         string $id,
@@ -144,7 +144,7 @@ final class UploadPreTransformSuccessEvent implements BaseModel
     /**
      * Object containing details of a successful upload.
      *
-     * @param DataShape $data
+     * @param Data|DataShape $data
      */
     public function withData(Data|array $data): self
     {
@@ -155,7 +155,7 @@ final class UploadPreTransformSuccessEvent implements BaseModel
     }
 
     /**
-     * @param RequestShape $request
+     * @param Request|RequestShape $request
      */
     public function withRequest(Request|array $request): self
     {

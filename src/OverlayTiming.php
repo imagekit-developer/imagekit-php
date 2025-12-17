@@ -60,9 +60,9 @@ final class OverlayTiming implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param DurationShape $duration
-     * @param EndShape $end
-     * @param StartShape $start
+     * @param DurationShape|null $duration
+     * @param EndShape|null $end
+     * @param StartShape|null $start
      */
     public static function with(
         float|string|null $duration = null,

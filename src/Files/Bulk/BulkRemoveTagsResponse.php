@@ -36,7 +36,7 @@ final class BulkRemoveTagsResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<string> $successfullyUpdatedFileIDs
+     * @param list<string>|null $successfullyUpdatedFileIDs
      */
     public static function with(?array $successfullyUpdatedFileIDs = null): self
     {

@@ -92,11 +92,11 @@ final class Options implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param AudioCodec|value-of<AudioCodec> $audioCodec
-     * @param Format|value-of<Format> $format
-     * @param StreamProtocol|value-of<StreamProtocol> $streamProtocol
-     * @param list<string> $variants
-     * @param VideoCodec|value-of<VideoCodec> $videoCodec
+     * @param AudioCodec|value-of<AudioCodec>|null $audioCodec
+     * @param Format|value-of<Format>|null $format
+     * @param StreamProtocol|value-of<StreamProtocol>|null $streamProtocol
+     * @param list<string>|null $variants
+     * @param VideoCodec|value-of<VideoCodec>|null $videoCodec
      */
     public static function with(
         AudioCodec|string|null $audioCodec = null,

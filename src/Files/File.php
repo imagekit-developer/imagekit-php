@@ -213,11 +213,11 @@ final class File implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param list<AITagShape>|null $aiTags
-     * @param array<string,mixed> $customMetadata
-     * @param array<string,SelectedFieldsSchemaShape> $selectedFieldsSchema
+     * @param array<string,mixed>|null $customMetadata
+     * @param array<string,SelectedFieldsSchemaShape>|null $selectedFieldsSchema
      * @param list<string>|null $tags
-     * @param Type|value-of<Type> $type
-     * @param VersionInfoShape $versionInfo
+     * @param Type|value-of<Type>|null $type
+     * @param VersionInfo|VersionInfoShape|null $versionInfo
      */
     public static function with(
         ?array $aiTags = null,
@@ -521,7 +521,7 @@ final class File implements BaseModel
     /**
      * An object with details of the file version.
      *
-     * @param VersionInfoShape $versionInfo
+     * @param VersionInfo|VersionInfoShape $versionInfo
      */
     public function withVersionInfo(VersionInfo|array $versionInfo): self
     {

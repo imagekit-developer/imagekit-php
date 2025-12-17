@@ -54,7 +54,7 @@ final class Request implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param TransformationShape $transformation
+     * @param Transformation|TransformationShape $transformation
      */
     public static function with(
         Transformation|array $transformation,
@@ -69,7 +69,7 @@ final class Request implements BaseModel
     }
 
     /**
-     * @param TransformationShape $transformation
+     * @param Transformation|TransformationShape $transformation
      */
     public function withTransformation(
         Transformation|array $transformation

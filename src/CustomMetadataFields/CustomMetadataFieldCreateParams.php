@@ -18,7 +18,7 @@ use Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema;
  * @phpstan-import-type SchemaShape from \Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema
  *
  * @phpstan-type CustomMetadataFieldCreateParamsShape = array{
- *   label: string, name: string, schema: SchemaShape
+ *   label: string, name: string, schema: Schema|SchemaShape
  * }
  */
 final class CustomMetadataFieldCreateParams implements BaseModel
@@ -69,7 +69,7 @@ final class CustomMetadataFieldCreateParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param SchemaShape $schema
+     * @param Schema|SchemaShape $schema
      */
     public static function with(
         string $label,
@@ -108,7 +108,7 @@ final class CustomMetadataFieldCreateParams implements BaseModel
     }
 
     /**
-     * @param SchemaShape $schema
+     * @param Schema|SchemaShape $schema
      */
     public function withSchema(Schema|array $schema): self
     {

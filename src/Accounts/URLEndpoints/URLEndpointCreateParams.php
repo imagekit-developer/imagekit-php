@@ -85,8 +85,8 @@ final class URLEndpointCreateParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<string> $origins
-     * @param URLRewriterShape $urlRewriter
+     * @param list<string>|null $origins
+     * @param URLRewriterShape|null $urlRewriter
      */
     public static function with(
         string $description,

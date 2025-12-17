@@ -77,9 +77,9 @@ final class SolidColorOverlay implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param OverlayPositionShape $position
-     * @param OverlayTimingShape $timing
-     * @param list<SolidColorOverlayTransformationShape> $transformation
+     * @param OverlayPosition|OverlayPositionShape|null $position
+     * @param OverlayTiming|OverlayTimingShape|null $timing
+     * @param list<SolidColorOverlayTransformationShape>|null $transformation
      */
     public static function with(
         string $color,
@@ -99,7 +99,7 @@ final class SolidColorOverlay implements BaseModel
     }
 
     /**
-     * @param OverlayPositionShape $position
+     * @param OverlayPosition|OverlayPositionShape $position
      */
     public function withPosition(OverlayPosition|array $position): self
     {
@@ -110,7 +110,7 @@ final class SolidColorOverlay implements BaseModel
     }
 
     /**
-     * @param OverlayTimingShape $timing
+     * @param OverlayTiming|OverlayTimingShape $timing
      */
     public function withTiming(OverlayTiming|array $timing): self
     {

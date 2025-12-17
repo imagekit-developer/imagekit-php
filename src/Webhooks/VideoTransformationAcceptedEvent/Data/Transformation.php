@@ -67,7 +67,7 @@ final class Transformation implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param Type|value-of<Type> $type
-     * @param OptionsShape $options
+     * @param Options|OptionsShape|null $options
      */
     public static function with(
         Type|string $type,
@@ -101,7 +101,7 @@ final class Transformation implements BaseModel
     /**
      * Configuration options for video transformations.
      *
-     * @param OptionsShape $options
+     * @param Options|OptionsShape $options
      */
     public function withOptions(Options|array $options): self
     {

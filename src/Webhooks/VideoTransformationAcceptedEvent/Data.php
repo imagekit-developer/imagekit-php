@@ -59,8 +59,8 @@ final class Data implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param AssetShape $asset
-     * @param TransformationShape $transformation
+     * @param Asset|AssetShape $asset
+     * @param Transformation|TransformationShape $transformation
      */
     public static function with(
         Asset|array $asset,
@@ -77,7 +77,7 @@ final class Data implements BaseModel
     /**
      * Information about the source video asset being transformed.
      *
-     * @param AssetShape $asset
+     * @param Asset|AssetShape $asset
      */
     public function withAsset(Asset|array $asset): self
     {
@@ -90,7 +90,7 @@ final class Data implements BaseModel
     /**
      * Base information about a video transformation request.
      *
-     * @param TransformationShape $transformation
+     * @param Transformation|TransformationShape $transformation
      */
     public function withTransformation(
         Transformation|array $transformation

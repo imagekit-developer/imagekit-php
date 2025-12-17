@@ -59,9 +59,9 @@ final class OverlayPosition implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Focus|value-of<Focus> $focus
-     * @param XShape $x
-     * @param YShape $y
+     * @param Focus|value-of<Focus>|null $focus
+     * @param XShape|null $x
+     * @param YShape|null $y
      */
     public static function with(
         Focus|string|null $focus = null,

@@ -72,7 +72,7 @@ final class Folder implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Type|value-of<Type> $type
+     * @param Type|value-of<Type>|null $type
      */
     public static function with(
         ?\DateTimeInterface $createdAt = null,

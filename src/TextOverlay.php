@@ -88,10 +88,10 @@ final class TextOverlay implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param OverlayPositionShape $position
-     * @param OverlayTimingShape $timing
-     * @param Encoding|value-of<Encoding> $encoding
-     * @param list<TextOverlayTransformationShape> $transformation
+     * @param OverlayPosition|OverlayPositionShape|null $position
+     * @param OverlayTiming|OverlayTimingShape|null $timing
+     * @param Encoding|value-of<Encoding>|null $encoding
+     * @param list<TextOverlayTransformationShape>|null $transformation
      */
     public static function with(
         string $text,
@@ -113,7 +113,7 @@ final class TextOverlay implements BaseModel
     }
 
     /**
-     * @param OverlayPositionShape $position
+     * @param OverlayPosition|OverlayPositionShape $position
      */
     public function withPosition(OverlayPosition|array $position): self
     {
@@ -124,7 +124,7 @@ final class TextOverlay implements BaseModel
     }
 
     /**
-     * @param OverlayTimingShape $timing
+     * @param OverlayTiming|OverlayTimingShape $timing
      */
     public function withTiming(OverlayTiming|array $timing): self
     {

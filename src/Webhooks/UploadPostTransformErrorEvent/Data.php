@@ -81,7 +81,7 @@ final class Data implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param TransformationShape $transformation
+     * @param Transformation|TransformationShape $transformation
      */
     public static function with(
         string $fileID,
@@ -135,7 +135,7 @@ final class Data implements BaseModel
     }
 
     /**
-     * @param TransformationShape $transformation
+     * @param Transformation|TransformationShape $transformation
      */
     public function withTransformation(
         Transformation|array $transformation

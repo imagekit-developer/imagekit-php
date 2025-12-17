@@ -96,9 +96,9 @@ final class UpdateFileDetails implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param array<string,mixed> $customMetadata
-     * @param list<ExtensionItemShape> $extensions
-     * @param RemoveAITagsShape $removeAITags
+     * @param array<string,mixed>|null $customMetadata
+     * @param list<ExtensionItemShape>|null $extensions
+     * @param RemoveAITagsShape|null $removeAITags
      * @param list<string>|null $tags
      */
     public static function with(

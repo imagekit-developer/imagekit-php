@@ -36,7 +36,7 @@ final class BulkDeleteResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<string> $successfullyDeletedFileIDs
+     * @param list<string>|null $successfullyDeletedFileIDs
      */
     public static function with(?array $successfullyDeletedFileIDs = null): self
     {

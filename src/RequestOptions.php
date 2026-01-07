@@ -17,7 +17,7 @@ use Psr\Http\Message\UriFactoryInterface;
 use const Imagekit\Core\OMIT as omit;
 
 /**
- * @phpstan-type request_options = array{
+ * @phpstan-type RequestOptionShape = array{
  *   timeout?: float|null,
  *   maxRetries?: int|null,
  *   initialRetryDelay?: float|null,
@@ -30,11 +30,11 @@ use const Imagekit\Core\OMIT as omit;
  *   streamFactory?: StreamFactoryInterface|null,
  *   requestFactory?: RequestFactoryInterface|null,
  * }
- * @phpstan-type request_opts = null|RequestOptions|request_options
+ * @phpstan-type RequestOpts = null|RequestOptions|RequestOptionShape
  */
 final class RequestOptions implements BaseModel
 {
-    /** @use SdkModel<request_options> */
+    /** @use SdkModel<RequestOptionShape> */
     use SdkModel;
 
     #[Property]
@@ -78,7 +78,7 @@ final class RequestOptions implements BaseModel
     }
 
     /**
-     * @param request_opts|null $options
+     * @param RequestOpts|null $options
      */
     public static function parse(RequestOptions|array|null ...$options): self
     {

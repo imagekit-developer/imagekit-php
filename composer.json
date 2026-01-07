@@ -42,6 +42,7 @@
     "friendsofphp/php-cs-fixer": "^3",
     "nyholm/psr7": "^1",
     "pestphp/pest": "^3",
+    "php-http/mock-client": "^1",
     "phpstan/extension-installer": "^1",
     "phpstan/phpstan": "^2",
     "phpstan/phpstan-phpunit": "^2",

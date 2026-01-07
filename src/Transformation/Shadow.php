@@ -14,7 +14,8 @@ use Imagekit\Core\Conversion\Contracts\ConverterSource;
  * Pass `true` for a default shadow, or provide a string for a custom shadow.
  * See [Shadow](https://imagekit.io/docs/effects-and-enhancements#shadow---e-shadow).
  *
- * @phpstan-type ShadowShape = string|bool
+ * @phpstan-type ShadowVariants = string|bool
+ * @phpstan-type ShadowShape = ShadowVariants
  */
 final class Shadow implements ConverterSource
 {

@@ -10,6 +10,9 @@ use Imagekit\Folders\Job\JobGetResponse;
 use Imagekit\RequestOptions;
 use Imagekit\ServiceContracts\Folders\JobContract;
 
+/**
+ * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ */
 final class JobService implements JobContract
 {
     /**
@@ -31,12 +34,13 @@ final class JobService implements JobContract
      * This API returns the status of a bulk job like copy and move folder operations.
      *
      * @param string $jobID The `jobId` is returned in the response of bulk job API e.g. copy folder or move folder API.
+     * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
      */
     public function get(
         string $jobID,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null
     ): JobGetResponse {
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->get($jobID, requestOptions: $requestOptions);

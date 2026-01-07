@@ -14,7 +14,8 @@ use Imagekit\Core\Conversion\Contracts\ConverterSource;
  * Applies only if the base asset is a video.
  * Maps to `lso` in the URL.
  *
- * @phpstan-type StartShape = float|string
+ * @phpstan-type StartVariants = float|string
+ * @phpstan-type StartShape = StartVariants
  */
 final class Start implements ConverterSource
 {

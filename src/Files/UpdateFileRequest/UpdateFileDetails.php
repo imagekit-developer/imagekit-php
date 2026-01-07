@@ -8,12 +8,11 @@ use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\ExtensionItem;
-use Imagekit\ExtensionItem\AutoDescriptionExtension;
-use Imagekit\ExtensionItem\AutoTaggingExtension;
-use Imagekit\ExtensionItem\RemovedotBgExtension;
 use Imagekit\Files\UpdateFileRequest\UpdateFileDetails\RemoveAITags;
 
 /**
+ * @phpstan-import-type ExtensionItemVariants from \Imagekit\ExtensionItem
+ * @phpstan-import-type RemoveAITagsVariants from \Imagekit\Files\UpdateFileRequest\UpdateFileDetails\RemoveAITags
  * @phpstan-import-type ExtensionItemShape from \Imagekit\ExtensionItem
  * @phpstan-import-type RemoveAITagsShape from \Imagekit\Files\UpdateFileRequest\UpdateFileDetails\RemoveAITags
  *
@@ -55,7 +54,7 @@ final class UpdateFileDetails implements BaseModel
     /**
      * Array of extensions to be applied to the asset. Each extension can be configured with specific parameters based on the extension type.
      *
-     * @var list<RemovedotBgExtension|AutoTaggingExtension|AutoDescriptionExtension>|null $extensions
+     * @var list<ExtensionItemVariants>|null $extensions
      */
     #[Optional(list: ExtensionItem::class)]
     public ?array $extensions;
@@ -67,7 +66,7 @@ final class UpdateFileDetails implements BaseModel
      *
      * Note: The remove operation for `AITags` executes before any of the `extensions` are processed.
      *
-     * @var 'all'|list<string>|null $removeAITags
+     * @var RemoveAITagsVariants|null $removeAITags
      */
     #[Optional(union: RemoveAITags::class)]
     public string|array|null $removeAITags;

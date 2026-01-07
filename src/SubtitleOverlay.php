@@ -21,7 +21,7 @@ use Imagekit\SubtitleOverlay\Encoding;
  *   input: string,
  *   type: 'subtitle',
  *   encoding?: null|Encoding|value-of<Encoding>,
- *   transformation?: list<SubtitleOverlayTransformationShape>|null,
+ *   transformation?: list<SubtitleOverlayTransformation|SubtitleOverlayTransformationShape>|null,
  * }
  */
 final class SubtitleOverlay implements BaseModel
@@ -91,7 +91,7 @@ final class SubtitleOverlay implements BaseModel
      * @param OverlayPosition|OverlayPositionShape|null $position
      * @param OverlayTiming|OverlayTimingShape|null $timing
      * @param Encoding|value-of<Encoding>|null $encoding
-     * @param list<SubtitleOverlayTransformationShape>|null $transformation
+     * @param list<SubtitleOverlayTransformation|SubtitleOverlayTransformationShape>|null $transformation
      */
     public static function with(
         string $input,
@@ -164,7 +164,7 @@ final class SubtitleOverlay implements BaseModel
     /**
      * Control styling of the subtitle. See [Styling subtitles](https://imagekit.io/docs/add-overlays-on-videos#styling-controls-for-subtitles-layer).
      *
-     * @param list<SubtitleOverlayTransformationShape> $transformation
+     * @param list<SubtitleOverlayTransformation|SubtitleOverlayTransformationShape> $transformation
      */
     public function withTransformation(array $transformation): self
     {

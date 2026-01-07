@@ -16,7 +16,8 @@ use Imagekit\Core\Conversion\ListOf;
  *
  * Note: The remove operation for `AITags` executes before any of the `extensions` are processed.
  *
- * @phpstan-type RemoveAITagsShape = 'all'|list<string>
+ * @phpstan-type RemoveAITagsVariants = 'all'|list<string>
+ * @phpstan-type RemoveAITagsShape = RemoveAITagsVariants
  */
 final class RemoveAITags implements ConverterSource
 {

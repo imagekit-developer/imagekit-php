@@ -15,6 +15,10 @@ use Imagekit\CustomMetadataFields\CustomMetadataField\Schema\Type;
 /**
  * An object that describes the rules for the custom metadata field value.
  *
+ * @phpstan-import-type DefaultValueVariants from \Imagekit\CustomMetadataFields\CustomMetadataField\Schema\DefaultValue
+ * @phpstan-import-type MaxValueVariants from \Imagekit\CustomMetadataFields\CustomMetadataField\Schema\MaxValue
+ * @phpstan-import-type MinValueVariants from \Imagekit\CustomMetadataFields\CustomMetadataField\Schema\MinValue
+ * @phpstan-import-type SelectOptionVariants from \Imagekit\CustomMetadataFields\CustomMetadataField\Schema\SelectOption
  * @phpstan-import-type DefaultValueShape from \Imagekit\CustomMetadataFields\CustomMetadataField\Schema\DefaultValue
  * @phpstan-import-type MaxValueShape from \Imagekit\CustomMetadataFields\CustomMetadataField\Schema\MaxValue
  * @phpstan-import-type MinValueShape from \Imagekit\CustomMetadataFields\CustomMetadataField\Schema\MinValue
@@ -47,7 +51,7 @@ final class Schema implements BaseModel
     /**
      * The default value for this custom metadata field. Data type of default value depends on the field type.
      *
-     * @var string|float|bool|list<string|float|bool>|null $defaultValue
+     * @var DefaultValueVariants|null $defaultValue
      */
     #[Optional(union: DefaultValue::class)]
     public string|float|bool|array|null $defaultValue;
@@ -66,6 +70,8 @@ final class Schema implements BaseModel
 
     /**
      * Maximum value of the field. Only set if field type is `Date` or `Number`. For `Date` type field, the value will be in ISO8601 string format. For `Number` type field, it will be a numeric value.
+     *
+     * @var MaxValueVariants|null $maxValue
      */
     #[Optional]
     public string|float|null $maxValue;
@@ -78,6 +84,8 @@ final class Schema implements BaseModel
 
     /**
      * Minimum value of the field. Only set if field type is `Date` or `Number`. For `Date` type field, the value will be in ISO8601 string format. For `Number` type field, it will be a numeric value.
+     *
+     * @var MinValueVariants|null $minValue
      */
     #[Optional]
     public string|float|null $minValue;
@@ -85,7 +93,7 @@ final class Schema implements BaseModel
     /**
      * An array of allowed values when field type is `SingleSelect` or `MultiSelect`.
      *
-     * @var list<string|float|bool>|null $selectOptions
+     * @var list<SelectOptionVariants>|null $selectOptions
      */
     #[Optional(list: SelectOption::class)]
     public ?array $selectOptions;

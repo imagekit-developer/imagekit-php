@@ -11,12 +11,16 @@ use Imagekit\Files\File;
 use Imagekit\Files\Folder;
 use Imagekit\RequestOptions;
 
+/**
+ * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ */
 interface AssetsRawContract
 {
     /**
      * @api
      *
      * @param array<string,mixed>|AssetListParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<list<File|Folder>>
      *
@@ -24,6 +28,6 @@ interface AssetsRawContract
      */
     public function list(
         array|AssetListParams $params,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 }

@@ -12,6 +12,9 @@ use Imagekit\Files\Versions\VersionDeleteResponse;
 use Imagekit\RequestOptions;
 use Imagekit\ServiceContracts\Files\VersionsContract;
 
+/**
+ * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ */
 final class VersionsService implements VersionsContract
 {
     /**
@@ -33,6 +36,7 @@ final class VersionsService implements VersionsContract
      * This API returns details of all versions of a file.
      *
      * @param string $fileID The unique `fileId` of the uploaded file. `fileId` is returned in list and search assets API and upload API.
+     * @param RequestOpts|null $requestOptions
      *
      * @return list<File>
      *
@@ -40,7 +44,7 @@ final class VersionsService implements VersionsContract
      */
     public function list(
         string $fileID,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null
     ): array {
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->list($fileID, requestOptions: $requestOptions);
@@ -57,13 +61,14 @@ final class VersionsService implements VersionsContract
      *
      * @param string $versionID The unique `versionId` of the uploaded file. `versionId` is returned in list and search assets API and upload API.
      * @param string $fileID The unique `fileId` of the uploaded file. `fileId` is returned in list and search assets API and upload API.
+     * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
      */
     public function delete(
         string $versionID,
         string $fileID,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): VersionDeleteResponse {
         $params = Util::removeNulls(['fileID' => $fileID]);
 
@@ -80,13 +85,14 @@ final class VersionsService implements VersionsContract
      *
      * @param string $versionID The unique `versionId` of the uploaded file. `versionId` is returned in list and search assets API and upload API.
      * @param string $fileID The unique `fileId` of the uploaded file. `fileId` is returned in list and search assets API and upload API.
+     * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
      */
     public function get(
         string $versionID,
         string $fileID,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): File {
         $params = Util::removeNulls(['fileID' => $fileID]);
 
@@ -103,13 +109,14 @@ final class VersionsService implements VersionsContract
      *
      * @param string $versionID The unique `versionId` of the uploaded file. `versionId` is returned in list and search assets API and upload API.
      * @param string $fileID The unique `fileId` of the uploaded file. `fileId` is returned in list and search assets API and upload API.
+     * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
      */
     public function restore(
         string $versionID,
         string $fileID,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): File {
         $params = Util::removeNulls(['fileID' => $fileID]);
 

@@ -16,6 +16,7 @@ use Imagekit\Core\Contracts\BaseModel;
 /**
  * Schema for URL endpoint resource.
  *
+ * @phpstan-import-type URLRewriterVariants from \Imagekit\Accounts\URLEndpoints\URLEndpointRequest\URLRewriter
  * @phpstan-import-type URLRewriterShape from \Imagekit\Accounts\URLEndpoints\URLEndpointRequest\URLRewriter
  *
  * @phpstan-type URLEndpointRequestShape = array{
@@ -52,6 +53,8 @@ final class URLEndpointRequest implements BaseModel
 
     /**
      * Configuration for third-party URL rewriting.
+     *
+     * @var URLRewriterVariants|null $urlRewriter
      */
     #[Optional(union: URLRewriter::class)]
     public CloudinaryURLRewriter|ImgixURLRewriter|AkamaiURLRewriter|null $urlRewriter;

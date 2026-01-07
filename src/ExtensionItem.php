@@ -16,7 +16,8 @@ use Imagekit\ExtensionItem\RemovedotBgExtension;
  * @phpstan-import-type AutoTaggingExtensionShape from \Imagekit\ExtensionItem\AutoTaggingExtension
  * @phpstan-import-type AutoDescriptionExtensionShape from \Imagekit\ExtensionItem\AutoDescriptionExtension
  *
- * @phpstan-type ExtensionItemShape = RemovedotBgExtensionShape|AutoTaggingExtensionShape|AutoDescriptionExtensionShape
+ * @phpstan-type ExtensionItemVariants = RemovedotBgExtension|AutoTaggingExtension|AutoDescriptionExtension
+ * @phpstan-type ExtensionItemShape = ExtensionItemVariants|RemovedotBgExtensionShape|AutoTaggingExtensionShape|AutoDescriptionExtensionShape
  */
 final class ExtensionItem implements ConverterSource
 {

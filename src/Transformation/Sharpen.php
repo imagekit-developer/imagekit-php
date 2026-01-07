@@ -13,7 +13,8 @@ use Imagekit\Core\Conversion\Contracts\ConverterSource;
  * Pass `true` for default sharpening, or provide a numeric value for custom sharpening.
  * See [Sharpen](https://imagekit.io/docs/effects-and-enhancements#sharpen---e-sharpen).
  *
- * @phpstan-type SharpenShape = float|bool
+ * @phpstan-type SharpenVariants = float|bool
+ * @phpstan-type SharpenShape = SharpenVariants
  */
 final class Sharpen implements ConverterSource
 {

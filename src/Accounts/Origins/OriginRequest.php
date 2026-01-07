@@ -28,7 +28,8 @@ use Imagekit\Core\Conversion\Contracts\ConverterSource;
  * @phpstan-import-type AzureBlobStorageShape from \Imagekit\Accounts\Origins\OriginRequest\AzureBlobStorage
  * @phpstan-import-type AkeneoPimShape from \Imagekit\Accounts\Origins\OriginRequest\AkeneoPim
  *
- * @phpstan-type OriginRequestShape = S3Shape|S3CompatibleShape|CloudinaryBackupShape|WebFolderShape|WebProxyShape|GoogleCloudStorageGcsShape|AzureBlobStorageShape|AkeneoPimShape
+ * @phpstan-type OriginRequestVariants = S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|GoogleCloudStorageGcs|AzureBlobStorage|AkeneoPim
+ * @phpstan-type OriginRequestShape = OriginRequestVariants|S3Shape|S3CompatibleShape|CloudinaryBackupShape|WebFolderShape|WebProxyShape|GoogleCloudStorageGcsShape|AzureBlobStorageShape|AkeneoPimShape
  */
 final class OriginRequest implements ConverterSource
 {

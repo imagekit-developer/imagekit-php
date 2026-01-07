@@ -14,7 +14,8 @@ use Imagekit\Core\Conversion\Contracts\ConverterSource;
  * For videos, only the following values are supported: 0, 90, 180, 270, or 360.
  * See [Rotate](https://imagekit.io/docs/effects-and-enhancements#rotate---rt).
  *
- * @phpstan-type RotationShape = float|string
+ * @phpstan-type RotationVariants = float|string
+ * @phpstan-type RotationShape = RotationVariants
  */
 final class Rotation implements ConverterSource
 {

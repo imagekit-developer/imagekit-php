@@ -16,12 +16,16 @@ use Imagekit\Files\Bulk\BulkRemoveTagsParams;
 use Imagekit\Files\Bulk\BulkRemoveTagsResponse;
 use Imagekit\RequestOptions;
 
+/**
+ * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ */
 interface BulkRawContract
 {
     /**
      * @api
      *
      * @param array<string,mixed>|BulkDeleteParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<BulkDeleteResponse>
      *
@@ -29,13 +33,14 @@ interface BulkRawContract
      */
     public function delete(
         array|BulkDeleteParams $params,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 
     /**
      * @api
      *
      * @param array<string,mixed>|BulkAddTagsParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<BulkAddTagsResponse>
      *
@@ -43,13 +48,14 @@ interface BulkRawContract
      */
     public function addTags(
         array|BulkAddTagsParams $params,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 
     /**
      * @api
      *
      * @param array<string,mixed>|BulkRemoveAITagsParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<BulkRemoveAITagsResponse>
      *
@@ -57,13 +63,14 @@ interface BulkRawContract
      */
     public function removeAITags(
         array|BulkRemoveAITagsParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 
     /**
      * @api
      *
      * @param array<string,mixed>|BulkRemoveTagsParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<BulkRemoveTagsResponse>
      *
@@ -71,6 +78,6 @@ interface BulkRawContract
      */
     public function removeTags(
         array|BulkRemoveTagsParams $params,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 }

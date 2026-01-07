@@ -14,10 +14,13 @@ use Imagekit\Core\Conversion\Contracts\ConverterSource;
  * See [Overlay using layers](https://imagekit.io/docs/transformations#overlay-using-layers).
  *
  * @phpstan-import-type TextOverlayShape from \Imagekit\TextOverlay
+ * @phpstan-import-type ImageOverlayShape from \Imagekit\ImageOverlay
+ * @phpstan-import-type VideoOverlayShape from \Imagekit\VideoOverlay
  * @phpstan-import-type SubtitleOverlayShape from \Imagekit\SubtitleOverlay
  * @phpstan-import-type SolidColorOverlayShape from \Imagekit\SolidColorOverlay
  *
- * @phpstan-type OverlayShape = TextOverlayShape|ImageOverlay|VideoOverlay|SubtitleOverlayShape|SolidColorOverlayShape
+ * @phpstan-type OverlayVariants = mixed|TextOverlay|SubtitleOverlay|SolidColorOverlay
+ * @phpstan-type OverlayShape = OverlayVariants|TextOverlayShape|ImageOverlayShape|VideoOverlayShape|SubtitleOverlayShape|SolidColorOverlayShape
  */
 final class Overlay implements ConverterSource
 {

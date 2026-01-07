@@ -13,7 +13,8 @@ use Imagekit\Core\Conversion\Contracts\ConverterSource;
  * Can be provided as a single positive integer or multiple values separated by underscores (following CSS shorthand order).
  * Arithmetic expressions are also accepted.
  *
- * @phpstan-type PaddingShape = float|string
+ * @phpstan-type PaddingVariants = float|string
+ * @phpstan-type PaddingShape = PaddingVariants
  */
 final class Padding implements ConverterSource
 {

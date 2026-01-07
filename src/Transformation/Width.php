@@ -13,7 +13,8 @@ use Imagekit\Core\Conversion\Contracts\ConverterSource;
  * You can also supply arithmetic expressions (e.g., `iw_div_2`).
  * Width transformation – [Images](https://imagekit.io/docs/image-resize-and-crop#width---w) · [Videos](https://imagekit.io/docs/video-resize-and-crop#width---w).
  *
- * @phpstan-type WidthShape = float|string
+ * @phpstan-type WidthVariants = float|string
+ * @phpstan-type WidthShape = WidthVariants
  */
 final class Width implements ConverterSource
 {

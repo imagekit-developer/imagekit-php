@@ -16,7 +16,8 @@ use Imagekit\Files\Folder;
  * @phpstan-import-type FileShape from \Imagekit\Files\File
  * @phpstan-import-type FolderShape from \Imagekit\Files\Folder
  *
- * @phpstan-type AssetListResponseItemShape = FileShape|FolderShape
+ * @phpstan-type AssetListResponseItemVariants = File|Folder
+ * @phpstan-type AssetListResponseItemShape = AssetListResponseItemVariants|FileShape|FolderShape
  */
 final class AssetListResponseItem implements ConverterSource
 {

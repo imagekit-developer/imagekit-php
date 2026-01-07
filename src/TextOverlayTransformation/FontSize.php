@@ -11,7 +11,8 @@ use Imagekit\Core\Conversion\Contracts\ConverterSource;
 /**
  * Specifies the font size of the overlaid text. Accepts a numeric value or an arithmetic expression.
  *
- * @phpstan-type FontSizeShape = float|string
+ * @phpstan-type FontSizeVariants = float|string
+ * @phpstan-type FontSizeShape = FontSizeVariants
  */
 final class FontSize implements ConverterSource
 {

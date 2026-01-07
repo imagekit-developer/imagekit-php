@@ -18,8 +18,8 @@ use Imagekit\Services\FoldersService;
 use Imagekit\Services\WebhooksService;
 
 /**
- * @phpstan-import-type NormalizedRequest from \Imagekit\Core\BaseClient
  * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ * @phpstan-import-type NormalizedRequest from \Imagekit\Core\BaseClient
  */
 class Client extends BaseClient
 {

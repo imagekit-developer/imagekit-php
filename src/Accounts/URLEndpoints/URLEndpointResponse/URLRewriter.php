@@ -18,7 +18,8 @@ use Imagekit\Core\Conversion\Contracts\ConverterSource;
  * @phpstan-import-type ImgixURLRewriterShape from \Imagekit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriter\ImgixURLRewriter
  * @phpstan-import-type AkamaiURLRewriterShape from \Imagekit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriter\AkamaiURLRewriter
  *
- * @phpstan-type URLRewriterShape = CloudinaryURLRewriterShape|ImgixURLRewriterShape|AkamaiURLRewriterShape
+ * @phpstan-type URLRewriterVariants = CloudinaryURLRewriter|ImgixURLRewriter|AkamaiURLRewriter
+ * @phpstan-type URLRewriterShape = URLRewriterVariants|CloudinaryURLRewriterShape|ImgixURLRewriterShape|AkamaiURLRewriterShape
  */
 final class URLRewriter implements ConverterSource
 {

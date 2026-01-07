@@ -11,8 +11,10 @@ use Imagekit\Files\File;
 use Imagekit\Files\FileCopyResponse;
 use Imagekit\Files\FileMoveResponse;
 use Imagekit\Files\FileRenameResponse;
+use Imagekit\Files\FileUpdateParams\Publish;
 use Imagekit\Files\FileUpdateResponse;
 use Imagekit\Files\FileUploadParams\ResponseField;
+use Imagekit\Files\FileUploadParams\Transformation;
 use Imagekit\Files\FileUploadResponse;
 use Imagekit\RequestOptions;
 use Imagekit\ServiceContracts\FilesContract;
@@ -20,6 +22,13 @@ use Imagekit\Services\Files\BulkService;
 use Imagekit\Services\Files\MetadataService;
 use Imagekit\Services\Files\VersionsService;
 
+/**
+ * @phpstan-import-type RemoveAITagsShape from \Imagekit\Files\FileUpdateParams\RemoveAITags
+ * @phpstan-import-type PublishShape from \Imagekit\Files\FileUpdateParams\Publish
+ * @phpstan-import-type TransformationShape from \Imagekit\Files\FileUploadParams\Transformation
+ * @phpstan-import-type ExtensionItemShape from \Imagekit\ExtensionItem
+ * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ */
 final class FilesService implements FilesContract
 {
     /**
@@ -62,17 +71,16 @@ final class FilesService implements FilesContract
      * @param string|null $customCoordinates Define an important area in the image in the format `x,y,width,height` e.g. `10,10,100,100`. Send `null` to unset this value.
      * @param array<string,mixed> $customMetadata A key-value data to be associated with the asset. To unset a key, send `null` value for that key. Before setting any custom metadata on an asset you have to create the field using custom metadata fields API.
      * @param string $description optional text to describe the contents of the file
-     * @param list<array<string,mixed>> $extensions Array of extensions to be applied to the asset. Each extension can be configured with specific parameters based on the extension type.
-     * @param 'all'|list<string> $removeAITags An array of AITags associated with the file that you want to remove, e.g. `["car", "vehicle", "motorsports"]`.
+     * @param list<ExtensionItemShape> $extensions Array of extensions to be applied to the asset. Each extension can be configured with specific parameters based on the extension type.
+     * @param RemoveAITagsShape $removeAITags An array of AITags associated with the file that you want to remove, e.g. `["car", "vehicle", "motorsports"]`.
      *
      * If you want to remove all AITags associated with the file, send a string - "all".
      *
      * Note: The remove operation for `AITags` executes before any of the `extensions` are processed.
      * @param list<string>|null $tags An array of tags associated with the file, such as `["tag1", "tag2"]`. Send `null` to unset all tags associated with the file.
      * @param string $webhookURL The final status of extensions after they have completed execution will be delivered to this endpoint as a POST request. [Learn more](/docs/api-reference/digital-asset-management-dam/managing-assets/update-file-details#webhook-payload-structure) about the webhook payload structure.
-     * @param array{
-     *   isPublished: bool, includeFileVersions?: bool
-     * } $publish Configure the publication status of a file and its versions
+     * @param Publish|PublishShape $publish configure the publication status of a file and its versions
+     * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
      */
@@ -85,8 +93,8 @@ final class FilesService implements FilesContract
         string|array|null $removeAITags = null,
         ?array $tags = null,
         ?string $webhookURL = null,
-        ?array $publish = null,
-        ?RequestOptions $requestOptions = null,
+        Publish|array|null $publish = null,
+        RequestOptions|array|null $requestOptions = null,
     ): FileUpdateResponse {
         $params = Util::removeNulls(
             [
@@ -115,12 +123,13 @@ final class FilesService implements FilesContract
      * Note: If a file or specific transformation has been requested in the past, then the response is cached. Deleting a file does not purge the cache. You can purge the cache using purge cache API.
      *
      * @param string $fileID The unique `fileId` of the uploaded file. `fileId` is returned in list and search assets API and upload API.
+     * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
      */
     public function delete(
         string $fileID,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null
     ): mixed {
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->delete($fileID, requestOptions: $requestOptions);
@@ -138,6 +147,7 @@ final class FilesService implements FilesContract
      * @param string $destinationPath full path to the folder you want to copy the above file into
      * @param string $sourceFilePath the full path of the file you want to copy
      * @param bool $includeFileVersions Option to copy all versions of a file. By default, only the current version of the file is copied. When set to true, all versions of the file will be copied. Default value - `false`.
+     * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
      */
@@ -145,7 +155,7 @@ final class FilesService implements FilesContract
         string $destinationPath,
         string $sourceFilePath,
         ?bool $includeFileVersions = null,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): FileCopyResponse {
         $params = Util::removeNulls(
             [
@@ -167,12 +177,13 @@ final class FilesService implements FilesContract
      * This API returns an object with details or attributes about the current version of the file.
      *
      * @param string $fileID The unique `fileId` of the uploaded file. `fileId` is returned in the list and search assets API and upload API.
+     * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
      */
     public function get(
         string $fileID,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null
     ): File {
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->get($fileID, requestOptions: $requestOptions);
@@ -189,13 +200,14 @@ final class FilesService implements FilesContract
      *
      * @param string $destinationPath full path to the folder you want to move the above file into
      * @param string $sourceFilePath the full path of the file you want to move
+     * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
      */
     public function move(
         string $destinationPath,
         string $sourceFilePath,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): FileMoveResponse {
         $params = Util::removeNulls(
             [
@@ -229,6 +241,7 @@ final class FilesService implements FilesContract
      * When set to true, it will internally issue a purge cache request on CDN to remove cached content of old file and its versions. This purge request is counted against your monthly purge quota.
      *
      * Note: If the old file were accessible at `https://ik.imagekit.io/demo/old-filename.jpg`, a purge cache request would be issued against `https://ik.imagekit.io/demo/old-filename.jpg*` (with a wildcard at the end). It will remove the file and its versions' URLs and any transformations made using query parameters on this file or its versions. However, the cache for file transformations made using path parameters will persist. You can purge them using the purge API. For more details, refer to the purge API documentation.
+     * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
      */
@@ -236,7 +249,7 @@ final class FilesService implements FilesContract
         string $filePath,
         string $newFileName,
         ?bool $purgeCache = null,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): FileRenameResponse {
         $params = Util::removeNulls(
             [
@@ -297,7 +310,7 @@ final class FilesService implements FilesContract
      * @param array<string,mixed> $customMetadata JSON key-value pairs to associate with the asset. Create the custom metadata fields before setting these values.
      * @param string $description optional text to describe the contents of the file
      * @param int $expire The time until your signature is valid. It must be a [Unix time](https://en.wikipedia.org/wiki/Unix_time) in less than 1 hour into the future. It should be in seconds. This field is only required for authentication when uploading a file from the client side.
-     * @param list<array<string,mixed>> $extensions Array of extensions to be applied to the asset. Each extension can be configured with specific parameters based on the extension type.
+     * @param list<ExtensionItemShape> $extensions Array of extensions to be applied to the asset. Each extension can be configured with specific parameters based on the extension type.
      * @param string $folder The folder path in which the image has to be uploaded. If the folder(s) didn't exist before, a new folder(s) is created.
      *
      * The folder name can contain:
@@ -319,16 +332,14 @@ final class FilesService implements FilesContract
      * @param bool $overwriteFile if `false` and `useUniqueFileName` is also `false`, and a file already exists at the exact location, upload API will return an error immediately
      * @param bool $overwriteTags if the request does not have `tags`, and a file already exists at the exact location, existing tags will be removed
      * @param string $publicKey Your ImageKit.io public key. This field is only required for authentication when uploading a file from the client side.
-     * @param list<'tags'|'customCoordinates'|'isPrivateFile'|'embeddedMetadata'|'isPublished'|'customMetadata'|'metadata'|'selectedFieldsSchema'|ResponseField> $responseFields array of response field keys to include in the API response body
+     * @param list<ResponseField|value-of<ResponseField>> $responseFields array of response field keys to include in the API response body
      * @param string $signature HMAC-SHA1 digest of the token+expire using your ImageKit.io private API key as a key. Learn how to create a signature on the page below. This should be in lowercase.
      *
      * Signature must be calculated on the server-side. This field is only required for authentication when uploading a file from the client side.
      * @param list<string> $tags Set the tags while uploading the file.
      * Provide an array of tag strings (e.g. `["tag1", "tag2", "tag3"]`). The combined length of all tag characters must not exceed 500, and the `%` character is not allowed.
      * If this field is not specified and the file is overwritten, the existing tags will be removed.
-     * @param array{
-     *   post?: list<array<string,mixed>>, pre?: string
-     * } $transformation Configure pre-processing (`pre`) and post-processing (`post`) transformations.
+     * @param Transformation|TransformationShape $transformation Configure pre-processing (`pre`) and post-processing (`post`) transformations.
      *
      * - `pre` — applied before the file is uploaded to the Media Library.
      *   Useful for reducing file size or applying basic optimizations upfront (e.g., resize, compress).
@@ -343,6 +354,7 @@ final class FilesService implements FilesContract
      *
      * If `false`, then the image is uploaded with the provided filename parameter, and any existing file with the same name is replaced.
      * @param string $webhookURL The final status of extensions after they have completed execution will be delivered to this endpoint as a POST request. [Learn more](/docs/api-reference/digital-asset-management-dam/managing-assets/update-file-details#webhook-payload-structure) about the webhook payload structure.
+     * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
      */
@@ -367,10 +379,10 @@ final class FilesService implements FilesContract
         ?array $responseFields = null,
         ?string $signature = null,
         ?array $tags = null,
-        ?array $transformation = null,
+        Transformation|array|null $transformation = null,
         bool $useUniqueFileName = true,
         ?string $webhookURL = null,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): FileUploadResponse {
         $params = Util::removeNulls(
             [

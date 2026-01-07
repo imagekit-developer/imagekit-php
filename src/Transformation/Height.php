@@ -13,7 +13,8 @@ use Imagekit\Core\Conversion\Contracts\ConverterSource;
  * You can also supply arithmetic expressions (e.g., `ih_mul_0.5`).
  * Height transformation – [Images](https://imagekit.io/docs/image-resize-and-crop#height---h) · [Videos](https://imagekit.io/docs/video-resize-and-crop#height---h).
  *
- * @phpstan-type HeightShape = float|string
+ * @phpstan-type HeightVariants = float|string
+ * @phpstan-type HeightShape = HeightVariants
  */
 final class Height implements ConverterSource
 {

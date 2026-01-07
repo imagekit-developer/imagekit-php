@@ -12,7 +12,8 @@ use Imagekit\Core\Conversion\Contracts\ConverterSource;
  * Specifies the corner radius of the text overlay.
  * Set to `max` to achieve a circular or oval shape.
  *
- * @phpstan-type RadiusShape = float|'max'
+ * @phpstan-type RadiusVariants = float|'max'
+ * @phpstan-type RadiusShape = RadiusVariants
  */
 final class Radius implements ConverterSource
 {

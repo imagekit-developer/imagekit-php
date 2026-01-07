@@ -18,12 +18,16 @@ use Imagekit\Folders\FolderRenameParams;
 use Imagekit\Folders\FolderRenameResponse;
 use Imagekit\RequestOptions;
 
+/**
+ * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ */
 interface FoldersRawContract
 {
     /**
      * @api
      *
      * @param array<string,mixed>|FolderCreateParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<FolderNewResponse>
      *
@@ -31,13 +35,14 @@ interface FoldersRawContract
      */
     public function create(
         array|FolderCreateParams $params,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 
     /**
      * @api
      *
      * @param array<string,mixed>|FolderDeleteParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<FolderDeleteResponse>
      *
@@ -45,13 +50,14 @@ interface FoldersRawContract
      */
     public function delete(
         array|FolderDeleteParams $params,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 
     /**
      * @api
      *
      * @param array<string,mixed>|FolderCopyParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<FolderCopyResponse>
      *
@@ -59,13 +65,14 @@ interface FoldersRawContract
      */
     public function copy(
         array|FolderCopyParams $params,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 
     /**
      * @api
      *
      * @param array<string,mixed>|FolderMoveParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<FolderMoveResponse>
      *
@@ -73,13 +80,14 @@ interface FoldersRawContract
      */
     public function move(
         array|FolderMoveParams $params,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 
     /**
      * @api
      *
      * @param array<string,mixed>|FolderRenameParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<FolderRenameResponse>
      *
@@ -87,6 +95,6 @@ interface FoldersRawContract
      */
     public function rename(
         array|FolderRenameParams $params,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 }

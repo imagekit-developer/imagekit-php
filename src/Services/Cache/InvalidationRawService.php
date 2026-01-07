@@ -13,6 +13,9 @@ use Imagekit\Core\Exceptions\APIException;
 use Imagekit\RequestOptions;
 use Imagekit\ServiceContracts\Cache\InvalidationRawContract;
 
+/**
+ * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ */
 final class InvalidationRawService implements InvalidationRawContract
 {
     // @phpstan-ignore-next-line
@@ -27,6 +30,7 @@ final class InvalidationRawService implements InvalidationRawContract
      * This API will purge CDN cache and ImageKit.io's internal cache for a file.  Note: Purge cache is an asynchronous process and it may take some time to reflect the changes.
      *
      * @param array{url: string}|InvalidationCreateParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<InvalidationNewResponse>
      *
@@ -34,7 +38,7 @@ final class InvalidationRawService implements InvalidationRawContract
      */
     public function create(
         array|InvalidationCreateParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse {
         [$parsed, $options] = InvalidationCreateParams::parseRequest(
             $params,
@@ -57,6 +61,7 @@ final class InvalidationRawService implements InvalidationRawContract
      * This API returns the status of a purge cache request.
      *
      * @param string $requestID should be a valid requestId
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<InvalidationGetResponse>
      *
@@ -64,7 +69,7 @@ final class InvalidationRawService implements InvalidationRawContract
      */
     public function get(
         string $requestID,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null
     ): BaseResponse {
         // @phpstan-ignore-next-line return.type
         return $this->client->request(

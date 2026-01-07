@@ -5,10 +5,16 @@ declare(strict_types=1);
 namespace Imagekit\ServiceContracts\Beta\V2;
 
 use Imagekit\Beta\V2\Files\FileUploadParams\ResponseField;
+use Imagekit\Beta\V2\Files\FileUploadParams\Transformation;
 use Imagekit\Beta\V2\Files\FileUploadResponse;
 use Imagekit\Core\Exceptions\APIException;
 use Imagekit\RequestOptions;
 
+/**
+ * @phpstan-import-type ExtensionItemShape from \Imagekit\ExtensionItem
+ * @phpstan-import-type TransformationShape from \Imagekit\Beta\V2\Files\FileUploadParams\Transformation
+ * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ */
 interface FilesContract
 {
     /**
@@ -32,7 +38,7 @@ interface FilesContract
      *   - If this field is not specified and the file is overwritten, then customCoordinates will be removed.
      * @param array<string,mixed> $customMetadata JSON key-value pairs to associate with the asset. Create the custom metadata fields before setting these values.
      * @param string $description optional text to describe the contents of the file
-     * @param list<array<string,mixed>> $extensions Array of extensions to be applied to the asset. Each extension can be configured with specific parameters based on the extension type.
+     * @param list<ExtensionItemShape> $extensions Array of extensions to be applied to the asset. Each extension can be configured with specific parameters based on the extension type.
      * @param string $folder The folder path in which the image has to be uploaded. If the folder(s) didn't exist before, a new folder(s) is created. Using multiple `/` creates a nested folder.
      * @param bool $isPrivateFile Whether to mark the file as private or not.
      *
@@ -46,13 +52,11 @@ interface FilesContract
      * @param bool $overwriteCustomMetadata if the request does not have `customMetadata`, and a file already exists at the exact location, existing customMetadata will be removed
      * @param bool $overwriteFile if `false` and `useUniqueFileName` is also `false`, and a file already exists at the exact location, upload API will return an error immediately
      * @param bool $overwriteTags if the request does not have `tags`, and a file already exists at the exact location, existing tags will be removed
-     * @param list<'tags'|'customCoordinates'|'isPrivateFile'|'embeddedMetadata'|'isPublished'|'customMetadata'|'metadata'|'selectedFieldsSchema'|ResponseField> $responseFields array of response field keys to include in the API response body
+     * @param list<ResponseField|value-of<ResponseField>> $responseFields array of response field keys to include in the API response body
      * @param list<string> $tags Set the tags while uploading the file.
      * Provide an array of tag strings (e.g. `["tag1", "tag2", "tag3"]`). The combined length of all tag characters must not exceed 500, and the `%` character is not allowed.
      * If this field is not specified and the file is overwritten, the existing tags will be removed.
-     * @param array{
-     *   post?: list<array<string,mixed>>, pre?: string
-     * } $transformation Configure pre-processing (`pre`) and post-processing (`post`) transformations.
+     * @param Transformation|TransformationShape $transformation Configure pre-processing (`pre`) and post-processing (`post`) transformations.
      *
      * - `pre` — applied before the file is uploaded to the Media Library.
      *   Useful for reducing file size or applying basic optimizations upfront (e.g., resize, compress).
@@ -67,6 +71,7 @@ interface FilesContract
      *
      * If `false`, then the image is uploaded with the provided filename parameter, and any existing file with the same name is replaced.
      * @param string $webhookURL The final status of extensions after they have completed execution will be delivered to this endpoint as a POST request. [Learn more](/docs/api-reference/digital-asset-management-dam/managing-assets/update-file-details#webhook-payload-structure) about the webhook payload structure.
+     * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
      */
@@ -88,9 +93,9 @@ interface FilesContract
         bool $overwriteTags = true,
         ?array $responseFields = null,
         ?array $tags = null,
-        ?array $transformation = null,
+        Transformation|array|null $transformation = null,
         bool $useUniqueFileName = true,
         ?string $webhookURL = null,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): FileUploadResponse;
 }

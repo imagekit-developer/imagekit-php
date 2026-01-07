@@ -13,7 +13,8 @@ use Imagekit\Core\Conversion\Contracts\ConverterSource;
  * For example: aspectRatio = `4:3`, `4_3`, or an expression like `iar_div_2`.
  * See [Image resize and crop – Aspect ratio](https://imagekit.io/docs/image-resize-and-crop#aspect-ratio---ar).
  *
- * @phpstan-type AspectRatioShape = float|string
+ * @phpstan-type AspectRatioVariants = float|string
+ * @phpstan-type AspectRatioShape = AspectRatioVariants
  */
 final class AspectRatio implements ConverterSource
 {

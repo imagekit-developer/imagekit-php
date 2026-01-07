@@ -10,12 +10,16 @@ use Imagekit\Core\Contracts\BaseResponse;
 use Imagekit\Core\Exceptions\APIException;
 use Imagekit\RequestOptions;
 
+/**
+ * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ */
 interface FilesRawContract
 {
     /**
      * @api
      *
      * @param array<string,mixed>|FileUploadParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<FileUploadResponse>
      *
@@ -23,6 +27,6 @@ interface FilesRawContract
      */
     public function upload(
         array|FileUploadParams $params,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 }

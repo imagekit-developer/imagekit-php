@@ -18,7 +18,8 @@ use Imagekit\Core\Conversion\Contracts\ConverterSource;
  * @phpstan-import-type GenerateAThumbnailShape from \Imagekit\Beta\V2\Files\FileUploadParams\Transformation\Post\GenerateAThumbnail
  * @phpstan-import-type AdaptiveBitrateStreamingShape from \Imagekit\Beta\V2\Files\FileUploadParams\Transformation\Post\AdaptiveBitrateStreaming
  *
- * @phpstan-type PostShape = SimplePostTransformationShape|ConvertGifToVideoShape|GenerateAThumbnailShape|AdaptiveBitrateStreamingShape
+ * @phpstan-type PostVariants = SimplePostTransformation|ConvertGifToVideo|GenerateAThumbnail|AdaptiveBitrateStreaming
+ * @phpstan-type PostShape = PostVariants|SimplePostTransformationShape|ConvertGifToVideoShape|GenerateAThumbnailShape|AdaptiveBitrateStreamingShape
  */
 final class Post implements ConverterSource
 {

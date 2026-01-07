@@ -9,6 +9,10 @@ use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
 /**
+ * @phpstan-import-type GradientVariants from \Imagekit\SolidColorOverlayTransformation\Gradient
+ * @phpstan-import-type HeightVariants from \Imagekit\SolidColorOverlayTransformation\Height
+ * @phpstan-import-type RadiusVariants from \Imagekit\SolidColorOverlayTransformation\Radius
+ * @phpstan-import-type WidthVariants from \Imagekit\SolidColorOverlayTransformation\Width
  * @phpstan-import-type GradientShape from \Imagekit\SolidColorOverlayTransformation\Gradient
  * @phpstan-import-type HeightShape from \Imagekit\SolidColorOverlayTransformation\Height
  * @phpstan-import-type RadiusShape from \Imagekit\SolidColorOverlayTransformation\Radius
@@ -43,6 +47,8 @@ final class SolidColorOverlayTransformation implements BaseModel
     /**
      * Creates a linear gradient with two colors. Pass `true` for a default gradient, or provide a string for a custom gradient.
      * Only works if the base asset is an image. See [gradient](https://imagekit.io/docs/effects-and-enhancements#gradient---e-gradient).
+     *
+     * @var GradientVariants|null $gradient
      */
     #[Optional]
     public string|bool|null $gradient;
@@ -50,6 +56,8 @@ final class SolidColorOverlayTransformation implements BaseModel
     /**
      * Controls the height of the solid color overlay. Accepts a numeric value or an arithmetic expression.
      * Learn about [arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
+     *
+     * @var HeightVariants|null $height
      */
     #[Optional]
     public float|string|null $height;
@@ -58,7 +66,7 @@ final class SolidColorOverlayTransformation implements BaseModel
      * Specifies the corner radius of the solid color overlay. Set to `max` for circular or oval shape.
      * See [radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
      *
-     * @var float|'max'|null $radius
+     * @var RadiusVariants|null $radius
      */
     #[Optional]
     public float|string|null $radius;
@@ -66,6 +74,8 @@ final class SolidColorOverlayTransformation implements BaseModel
     /**
      * Controls the width of the solid color overlay. Accepts a numeric value or an arithmetic expression (e.g., `bw_mul_0.2` or `bh_div_2`).
      * Learn about [arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
+     *
+     * @var WidthVariants|null $width
      */
     #[Optional]
     public float|string|null $width;

@@ -13,7 +13,8 @@ use Imagekit\Core\Conversion\Contracts\ConverterSource;
  * Typically used with startOffset to indicate the length from the start offset. Arithmetic expressions are supported.
  * See [Trim videos – Duration](https://imagekit.io/docs/trim-videos#duration---du).
  *
- * @phpstan-type DurationShape = float|string
+ * @phpstan-type DurationVariants = float|string
+ * @phpstan-type DurationShape = DurationVariants
  */
 final class Duration implements ConverterSource
 {

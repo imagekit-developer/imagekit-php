@@ -15,7 +15,8 @@ use Imagekit\Core\Conversion\Contracts\ConverterSource;
  * Applies only if the base asset is a video.
  * Maps to `leo` in the URL.
  *
- * @phpstan-type EndShape = float|string
+ * @phpstan-type EndVariants = float|string
+ * @phpstan-type EndShape = EndVariants
  */
 final class End implements ConverterSource
 {

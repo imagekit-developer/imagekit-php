@@ -15,7 +15,8 @@ use Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\Default
  *
  * @phpstan-import-type MixedShape from \Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\DefaultValue\Mixed_
  *
- * @phpstan-type DefaultValueShape = string|float|bool|list<MixedShape>
+ * @phpstan-type DefaultValueVariants = string|float|bool|list<string|float|bool>
+ * @phpstan-type DefaultValueShape = DefaultValueVariants|list<MixedShape>
  */
 final class DefaultValue implements ConverterSource
 {

@@ -10,9 +10,6 @@ use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Concerns\SdkParams;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\ExtensionItem;
-use Imagekit\ExtensionItem\AutoDescriptionExtension;
-use Imagekit\ExtensionItem\AutoTaggingExtension;
-use Imagekit\ExtensionItem\RemovedotBgExtension;
 use Imagekit\Files\FileUploadParams\ResponseField;
 use Imagekit\Files\FileUploadParams\Transformation;
 
@@ -34,6 +31,7 @@ use Imagekit\Files\FileUploadParams\Transformation;
  *
  * @see Imagekit\Services\FilesService::upload()
  *
+ * @phpstan-import-type ExtensionItemVariants from \Imagekit\ExtensionItem
  * @phpstan-import-type ExtensionItemShape from \Imagekit\ExtensionItem
  * @phpstan-import-type TransformationShape from \Imagekit\Files\FileUploadParams\Transformation
  *
@@ -141,7 +139,7 @@ final class FileUploadParams implements BaseModel
     /**
      * Array of extensions to be applied to the asset. Each extension can be configured with specific parameters based on the extension type.
      *
-     * @var list<RemovedotBgExtension|AutoTaggingExtension|AutoDescriptionExtension>|null $extensions
+     * @var list<ExtensionItemVariants>|null $extensions
      */
     #[Optional(list: ExtensionItem::class)]
     public ?array $extensions;

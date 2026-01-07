@@ -9,6 +9,9 @@ use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
 /**
+ * @phpstan-import-type DurationVariants from \Imagekit\OverlayTiming\Duration
+ * @phpstan-import-type EndVariants from \Imagekit\OverlayTiming\End
+ * @phpstan-import-type StartVariants from \Imagekit\OverlayTiming\Start
  * @phpstan-import-type DurationShape from \Imagekit\OverlayTiming\Duration
  * @phpstan-import-type EndShape from \Imagekit\OverlayTiming\End
  * @phpstan-import-type StartShape from \Imagekit\OverlayTiming\Start
@@ -27,6 +30,8 @@ final class OverlayTiming implements BaseModel
      * Accepts a positive number up to two decimal places (e.g., `20` or `20.50`) and arithmetic expressions such as `bdu_mul_0.4` or `bdu_sub_idu`.
      * Applies only if the base asset is a video.
      * Maps to `ldu` in the URL.
+     *
+     * @var DurationVariants|null $duration
      */
     #[Optional]
     public float|string|null $duration;
@@ -37,6 +42,8 @@ final class OverlayTiming implements BaseModel
      * Accepts a positive number up to two decimal places (e.g., `20` or `20.50`) and arithmetic expressions such as `bdu_mul_0.4` or `bdu_sub_idu`.
      * Applies only if the base asset is a video.
      * Maps to `leo` in the URL.
+     *
+     * @var EndVariants|null $end
      */
     #[Optional]
     public float|string|null $end;
@@ -46,6 +53,8 @@ final class OverlayTiming implements BaseModel
      * Accepts a positive number up to two decimal places (e.g., `20` or `20.50`) and arithmetic expressions such as `bdu_mul_0.4` or `bdu_sub_idu`.
      * Applies only if the base asset is a video.
      * Maps to `lso` in the URL.
+     *
+     * @var StartVariants|null $start
      */
     #[Optional]
     public float|string|null $start;

@@ -21,7 +21,7 @@ use Imagekit\TextOverlay\Encoding;
  *   text: string,
  *   type: 'text',
  *   encoding?: null|Encoding|value-of<Encoding>,
- *   transformation?: list<TextOverlayTransformationShape>|null,
+ *   transformation?: list<TextOverlayTransformation|TextOverlayTransformationShape>|null,
  * }
  */
 final class TextOverlay implements BaseModel
@@ -91,7 +91,7 @@ final class TextOverlay implements BaseModel
      * @param OverlayPosition|OverlayPositionShape|null $position
      * @param OverlayTiming|OverlayTimingShape|null $timing
      * @param Encoding|value-of<Encoding>|null $encoding
-     * @param list<TextOverlayTransformationShape>|null $transformation
+     * @param list<TextOverlayTransformation|TextOverlayTransformationShape>|null $transformation
      */
     public static function with(
         string $text,
@@ -164,7 +164,7 @@ final class TextOverlay implements BaseModel
     /**
      * Control styling of the text overlay. See [Text overlays](https://imagekit.io/docs/add-overlays-on-images#text-overlay).
      *
-     * @param list<TextOverlayTransformationShape> $transformation
+     * @param list<TextOverlayTransformation|TextOverlayTransformationShape> $transformation
      */
     public function withTransformation(array $transformation): self
     {

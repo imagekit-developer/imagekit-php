@@ -14,7 +14,8 @@ use Imagekit\Core\Conversion\Contracts\ConverterSource;
  * or by name (e.g., `name-layer-4` for a PSD layer).
  * See [Thumbnail extraction](https://imagekit.io/docs/vector-and-animated-images#get-thumbnail-from-psd-pdf-ai-eps-and-animated-files).
  *
- * @phpstan-type PageShape = float|string
+ * @phpstan-type PageVariants = float|string
+ * @phpstan-type PageShape = PageVariants
  */
 final class Page implements ConverterSource
 {

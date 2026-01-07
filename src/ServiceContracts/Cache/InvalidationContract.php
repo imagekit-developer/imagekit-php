@@ -9,29 +9,34 @@ use Imagekit\Cache\Invalidation\InvalidationNewResponse;
 use Imagekit\Core\Exceptions\APIException;
 use Imagekit\RequestOptions;
 
+/**
+ * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ */
 interface InvalidationContract
 {
     /**
      * @api
      *
      * @param string $url the full URL of the file to be purged
+     * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
      */
     public function create(
         string $url,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null
     ): InvalidationNewResponse;
 
     /**
      * @api
      *
      * @param string $requestID should be a valid requestId
+     * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
      */
     public function get(
         string $requestID,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null
     ): InvalidationGetResponse;
 }

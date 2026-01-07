@@ -12,12 +12,15 @@ use Imagekit\Files\File;
 use Imagekit\Files\Folder;
 use Imagekit\RequestOptions;
 
+/**
+ * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ */
 interface AssetsContract
 {
     /**
      * @api
      *
-     * @param 'all'|'image'|'non-image'|FileType $fileType Filter results by file type.
+     * @param FileType|value-of<FileType> $fileType Filter results by file type.
      *
      * - `all` — include all file types
      * - `image` — include only image files
@@ -37,26 +40,27 @@ interface AssetsContract
      *
      * [Learn more](/docs/api-reference/digital-asset-management-dam/list-and-search-assets#advanced-search-queries) from examples.
      * @param int $skip the number of results to skip before returning results
-     * @param 'ASC_NAME'|'DESC_NAME'|'ASC_CREATED'|'DESC_CREATED'|'ASC_UPDATED'|'DESC_UPDATED'|'ASC_HEIGHT'|'DESC_HEIGHT'|'ASC_WIDTH'|'DESC_WIDTH'|'ASC_SIZE'|'DESC_SIZE'|'ASC_RELEVANCE'|'DESC_RELEVANCE'|Sort $sort sort the results by one of the supported fields in ascending or descending order
-     * @param 'file'|'file-version'|'folder'|'all'|Type $type Filter results by asset type.
+     * @param Sort|value-of<Sort> $sort sort the results by one of the supported fields in ascending or descending order
+     * @param Type|value-of<Type> $type Filter results by asset type.
      *
      * - `file` — returns only files
      * - `file-version` — returns specific file versions
      * - `folder` — returns only folders
      * - `all` — returns both files and folders (excludes `file-version`)
+     * @param RequestOpts|null $requestOptions
      *
      * @return list<File|Folder>
      *
      * @throws APIException
      */
     public function list(
-        string|FileType $fileType = 'all',
+        FileType|string $fileType = 'all',
         int $limit = 1000,
         ?string $path = null,
         ?string $searchQuery = null,
         int $skip = 0,
-        string|Sort $sort = 'ASC_CREATED',
-        string|Type $type = 'file',
-        ?RequestOptions $requestOptions = null,
+        Sort|string $sort = 'ASC_CREATED',
+        Type|string $type = 'file',
+        RequestOptions|array|null $requestOptions = null,
     ): array;
 }

@@ -10,6 +10,8 @@ use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\OverlayPosition\Focus;
 
 /**
+ * @phpstan-import-type XVariants from \Imagekit\OverlayPosition\X
+ * @phpstan-import-type YVariants from \Imagekit\OverlayPosition\Y
  * @phpstan-import-type XShape from \Imagekit\OverlayPosition\X
  * @phpstan-import-type YShape from \Imagekit\OverlayPosition\Y
  *
@@ -36,6 +38,8 @@ final class OverlayPosition implements BaseModel
      * It also accepts arithmetic expressions such as `bw_mul_0.4` or `bw_sub_cw`.
      * Maps to `lx` in the URL.
      * Learn about [Arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
+     *
+     * @var XVariants|null $x
      */
     #[Optional]
     public float|string|null $x;
@@ -45,6 +49,8 @@ final class OverlayPosition implements BaseModel
      * It also accepts arithmetic expressions such as `bh_mul_0.4` or `bh_sub_ch`.
      * Maps to `ly` in the URL.
      * Learn about [Arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
+     *
+     * @var YVariants|null $y
      */
     #[Optional]
     public float|string|null $y;

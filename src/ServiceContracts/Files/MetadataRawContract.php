@@ -10,12 +10,16 @@ use Imagekit\Files\Metadata;
 use Imagekit\Files\Metadata\MetadataGetFromURLParams;
 use Imagekit\RequestOptions;
 
+/**
+ * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ */
 interface MetadataRawContract
 {
     /**
      * @api
      *
      * @param string $fileID The unique `fileId` of the uploaded file. `fileId` is returned in the list and search assets API and upload API.
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<Metadata>
      *
@@ -23,13 +27,14 @@ interface MetadataRawContract
      */
     public function get(
         string $fileID,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null
     ): BaseResponse;
 
     /**
      * @api
      *
      * @param array<string,mixed>|MetadataGetFromURLParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<Metadata>
      *
@@ -37,6 +42,6 @@ interface MetadataRawContract
      */
     public function getFromURL(
         array|MetadataGetFromURLParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 }

@@ -5,10 +5,6 @@ declare(strict_types=1);
 namespace Imagekit\Beta\V2\Files\FileUploadParams;
 
 use Imagekit\Beta\V2\Files\FileUploadParams\Transformation\Post;
-use Imagekit\Beta\V2\Files\FileUploadParams\Transformation\Post\AdaptiveBitrateStreaming;
-use Imagekit\Beta\V2\Files\FileUploadParams\Transformation\Post\ConvertGifToVideo;
-use Imagekit\Beta\V2\Files\FileUploadParams\Transformation\Post\GenerateAThumbnail;
-use Imagekit\Beta\V2\Files\FileUploadParams\Transformation\Post\SimplePostTransformation;
 use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
@@ -24,6 +20,7 @@ use Imagekit\Core\Contracts\BaseModel;
  *
  * You can mix and match any combination of post-processing types.
  *
+ * @phpstan-import-type PostVariants from \Imagekit\Beta\V2\Files\FileUploadParams\Transformation\Post
  * @phpstan-import-type PostShape from \Imagekit\Beta\V2\Files\FileUploadParams\Transformation\Post
  *
  * @phpstan-type TransformationShape = array{
@@ -40,7 +37,7 @@ final class Transformation implements BaseModel
      * Each item must match one of the following types:
      * `transformation`, `gif-to-video`, `thumbnail`, `abs`.
      *
-     * @var list<SimplePostTransformation|ConvertGifToVideo|GenerateAThumbnail|AdaptiveBitrateStreaming>|null $post
+     * @var list<PostVariants>|null $post
      */
     #[Optional(list: Post::class)]
     public ?array $post;

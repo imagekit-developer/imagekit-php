@@ -11,6 +11,12 @@ use Imagekit\TextOverlayTransformation\Flip;
 use Imagekit\TextOverlayTransformation\InnerAlignment;
 
 /**
+ * @phpstan-import-type FontSizeVariants from \Imagekit\TextOverlayTransformation\FontSize
+ * @phpstan-import-type LineHeightVariants from \Imagekit\TextOverlayTransformation\LineHeight
+ * @phpstan-import-type PaddingVariants from \Imagekit\TextOverlayTransformation\Padding
+ * @phpstan-import-type RadiusVariants from \Imagekit\TextOverlayTransformation\Radius
+ * @phpstan-import-type RotationVariants from \Imagekit\TextOverlayTransformation\Rotation
+ * @phpstan-import-type WidthVariants from \Imagekit\TextOverlayTransformation\Width
  * @phpstan-import-type FontSizeShape from \Imagekit\TextOverlayTransformation\FontSize
  * @phpstan-import-type LineHeightShape from \Imagekit\TextOverlayTransformation\LineHeight
  * @phpstan-import-type PaddingShape from \Imagekit\TextOverlayTransformation\Padding
@@ -75,6 +81,8 @@ final class TextOverlayTransformation implements BaseModel
 
     /**
      * Specifies the font size of the overlaid text. Accepts a numeric value or an arithmetic expression.
+     *
+     * @var FontSizeVariants|null $fontSize
      */
     #[Optional]
     public float|string|null $fontSize;
@@ -90,6 +98,8 @@ final class TextOverlayTransformation implements BaseModel
     /**
      * Specifies the line height of the text overlay.
      * Accepts integer values representing line height in points. It can also accept [arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations) such as `bw_mul_0.2`, or `bh_div_20`.
+     *
+     * @var LineHeightVariants|null $lineHeight
      */
     #[Optional]
     public float|string|null $lineHeight;
@@ -98,6 +108,8 @@ final class TextOverlayTransformation implements BaseModel
      * Specifies the padding around the overlaid text.
      * Can be provided as a single positive integer or multiple values separated by underscores (following CSS shorthand order).
      * Arithmetic expressions are also accepted.
+     *
+     * @var PaddingVariants|null $padding
      */
     #[Optional]
     public float|string|null $padding;
@@ -106,7 +118,7 @@ final class TextOverlayTransformation implements BaseModel
      * Specifies the corner radius of the text overlay.
      * Set to `max` to achieve a circular or oval shape.
      *
-     * @var float|'max'|null $radius
+     * @var RadiusVariants|null $radius
      */
     #[Optional]
     public float|string|null $radius;
@@ -114,6 +126,8 @@ final class TextOverlayTransformation implements BaseModel
     /**
      * Specifies the rotation angle of the text overlay.
      * Accepts a numeric value for clockwise rotation or a string prefixed with "N" for counter-clockwise rotation.
+     *
+     * @var RotationVariants|null $rotation
      */
     #[Optional]
     public float|string|null $rotation;
@@ -130,6 +144,8 @@ final class TextOverlayTransformation implements BaseModel
     /**
      * Specifies the maximum width (in pixels) of the overlaid text. The text wraps automatically, and arithmetic expressions (e.g., `bw_mul_0.2` or `bh_div_2`) are supported. Useful when used in conjunction with the `background`.
      * Learn about [Arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
+     *
+     * @var WidthVariants|null $width
      */
     #[Optional]
     public float|string|null $width;

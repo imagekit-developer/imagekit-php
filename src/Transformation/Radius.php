@@ -12,7 +12,8 @@ use Imagekit\Core\Conversion\Contracts\ConverterSource;
  * Specifies the corner radius for rounded corners (e.g., 20) or `max` for circular or oval shape.
  * See [Radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
  *
- * @phpstan-type RadiusShape = float|'max'
+ * @phpstan-type RadiusVariants = float|'max'
+ * @phpstan-type RadiusShape = RadiusVariants
  */
 final class Radius implements ConverterSource
 {

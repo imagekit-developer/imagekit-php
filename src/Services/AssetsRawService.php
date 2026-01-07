@@ -18,6 +18,9 @@ use Imagekit\Files\Folder;
 use Imagekit\RequestOptions;
 use Imagekit\ServiceContracts\AssetsRawContract;
 
+/**
+ * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ */
 final class AssetsRawService implements AssetsRawContract
 {
     // @phpstan-ignore-next-line
@@ -32,14 +35,15 @@ final class AssetsRawService implements AssetsRawContract
      * This API can list all the uploaded files and folders in your ImageKit.io media library. In addition, you can fine-tune your query by specifying various filters by generating a query string in a Lucene-like syntax and provide this generated string as the value of the `searchQuery`.
      *
      * @param array{
-     *   fileType?: 'all'|'image'|'non-image'|FileType,
+     *   fileType?: FileType|value-of<FileType>,
      *   limit?: int,
      *   path?: string,
      *   searchQuery?: string,
      *   skip?: int,
      *   sort?: value-of<Sort>,
-     *   type?: 'file'|'file-version'|'folder'|'all'|Type,
+     *   type?: Type|value-of<Type>,
      * }|AssetListParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<list<File|Folder>>
      *
@@ -47,7 +51,7 @@ final class AssetsRawService implements AssetsRawContract
      */
     public function list(
         array|AssetListParams $params,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse {
         [$parsed, $options] = AssetListParams::parseRequest(
             $params,

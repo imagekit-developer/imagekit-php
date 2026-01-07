@@ -15,13 +15,22 @@ use Imagekit\Files\FileMoveResponse;
 use Imagekit\Files\FileRenameParams;
 use Imagekit\Files\FileRenameResponse;
 use Imagekit\Files\FileUpdateParams;
+use Imagekit\Files\FileUpdateParams\Publish;
 use Imagekit\Files\FileUpdateResponse;
 use Imagekit\Files\FileUploadParams;
 use Imagekit\Files\FileUploadParams\ResponseField;
+use Imagekit\Files\FileUploadParams\Transformation;
 use Imagekit\Files\FileUploadResponse;
 use Imagekit\RequestOptions;
 use Imagekit\ServiceContracts\FilesRawContract;
 
+/**
+ * @phpstan-import-type RemoveAITagsShape from \Imagekit\Files\FileUpdateParams\RemoveAITags
+ * @phpstan-import-type PublishShape from \Imagekit\Files\FileUpdateParams\Publish
+ * @phpstan-import-type TransformationShape from \Imagekit\Files\FileUploadParams\Transformation
+ * @phpstan-import-type ExtensionItemShape from \Imagekit\ExtensionItem
+ * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ */
 final class FilesRawService implements FilesRawContract
 {
     // @phpstan-ignore-next-line
@@ -40,12 +49,13 @@ final class FilesRawService implements FilesRawContract
      *   customCoordinates?: string|null,
      *   customMetadata?: array<string,mixed>,
      *   description?: string,
-     *   extensions?: list<array<string,mixed>>,
-     *   removeAITags?: 'all'|list<string>,
+     *   extensions?: list<ExtensionItemShape>,
+     *   removeAITags?: RemoveAITagsShape,
      *   tags?: list<string>|null,
      *   webhookURL?: string,
-     *   publish?: array{isPublished: bool, includeFileVersions?: bool},
+     *   publish?: Publish|PublishShape,
      * }|FileUpdateParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<FileUpdateResponse>
      *
@@ -54,7 +64,7 @@ final class FilesRawService implements FilesRawContract
     public function update(
         string $fileID,
         array|FileUpdateParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse {
         [$parsed, $options] = FileUpdateParams::parseRequest(
             $params,
@@ -79,6 +89,7 @@ final class FilesRawService implements FilesRawContract
      * Note: If a file or specific transformation has been requested in the past, then the response is cached. Deleting a file does not purge the cache. You can purge the cache using purge cache API.
      *
      * @param string $fileID The unique `fileId` of the uploaded file. `fileId` is returned in list and search assets API and upload API.
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<mixed>
      *
@@ -86,7 +97,7 @@ final class FilesRawService implements FilesRawContract
      */
     public function delete(
         string $fileID,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null
     ): BaseResponse {
         // @phpstan-ignore-next-line return.type
         return $this->client->request(
@@ -107,6 +118,7 @@ final class FilesRawService implements FilesRawContract
      * @param array{
      *   destinationPath: string, sourceFilePath: string, includeFileVersions?: bool
      * }|FileCopyParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<FileCopyResponse>
      *
@@ -114,7 +126,7 @@ final class FilesRawService implements FilesRawContract
      */
     public function copy(
         array|FileCopyParams $params,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse {
         [$parsed, $options] = FileCopyParams::parseRequest(
             $params,
@@ -137,6 +149,7 @@ final class FilesRawService implements FilesRawContract
      * This API returns an object with details or attributes about the current version of the file.
      *
      * @param string $fileID The unique `fileId` of the uploaded file. `fileId` is returned in the list and search assets API and upload API.
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<File>
      *
@@ -144,7 +157,7 @@ final class FilesRawService implements FilesRawContract
      */
     public function get(
         string $fileID,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null
     ): BaseResponse {
         // @phpstan-ignore-next-line return.type
         return $this->client->request(
@@ -165,6 +178,7 @@ final class FilesRawService implements FilesRawContract
      * @param array{
      *   destinationPath: string, sourceFilePath: string
      * }|FileMoveParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<FileMoveResponse>
      *
@@ -172,7 +186,7 @@ final class FilesRawService implements FilesRawContract
      */
     public function move(
         array|FileMoveParams $params,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse {
         [$parsed, $options] = FileMoveParams::parseRequest(
             $params,
@@ -199,6 +213,7 @@ final class FilesRawService implements FilesRawContract
      * @param array{
      *   filePath: string, newFileName: string, purgeCache?: bool
      * }|FileRenameParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<FileRenameResponse>
      *
@@ -206,7 +221,7 @@ final class FilesRawService implements FilesRawContract
      */
     public function rename(
         array|FileRenameParams $params,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse {
         [$parsed, $options] = FileRenameParams::parseRequest(
             $params,
@@ -250,7 +265,7 @@ final class FilesRawService implements FilesRawContract
      *   customMetadata?: array<string,mixed>,
      *   description?: string,
      *   expire?: int,
-     *   extensions?: list<array<string,mixed>>,
+     *   extensions?: list<ExtensionItemShape>,
      *   folder?: string,
      *   isPrivateFile?: bool,
      *   isPublished?: bool,
@@ -259,13 +274,14 @@ final class FilesRawService implements FilesRawContract
      *   overwriteFile?: bool,
      *   overwriteTags?: bool,
      *   publicKey?: string,
-     *   responseFields?: list<'tags'|'customCoordinates'|'isPrivateFile'|'embeddedMetadata'|'isPublished'|'customMetadata'|'metadata'|'selectedFieldsSchema'|ResponseField>,
+     *   responseFields?: list<ResponseField|value-of<ResponseField>>,
      *   signature?: string,
      *   tags?: list<string>,
-     *   transformation?: array{post?: list<array<string,mixed>>, pre?: string},
+     *   transformation?: Transformation|TransformationShape,
      *   useUniqueFileName?: bool,
      *   webhookURL?: string,
      * }|FileUploadParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<FileUploadResponse>
      *
@@ -273,7 +289,7 @@ final class FilesRawService implements FilesRawContract
      */
     public function upload(
         array|FileUploadParams $params,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse {
         [$parsed, $options] = FileUploadParams::parseRequest(
             $params,

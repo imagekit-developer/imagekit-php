@@ -22,7 +22,7 @@ use Imagekit\Files\FileUploadResponse\VersionInfo;
  * @phpstan-import-type VersionInfoShape from \Imagekit\Files\FileUploadResponse\VersionInfo
  *
  * @phpstan-type FileUploadResponseShape = array{
- *   aiTags?: list<AITagShape>|null,
+ *   aiTags?: list<AITag|AITagShape>|null,
  *   audioCodec?: string|null,
  *   bitRate?: int|null,
  *   customCoordinates?: string|null,
@@ -39,7 +39,7 @@ use Imagekit\Files\FileUploadResponse\VersionInfo;
  *   isPublished?: bool|null,
  *   metadata?: null|Metadata|MetadataShape,
  *   name?: string|null,
- *   selectedFieldsSchema?: array<string,SelectedFieldsSchemaShape>|null,
+ *   selectedFieldsSchema?: array<string,SelectedFieldsSchema|SelectedFieldsSchemaShape>|null,
  *   size?: float|null,
  *   tags?: list<string>|null,
  *   thumbnailURL?: string|null,
@@ -234,12 +234,12 @@ final class FileUploadResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<AITagShape>|null $aiTags
+     * @param list<AITag|AITagShape>|null $aiTags
      * @param array<string,mixed>|null $customMetadata
      * @param array<string,mixed>|null $embeddedMetadata
      * @param ExtensionStatus|ExtensionStatusShape|null $extensionStatus
      * @param Metadata|MetadataShape|null $metadata
-     * @param array<string,SelectedFieldsSchemaShape>|null $selectedFieldsSchema
+     * @param array<string,SelectedFieldsSchema|SelectedFieldsSchemaShape>|null $selectedFieldsSchema
      * @param list<string>|null $tags
      * @param VersionInfo|VersionInfoShape|null $versionInfo
      */
@@ -304,7 +304,7 @@ final class FileUploadResponse implements BaseModel
     /**
      * An array of tags assigned to the uploaded file by auto tagging.
      *
-     * @param list<AITagShape>|null $aiTags
+     * @param list<AITag|AITagShape>|null $aiTags
      */
     public function withAITags(?array $aiTags): self
     {
@@ -512,7 +512,7 @@ final class FileUploadResponse implements BaseModel
      *
      * Keys are the names of the custom metadata fields; the value object has details about the custom metadata schema.
      *
-     * @param array<string,SelectedFieldsSchemaShape> $selectedFieldsSchema
+     * @param array<string,SelectedFieldsSchema|SelectedFieldsSchemaShape> $selectedFieldsSchema
      */
     public function withSelectedFieldsSchema(array $selectedFieldsSchema): self
     {

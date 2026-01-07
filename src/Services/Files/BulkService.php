@@ -14,6 +14,9 @@ use Imagekit\Files\Bulk\BulkRemoveTagsResponse;
 use Imagekit\RequestOptions;
 use Imagekit\ServiceContracts\Files\BulkContract;
 
+/**
+ * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ */
 final class BulkService implements BulkContract
 {
     /**
@@ -39,12 +42,13 @@ final class BulkService implements BulkContract
      * A maximum of 100 files can be deleted at a time.
      *
      * @param list<string> $fileIDs an array of fileIds which you want to delete
+     * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
      */
     public function delete(
         array $fileIDs,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null
     ): BulkDeleteResponse {
         $params = Util::removeNulls(['fileIDs' => $fileIDs]);
 
@@ -61,13 +65,14 @@ final class BulkService implements BulkContract
      *
      * @param list<string> $fileIDs an array of fileIds to which you want to add tags
      * @param list<string> $tags an array of tags that you want to add to the files
+     * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
      */
     public function addTags(
         array $fileIDs,
         array $tags,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BulkAddTagsResponse {
         $params = Util::removeNulls(['fileIDs' => $fileIDs, 'tags' => $tags]);
 
@@ -84,13 +89,14 @@ final class BulkService implements BulkContract
      *
      * @param list<string> $aiTags an array of AITags that you want to remove from the files
      * @param list<string> $fileIDs an array of fileIds from which you want to remove AITags
+     * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
      */
     public function removeAITags(
         array $aiTags,
         array $fileIDs,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BulkRemoveAITagsResponse {
         $params = Util::removeNulls(['aiTags' => $aiTags, 'fileIDs' => $fileIDs]);
 
@@ -107,13 +113,14 @@ final class BulkService implements BulkContract
      *
      * @param list<string> $fileIDs an array of fileIds from which you want to remove tags
      * @param list<string> $tags an array of tags that you want to remove from the files
+     * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
      */
     public function removeTags(
         array $fileIDs,
         array $tags,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BulkRemoveTagsResponse {
         $params = Util::removeNulls(['fileIDs' => $fileIDs, 'tags' => $tags]);
 

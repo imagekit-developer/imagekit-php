@@ -20,7 +20,7 @@ use Imagekit\Files\File\VersionInfo;
  * @phpstan-import-type VersionInfoShape from \Imagekit\Files\File\VersionInfo
  *
  * @phpstan-type FileShape = array{
- *   aiTags?: list<AITagShape>|null,
+ *   aiTags?: list<AITag|AITagShape>|null,
  *   createdAt?: \DateTimeInterface|null,
  *   customCoordinates?: string|null,
  *   customMetadata?: array<string,mixed>|null,
@@ -34,7 +34,7 @@ use Imagekit\Files\File\VersionInfo;
  *   isPublished?: bool|null,
  *   mime?: string|null,
  *   name?: string|null,
- *   selectedFieldsSchema?: array<string,SelectedFieldsSchemaShape>|null,
+ *   selectedFieldsSchema?: array<string,SelectedFieldsSchema|SelectedFieldsSchemaShape>|null,
  *   size?: float|null,
  *   tags?: list<string>|null,
  *   thumbnail?: string|null,
@@ -212,9 +212,9 @@ final class File implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<AITagShape>|null $aiTags
+     * @param list<AITag|AITagShape>|null $aiTags
      * @param array<string,mixed>|null $customMetadata
-     * @param array<string,SelectedFieldsSchemaShape>|null $selectedFieldsSchema
+     * @param array<string,SelectedFieldsSchema|SelectedFieldsSchemaShape>|null $selectedFieldsSchema
      * @param list<string>|null $tags
      * @param Type|value-of<Type>|null $type
      * @param VersionInfo|VersionInfoShape|null $versionInfo
@@ -276,7 +276,7 @@ final class File implements BaseModel
     /**
      * An array of tags assigned to the file by auto tagging.
      *
-     * @param list<AITagShape>|null $aiTags
+     * @param list<AITag|AITagShape>|null $aiTags
      */
     public function withAITags(?array $aiTags): self
     {
@@ -438,7 +438,7 @@ final class File implements BaseModel
      *
      * Keys are the names of the custom metadata fields; the value object has details about the custom metadata schema.
      *
-     * @param array<string,SelectedFieldsSchemaShape> $selectedFieldsSchema
+     * @param array<string,SelectedFieldsSchema|SelectedFieldsSchemaShape> $selectedFieldsSchema
      */
     public function withSelectedFieldsSchema(array $selectedFieldsSchema): self
     {

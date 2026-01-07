@@ -11,7 +11,8 @@ use Imagekit\Core\Conversion\Contracts\ConverterSource;
 /**
  * Maximum value of the field. Only set if field type is `Date` or `Number`. For `Date` type field, the value will be in ISO8601 string format. For `Number` type field, it will be a numeric value.
  *
- * @phpstan-type MaxValueShape = string|float
+ * @phpstan-type MaxValueVariants = string|float
+ * @phpstan-type MaxValueShape = MaxValueVariants
  */
 final class MaxValue implements ConverterSource
 {

@@ -12,6 +12,9 @@ use Imagekit\Files\Metadata\MetadataGetFromURLParams;
 use Imagekit\RequestOptions;
 use Imagekit\ServiceContracts\Files\MetadataRawContract;
 
+/**
+ * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ */
 final class MetadataRawService implements MetadataRawContract
 {
     // @phpstan-ignore-next-line
@@ -28,6 +31,7 @@ final class MetadataRawService implements MetadataRawContract
      * You can also get the metadata in upload API response by passing `metadata` in `responseFields` parameter.
      *
      * @param string $fileID The unique `fileId` of the uploaded file. `fileId` is returned in the list and search assets API and upload API.
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<Metadata>
      *
@@ -35,7 +39,7 @@ final class MetadataRawService implements MetadataRawContract
      */
     public function get(
         string $fileID,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null
     ): BaseResponse {
         // @phpstan-ignore-next-line return.type
         return $this->client->request(
@@ -52,6 +56,7 @@ final class MetadataRawService implements MetadataRawContract
      * Get image EXIF, pHash, and other metadata from ImageKit.io powered remote URL using this API.
      *
      * @param array{url: string}|MetadataGetFromURLParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<Metadata>
      *
@@ -59,7 +64,7 @@ final class MetadataRawService implements MetadataRawContract
      */
     public function getFromURL(
         array|MetadataGetFromURLParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse {
         [$parsed, $options] = MetadataGetFromURLParams::parseRequest(
             $params,

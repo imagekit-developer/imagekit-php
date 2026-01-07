@@ -13,7 +13,8 @@ use Imagekit\Core\Conversion\Contracts\ConverterSource;
  * Pass `true` for a default unsharp mask, or provide a string for a custom unsharp mask.
  * See [Unsharp Mask](https://imagekit.io/docs/effects-and-enhancements#unsharp-mask---e-usm).
  *
- * @phpstan-type UnsharpMaskShape = string|bool
+ * @phpstan-type UnsharpMaskVariants = string|bool
+ * @phpstan-type UnsharpMaskShape = UnsharpMaskVariants
  */
 final class UnsharpMask implements ConverterSource
 {

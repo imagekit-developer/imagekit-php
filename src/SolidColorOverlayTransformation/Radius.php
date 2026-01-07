@@ -12,7 +12,8 @@ use Imagekit\Core\Conversion\Contracts\ConverterSource;
  * Specifies the corner radius of the solid color overlay. Set to `max` for circular or oval shape.
  * See [radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
  *
- * @phpstan-type RadiusShape = float|'max'
+ * @phpstan-type RadiusVariants = float|'max'
+ * @phpstan-type RadiusShape = RadiusVariants
  */
 final class Radius implements ConverterSource
 {

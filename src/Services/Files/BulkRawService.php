@@ -18,6 +18,9 @@ use Imagekit\Files\Bulk\BulkRemoveTagsResponse;
 use Imagekit\RequestOptions;
 use Imagekit\ServiceContracts\Files\BulkRawContract;
 
+/**
+ * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ */
 final class BulkRawService implements BulkRawContract
 {
     // @phpstan-ignore-next-line
@@ -36,6 +39,7 @@ final class BulkRawService implements BulkRawContract
      * A maximum of 100 files can be deleted at a time.
      *
      * @param array{fileIDs: list<string>}|BulkDeleteParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<BulkDeleteResponse>
      *
@@ -43,7 +47,7 @@ final class BulkRawService implements BulkRawContract
      */
     public function delete(
         array|BulkDeleteParams $params,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse {
         [$parsed, $options] = BulkDeleteParams::parseRequest(
             $params,
@@ -68,6 +72,7 @@ final class BulkRawService implements BulkRawContract
      * @param array{
      *   fileIDs: list<string>, tags: list<string>
      * }|BulkAddTagsParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<BulkAddTagsResponse>
      *
@@ -75,7 +80,7 @@ final class BulkRawService implements BulkRawContract
      */
     public function addTags(
         array|BulkAddTagsParams $params,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse {
         [$parsed, $options] = BulkAddTagsParams::parseRequest(
             $params,
@@ -100,6 +105,7 @@ final class BulkRawService implements BulkRawContract
      * @param array{
      *   aiTags: list<string>, fileIDs: list<string>
      * }|BulkRemoveAITagsParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<BulkRemoveAITagsResponse>
      *
@@ -107,7 +113,7 @@ final class BulkRawService implements BulkRawContract
      */
     public function removeAITags(
         array|BulkRemoveAITagsParams $params,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse {
         [$parsed, $options] = BulkRemoveAITagsParams::parseRequest(
             $params,
@@ -132,6 +138,7 @@ final class BulkRawService implements BulkRawContract
      * @param array{
      *   fileIDs: list<string>, tags: list<string>
      * }|BulkRemoveTagsParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<BulkRemoveTagsResponse>
      *
@@ -139,7 +146,7 @@ final class BulkRawService implements BulkRawContract
      */
     public function removeTags(
         array|BulkRemoveTagsParams $params,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse {
         [$parsed, $options] = BulkRemoveTagsParams::parseRequest(
             $params,

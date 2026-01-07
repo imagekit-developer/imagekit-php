@@ -12,6 +12,9 @@ use Imagekit\Core\Exceptions\APIException;
 use Imagekit\RequestOptions;
 use Imagekit\ServiceContracts\Accounts\UsageRawContract;
 
+/**
+ * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ */
 final class UsageRawService implements UsageRawContract
 {
     // @phpstan-ignore-next-line
@@ -26,6 +29,7 @@ final class UsageRawService implements UsageRawContract
      * Get the account usage information between two dates. Note that the API response includes data from the start date while excluding data from the end date. In other words, the data covers the period starting from the specified start date up to, but not including, the end date.
      *
      * @param array{endDate: string, startDate: string}|UsageGetParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<UsageGetResponse>
      *
@@ -33,7 +37,7 @@ final class UsageRawService implements UsageRawContract
      */
     public function get(
         array|UsageGetParams $params,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse {
         [$parsed, $options] = UsageGetParams::parseRequest(
             $params,

@@ -13,7 +13,8 @@ use Imagekit\Core\Conversion\Contracts\ConverterSource;
  * leaving only the central object in the output image.
  * See [Trim edges](https://imagekit.io/docs/effects-and-enhancements#trim-edges---t).
  *
- * @phpstan-type TrimShape = float|bool
+ * @phpstan-type TrimVariants = float|bool
+ * @phpstan-type TrimShape = TrimVariants
  */
 final class Trim implements ConverterSource
 {

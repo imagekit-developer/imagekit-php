@@ -10,12 +10,16 @@ use Imagekit\Core\Contracts\BaseResponse;
 use Imagekit\Core\Exceptions\APIException;
 use Imagekit\RequestOptions;
 
+/**
+ * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ */
 interface UsageRawContract
 {
     /**
      * @api
      *
      * @param array<string,mixed>|UsageGetParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<UsageGetResponse>
      *
@@ -23,6 +27,6 @@ interface UsageRawContract
      */
     public function get(
         array|UsageGetParams $params,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 }

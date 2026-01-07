@@ -19,6 +19,9 @@ use Imagekit\Files\FileUploadParams;
 use Imagekit\Files\FileUploadResponse;
 use Imagekit\RequestOptions;
 
+/**
+ * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ */
 interface FilesRawContract
 {
     /**
@@ -26,6 +29,7 @@ interface FilesRawContract
      *
      * @param string $fileID The unique `fileId` of the uploaded file. `fileId` is returned in list and search assets API and upload API.
      * @param array<string,mixed>|FileUpdateParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<FileUpdateResponse>
      *
@@ -34,13 +38,14 @@ interface FilesRawContract
     public function update(
         string $fileID,
         array|FileUpdateParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 
     /**
      * @api
      *
      * @param string $fileID The unique `fileId` of the uploaded file. `fileId` is returned in list and search assets API and upload API.
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<mixed>
      *
@@ -48,13 +53,14 @@ interface FilesRawContract
      */
     public function delete(
         string $fileID,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null
     ): BaseResponse;
 
     /**
      * @api
      *
      * @param array<string,mixed>|FileCopyParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<FileCopyResponse>
      *
@@ -62,13 +68,14 @@ interface FilesRawContract
      */
     public function copy(
         array|FileCopyParams $params,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 
     /**
      * @api
      *
      * @param string $fileID The unique `fileId` of the uploaded file. `fileId` is returned in the list and search assets API and upload API.
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<File>
      *
@@ -76,13 +83,14 @@ interface FilesRawContract
      */
     public function get(
         string $fileID,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null
     ): BaseResponse;
 
     /**
      * @api
      *
      * @param array<string,mixed>|FileMoveParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<FileMoveResponse>
      *
@@ -90,13 +98,14 @@ interface FilesRawContract
      */
     public function move(
         array|FileMoveParams $params,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 
     /**
      * @api
      *
      * @param array<string,mixed>|FileRenameParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<FileRenameResponse>
      *
@@ -104,13 +113,14 @@ interface FilesRawContract
      */
     public function rename(
         array|FileRenameParams $params,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 
     /**
      * @api
      *
      * @param array<string,mixed>|FileUploadParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<FileUploadResponse>
      *
@@ -118,6 +128,6 @@ interface FilesRawContract
      */
     public function upload(
         array|FileUploadParams $params,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 }

@@ -12,6 +12,9 @@ use Imagekit\Core\Util;
 use Imagekit\RequestOptions;
 use Imagekit\ServiceContracts\Cache\InvalidationContract;
 
+/**
+ * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ */
 final class InvalidationService implements InvalidationContract
 {
     /**
@@ -33,12 +36,13 @@ final class InvalidationService implements InvalidationContract
      * This API will purge CDN cache and ImageKit.io's internal cache for a file.  Note: Purge cache is an asynchronous process and it may take some time to reflect the changes.
      *
      * @param string $url the full URL of the file to be purged
+     * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
      */
     public function create(
         string $url,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null
     ): InvalidationNewResponse {
         $params = Util::removeNulls(['url' => $url]);
 
@@ -54,12 +58,13 @@ final class InvalidationService implements InvalidationContract
      * This API returns the status of a purge cache request.
      *
      * @param string $requestID should be a valid requestId
+     * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
      */
     public function get(
         string $requestID,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null
     ): InvalidationGetResponse {
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->get($requestID, requestOptions: $requestOptions);

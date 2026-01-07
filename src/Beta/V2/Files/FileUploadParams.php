@@ -12,9 +12,6 @@ use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Concerns\SdkParams;
 use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\ExtensionItem;
-use Imagekit\ExtensionItem\AutoDescriptionExtension;
-use Imagekit\ExtensionItem\AutoTaggingExtension;
-use Imagekit\ExtensionItem\RemovedotBgExtension;
 
 /**
  * The V2 API enhances security by verifying the entire payload using JWT. This API is in beta.
@@ -34,6 +31,7 @@ use Imagekit\ExtensionItem\RemovedotBgExtension;
  *
  * @see Imagekit\Services\Beta\V2\FilesService::upload()
  *
+ * @phpstan-import-type ExtensionItemVariants from \Imagekit\ExtensionItem
  * @phpstan-import-type ExtensionItemShape from \Imagekit\ExtensionItem
  * @phpstan-import-type TransformationShape from \Imagekit\Beta\V2\Files\FileUploadParams\Transformation
  *
@@ -129,7 +127,7 @@ final class FileUploadParams implements BaseModel
     /**
      * Array of extensions to be applied to the asset. Each extension can be configured with specific parameters based on the extension type.
      *
-     * @var list<RemovedotBgExtension|AutoTaggingExtension|AutoDescriptionExtension>|null $extensions
+     * @var list<ExtensionItemVariants>|null $extensions
      */
     #[Optional(list: ExtensionItem::class)]
     public ?array $extensions;

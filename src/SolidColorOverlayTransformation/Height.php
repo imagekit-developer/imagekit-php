@@ -12,7 +12,8 @@ use Imagekit\Core\Conversion\Contracts\ConverterSource;
  * Controls the height of the solid color overlay. Accepts a numeric value or an arithmetic expression.
  * Learn about [arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
  *
- * @phpstan-type HeightShape = float|string
+ * @phpstan-type HeightVariants = float|string
+ * @phpstan-type HeightShape = HeightVariants
  */
 final class Height implements ConverterSource
 {

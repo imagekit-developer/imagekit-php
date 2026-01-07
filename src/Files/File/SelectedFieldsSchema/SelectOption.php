@@ -9,7 +9,8 @@ use Imagekit\Core\Conversion\Contracts\Converter;
 use Imagekit\Core\Conversion\Contracts\ConverterSource;
 
 /**
- * @phpstan-type SelectOptionShape = string|float|bool
+ * @phpstan-type SelectOptionVariants = string|float|bool
+ * @phpstan-type SelectOptionShape = SelectOptionVariants
  */
 final class SelectOption implements ConverterSource
 {

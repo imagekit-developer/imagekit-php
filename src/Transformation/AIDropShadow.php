@@ -15,7 +15,8 @@ use Imagekit\Core\Conversion\Contracts\ConverterSource;
  * Supported inside overlay.
  * See [AI Drop Shadow](https://imagekit.io/docs/ai-transformations#ai-drop-shadow-e-dropshadow).
  *
- * @phpstan-type AIDropShadowShape = string|bool
+ * @phpstan-type AIDropShadowVariants = string|bool
+ * @phpstan-type AIDropShadowShape = AIDropShadowVariants
  */
 final class AIDropShadow implements ConverterSource
 {

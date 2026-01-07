@@ -14,7 +14,8 @@ use Imagekit\Core\Conversion\Contracts\ConverterSource;
  * Applies only if the base asset is a video.
  * Maps to `ldu` in the URL.
  *
- * @phpstan-type DurationShape = float|string
+ * @phpstan-type DurationVariants = float|string
+ * @phpstan-type DurationShape = DurationVariants
  */
 final class Duration implements ConverterSource
 {

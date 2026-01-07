@@ -13,12 +13,16 @@ use Imagekit\CustomMetadataFields\CustomMetadataFieldListParams;
 use Imagekit\CustomMetadataFields\CustomMetadataFieldUpdateParams;
 use Imagekit\RequestOptions;
 
+/**
+ * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ */
 interface CustomMetadataFieldsRawContract
 {
     /**
      * @api
      *
      * @param array<string,mixed>|CustomMetadataFieldCreateParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<CustomMetadataField>
      *
@@ -26,7 +30,7 @@ interface CustomMetadataFieldsRawContract
      */
     public function create(
         array|CustomMetadataFieldCreateParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 
     /**
@@ -34,6 +38,7 @@ interface CustomMetadataFieldsRawContract
      *
      * @param string $id should be a valid custom metadata field id
      * @param array<string,mixed>|CustomMetadataFieldUpdateParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<CustomMetadataField>
      *
@@ -42,13 +47,14 @@ interface CustomMetadataFieldsRawContract
     public function update(
         string $id,
         array|CustomMetadataFieldUpdateParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 
     /**
      * @api
      *
      * @param array<string,mixed>|CustomMetadataFieldListParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<list<CustomMetadataField>>
      *
@@ -56,13 +62,14 @@ interface CustomMetadataFieldsRawContract
      */
     public function list(
         array|CustomMetadataFieldListParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 
     /**
      * @api
      *
      * @param string $id should be a valid custom metadata field id
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<CustomMetadataFieldDeleteResponse>
      *
@@ -70,6 +77,6 @@ interface CustomMetadataFieldsRawContract
      */
     public function delete(
         string $id,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null
     ): BaseResponse;
 }

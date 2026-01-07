@@ -11,7 +11,8 @@ use Imagekit\Core\Conversion\Contracts\ConverterSource;
 /**
  * Focus using cropped image coordinates - X center coordinate. See [Focus using cropped coordinates](https://imagekit.io/docs/image-resize-and-crop#example---focus-using-cropped-image-coordinates).
  *
- * @phpstan-type XCenterShape = float|string
+ * @phpstan-type XCenterVariants = float|string
+ * @phpstan-type XCenterShape = XCenterVariants
  */
 final class XCenter implements ConverterSource
 {

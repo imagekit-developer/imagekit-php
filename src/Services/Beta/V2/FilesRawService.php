@@ -6,6 +6,7 @@ namespace Imagekit\Services\Beta\V2;
 
 use Imagekit\Beta\V2\Files\FileUploadParams;
 use Imagekit\Beta\V2\Files\FileUploadParams\ResponseField;
+use Imagekit\Beta\V2\Files\FileUploadParams\Transformation;
 use Imagekit\Beta\V2\Files\FileUploadResponse;
 use Imagekit\Client;
 use Imagekit\Core\Contracts\BaseResponse;
@@ -13,6 +14,11 @@ use Imagekit\Core\Exceptions\APIException;
 use Imagekit\RequestOptions;
 use Imagekit\ServiceContracts\Beta\V2\FilesRawContract;
 
+/**
+ * @phpstan-import-type ExtensionItemShape from \Imagekit\ExtensionItem
+ * @phpstan-import-type TransformationShape from \Imagekit\Beta\V2\Files\FileUploadParams\Transformation
+ * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ */
 final class FilesRawService implements FilesRawContract
 {
     // @phpstan-ignore-next-line
@@ -47,7 +53,7 @@ final class FilesRawService implements FilesRawContract
      *   customCoordinates?: string,
      *   customMetadata?: array<string,mixed>,
      *   description?: string,
-     *   extensions?: list<array<string,mixed>>,
+     *   extensions?: list<ExtensionItemShape>,
      *   folder?: string,
      *   isPrivateFile?: bool,
      *   isPublished?: bool,
@@ -55,12 +61,13 @@ final class FilesRawService implements FilesRawContract
      *   overwriteCustomMetadata?: bool,
      *   overwriteFile?: bool,
      *   overwriteTags?: bool,
-     *   responseFields?: list<'tags'|'customCoordinates'|'isPrivateFile'|'embeddedMetadata'|'isPublished'|'customMetadata'|'metadata'|'selectedFieldsSchema'|ResponseField>,
+     *   responseFields?: list<ResponseField|value-of<ResponseField>>,
      *   tags?: list<string>,
-     *   transformation?: array{post?: list<array<string,mixed>>, pre?: string},
+     *   transformation?: Transformation|TransformationShape,
      *   useUniqueFileName?: bool,
      *   webhookURL?: string,
      * }|FileUploadParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<FileUploadResponse>
      *
@@ -68,7 +75,7 @@ final class FilesRawService implements FilesRawContract
      */
     public function upload(
         array|FileUploadParams $params,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse {
         [$parsed, $options] = FileUploadParams::parseRequest(
             $params,

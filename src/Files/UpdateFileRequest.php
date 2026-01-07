@@ -16,7 +16,8 @@ use Imagekit\Files\UpdateFileRequest\UpdateFileDetails;
  * @phpstan-import-type UpdateFileDetailsShape from \Imagekit\Files\UpdateFileRequest\UpdateFileDetails
  * @phpstan-import-type ChangePublicationStatusShape from \Imagekit\Files\UpdateFileRequest\ChangePublicationStatus
  *
- * @phpstan-type UpdateFileRequestShape = UpdateFileDetailsShape|ChangePublicationStatusShape
+ * @phpstan-type UpdateFileRequestVariants = UpdateFileDetails|ChangePublicationStatus
+ * @phpstan-type UpdateFileRequestShape = UpdateFileRequestVariants|UpdateFileDetailsShape|ChangePublicationStatusShape
  */
 final class UpdateFileRequest implements ConverterSource
 {

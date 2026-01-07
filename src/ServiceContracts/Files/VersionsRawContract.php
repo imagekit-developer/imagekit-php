@@ -13,12 +13,16 @@ use Imagekit\Files\Versions\VersionGetParams;
 use Imagekit\Files\Versions\VersionRestoreParams;
 use Imagekit\RequestOptions;
 
+/**
+ * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ */
 interface VersionsRawContract
 {
     /**
      * @api
      *
      * @param string $fileID The unique `fileId` of the uploaded file. `fileId` is returned in list and search assets API and upload API.
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<list<File>>
      *
@@ -26,7 +30,7 @@ interface VersionsRawContract
      */
     public function list(
         string $fileID,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null
     ): BaseResponse;
 
     /**
@@ -34,6 +38,7 @@ interface VersionsRawContract
      *
      * @param string $versionID The unique `versionId` of the uploaded file. `versionId` is returned in list and search assets API and upload API.
      * @param array<string,mixed>|VersionDeleteParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<VersionDeleteResponse>
      *
@@ -42,7 +47,7 @@ interface VersionsRawContract
     public function delete(
         string $versionID,
         array|VersionDeleteParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 
     /**
@@ -50,6 +55,7 @@ interface VersionsRawContract
      *
      * @param string $versionID The unique `versionId` of the uploaded file. `versionId` is returned in list and search assets API and upload API.
      * @param array<string,mixed>|VersionGetParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<File>
      *
@@ -58,7 +64,7 @@ interface VersionsRawContract
     public function get(
         string $versionID,
         array|VersionGetParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 
     /**
@@ -66,6 +72,7 @@ interface VersionsRawContract
      *
      * @param string $versionID The unique `versionId` of the uploaded file. `versionId` is returned in list and search assets API and upload API.
      * @param array<string,mixed>|VersionRestoreParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<File>
      *
@@ -74,6 +81,6 @@ interface VersionsRawContract
     public function restore(
         string $versionID,
         array|VersionRestoreParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 }

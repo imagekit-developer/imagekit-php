@@ -11,12 +11,16 @@ use Imagekit\Core\Contracts\BaseResponse;
 use Imagekit\Core\Exceptions\APIException;
 use Imagekit\RequestOptions;
 
+/**
+ * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ */
 interface InvalidationRawContract
 {
     /**
      * @api
      *
      * @param array<string,mixed>|InvalidationCreateParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<InvalidationNewResponse>
      *
@@ -24,13 +28,14 @@ interface InvalidationRawContract
      */
     public function create(
         array|InvalidationCreateParams $params,
-        ?RequestOptions $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse;
 
     /**
      * @api
      *
      * @param string $requestID should be a valid requestId
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<InvalidationGetResponse>
      *
@@ -38,6 +43,6 @@ interface InvalidationRawContract
      */
     public function get(
         string $requestID,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null
     ): BaseResponse;
 }

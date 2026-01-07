@@ -13,6 +13,10 @@ use Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\SelectO
 use Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\Type;
 
 /**
+ * @phpstan-import-type DefaultValueVariants from \Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\DefaultValue
+ * @phpstan-import-type MaxValueVariants from \Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\MaxValue
+ * @phpstan-import-type MinValueVariants from \Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\MinValue
+ * @phpstan-import-type SelectOptionVariants from \Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\SelectOption
  * @phpstan-import-type DefaultValueShape from \Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\DefaultValue
  * @phpstan-import-type MaxValueShape from \Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\MaxValue
  * @phpstan-import-type MinValueShape from \Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\MinValue
@@ -45,7 +49,7 @@ final class Schema implements BaseModel
     /**
      * The default value for this custom metadata field. This property is only required if `isValueRequired` property is set to `true`. The value should match the `type` of custom metadata field.
      *
-     * @var string|float|bool|list<string|float|bool>|null $defaultValue
+     * @var DefaultValueVariants|null $defaultValue
      */
     #[Optional(union: DefaultValue::class)]
     public string|float|bool|array|null $defaultValue;
@@ -64,6 +68,8 @@ final class Schema implements BaseModel
 
     /**
      * Maximum value of the field. Only set this property if field type is `Date` or `Number`. For `Date` type field, set the minimum date in ISO8601 string format. For `Number` type field, set the minimum numeric value.
+     *
+     * @var MaxValueVariants|null $maxValue
      */
     #[Optional]
     public string|float|null $maxValue;
@@ -76,6 +82,8 @@ final class Schema implements BaseModel
 
     /**
      * Minimum value of the field. Only set this property if field type is `Date` or `Number`. For `Date` type field, set the minimum date in ISO8601 string format. For `Number` type field, set the minimum numeric value.
+     *
+     * @var MinValueVariants|null $minValue
      */
     #[Optional]
     public string|float|null $minValue;
@@ -83,7 +91,7 @@ final class Schema implements BaseModel
     /**
      * An array of allowed values. This property is only required if `type` property is set to `SingleSelect` or `MultiSelect`.
      *
-     * @var list<string|float|bool>|null $selectOptions
+     * @var list<SelectOptionVariants>|null $selectOptions
      */
     #[Optional(list: SelectOption::class)]
     public ?array $selectOptions;

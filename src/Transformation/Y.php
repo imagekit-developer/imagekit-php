@@ -11,7 +11,8 @@ use Imagekit\Core\Conversion\Contracts\ConverterSource;
 /**
  * Focus using cropped image coordinates - Y coordinate. See [Focus using cropped coordinates](https://imagekit.io/docs/image-resize-and-crop#example---focus-using-cropped-image-coordinates).
  *
- * @phpstan-type YShape = float|string
+ * @phpstan-type YVariants = float|string
+ * @phpstan-type YShape = YVariants
  */
 final class Y implements ConverterSource
 {

@@ -14,7 +14,8 @@ use Imagekit\Core\Conversion\Contracts\ConverterSource;
  * Maps to `ly` in the URL.
  * Learn about [Arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
  *
- * @phpstan-type YShape = float|string
+ * @phpstan-type YVariants = float|string
+ * @phpstan-type YShape = YVariants
  */
 final class Y implements ConverterSource
 {

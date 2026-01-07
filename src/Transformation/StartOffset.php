@@ -13,7 +13,8 @@ use Imagekit\Core\Conversion\Contracts\ConverterSource;
  * Arithmetic expressions are also supported.
  * See [Trim videos – Start offset](https://imagekit.io/docs/trim-videos#start-offset---so).
  *
- * @phpstan-type StartOffsetShape = float|string
+ * @phpstan-type StartOffsetVariants = float|string
+ * @phpstan-type StartOffsetShape = StartOffsetVariants
  */
 final class StartOffset implements ConverterSource
 {

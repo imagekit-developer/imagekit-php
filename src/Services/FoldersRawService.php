@@ -20,6 +20,9 @@ use Imagekit\Folders\FolderRenameResponse;
 use Imagekit\RequestOptions;
 use Imagekit\ServiceContracts\FoldersRawContract;
 
+/**
+ * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ */
 final class FoldersRawService implements FoldersRawContract
 {
     // @phpstan-ignore-next-line
@@ -36,6 +39,7 @@ final class FoldersRawService implements FoldersRawContract
      * @param array{
      *   folderName: string, parentFolderPath: string
      * }|FolderCreateParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<FolderNewResponse>
      *
@@ -43,7 +47,7 @@ final class FoldersRawService implements FoldersRawContract
      */
     public function create(
         array|FolderCreateParams $params,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse {
         [$parsed, $options] = FolderCreateParams::parseRequest(
             $params,
@@ -66,6 +70,7 @@ final class FoldersRawService implements FoldersRawContract
      * This will delete a folder and all its contents permanently. The API returns an empty response.
      *
      * @param array{folderPath: string}|FolderDeleteParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<FolderDeleteResponse>
      *
@@ -73,7 +78,7 @@ final class FoldersRawService implements FoldersRawContract
      */
     public function delete(
         array|FolderDeleteParams $params,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse {
         [$parsed, $options] = FolderDeleteParams::parseRequest(
             $params,
@@ -98,6 +103,7 @@ final class FoldersRawService implements FoldersRawContract
      * @param array{
      *   destinationPath: string, sourceFolderPath: string, includeVersions?: bool
      * }|FolderCopyParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<FolderCopyResponse>
      *
@@ -105,7 +111,7 @@ final class FoldersRawService implements FoldersRawContract
      */
     public function copy(
         array|FolderCopyParams $params,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse {
         [$parsed, $options] = FolderCopyParams::parseRequest(
             $params,
@@ -130,6 +136,7 @@ final class FoldersRawService implements FoldersRawContract
      * @param array{
      *   destinationPath: string, sourceFolderPath: string
      * }|FolderMoveParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<FolderMoveResponse>
      *
@@ -137,7 +144,7 @@ final class FoldersRawService implements FoldersRawContract
      */
     public function move(
         array|FolderMoveParams $params,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse {
         [$parsed, $options] = FolderMoveParams::parseRequest(
             $params,
@@ -162,6 +169,7 @@ final class FoldersRawService implements FoldersRawContract
      * @param array{
      *   folderPath: string, newFolderName: string, purgeCache?: bool
      * }|FolderRenameParams $params
+     * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<FolderRenameResponse>
      *
@@ -169,7 +177,7 @@ final class FoldersRawService implements FoldersRawContract
      */
     public function rename(
         array|FolderRenameParams $params,
-        ?RequestOptions $requestOptions = null
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse {
         [$parsed, $options] = FolderRenameParams::parseRequest(
             $params,

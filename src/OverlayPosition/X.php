@@ -14,7 +14,8 @@ use Imagekit\Core\Conversion\Contracts\ConverterSource;
  * Maps to `lx` in the URL.
  * Learn about [Arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
  *
- * @phpstan-type XShape = float|string
+ * @phpstan-type XVariants = float|string
+ * @phpstan-type XShape = XVariants
  */
 final class X implements ConverterSource
 {

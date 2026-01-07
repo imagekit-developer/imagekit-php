@@ -18,8 +18,8 @@ use Imagekit\Services\FoldersService;
 use Imagekit\Services\WebhooksService;
 
 /**
- * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
  * @phpstan-import-type NormalizedRequest from \Imagekit\Core\BaseClient
+ * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
  */
 class Client extends BaseClient
 {
@@ -69,10 +69,14 @@ class Client extends BaseClient
      */
     public WebhooksService $webhooks;
 
+    /**
+     * @param RequestOpts|null $requestOptions
+     */
     public function __construct(
         ?string $privateKey = null,
         ?string $password = null,
         ?string $baseUrl = null,
+        RequestOptions|array|null $requestOptions = null,
     ) {
         $this->privateKey = (string) ($privateKey ?? getenv('IMAGEKIT_PRIVATE_KEY'));
         $this->password = (string) ($password ?? getenv('OPTIONAL_IMAGEKIT_IGNORES_THIS') ?: 'do_not_set');
@@ -81,11 +85,14 @@ class Client extends BaseClient
 
         $baseUrl ??= getenv('IMAGE_KIT_BASE_URL') ?: 'https://api.imagekit.io';
 
-        $options = RequestOptions::with(
-            uriFactory: Psr17FactoryDiscovery::findUriFactory(),
-            streamFactory: Psr17FactoryDiscovery::findStreamFactory(),
-            requestFactory: Psr17FactoryDiscovery::findRequestFactory(),
-            transporter: Psr18ClientDiscovery::find(),
+        $options = RequestOptions::parse(
+            RequestOptions::with(
+                uriFactory: Psr17FactoryDiscovery::findUriFactory(),
+                streamFactory: Psr17FactoryDiscovery::findStreamFactory(),
+                requestFactory: Psr17FactoryDiscovery::findRequestFactory(),
+                transporter: Psr18ClientDiscovery::find(),
+            ),
+            $requestOptions,
         );
 
         parent::__construct(

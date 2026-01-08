@@ -77,16 +77,6 @@ final class Util
         return $acc;
     }
 
-    /**
-     * @param array<mixed,mixed> $arr
-     *
-     * @return array<mixed,mixed>
-     */
-    public static function array_filter_omit(array $arr): array
-    {
-        return array_filter($arr, fn ($v, $_) => OMIT !== $v, mode: ARRAY_FILTER_USE_BOTH);
-    }
-
     public static function strVal(mixed $value): string
     {
         if (is_bool($value)) {

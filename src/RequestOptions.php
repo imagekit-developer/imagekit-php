@@ -8,13 +8,10 @@ use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Attributes\Required as Property;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Core\Implementation\Omit;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Psr\Http\Message\UriFactoryInterface;
-
-use const Imagekit\Core\OMIT as omit;
 
 /**
  * @phpstan-type RequestOptionShape = array{
@@ -91,7 +88,6 @@ final class RequestOptions implements BaseModel
     /**
      * @param array<string,string|int|list<string|int>|null>|null $extraHeaders
      * @param array<string,mixed>|null $extraQueryParams
-     * @param mixed|Omit $extraBodyParams
      */
     public static function with(
         ?float $timeout = null,
@@ -100,7 +96,7 @@ final class RequestOptions implements BaseModel
         ?float $maxRetryDelay = null,
         ?array $extraHeaders = null,
         ?array $extraQueryParams = null,
-        mixed $extraBodyParams = omit,
+        mixed $extraBodyParams = null,
         ?ClientInterface $transporter = null,
         ?UriFactoryInterface $uriFactory = null,
         ?StreamFactoryInterface $streamFactory = null,
@@ -116,7 +112,7 @@ final class RequestOptions implements BaseModel
         null !== $maxRetryDelay && $self->maxRetryDelay = $maxRetryDelay;
         null !== $extraHeaders && $self->extraHeaders = $extraHeaders;
         null !== $extraQueryParams && $self->extraQueryParams = $extraQueryParams;
-        omit !== $extraBodyParams && $self->extraBodyParams = $extraBodyParams;
+        null !== $extraBodyParams && $self->extraBodyParams = $extraBodyParams;
         null !== $transporter && $self->transporter = $transporter;
         null !== $uriFactory && $self->uriFactory = $uriFactory;
         null !== $streamFactory && $self->streamFactory = $streamFactory;

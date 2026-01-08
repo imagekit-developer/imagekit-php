@@ -3,9 +3,7 @@
   "license": "Apache-2.0",
   "autoload": {
     "files": [
-      "src/Core.php",
-      "src/Version.php",
-      "src/Client.php"
+      "src/Version.php"
     ],
     "psr-4": {
       "Imagekit\\": "src/"

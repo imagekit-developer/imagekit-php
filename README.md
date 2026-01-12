@@ -1,12 +1,5 @@
 # Image Kit PHP API library
 
-> [!NOTE]
-> The Image Kit PHP API Library is currently in **beta** and we're excited for you to experiment with it!
->
-> This library has not yet been exhaustively tested in production environments and may be missing some features you'd expect in a stable release. As we continue development, there may be breaking changes that require updates to your code.
->
-> **We'd love your feedback!** Please share any suggestions, bug reports, feature requests, or general thoughts by [filing an issue](https://www.github.com/stainless-sdks/imagekit-php/issues/new).
-
 The Image Kit PHP library provides convenient access to the Image Kit REST API from any PHP 8.1.0+ application.
 
 ## Documentation

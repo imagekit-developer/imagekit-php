@@ -74,7 +74,7 @@ final class MetadataRawService implements MetadataRawContract
         // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'get',
-            path: 'v1/files/metadata',
+            path: 'v1/metadata',
             query: $parsed,
             options: $options,
             convert: Metadata::class,

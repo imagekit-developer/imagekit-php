@@ -9,8 +9,8 @@ use Imagekit\Core\Conversion\Contracts\Converter;
 use Imagekit\Core\Conversion\Contracts\ConverterSource;
 
 /**
- * Specifies the line height of the text overlay.
- * Accepts integer values representing line height in points. It can also accept [arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations) such as `bw_mul_0.2`, or `bh_div_20`.
+ * Specifies the line height for multi-line text overlays. It will come into effect only if the text wraps over multiple lines.
+ * Accepts either an integer value or an arithmetic expression.
  *
  * @phpstan-type LineHeightVariants = float|string
  * @phpstan-type LineHeightShape = LineHeightVariants

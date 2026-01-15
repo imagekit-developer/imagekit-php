@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace Imagekit\TextOverlayTransformation;
 
 /**
- * Flip the text overlay horizontally, vertically, or both.
+ * Flip/mirror the text horizontally, vertically, or in both directions.
+ * Acceptable values: `h` (horizontal), `v` (vertical), `h_v` (horizontal and vertical), or `v_h`.
  */
 enum Flip: string
 {

@@ -44,7 +44,8 @@ final class SubtitleOverlayTransformation implements BaseModel
     public ?string $color;
 
     /**
-     * Font family for subtitles. Refer to the [supported fonts](https://imagekit.io/docs/add-overlays-on-images#supported-text-font-list).
+     * Sets the font family of subtitle text.
+     * Refer to the [supported fonts documented](https://imagekit.io/docs/add-overlays-on-images#supported-text-font-list) in the ImageKit transformations guide.
      */
     #[Optional]
     public ?string $fontFamily;
@@ -148,7 +149,8 @@ final class SubtitleOverlayTransformation implements BaseModel
     }
 
     /**
-     * Font family for subtitles. Refer to the [supported fonts](https://imagekit.io/docs/add-overlays-on-images#supported-text-font-list).
+     * Sets the font family of subtitle text.
+     * Refer to the [supported fonts documented](https://imagekit.io/docs/add-overlays-on-images#supported-text-font-list) in the ImageKit transformations guide.
      */
     public function withFontFamily(string $fontFamily): self
     {

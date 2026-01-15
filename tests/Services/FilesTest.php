@@ -216,6 +216,49 @@ final class FilesTest extends TestCase
                     'maxTags' => 5, 'minConfidence' => 95, 'name' => 'google-auto-tagging',
                 ],
                 ['name' => 'ai-auto-description'],
+                [
+                    'name' => 'ai-tasks',
+                    'tasks' => [
+                        [
+                            'instruction' => 'What types of clothing items are visible in this image?',
+                            'type' => 'select_tags',
+                            'vocabulary' => [
+                                'shirt', 'tshirt', 'dress', 'trousers', 'jacket',
+                            ],
+                            'maxSelections' => 1,
+                            'minSelections' => 0,
+                        ],
+                        [
+                            'instruction' => 'Is this a luxury or high-end fashion item?',
+                            'type' => 'yes_no',
+                            'onNo' => [
+                                'addTags' => ['luxury', 'premium'],
+                                'removeTags' => ['budget', 'affordable'],
+                                'setMetadata' => [
+                                    ['field' => 'price_range', 'value' => 'premium'],
+                                ],
+                                'unsetMetadata' => [['field' => 'price_range']],
+                            ],
+                            'onUnknown' => [
+                                'addTags' => ['luxury', 'premium'],
+                                'removeTags' => ['budget', 'affordable'],
+                                'setMetadata' => [
+                                    ['field' => 'price_range', 'value' => 'premium'],
+                                ],
+                                'unsetMetadata' => [['field' => 'price_range']],
+                            ],
+                            'onYes' => [
+                                'addTags' => ['luxury', 'premium'],
+                                'removeTags' => ['budget', 'affordable'],
+                                'setMetadata' => [
+                                    ['field' => 'price_range', 'value' => 'premium'],
+                                ],
+                                'unsetMetadata' => [['field' => 'price_range']],
+                            ],
+                        ],
+                    ],
+                ],
+                ['id' => 'ext_abc123', 'name' => 'saved-extension'],
             ],
             folder: 'folder',
             isPrivateFile: true,

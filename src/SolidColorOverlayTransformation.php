@@ -33,7 +33,7 @@ final class SolidColorOverlayTransformation implements BaseModel
     use SdkModel;
 
     /**
-     * Specifies the transparency level of the solid color overlay. Accepts integers from `1` to `9`.
+     * Specifies the transparency level of the overlaid solid color layer. Supports integers from `1` to `9`.
      */
     #[Optional]
     public ?float $alpha;
@@ -63,8 +63,11 @@ final class SolidColorOverlayTransformation implements BaseModel
     public float|string|null $height;
 
     /**
-     * Specifies the corner radius of the solid color overlay. Set to `max` for circular or oval shape.
-     * See [radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
+     * Specifies the corner radius of the solid color overlay.
+     * - Single value (positive integer): Applied to all corners (e.g., `20`).
+     * - `max`: Creates a circular or oval shape.
+     * - Per-corner array: Provide four underscore-separated values representing top-left, top-right, bottom-right, and bottom-left corners respectively (e.g., `10_20_30_40`).
+     * See [Radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
      *
      * @var RadiusVariants|null $radius
      */
@@ -116,7 +119,7 @@ final class SolidColorOverlayTransformation implements BaseModel
     }
 
     /**
-     * Specifies the transparency level of the solid color overlay. Accepts integers from `1` to `9`.
+     * Specifies the transparency level of the overlaid solid color layer. Supports integers from `1` to `9`.
      */
     public function withAlpha(float $alpha): self
     {
@@ -166,8 +169,11 @@ final class SolidColorOverlayTransformation implements BaseModel
     }
 
     /**
-     * Specifies the corner radius of the solid color overlay. Set to `max` for circular or oval shape.
-     * See [radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
+     * Specifies the corner radius of the solid color overlay.
+     * - Single value (positive integer): Applied to all corners (e.g., `20`).
+     * - `max`: Creates a circular or oval shape.
+     * - Per-corner array: Provide four underscore-separated values representing top-left, top-right, bottom-right, and bottom-left corners respectively (e.g., `10_20_30_40`).
+     * See [Radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
      *
      * @param RadiusShape $radius
      */

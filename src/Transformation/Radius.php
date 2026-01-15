@@ -9,10 +9,13 @@ use Imagekit\Core\Conversion\Contracts\Converter;
 use Imagekit\Core\Conversion\Contracts\ConverterSource;
 
 /**
- * Specifies the corner radius for rounded corners (e.g., 20) or `max` for circular or oval shape.
+ * Specifies the corner radius for rounded corners.
+ * - Single value (positive integer): Applied to all corners (e.g., `20`).
+ * - `max`: Creates a circular or oval shape.
+ * - Per-corner array: Provide four underscore-separated values representing top-left, top-right, bottom-right, and bottom-left corners respectively (e.g., `10_20_30_40`).
  * See [Radius](https://imagekit.io/docs/effects-and-enhancements#radius---r).
  *
- * @phpstan-type RadiusVariants = float|'max'
+ * @phpstan-type RadiusVariants = float|string|'max'
  * @phpstan-type RadiusShape = RadiusVariants
  */
 final class Radius implements ConverterSource
@@ -24,6 +27,6 @@ final class Radius implements ConverterSource
      */
     public static function variants(): array
     {
-        return ['float', 'string'];
+        return ['float', 'string', 'string'];
     }
 }

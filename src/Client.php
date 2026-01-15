@@ -15,6 +15,7 @@ use Imagekit\Services\CacheService;
 use Imagekit\Services\CustomMetadataFieldsService;
 use Imagekit\Services\FilesService;
 use Imagekit\Services\FoldersService;
+use Imagekit\Services\SavedExtensionsService;
 use Imagekit\Services\WebhooksService;
 
 /**
@@ -38,6 +39,11 @@ class Client extends BaseClient
      * @api
      */
     public FilesService $files;
+
+    /**
+     * @api
+     */
+    public SavedExtensionsService $savedExtensions;
 
     /**
      * @api
@@ -113,6 +119,7 @@ class Client extends BaseClient
 
         $this->customMetadataFields = new CustomMetadataFieldsService($this);
         $this->files = new FilesService($this);
+        $this->savedExtensions = new SavedExtensionsService($this);
         $this->assets = new AssetsService($this);
         $this->cache = new CacheService($this);
         $this->folders = new FoldersService($this);

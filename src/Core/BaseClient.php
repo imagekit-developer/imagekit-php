@@ -71,8 +71,17 @@ abstract class BaseClient
         ?string $stream = null,
         RequestOptions|array|null $options = [],
     ): BaseResponse {
-        // @phpstan-ignore-next-line
-        [$req, $opts] = $this->buildRequest(method: $method, path: $path, query: $query, headers: $headers, body: $body, opts: $options);
+        [$req, $opts] = $this->buildRequest(
+            method: $method,
+            // @phpstan-ignore argument.type
+            path: $path,
+            query: $query,
+            // @phpstan-ignore argument.type
+            headers: $headers,
+            body: $body,
+            // @phpstan-ignore argument.type
+            opts: $options,
+        );
         ['method' => $method, 'path' => $uri, 'headers' => $headers, 'body' => $data] = $req;
         assert(!is_null($opts->requestFactory));
 

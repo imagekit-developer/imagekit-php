@@ -13,9 +13,9 @@ use Imagekit\Core\Contracts\BaseModel;
  * @phpstan-type AITaskSelectTagsShape = array{
  *   instruction: string,
  *   type: 'select_tags',
- *   vocabulary: list<string>,
  *   maxSelections?: int|null,
  *   minSelections?: int|null,
+ *   vocabulary?: list<string>|null,
  * }
  */
 final class AITaskSelectTags implements BaseModel
@@ -38,14 +38,6 @@ final class AITaskSelectTags implements BaseModel
     public string $instruction;
 
     /**
-     * Array of possible tag values. Combined length of all strings must not exceed 500 characters. Cannot contain the `%` character.
-     *
-     * @var list<string> $vocabulary
-     */
-    #[Required(list: 'string')]
-    public array $vocabulary;
-
-    /**
      * Maximum number of tags to select from the vocabulary.
      */
     #[Optional('max_selections')]
@@ -58,17 +50,25 @@ final class AITaskSelectTags implements BaseModel
     public ?int $minSelections;
 
     /**
+     * Array of possible tag values. Combined length of all strings must not exceed 500 characters. Cannot contain the `%` character.
+     *
+     * @var list<string>|null $vocabulary
+     */
+    #[Optional(list: 'string')]
+    public ?array $vocabulary;
+
+    /**
      * `new AITaskSelectTags()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * AITaskSelectTags::with(instruction: ..., vocabulary: ...)
+     * AITaskSelectTags::with(instruction: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
      *
      * ```
-     * (new AITaskSelectTags)->withInstruction(...)->withVocabulary(...)
+     * (new AITaskSelectTags)->withInstruction(...)
      * ```
      */
     public function __construct()
@@ -81,21 +81,21 @@ final class AITaskSelectTags implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<string> $vocabulary
+     * @param list<string>|null $vocabulary
      */
     public static function with(
         string $instruction,
-        array $vocabulary,
         ?int $maxSelections = null,
         ?int $minSelections = null,
+        ?array $vocabulary = null,
     ): self {
         $self = new self;
 
         $self['instruction'] = $instruction;
-        $self['vocabulary'] = $vocabulary;
 
         null !== $maxSelections && $self['maxSelections'] = $maxSelections;
         null !== $minSelections && $self['minSelections'] = $minSelections;
+        null !== $vocabulary && $self['vocabulary'] = $vocabulary;
 
         return $self;
     }
@@ -107,19 +107,6 @@ final class AITaskSelectTags implements BaseModel
     {
         $self = clone $this;
         $self['instruction'] = $instruction;
-
-        return $self;
-    }
-
-    /**
-     * Array of possible tag values. Combined length of all strings must not exceed 500 characters. Cannot contain the `%` character.
-     *
-     * @param list<string> $vocabulary
-     */
-    public function withVocabulary(array $vocabulary): self
-    {
-        $self = clone $this;
-        $self['vocabulary'] = $vocabulary;
 
         return $self;
     }
@@ -142,6 +129,19 @@ final class AITaskSelectTags implements BaseModel
     {
         $self = clone $this;
         $self['minSelections'] = $minSelections;
+
+        return $self;
+    }
+
+    /**
+     * Array of possible tag values. Combined length of all strings must not exceed 500 characters. Cannot contain the `%` character.
+     *
+     * @param list<string> $vocabulary
+     */
+    public function withVocabulary(array $vocabulary): self
+    {
+        $self = clone $this;
+        $self['vocabulary'] = $vocabulary;
 
         return $self;
     }

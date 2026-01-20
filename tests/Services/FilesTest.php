@@ -222,11 +222,11 @@ final class FilesTest extends TestCase
                         [
                             'instruction' => 'What types of clothing items are visible in this image?',
                             'type' => 'select_tags',
+                            'maxSelections' => 1,
+                            'minSelections' => 0,
                             'vocabulary' => [
                                 'shirt', 'tshirt', 'dress', 'trousers', 'jacket',
                             ],
-                            'maxSelections' => 1,
-                            'minSelections' => 0,
                         ],
                         [
                             'instruction' => 'Is this a luxury or high-end fashion item?',

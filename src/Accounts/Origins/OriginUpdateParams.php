@@ -254,6 +254,17 @@ final class OriginUpdateParams implements BaseModel
     }
 
     /**
+     * @param 'AKENEO_PIM' $type
+     */
+    public function withType(string $type): self
+    {
+        $self = clone $this;
+        $self['type'] = $type;
+
+        return $self;
+    }
+
+    /**
      * Access key for the bucket.
      */
     public function withAccessKey(string $accessKey): self

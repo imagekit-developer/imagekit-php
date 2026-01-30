@@ -151,6 +151,17 @@ final class AkeneoPim implements BaseModel
     }
 
     /**
+     * @param 'AKENEO_PIM' $type
+     */
+    public function withType(string $type): self
+    {
+        $self = clone $this;
+        $self['type'] = $type;
+
+        return $self;
+    }
+
+    /**
      * URL used in the Canonical header (if enabled).
      */
     public function withBaseURLForCanonicalHeader(

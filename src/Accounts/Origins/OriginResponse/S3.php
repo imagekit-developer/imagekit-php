@@ -174,6 +174,17 @@ final class S3 implements BaseModel
     }
 
     /**
+     * @param 'S3' $type
+     */
+    public function withType(string $type): self
+    {
+        $self = clone $this;
+        $self['type'] = $type;
+
+        return $self;
+    }
+
+    /**
      * URL used in the Canonical header (if enabled).
      */
     public function withBaseURLForCanonicalHeader(

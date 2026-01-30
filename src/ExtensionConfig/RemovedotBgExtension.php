@@ -55,6 +55,19 @@ final class RemovedotBgExtension implements BaseModel
     }
 
     /**
+     * Specifies the background removal extension.
+     *
+     * @param 'remove-bg' $name
+     */
+    public function withName(string $name): self
+    {
+        $self = clone $this;
+        $self['name'] = $name;
+
+        return $self;
+    }
+
+    /**
      * @param Options|OptionsShape $options
      */
     public function withOptions(Options|array $options): self

@@ -197,6 +197,17 @@ final class AkeneoPim implements BaseModel
     }
 
     /**
+     * @param 'AKENEO_PIM' $type
+     */
+    public function withType(string $type): self
+    {
+        $self = clone $this;
+        $self['type'] = $type;
+
+        return $self;
+    }
+
+    /**
      * Akeneo API username.
      */
     public function withUsername(string $username): self

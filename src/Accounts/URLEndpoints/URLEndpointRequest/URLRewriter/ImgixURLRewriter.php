@@ -34,4 +34,15 @@ final class ImgixURLRewriter implements BaseModel
     {
         return new self;
     }
+
+    /**
+     * @param 'IMGIX' $type
+     */
+    public function withType(string $type): self
+    {
+        $self = clone $this;
+        $self['type'] = $type;
+
+        return $self;
+    }
 }

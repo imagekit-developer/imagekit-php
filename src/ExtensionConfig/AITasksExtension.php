@@ -74,6 +74,19 @@ final class AITasksExtension implements BaseModel
     }
 
     /**
+     * Specifies the AI tasks extension for automated image analysis using AI models.
+     *
+     * @param 'ai-tasks' $name
+     */
+    public function withName(string $name): self
+    {
+        $self = clone $this;
+        $self['name'] = $name;
+
+        return $self;
+    }
+
+    /**
      * Array of task objects defining AI operations to perform on the asset.
      *
      * @param list<TaskShape> $tasks

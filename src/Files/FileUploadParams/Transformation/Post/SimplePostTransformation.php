@@ -67,6 +67,19 @@ final class SimplePostTransformation implements BaseModel
     }
 
     /**
+     * Transformation type.
+     *
+     * @param 'transformation' $type
+     */
+    public function withType(string $type): self
+    {
+        $self = clone $this;
+        $self['type'] = $type;
+
+        return $self;
+    }
+
+    /**
      * Transformation string (e.g. `w-200,h-200`).
      * Same syntax as ImageKit URL-based transformations.
      */

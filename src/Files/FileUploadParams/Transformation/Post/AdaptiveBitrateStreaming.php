@@ -91,6 +91,19 @@ final class AdaptiveBitrateStreaming implements BaseModel
     }
 
     /**
+     * Adaptive Bitrate Streaming (ABS) setup.
+     *
+     * @param 'abs' $type
+     */
+    public function withType(string $type): self
+    {
+        $self = clone $this;
+        $self['type'] = $type;
+
+        return $self;
+    }
+
+    /**
      * List of different representations you want to create separated by an underscore.
      */
     public function withValue(string $value): self

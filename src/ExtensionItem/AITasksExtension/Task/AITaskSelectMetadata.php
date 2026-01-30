@@ -136,6 +136,19 @@ final class AITaskSelectMetadata implements BaseModel
     }
 
     /**
+     * Task type that analyzes the image and sets a custom metadata field value from a vocabulary.
+     *
+     * @param 'select_metadata' $type
+     */
+    public function withType(string $type): self
+    {
+        $self = clone $this;
+        $self['type'] = $type;
+
+        return $self;
+    }
+
+    /**
      * Maximum number of values to select from the vocabulary.
      */
     public function withMaxSelections(int $maxSelections): self

@@ -188,6 +188,17 @@ final class ImageOverlay implements BaseModel
     }
 
     /**
+     * @param 'image' $type
+     */
+    public function withType(string $type): self
+    {
+        $self = clone $this;
+        $self['type'] = $type;
+
+        return $self;
+    }
+
+    /**
      * The input path can be included in the layer as either `i-{input}` or `ie-{base64_encoded_input}`.
      * By default, the SDK determines the appropriate format automatically.
      * To always use base64 encoding (`ie-{base64}`), set this parameter to `base64`.

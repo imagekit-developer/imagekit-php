@@ -54,6 +54,19 @@ final class ConvertGifToVideo implements BaseModel
     }
 
     /**
+     * Converts an animated GIF into an MP4.
+     *
+     * @param 'gif-to-video' $type
+     */
+    public function withType(string $type): self
+    {
+        $self = clone $this;
+        $self['type'] = $type;
+
+        return $self;
+    }
+
+    /**
      * Optional transformation string to apply to the output video.
      * **Example**: `q-80`.
      */

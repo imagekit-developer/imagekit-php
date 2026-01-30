@@ -112,6 +112,19 @@ final class AITaskSelectTags implements BaseModel
     }
 
     /**
+     * Task type that analyzes the image and adds matching tags from a vocabulary.
+     *
+     * @param 'select_tags' $type
+     */
+    public function withType(string $type): self
+    {
+        $self = clone $this;
+        $self['type'] = $type;
+
+        return $self;
+    }
+
+    /**
      * Maximum number of tags to select from the vocabulary.
      */
     public function withMaxSelections(int $maxSelections): self

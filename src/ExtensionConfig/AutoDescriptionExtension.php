@@ -38,4 +38,17 @@ final class AutoDescriptionExtension implements BaseModel
     {
         return new self;
     }
+
+    /**
+     * Specifies the auto description extension.
+     *
+     * @param 'ai-auto-description' $name
+     */
+    public function withName(string $name): self
+    {
+        $self = clone $this;
+        $self['name'] = $name;
+
+        return $self;
+    }
 }

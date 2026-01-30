@@ -171,6 +171,17 @@ final class SolidColorOverlay implements BaseModel
     }
 
     /**
+     * @param 'solidColor' $type
+     */
+    public function withType(string $type): self
+    {
+        $self = clone $this;
+        $self['type'] = $type;
+
+        return $self;
+    }
+
+    /**
      * Control width and height of the solid color overlay. Supported transformations depend on the base/parent asset.
      * See overlays on [Images](https://imagekit.io/docs/add-overlays-on-images#apply-transformation-on-solid-color-overlay) and [Videos](https://imagekit.io/docs/add-overlays-on-videos#apply-transformations-on-solid-color-block-overlay).
      *

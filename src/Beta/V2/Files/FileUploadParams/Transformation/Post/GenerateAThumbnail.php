@@ -54,6 +54,19 @@ final class GenerateAThumbnail implements BaseModel
     }
 
     /**
+     * Generates a thumbnail image.
+     *
+     * @param 'thumbnail' $type
+     */
+    public function withType(string $type): self
+    {
+        $self = clone $this;
+        $self['type'] = $type;
+
+        return $self;
+    }
+
+    /**
      * Optional transformation string.
      * **Example**: `w-150,h-150`.
      */

@@ -75,4 +75,17 @@ final class SavedExtensionReference implements BaseModel
 
         return $self;
     }
+
+    /**
+     * Indicates this is a reference to a saved extension.
+     *
+     * @param 'saved-extension' $name
+     */
+    public function withName(string $name): self
+    {
+        $self = clone $this;
+        $self['name'] = $name;
+
+        return $self;
+    }
 }

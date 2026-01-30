@@ -72,4 +72,15 @@ final class CloudinaryURLRewriter implements BaseModel
 
         return $self;
     }
+
+    /**
+     * @param 'CLOUDINARY' $type
+     */
+    public function withType(string $type): self
+    {
+        $self = clone $this;
+        $self['type'] = $type;
+
+        return $self;
+    }
 }

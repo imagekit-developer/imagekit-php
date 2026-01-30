@@ -119,6 +119,19 @@ final class AITaskYesNo implements BaseModel
     }
 
     /**
+     * Task type that asks a yes/no question and executes actions based on the answer.
+     *
+     * @param 'yes_no' $type
+     */
+    public function withType(string $type): self
+    {
+        $self = clone $this;
+        $self['type'] = $type;
+
+        return $self;
+    }
+
+    /**
      * Actions to execute if the AI answers no.
      *
      * @param OnNo|OnNoShape $onNo

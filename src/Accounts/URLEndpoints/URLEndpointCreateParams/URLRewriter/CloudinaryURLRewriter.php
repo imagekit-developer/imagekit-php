@@ -49,6 +49,17 @@ final class CloudinaryURLRewriter implements BaseModel
     }
 
     /**
+     * @param 'CLOUDINARY' $type
+     */
+    public function withType(string $type): self
+    {
+        $self = clone $this;
+        $self['type'] = $type;
+
+        return $self;
+    }
+
+    /**
      * Whether to preserve `<asset_type>/<delivery_type>` in the rewritten URL.
      */
     public function withPreserveAssetDeliveryTypes(

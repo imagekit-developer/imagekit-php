@@ -12,6 +12,7 @@ use Imagekit\Files\Folder\Type;
 /**
  * @phpstan-type FolderShape = array{
  *   createdAt?: \DateTimeInterface|null,
+ *   customMetadata?: array<string,mixed>|null,
  *   folderID?: string|null,
  *   folderPath?: string|null,
  *   name?: string|null,
@@ -29,6 +30,14 @@ final class Folder implements BaseModel
      */
     #[Optional]
     public ?\DateTimeInterface $createdAt;
+
+    /**
+     * An object with custom metadata for the folder. Returns empty object if no custom metadata is set.
+     *
+     * @var array<string,mixed>|null $customMetadata
+     */
+    #[Optional(map: 'mixed')]
+    public ?array $customMetadata;
 
     /**
      * Unique identifier of the asset.
@@ -72,10 +81,12 @@ final class Folder implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
+     * @param array<string,mixed>|null $customMetadata
      * @param Type|value-of<Type>|null $type
      */
     public static function with(
         ?\DateTimeInterface $createdAt = null,
+        ?array $customMetadata = null,
         ?string $folderID = null,
         ?string $folderPath = null,
         ?string $name = null,
@@ -85,6 +96,7 @@ final class Folder implements BaseModel
         $self = new self;
 
         null !== $createdAt && $self['createdAt'] = $createdAt;
+        null !== $customMetadata && $self['customMetadata'] = $customMetadata;
         null !== $folderID && $self['folderID'] = $folderID;
         null !== $folderPath && $self['folderPath'] = $folderPath;
         null !== $name && $self['name'] = $name;
@@ -101,6 +113,19 @@ final class Folder implements BaseModel
     {
         $self = clone $this;
         $self['createdAt'] = $createdAt;
+
+        return $self;
+    }
+
+    /**
+     * An object with custom metadata for the folder. Returns empty object if no custom metadata is set.
+     *
+     * @param array<string,mixed> $customMetadata
+     */
+    public function withCustomMetadata(array $customMetadata): self
+    {
+        $self = clone $this;
+        $self['customMetadata'] = $customMetadata;
 
         return $self;
     }

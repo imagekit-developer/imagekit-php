@@ -417,7 +417,7 @@ final class Transformation implements BaseModel
      * See [Overlay using layers](https://imagekit.io/docs/transformations#overlay-using-layers).
      */
     #[Optional(union: Overlay::class)]
-    public ?Overlay $overlay;
+    public mixed $overlay;
 
     /**
      * Extracts a specific page or frame from multi-page or layered files (PDF, PSD, AI).

@@ -21,10 +21,14 @@ use Imagekit\Files\File\VersionInfo;
  *
  * @phpstan-type FileShape = array{
  *   aiTags?: list<AITag|AITagShape>|null,
+ *   audioCodec?: string|null,
+ *   bitRate?: int|null,
  *   createdAt?: \DateTimeInterface|null,
  *   customCoordinates?: string|null,
  *   customMetadata?: array<string,mixed>|null,
  *   description?: string|null,
+ *   duration?: int|null,
+ *   embeddedMetadata?: array<string,mixed>|null,
  *   fileID?: string|null,
  *   filePath?: string|null,
  *   fileType?: string|null,
@@ -42,6 +46,7 @@ use Imagekit\Files\File\VersionInfo;
  *   updatedAt?: \DateTimeInterface|null,
  *   url?: string|null,
  *   versionInfo?: null|VersionInfo|VersionInfoShape,
+ *   videoCodec?: string|null,
  *   width?: float|null,
  * }
  */
@@ -57,6 +62,18 @@ final class File implements BaseModel
      */
     #[Optional('AITags', list: AITag::class, nullable: true)]
     public ?array $aiTags;
+
+    /**
+     * The audio codec used in the video (only for video/audio).
+     */
+    #[Optional]
+    public ?string $audioCodec;
+
+    /**
+     * The bit rate of the video in kbps (only for video).
+     */
+    #[Optional]
+    public ?int $bitRate;
 
     /**
      * Date and time when the file was uploaded. The date and time is in ISO8601 format.
@@ -83,6 +100,20 @@ final class File implements BaseModel
      */
     #[Optional]
     public ?string $description;
+
+    /**
+     * The duration of the video in seconds (only for video).
+     */
+    #[Optional]
+    public ?int $duration;
+
+    /**
+     * Consolidated embedded metadata associated with the file. It includes exif, iptc, and xmp data.
+     *
+     * @var array<string,mixed>|null $embeddedMetadata
+     */
+    #[Optional(map: 'mixed')]
+    public ?array $embeddedMetadata;
 
     /**
      * Unique identifier of the asset.
@@ -197,6 +228,12 @@ final class File implements BaseModel
     public ?VersionInfo $versionInfo;
 
     /**
+     * The video codec used in the video (only for video).
+     */
+    #[Optional]
+    public ?string $videoCodec;
+
+    /**
      * Width of the file.
      */
     #[Optional]
@@ -214,6 +251,7 @@ final class File implements BaseModel
      *
      * @param list<AITag|AITagShape>|null $aiTags
      * @param array<string,mixed>|null $customMetadata
+     * @param array<string,mixed>|null $embeddedMetadata
      * @param array<string,SelectedFieldsSchema|SelectedFieldsSchemaShape>|null $selectedFieldsSchema
      * @param list<string>|null $tags
      * @param Type|value-of<Type>|null $type
@@ -221,10 +259,14 @@ final class File implements BaseModel
      */
     public static function with(
         ?array $aiTags = null,
+        ?string $audioCodec = null,
+        ?int $bitRate = null,
         ?\DateTimeInterface $createdAt = null,
         ?string $customCoordinates = null,
         ?array $customMetadata = null,
         ?string $description = null,
+        ?int $duration = null,
+        ?array $embeddedMetadata = null,
         ?string $fileID = null,
         ?string $filePath = null,
         ?string $fileType = null,
@@ -242,15 +284,20 @@ final class File implements BaseModel
         ?\DateTimeInterface $updatedAt = null,
         ?string $url = null,
         VersionInfo|array|null $versionInfo = null,
+        ?string $videoCodec = null,
         ?float $width = null,
     ): self {
         $self = new self;
 
         null !== $aiTags && $self['aiTags'] = $aiTags;
+        null !== $audioCodec && $self['audioCodec'] = $audioCodec;
+        null !== $bitRate && $self['bitRate'] = $bitRate;
         null !== $createdAt && $self['createdAt'] = $createdAt;
         null !== $customCoordinates && $self['customCoordinates'] = $customCoordinates;
         null !== $customMetadata && $self['customMetadata'] = $customMetadata;
         null !== $description && $self['description'] = $description;
+        null !== $duration && $self['duration'] = $duration;
+        null !== $embeddedMetadata && $self['embeddedMetadata'] = $embeddedMetadata;
         null !== $fileID && $self['fileID'] = $fileID;
         null !== $filePath && $self['filePath'] = $filePath;
         null !== $fileType && $self['fileType'] = $fileType;
@@ -268,6 +315,7 @@ final class File implements BaseModel
         null !== $updatedAt && $self['updatedAt'] = $updatedAt;
         null !== $url && $self['url'] = $url;
         null !== $versionInfo && $self['versionInfo'] = $versionInfo;
+        null !== $videoCodec && $self['videoCodec'] = $videoCodec;
         null !== $width && $self['width'] = $width;
 
         return $self;
@@ -282,6 +330,28 @@ final class File implements BaseModel
     {
         $self = clone $this;
         $self['aiTags'] = $aiTags;
+
+        return $self;
+    }
+
+    /**
+     * The audio codec used in the video (only for video/audio).
+     */
+    public function withAudioCodec(string $audioCodec): self
+    {
+        $self = clone $this;
+        $self['audioCodec'] = $audioCodec;
+
+        return $self;
+    }
+
+    /**
+     * The bit rate of the video in kbps (only for video).
+     */
+    public function withBitRate(int $bitRate): self
+    {
+        $self = clone $this;
+        $self['bitRate'] = $bitRate;
 
         return $self;
     }
@@ -328,6 +398,30 @@ final class File implements BaseModel
     {
         $self = clone $this;
         $self['description'] = $description;
+
+        return $self;
+    }
+
+    /**
+     * The duration of the video in seconds (only for video).
+     */
+    public function withDuration(int $duration): self
+    {
+        $self = clone $this;
+        $self['duration'] = $duration;
+
+        return $self;
+    }
+
+    /**
+     * Consolidated embedded metadata associated with the file. It includes exif, iptc, and xmp data.
+     *
+     * @param array<string,mixed> $embeddedMetadata
+     */
+    public function withEmbeddedMetadata(array $embeddedMetadata): self
+    {
+        $self = clone $this;
+        $self['embeddedMetadata'] = $embeddedMetadata;
 
         return $self;
     }
@@ -527,6 +621,17 @@ final class File implements BaseModel
     {
         $self = clone $this;
         $self['versionInfo'] = $versionInfo;
+
+        return $self;
+    }
+
+    /**
+     * The video codec used in the video (only for video).
+     */
+    public function withVideoCodec(string $videoCodec): self
+    {
+        $self = clone $this;
+        $self['videoCodec'] = $videoCodec;
 
         return $self;
     }

@@ -4,6 +4,7 @@ namespace Tests\Services\Accounts;
 
 use Imagekit\Accounts\Usage\UsageGetResponse;
 use Imagekit\Client;
+use Imagekit\Core\Util;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
@@ -21,7 +22,7 @@ final class UsageTest extends TestCase
     {
         parent::setUp();
 
-        $testUrl = getenv('TEST_API_BASE_URL') ?: 'http://127.0.0.1:4010';
+        $testUrl = Util::getenv('TEST_API_BASE_URL') ?: 'http://127.0.0.1:4010';
         $client = new Client(
             privateKey: 'My Private Key',
             password: 'My Password',

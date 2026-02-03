@@ -5,6 +5,7 @@ namespace Tests\Services\Cache;
 use Imagekit\Cache\Invalidation\InvalidationGetResponse;
 use Imagekit\Cache\Invalidation\InvalidationNewResponse;
 use Imagekit\Client;
+use Imagekit\Core\Util;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
@@ -22,7 +23,7 @@ final class InvalidationTest extends TestCase
     {
         parent::setUp();
 
-        $testUrl = getenv('TEST_API_BASE_URL') ?: 'http://127.0.0.1:4010';
+        $testUrl = Util::getenv('TEST_API_BASE_URL') ?: 'http://127.0.0.1:4010';
         $client = new Client(
             privateKey: 'My Private Key',
             password: 'My Password',

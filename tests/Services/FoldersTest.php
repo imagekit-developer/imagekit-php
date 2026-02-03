@@ -3,6 +3,7 @@
 namespace Tests\Services;
 
 use Imagekit\Client;
+use Imagekit\Core\Util;
 use Imagekit\Folders\FolderCopyResponse;
 use Imagekit\Folders\FolderDeleteResponse;
 use Imagekit\Folders\FolderMoveResponse;
@@ -25,7 +26,7 @@ final class FoldersTest extends TestCase
     {
         parent::setUp();
 
-        $testUrl = getenv('TEST_API_BASE_URL') ?: 'http://127.0.0.1:4010';
+        $testUrl = Util::getenv('TEST_API_BASE_URL') ?: 'http://127.0.0.1:4010';
         $client = new Client(
             privateKey: 'My Private Key',
             password: 'My Password',

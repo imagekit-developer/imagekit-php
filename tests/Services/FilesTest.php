@@ -3,6 +3,7 @@
 namespace Tests\Services;
 
 use Imagekit\Client;
+use Imagekit\Core\Util;
 use Imagekit\Files\File;
 use Imagekit\Files\FileCopyResponse;
 use Imagekit\Files\FileMoveResponse;
@@ -26,7 +27,7 @@ final class FilesTest extends TestCase
     {
         parent::setUp();
 
-        $testUrl = getenv('TEST_API_BASE_URL') ?: 'http://127.0.0.1:4010';
+        $testUrl = Util::getenv('TEST_API_BASE_URL') ?: 'http://127.0.0.1:4010';
         $client = new Client(
             privateKey: 'My Private Key',
             password: 'My Password',

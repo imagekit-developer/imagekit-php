@@ -84,12 +84,18 @@ class Client extends BaseClient
         ?string $baseUrl = null,
         RequestOptions|array|null $requestOptions = null,
     ) {
-        $this->privateKey = (string) ($privateKey ?? getenv('IMAGEKIT_PRIVATE_KEY'));
-        $this->password = (string) ($password ?? getenv('OPTIONAL_IMAGEKIT_IGNORES_THIS') ?: 'do_not_set');
+        $this->privateKey = (string) ($privateKey ?? Util::getenv(
+            'IMAGEKIT_PRIVATE_KEY'
+        ));
+        $this->password = (string) ($password ?? Util::getenv(
+            'OPTIONAL_IMAGEKIT_IGNORES_THIS'
+        ) ?: 'do_not_set');
 
         $this->baseUrlOverridden = !is_null($baseUrl);
 
-        $baseUrl ??= getenv('IMAGE_KIT_BASE_URL') ?: 'https://api.imagekit.io';
+        $baseUrl ??= Util::getenv(
+            'IMAGE_KIT_BASE_URL'
+        ) ?: 'https://api.imagekit.io';
 
         $options = RequestOptions::parse(
             RequestOptions::with(

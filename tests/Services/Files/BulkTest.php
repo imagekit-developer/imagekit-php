@@ -39,7 +39,7 @@ final class BulkTest extends TestCase
     public function testDelete(): void
     {
         if (UnsupportedMockTests::$skip) {
-            $this->markTestSkipped('Prism tests are disabled');
+            $this->markTestSkipped('Mock server tests are disabled');
         }
 
         $result = $this->client->files->bulk->delete(
@@ -54,7 +54,7 @@ final class BulkTest extends TestCase
     public function testDeleteWithOptionalParams(): void
     {
         if (UnsupportedMockTests::$skip) {
-            $this->markTestSkipped('Prism tests are disabled');
+            $this->markTestSkipped('Mock server tests are disabled');
         }
 
         $result = $this->client->files->bulk->delete(
@@ -69,7 +69,7 @@ final class BulkTest extends TestCase
     public function testAddTags(): void
     {
         if (UnsupportedMockTests::$skip) {
-            $this->markTestSkipped('Prism tests are disabled');
+            $this->markTestSkipped('Mock server tests are disabled');
         }
 
         $result = $this->client->files->bulk->addTags(
@@ -85,7 +85,7 @@ final class BulkTest extends TestCase
     public function testAddTagsWithOptionalParams(): void
     {
         if (UnsupportedMockTests::$skip) {
-            $this->markTestSkipped('Prism tests are disabled');
+            $this->markTestSkipped('Mock server tests are disabled');
         }
 
         $result = $this->client->files->bulk->addTags(
@@ -101,7 +101,7 @@ final class BulkTest extends TestCase
     public function testRemoveAITags(): void
     {
         if (UnsupportedMockTests::$skip) {
-            $this->markTestSkipped('Prism tests are disabled');
+            $this->markTestSkipped('Mock server tests are disabled');
         }
 
         $result = $this->client->files->bulk->removeAITags(
@@ -117,7 +117,7 @@ final class BulkTest extends TestCase
     public function testRemoveAITagsWithOptionalParams(): void
     {
         if (UnsupportedMockTests::$skip) {
-            $this->markTestSkipped('Prism tests are disabled');
+            $this->markTestSkipped('Mock server tests are disabled');
         }
 
         $result = $this->client->files->bulk->removeAITags(
@@ -133,7 +133,7 @@ final class BulkTest extends TestCase
     public function testRemoveTags(): void
     {
         if (UnsupportedMockTests::$skip) {
-            $this->markTestSkipped('Prism tests are disabled');
+            $this->markTestSkipped('Mock server tests are disabled');
         }
 
         $result = $this->client->files->bulk->removeTags(
@@ -149,7 +149,7 @@ final class BulkTest extends TestCase
     public function testRemoveTagsWithOptionalParams(): void
     {
         if (UnsupportedMockTests::$skip) {
-            $this->markTestSkipped('Prism tests are disabled');
+            $this->markTestSkipped('Mock server tests are disabled');
         }
 
         $result = $this->client->files->bulk->removeTags(

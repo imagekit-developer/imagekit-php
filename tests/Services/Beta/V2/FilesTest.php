@@ -36,7 +36,7 @@ final class FilesTest extends TestCase
     public function testUpload(): void
     {
         if (UnsupportedMockTests::$skip) {
-            $this->markTestSkipped('Prism tests are disabled');
+            $this->markTestSkipped('Mock server tests are disabled');
         }
 
         $result = $this->client->beta->v2->files->upload(
@@ -52,7 +52,7 @@ final class FilesTest extends TestCase
     public function testUploadWithOptionalParams(): void
     {
         if (UnsupportedMockTests::$skip) {
-            $this->markTestSkipped('Prism tests are disabled');
+            $this->markTestSkipped('Mock server tests are disabled');
         }
 
         $result = $this->client->beta->v2->files->upload(

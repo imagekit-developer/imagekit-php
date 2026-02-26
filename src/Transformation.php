@@ -22,6 +22,7 @@ use Imagekit\Transformation\VideoCodec;
  *
  * @phpstan-import-type AIDropShadowVariants from \Imagekit\Transformation\AIDropShadow
  * @phpstan-import-type AspectRatioVariants from \Imagekit\Transformation\AspectRatio
+ * @phpstan-import-type DprVariants from \Imagekit\Transformation\Dpr
  * @phpstan-import-type DurationVariants from \Imagekit\Transformation\Duration
  * @phpstan-import-type EndOffsetVariants from \Imagekit\Transformation\EndOffset
  * @phpstan-import-type GradientVariants from \Imagekit\Transformation\Gradient
@@ -41,6 +42,7 @@ use Imagekit\Transformation\VideoCodec;
  * @phpstan-import-type YCenterVariants from \Imagekit\Transformation\YCenter
  * @phpstan-import-type AIDropShadowShape from \Imagekit\Transformation\AIDropShadow
  * @phpstan-import-type AspectRatioShape from \Imagekit\Transformation\AspectRatio
+ * @phpstan-import-type DprShape from \Imagekit\Transformation\Dpr
  * @phpstan-import-type DurationShape from \Imagekit\Transformation\Duration
  * @phpstan-import-type EndOffsetShape from \Imagekit\Transformation\EndOffset
  * @phpstan-import-type GradientShape from \Imagekit\Transformation\Gradient
@@ -80,7 +82,7 @@ use Imagekit\Transformation\VideoCodec;
  *   cropMode?: null|CropMode|value-of<CropMode>,
  *   defaultImage?: string|null,
  *   distort?: string|null,
- *   dpr?: float|null,
+ *   dpr?: DprShape|null,
  *   duration?: DurationShape|null,
  *   endOffset?: EndOffsetShape|null,
  *   flip?: null|Flip|value-of<Flip>,
@@ -296,9 +298,11 @@ final class Transformation implements BaseModel
      * Accepts values between 0.1 and 5, or `auto` for automatic device pixel ratio (DPR) calculation. Also accepts arithmetic expressions.
      * - Learn about [Arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
      * - See [DPR](https://imagekit.io/docs/image-resize-and-crop#dpr---dpr).
+     *
+     * @var DprVariants|null $dpr
      */
     #[Optional]
-    public ?float $dpr;
+    public float|string|null $dpr;
 
     /**
      * Specifies the duration (in seconds) for trimming videos, e.g., `5` or `10.5`.
@@ -609,6 +613,7 @@ final class Transformation implements BaseModel
      * @param AudioCodec|value-of<AudioCodec>|null $audioCodec
      * @param Crop|value-of<Crop>|null $crop
      * @param CropMode|value-of<CropMode>|null $cropMode
+     * @param DprShape|null $dpr
      * @param DurationShape|null $duration
      * @param EndOffsetShape|null $endOffset
      * @param Flip|value-of<Flip>|null $flip
@@ -652,7 +657,7 @@ final class Transformation implements BaseModel
         CropMode|string|null $cropMode = null,
         ?string $defaultImage = null,
         ?string $distort = null,
-        ?float $dpr = null,
+        float|string|null $dpr = null,
         float|string|null $duration = null,
         float|string|null $endOffset = null,
         Flip|string|null $flip = null,
@@ -1023,8 +1028,10 @@ final class Transformation implements BaseModel
      * Accepts values between 0.1 and 5, or `auto` for automatic device pixel ratio (DPR) calculation. Also accepts arithmetic expressions.
      * - Learn about [Arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
      * - See [DPR](https://imagekit.io/docs/image-resize-and-crop#dpr---dpr).
+     *
+     * @param DprShape $dpr
      */
-    public function withDpr(float $dpr): self
+    public function withDpr(float|string $dpr): self
     {
         $self = clone $this;
         $self['dpr'] = $dpr;

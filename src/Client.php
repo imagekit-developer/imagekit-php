@@ -28,6 +28,8 @@ class Client extends BaseClient
 
     public string $password;
 
+    public string $webhookSecret;
+
     public bool $baseUrlOverridden;
 
     /**
@@ -81,6 +83,7 @@ class Client extends BaseClient
     public function __construct(
         ?string $privateKey = null,
         ?string $password = null,
+        ?string $webhookSecret = null,
         ?string $baseUrl = null,
         RequestOptions|array|null $requestOptions = null,
     ) {
@@ -90,6 +93,9 @@ class Client extends BaseClient
         $this->password = (string) ($password ?? Util::getenv(
             'OPTIONAL_IMAGEKIT_IGNORES_THIS'
         ) ?: 'do_not_set');
+        $this->webhookSecret = (string) ($webhookSecret ?? Util::getenv(
+            'IMAGEKIT_WEBHOOK_SECRET'
+        ));
 
         $this->baseUrlOverridden = !is_null($baseUrl);
 

@@ -198,7 +198,7 @@ final class FilesTest extends TestCase
             file: 'file',
             fileName: 'fileName',
             token: 'token',
-            checks: '"request.folder" : "marketing/"\n',
+            checks: "\"request.folder\" : \"marketing/\"\n",
             customCoordinates: 'customCoordinates',
             customMetadata: ['brand' => 'bar', 'color' => 'bar'],
             description: 'Running shoes',

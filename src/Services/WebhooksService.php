@@ -41,14 +41,10 @@ final class WebhooksService implements WebhooksContract
      *
      * Unwraps a webhook event from its JSON representation.
      *
-     * @param array<string,string|list<string>>|null $headers
-     *
      * @throws WebhookException
      */
     public function unsafeUnwrap(
-        string $body,
-        ?array $headers = null,
-        ?string $secret = null
+        string $body
     ): VideoTransformationAcceptedEvent|VideoTransformationReadyEvent|VideoTransformationErrorEvent|UploadPreTransformSuccessEvent|UploadPreTransformErrorEvent|UploadPostTransformSuccessEvent|UploadPostTransformErrorEvent {
         try {
             $decoded = Util::decodeJson($body);

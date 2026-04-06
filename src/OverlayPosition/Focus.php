@@ -6,6 +6,7 @@ namespace Imagekit\OverlayPosition;
 
 /**
  * Specifies the position of the overlay relative to the parent image or video.
+ * If one or more of `x`, `y`, `xCenter`, or `yCenter` parameters are specified, this parameter is ignored.
  * Maps to `lfo` in the URL.
  */
 enum Focus: string

@@ -50,7 +50,7 @@ final class AITaskSelectTags implements BaseModel
     public ?int $minSelections;
 
     /**
-     * Array of possible tag values. Combined length of all strings must not exceed 500 characters. Cannot contain the `%` character.
+     * Array of possible tag values. The combined length of all strings must not exceed 500 characters, and values cannot include the `%` character. When providing large vocabularies (more than 30 items), the AI may not follow the list strictly.
      *
      * @var list<string>|null $vocabulary
      */
@@ -147,7 +147,7 @@ final class AITaskSelectTags implements BaseModel
     }
 
     /**
-     * Array of possible tag values. Combined length of all strings must not exceed 500 characters. Cannot contain the `%` character.
+     * Array of possible tag values. The combined length of all strings must not exceed 500 characters, and values cannot include the `%` character. When providing large vocabularies (more than 30 items), the AI may not follow the list strictly.
      *
      * @param list<string> $vocabulary
      */

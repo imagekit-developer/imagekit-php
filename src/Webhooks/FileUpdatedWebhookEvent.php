@@ -10,17 +10,17 @@ use Imagekit\Core\Contracts\BaseModel;
 use Imagekit\Files\File;
 
 /**
- * Triggered when a file is created.
+ * Triggered when a file is updated.
  *
  * @phpstan-import-type FileShape from \Imagekit\Files\File
  *
- * @phpstan-type DamFileCreateEventShape = array{
+ * @phpstan-type FileUpdatedWebhookEventShape = array{
  *   id: string, type: string, createdAt: \DateTimeInterface, data: File|FileShape
  * }
  */
-final class DamFileCreateEvent implements BaseModel
+final class FileUpdatedWebhookEvent implements BaseModel
 {
-    /** @use SdkModel<DamFileCreateEventShape> */
+    /** @use SdkModel<FileUpdatedWebhookEventShape> */
     use SdkModel;
 
     /**
@@ -48,17 +48,17 @@ final class DamFileCreateEvent implements BaseModel
     public File $data;
 
     /**
-     * `new DamFileCreateEvent()` is missing required properties by the API.
+     * `new FileUpdatedWebhookEvent()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * DamFileCreateEvent::with(id: ..., type: ..., createdAt: ..., data: ...)
+     * FileUpdatedWebhookEvent::with(id: ..., type: ..., createdAt: ..., data: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
      *
      * ```
-     * (new DamFileCreateEvent)
+     * (new FileUpdatedWebhookEvent)
      *   ->withID(...)
      *   ->withType(...)
      *   ->withCreatedAt(...)

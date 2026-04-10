@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Imagekit\ServiceContracts;
 
 use Imagekit\Core\Exceptions\WebhookException;
-use Imagekit\Webhooks\DamFileCreateEvent;
-use Imagekit\Webhooks\DamFileDeleteEvent;
-use Imagekit\Webhooks\DamFileUpdateEvent;
-use Imagekit\Webhooks\DamFileVersionCreateEvent;
-use Imagekit\Webhooks\DamFileVersionDeleteEvent;
+use Imagekit\Webhooks\FileCreatedWebhookEvent;
+use Imagekit\Webhooks\FileDeletedWebhookEvent;
+use Imagekit\Webhooks\FileUpdatedWebhookEvent;
+use Imagekit\Webhooks\FileVersionCreatedWebhookEvent;
+use Imagekit\Webhooks\FileVersionDeletedWebhookEvent;
 use Imagekit\Webhooks\UploadPostTransformErrorEvent;
 use Imagekit\Webhooks\UploadPostTransformSuccessEvent;
 use Imagekit\Webhooks\UploadPreTransformErrorEvent;
@@ -29,7 +29,7 @@ interface WebhooksContract
      */
     public function unsafeUnwrap(
         string $body
-    ): VideoTransformationAcceptedEvent|VideoTransformationReadyEvent|VideoTransformationErrorEvent|UploadPreTransformSuccessEvent|UploadPreTransformErrorEvent|UploadPostTransformSuccessEvent|UploadPostTransformErrorEvent|DamFileCreateEvent|DamFileUpdateEvent|DamFileDeleteEvent|DamFileVersionCreateEvent|DamFileVersionDeleteEvent;
+    ): VideoTransformationAcceptedEvent|VideoTransformationReadyEvent|VideoTransformationErrorEvent|UploadPreTransformSuccessEvent|UploadPreTransformErrorEvent|UploadPostTransformSuccessEvent|UploadPostTransformErrorEvent|FileCreatedWebhookEvent|FileUpdatedWebhookEvent|FileDeletedWebhookEvent|FileVersionCreatedWebhookEvent|FileVersionDeletedWebhookEvent;
 
     /**
      * @api
@@ -44,5 +44,5 @@ interface WebhooksContract
         string $body,
         ?array $headers = null,
         ?string $secret = null
-    ): VideoTransformationAcceptedEvent|VideoTransformationReadyEvent|VideoTransformationErrorEvent|UploadPreTransformSuccessEvent|UploadPreTransformErrorEvent|UploadPostTransformSuccessEvent|UploadPostTransformErrorEvent|DamFileCreateEvent|DamFileUpdateEvent|DamFileDeleteEvent|DamFileVersionCreateEvent|DamFileVersionDeleteEvent;
+    ): VideoTransformationAcceptedEvent|VideoTransformationReadyEvent|VideoTransformationErrorEvent|UploadPreTransformSuccessEvent|UploadPreTransformErrorEvent|UploadPostTransformSuccessEvent|UploadPostTransformErrorEvent|FileCreatedWebhookEvent|FileUpdatedWebhookEvent|FileDeletedWebhookEvent|FileVersionCreatedWebhookEvent|FileVersionDeletedWebhookEvent;
 }

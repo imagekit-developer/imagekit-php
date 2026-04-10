@@ -11,6 +11,7 @@ use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Concerns\SdkParams;
 use Imagekit\Core\Contracts\BaseModel;
+use Imagekit\Core\FileParam;
 use Imagekit\ExtensionItem;
 
 /**
@@ -36,7 +37,7 @@ use Imagekit\ExtensionItem;
  * @phpstan-import-type TransformationShape from \Imagekit\Beta\V2\Files\FileUploadParams\Transformation
  *
  * @phpstan-type FileUploadParamsShape = array{
- *   file: string,
+ *   file: string|FileParam,
  *   fileName: string,
  *   token?: string|null,
  *   checks?: string|null,
@@ -259,7 +260,7 @@ final class FileUploadParams implements BaseModel
      * @param Transformation|TransformationShape|null $transformation
      */
     public static function with(
-        string $file,
+        string|FileParam $file,
         string $fileName,
         ?string $token = null,
         ?string $checks = null,
@@ -316,7 +317,7 @@ final class FileUploadParams implements BaseModel
      *
      * When supplying a URL, the server must receive the response headers within 8 seconds; otherwise the request fails with 400 Bad Request.
      */
-    public function withFile(string $file): self
+    public function withFile(string|FileParam $file): self
     {
         $self = clone $this;
         $self['file'] = $file;

@@ -6,6 +6,7 @@ namespace Imagekit\Services;
 
 use Imagekit\Client;
 use Imagekit\Core\Exceptions\APIException;
+use Imagekit\Core\FileParam;
 use Imagekit\Core\Util;
 use Imagekit\Files\File;
 use Imagekit\Files\FileCopyResponse;
@@ -283,7 +284,7 @@ final class FilesService implements FilesContract
      * - A full-fledged [upload widget using Uppy](https://github.com/imagekit-samples/uppy-uploader), supporting file selections from local storage, URL, Dropbox, Google Drive, Instagram, and more.
      * - [Quick start guides](/docs/quick-start-guides) for various frameworks and technologies.
      *
-     * @param string $file The API accepts any of the following:
+     * @param string|FileParam $file The API accepts any of the following:
      *
      * - **Binary data** – send the raw bytes as `multipart/form-data`.
      * - **HTTP / HTTPS URL** – a publicly reachable URL that ImageKit’s servers can fetch.
@@ -359,7 +360,7 @@ final class FilesService implements FilesContract
      * @throws APIException
      */
     public function upload(
-        string $file,
+        string|FileParam $file,
         string $fileName,
         ?string $token = null,
         ?string $checks = null,

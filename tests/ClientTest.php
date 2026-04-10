@@ -29,6 +29,7 @@ class ClientTest extends TestCase
         $client = new \Imagekit\Client(
             baseUrl: 'http://localhost',
             privateKey: 'My Private Key',
+            password: 'My Password',
             requestOptions: ['transporter' => $transporter],
         );
 

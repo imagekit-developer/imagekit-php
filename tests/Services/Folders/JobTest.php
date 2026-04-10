@@ -23,7 +23,11 @@ final class JobTest extends TestCase
         parent::setUp();
 
         $testUrl = Util::getenv('TEST_API_BASE_URL') ?: 'http://127.0.0.1:4010';
-        $client = new Client(privateKey: 'My Private Key', baseUrl: $testUrl);
+        $client = new Client(
+            privateKey: 'My Private Key',
+            password: 'My Password',
+            baseUrl: $testUrl,
+        );
 
         $this->client = $client;
     }

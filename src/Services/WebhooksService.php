@@ -9,6 +9,11 @@ use Imagekit\Core\Conversion;
 use Imagekit\Core\Exceptions\WebhookException;
 use Imagekit\Core\Util;
 use Imagekit\ServiceContracts\WebhooksContract;
+use Imagekit\Webhooks\DamFileCreateEvent;
+use Imagekit\Webhooks\DamFileDeleteEvent;
+use Imagekit\Webhooks\DamFileUpdateEvent;
+use Imagekit\Webhooks\DamFileVersionCreateEvent;
+use Imagekit\Webhooks\DamFileVersionDeleteEvent;
 use Imagekit\Webhooks\UnsafeUnwrapWebhookEvent;
 use Imagekit\Webhooks\UnwrapWebhookEvent;
 use Imagekit\Webhooks\UploadPostTransformErrorEvent;
@@ -45,7 +50,7 @@ final class WebhooksService implements WebhooksContract
      */
     public function unsafeUnwrap(
         string $body
-    ): VideoTransformationAcceptedEvent|VideoTransformationReadyEvent|VideoTransformationErrorEvent|UploadPreTransformSuccessEvent|UploadPreTransformErrorEvent|UploadPostTransformSuccessEvent|UploadPostTransformErrorEvent {
+    ): VideoTransformationAcceptedEvent|VideoTransformationReadyEvent|VideoTransformationErrorEvent|UploadPreTransformSuccessEvent|UploadPreTransformErrorEvent|UploadPostTransformSuccessEvent|UploadPostTransformErrorEvent|DamFileCreateEvent|DamFileUpdateEvent|DamFileDeleteEvent|DamFileVersionCreateEvent|DamFileVersionDeleteEvent {
         try {
             $decoded = Util::decodeJson($body);
 
@@ -69,7 +74,7 @@ final class WebhooksService implements WebhooksContract
         string $body,
         ?array $headers = null,
         ?string $secret = null
-    ): VideoTransformationAcceptedEvent|VideoTransformationReadyEvent|VideoTransformationErrorEvent|UploadPreTransformSuccessEvent|UploadPreTransformErrorEvent|UploadPostTransformSuccessEvent|UploadPostTransformErrorEvent {
+    ): VideoTransformationAcceptedEvent|VideoTransformationReadyEvent|VideoTransformationErrorEvent|UploadPreTransformSuccessEvent|UploadPreTransformErrorEvent|UploadPostTransformSuccessEvent|UploadPostTransformErrorEvent|DamFileCreateEvent|DamFileUpdateEvent|DamFileDeleteEvent|DamFileVersionCreateEvent|DamFileVersionDeleteEvent {
         if (null !== $headers) {
             $secret = $secret ?? ($this->client->webhookSecret ?: null);
             if (null === $secret) {

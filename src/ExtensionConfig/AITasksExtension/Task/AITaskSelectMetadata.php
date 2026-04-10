@@ -61,7 +61,7 @@ final class AITaskSelectMetadata implements BaseModel
     public ?int $minSelections;
 
     /**
-     * An array of possible values matching the custom metadata field type. If not provided for SingleSelect or MultiSelect field types, all values from the custom metadata field definition will be used. When providing large vocabularies (above 30 items), the AI may not strictly adhere to the list.
+     * Array of possible values matching the custom metadata field type.
      *
      * @var list<VocabularyVariants>|null $vocabulary
      */
@@ -171,7 +171,7 @@ final class AITaskSelectMetadata implements BaseModel
     }
 
     /**
-     * An array of possible values matching the custom metadata field type. If not provided for SingleSelect or MultiSelect field types, all values from the custom metadata field definition will be used. When providing large vocabularies (above 30 items), the AI may not strictly adhere to the list.
+     * Array of possible values matching the custom metadata field type.
      *
      * @param list<VocabularyShape> $vocabulary
      */

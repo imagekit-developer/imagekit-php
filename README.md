@@ -35,8 +35,8 @@ Parameters with a default value must be set by name.
 use Imagekit\Client;
 
 $client = new Client(
+  privateKey: 'My Private Key',
   privateKey: getenv('IMAGEKIT_PRIVATE_KEY') ?: 'My Private Key',
-  password: getenv('OPTIONAL_IMAGEKIT_IGNORES_THIS') ?: 'do_not_set',
 );
 
 $response = $client->files->upload(file: 'file', fileName: 'file-name.jpg');
@@ -105,7 +105,9 @@ You can use the `maxRetries` option to configure or disable this:
 use Imagekit\Client;
 
 // Configure the default for all requests:
-$client = new Client(requestOptions: ['maxRetries' => 0]);
+$client = new Client(
+  privateKey: 'My Private Key', requestOptions: ['maxRetries' => 0]
+);
 
 // Or, configure per-request:
 $result = $client->files->upload(

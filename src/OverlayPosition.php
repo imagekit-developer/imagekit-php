@@ -7,26 +7,16 @@ namespace Imagekit;
 use Imagekit\Core\Attributes\Optional;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\OverlayPosition\AnchorPoint;
 use Imagekit\OverlayPosition\Focus;
 
 /**
  * @phpstan-import-type XVariants from \Imagekit\OverlayPosition\X
- * @phpstan-import-type XCenterVariants from \Imagekit\OverlayPosition\XCenter
  * @phpstan-import-type YVariants from \Imagekit\OverlayPosition\Y
- * @phpstan-import-type YCenterVariants from \Imagekit\OverlayPosition\YCenter
  * @phpstan-import-type XShape from \Imagekit\OverlayPosition\X
- * @phpstan-import-type XCenterShape from \Imagekit\OverlayPosition\XCenter
  * @phpstan-import-type YShape from \Imagekit\OverlayPosition\Y
- * @phpstan-import-type YCenterShape from \Imagekit\OverlayPosition\YCenter
  *
  * @phpstan-type OverlayPositionShape = array{
- *   anchorPoint?: null|AnchorPoint|value-of<AnchorPoint>,
- *   focus?: null|Focus|value-of<Focus>,
- *   x?: XShape|null,
- *   xCenter?: XCenterShape|null,
- *   y?: YShape|null,
- *   yCenter?: YCenterShape|null,
+ *   focus?: null|Focus|value-of<Focus>, x?: XShape|null, y?: YShape|null
  * }
  */
 final class OverlayPosition implements BaseModel
@@ -35,19 +25,7 @@ final class OverlayPosition implements BaseModel
     use SdkModel;
 
     /**
-     * Sets the anchor point on the base asset from which the overlay offset is calculated.
-     * The default value is `top_left`.
-     * Maps to `lap` in the URL.
-     * Can only be used with one or more of `x`, `y`, `xCenter`, or `yCenter`.
-     *
-     * @var value-of<AnchorPoint>|null $anchorPoint
-     */
-    #[Optional(enum: AnchorPoint::class)]
-    public ?string $anchorPoint;
-
-    /**
      * Specifies the position of the overlay relative to the parent image or video.
-     * If one or more of `x`, `y`, `xCenter`, or `yCenter` parameters are specified, this parameter is ignored.
      * Maps to `lfo` in the URL.
      *
      * @var value-of<Focus>|null $focus
@@ -67,18 +45,6 @@ final class OverlayPosition implements BaseModel
     public float|string|null $x;
 
     /**
-     * Specifies the x-coordinate on the base asset where the overlay's center will be positioned.
-     * It also accepts arithmetic expressions such as `bw_mul_0.4` or `bw_sub_cw`.
-     * Maps to `lxc` in the URL.
-     * Cannot be used together with `x`, but can be used with `y`.
-     * Learn about [Arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
-     *
-     * @var XCenterVariants|null $xCenter
-     */
-    #[Optional]
-    public float|string|null $xCenter;
-
-    /**
      * Specifies the y-coordinate of the top-left corner of the base asset where the overlay's top-left corner will be positioned.
      * It also accepts arithmetic expressions such as `bh_mul_0.4` or `bh_sub_ch`.
      * Maps to `ly` in the URL.
@@ -88,18 +54,6 @@ final class OverlayPosition implements BaseModel
      */
     #[Optional]
     public float|string|null $y;
-
-    /**
-     * Specifies the y-coordinate on the base asset where the overlay's center will be positioned.
-     * It also accepts arithmetic expressions such as `bh_mul_0.4` or `bh_sub_ch`.
-     * Maps to `lyc` in the URL.
-     * Cannot be used together with `y`, but can be used with `x`.
-     * Learn about [Arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
-     *
-     * @var YCenterVariants|null $yCenter
-     */
-    #[Optional]
-    public float|string|null $yCenter;
 
     public function __construct()
     {
@@ -111,52 +65,26 @@ final class OverlayPosition implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param AnchorPoint|value-of<AnchorPoint>|null $anchorPoint
      * @param Focus|value-of<Focus>|null $focus
      * @param XShape|null $x
-     * @param XCenterShape|null $xCenter
      * @param YShape|null $y
-     * @param YCenterShape|null $yCenter
      */
     public static function with(
-        AnchorPoint|string|null $anchorPoint = null,
         Focus|string|null $focus = null,
         float|string|null $x = null,
-        float|string|null $xCenter = null,
-        float|string|null $y = null,
-        float|string|null $yCenter = null,
+        float|string|null $y = null
     ): self {
         $self = new self;
 
-        null !== $anchorPoint && $self['anchorPoint'] = $anchorPoint;
         null !== $focus && $self['focus'] = $focus;
         null !== $x && $self['x'] = $x;
-        null !== $xCenter && $self['xCenter'] = $xCenter;
         null !== $y && $self['y'] = $y;
-        null !== $yCenter && $self['yCenter'] = $yCenter;
-
-        return $self;
-    }
-
-    /**
-     * Sets the anchor point on the base asset from which the overlay offset is calculated.
-     * The default value is `top_left`.
-     * Maps to `lap` in the URL.
-     * Can only be used with one or more of `x`, `y`, `xCenter`, or `yCenter`.
-     *
-     * @param AnchorPoint|value-of<AnchorPoint> $anchorPoint
-     */
-    public function withAnchorPoint(AnchorPoint|string $anchorPoint): self
-    {
-        $self = clone $this;
-        $self['anchorPoint'] = $anchorPoint;
 
         return $self;
     }
 
     /**
      * Specifies the position of the overlay relative to the parent image or video.
-     * If one or more of `x`, `y`, `xCenter`, or `yCenter` parameters are specified, this parameter is ignored.
      * Maps to `lfo` in the URL.
      *
      * @param Focus|value-of<Focus> $focus
@@ -186,23 +114,6 @@ final class OverlayPosition implements BaseModel
     }
 
     /**
-     * Specifies the x-coordinate on the base asset where the overlay's center will be positioned.
-     * It also accepts arithmetic expressions such as `bw_mul_0.4` or `bw_sub_cw`.
-     * Maps to `lxc` in the URL.
-     * Cannot be used together with `x`, but can be used with `y`.
-     * Learn about [Arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
-     *
-     * @param XCenterShape $xCenter
-     */
-    public function withXCenter(float|string $xCenter): self
-    {
-        $self = clone $this;
-        $self['xCenter'] = $xCenter;
-
-        return $self;
-    }
-
-    /**
      * Specifies the y-coordinate of the top-left corner of the base asset where the overlay's top-left corner will be positioned.
      * It also accepts arithmetic expressions such as `bh_mul_0.4` or `bh_sub_ch`.
      * Maps to `ly` in the URL.
@@ -214,23 +125,6 @@ final class OverlayPosition implements BaseModel
     {
         $self = clone $this;
         $self['y'] = $y;
-
-        return $self;
-    }
-
-    /**
-     * Specifies the y-coordinate on the base asset where the overlay's center will be positioned.
-     * It also accepts arithmetic expressions such as `bh_mul_0.4` or `bh_sub_ch`.
-     * Maps to `lyc` in the URL.
-     * Cannot be used together with `y`, but can be used with `x`.
-     * Learn about [Arithmetic expressions](https://imagekit.io/docs/arithmetic-expressions-in-transformations).
-     *
-     * @param YCenterShape $yCenter
-     */
-    public function withYCenter(float|string $yCenter): self
-    {
-        $self = clone $this;
-        $self['yCenter'] = $yCenter;
 
         return $self;
     }

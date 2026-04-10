@@ -7,20 +7,20 @@ namespace Imagekit\Webhooks;
 use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Webhooks\FileVersionDeletedWebhookEvent\Data;
+use Imagekit\Webhooks\FileVersionDeleteEvent\Data;
 
 /**
  * Triggered when a file version is deleted.
  *
- * @phpstan-import-type DataShape from \Imagekit\Webhooks\FileVersionDeletedWebhookEvent\Data
+ * @phpstan-import-type DataShape from \Imagekit\Webhooks\FileVersionDeleteEvent\Data
  *
- * @phpstan-type FileVersionDeletedWebhookEventShape = array{
+ * @phpstan-type FileVersionDeleteEventShape = array{
  *   id: string, type: string, createdAt: \DateTimeInterface, data: Data|DataShape
  * }
  */
-final class FileVersionDeletedWebhookEvent implements BaseModel
+final class FileVersionDeleteEvent implements BaseModel
 {
-    /** @use SdkModel<FileVersionDeletedWebhookEventShape> */
+    /** @use SdkModel<FileVersionDeleteEventShape> */
     use SdkModel;
 
     /**
@@ -45,19 +45,17 @@ final class FileVersionDeletedWebhookEvent implements BaseModel
     public Data $data;
 
     /**
-     * `new FileVersionDeletedWebhookEvent()` is missing required properties by the API.
+     * `new FileVersionDeleteEvent()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * FileVersionDeletedWebhookEvent::with(
-     *   id: ..., type: ..., createdAt: ..., data: ...
-     * )
+     * FileVersionDeleteEvent::with(id: ..., type: ..., createdAt: ..., data: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
      *
      * ```
-     * (new FileVersionDeletedWebhookEvent)
+     * (new FileVersionDeleteEvent)
      *   ->withID(...)
      *   ->withType(...)
      *   ->withCreatedAt(...)

@@ -9,11 +9,11 @@ use Imagekit\Core\Conversion;
 use Imagekit\Core\Exceptions\WebhookException;
 use Imagekit\Core\Util;
 use Imagekit\ServiceContracts\WebhooksContract;
-use Imagekit\Webhooks\FileCreatedWebhookEvent;
-use Imagekit\Webhooks\FileDeletedWebhookEvent;
-use Imagekit\Webhooks\FileUpdatedWebhookEvent;
-use Imagekit\Webhooks\FileVersionCreatedWebhookEvent;
-use Imagekit\Webhooks\FileVersionDeletedWebhookEvent;
+use Imagekit\Webhooks\FileCreateEvent;
+use Imagekit\Webhooks\FileDeleteEvent;
+use Imagekit\Webhooks\FileUpdateEvent;
+use Imagekit\Webhooks\FileVersionCreateEvent;
+use Imagekit\Webhooks\FileVersionDeleteEvent;
 use Imagekit\Webhooks\UnsafeUnwrapWebhookEvent;
 use Imagekit\Webhooks\UnwrapWebhookEvent;
 use Imagekit\Webhooks\UploadPostTransformErrorEvent;
@@ -50,7 +50,7 @@ final class WebhooksService implements WebhooksContract
      */
     public function unsafeUnwrap(
         string $body
-    ): VideoTransformationAcceptedEvent|VideoTransformationReadyEvent|VideoTransformationErrorEvent|UploadPreTransformSuccessEvent|UploadPreTransformErrorEvent|UploadPostTransformSuccessEvent|UploadPostTransformErrorEvent|FileCreatedWebhookEvent|FileUpdatedWebhookEvent|FileDeletedWebhookEvent|FileVersionCreatedWebhookEvent|FileVersionDeletedWebhookEvent {
+    ): VideoTransformationAcceptedEvent|VideoTransformationReadyEvent|VideoTransformationErrorEvent|UploadPreTransformSuccessEvent|UploadPreTransformErrorEvent|UploadPostTransformSuccessEvent|UploadPostTransformErrorEvent|FileCreateEvent|FileUpdateEvent|FileDeleteEvent|FileVersionCreateEvent|FileVersionDeleteEvent {
         try {
             $decoded = Util::decodeJson($body);
 
@@ -74,7 +74,7 @@ final class WebhooksService implements WebhooksContract
         string $body,
         ?array $headers = null,
         ?string $secret = null
-    ): VideoTransformationAcceptedEvent|VideoTransformationReadyEvent|VideoTransformationErrorEvent|UploadPreTransformSuccessEvent|UploadPreTransformErrorEvent|UploadPostTransformSuccessEvent|UploadPostTransformErrorEvent|FileCreatedWebhookEvent|FileUpdatedWebhookEvent|FileDeletedWebhookEvent|FileVersionCreatedWebhookEvent|FileVersionDeletedWebhookEvent {
+    ): VideoTransformationAcceptedEvent|VideoTransformationReadyEvent|VideoTransformationErrorEvent|UploadPreTransformSuccessEvent|UploadPreTransformErrorEvent|UploadPostTransformSuccessEvent|UploadPostTransformErrorEvent|FileCreateEvent|FileUpdateEvent|FileDeleteEvent|FileVersionCreateEvent|FileVersionDeleteEvent {
         if (null !== $headers) {
             $secret = $secret ?? ($this->client->webhookSecret ?: null);
             if (null === $secret) {

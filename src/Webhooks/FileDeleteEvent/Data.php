@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Webhooks\FileDeletedWebhookEvent;
+namespace Imagekit\Webhooks\FileDeleteEvent;
 
 use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;

@@ -18,14 +18,14 @@ use Imagekit\Core\Conversion\Contracts\ConverterSource;
  * @phpstan-import-type UploadPreTransformErrorEventShape from \Imagekit\Webhooks\UploadPreTransformErrorEvent
  * @phpstan-import-type UploadPostTransformSuccessEventShape from \Imagekit\Webhooks\UploadPostTransformSuccessEvent
  * @phpstan-import-type UploadPostTransformErrorEventShape from \Imagekit\Webhooks\UploadPostTransformErrorEvent
- * @phpstan-import-type FileCreatedWebhookEventShape from \Imagekit\Webhooks\FileCreatedWebhookEvent
- * @phpstan-import-type FileUpdatedWebhookEventShape from \Imagekit\Webhooks\FileUpdatedWebhookEvent
- * @phpstan-import-type FileDeletedWebhookEventShape from \Imagekit\Webhooks\FileDeletedWebhookEvent
- * @phpstan-import-type FileVersionCreatedWebhookEventShape from \Imagekit\Webhooks\FileVersionCreatedWebhookEvent
- * @phpstan-import-type FileVersionDeletedWebhookEventShape from \Imagekit\Webhooks\FileVersionDeletedWebhookEvent
+ * @phpstan-import-type FileCreateEventShape from \Imagekit\Webhooks\FileCreateEvent
+ * @phpstan-import-type FileUpdateEventShape from \Imagekit\Webhooks\FileUpdateEvent
+ * @phpstan-import-type FileDeleteEventShape from \Imagekit\Webhooks\FileDeleteEvent
+ * @phpstan-import-type FileVersionCreateEventShape from \Imagekit\Webhooks\FileVersionCreateEvent
+ * @phpstan-import-type FileVersionDeleteEventShape from \Imagekit\Webhooks\FileVersionDeleteEvent
  *
- * @phpstan-type UnsafeUnwrapWebhookEventVariants = VideoTransformationAcceptedEvent|VideoTransformationReadyEvent|VideoTransformationErrorEvent|UploadPreTransformSuccessEvent|UploadPreTransformErrorEvent|UploadPostTransformSuccessEvent|UploadPostTransformErrorEvent|FileCreatedWebhookEvent|FileUpdatedWebhookEvent|FileDeletedWebhookEvent|FileVersionCreatedWebhookEvent|FileVersionDeletedWebhookEvent
- * @phpstan-type UnsafeUnwrapWebhookEventShape = UnsafeUnwrapWebhookEventVariants|VideoTransformationAcceptedEventShape|VideoTransformationReadyEventShape|VideoTransformationErrorEventShape|UploadPreTransformSuccessEventShape|UploadPreTransformErrorEventShape|UploadPostTransformSuccessEventShape|UploadPostTransformErrorEventShape|FileCreatedWebhookEventShape|FileUpdatedWebhookEventShape|FileDeletedWebhookEventShape|FileVersionCreatedWebhookEventShape|FileVersionDeletedWebhookEventShape
+ * @phpstan-type UnsafeUnwrapWebhookEventVariants = VideoTransformationAcceptedEvent|VideoTransformationReadyEvent|VideoTransformationErrorEvent|UploadPreTransformSuccessEvent|UploadPreTransformErrorEvent|UploadPostTransformSuccessEvent|UploadPostTransformErrorEvent|FileCreateEvent|FileUpdateEvent|FileDeleteEvent|FileVersionCreateEvent|FileVersionDeleteEvent
+ * @phpstan-type UnsafeUnwrapWebhookEventShape = UnsafeUnwrapWebhookEventVariants|VideoTransformationAcceptedEventShape|VideoTransformationReadyEventShape|VideoTransformationErrorEventShape|UploadPreTransformSuccessEventShape|UploadPreTransformErrorEventShape|UploadPostTransformSuccessEventShape|UploadPostTransformErrorEventShape|FileCreateEventShape|FileUpdateEventShape|FileDeleteEventShape|FileVersionCreateEventShape|FileVersionDeleteEventShape
  */
 final class UnsafeUnwrapWebhookEvent implements ConverterSource
 {
@@ -44,11 +44,11 @@ final class UnsafeUnwrapWebhookEvent implements ConverterSource
             UploadPreTransformErrorEvent::class,
             UploadPostTransformSuccessEvent::class,
             UploadPostTransformErrorEvent::class,
-            FileCreatedWebhookEvent::class,
-            FileUpdatedWebhookEvent::class,
-            FileDeletedWebhookEvent::class,
-            FileVersionCreatedWebhookEvent::class,
-            FileVersionDeletedWebhookEvent::class,
+            FileCreateEvent::class,
+            FileUpdateEvent::class,
+            FileDeleteEvent::class,
+            FileVersionCreateEvent::class,
+            FileVersionDeleteEvent::class,
         ];
     }
 }

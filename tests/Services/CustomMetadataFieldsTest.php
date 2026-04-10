@@ -62,7 +62,7 @@ final class CustomMetadataFieldsTest extends TestCase
             name: 'price',
             schema: [
                 'type' => 'Number',
-                'defaultValue' => 'string',
+                'defaultValue' => [true, 10, 'Hello'],
                 'isValueRequired' => true,
                 'maxLength' => 0,
                 'maxValue' => 3000,

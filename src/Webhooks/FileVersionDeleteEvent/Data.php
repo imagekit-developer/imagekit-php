@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Webhooks\FileVersionDeletedWebhookEvent;
+namespace Imagekit\Webhooks\FileVersionDeleteEvent;
 
 use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;

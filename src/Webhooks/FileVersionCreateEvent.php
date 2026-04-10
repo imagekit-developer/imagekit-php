@@ -14,13 +14,13 @@ use Imagekit\Files\File;
  *
  * @phpstan-import-type FileShape from \Imagekit\Files\File
  *
- * @phpstan-type FileVersionCreatedWebhookEventShape = array{
+ * @phpstan-type FileVersionCreateEventShape = array{
  *   id: string, type: string, createdAt: \DateTimeInterface, data: File|FileShape
  * }
  */
-final class FileVersionCreatedWebhookEvent implements BaseModel
+final class FileVersionCreateEvent implements BaseModel
 {
-    /** @use SdkModel<FileVersionCreatedWebhookEventShape> */
+    /** @use SdkModel<FileVersionCreateEventShape> */
     use SdkModel;
 
     /**
@@ -48,19 +48,17 @@ final class FileVersionCreatedWebhookEvent implements BaseModel
     public File $data;
 
     /**
-     * `new FileVersionCreatedWebhookEvent()` is missing required properties by the API.
+     * `new FileVersionCreateEvent()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * FileVersionCreatedWebhookEvent::with(
-     *   id: ..., type: ..., createdAt: ..., data: ...
-     * )
+     * FileVersionCreateEvent::with(id: ..., type: ..., createdAt: ..., data: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
      *
      * ```
-     * (new FileVersionCreatedWebhookEvent)
+     * (new FileVersionCreateEvent)
      *   ->withID(...)
      *   ->withType(...)
      *   ->withCreatedAt(...)

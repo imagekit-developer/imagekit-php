@@ -7,20 +7,20 @@ namespace Imagekit\Webhooks;
 use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Webhooks\FileDeletedWebhookEvent\Data;
+use Imagekit\Files\File;
 
 /**
- * Triggered when a file is deleted.
+ * Triggered when a file is created.
  *
- * @phpstan-import-type DataShape from \Imagekit\Webhooks\FileDeletedWebhookEvent\Data
+ * @phpstan-import-type FileShape from \Imagekit\Files\File
  *
- * @phpstan-type FileDeletedWebhookEventShape = array{
- *   id: string, type: string, createdAt: \DateTimeInterface, data: Data|DataShape
+ * @phpstan-type FileCreateEventShape = array{
+ *   id: string, type: string, createdAt: \DateTimeInterface, data: File|FileShape
  * }
  */
-final class FileDeletedWebhookEvent implements BaseModel
+final class FileCreateEvent implements BaseModel
 {
-    /** @use SdkModel<FileDeletedWebhookEventShape> */
+    /** @use SdkModel<FileCreateEventShape> */
     use SdkModel;
 
     /**
@@ -41,21 +41,24 @@ final class FileDeletedWebhookEvent implements BaseModel
     #[Required('created_at')]
     public \DateTimeInterface $createdAt;
 
+    /**
+     * Object containing details of a file or file version.
+     */
     #[Required]
-    public Data $data;
+    public File $data;
 
     /**
-     * `new FileDeletedWebhookEvent()` is missing required properties by the API.
+     * `new FileCreateEvent()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * FileDeletedWebhookEvent::with(id: ..., type: ..., createdAt: ..., data: ...)
+     * FileCreateEvent::with(id: ..., type: ..., createdAt: ..., data: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
      *
      * ```
-     * (new FileDeletedWebhookEvent)
+     * (new FileCreateEvent)
      *   ->withID(...)
      *   ->withType(...)
      *   ->withCreatedAt(...)
@@ -72,13 +75,13 @@ final class FileDeletedWebhookEvent implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Data|DataShape $data
+     * @param File|FileShape $data
      */
     public static function with(
         string $id,
         string $type,
         \DateTimeInterface $createdAt,
-        Data|array $data
+        File|array $data
     ): self {
         $self = new self;
 
@@ -124,9 +127,11 @@ final class FileDeletedWebhookEvent implements BaseModel
     }
 
     /**
-     * @param Data|DataShape $data
+     * Object containing details of a file or file version.
+     *
+     * @param File|FileShape $data
      */
-    public function withData(Data|array $data): self
+    public function withData(File|array $data): self
     {
         $self = clone $this;
         $self['data'] = $data;

@@ -7,20 +7,20 @@ namespace Imagekit\Webhooks;
 use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Files\File;
+use Imagekit\Webhooks\FileDeleteEvent\Data;
 
 /**
- * Triggered when a file is updated.
+ * Triggered when a file is deleted.
  *
- * @phpstan-import-type FileShape from \Imagekit\Files\File
+ * @phpstan-import-type DataShape from \Imagekit\Webhooks\FileDeleteEvent\Data
  *
- * @phpstan-type FileUpdatedWebhookEventShape = array{
- *   id: string, type: string, createdAt: \DateTimeInterface, data: File|FileShape
+ * @phpstan-type FileDeleteEventShape = array{
+ *   id: string, type: string, createdAt: \DateTimeInterface, data: Data|DataShape
  * }
  */
-final class FileUpdatedWebhookEvent implements BaseModel
+final class FileDeleteEvent implements BaseModel
 {
-    /** @use SdkModel<FileUpdatedWebhookEventShape> */
+    /** @use SdkModel<FileDeleteEventShape> */
     use SdkModel;
 
     /**
@@ -41,24 +41,21 @@ final class FileUpdatedWebhookEvent implements BaseModel
     #[Required('created_at')]
     public \DateTimeInterface $createdAt;
 
-    /**
-     * Object containing details of a file or file version.
-     */
     #[Required]
-    public File $data;
+    public Data $data;
 
     /**
-     * `new FileUpdatedWebhookEvent()` is missing required properties by the API.
+     * `new FileDeleteEvent()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * FileUpdatedWebhookEvent::with(id: ..., type: ..., createdAt: ..., data: ...)
+     * FileDeleteEvent::with(id: ..., type: ..., createdAt: ..., data: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
      *
      * ```
-     * (new FileUpdatedWebhookEvent)
+     * (new FileDeleteEvent)
      *   ->withID(...)
      *   ->withType(...)
      *   ->withCreatedAt(...)
@@ -75,13 +72,13 @@ final class FileUpdatedWebhookEvent implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param File|FileShape $data
+     * @param Data|DataShape $data
      */
     public static function with(
         string $id,
         string $type,
         \DateTimeInterface $createdAt,
-        File|array $data
+        Data|array $data
     ): self {
         $self = new self;
 
@@ -127,11 +124,9 @@ final class FileUpdatedWebhookEvent implements BaseModel
     }
 
     /**
-     * Object containing details of a file or file version.
-     *
-     * @param File|FileShape $data
+     * @param Data|DataShape $data
      */
-    public function withData(File|array $data): self
+    public function withData(Data|array $data): self
     {
         $self = clone $this;
         $self['data'] = $data;

@@ -7,6 +7,7 @@ namespace Imagekit\Services;
 use Imagekit\Client;
 use Imagekit\Core\Contracts\BaseResponse;
 use Imagekit\Core\Exceptions\APIException;
+use Imagekit\Core\FileParam;
 use Imagekit\Files\File;
 use Imagekit\Files\FileCopyParams;
 use Imagekit\Files\FileCopyResponse;
@@ -257,7 +258,7 @@ final class FilesRawService implements FilesRawContract
      * - [Quick start guides](/docs/quick-start-guides) for various frameworks and technologies.
      *
      * @param array{
-     *   file: string,
+     *   file: string|FileParam,
      *   fileName: string,
      *   token?: string,
      *   checks?: string,

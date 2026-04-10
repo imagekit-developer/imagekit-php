@@ -4,6 +4,7 @@ namespace Tests\Services\Beta\V2;
 
 use Imagekit\Beta\V2\Files\FileUploadResponse;
 use Imagekit\Client;
+use Imagekit\Core\FileParam;
 use Imagekit\Core\Util;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
@@ -40,8 +41,8 @@ final class FilesTest extends TestCase
         }
 
         $result = $this->client->beta->v2->files->upload(
-            file: 'file',
-            fileName: 'fileName'
+            file: FileParam::fromString('Example data', filename: uniqid('file-upload-', true)),
+            fileName: 'fileName',
         );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
@@ -56,7 +57,7 @@ final class FilesTest extends TestCase
         }
 
         $result = $this->client->beta->v2->files->upload(
-            file: 'file',
+            file: FileParam::fromString('Example data', filename: uniqid('file-upload-', true)),
             fileName: 'fileName',
             token: 'token',
             checks: "\"request.folder\" : \"marketing/\"\n",

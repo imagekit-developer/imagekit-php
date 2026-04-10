@@ -8,6 +8,7 @@ use Imagekit\Beta\V2\Files\FileUploadParams\ResponseField;
 use Imagekit\Beta\V2\Files\FileUploadParams\Transformation;
 use Imagekit\Beta\V2\Files\FileUploadResponse;
 use Imagekit\Core\Exceptions\APIException;
+use Imagekit\Core\FileParam;
 use Imagekit\RequestOptions;
 
 /**
@@ -20,7 +21,7 @@ interface FilesContract
     /**
      * @api
      *
-     * @param string $file The API accepts any of the following:
+     * @param string|FileParam $file The API accepts any of the following:
      *
      * - **Binary data** – send the raw bytes as `multipart/form-data`.
      * - **HTTP / HTTPS URL** – a publicly reachable URL that ImageKit’s servers can fetch.
@@ -76,7 +77,7 @@ interface FilesContract
      * @throws APIException
      */
     public function upload(
-        string $file,
+        string|FileParam $file,
         string $fileName,
         ?string $token = null,
         ?string $checks = null,

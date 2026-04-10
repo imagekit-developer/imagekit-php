@@ -3,6 +3,7 @@
 namespace Tests\Services;
 
 use Imagekit\Client;
+use Imagekit\Core\FileParam;
 use Imagekit\Core\Util;
 use Imagekit\Files\File;
 use Imagekit\Files\FileCopyResponse;
@@ -181,7 +182,10 @@ final class FilesTest extends TestCase
             $this->markTestSkipped('Mock server tests are disabled');
         }
 
-        $result = $this->client->files->upload(file: 'file', fileName: 'fileName');
+        $result = $this->client->files->upload(
+            file: FileParam::fromString('Example data', filename: uniqid('file-upload-', true)),
+            fileName: 'fileName',
+        );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(FileUploadResponse::class, $result);
@@ -195,7 +199,7 @@ final class FilesTest extends TestCase
         }
 
         $result = $this->client->files->upload(
-            file: 'file',
+            file: FileParam::fromString('Example data', filename: uniqid('file-upload-', true)),
             fileName: 'fileName',
             token: 'token',
             checks: "\"request.folder\" : \"marketing/\"\n",

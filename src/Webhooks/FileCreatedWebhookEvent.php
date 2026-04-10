@@ -7,20 +7,20 @@ namespace Imagekit\Webhooks;
 use Imagekit\Core\Attributes\Required;
 use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Webhooks\DamFileVersionDeleteEvent\Data;
+use Imagekit\Files\File;
 
 /**
- * Triggered when a file version is deleted.
+ * Triggered when a file is created.
  *
- * @phpstan-import-type DataShape from \Imagekit\Webhooks\DamFileVersionDeleteEvent\Data
+ * @phpstan-import-type FileShape from \Imagekit\Files\File
  *
- * @phpstan-type DamFileVersionDeleteEventShape = array{
- *   id: string, type: string, createdAt: \DateTimeInterface, data: Data|DataShape
+ * @phpstan-type FileCreatedWebhookEventShape = array{
+ *   id: string, type: string, createdAt: \DateTimeInterface, data: File|FileShape
  * }
  */
-final class DamFileVersionDeleteEvent implements BaseModel
+final class FileCreatedWebhookEvent implements BaseModel
 {
-    /** @use SdkModel<DamFileVersionDeleteEventShape> */
+    /** @use SdkModel<FileCreatedWebhookEventShape> */
     use SdkModel;
 
     /**
@@ -41,21 +41,24 @@ final class DamFileVersionDeleteEvent implements BaseModel
     #[Required('created_at')]
     public \DateTimeInterface $createdAt;
 
+    /**
+     * Object containing details of a file or file version.
+     */
     #[Required]
-    public Data $data;
+    public File $data;
 
     /**
-     * `new DamFileVersionDeleteEvent()` is missing required properties by the API.
+     * `new FileCreatedWebhookEvent()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * DamFileVersionDeleteEvent::with(id: ..., type: ..., createdAt: ..., data: ...)
+     * FileCreatedWebhookEvent::with(id: ..., type: ..., createdAt: ..., data: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
      *
      * ```
-     * (new DamFileVersionDeleteEvent)
+     * (new FileCreatedWebhookEvent)
      *   ->withID(...)
      *   ->withType(...)
      *   ->withCreatedAt(...)
@@ -72,13 +75,13 @@ final class DamFileVersionDeleteEvent implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Data|DataShape $data
+     * @param File|FileShape $data
      */
     public static function with(
         string $id,
         string $type,
         \DateTimeInterface $createdAt,
-        Data|array $data
+        File|array $data
     ): self {
         $self = new self;
 
@@ -124,9 +127,11 @@ final class DamFileVersionDeleteEvent implements BaseModel
     }
 
     /**
-     * @param Data|DataShape $data
+     * Object containing details of a file or file version.
+     *
+     * @param File|FileShape $data
      */
-    public function withData(Data|array $data): self
+    public function withData(File|array $data): self
     {
         $self = clone $this;
         $self['data'] = $data;

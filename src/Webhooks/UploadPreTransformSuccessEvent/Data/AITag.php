@@ -9,6 +9,8 @@ use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
 /**
+ * AI-generated tag associated with an image. These tags can be added using the `google-auto-tagging` or `aws-auto-tagging` extensions.
+ *
  * @phpstan-type AITagShape = array{
  *   confidence?: float|null, name?: string|null, source?: string|null
  * }

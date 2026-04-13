@@ -55,7 +55,7 @@ final class FileUploadResponse implements BaseModel
     use SdkModel;
 
     /**
-     * An array of tags assigned to the uploaded file by auto tagging.
+     * Array of `AITags` associated with the image. If no `AITags` are set, it will be null. These tags can be added using the `google-auto-tagging` or `aws-auto-tagging` extensions.
      *
      * @var list<AITag>|null $aiTags
      */
@@ -302,7 +302,7 @@ final class FileUploadResponse implements BaseModel
     }
 
     /**
-     * An array of tags assigned to the uploaded file by auto tagging.
+     * Array of `AITags` associated with the image. If no `AITags` are set, it will be null. These tags can be added using the `google-auto-tagging` or `aws-auto-tagging` extensions.
      *
      * @param list<AITag|AITagShape>|null $aiTags
      */

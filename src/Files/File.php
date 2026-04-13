@@ -56,7 +56,7 @@ final class File implements BaseModel
     use SdkModel;
 
     /**
-     * An array of tags assigned to the file by auto tagging.
+     * Array of `AITags` associated with the image. If no `AITags` are set, it will be null. These tags can be added using the `google-auto-tagging` or `aws-auto-tagging` extensions.
      *
      * @var list<AITag>|null $aiTags
      */
@@ -88,7 +88,7 @@ final class File implements BaseModel
     public ?string $customCoordinates;
 
     /**
-     * An object with custom metadata for the file.
+     * A key-value data associated with the asset. Use `responseField` in API request to get `customMetadata` in the upload API response. Before setting any custom metadata on an asset, you have to create the field using custom metadata fields API. Send `customMetadata` in `responseFields` in API request to get the value of this field.
      *
      * @var array<string,mixed>|null $customMetadata
      */
@@ -108,7 +108,7 @@ final class File implements BaseModel
     public ?int $duration;
 
     /**
-     * Consolidated embedded metadata associated with the file. It includes exif, iptc, and xmp data.
+     * Consolidated embedded metadata associated with the file. It includes exif, iptc, and xmp data. Send `embeddedMetadata` in `responseFields` in API request to get embeddedMetadata in the upload API response.
      *
      * @var array<string,mixed>|null $embeddedMetadata
      */
@@ -222,7 +222,7 @@ final class File implements BaseModel
     public ?string $url;
 
     /**
-     * An object with details of the file version.
+     * An object containing the file or file version's `id` (versionId) and `name`.
      */
     #[Optional]
     public ?VersionInfo $versionInfo;
@@ -322,7 +322,7 @@ final class File implements BaseModel
     }
 
     /**
-     * An array of tags assigned to the file by auto tagging.
+     * Array of `AITags` associated with the image. If no `AITags` are set, it will be null. These tags can be added using the `google-auto-tagging` or `aws-auto-tagging` extensions.
      *
      * @param list<AITag|AITagShape>|null $aiTags
      */
@@ -379,7 +379,7 @@ final class File implements BaseModel
     }
 
     /**
-     * An object with custom metadata for the file.
+     * A key-value data associated with the asset. Use `responseField` in API request to get `customMetadata` in the upload API response. Before setting any custom metadata on an asset, you have to create the field using custom metadata fields API. Send `customMetadata` in `responseFields` in API request to get the value of this field.
      *
      * @param array<string,mixed> $customMetadata
      */
@@ -414,7 +414,7 @@ final class File implements BaseModel
     }
 
     /**
-     * Consolidated embedded metadata associated with the file. It includes exif, iptc, and xmp data.
+     * Consolidated embedded metadata associated with the file. It includes exif, iptc, and xmp data. Send `embeddedMetadata` in `responseFields` in API request to get embeddedMetadata in the upload API response.
      *
      * @param array<string,mixed> $embeddedMetadata
      */
@@ -613,7 +613,7 @@ final class File implements BaseModel
     }
 
     /**
-     * An object with details of the file version.
+     * An object containing the file or file version's `id` (versionId) and `name`.
      *
      * @param VersionInfo|VersionInfoShape $versionInfo
      */

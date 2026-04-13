@@ -9,7 +9,7 @@ use Imagekit\Core\Concerns\SdkModel;
 use Imagekit\Core\Contracts\BaseModel;
 
 /**
- * An object with details of the file version.
+ * An object containing the file or file version's `id` (versionId) and `name`.
  *
  * @phpstan-type VersionInfoShape = array{id?: string|null, name?: string|null}
  */

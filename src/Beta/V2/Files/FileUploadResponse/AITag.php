@@ -31,7 +31,7 @@ final class AITag implements BaseModel
     public ?string $name;
 
     /**
-     * Array of `AITags` associated with the image. If no `AITags` are set, it will be null. These tags can be added using the `google-auto-tagging` or `aws-auto-tagging` extensions.
+     * Source of the tag. Possible values are `google-auto-tagging` and `aws-auto-tagging`.
      */
     #[Optional]
     public ?string $source;
@@ -83,7 +83,7 @@ final class AITag implements BaseModel
     }
 
     /**
-     * Array of `AITags` associated with the image. If no `AITags` are set, it will be null. These tags can be added using the `google-auto-tagging` or `aws-auto-tagging` extensions.
+     * Source of the tag. Possible values are `google-auto-tagging` and `aws-auto-tagging`.
      */
     public function withSource(string $source): self
     {

@@ -7,6 +7,7 @@ namespace Imagekit;
 use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Discovery\Psr18ClientDiscovery;
 use Imagekit\Core\BaseClient;
+use Imagekit\Core\Implementation\StreamingHttpClient;
 use Imagekit\Core\Util;
 use Imagekit\Services\AccountsService;
 use Imagekit\Services\AssetsService;
@@ -112,6 +113,11 @@ class Client extends BaseClient
             ),
             $requestOptions,
         );
+
+        if (is_null($options->streamingTransporter)) {
+            assert(!is_null($options->transporter));
+            $options->streamingTransporter = new StreamingHttpClient($options->transporter);
+        }
 
         /** @var array<string, string|null> $headers */
         $headers = [

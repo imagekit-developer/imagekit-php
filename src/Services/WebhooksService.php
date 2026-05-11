@@ -75,9 +75,9 @@ final class WebhooksService implements WebhooksContract
         ?array $headers = null,
         ?string $secret = null
     ): VideoTransformationAcceptedEvent|VideoTransformationReadyEvent|VideoTransformationErrorEvent|UploadPreTransformSuccessEvent|UploadPreTransformErrorEvent|UploadPostTransformSuccessEvent|UploadPostTransformErrorEvent|FileCreateEvent|FileUpdateEvent|FileDeleteEvent|FileVersionCreateEvent|FileVersionDeleteEvent {
-        if (null !== $headers) {
+        if (!is_null($headers)) {
             $secret = $secret ?? ($this->client->webhookSecret ?: null);
-            if (null === $secret) {
+            if (is_null($secret)) {
                 throw new WebhookException('Webhook key must not be null in order to unwrap');
             }
 

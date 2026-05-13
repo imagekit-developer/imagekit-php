@@ -73,6 +73,7 @@ use Imagekit\Transformation\VideoCodec;
  *   background?: string|null,
  *   blur?: float|null,
  *   border?: string|null,
+ *   colorize?: string|null,
  *   colorProfile?: bool|null,
  *   colorReplace?: string|null,
  *   contrastStretch?: bool|null,
@@ -234,6 +235,15 @@ final class Transformation implements BaseModel
      */
     #[Optional]
     public ?string $border;
+
+    /**
+     * Applies a color tint to the image. Accepts color and intensity as optional parameters.
+     * - `co-color` - Color to apply (e.g., `red`, `blue`, `FF0022`). Default is gray color.
+     * - `in-intensity` - Intensity of the color (0-100). Default is 35.
+     * See [Colorize](https://imagekit.io/docs/effects-and-enhancements#colorize---e-colorize).
+     */
+    #[Optional]
+    public ?string $colorize;
 
     /**
      * Indicates whether the output image should retain the original color profile.
@@ -645,6 +655,7 @@ final class Transformation implements BaseModel
         ?string $background = null,
         ?float $blur = null,
         ?string $border = null,
+        ?string $colorize = null,
         ?bool $colorProfile = null,
         ?string $colorReplace = null,
         ?bool $contrastStretch = null,
@@ -702,6 +713,7 @@ final class Transformation implements BaseModel
         null !== $background && $self['background'] = $background;
         null !== $blur && $self['blur'] = $blur;
         null !== $border && $self['border'] = $border;
+        null !== $colorize && $self['colorize'] = $colorize;
         null !== $colorProfile && $self['colorProfile'] = $colorProfile;
         null !== $colorReplace && $self['colorReplace'] = $colorReplace;
         null !== $contrastStretch && $self['contrastStretch'] = $contrastStretch;
@@ -923,6 +935,20 @@ final class Transformation implements BaseModel
     {
         $self = clone $this;
         $self['border'] = $border;
+
+        return $self;
+    }
+
+    /**
+     * Applies a color tint to the image. Accepts color and intensity as optional parameters.
+     * - `co-color` - Color to apply (e.g., `red`, `blue`, `FF0022`). Default is gray color.
+     * - `in-intensity` - Intensity of the color (0-100). Default is 35.
+     * See [Colorize](https://imagekit.io/docs/effects-and-enhancements#colorize---e-colorize).
+     */
+    public function withColorize(string $colorize): self
+    {
+        $self = clone $this;
+        $self['colorize'] = $colorize;
 
         return $self;
     }

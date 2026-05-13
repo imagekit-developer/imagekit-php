@@ -14,4 +14,8 @@ enum CropMode: string
     case EXTRACT = 'extract';
 
     case PAD_EXTRACT = 'pad_extract';
+
+    case PAD_RESIZE_NO_ENLARGE = 'pad_resize_no_enlarge';
+
+    case PAD_EXTRACT_NO_SHRINK = 'pad_extract_no_shrink';
 }

@@ -18,4 +18,6 @@ enum Crop: string
     case AT_LEAST = 'at_least';
 
     case MAINTAIN_RATIO = 'maintain_ratio';
+
+    case MAINTAIN_RATIO_NO_ENLARGE = 'maintain_ratio_no_enlarge';
 }

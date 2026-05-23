@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Files\FileUploadResponse;
+namespace ImageKit\Files\FileUploadResponse;
 
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Files\FileUploadResponse\ExtensionStatus\AIAutoDescription;
-use Imagekit\Files\FileUploadResponse\ExtensionStatus\AITasks;
-use Imagekit\Files\FileUploadResponse\ExtensionStatus\AwsAutoTagging;
-use Imagekit\Files\FileUploadResponse\ExtensionStatus\GoogleAutoTagging;
-use Imagekit\Files\FileUploadResponse\ExtensionStatus\RemoveBg;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Files\FileUploadResponse\ExtensionStatus\AIAutoDescription;
+use ImageKit\Files\FileUploadResponse\ExtensionStatus\AITasks;
+use ImageKit\Files\FileUploadResponse\ExtensionStatus\AwsAutoTagging;
+use ImageKit\Files\FileUploadResponse\ExtensionStatus\GoogleAutoTagging;
+use ImageKit\Files\FileUploadResponse\ExtensionStatus\RemoveBg;
 
 /**
  * Extension names with their processing status at the time of completion of the request. It could have one of the following status values:

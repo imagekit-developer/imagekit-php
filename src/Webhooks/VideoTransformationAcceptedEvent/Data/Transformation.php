@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Webhooks\VideoTransformationAcceptedEvent\Data;
+namespace ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data;
 
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation\Options;
-use Imagekit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation\Type;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation\Options;
+use ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation\Type;
 
 /**
  * Base information about a video transformation request.
  *
- * @phpstan-import-type OptionsShape from \Imagekit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation\Options
+ * @phpstan-import-type OptionsShape from \ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation\Options
  *
  * @phpstan-type TransformationShape = array{
  *   type: Type|value-of<Type>, options?: null|Options|OptionsShape

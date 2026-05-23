@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Accounts\Origins;
+namespace ImageKit\Accounts\Origins;
 
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Concerns\SdkParams;
-use Imagekit\Core\Contracts\BaseModel;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Concerns\SdkParams;
+use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * **Note:** This API is currently in beta.
  * Creates a new origin and returns the origin object.
  *
- * @see Imagekit\Services\Accounts\OriginsService::create()
+ * @see ImageKit\Services\Accounts\OriginsService::create()
  *
  * @phpstan-type OriginCreateParamsShape = array{
  *   type: 'AKENEO_PIM',

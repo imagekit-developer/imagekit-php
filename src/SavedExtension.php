@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Imagekit;
+namespace ImageKit;
 
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\ExtensionConfig\AITasksExtension;
-use Imagekit\ExtensionConfig\AutoDescriptionExtension;
-use Imagekit\ExtensionConfig\AutoTaggingExtension;
-use Imagekit\ExtensionConfig\RemovedotBgExtension;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\ExtensionConfig\AITasksExtension;
+use ImageKit\ExtensionConfig\AutoDescriptionExtension;
+use ImageKit\ExtensionConfig\AutoTaggingExtension;
+use ImageKit\ExtensionConfig\RemovedotBgExtension;
 
 /**
  * Saved extension object containing extension configuration.
  *
- * @phpstan-import-type ExtensionConfigVariants from \Imagekit\ExtensionConfig
- * @phpstan-import-type ExtensionConfigShape from \Imagekit\ExtensionConfig
+ * @phpstan-import-type ExtensionConfigVariants from \ImageKit\ExtensionConfig
+ * @phpstan-import-type ExtensionConfigShape from \ImageKit\ExtensionConfig
  *
  * @phpstan-type SavedExtensionShape = array{
  *   id?: string|null,

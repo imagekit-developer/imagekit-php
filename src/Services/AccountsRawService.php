@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Services;
+namespace ImageKit\Services;
 
-use Imagekit\Client;
-use Imagekit\ServiceContracts\AccountsRawContract;
+use ImageKit\Client;
+use ImageKit\ServiceContracts\AccountsRawContract;
 
 final class AccountsRawService implements AccountsRawContract
 {

@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Imagekit;
+namespace ImageKit;
 
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Transformation\AudioCodec;
-use Imagekit\Transformation\Crop;
-use Imagekit\Transformation\CropMode;
-use Imagekit\Transformation\Flip;
-use Imagekit\Transformation\Format;
-use Imagekit\Transformation\VideoCodec;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Transformation\AudioCodec;
+use ImageKit\Transformation\Crop;
+use ImageKit\Transformation\CropMode;
+use ImageKit\Transformation\Flip;
+use ImageKit\Transformation\Format;
+use ImageKit\Transformation\VideoCodec;
 
 /**
  * The SDK provides easy-to-use names for transformations. These names are converted to the corresponding transformation string before being added to the URL.
@@ -20,44 +20,44 @@ use Imagekit\Transformation\VideoCodec;
  * You can use the `raw` parameter to pass the transformation string directly.
  * See the [Transformations documentation](https://imagekit.io/docs/transformations).
  *
- * @phpstan-import-type AIDropShadowVariants from \Imagekit\Transformation\AIDropShadow
- * @phpstan-import-type AspectRatioVariants from \Imagekit\Transformation\AspectRatio
- * @phpstan-import-type DurationVariants from \Imagekit\Transformation\Duration
- * @phpstan-import-type EndOffsetVariants from \Imagekit\Transformation\EndOffset
- * @phpstan-import-type GradientVariants from \Imagekit\Transformation\Gradient
- * @phpstan-import-type HeightVariants from \Imagekit\Transformation\Height
- * @phpstan-import-type PageVariants from \Imagekit\Transformation\Page
- * @phpstan-import-type RadiusVariants from \Imagekit\Transformation\Radius
- * @phpstan-import-type RotationVariants from \Imagekit\Transformation\Rotation
- * @phpstan-import-type ShadowVariants from \Imagekit\Transformation\Shadow
- * @phpstan-import-type SharpenVariants from \Imagekit\Transformation\Sharpen
- * @phpstan-import-type StartOffsetVariants from \Imagekit\Transformation\StartOffset
- * @phpstan-import-type TrimVariants from \Imagekit\Transformation\Trim
- * @phpstan-import-type UnsharpMaskVariants from \Imagekit\Transformation\UnsharpMask
- * @phpstan-import-type WidthVariants from \Imagekit\Transformation\Width
- * @phpstan-import-type XVariants from \Imagekit\Transformation\X
- * @phpstan-import-type XCenterVariants from \Imagekit\Transformation\XCenter
- * @phpstan-import-type YVariants from \Imagekit\Transformation\Y
- * @phpstan-import-type YCenterVariants from \Imagekit\Transformation\YCenter
- * @phpstan-import-type AIDropShadowShape from \Imagekit\Transformation\AIDropShadow
- * @phpstan-import-type AspectRatioShape from \Imagekit\Transformation\AspectRatio
- * @phpstan-import-type DurationShape from \Imagekit\Transformation\Duration
- * @phpstan-import-type EndOffsetShape from \Imagekit\Transformation\EndOffset
- * @phpstan-import-type GradientShape from \Imagekit\Transformation\Gradient
- * @phpstan-import-type HeightShape from \Imagekit\Transformation\Height
- * @phpstan-import-type PageShape from \Imagekit\Transformation\Page
- * @phpstan-import-type RadiusShape from \Imagekit\Transformation\Radius
- * @phpstan-import-type RotationShape from \Imagekit\Transformation\Rotation
- * @phpstan-import-type ShadowShape from \Imagekit\Transformation\Shadow
- * @phpstan-import-type SharpenShape from \Imagekit\Transformation\Sharpen
- * @phpstan-import-type StartOffsetShape from \Imagekit\Transformation\StartOffset
- * @phpstan-import-type TrimShape from \Imagekit\Transformation\Trim
- * @phpstan-import-type UnsharpMaskShape from \Imagekit\Transformation\UnsharpMask
- * @phpstan-import-type WidthShape from \Imagekit\Transformation\Width
- * @phpstan-import-type XShape from \Imagekit\Transformation\X
- * @phpstan-import-type XCenterShape from \Imagekit\Transformation\XCenter
- * @phpstan-import-type YShape from \Imagekit\Transformation\Y
- * @phpstan-import-type YCenterShape from \Imagekit\Transformation\YCenter
+ * @phpstan-import-type AIDropShadowVariants from \ImageKit\Transformation\AIDropShadow
+ * @phpstan-import-type AspectRatioVariants from \ImageKit\Transformation\AspectRatio
+ * @phpstan-import-type DurationVariants from \ImageKit\Transformation\Duration
+ * @phpstan-import-type EndOffsetVariants from \ImageKit\Transformation\EndOffset
+ * @phpstan-import-type GradientVariants from \ImageKit\Transformation\Gradient
+ * @phpstan-import-type HeightVariants from \ImageKit\Transformation\Height
+ * @phpstan-import-type PageVariants from \ImageKit\Transformation\Page
+ * @phpstan-import-type RadiusVariants from \ImageKit\Transformation\Radius
+ * @phpstan-import-type RotationVariants from \ImageKit\Transformation\Rotation
+ * @phpstan-import-type ShadowVariants from \ImageKit\Transformation\Shadow
+ * @phpstan-import-type SharpenVariants from \ImageKit\Transformation\Sharpen
+ * @phpstan-import-type StartOffsetVariants from \ImageKit\Transformation\StartOffset
+ * @phpstan-import-type TrimVariants from \ImageKit\Transformation\Trim
+ * @phpstan-import-type UnsharpMaskVariants from \ImageKit\Transformation\UnsharpMask
+ * @phpstan-import-type WidthVariants from \ImageKit\Transformation\Width
+ * @phpstan-import-type XVariants from \ImageKit\Transformation\X
+ * @phpstan-import-type XCenterVariants from \ImageKit\Transformation\XCenter
+ * @phpstan-import-type YVariants from \ImageKit\Transformation\Y
+ * @phpstan-import-type YCenterVariants from \ImageKit\Transformation\YCenter
+ * @phpstan-import-type AIDropShadowShape from \ImageKit\Transformation\AIDropShadow
+ * @phpstan-import-type AspectRatioShape from \ImageKit\Transformation\AspectRatio
+ * @phpstan-import-type DurationShape from \ImageKit\Transformation\Duration
+ * @phpstan-import-type EndOffsetShape from \ImageKit\Transformation\EndOffset
+ * @phpstan-import-type GradientShape from \ImageKit\Transformation\Gradient
+ * @phpstan-import-type HeightShape from \ImageKit\Transformation\Height
+ * @phpstan-import-type PageShape from \ImageKit\Transformation\Page
+ * @phpstan-import-type RadiusShape from \ImageKit\Transformation\Radius
+ * @phpstan-import-type RotationShape from \ImageKit\Transformation\Rotation
+ * @phpstan-import-type ShadowShape from \ImageKit\Transformation\Shadow
+ * @phpstan-import-type SharpenShape from \ImageKit\Transformation\Sharpen
+ * @phpstan-import-type StartOffsetShape from \ImageKit\Transformation\StartOffset
+ * @phpstan-import-type TrimShape from \ImageKit\Transformation\Trim
+ * @phpstan-import-type UnsharpMaskShape from \ImageKit\Transformation\UnsharpMask
+ * @phpstan-import-type WidthShape from \ImageKit\Transformation\Width
+ * @phpstan-import-type XShape from \ImageKit\Transformation\X
+ * @phpstan-import-type XCenterShape from \ImageKit\Transformation\XCenter
+ * @phpstan-import-type YShape from \ImageKit\Transformation\Y
+ * @phpstan-import-type YCenterShape from \ImageKit\Transformation\YCenter
  *
  * @phpstan-type TransformationShape = array{
  *   aiChangeBackground?: string|null,

@@ -2,26 +2,26 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Accounts\URLEndpoints;
+namespace ImageKit\Accounts\URLEndpoints;
 
-use Imagekit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter;
-use Imagekit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\AkamaiURLRewriter;
-use Imagekit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\CloudinaryURLRewriter;
-use Imagekit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\ImgixURLRewriter;
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Concerns\SdkParams;
-use Imagekit\Core\Contracts\BaseModel;
+use ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter;
+use ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\AkamaiURLRewriter;
+use ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\CloudinaryURLRewriter;
+use ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\ImgixURLRewriter;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Concerns\SdkParams;
+use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * **Note:** This API is currently in beta.
  * Updates the URL‑endpoint identified by `id` and returns the updated object.
  *
- * @see Imagekit\Services\Accounts\URLEndpointsService::update()
+ * @see ImageKit\Services\Accounts\URLEndpointsService::update()
  *
- * @phpstan-import-type URLRewriterVariants from \Imagekit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter
- * @phpstan-import-type URLRewriterShape from \Imagekit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter
+ * @phpstan-import-type URLRewriterVariants from \ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter
+ * @phpstan-import-type URLRewriterShape from \ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter
  *
  * @phpstan-type URLEndpointUpdateParamsShape = array{
  *   description: string,

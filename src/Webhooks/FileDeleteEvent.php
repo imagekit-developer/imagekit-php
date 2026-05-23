@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Webhooks;
+namespace ImageKit\Webhooks;
 
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Webhooks\FileDeleteEvent\Data;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Webhooks\FileDeleteEvent\Data;
 
 /**
  * Triggered when a file is deleted.
  *
- * @phpstan-import-type DataShape from \Imagekit\Webhooks\FileDeleteEvent\Data
+ * @phpstan-import-type DataShape from \ImageKit\Webhooks\FileDeleteEvent\Data
  *
  * @phpstan-type FileDeleteEventShape = array{
  *   id: string, type: string, createdAt: \DateTimeInterface, data: Data|DataShape

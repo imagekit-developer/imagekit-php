@@ -8,21 +8,13 @@ The REST API documentation can be found on [imagekit.io](https://imagekit.io/doc
 
 ## Installation
 
-To use this package, install via Composer by adding the following to your application's `composer.json`:
+<!-- x-release-please-start-version -->
 
-```json
-{
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "git@github.com:stainless-sdks/imagekit-php.git"
-    }
-  ],
-  "require": {
-    "imagekit/imagekit": "dev-main"
-  }
-}
 ```
+composer require "imagekit/imagekit 0.0.1"
+```
+
+<!-- x-release-please-end -->
 
 ## Usage
 
@@ -32,8 +24,8 @@ Parameters with a default value must be set by name.
 ```php
 <?php
 
-use Imagekit\Client;
-use Imagekit\Core\FileParam;
+use ImageKit\Client;
+use ImageKit\Core\FileParam;
 
 $client = new Client(
   privateKey: getenv('IMAGEKIT_PRIVATE_KEY') ?: 'My Private Key',
@@ -57,15 +49,15 @@ However, builders are also provided `(new Dog)->withName("Joey")`.
 
 ### Handling errors
 
-When the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `Imagekit\Core\Exceptions\APIException` will be thrown:
+When the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `ImageKit\Core\Exceptions\APIException` will be thrown:
 
 ```php
 <?php
 
-use Imagekit\Core\FileParam;
-use Imagekit\Core\Exceptions\APIConnectionException;
-use Imagekit\Core\Exceptions\RateLimitException;
-use Imagekit\Core\Exceptions\APIStatusException;
+use ImageKit\Core\FileParam;
+use ImageKit\Core\Exceptions\APIConnectionException;
+use ImageKit\Core\Exceptions\RateLimitException;
+use ImageKit\Core\Exceptions\APIStatusException;
 
 try {
   $response = $client->files->upload(
@@ -110,8 +102,8 @@ You can use the `maxRetries` option to configure or disable this:
 ```php
 <?php
 
-use Imagekit\Client;
-use Imagekit\Core\FileParam;
+use ImageKit\Client;
+use ImageKit\Core\FileParam;
 
 // Configure the default for all requests:
 $client = new Client(requestOptions: ['maxRetries' => 0]);
@@ -131,7 +123,7 @@ Request parameters that correspond to file uploads can be passed as a resource r
 ```php
 <?php
 
-use Imagekit\Core\FileParam;
+use ImageKit\Core\FileParam;
 
 // Pass a string with filename and content type:
 $contents = file_get_contents('/path/to/file');
@@ -167,7 +159,7 @@ Note: the `extra*` parameters of the same name overrides the documented paramete
 ```php
 <?php
 
-use Imagekit\Core\FileParam;
+use ImageKit\Core\FileParam;
 
 $response = $client->files->upload(
   file: FileParam::fromString('https://www.example.com/public-url.jpg', filename: uniqid('file-upload-', true)),
@@ -212,4 +204,4 @@ PHP 8.1.0 or higher.
 
 ## Contributing
 
-See [the contributing documentation](https://github.com/stainless-sdks/imagekit-php/tree/main/CONTRIBUTING.md).
+See [the contributing documentation](https://github.com/imagekit-developer/imagekit-php/tree/master/CONTRIBUTING.md).

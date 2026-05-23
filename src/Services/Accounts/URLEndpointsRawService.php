@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Services\Accounts;
+namespace ImageKit\Services\Accounts;
 
-use Imagekit\Accounts\URLEndpoints\URLEndpointCreateParams;
-use Imagekit\Accounts\URLEndpoints\URLEndpointResponse;
-use Imagekit\Accounts\URLEndpoints\URLEndpointUpdateParams;
-use Imagekit\Client;
-use Imagekit\Core\Contracts\BaseResponse;
-use Imagekit\Core\Conversion\ListOf;
-use Imagekit\Core\Exceptions\APIException;
-use Imagekit\RequestOptions;
-use Imagekit\ServiceContracts\Accounts\URLEndpointsRawContract;
+use ImageKit\Accounts\URLEndpoints\URLEndpointCreateParams;
+use ImageKit\Accounts\URLEndpoints\URLEndpointResponse;
+use ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams;
+use ImageKit\Client;
+use ImageKit\Core\Contracts\BaseResponse;
+use ImageKit\Core\Conversion\ListOf;
+use ImageKit\Core\Exceptions\APIException;
+use ImageKit\RequestOptions;
+use ImageKit\ServiceContracts\Accounts\URLEndpointsRawContract;
 
 /**
- * @phpstan-import-type URLRewriterShape from \Imagekit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter
- * @phpstan-import-type URLRewriterShape from \Imagekit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter as URLRewriterShape1
- * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ * @phpstan-import-type URLRewriterShape from \ImageKit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter
+ * @phpstan-import-type URLRewriterShape from \ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter as URLRewriterShape1
+ * @phpstan-import-type RequestOpts from \ImageKit\RequestOptions
  */
 final class URLEndpointsRawService implements URLEndpointsRawContract
 {

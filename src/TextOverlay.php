@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Imagekit;
+namespace ImageKit;
 
-use Imagekit\BaseOverlay\LayerMode;
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\TextOverlay\Encoding;
+use ImageKit\BaseOverlay\LayerMode;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\TextOverlay\Encoding;
 
 /**
- * @phpstan-import-type OverlayPositionShape from \Imagekit\OverlayPosition
- * @phpstan-import-type OverlayTimingShape from \Imagekit\OverlayTiming
- * @phpstan-import-type TextOverlayTransformationShape from \Imagekit\TextOverlayTransformation
+ * @phpstan-import-type OverlayPositionShape from \ImageKit\OverlayPosition
+ * @phpstan-import-type OverlayTimingShape from \ImageKit\OverlayTiming
+ * @phpstan-import-type TextOverlayTransformationShape from \ImageKit\TextOverlayTransformation
  *
  * @phpstan-type TextOverlayShape = array{
  *   layerMode?: null|LayerMode|value-of<LayerMode>,

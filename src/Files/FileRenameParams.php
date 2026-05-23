@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Files;
+namespace ImageKit\Files;
 
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Concerns\SdkParams;
-use Imagekit\Core\Contracts\BaseModel;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Concerns\SdkParams;
+use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * You can rename an already existing file in the media library using rename file API. This operation would rename all file versions of the file.
  *
  * Note: The old URLs will stop working. The file/file version URLs cached on CDN will continue to work unless a purge is requested.
  *
- * @see Imagekit\Services\FilesService::rename()
+ * @see ImageKit\Services\FilesService::rename()
  *
  * @phpstan-type FileRenameParamsShape = array{
  *   filePath: string, newFileName: string, purgeCache?: bool|null

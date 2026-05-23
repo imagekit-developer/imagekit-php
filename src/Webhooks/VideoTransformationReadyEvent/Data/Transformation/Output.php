@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Webhooks\VideoTransformationReadyEvent\Data\Transformation;
+namespace ImageKit\Webhooks\VideoTransformationReadyEvent\Data\Transformation;
 
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Output\VideoMetadata;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Output\VideoMetadata;
 
 /**
  * Information about the transformed output video.
  *
- * @phpstan-import-type VideoMetadataShape from \Imagekit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Output\VideoMetadata
+ * @phpstan-import-type VideoMetadataShape from \ImageKit\Webhooks\VideoTransformationReadyEvent\Data\Transformation\Output\VideoMetadata
  *
  * @phpstan-type OutputShape = array{
  *   url: string, videoMetadata?: null|VideoMetadata|VideoMetadataShape

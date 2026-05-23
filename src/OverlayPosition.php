@@ -2,23 +2,23 @@
 
 declare(strict_types=1);
 
-namespace Imagekit;
+namespace ImageKit;
 
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\OverlayPosition\AnchorPoint;
-use Imagekit\OverlayPosition\Focus;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\OverlayPosition\AnchorPoint;
+use ImageKit\OverlayPosition\Focus;
 
 /**
- * @phpstan-import-type XVariants from \Imagekit\OverlayPosition\X
- * @phpstan-import-type XCenterVariants from \Imagekit\OverlayPosition\XCenter
- * @phpstan-import-type YVariants from \Imagekit\OverlayPosition\Y
- * @phpstan-import-type YCenterVariants from \Imagekit\OverlayPosition\YCenter
- * @phpstan-import-type XShape from \Imagekit\OverlayPosition\X
- * @phpstan-import-type XCenterShape from \Imagekit\OverlayPosition\XCenter
- * @phpstan-import-type YShape from \Imagekit\OverlayPosition\Y
- * @phpstan-import-type YCenterShape from \Imagekit\OverlayPosition\YCenter
+ * @phpstan-import-type XVariants from \ImageKit\OverlayPosition\X
+ * @phpstan-import-type XCenterVariants from \ImageKit\OverlayPosition\XCenter
+ * @phpstan-import-type YVariants from \ImageKit\OverlayPosition\Y
+ * @phpstan-import-type YCenterVariants from \ImageKit\OverlayPosition\YCenter
+ * @phpstan-import-type XShape from \ImageKit\OverlayPosition\X
+ * @phpstan-import-type XCenterShape from \ImageKit\OverlayPosition\XCenter
+ * @phpstan-import-type YShape from \ImageKit\OverlayPosition\Y
+ * @phpstan-import-type YCenterShape from \ImageKit\OverlayPosition\YCenter
  *
  * @phpstan-type OverlayPositionShape = array{
  *   anchorPoint?: null|AnchorPoint|value-of<AnchorPoint>,

@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Folders;
+namespace ImageKit\Folders;
 
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Concerns\SdkParams;
-use Imagekit\Core\Contracts\BaseModel;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Concerns\SdkParams;
+use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * This will delete a folder and all its contents permanently. The API returns an empty response.
  *
- * @see Imagekit\Services\FoldersService::delete()
+ * @see ImageKit\Services\FoldersService::delete()
  *
  * @phpstan-type FolderDeleteParamsShape = array{folderPath: string}
  */

@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Services\Cache;
+namespace ImageKit\Services\Cache;
 
-use Imagekit\Cache\Invalidation\InvalidationGetResponse;
-use Imagekit\Cache\Invalidation\InvalidationNewResponse;
-use Imagekit\Client;
-use Imagekit\Core\Exceptions\APIException;
-use Imagekit\Core\Util;
-use Imagekit\RequestOptions;
-use Imagekit\ServiceContracts\Cache\InvalidationContract;
+use ImageKit\Cache\Invalidation\InvalidationGetResponse;
+use ImageKit\Cache\Invalidation\InvalidationNewResponse;
+use ImageKit\Client;
+use ImageKit\Core\Exceptions\APIException;
+use ImageKit\Core\Util;
+use ImageKit\RequestOptions;
+use ImageKit\ServiceContracts\Cache\InvalidationContract;
 
 /**
- * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ * @phpstan-import-type RequestOpts from \ImageKit\RequestOptions
  */
 final class InvalidationService implements InvalidationContract
 {

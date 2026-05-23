@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Services\Folders;
+namespace ImageKit\Services\Folders;
 
-use Imagekit\Client;
-use Imagekit\Core\Exceptions\APIException;
-use Imagekit\Folders\Job\JobGetResponse;
-use Imagekit\RequestOptions;
-use Imagekit\ServiceContracts\Folders\JobContract;
+use ImageKit\Client;
+use ImageKit\Core\Exceptions\APIException;
+use ImageKit\Folders\Job\JobGetResponse;
+use ImageKit\RequestOptions;
+use ImageKit\ServiceContracts\Folders\JobContract;
 
 /**
- * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ * @phpstan-import-type RequestOpts from \ImageKit\RequestOptions
  */
 final class JobService implements JobContract
 {

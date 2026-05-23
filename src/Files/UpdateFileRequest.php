@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Files;
+namespace ImageKit\Files;
 
-use Imagekit\Core\Concerns\SdkUnion;
-use Imagekit\Core\Conversion\Contracts\Converter;
-use Imagekit\Core\Conversion\Contracts\ConverterSource;
-use Imagekit\Files\UpdateFileRequest\ChangePublicationStatus;
-use Imagekit\Files\UpdateFileRequest\UpdateFileDetails;
+use ImageKit\Core\Concerns\SdkUnion;
+use ImageKit\Core\Conversion\Contracts\Converter;
+use ImageKit\Core\Conversion\Contracts\ConverterSource;
+use ImageKit\Files\UpdateFileRequest\ChangePublicationStatus;
+use ImageKit\Files\UpdateFileRequest\UpdateFileDetails;
 
 /**
  * Schema for update file update request.
  *
- * @phpstan-import-type UpdateFileDetailsShape from \Imagekit\Files\UpdateFileRequest\UpdateFileDetails
- * @phpstan-import-type ChangePublicationStatusShape from \Imagekit\Files\UpdateFileRequest\ChangePublicationStatus
+ * @phpstan-import-type UpdateFileDetailsShape from \ImageKit\Files\UpdateFileRequest\UpdateFileDetails
+ * @phpstan-import-type ChangePublicationStatusShape from \ImageKit\Files\UpdateFileRequest\ChangePublicationStatus
  *
  * @phpstan-type UpdateFileRequestVariants = UpdateFileDetails|ChangePublicationStatus
  * @phpstan-type UpdateFileRequestShape = UpdateFileRequestVariants|UpdateFileDetailsShape|ChangePublicationStatusShape

@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Webhooks;
+namespace ImageKit\Webhooks;
 
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Webhooks\UploadPostTransformErrorEvent\Data;
-use Imagekit\Webhooks\UploadPostTransformErrorEvent\Request;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Webhooks\UploadPostTransformErrorEvent\Data;
+use ImageKit\Webhooks\UploadPostTransformErrorEvent\Request;
 
 /**
  * Triggered when a post-transformation fails. The original file remains available, but the requested transformation could not be generated.
  *
- * @phpstan-import-type DataShape from \Imagekit\Webhooks\UploadPostTransformErrorEvent\Data
- * @phpstan-import-type RequestShape from \Imagekit\Webhooks\UploadPostTransformErrorEvent\Request
+ * @phpstan-import-type DataShape from \ImageKit\Webhooks\UploadPostTransformErrorEvent\Data
+ * @phpstan-import-type RequestShape from \ImageKit\Webhooks\UploadPostTransformErrorEvent\Request
  *
  * @phpstan-type UploadPostTransformErrorEventShape = array{
  *   id: string,

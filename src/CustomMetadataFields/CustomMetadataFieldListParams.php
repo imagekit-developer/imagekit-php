@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\CustomMetadataFields;
+namespace ImageKit\CustomMetadataFields;
 
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Concerns\SdkParams;
-use Imagekit\Core\Contracts\BaseModel;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Concerns\SdkParams;
+use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * This API returns the array of created custom metadata field objects. By default the API returns only non deleted field objects, but you can include deleted fields in the API response.
  *
  * You can also filter results by a specific folder path to retrieve custom metadata fields applicable at that location. This path-specific filtering is useful when using the **Path policy** feature to determine which custom metadata fields are selected for a given path.
  *
- * @see Imagekit\Services\CustomMetadataFieldsService::list()
+ * @see ImageKit\Services\CustomMetadataFieldsService::list()
  *
  * @phpstan-type CustomMetadataFieldListParamsShape = array{
  *   folderPath?: string|null, includeDeleted?: bool|null

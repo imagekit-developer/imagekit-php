@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Imagekit;
+namespace ImageKit;
 
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-import-type DurationVariants from \Imagekit\OverlayTiming\Duration
- * @phpstan-import-type EndVariants from \Imagekit\OverlayTiming\End
- * @phpstan-import-type StartVariants from \Imagekit\OverlayTiming\Start
- * @phpstan-import-type DurationShape from \Imagekit\OverlayTiming\Duration
- * @phpstan-import-type EndShape from \Imagekit\OverlayTiming\End
- * @phpstan-import-type StartShape from \Imagekit\OverlayTiming\Start
+ * @phpstan-import-type DurationVariants from \ImageKit\OverlayTiming\Duration
+ * @phpstan-import-type EndVariants from \ImageKit\OverlayTiming\End
+ * @phpstan-import-type StartVariants from \ImageKit\OverlayTiming\Start
+ * @phpstan-import-type DurationShape from \ImageKit\OverlayTiming\Duration
+ * @phpstan-import-type EndShape from \ImageKit\OverlayTiming\End
+ * @phpstan-import-type StartShape from \ImageKit\OverlayTiming\Start
  *
  * @phpstan-type OverlayTimingShape = array{
  *   duration?: DurationShape|null, end?: EndShape|null, start?: StartShape|null

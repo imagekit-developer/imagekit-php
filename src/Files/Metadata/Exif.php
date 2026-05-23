@@ -2,25 +2,25 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Files\Metadata;
+namespace ImageKit\Files\Metadata;
 
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Files\Metadata\Exif\Gps;
-use Imagekit\Files\Metadata\Exif\Image;
-use Imagekit\Files\Metadata\Exif\Interoperability;
-use Imagekit\Files\Metadata\Exif\Thumbnail;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Files\Metadata\Exif\Gps;
+use ImageKit\Files\Metadata\Exif\Image;
+use ImageKit\Files\Metadata\Exif\Interoperability;
+use ImageKit\Files\Metadata\Exif\Thumbnail;
 
 /**
- * @phpstan-import-type ExifShape from \Imagekit\Files\Metadata\Exif\Exif as ExifShape1
- * @phpstan-import-type GpsShape from \Imagekit\Files\Metadata\Exif\Gps
- * @phpstan-import-type ImageShape from \Imagekit\Files\Metadata\Exif\Image
- * @phpstan-import-type InteroperabilityShape from \Imagekit\Files\Metadata\Exif\Interoperability
- * @phpstan-import-type ThumbnailShape from \Imagekit\Files\Metadata\Exif\Thumbnail
+ * @phpstan-import-type ExifShape from \ImageKit\Files\Metadata\Exif\Exif as ExifShape1
+ * @phpstan-import-type GpsShape from \ImageKit\Files\Metadata\Exif\Gps
+ * @phpstan-import-type ImageShape from \ImageKit\Files\Metadata\Exif\Image
+ * @phpstan-import-type InteroperabilityShape from \ImageKit\Files\Metadata\Exif\Interoperability
+ * @phpstan-import-type ThumbnailShape from \ImageKit\Files\Metadata\Exif\Thumbnail
  *
  * @phpstan-type ExifShape = array{
- *   exif?: null|\Imagekit\Files\Metadata\Exif\Exif|ExifShape1,
+ *   exif?: null|\ImageKit\Files\Metadata\Exif\Exif|ExifShape1,
  *   gps?: null|Gps|GpsShape,
  *   image?: null|Image|ImageShape,
  *   interoperability?: null|Interoperability|InteroperabilityShape,

@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\ExtensionItem\AITasksExtension\Task\AITaskYesNo\OnUnknown\SetMetadata;
+namespace ImageKit\ExtensionItem\AITasksExtension\Task\AITaskYesNo\OnUnknown\SetMetadata;
 
-use Imagekit\Core\Concerns\SdkUnion;
-use Imagekit\Core\Conversion\Contracts\Converter;
-use Imagekit\Core\Conversion\Contracts\ConverterSource;
-use Imagekit\Core\Conversion\ListOf;
-use Imagekit\ExtensionItem\AITasksExtension\Task\AITaskYesNo\OnUnknown\SetMetadata\Value\Mixed_;
+use ImageKit\Core\Concerns\SdkUnion;
+use ImageKit\Core\Conversion\Contracts\Converter;
+use ImageKit\Core\Conversion\Contracts\ConverterSource;
+use ImageKit\Core\Conversion\ListOf;
+use ImageKit\ExtensionItem\AITasksExtension\Task\AITaskYesNo\OnUnknown\SetMetadata\Value\Mixed_;
 
 /**
  * Value to set for the custom metadata field. The value type should match the custom metadata field type.
  *
- * @phpstan-import-type MixedShape from \Imagekit\ExtensionItem\AITasksExtension\Task\AITaskYesNo\OnUnknown\SetMetadata\Value\Mixed_
+ * @phpstan-import-type MixedShape from \ImageKit\ExtensionItem\AITasksExtension\Task\AITaskYesNo\OnUnknown\SetMetadata\Value\Mixed_
  *
  * @phpstan-type ValueVariants = string|float|bool|list<string|float|bool>
  * @phpstan-type ValueShape = ValueVariants|list<MixedShape>

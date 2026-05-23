@@ -1,11 +1,11 @@
 <?php
 
-namespace Imagekit\Core\Exceptions;
+namespace ImageKit\Core\Exceptions;
 
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
-class APIException extends ImagekitException
+class APIException extends ImageKitException
 {
     public ?int $status = null;
 

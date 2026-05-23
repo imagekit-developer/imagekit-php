@@ -2,25 +2,25 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Files\FileUploadResponse;
+namespace ImageKit\Files\FileUploadResponse;
 
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Files\FileUploadResponse\SelectedFieldsSchema\DefaultValue;
-use Imagekit\Files\FileUploadResponse\SelectedFieldsSchema\SelectOption;
-use Imagekit\Files\FileUploadResponse\SelectedFieldsSchema\Type;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Files\FileUploadResponse\SelectedFieldsSchema\DefaultValue;
+use ImageKit\Files\FileUploadResponse\SelectedFieldsSchema\SelectOption;
+use ImageKit\Files\FileUploadResponse\SelectedFieldsSchema\Type;
 
 /**
- * @phpstan-import-type DefaultValueVariants from \Imagekit\Files\FileUploadResponse\SelectedFieldsSchema\DefaultValue
- * @phpstan-import-type MaxValueVariants from \Imagekit\Files\FileUploadResponse\SelectedFieldsSchema\MaxValue
- * @phpstan-import-type MinValueVariants from \Imagekit\Files\FileUploadResponse\SelectedFieldsSchema\MinValue
- * @phpstan-import-type SelectOptionVariants from \Imagekit\Files\FileUploadResponse\SelectedFieldsSchema\SelectOption
- * @phpstan-import-type DefaultValueShape from \Imagekit\Files\FileUploadResponse\SelectedFieldsSchema\DefaultValue
- * @phpstan-import-type MaxValueShape from \Imagekit\Files\FileUploadResponse\SelectedFieldsSchema\MaxValue
- * @phpstan-import-type MinValueShape from \Imagekit\Files\FileUploadResponse\SelectedFieldsSchema\MinValue
- * @phpstan-import-type SelectOptionShape from \Imagekit\Files\FileUploadResponse\SelectedFieldsSchema\SelectOption
+ * @phpstan-import-type DefaultValueVariants from \ImageKit\Files\FileUploadResponse\SelectedFieldsSchema\DefaultValue
+ * @phpstan-import-type MaxValueVariants from \ImageKit\Files\FileUploadResponse\SelectedFieldsSchema\MaxValue
+ * @phpstan-import-type MinValueVariants from \ImageKit\Files\FileUploadResponse\SelectedFieldsSchema\MinValue
+ * @phpstan-import-type SelectOptionVariants from \ImageKit\Files\FileUploadResponse\SelectedFieldsSchema\SelectOption
+ * @phpstan-import-type DefaultValueShape from \ImageKit\Files\FileUploadResponse\SelectedFieldsSchema\DefaultValue
+ * @phpstan-import-type MaxValueShape from \ImageKit\Files\FileUploadResponse\SelectedFieldsSchema\MaxValue
+ * @phpstan-import-type MinValueShape from \ImageKit\Files\FileUploadResponse\SelectedFieldsSchema\MinValue
+ * @phpstan-import-type SelectOptionShape from \ImageKit\Files\FileUploadResponse\SelectedFieldsSchema\SelectOption
  *
  * @phpstan-type SelectedFieldsSchemaShape = array{
  *   type: Type|value-of<Type>,

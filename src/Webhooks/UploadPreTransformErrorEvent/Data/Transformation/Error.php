@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Webhooks\UploadPreTransformErrorEvent\Data\Transformation;
+namespace ImageKit\Webhooks\UploadPreTransformErrorEvent\Data\Transformation;
 
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * @phpstan-type ErrorShape = array{reason: string}

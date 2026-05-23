@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Files\Versions;
+namespace ImageKit\Files\Versions;
 
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Concerns\SdkParams;
-use Imagekit\Core\Contracts\BaseModel;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Concerns\SdkParams;
+use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * This API deletes a non-current file version permanently. The API returns an empty response.
  *
  * Note: If you want to delete all versions of a file, use the delete file API.
  *
- * @see Imagekit\Services\Files\VersionsService::delete()
+ * @see ImageKit\Services\Files\VersionsService::delete()
  *
  * @phpstan-type VersionDeleteParamsShape = array{fileID: string}
  */

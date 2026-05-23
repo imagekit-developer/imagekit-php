@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Services\Accounts;
+namespace ImageKit\Services\Accounts;
 
-use Imagekit\Accounts\Usage\UsageGetParams;
-use Imagekit\Accounts\Usage\UsageGetResponse;
-use Imagekit\Client;
-use Imagekit\Core\Contracts\BaseResponse;
-use Imagekit\Core\Exceptions\APIException;
-use Imagekit\RequestOptions;
-use Imagekit\ServiceContracts\Accounts\UsageRawContract;
+use ImageKit\Accounts\Usage\UsageGetParams;
+use ImageKit\Accounts\Usage\UsageGetResponse;
+use ImageKit\Client;
+use ImageKit\Core\Contracts\BaseResponse;
+use ImageKit\Core\Exceptions\APIException;
+use ImageKit\RequestOptions;
+use ImageKit\ServiceContracts\Accounts\UsageRawContract;
 
 /**
- * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ * @phpstan-import-type RequestOpts from \ImageKit\RequestOptions
  */
 final class UsageRawService implements UsageRawContract
 {

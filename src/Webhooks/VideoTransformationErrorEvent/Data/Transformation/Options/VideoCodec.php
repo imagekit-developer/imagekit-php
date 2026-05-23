@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Options;
+namespace ImageKit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Options;
 
 /**
  * Video codec used for encoding (h264, vp9, or av1).

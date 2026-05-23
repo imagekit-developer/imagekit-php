@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Webhooks;
+namespace ImageKit\Webhooks;
 
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Webhooks\UploadPostTransformSuccessEvent\Data;
-use Imagekit\Webhooks\UploadPostTransformSuccessEvent\Request;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Webhooks\UploadPostTransformSuccessEvent\Data;
+use ImageKit\Webhooks\UploadPostTransformSuccessEvent\Request;
 
 /**
  * Triggered when a post-transformation completes successfully. The transformed version of the file is now ready and can be accessed via the provided URL. Note that each post-transformation generates a separate webhook event.
  *
- * @phpstan-import-type DataShape from \Imagekit\Webhooks\UploadPostTransformSuccessEvent\Data
- * @phpstan-import-type RequestShape from \Imagekit\Webhooks\UploadPostTransformSuccessEvent\Request
+ * @phpstan-import-type DataShape from \ImageKit\Webhooks\UploadPostTransformSuccessEvent\Data
+ * @phpstan-import-type RequestShape from \ImageKit\Webhooks\UploadPostTransformSuccessEvent\Request
  *
  * @phpstan-type UploadPostTransformSuccessEventShape = array{
  *   id: string,

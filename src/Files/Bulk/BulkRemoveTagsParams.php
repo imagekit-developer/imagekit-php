@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Files\Bulk;
+namespace ImageKit\Files\Bulk;
 
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Concerns\SdkParams;
-use Imagekit\Core\Contracts\BaseModel;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Concerns\SdkParams;
+use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * This API removes tags from multiple files in bulk. A maximum of 50 files can be specified at a time.
  *
- * @see Imagekit\Services\Files\BulkService::removeTags()
+ * @see ImageKit\Services\Files\BulkService::removeTags()
  *
  * @phpstan-type BulkRemoveTagsParamsShape = array{
  *   fileIDs: list<string>, tags: list<string>

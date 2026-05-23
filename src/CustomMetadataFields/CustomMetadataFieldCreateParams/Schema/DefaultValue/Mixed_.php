@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\DefaultValue;
+namespace ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\DefaultValue;
 
-use Imagekit\Core\Concerns\SdkUnion;
-use Imagekit\Core\Conversion\Contracts\Converter;
-use Imagekit\Core\Conversion\Contracts\ConverterSource;
+use ImageKit\Core\Concerns\SdkUnion;
+use ImageKit\Core\Conversion\Contracts\Converter;
+use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
 /**
  * @phpstan-type MixedVariants = string|float|bool

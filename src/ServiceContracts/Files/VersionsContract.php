@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\ServiceContracts\Files;
+namespace ImageKit\ServiceContracts\Files;
 
-use Imagekit\Core\Exceptions\APIException;
-use Imagekit\Files\File;
-use Imagekit\Files\Versions\VersionDeleteResponse;
-use Imagekit\RequestOptions;
+use ImageKit\Core\Exceptions\APIException;
+use ImageKit\Files\File;
+use ImageKit\Files\Versions\VersionDeleteResponse;
+use ImageKit\RequestOptions;
 
 /**
- * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ * @phpstan-import-type RequestOpts from \ImageKit\RequestOptions
  */
 interface VersionsContract
 {

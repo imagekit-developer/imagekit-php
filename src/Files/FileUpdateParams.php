@@ -2,26 +2,26 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Files;
+namespace ImageKit\Files;
 
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Concerns\SdkParams;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\ExtensionItem;
-use Imagekit\Files\FileUpdateParams\Publish;
-use Imagekit\Files\FileUpdateParams\RemoveAITags;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Concerns\SdkParams;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\ExtensionItem;
+use ImageKit\Files\FileUpdateParams\Publish;
+use ImageKit\Files\FileUpdateParams\RemoveAITags;
 
 /**
  * This API updates the details or attributes of the current version of the file. You can update `tags`, `customCoordinates`, `customMetadata`, publication status, remove existing `AITags` and apply extensions using this API.
  *
- * @see Imagekit\Services\FilesService::update()
+ * @see ImageKit\Services\FilesService::update()
  *
- * @phpstan-import-type ExtensionItemVariants from \Imagekit\ExtensionItem
- * @phpstan-import-type RemoveAITagsVariants from \Imagekit\Files\FileUpdateParams\RemoveAITags
- * @phpstan-import-type ExtensionItemShape from \Imagekit\ExtensionItem
- * @phpstan-import-type RemoveAITagsShape from \Imagekit\Files\FileUpdateParams\RemoveAITags
- * @phpstan-import-type PublishShape from \Imagekit\Files\FileUpdateParams\Publish
+ * @phpstan-import-type ExtensionItemVariants from \ImageKit\ExtensionItem
+ * @phpstan-import-type RemoveAITagsVariants from \ImageKit\Files\FileUpdateParams\RemoveAITags
+ * @phpstan-import-type ExtensionItemShape from \ImageKit\ExtensionItem
+ * @phpstan-import-type RemoveAITagsShape from \ImageKit\Files\FileUpdateParams\RemoveAITags
+ * @phpstan-import-type PublishShape from \ImageKit\Files\FileUpdateParams\Publish
  *
  * @phpstan-type FileUpdateParamsShape = array{
  *   customCoordinates?: string|null,

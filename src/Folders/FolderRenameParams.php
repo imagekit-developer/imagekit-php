@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Folders;
+namespace ImageKit\Folders;
 
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Concerns\SdkParams;
-use Imagekit\Core\Contracts\BaseModel;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Concerns\SdkParams;
+use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * This API allows you to rename an existing folder. The folder and all its nested assets and sub-folders will remain unchanged, but their paths will be updated to reflect the new folder name.
  *
- * @see Imagekit\Services\FoldersService::rename()
+ * @see ImageKit\Services\FoldersService::rename()
  *
  * @phpstan-type FolderRenameParamsShape = array{
  *   folderPath: string, newFolderName: string, purgeCache?: bool|null

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Core\Concerns;
+namespace ImageKit\Core\Concerns;
 
-use Imagekit\Core\Conversion;
-use Imagekit\Core\Conversion\DumpState;
-use Imagekit\RequestOptions;
+use ImageKit\Core\Conversion;
+use ImageKit\Core\Conversion\DumpState;
+use ImageKit\RequestOptions;
 
 /**
  * @internal

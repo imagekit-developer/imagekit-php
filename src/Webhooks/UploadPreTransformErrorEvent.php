@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Webhooks;
+namespace ImageKit\Webhooks;
 
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Webhooks\UploadPreTransformErrorEvent\Data;
-use Imagekit\Webhooks\UploadPreTransformErrorEvent\Request;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Webhooks\UploadPreTransformErrorEvent\Data;
+use ImageKit\Webhooks\UploadPreTransformErrorEvent\Request;
 
 /**
  * Triggered when a pre-transformation fails. The file upload may have been accepted, but the requested transformation could not be applied.
  *
- * @phpstan-import-type DataShape from \Imagekit\Webhooks\UploadPreTransformErrorEvent\Data
- * @phpstan-import-type RequestShape from \Imagekit\Webhooks\UploadPreTransformErrorEvent\Request
+ * @phpstan-import-type DataShape from \ImageKit\Webhooks\UploadPreTransformErrorEvent\Data
+ * @phpstan-import-type RequestShape from \ImageKit\Webhooks\UploadPreTransformErrorEvent\Request
  *
  * @phpstan-type UploadPreTransformErrorEventShape = array{
  *   id: string,

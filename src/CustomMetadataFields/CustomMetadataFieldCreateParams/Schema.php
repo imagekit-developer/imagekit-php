@@ -2,25 +2,25 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams;
+namespace ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams;
 
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\DefaultValue;
-use Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\SelectOption;
-use Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\Type;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\DefaultValue;
+use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\SelectOption;
+use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\Type;
 
 /**
- * @phpstan-import-type DefaultValueVariants from \Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\DefaultValue
- * @phpstan-import-type MaxValueVariants from \Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\MaxValue
- * @phpstan-import-type MinValueVariants from \Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\MinValue
- * @phpstan-import-type SelectOptionVariants from \Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\SelectOption
- * @phpstan-import-type DefaultValueShape from \Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\DefaultValue
- * @phpstan-import-type MaxValueShape from \Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\MaxValue
- * @phpstan-import-type MinValueShape from \Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\MinValue
- * @phpstan-import-type SelectOptionShape from \Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\SelectOption
+ * @phpstan-import-type DefaultValueVariants from \ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\DefaultValue
+ * @phpstan-import-type MaxValueVariants from \ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\MaxValue
+ * @phpstan-import-type MinValueVariants from \ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\MinValue
+ * @phpstan-import-type SelectOptionVariants from \ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\SelectOption
+ * @phpstan-import-type DefaultValueShape from \ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\DefaultValue
+ * @phpstan-import-type MaxValueShape from \ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\MaxValue
+ * @phpstan-import-type MinValueShape from \ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\MinValue
+ * @phpstan-import-type SelectOptionShape from \ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\SelectOption
  *
  * @phpstan-type SchemaShape = array{
  *   type: Type|value-of<Type>,

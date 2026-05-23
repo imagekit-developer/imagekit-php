@@ -1,11 +1,11 @@
 <?php
 
-namespace Imagekit\Core\Exceptions;
+namespace ImageKit\Core\Exceptions;
 
-class ImagekitException extends \Exception
+class ImageKitException extends \Exception
 {
     /** @var string */
-    protected const DESC = 'Imagekit Error';
+    protected const DESC = 'ImageKit Error';
 
     public function __construct(string $message, int $code = 0, ?\Throwable $previous = null)
     {

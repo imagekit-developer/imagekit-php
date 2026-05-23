@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Files;
+namespace ImageKit\Files;
 
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Files\Metadata\Exif;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Files\Metadata\Exif;
 
 /**
  * JSON object containing metadata.
  *
- * @phpstan-import-type ExifShape from \Imagekit\Files\Metadata\Exif
+ * @phpstan-import-type ExifShape from \ImageKit\Files\Metadata\Exif
  *
  * @phpstan-type MetadataShape = array{
  *   audioCodec?: string|null,

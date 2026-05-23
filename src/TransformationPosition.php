@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Imagekit;
+namespace ImageKit;
 
 /**
  * By default, the transformation string is added as a query parameter in the URL, e.g., `?tr=w-100,h-100`.

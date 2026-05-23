@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Services;
+namespace ImageKit\Services;
 
-use Imagekit\Client;
-use Imagekit\ServiceContracts\BetaContract;
-use Imagekit\Services\Beta\V2Service;
+use ImageKit\Client;
+use ImageKit\ServiceContracts\BetaContract;
+use ImageKit\Services\Beta\V2Service;
 
 final class BetaService implements BetaContract
 {

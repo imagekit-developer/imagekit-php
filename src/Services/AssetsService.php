@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Services;
+namespace ImageKit\Services;
 
-use Imagekit\Assets\AssetListParams\FileType;
-use Imagekit\Assets\AssetListParams\Sort;
-use Imagekit\Assets\AssetListParams\Type;
-use Imagekit\Client;
-use Imagekit\Core\Exceptions\APIException;
-use Imagekit\Core\Util;
-use Imagekit\Files\File;
-use Imagekit\Files\Folder;
-use Imagekit\RequestOptions;
-use Imagekit\ServiceContracts\AssetsContract;
+use ImageKit\Assets\AssetListParams\FileType;
+use ImageKit\Assets\AssetListParams\Sort;
+use ImageKit\Assets\AssetListParams\Type;
+use ImageKit\Client;
+use ImageKit\Core\Exceptions\APIException;
+use ImageKit\Core\Util;
+use ImageKit\Files\File;
+use ImageKit\Files\Folder;
+use ImageKit\RequestOptions;
+use ImageKit\ServiceContracts\AssetsContract;
 
 /**
- * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ * @phpstan-import-type RequestOpts from \ImageKit\RequestOptions
  */
 final class AssetsService implements AssetsContract
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Core\Concerns;
+namespace ImageKit\Core\Concerns;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;

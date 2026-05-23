@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\ServiceContracts\Folders;
+namespace ImageKit\ServiceContracts\Folders;
 
-use Imagekit\Core\Exceptions\APIException;
-use Imagekit\Folders\Job\JobGetResponse;
-use Imagekit\RequestOptions;
+use ImageKit\Core\Exceptions\APIException;
+use ImageKit\Folders\Job\JobGetResponse;
+use ImageKit\RequestOptions;
 
 /**
- * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ * @phpstan-import-type RequestOpts from \ImageKit\RequestOptions
  */
 interface JobContract
 {

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Webhooks\VideoTransformationAcceptedEvent;
+namespace ImageKit\Webhooks\VideoTransformationAcceptedEvent;
 
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * Information about the original request that triggered the video transformation.

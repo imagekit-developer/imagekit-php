@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\ExtensionItem\AITasksExtension\Task\AITaskYesNo\OnUnknown;
+namespace ImageKit\ExtensionItem\AITasksExtension\Task\AITaskYesNo\OnUnknown;
 
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\ExtensionItem\AITasksExtension\Task\AITaskYesNo\OnUnknown\SetMetadata\Value;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\ExtensionItem\AITasksExtension\Task\AITaskYesNo\OnUnknown\SetMetadata\Value;
 
 /**
- * @phpstan-import-type ValueVariants from \Imagekit\ExtensionItem\AITasksExtension\Task\AITaskYesNo\OnUnknown\SetMetadata\Value
- * @phpstan-import-type ValueShape from \Imagekit\ExtensionItem\AITasksExtension\Task\AITaskYesNo\OnUnknown\SetMetadata\Value
+ * @phpstan-import-type ValueVariants from \ImageKit\ExtensionItem\AITasksExtension\Task\AITaskYesNo\OnUnknown\SetMetadata\Value
+ * @phpstan-import-type ValueShape from \ImageKit\ExtensionItem\AITasksExtension\Task\AITaskYesNo\OnUnknown\SetMetadata\Value
  *
  * @phpstan-type SetMetadataShape = array{field: string, value: ValueShape}
  */

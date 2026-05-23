@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\ServiceContracts\Beta\V2;
+namespace ImageKit\ServiceContracts\Beta\V2;
 
-use Imagekit\Beta\V2\Files\FileUploadParams;
-use Imagekit\Beta\V2\Files\FileUploadResponse;
-use Imagekit\Core\Contracts\BaseResponse;
-use Imagekit\Core\Exceptions\APIException;
-use Imagekit\RequestOptions;
+use ImageKit\Beta\V2\Files\FileUploadParams;
+use ImageKit\Beta\V2\Files\FileUploadResponse;
+use ImageKit\Core\Contracts\BaseResponse;
+use ImageKit\Core\Exceptions\APIException;
+use ImageKit\RequestOptions;
 
 /**
- * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ * @phpstan-import-type RequestOpts from \ImageKit\RequestOptions
  */
 interface FilesRawContract
 {

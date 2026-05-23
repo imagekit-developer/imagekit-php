@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\OverlayPosition;
+namespace ImageKit\OverlayPosition;
 
 /**
  * Sets the anchor point on the base asset from which the overlay offset is calculated.

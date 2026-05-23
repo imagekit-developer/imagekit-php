@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\SavedExtensions;
+namespace ImageKit\SavedExtensions;
 
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Concerns\SdkParams;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\ExtensionConfig;
-use Imagekit\ExtensionConfig\AITasksExtension;
-use Imagekit\ExtensionConfig\AutoDescriptionExtension;
-use Imagekit\ExtensionConfig\AutoTaggingExtension;
-use Imagekit\ExtensionConfig\RemovedotBgExtension;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Concerns\SdkParams;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\ExtensionConfig;
+use ImageKit\ExtensionConfig\AITasksExtension;
+use ImageKit\ExtensionConfig\AutoDescriptionExtension;
+use ImageKit\ExtensionConfig\AutoTaggingExtension;
+use ImageKit\ExtensionConfig\RemovedotBgExtension;
 
 /**
  * This API creates a new saved extension. Saved extensions allow you to save complex extension configurations (like AI tasks) and reuse them by referencing the ID in upload or update file APIs.
@@ -20,10 +20,10 @@ use Imagekit\ExtensionConfig\RemovedotBgExtension;
  * **Saved extension limit** \
  * You can create a maximum of 100 saved extensions per account.
  *
- * @see Imagekit\Services\SavedExtensionsService::create()
+ * @see ImageKit\Services\SavedExtensionsService::create()
  *
- * @phpstan-import-type ExtensionConfigVariants from \Imagekit\ExtensionConfig
- * @phpstan-import-type ExtensionConfigShape from \Imagekit\ExtensionConfig
+ * @phpstan-import-type ExtensionConfigVariants from \ImageKit\ExtensionConfig
+ * @phpstan-import-type ExtensionConfigShape from \ImageKit\ExtensionConfig
  *
  * @phpstan-type SavedExtensionCreateParamsShape = array{
  *   config: ExtensionConfigShape, description: string, name: string

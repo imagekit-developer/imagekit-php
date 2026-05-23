@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\ServiceContracts;
+namespace ImageKit\ServiceContracts;
 
-use Imagekit\Core\Contracts\BaseResponse;
-use Imagekit\Core\Exceptions\APIException;
-use Imagekit\RequestOptions;
-use Imagekit\SavedExtension;
-use Imagekit\SavedExtensions\SavedExtensionCreateParams;
-use Imagekit\SavedExtensions\SavedExtensionUpdateParams;
+use ImageKit\Core\Contracts\BaseResponse;
+use ImageKit\Core\Exceptions\APIException;
+use ImageKit\RequestOptions;
+use ImageKit\SavedExtension;
+use ImageKit\SavedExtensions\SavedExtensionCreateParams;
+use ImageKit\SavedExtensions\SavedExtensionUpdateParams;
 
 /**
- * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ * @phpstan-import-type RequestOpts from \ImageKit\RequestOptions
  */
 interface SavedExtensionsRawContract
 {

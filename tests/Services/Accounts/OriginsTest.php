@@ -2,8 +2,8 @@
 
 namespace Tests\Services\Accounts;
 
-use Imagekit\Client;
-use Imagekit\Core\Util;
+use ImageKit\Client;
+use ImageKit\Core\Util;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;

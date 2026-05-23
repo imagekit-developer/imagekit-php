@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Files\UpdateFileRequest;
+namespace ImageKit\Files\UpdateFileRequest;
 
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\ExtensionItem;
-use Imagekit\Files\UpdateFileRequest\UpdateFileDetails\RemoveAITags;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\ExtensionItem;
+use ImageKit\Files\UpdateFileRequest\UpdateFileDetails\RemoveAITags;
 
 /**
- * @phpstan-import-type ExtensionItemVariants from \Imagekit\ExtensionItem
- * @phpstan-import-type RemoveAITagsVariants from \Imagekit\Files\UpdateFileRequest\UpdateFileDetails\RemoveAITags
- * @phpstan-import-type ExtensionItemShape from \Imagekit\ExtensionItem
- * @phpstan-import-type RemoveAITagsShape from \Imagekit\Files\UpdateFileRequest\UpdateFileDetails\RemoveAITags
+ * @phpstan-import-type ExtensionItemVariants from \ImageKit\ExtensionItem
+ * @phpstan-import-type RemoveAITagsVariants from \ImageKit\Files\UpdateFileRequest\UpdateFileDetails\RemoveAITags
+ * @phpstan-import-type ExtensionItemShape from \ImageKit\ExtensionItem
+ * @phpstan-import-type RemoveAITagsShape from \ImageKit\Files\UpdateFileRequest\UpdateFileDetails\RemoveAITags
  *
  * @phpstan-type UpdateFileDetailsShape = array{
  *   customCoordinates?: string|null,

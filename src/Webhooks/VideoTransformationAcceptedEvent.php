@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Webhooks;
+namespace ImageKit\Webhooks;
 
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Webhooks\VideoTransformationAcceptedEvent\Data;
-use Imagekit\Webhooks\VideoTransformationAcceptedEvent\Request;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data;
+use ImageKit\Webhooks\VideoTransformationAcceptedEvent\Request;
 
 /**
  * Triggered when a new video transformation request is accepted for processing. This event confirms that ImageKit has received and queued your transformation request. Use this for debugging and tracking transformation lifecycle.
  *
- * @phpstan-import-type DataShape from \Imagekit\Webhooks\VideoTransformationAcceptedEvent\Data
- * @phpstan-import-type RequestShape from \Imagekit\Webhooks\VideoTransformationAcceptedEvent\Request
+ * @phpstan-import-type DataShape from \ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data
+ * @phpstan-import-type RequestShape from \ImageKit\Webhooks\VideoTransformationAcceptedEvent\Request
  *
  * @phpstan-type VideoTransformationAcceptedEventShape = array{
  *   id: string,

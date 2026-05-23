@@ -2,28 +2,28 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Files\File;
+namespace ImageKit\Files\File;
 
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Files\File\SelectedFieldsSchema\DefaultValue;
-use Imagekit\Files\File\SelectedFieldsSchema\SelectOption;
-use Imagekit\Files\File\SelectedFieldsSchema\Type;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Files\File\SelectedFieldsSchema\DefaultValue;
+use ImageKit\Files\File\SelectedFieldsSchema\SelectOption;
+use ImageKit\Files\File\SelectedFieldsSchema\Type;
 
 /**
- * @phpstan-import-type DefaultValueVariants from \Imagekit\Files\File\SelectedFieldsSchema\DefaultValue
- * @phpstan-import-type MaxValueVariants from \Imagekit\Files\File\SelectedFieldsSchema\MaxValue
- * @phpstan-import-type MinValueVariants from \Imagekit\Files\File\SelectedFieldsSchema\MinValue
- * @phpstan-import-type SelectOptionVariants from \Imagekit\Files\File\SelectedFieldsSchema\SelectOption
- * @phpstan-import-type DefaultValueShape from \Imagekit\Files\File\SelectedFieldsSchema\DefaultValue
- * @phpstan-import-type MaxValueShape from \Imagekit\Files\File\SelectedFieldsSchema\MaxValue
- * @phpstan-import-type MinValueShape from \Imagekit\Files\File\SelectedFieldsSchema\MinValue
- * @phpstan-import-type SelectOptionShape from \Imagekit\Files\File\SelectedFieldsSchema\SelectOption
+ * @phpstan-import-type DefaultValueVariants from \ImageKit\Files\File\SelectedFieldsSchema\DefaultValue
+ * @phpstan-import-type MaxValueVariants from \ImageKit\Files\File\SelectedFieldsSchema\MaxValue
+ * @phpstan-import-type MinValueVariants from \ImageKit\Files\File\SelectedFieldsSchema\MinValue
+ * @phpstan-import-type SelectOptionVariants from \ImageKit\Files\File\SelectedFieldsSchema\SelectOption
+ * @phpstan-import-type DefaultValueShape from \ImageKit\Files\File\SelectedFieldsSchema\DefaultValue
+ * @phpstan-import-type MaxValueShape from \ImageKit\Files\File\SelectedFieldsSchema\MaxValue
+ * @phpstan-import-type MinValueShape from \ImageKit\Files\File\SelectedFieldsSchema\MinValue
+ * @phpstan-import-type SelectOptionShape from \ImageKit\Files\File\SelectedFieldsSchema\SelectOption
  *
  * @phpstan-type SelectedFieldsSchemaShape = array{
- *   type: \Imagekit\Files\File\SelectedFieldsSchema\Type|value-of<\Imagekit\Files\File\SelectedFieldsSchema\Type>,
+ *   type: \ImageKit\Files\File\SelectedFieldsSchema\Type|value-of<\ImageKit\Files\File\SelectedFieldsSchema\Type>,
  *   defaultValue?: DefaultValueShape|null,
  *   isValueRequired?: bool|null,
  *   maxLength?: float|null,

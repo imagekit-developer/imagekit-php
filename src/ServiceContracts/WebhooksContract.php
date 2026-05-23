@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\ServiceContracts;
+namespace ImageKit\ServiceContracts;
 
-use Imagekit\Core\Exceptions\WebhookException;
-use Imagekit\Webhooks\FileCreateEvent;
-use Imagekit\Webhooks\FileDeleteEvent;
-use Imagekit\Webhooks\FileUpdateEvent;
-use Imagekit\Webhooks\FileVersionCreateEvent;
-use Imagekit\Webhooks\FileVersionDeleteEvent;
-use Imagekit\Webhooks\UploadPostTransformErrorEvent;
-use Imagekit\Webhooks\UploadPostTransformSuccessEvent;
-use Imagekit\Webhooks\UploadPreTransformErrorEvent;
-use Imagekit\Webhooks\UploadPreTransformSuccessEvent;
-use Imagekit\Webhooks\VideoTransformationAcceptedEvent;
-use Imagekit\Webhooks\VideoTransformationErrorEvent;
-use Imagekit\Webhooks\VideoTransformationReadyEvent;
+use ImageKit\Core\Exceptions\WebhookException;
+use ImageKit\Webhooks\FileCreateEvent;
+use ImageKit\Webhooks\FileDeleteEvent;
+use ImageKit\Webhooks\FileUpdateEvent;
+use ImageKit\Webhooks\FileVersionCreateEvent;
+use ImageKit\Webhooks\FileVersionDeleteEvent;
+use ImageKit\Webhooks\UploadPostTransformErrorEvent;
+use ImageKit\Webhooks\UploadPostTransformSuccessEvent;
+use ImageKit\Webhooks\UploadPreTransformErrorEvent;
+use ImageKit\Webhooks\UploadPreTransformSuccessEvent;
+use ImageKit\Webhooks\VideoTransformationAcceptedEvent;
+use ImageKit\Webhooks\VideoTransformationErrorEvent;
+use ImageKit\Webhooks\VideoTransformationReadyEvent;
 
 interface WebhooksContract
 {

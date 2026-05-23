@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\BaseOverlay;
+namespace ImageKit\BaseOverlay;
 
 /**
  * Controls how the layer blends with the base image or underlying content. Maps to `lm` in the URL.

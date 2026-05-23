@@ -2,23 +2,23 @@
 
 declare(strict_types=1);
 
-namespace Imagekit;
+namespace ImageKit;
 
-use Imagekit\Core\Concerns\SdkUnion;
-use Imagekit\Core\Conversion\Contracts\Converter;
-use Imagekit\Core\Conversion\Contracts\ConverterSource;
-use Imagekit\ExtensionItem\AITasksExtension;
-use Imagekit\ExtensionItem\AutoDescriptionExtension;
-use Imagekit\ExtensionItem\AutoTaggingExtension;
-use Imagekit\ExtensionItem\RemovedotBgExtension;
-use Imagekit\ExtensionItem\SavedExtensionReference;
+use ImageKit\Core\Concerns\SdkUnion;
+use ImageKit\Core\Conversion\Contracts\Converter;
+use ImageKit\Core\Conversion\Contracts\ConverterSource;
+use ImageKit\ExtensionItem\AITasksExtension;
+use ImageKit\ExtensionItem\AutoDescriptionExtension;
+use ImageKit\ExtensionItem\AutoTaggingExtension;
+use ImageKit\ExtensionItem\RemovedotBgExtension;
+use ImageKit\ExtensionItem\SavedExtensionReference;
 
 /**
- * @phpstan-import-type RemovedotBgExtensionShape from \Imagekit\ExtensionItem\RemovedotBgExtension
- * @phpstan-import-type AutoTaggingExtensionShape from \Imagekit\ExtensionItem\AutoTaggingExtension
- * @phpstan-import-type AutoDescriptionExtensionShape from \Imagekit\ExtensionItem\AutoDescriptionExtension
- * @phpstan-import-type AITasksExtensionShape from \Imagekit\ExtensionItem\AITasksExtension
- * @phpstan-import-type SavedExtensionReferenceShape from \Imagekit\ExtensionItem\SavedExtensionReference
+ * @phpstan-import-type RemovedotBgExtensionShape from \ImageKit\ExtensionItem\RemovedotBgExtension
+ * @phpstan-import-type AutoTaggingExtensionShape from \ImageKit\ExtensionItem\AutoTaggingExtension
+ * @phpstan-import-type AutoDescriptionExtensionShape from \ImageKit\ExtensionItem\AutoDescriptionExtension
+ * @phpstan-import-type AITasksExtensionShape from \ImageKit\ExtensionItem\AITasksExtension
+ * @phpstan-import-type SavedExtensionReferenceShape from \ImageKit\ExtensionItem\SavedExtensionReference
  *
  * @phpstan-type ExtensionItemVariants = RemovedotBgExtension|AutoTaggingExtension|AutoDescriptionExtension|AITasksExtension|SavedExtensionReference
  * @phpstan-type ExtensionItemShape = ExtensionItemVariants|RemovedotBgExtensionShape|AutoTaggingExtensionShape|AutoDescriptionExtensionShape|AITasksExtensionShape|SavedExtensionReferenceShape

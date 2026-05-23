@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Assets;
+namespace ImageKit\Assets;
 
-use Imagekit\Core\Concerns\SdkUnion;
-use Imagekit\Core\Conversion\Contracts\Converter;
-use Imagekit\Core\Conversion\Contracts\ConverterSource;
-use Imagekit\Files\File;
-use Imagekit\Files\Folder;
+use ImageKit\Core\Concerns\SdkUnion;
+use ImageKit\Core\Conversion\Contracts\Converter;
+use ImageKit\Core\Conversion\Contracts\ConverterSource;
+use ImageKit\Files\File;
+use ImageKit\Files\Folder;
 
 /**
  * Object containing details of a file or file version.
  *
- * @phpstan-import-type FileShape from \Imagekit\Files\File
- * @phpstan-import-type FolderShape from \Imagekit\Files\Folder
+ * @phpstan-import-type FileShape from \ImageKit\Files\File
+ * @phpstan-import-type FolderShape from \ImageKit\Files\Folder
  *
  * @phpstan-type AssetListResponseItemVariants = File|Folder
  * @phpstan-type AssetListResponseItemShape = AssetListResponseItemVariants|FileShape|FolderShape

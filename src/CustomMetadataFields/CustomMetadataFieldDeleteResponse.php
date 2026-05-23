@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\CustomMetadataFields;
+namespace ImageKit\CustomMetadataFields;
 
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * @phpstan-type CustomMetadataFieldDeleteResponseShape = array<string,mixed>

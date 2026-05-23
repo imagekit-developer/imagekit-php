@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Core\Conversion;
+namespace ImageKit\Core\Conversion;
 
-use Imagekit\Core\Conversion\Concerns\ArrayOf;
-use Imagekit\Core\Conversion\Contracts\Converter;
+use ImageKit\Core\Conversion\Concerns\ArrayOf;
+use ImageKit\Core\Conversion\Contracts\Converter;
 
 /**
  * @internal

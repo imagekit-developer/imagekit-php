@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Folders\Job;
+namespace ImageKit\Folders\Job;
 
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Folders\Job\JobGetResponse\Status;
-use Imagekit\Folders\Job\JobGetResponse\Type;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Folders\Job\JobGetResponse\Status;
+use ImageKit\Folders\Job\JobGetResponse\Type;
 
 /**
  * @phpstan-type JobGetResponseShape = array{

@@ -2,25 +2,25 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Services;
+namespace ImageKit\Services;
 
-use Imagekit\Client;
-use Imagekit\Core\Contracts\BaseResponse;
-use Imagekit\Core\Conversion\ListOf;
-use Imagekit\Core\Exceptions\APIException;
-use Imagekit\CustomMetadataFields\CustomMetadataField;
-use Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams;
-use Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema;
-use Imagekit\CustomMetadataFields\CustomMetadataFieldDeleteResponse;
-use Imagekit\CustomMetadataFields\CustomMetadataFieldListParams;
-use Imagekit\CustomMetadataFields\CustomMetadataFieldUpdateParams;
-use Imagekit\RequestOptions;
-use Imagekit\ServiceContracts\CustomMetadataFieldsRawContract;
+use ImageKit\Client;
+use ImageKit\Core\Contracts\BaseResponse;
+use ImageKit\Core\Conversion\ListOf;
+use ImageKit\Core\Exceptions\APIException;
+use ImageKit\CustomMetadataFields\CustomMetadataField;
+use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams;
+use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema;
+use ImageKit\CustomMetadataFields\CustomMetadataFieldDeleteResponse;
+use ImageKit\CustomMetadataFields\CustomMetadataFieldListParams;
+use ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams;
+use ImageKit\RequestOptions;
+use ImageKit\ServiceContracts\CustomMetadataFieldsRawContract;
 
 /**
- * @phpstan-import-type SchemaShape from \Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema
- * @phpstan-import-type SchemaShape from \Imagekit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema as SchemaShape1
- * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ * @phpstan-import-type SchemaShape from \ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema
+ * @phpstan-import-type SchemaShape from \ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema as SchemaShape1
+ * @phpstan-import-type RequestOpts from \ImageKit\RequestOptions
  */
 final class CustomMetadataFieldsRawService implements CustomMetadataFieldsRawContract
 {

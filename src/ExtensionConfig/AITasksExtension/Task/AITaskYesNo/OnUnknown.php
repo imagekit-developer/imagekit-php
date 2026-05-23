@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\ExtensionConfig\AITasksExtension\Task\AITaskYesNo;
+namespace ImageKit\ExtensionConfig\AITasksExtension\Task\AITaskYesNo;
 
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\ExtensionConfig\AITasksExtension\Task\AITaskYesNo\OnUnknown\SetMetadata;
-use Imagekit\ExtensionConfig\AITasksExtension\Task\AITaskYesNo\OnUnknown\UnsetMetadata;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\ExtensionConfig\AITasksExtension\Task\AITaskYesNo\OnUnknown\SetMetadata;
+use ImageKit\ExtensionConfig\AITasksExtension\Task\AITaskYesNo\OnUnknown\UnsetMetadata;
 
 /**
  * Actions to execute if the AI cannot determine the answer.
  *
- * @phpstan-import-type SetMetadataShape from \Imagekit\ExtensionConfig\AITasksExtension\Task\AITaskYesNo\OnUnknown\SetMetadata
- * @phpstan-import-type UnsetMetadataShape from \Imagekit\ExtensionConfig\AITasksExtension\Task\AITaskYesNo\OnUnknown\UnsetMetadata
+ * @phpstan-import-type SetMetadataShape from \ImageKit\ExtensionConfig\AITasksExtension\Task\AITaskYesNo\OnUnknown\SetMetadata
+ * @phpstan-import-type UnsetMetadataShape from \ImageKit\ExtensionConfig\AITasksExtension\Task\AITaskYesNo\OnUnknown\UnsetMetadata
  *
  * @phpstan-type OnUnknownShape = array{
  *   addTags?: list<string>|null,

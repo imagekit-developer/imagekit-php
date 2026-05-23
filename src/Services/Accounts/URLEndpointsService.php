@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Services\Accounts;
+namespace ImageKit\Services\Accounts;
 
-use Imagekit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\AkamaiURLRewriter;
-use Imagekit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\CloudinaryURLRewriter;
-use Imagekit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\ImgixURLRewriter;
-use Imagekit\Accounts\URLEndpoints\URLEndpointResponse;
-use Imagekit\Client;
-use Imagekit\Core\Exceptions\APIException;
-use Imagekit\Core\Util;
-use Imagekit\RequestOptions;
-use Imagekit\ServiceContracts\Accounts\URLEndpointsContract;
+use ImageKit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\AkamaiURLRewriter;
+use ImageKit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\CloudinaryURLRewriter;
+use ImageKit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter\ImgixURLRewriter;
+use ImageKit\Accounts\URLEndpoints\URLEndpointResponse;
+use ImageKit\Client;
+use ImageKit\Core\Exceptions\APIException;
+use ImageKit\Core\Util;
+use ImageKit\RequestOptions;
+use ImageKit\ServiceContracts\Accounts\URLEndpointsContract;
 
 /**
- * @phpstan-import-type URLRewriterShape from \Imagekit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter
- * @phpstan-import-type URLRewriterShape from \Imagekit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter as URLRewriterShape1
- * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ * @phpstan-import-type URLRewriterShape from \ImageKit\Accounts\URLEndpoints\URLEndpointCreateParams\URLRewriter
+ * @phpstan-import-type URLRewriterShape from \ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter as URLRewriterShape1
+ * @phpstan-import-type RequestOpts from \ImageKit\RequestOptions
  */
 final class URLEndpointsService implements URLEndpointsContract
 {
@@ -90,7 +90,7 @@ final class URLEndpointsService implements URLEndpointsContract
         string $description,
         array $origins = [],
         string $urlPrefix = '',
-        \Imagekit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\CloudinaryURLRewriter|array|\Imagekit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\ImgixURLRewriter|\Imagekit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\AkamaiURLRewriter|null $urlRewriter = null,
+        \ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\CloudinaryURLRewriter|array|\ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\ImgixURLRewriter|\ImageKit\Accounts\URLEndpoints\URLEndpointUpdateParams\URLRewriter\AkamaiURLRewriter|null $urlRewriter = null,
         RequestOptions|array|null $requestOptions = null,
     ): URLEndpointResponse {
         $params = Util::removeNulls(

@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Files\Versions;
+namespace ImageKit\Files\Versions;
 
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Concerns\SdkParams;
-use Imagekit\Core\Contracts\BaseModel;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Concerns\SdkParams;
+use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * This API restores a file version as the current file version.
  *
- * @see Imagekit\Services\Files\VersionsService::restore()
+ * @see ImageKit\Services\Files\VersionsService::restore()
  *
  * @phpstan-type VersionRestoreParamsShape = array{fileID: string}
  */

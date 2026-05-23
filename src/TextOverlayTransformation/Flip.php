@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\TextOverlayTransformation;
+namespace ImageKit\TextOverlayTransformation;
 
 /**
  * Flip/mirror the text horizontally, vertically, or in both directions.

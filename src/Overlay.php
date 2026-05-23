@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace Imagekit;
+namespace ImageKit;
 
-use Imagekit\Core\Concerns\SdkUnion;
-use Imagekit\Core\Conversion\Contracts\Converter;
-use Imagekit\Core\Conversion\Contracts\ConverterSource;
+use ImageKit\Core\Concerns\SdkUnion;
+use ImageKit\Core\Conversion\Contracts\Converter;
+use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
 /**
  * Specifies an overlay to be applied on the parent image or video.
  * ImageKit supports overlays including images, text, videos, subtitles, and solid colors.
  * See [Overlay using layers](https://imagekit.io/docs/transformations#overlay-using-layers).
  *
- * @phpstan-import-type TextOverlayShape from \Imagekit\TextOverlay
- * @phpstan-import-type ImageOverlayShape from \Imagekit\ImageOverlay
- * @phpstan-import-type VideoOverlayShape from \Imagekit\VideoOverlay
- * @phpstan-import-type SubtitleOverlayShape from \Imagekit\SubtitleOverlay
- * @phpstan-import-type SolidColorOverlayShape from \Imagekit\SolidColorOverlay
+ * @phpstan-import-type TextOverlayShape from \ImageKit\TextOverlay
+ * @phpstan-import-type ImageOverlayShape from \ImageKit\ImageOverlay
+ * @phpstan-import-type VideoOverlayShape from \ImageKit\VideoOverlay
+ * @phpstan-import-type SubtitleOverlayShape from \ImageKit\SubtitleOverlay
+ * @phpstan-import-type SolidColorOverlayShape from \ImageKit\SolidColorOverlay
  *
  * @phpstan-type OverlayVariants = mixed|TextOverlay|SubtitleOverlay|SolidColorOverlay
  * @phpstan-type OverlayShape = OverlayVariants|TextOverlayShape|ImageOverlayShape|VideoOverlayShape|SubtitleOverlayShape|SolidColorOverlayShape

@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Webhooks\UploadPostTransformSuccessEvent;
+namespace ImageKit\Webhooks\UploadPostTransformSuccessEvent;
 
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Webhooks\UploadPostTransformSuccessEvent\Request\Transformation;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Webhooks\UploadPostTransformSuccessEvent\Request\Transformation;
 
 /**
- * @phpstan-import-type TransformationShape from \Imagekit\Webhooks\UploadPostTransformSuccessEvent\Request\Transformation
+ * @phpstan-import-type TransformationShape from \ImageKit\Webhooks\UploadPostTransformSuccessEvent\Request\Transformation
  *
  * @phpstan-type RequestShape = array{
  *   transformation: Transformation|TransformationShape, xRequestID: string

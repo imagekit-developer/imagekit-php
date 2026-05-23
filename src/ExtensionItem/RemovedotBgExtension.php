@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\ExtensionItem;
+namespace ImageKit\ExtensionItem;
 
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\ExtensionItem\RemovedotBgExtension\Options;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\ExtensionItem\RemovedotBgExtension\Options;
 
 /**
- * @phpstan-import-type OptionsShape from \Imagekit\ExtensionItem\RemovedotBgExtension\Options
+ * @phpstan-import-type OptionsShape from \ImageKit\ExtensionItem\RemovedotBgExtension\Options
  *
  * @phpstan-type RemovedotBgExtensionShape = array{
  *   name: 'remove-bg', options?: null|Options|OptionsShape

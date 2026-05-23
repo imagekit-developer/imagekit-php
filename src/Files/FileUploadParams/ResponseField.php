@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Files\FileUploadParams;
+namespace ImageKit\Files\FileUploadParams;
 
 enum ResponseField: string
 {

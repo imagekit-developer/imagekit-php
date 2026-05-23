@@ -1,13 +1,13 @@
 <?php
 
-namespace Imagekit\Core\Exceptions;
+namespace ImageKit\Core\Exceptions;
 
 use Psr\Http\Message\RequestInterface;
 
 class APITimeoutException extends APIConnectionException
 {
     /** @var string */
-    protected const DESC = 'Imagekit API Timeout Exception';
+    protected const DESC = 'ImageKit API Timeout Exception';
 
     public function __construct(
         RequestInterface $request,

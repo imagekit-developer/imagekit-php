@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\ServiceContracts\Cache;
+namespace ImageKit\ServiceContracts\Cache;
 
-use Imagekit\Cache\Invalidation\InvalidationCreateParams;
-use Imagekit\Cache\Invalidation\InvalidationGetResponse;
-use Imagekit\Cache\Invalidation\InvalidationNewResponse;
-use Imagekit\Core\Contracts\BaseResponse;
-use Imagekit\Core\Exceptions\APIException;
-use Imagekit\RequestOptions;
+use ImageKit\Cache\Invalidation\InvalidationCreateParams;
+use ImageKit\Cache\Invalidation\InvalidationGetResponse;
+use ImageKit\Cache\Invalidation\InvalidationNewResponse;
+use ImageKit\Core\Contracts\BaseResponse;
+use ImageKit\Core\Exceptions\APIException;
+use ImageKit\RequestOptions;
 
 /**
- * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ * @phpstan-import-type RequestOpts from \ImageKit\RequestOptions
  */
 interface InvalidationRawContract
 {

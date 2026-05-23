@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\CustomMetadataFields\CustomMetadataField\Schema;
+namespace ImageKit\CustomMetadataFields\CustomMetadataField\Schema;
 
-use Imagekit\Core\Concerns\SdkUnion;
-use Imagekit\Core\Conversion\Contracts\Converter;
-use Imagekit\Core\Conversion\Contracts\ConverterSource;
-use Imagekit\Core\Conversion\ListOf;
-use Imagekit\CustomMetadataFields\CustomMetadataField\Schema\DefaultValue\Mixed_;
+use ImageKit\Core\Concerns\SdkUnion;
+use ImageKit\Core\Conversion\Contracts\Converter;
+use ImageKit\Core\Conversion\Contracts\ConverterSource;
+use ImageKit\Core\Conversion\ListOf;
+use ImageKit\CustomMetadataFields\CustomMetadataField\Schema\DefaultValue\Mixed_;
 
 /**
  * The default value for this custom metadata field. Data type of default value depends on the field type.
  *
- * @phpstan-import-type MixedShape from \Imagekit\CustomMetadataFields\CustomMetadataField\Schema\DefaultValue\Mixed_
+ * @phpstan-import-type MixedShape from \ImageKit\CustomMetadataFields\CustomMetadataField\Schema\DefaultValue\Mixed_
  *
  * @phpstan-type DefaultValueVariants = string|float|bool|list<string|float|bool>
  * @phpstan-type DefaultValueShape = DefaultValueVariants|list<MixedShape>

@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Services;
+namespace ImageKit\Services;
 
-use Imagekit\Client;
-use Imagekit\Core\Exceptions\APIException;
-use Imagekit\Core\Util;
-use Imagekit\CustomMetadataFields\CustomMetadataField;
-use Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema;
-use Imagekit\CustomMetadataFields\CustomMetadataFieldDeleteResponse;
-use Imagekit\RequestOptions;
-use Imagekit\ServiceContracts\CustomMetadataFieldsContract;
+use ImageKit\Client;
+use ImageKit\Core\Exceptions\APIException;
+use ImageKit\Core\Util;
+use ImageKit\CustomMetadataFields\CustomMetadataField;
+use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema;
+use ImageKit\CustomMetadataFields\CustomMetadataFieldDeleteResponse;
+use ImageKit\RequestOptions;
+use ImageKit\ServiceContracts\CustomMetadataFieldsContract;
 
 /**
- * @phpstan-import-type SchemaShape from \Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema
- * @phpstan-import-type SchemaShape from \Imagekit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema as SchemaShape1
- * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ * @phpstan-import-type SchemaShape from \ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema
+ * @phpstan-import-type SchemaShape from \ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema as SchemaShape1
+ * @phpstan-import-type RequestOpts from \ImageKit\RequestOptions
  */
 final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
 {
@@ -68,7 +68,7 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
      *
      * @param string $id should be a valid custom metadata field id
      * @param string $label Human readable name of the custom metadata field. This should be unique across all non deleted custom metadata fields. This name is displayed as form field label to the users while setting field value on an asset in the media library UI. This parameter is required if `schema` is not provided.
-     * @param \Imagekit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema|SchemaShape1 $schema An object that describes the rules for the custom metadata key. This parameter is required if `label` is not provided. Note: `type` cannot be updated and will be ignored if sent with the `schema`. The schema will be validated as per the existing `type`.
+     * @param \ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema|SchemaShape1 $schema An object that describes the rules for the custom metadata key. This parameter is required if `label` is not provided. Note: `type` cannot be updated and will be ignored if sent with the `schema`. The schema will be validated as per the existing `type`.
      * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
@@ -76,7 +76,7 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
     public function update(
         string $id,
         ?string $label = null,
-        \Imagekit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema|array|null $schema = null,
+        \ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema|array|null $schema = null,
         RequestOptions|array|null $requestOptions = null,
     ): CustomMetadataField {
         $params = Util::removeNulls(['label' => $label, 'schema' => $schema]);

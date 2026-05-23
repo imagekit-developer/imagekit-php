@@ -11,7 +11,7 @@ The REST API documentation can be found on [imagekit.io](https://imagekit.io/doc
 <!-- x-release-please-start-version -->
 
 ```
-composer require "imagekit/imagekit 0.0.1"
+composer require "imagekit/imagekit 0.1.0"
 ```
 
 <!-- x-release-please-end -->

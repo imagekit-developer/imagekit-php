@@ -2,33 +2,33 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Services;
+namespace ImageKit\Services;
 
-use Imagekit\Client;
-use Imagekit\Core\Exceptions\APIException;
-use Imagekit\Core\FileParam;
-use Imagekit\Core\Util;
-use Imagekit\Files\File;
-use Imagekit\Files\FileCopyResponse;
-use Imagekit\Files\FileMoveResponse;
-use Imagekit\Files\FileRenameResponse;
-use Imagekit\Files\FileUpdateParams\Publish;
-use Imagekit\Files\FileUpdateResponse;
-use Imagekit\Files\FileUploadParams\ResponseField;
-use Imagekit\Files\FileUploadParams\Transformation;
-use Imagekit\Files\FileUploadResponse;
-use Imagekit\RequestOptions;
-use Imagekit\ServiceContracts\FilesContract;
-use Imagekit\Services\Files\BulkService;
-use Imagekit\Services\Files\MetadataService;
-use Imagekit\Services\Files\VersionsService;
+use ImageKit\Client;
+use ImageKit\Core\Exceptions\APIException;
+use ImageKit\Core\FileParam;
+use ImageKit\Core\Util;
+use ImageKit\Files\File;
+use ImageKit\Files\FileCopyResponse;
+use ImageKit\Files\FileMoveResponse;
+use ImageKit\Files\FileRenameResponse;
+use ImageKit\Files\FileUpdateParams\Publish;
+use ImageKit\Files\FileUpdateResponse;
+use ImageKit\Files\FileUploadParams\ResponseField;
+use ImageKit\Files\FileUploadParams\Transformation;
+use ImageKit\Files\FileUploadResponse;
+use ImageKit\RequestOptions;
+use ImageKit\ServiceContracts\FilesContract;
+use ImageKit\Services\Files\BulkService;
+use ImageKit\Services\Files\MetadataService;
+use ImageKit\Services\Files\VersionsService;
 
 /**
- * @phpstan-import-type RemoveAITagsShape from \Imagekit\Files\FileUpdateParams\RemoveAITags
- * @phpstan-import-type PublishShape from \Imagekit\Files\FileUpdateParams\Publish
- * @phpstan-import-type TransformationShape from \Imagekit\Files\FileUploadParams\Transformation
- * @phpstan-import-type ExtensionItemShape from \Imagekit\ExtensionItem
- * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ * @phpstan-import-type RemoveAITagsShape from \ImageKit\Files\FileUpdateParams\RemoveAITags
+ * @phpstan-import-type PublishShape from \ImageKit\Files\FileUpdateParams\Publish
+ * @phpstan-import-type TransformationShape from \ImageKit\Files\FileUploadParams\Transformation
+ * @phpstan-import-type ExtensionItemShape from \ImageKit\ExtensionItem
+ * @phpstan-import-type RequestOpts from \ImageKit\RequestOptions
  */
 final class FilesService implements FilesContract
 {

@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Beta\V2\Files\FileUploadResponse\SelectedFieldsSchema;
+namespace ImageKit\Beta\V2\Files\FileUploadResponse\SelectedFieldsSchema;
 
-use Imagekit\Beta\V2\Files\FileUploadResponse\SelectedFieldsSchema\DefaultValue\Mixed_;
-use Imagekit\Core\Concerns\SdkUnion;
-use Imagekit\Core\Conversion\Contracts\Converter;
-use Imagekit\Core\Conversion\Contracts\ConverterSource;
-use Imagekit\Core\Conversion\ListOf;
+use ImageKit\Beta\V2\Files\FileUploadResponse\SelectedFieldsSchema\DefaultValue\Mixed_;
+use ImageKit\Core\Concerns\SdkUnion;
+use ImageKit\Core\Conversion\Contracts\Converter;
+use ImageKit\Core\Conversion\Contracts\ConverterSource;
+use ImageKit\Core\Conversion\ListOf;
 
 /**
  * The default value for this custom metadata field. The value should match the `type` of custom metadata field.
  *
- * @phpstan-import-type MixedShape from \Imagekit\Beta\V2\Files\FileUploadResponse\SelectedFieldsSchema\DefaultValue\Mixed_
+ * @phpstan-import-type MixedShape from \ImageKit\Beta\V2\Files\FileUploadResponse\SelectedFieldsSchema\DefaultValue\Mixed_
  *
  * @phpstan-type DefaultValueVariants = string|float|bool|list<string|float|bool>
  * @phpstan-type DefaultValueShape = DefaultValueVariants|list<MixedShape>

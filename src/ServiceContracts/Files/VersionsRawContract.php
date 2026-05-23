@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\ServiceContracts\Files;
+namespace ImageKit\ServiceContracts\Files;
 
-use Imagekit\Core\Contracts\BaseResponse;
-use Imagekit\Core\Exceptions\APIException;
-use Imagekit\Files\File;
-use Imagekit\Files\Versions\VersionDeleteParams;
-use Imagekit\Files\Versions\VersionDeleteResponse;
-use Imagekit\Files\Versions\VersionGetParams;
-use Imagekit\Files\Versions\VersionRestoreParams;
-use Imagekit\RequestOptions;
+use ImageKit\Core\Contracts\BaseResponse;
+use ImageKit\Core\Exceptions\APIException;
+use ImageKit\Files\File;
+use ImageKit\Files\Versions\VersionDeleteParams;
+use ImageKit\Files\Versions\VersionDeleteResponse;
+use ImageKit\Files\Versions\VersionGetParams;
+use ImageKit\Files\Versions\VersionRestoreParams;
+use ImageKit\RequestOptions;
 
 /**
- * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ * @phpstan-import-type RequestOpts from \ImageKit\RequestOptions
  */
 interface VersionsRawContract
 {

@@ -2,25 +2,25 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\CustomMetadataFields\CustomMetadataFieldUpdateParams;
+namespace ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams;
 
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema\DefaultValue;
-use Imagekit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema\SelectOption;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema\DefaultValue;
+use ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema\SelectOption;
 
 /**
  * An object that describes the rules for the custom metadata key. This parameter is required if `label` is not provided. Note: `type` cannot be updated and will be ignored if sent with the `schema`. The schema will be validated as per the existing `type`.
  *
- * @phpstan-import-type DefaultValueVariants from \Imagekit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema\DefaultValue
- * @phpstan-import-type MaxValueVariants from \Imagekit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema\MaxValue
- * @phpstan-import-type MinValueVariants from \Imagekit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema\MinValue
- * @phpstan-import-type SelectOptionVariants from \Imagekit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema\SelectOption
- * @phpstan-import-type DefaultValueShape from \Imagekit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema\DefaultValue
- * @phpstan-import-type MaxValueShape from \Imagekit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema\MaxValue
- * @phpstan-import-type MinValueShape from \Imagekit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema\MinValue
- * @phpstan-import-type SelectOptionShape from \Imagekit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema\SelectOption
+ * @phpstan-import-type DefaultValueVariants from \ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema\DefaultValue
+ * @phpstan-import-type MaxValueVariants from \ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema\MaxValue
+ * @phpstan-import-type MinValueVariants from \ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema\MinValue
+ * @phpstan-import-type SelectOptionVariants from \ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema\SelectOption
+ * @phpstan-import-type DefaultValueShape from \ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema\DefaultValue
+ * @phpstan-import-type MaxValueShape from \ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema\MaxValue
+ * @phpstan-import-type MinValueShape from \ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema\MinValue
+ * @phpstan-import-type SelectOptionShape from \ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams\Schema\SelectOption
  *
  * @phpstan-type SchemaShape = array{
  *   defaultValue?: DefaultValueShape|null,

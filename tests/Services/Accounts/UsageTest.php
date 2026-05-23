@@ -2,9 +2,9 @@
 
 namespace Tests\Services\Accounts;
 
-use Imagekit\Accounts\Usage\UsageGetResponse;
-use Imagekit\Client;
-use Imagekit\Core\Util;
+use ImageKit\Accounts\Usage\UsageGetResponse;
+use ImageKit\Client;
+use ImageKit\Core\Util;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;

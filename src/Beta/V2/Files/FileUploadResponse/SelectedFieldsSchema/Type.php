@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Beta\V2\Files\FileUploadResponse\SelectedFieldsSchema;
+namespace ImageKit\Beta\V2\Files\FileUploadResponse\SelectedFieldsSchema;
 
 /**
  * Type of the custom metadata field.

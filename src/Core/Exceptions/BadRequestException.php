@@ -1,9 +1,9 @@
 <?php
 
-namespace Imagekit\Core\Exceptions;
+namespace ImageKit\Core\Exceptions;
 
 class BadRequestException extends APIStatusException
 {
     /** @var string */
-    protected const DESC = 'Imagekit Bad Request Exception';
+    protected const DESC = 'ImageKit Bad Request Exception';
 }

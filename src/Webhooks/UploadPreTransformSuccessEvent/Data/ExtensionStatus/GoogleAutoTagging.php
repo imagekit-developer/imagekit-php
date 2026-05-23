@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\ExtensionStatus;
+namespace ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\ExtensionStatus;
 
 enum GoogleAutoTagging: string
 {

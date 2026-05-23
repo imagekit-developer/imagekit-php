@@ -2,25 +2,25 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\SavedExtensions;
+namespace ImageKit\SavedExtensions;
 
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Concerns\SdkParams;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\ExtensionConfig;
-use Imagekit\ExtensionConfig\AITasksExtension;
-use Imagekit\ExtensionConfig\AutoDescriptionExtension;
-use Imagekit\ExtensionConfig\AutoTaggingExtension;
-use Imagekit\ExtensionConfig\RemovedotBgExtension;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Concerns\SdkParams;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\ExtensionConfig;
+use ImageKit\ExtensionConfig\AITasksExtension;
+use ImageKit\ExtensionConfig\AutoDescriptionExtension;
+use ImageKit\ExtensionConfig\AutoTaggingExtension;
+use ImageKit\ExtensionConfig\RemovedotBgExtension;
 
 /**
  * This API updates an existing saved extension. You can update the name, description, or config.
  *
- * @see Imagekit\Services\SavedExtensionsService::update()
+ * @see ImageKit\Services\SavedExtensionsService::update()
  *
- * @phpstan-import-type ExtensionConfigVariants from \Imagekit\ExtensionConfig
- * @phpstan-import-type ExtensionConfigShape from \Imagekit\ExtensionConfig
+ * @phpstan-import-type ExtensionConfigVariants from \ImageKit\ExtensionConfig
+ * @phpstan-import-type ExtensionConfigShape from \ImageKit\ExtensionConfig
  *
  * @phpstan-type SavedExtensionUpdateParamsShape = array{
  *   config?: ExtensionConfigShape|null,

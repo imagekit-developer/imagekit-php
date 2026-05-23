@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\ServiceContracts;
+namespace ImageKit\ServiceContracts;
 
-use Imagekit\Assets\AssetListParams;
-use Imagekit\Core\Contracts\BaseResponse;
-use Imagekit\Core\Exceptions\APIException;
-use Imagekit\Files\File;
-use Imagekit\Files\Folder;
-use Imagekit\RequestOptions;
+use ImageKit\Assets\AssetListParams;
+use ImageKit\Core\Contracts\BaseResponse;
+use ImageKit\Core\Exceptions\APIException;
+use ImageKit\Files\File;
+use ImageKit\Files\Folder;
+use ImageKit\RequestOptions;
 
 /**
- * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ * @phpstan-import-type RequestOpts from \ImageKit\RequestOptions
  */
 interface AssetsRawContract
 {

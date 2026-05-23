@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Beta\V2\Files\FileUploadResponse;
+namespace ImageKit\Beta\V2\Files\FileUploadResponse;
 
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * An object containing the file or file version's `id` (versionId) and `name`.

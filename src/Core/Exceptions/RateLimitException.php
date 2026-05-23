@@ -1,9 +1,9 @@
 <?php
 
-namespace Imagekit\Core\Exceptions;
+namespace ImageKit\Core\Exceptions;
 
 class RateLimitException extends APIStatusException
 {
     /** @var string */
-    protected const DESC = 'Imagekit Rate Limit Exception';
+    protected const DESC = 'ImageKit Rate Limit Exception';
 }

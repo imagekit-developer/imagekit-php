@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Transformation;
+namespace ImageKit\Transformation;
 
 /**
  * Flips or mirrors an image either horizontally, vertically, or both.

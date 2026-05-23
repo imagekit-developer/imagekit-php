@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Core;
+namespace ImageKit\Core;
 
 /**
  * Represents a file to upload in a multipart request.

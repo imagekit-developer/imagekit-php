@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Webhooks\UploadPostTransformErrorEvent\Data;
+namespace ImageKit\Webhooks\UploadPostTransformErrorEvent\Data;
 
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Webhooks\UploadPostTransformErrorEvent\Data\Transformation\Error;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Webhooks\UploadPostTransformErrorEvent\Data\Transformation\Error;
 
 /**
- * @phpstan-import-type ErrorShape from \Imagekit\Webhooks\UploadPostTransformErrorEvent\Data\Transformation\Error
+ * @phpstan-import-type ErrorShape from \ImageKit\Webhooks\UploadPostTransformErrorEvent\Data\Transformation\Error
  *
  * @phpstan-type TransformationShape = array{error: Error|ErrorShape}
  */

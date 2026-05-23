@@ -2,24 +2,24 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Services\Accounts;
+namespace ImageKit\Services\Accounts;
 
-use Imagekit\Accounts\Origins\OriginResponse\AkeneoPim;
-use Imagekit\Accounts\Origins\OriginResponse\AzureBlobStorage;
-use Imagekit\Accounts\Origins\OriginResponse\CloudinaryBackup;
-use Imagekit\Accounts\Origins\OriginResponse\GoogleCloudStorageGcs;
-use Imagekit\Accounts\Origins\OriginResponse\S3;
-use Imagekit\Accounts\Origins\OriginResponse\S3Compatible;
-use Imagekit\Accounts\Origins\OriginResponse\WebFolder;
-use Imagekit\Accounts\Origins\OriginResponse\WebProxy;
-use Imagekit\Client;
-use Imagekit\Core\Exceptions\APIException;
-use Imagekit\Core\Util;
-use Imagekit\RequestOptions;
-use Imagekit\ServiceContracts\Accounts\OriginsContract;
+use ImageKit\Accounts\Origins\OriginResponse\AkeneoPim;
+use ImageKit\Accounts\Origins\OriginResponse\AzureBlobStorage;
+use ImageKit\Accounts\Origins\OriginResponse\CloudinaryBackup;
+use ImageKit\Accounts\Origins\OriginResponse\GoogleCloudStorageGcs;
+use ImageKit\Accounts\Origins\OriginResponse\S3;
+use ImageKit\Accounts\Origins\OriginResponse\S3Compatible;
+use ImageKit\Accounts\Origins\OriginResponse\WebFolder;
+use ImageKit\Accounts\Origins\OriginResponse\WebProxy;
+use ImageKit\Client;
+use ImageKit\Core\Exceptions\APIException;
+use ImageKit\Core\Util;
+use ImageKit\RequestOptions;
+use ImageKit\ServiceContracts\Accounts\OriginsContract;
 
 /**
- * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ * @phpstan-import-type RequestOpts from \ImageKit\RequestOptions
  */
 final class OriginsService implements OriginsContract
 {

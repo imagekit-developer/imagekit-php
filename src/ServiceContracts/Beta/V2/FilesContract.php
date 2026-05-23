@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\ServiceContracts\Beta\V2;
+namespace ImageKit\ServiceContracts\Beta\V2;
 
-use Imagekit\Beta\V2\Files\FileUploadParams\ResponseField;
-use Imagekit\Beta\V2\Files\FileUploadParams\Transformation;
-use Imagekit\Beta\V2\Files\FileUploadResponse;
-use Imagekit\Core\Exceptions\APIException;
-use Imagekit\Core\FileParam;
-use Imagekit\RequestOptions;
+use ImageKit\Beta\V2\Files\FileUploadParams\ResponseField;
+use ImageKit\Beta\V2\Files\FileUploadParams\Transformation;
+use ImageKit\Beta\V2\Files\FileUploadResponse;
+use ImageKit\Core\Exceptions\APIException;
+use ImageKit\Core\FileParam;
+use ImageKit\RequestOptions;
 
 /**
- * @phpstan-import-type ExtensionItemShape from \Imagekit\ExtensionItem
- * @phpstan-import-type TransformationShape from \Imagekit\Beta\V2\Files\FileUploadParams\Transformation
- * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ * @phpstan-import-type ExtensionItemShape from \ImageKit\ExtensionItem
+ * @phpstan-import-type TransformationShape from \ImageKit\Beta\V2\Files\FileUploadParams\Transformation
+ * @phpstan-import-type RequestOpts from \ImageKit\RequestOptions
  */
 interface FilesContract
 {

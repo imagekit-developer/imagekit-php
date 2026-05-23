@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\ServiceContracts\Files;
+namespace ImageKit\ServiceContracts\Files;
 
-use Imagekit\Core\Exceptions\APIException;
-use Imagekit\Files\Metadata;
-use Imagekit\RequestOptions;
+use ImageKit\Core\Exceptions\APIException;
+use ImageKit\Files\Metadata;
+use ImageKit\RequestOptions;
 
 /**
- * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ * @phpstan-import-type RequestOpts from \ImageKit\RequestOptions
  */
 interface MetadataContract
 {

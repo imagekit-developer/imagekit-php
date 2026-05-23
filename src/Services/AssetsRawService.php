@@ -2,24 +2,24 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Services;
+namespace ImageKit\Services;
 
-use Imagekit\Assets\AssetListParams;
-use Imagekit\Assets\AssetListParams\FileType;
-use Imagekit\Assets\AssetListParams\Sort;
-use Imagekit\Assets\AssetListParams\Type;
-use Imagekit\Assets\AssetListResponseItem;
-use Imagekit\Client;
-use Imagekit\Core\Contracts\BaseResponse;
-use Imagekit\Core\Conversion\ListOf;
-use Imagekit\Core\Exceptions\APIException;
-use Imagekit\Files\File;
-use Imagekit\Files\Folder;
-use Imagekit\RequestOptions;
-use Imagekit\ServiceContracts\AssetsRawContract;
+use ImageKit\Assets\AssetListParams;
+use ImageKit\Assets\AssetListParams\FileType;
+use ImageKit\Assets\AssetListParams\Sort;
+use ImageKit\Assets\AssetListParams\Type;
+use ImageKit\Assets\AssetListResponseItem;
+use ImageKit\Client;
+use ImageKit\Core\Contracts\BaseResponse;
+use ImageKit\Core\Conversion\ListOf;
+use ImageKit\Core\Exceptions\APIException;
+use ImageKit\Files\File;
+use ImageKit\Files\Folder;
+use ImageKit\RequestOptions;
+use ImageKit\ServiceContracts\AssetsRawContract;
 
 /**
- * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ * @phpstan-import-type RequestOpts from \ImageKit\RequestOptions
  */
 final class AssetsRawService implements AssetsRawContract
 {

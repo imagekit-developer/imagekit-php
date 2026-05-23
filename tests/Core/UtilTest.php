@@ -3,7 +3,7 @@
 namespace Tests\Core;
 
 use Http\Discovery\Psr17FactoryDiscovery;
-use Imagekit\Core\Util;
+use ImageKit\Core\Util;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;

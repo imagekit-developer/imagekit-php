@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Core\Contracts;
+namespace ImageKit\Core\Contracts;
 
-use Imagekit\Core\Conversion\Contracts\Converter;
-use Imagekit\Core\Conversion\Contracts\ConverterSource;
+use ImageKit\Core\Conversion\Contracts\Converter;
+use ImageKit\Core\Conversion\Contracts\ConverterSource;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 

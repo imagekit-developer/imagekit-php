@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Transformation;
+namespace ImageKit\Transformation;
 
-use Imagekit\Core\Concerns\SdkUnion;
-use Imagekit\Core\Conversion\Contracts\Converter;
-use Imagekit\Core\Conversion\Contracts\ConverterSource;
+use ImageKit\Core\Concerns\SdkUnion;
+use ImageKit\Core\Conversion\Contracts\Converter;
+use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
 /**
  * Specifies the width of the output. If a value between 0 and 1 is provided, it is treated as a percentage (e.g., `0.4` represents 40% of the original width).

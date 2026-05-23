@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Files;
+namespace ImageKit\Files;
 
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Concerns\SdkParams;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Core\FileParam;
-use Imagekit\ExtensionItem;
-use Imagekit\Files\FileUploadParams\ResponseField;
-use Imagekit\Files\FileUploadParams\Transformation;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Concerns\SdkParams;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Core\FileParam;
+use ImageKit\ExtensionItem;
+use ImageKit\Files\FileUploadParams\ResponseField;
+use ImageKit\Files\FileUploadParams\Transformation;
 
 /**
  * ImageKit.io allows you to upload files directly from both the server and client sides. For server-side uploads, private API key authentication is used. For client-side uploads, generate a one-time `token`, `signature`, and `expire` from your secure backend using private API. [Learn more](/docs/api-reference/upload-file/upload-file#how-to-implement-client-side-file-upload) about how to implement client-side file upload.
@@ -30,11 +30,11 @@ use Imagekit\Files\FileUploadParams\Transformation;
  * - A full-fledged [upload widget using Uppy](https://github.com/imagekit-samples/uppy-uploader), supporting file selections from local storage, URL, Dropbox, Google Drive, Instagram, and more.
  * - [Quick start guides](/docs/quick-start-guides) for various frameworks and technologies.
  *
- * @see Imagekit\Services\FilesService::upload()
+ * @see ImageKit\Services\FilesService::upload()
  *
- * @phpstan-import-type ExtensionItemVariants from \Imagekit\ExtensionItem
- * @phpstan-import-type ExtensionItemShape from \Imagekit\ExtensionItem
- * @phpstan-import-type TransformationShape from \Imagekit\Files\FileUploadParams\Transformation
+ * @phpstan-import-type ExtensionItemVariants from \ImageKit\ExtensionItem
+ * @phpstan-import-type ExtensionItemShape from \ImageKit\ExtensionItem
+ * @phpstan-import-type TransformationShape from \ImageKit\Files\FileUploadParams\Transformation
  *
  * @phpstan-type FileUploadParamsShape = array{
  *   file: string|FileParam,

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema;
+namespace ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema;
 
 /**
  * Type of the custom metadata field.

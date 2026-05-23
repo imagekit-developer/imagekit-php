@@ -2,9 +2,9 @@
 
 namespace Tests\Services;
 
-use Imagekit\Client;
-use Imagekit\Core\Exceptions\WebhookException;
-use Imagekit\Core\Util;
+use ImageKit\Client;
+use ImageKit\Core\Exceptions\WebhookException;
+use ImageKit\Core\Util;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;

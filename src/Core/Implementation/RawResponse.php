@@ -1,20 +1,20 @@
 <?php
 
-namespace Imagekit\Core\Implementation;
+namespace ImageKit\Core\Implementation;
 
-use Imagekit\Core\BaseClient;
-use Imagekit\Core\Concerns\ResponseProxy;
-use Imagekit\Core\Contracts\BaseResponse;
-use Imagekit\Core\Conversion;
-use Imagekit\Core\Conversion\Contracts\Converter;
-use Imagekit\Core\Conversion\Contracts\ConverterSource;
-use Imagekit\Core\Util;
-use Imagekit\RequestOptions;
+use ImageKit\Core\BaseClient;
+use ImageKit\Core\Concerns\ResponseProxy;
+use ImageKit\Core\Contracts\BaseResponse;
+use ImageKit\Core\Conversion;
+use ImageKit\Core\Conversion\Contracts\Converter;
+use ImageKit\Core\Conversion\Contracts\ConverterSource;
+use ImageKit\Core\Util;
+use ImageKit\RequestOptions;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
 /**
- * @phpstan-import-type NormalizedRequest from \Imagekit\Core\BaseClient
+ * @phpstan-import-type NormalizedRequest from \ImageKit\Core\BaseClient
  *
  * @internal
  *

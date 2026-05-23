@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Webhooks;
+namespace ImageKit\Webhooks;
 
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * @phpstan-type BaseWebhookEventShape = array{id: string, type: string}

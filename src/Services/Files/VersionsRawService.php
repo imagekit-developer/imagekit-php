@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Services\Files;
+namespace ImageKit\Services\Files;
 
-use Imagekit\Client;
-use Imagekit\Core\Contracts\BaseResponse;
-use Imagekit\Core\Conversion\ListOf;
-use Imagekit\Core\Exceptions\APIException;
-use Imagekit\Files\File;
-use Imagekit\Files\Versions\VersionDeleteParams;
-use Imagekit\Files\Versions\VersionDeleteResponse;
-use Imagekit\Files\Versions\VersionGetParams;
-use Imagekit\Files\Versions\VersionRestoreParams;
-use Imagekit\RequestOptions;
-use Imagekit\ServiceContracts\Files\VersionsRawContract;
+use ImageKit\Client;
+use ImageKit\Core\Contracts\BaseResponse;
+use ImageKit\Core\Conversion\ListOf;
+use ImageKit\Core\Exceptions\APIException;
+use ImageKit\Files\File;
+use ImageKit\Files\Versions\VersionDeleteParams;
+use ImageKit\Files\Versions\VersionDeleteResponse;
+use ImageKit\Files\Versions\VersionGetParams;
+use ImageKit\Files\Versions\VersionRestoreParams;
+use ImageKit\RequestOptions;
+use ImageKit\ServiceContracts\Files\VersionsRawContract;
 
 /**
- * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ * @phpstan-import-type RequestOpts from \ImageKit\RequestOptions
  */
 final class VersionsRawService implements VersionsRawContract
 {

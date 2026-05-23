@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data;
+namespace ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data;
 
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\ExtensionStatus\AIAutoDescription;
-use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\ExtensionStatus\AITasks;
-use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\ExtensionStatus\AwsAutoTagging;
-use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\ExtensionStatus\GoogleAutoTagging;
-use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\ExtensionStatus\RemoveBg;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\ExtensionStatus\AIAutoDescription;
+use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\ExtensionStatus\AITasks;
+use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\ExtensionStatus\AwsAutoTagging;
+use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\ExtensionStatus\GoogleAutoTagging;
+use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\ExtensionStatus\RemoveBg;
 
 /**
  * Extension names with their processing status at the time of completion of the request. It could have one of the following status values:

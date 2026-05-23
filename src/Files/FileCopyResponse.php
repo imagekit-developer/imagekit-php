@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Files;
+namespace ImageKit\Files;
 
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * @phpstan-type FileCopyResponseShape = array<string,mixed>

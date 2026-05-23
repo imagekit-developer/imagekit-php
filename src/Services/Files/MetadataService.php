@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Services\Files;
+namespace ImageKit\Services\Files;
 
-use Imagekit\Client;
-use Imagekit\Core\Exceptions\APIException;
-use Imagekit\Core\Util;
-use Imagekit\Files\Metadata;
-use Imagekit\RequestOptions;
-use Imagekit\ServiceContracts\Files\MetadataContract;
+use ImageKit\Client;
+use ImageKit\Core\Exceptions\APIException;
+use ImageKit\Core\Util;
+use ImageKit\Files\Metadata;
+use ImageKit\RequestOptions;
+use ImageKit\ServiceContracts\Files\MetadataContract;
 
 /**
- * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ * @phpstan-import-type RequestOpts from \ImageKit\RequestOptions
  */
 final class MetadataService implements MetadataContract
 {

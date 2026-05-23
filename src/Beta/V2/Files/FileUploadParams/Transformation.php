@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Beta\V2\Files\FileUploadParams;
+namespace ImageKit\Beta\V2\Files\FileUploadParams;
 
-use Imagekit\Beta\V2\Files\FileUploadParams\Transformation\Post;
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
+use ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * Configure pre-processing (`pre`) and post-processing (`post`) transformations.
@@ -20,8 +20,8 @@ use Imagekit\Core\Contracts\BaseModel;
  *
  * You can mix and match any combination of post-processing types.
  *
- * @phpstan-import-type PostVariants from \Imagekit\Beta\V2\Files\FileUploadParams\Transformation\Post
- * @phpstan-import-type PostShape from \Imagekit\Beta\V2\Files\FileUploadParams\Transformation\Post
+ * @phpstan-import-type PostVariants from \ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post
+ * @phpstan-import-type PostShape from \ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post
  *
  * @phpstan-type TransformationShape = array{
  *   post?: list<PostShape>|null, pre?: string|null

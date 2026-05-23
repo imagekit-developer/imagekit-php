@@ -2,6 +2,6 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\ServiceContracts;
+namespace ImageKit\ServiceContracts;
 
 interface WebhooksRawContract {}

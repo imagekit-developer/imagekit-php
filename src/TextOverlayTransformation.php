@@ -2,27 +2,27 @@
 
 declare(strict_types=1);
 
-namespace Imagekit;
+namespace ImageKit;
 
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\TextOverlayTransformation\Flip;
-use Imagekit\TextOverlayTransformation\InnerAlignment;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\TextOverlayTransformation\Flip;
+use ImageKit\TextOverlayTransformation\InnerAlignment;
 
 /**
- * @phpstan-import-type FontSizeVariants from \Imagekit\TextOverlayTransformation\FontSize
- * @phpstan-import-type LineHeightVariants from \Imagekit\TextOverlayTransformation\LineHeight
- * @phpstan-import-type PaddingVariants from \Imagekit\TextOverlayTransformation\Padding
- * @phpstan-import-type RadiusVariants from \Imagekit\TextOverlayTransformation\Radius
- * @phpstan-import-type RotationVariants from \Imagekit\TextOverlayTransformation\Rotation
- * @phpstan-import-type WidthVariants from \Imagekit\TextOverlayTransformation\Width
- * @phpstan-import-type FontSizeShape from \Imagekit\TextOverlayTransformation\FontSize
- * @phpstan-import-type LineHeightShape from \Imagekit\TextOverlayTransformation\LineHeight
- * @phpstan-import-type PaddingShape from \Imagekit\TextOverlayTransformation\Padding
- * @phpstan-import-type RadiusShape from \Imagekit\TextOverlayTransformation\Radius
- * @phpstan-import-type RotationShape from \Imagekit\TextOverlayTransformation\Rotation
- * @phpstan-import-type WidthShape from \Imagekit\TextOverlayTransformation\Width
+ * @phpstan-import-type FontSizeVariants from \ImageKit\TextOverlayTransformation\FontSize
+ * @phpstan-import-type LineHeightVariants from \ImageKit\TextOverlayTransformation\LineHeight
+ * @phpstan-import-type PaddingVariants from \ImageKit\TextOverlayTransformation\Padding
+ * @phpstan-import-type RadiusVariants from \ImageKit\TextOverlayTransformation\Radius
+ * @phpstan-import-type RotationVariants from \ImageKit\TextOverlayTransformation\Rotation
+ * @phpstan-import-type WidthVariants from \ImageKit\TextOverlayTransformation\Width
+ * @phpstan-import-type FontSizeShape from \ImageKit\TextOverlayTransformation\FontSize
+ * @phpstan-import-type LineHeightShape from \ImageKit\TextOverlayTransformation\LineHeight
+ * @phpstan-import-type PaddingShape from \ImageKit\TextOverlayTransformation\Padding
+ * @phpstan-import-type RadiusShape from \ImageKit\TextOverlayTransformation\Radius
+ * @phpstan-import-type RotationShape from \ImageKit\TextOverlayTransformation\Rotation
+ * @phpstan-import-type WidthShape from \ImageKit\TextOverlayTransformation\Width
  *
  * @phpstan-type TextOverlayTransformationShape = array{
  *   alpha?: float|null,

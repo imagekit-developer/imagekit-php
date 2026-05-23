@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\TextOverlayTransformation;
+namespace ImageKit\TextOverlayTransformation;
 
-use Imagekit\Core\Concerns\SdkUnion;
-use Imagekit\Core\Conversion\Contracts\Converter;
-use Imagekit\Core\Conversion\Contracts\ConverterSource;
+use ImageKit\Core\Concerns\SdkUnion;
+use ImageKit\Core\Conversion\Contracts\Converter;
+use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
 /**
  * Specifies the line height for multi-line text overlays. It will come into effect only if the text wraps over multiple lines.

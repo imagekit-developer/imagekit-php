@@ -4,9 +4,9 @@ namespace Tests\Core;
 
 use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Mock\Client as MockClient;
-use Imagekit\Core\BaseClient;
-use Imagekit\Core\Util;
-use Imagekit\RequestOptions;
+use ImageKit\Core\BaseClient;
+use ImageKit\Core\Util;
+use ImageKit\RequestOptions;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;

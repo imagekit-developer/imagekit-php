@@ -2,9 +2,9 @@
 
 namespace Tests\Services\Accounts;
 
-use Imagekit\Accounts\URLEndpoints\URLEndpointResponse;
-use Imagekit\Client;
-use Imagekit\Core\Util;
+use ImageKit\Accounts\URLEndpoints\URLEndpointResponse;
+use ImageKit\Client;
+use ImageKit\Core\Util;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;

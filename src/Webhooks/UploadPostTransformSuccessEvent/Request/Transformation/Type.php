@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Webhooks\UploadPostTransformSuccessEvent\Request\Transformation;
+namespace ImageKit\Webhooks\UploadPostTransformSuccessEvent\Request\Transformation;
 
 /**
  * Type of the requested post-transformation.

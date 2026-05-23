@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\ServiceContracts\Files;
+namespace ImageKit\ServiceContracts\Files;
 
-use Imagekit\Core\Exceptions\APIException;
-use Imagekit\Files\Bulk\BulkAddTagsResponse;
-use Imagekit\Files\Bulk\BulkDeleteResponse;
-use Imagekit\Files\Bulk\BulkRemoveAITagsResponse;
-use Imagekit\Files\Bulk\BulkRemoveTagsResponse;
-use Imagekit\RequestOptions;
+use ImageKit\Core\Exceptions\APIException;
+use ImageKit\Files\Bulk\BulkAddTagsResponse;
+use ImageKit\Files\Bulk\BulkDeleteResponse;
+use ImageKit\Files\Bulk\BulkRemoveAITagsResponse;
+use ImageKit\Files\Bulk\BulkRemoveTagsResponse;
+use ImageKit\RequestOptions;
 
 /**
- * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ * @phpstan-import-type RequestOpts from \ImageKit\RequestOptions
  */
 interface BulkContract
 {

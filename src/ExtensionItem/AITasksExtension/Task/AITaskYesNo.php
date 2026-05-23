@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\ExtensionItem\AITasksExtension\Task;
+namespace ImageKit\ExtensionItem\AITasksExtension\Task;
 
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\ExtensionItem\AITasksExtension\Task\AITaskYesNo\OnNo;
-use Imagekit\ExtensionItem\AITasksExtension\Task\AITaskYesNo\OnUnknown;
-use Imagekit\ExtensionItem\AITasksExtension\Task\AITaskYesNo\OnYes;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\ExtensionItem\AITasksExtension\Task\AITaskYesNo\OnNo;
+use ImageKit\ExtensionItem\AITasksExtension\Task\AITaskYesNo\OnUnknown;
+use ImageKit\ExtensionItem\AITasksExtension\Task\AITaskYesNo\OnYes;
 
 /**
- * @phpstan-import-type OnNoShape from \Imagekit\ExtensionItem\AITasksExtension\Task\AITaskYesNo\OnNo
- * @phpstan-import-type OnUnknownShape from \Imagekit\ExtensionItem\AITasksExtension\Task\AITaskYesNo\OnUnknown
- * @phpstan-import-type OnYesShape from \Imagekit\ExtensionItem\AITasksExtension\Task\AITaskYesNo\OnYes
+ * @phpstan-import-type OnNoShape from \ImageKit\ExtensionItem\AITasksExtension\Task\AITaskYesNo\OnNo
+ * @phpstan-import-type OnUnknownShape from \ImageKit\ExtensionItem\AITasksExtension\Task\AITaskYesNo\OnUnknown
+ * @phpstan-import-type OnYesShape from \ImageKit\ExtensionItem\AITasksExtension\Task\AITaskYesNo\OnYes
  *
  * @phpstan-type AITaskYesNoShape = array{
  *   instruction: string,

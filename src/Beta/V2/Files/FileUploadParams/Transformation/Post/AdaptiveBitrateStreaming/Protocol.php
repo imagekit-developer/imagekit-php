@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Beta\V2\Files\FileUploadParams\Transformation\Post\AdaptiveBitrateStreaming;
+namespace ImageKit\Beta\V2\Files\FileUploadParams\Transformation\Post\AdaptiveBitrateStreaming;
 
 /**
  * Streaming protocol to use (`hls` or `dash`).

@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Webhooks\VideoTransformationErrorEvent\Data;
+namespace ImageKit\Webhooks\VideoTransformationErrorEvent\Data;
 
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Error;
-use Imagekit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Options;
-use Imagekit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Type;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Error;
+use ImageKit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Options;
+use ImageKit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Type;
 
 /**
- * @phpstan-import-type ErrorShape from \Imagekit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Error
- * @phpstan-import-type OptionsShape from \Imagekit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Options
+ * @phpstan-import-type ErrorShape from \ImageKit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Error
+ * @phpstan-import-type OptionsShape from \ImageKit\Webhooks\VideoTransformationErrorEvent\Data\Transformation\Options
  *
  * @phpstan-type TransformationShape = array{
  *   type: Type|value-of<Type>,

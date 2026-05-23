@@ -1,9 +1,9 @@
 <?php
 
-namespace Imagekit\Core\Exceptions;
+namespace ImageKit\Core\Exceptions;
 
-class WebhookException extends ImagekitException
+class WebhookException extends ImageKitException
 {
     /** @var string */
-    protected const DESC = 'Imagekit Webhook Exception';
+    protected const DESC = 'ImageKit Webhook Exception';
 }

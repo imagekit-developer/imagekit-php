@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Webhooks;
+namespace ImageKit\Webhooks;
 
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Files\File;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Files\File;
 
 /**
  * Triggered when a file is created.
  *
- * @phpstan-import-type FileShape from \Imagekit\Files\File
+ * @phpstan-import-type FileShape from \ImageKit\Files\File
  *
  * @phpstan-type FileCreateEventShape = array{
  *   id: string, type: string, createdAt: \DateTimeInterface, data: File|FileShape

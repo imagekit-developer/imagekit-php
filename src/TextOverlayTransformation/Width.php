@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\TextOverlayTransformation;
+namespace ImageKit\TextOverlayTransformation;
 
-use Imagekit\Core\Concerns\SdkUnion;
-use Imagekit\Core\Conversion\Contracts\Converter;
-use Imagekit\Core\Conversion\Contracts\ConverterSource;
+use ImageKit\Core\Concerns\SdkUnion;
+use ImageKit\Core\Conversion\Contracts\Converter;
+use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
 /**
  * Specifies the maximum width (in pixels) of the overlaid text. The text wraps automatically, and arithmetic expressions (e.g., `bw_mul_0.2` or `bh_div_2`) are supported. Useful when used in conjunction with the `background`.

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Webhooks\UploadPostTransformSuccessEvent;
+namespace ImageKit\Webhooks\UploadPostTransformSuccessEvent;
 
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * @phpstan-type DataShape = array{fileID: string, name: string, url: string}

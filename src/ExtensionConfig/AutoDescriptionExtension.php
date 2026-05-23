@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\ExtensionConfig;
+namespace ImageKit\ExtensionConfig;
 
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * @phpstan-type AutoDescriptionExtensionShape = array{name: 'ai-auto-description'}

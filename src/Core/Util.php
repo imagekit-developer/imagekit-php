@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Core;
+namespace ImageKit\Core;
 
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;

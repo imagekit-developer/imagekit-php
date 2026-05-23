@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Core\Concerns;
+namespace ImageKit\Core\Concerns;
 
-use Imagekit\Client;
-use Imagekit\Core\Contracts\BaseResponse;
-use Imagekit\Core\Conversion\Contracts\Converter;
-use Imagekit\Core\Conversion\Contracts\ConverterSource;
-use Imagekit\Core\Exceptions\APIStatusException;
-use Imagekit\RequestOptions;
+use ImageKit\Client;
+use ImageKit\Core\Contracts\BaseResponse;
+use ImageKit\Core\Conversion\Contracts\Converter;
+use ImageKit\Core\Conversion\Contracts\ConverterSource;
+use ImageKit\Core\Exceptions\APIStatusException;
+use ImageKit\RequestOptions;
 
 /**
- * @phpstan-import-type NormalizedRequest from \Imagekit\Core\BaseClient
+ * @phpstan-import-type NormalizedRequest from \ImageKit\Core\BaseClient
  *
  * @internal
  *

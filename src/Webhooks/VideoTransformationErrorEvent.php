@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Webhooks;
+namespace ImageKit\Webhooks;
 
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Webhooks\VideoTransformationErrorEvent\Data;
-use Imagekit\Webhooks\VideoTransformationErrorEvent\Request;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Webhooks\VideoTransformationErrorEvent\Data;
+use ImageKit\Webhooks\VideoTransformationErrorEvent\Request;
 
 /**
  * Triggered when an error occurs during video encoding. Listen to this webhook to log error reasons and debug issues. Check your origin and URL endpoint settings if the reason is related to download failure. For other errors, contact ImageKit support.
  *
- * @phpstan-import-type DataShape from \Imagekit\Webhooks\VideoTransformationErrorEvent\Data
- * @phpstan-import-type RequestShape from \Imagekit\Webhooks\VideoTransformationErrorEvent\Request
+ * @phpstan-import-type DataShape from \ImageKit\Webhooks\VideoTransformationErrorEvent\Data
+ * @phpstan-import-type RequestShape from \ImageKit\Webhooks\VideoTransformationErrorEvent\Request
  *
  * @phpstan-type VideoTransformationErrorEventShape = array{
  *   id: string,

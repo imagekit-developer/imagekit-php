@@ -2,9 +2,9 @@
 
 namespace Tests\Services;
 
-use Imagekit\Client;
-use Imagekit\Core\Util;
-use Imagekit\SavedExtension;
+use ImageKit\Client;
+use ImageKit\Core\Util;
+use ImageKit\SavedExtension;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;

@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\ExtensionConfig\AITasksExtension;
+namespace ImageKit\ExtensionConfig\AITasksExtension;
 
-use Imagekit\Core\Concerns\SdkUnion;
-use Imagekit\Core\Conversion\Contracts\Converter;
-use Imagekit\Core\Conversion\Contracts\ConverterSource;
-use Imagekit\ExtensionConfig\AITasksExtension\Task\AITaskSelectMetadata;
-use Imagekit\ExtensionConfig\AITasksExtension\Task\AITaskSelectTags;
-use Imagekit\ExtensionConfig\AITasksExtension\Task\AITaskYesNo;
+use ImageKit\Core\Concerns\SdkUnion;
+use ImageKit\Core\Conversion\Contracts\Converter;
+use ImageKit\Core\Conversion\Contracts\ConverterSource;
+use ImageKit\ExtensionConfig\AITasksExtension\Task\AITaskSelectMetadata;
+use ImageKit\ExtensionConfig\AITasksExtension\Task\AITaskSelectTags;
+use ImageKit\ExtensionConfig\AITasksExtension\Task\AITaskYesNo;
 
 /**
- * @phpstan-import-type AITaskSelectTagsShape from \Imagekit\ExtensionConfig\AITasksExtension\Task\AITaskSelectTags
- * @phpstan-import-type AITaskSelectMetadataShape from \Imagekit\ExtensionConfig\AITasksExtension\Task\AITaskSelectMetadata
- * @phpstan-import-type AITaskYesNoShape from \Imagekit\ExtensionConfig\AITasksExtension\Task\AITaskYesNo
+ * @phpstan-import-type AITaskSelectTagsShape from \ImageKit\ExtensionConfig\AITasksExtension\Task\AITaskSelectTags
+ * @phpstan-import-type AITaskSelectMetadataShape from \ImageKit\ExtensionConfig\AITasksExtension\Task\AITaskSelectMetadata
+ * @phpstan-import-type AITaskYesNoShape from \ImageKit\ExtensionConfig\AITasksExtension\Task\AITaskYesNo
  *
  * @phpstan-type TaskVariants = AITaskSelectTags|AITaskSelectMetadata|AITaskYesNo
  * @phpstan-type TaskShape = TaskVariants|AITaskSelectTagsShape|AITaskSelectMetadataShape|AITaskYesNoShape

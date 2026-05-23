@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema;
+namespace ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema;
 
-use Imagekit\Core\Concerns\SdkUnion;
-use Imagekit\Core\Conversion\Contracts\Converter;
-use Imagekit\Core\Conversion\Contracts\ConverterSource;
-use Imagekit\Core\Conversion\ListOf;
-use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema\DefaultValue\Mixed_;
+use ImageKit\Core\Concerns\SdkUnion;
+use ImageKit\Core\Conversion\Contracts\Converter;
+use ImageKit\Core\Conversion\Contracts\ConverterSource;
+use ImageKit\Core\Conversion\ListOf;
+use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema\DefaultValue\Mixed_;
 
 /**
  * The default value for this custom metadata field. The value should match the `type` of custom metadata field.
  *
- * @phpstan-import-type MixedShape from \Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema\DefaultValue\Mixed_
+ * @phpstan-import-type MixedShape from \ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema\DefaultValue\Mixed_
  *
  * @phpstan-type DefaultValueVariants = string|float|bool|list<string|float|bool>
  * @phpstan-type DefaultValueShape = DefaultValueVariants|list<MixedShape>

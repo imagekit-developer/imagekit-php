@@ -2,10 +2,10 @@
 
 namespace Tests\Services\Beta\V2;
 
-use Imagekit\Beta\V2\Files\FileUploadResponse;
-use Imagekit\Client;
-use Imagekit\Core\FileParam;
-use Imagekit\Core\Util;
+use ImageKit\Beta\V2\Files\FileUploadResponse;
+use ImageKit\Client;
+use ImageKit\Core\FileParam;
+use ImageKit\Core\Util;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;

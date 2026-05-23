@@ -2,25 +2,25 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Beta\V2\Files;
+namespace ImageKit\Beta\V2\Files;
 
-use Imagekit\Beta\V2\Files\FileUploadResponse\AITag;
-use Imagekit\Beta\V2\Files\FileUploadResponse\ExtensionStatus;
-use Imagekit\Beta\V2\Files\FileUploadResponse\SelectedFieldsSchema;
-use Imagekit\Beta\V2\Files\FileUploadResponse\VersionInfo;
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Files\Metadata;
+use ImageKit\Beta\V2\Files\FileUploadResponse\AITag;
+use ImageKit\Beta\V2\Files\FileUploadResponse\ExtensionStatus;
+use ImageKit\Beta\V2\Files\FileUploadResponse\SelectedFieldsSchema;
+use ImageKit\Beta\V2\Files\FileUploadResponse\VersionInfo;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Files\Metadata;
 
 /**
  * Object containing details of a successful upload.
  *
- * @phpstan-import-type AITagShape from \Imagekit\Beta\V2\Files\FileUploadResponse\AITag
- * @phpstan-import-type ExtensionStatusShape from \Imagekit\Beta\V2\Files\FileUploadResponse\ExtensionStatus
- * @phpstan-import-type MetadataShape from \Imagekit\Files\Metadata
- * @phpstan-import-type SelectedFieldsSchemaShape from \Imagekit\Beta\V2\Files\FileUploadResponse\SelectedFieldsSchema
- * @phpstan-import-type VersionInfoShape from \Imagekit\Beta\V2\Files\FileUploadResponse\VersionInfo
+ * @phpstan-import-type AITagShape from \ImageKit\Beta\V2\Files\FileUploadResponse\AITag
+ * @phpstan-import-type ExtensionStatusShape from \ImageKit\Beta\V2\Files\FileUploadResponse\ExtensionStatus
+ * @phpstan-import-type MetadataShape from \ImageKit\Files\Metadata
+ * @phpstan-import-type SelectedFieldsSchemaShape from \ImageKit\Beta\V2\Files\FileUploadResponse\SelectedFieldsSchema
+ * @phpstan-import-type VersionInfoShape from \ImageKit\Beta\V2\Files\FileUploadResponse\VersionInfo
  *
  * @phpstan-type FileUploadResponseShape = array{
  *   aiTags?: list<AITag|AITagShape>|null,

@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\ServiceContracts;
+namespace ImageKit\ServiceContracts;
 
-use Imagekit\Core\Exceptions\APIException;
-use Imagekit\Folders\FolderCopyResponse;
-use Imagekit\Folders\FolderDeleteResponse;
-use Imagekit\Folders\FolderMoveResponse;
-use Imagekit\Folders\FolderNewResponse;
-use Imagekit\Folders\FolderRenameResponse;
-use Imagekit\RequestOptions;
+use ImageKit\Core\Exceptions\APIException;
+use ImageKit\Folders\FolderCopyResponse;
+use ImageKit\Folders\FolderDeleteResponse;
+use ImageKit\Folders\FolderMoveResponse;
+use ImageKit\Folders\FolderNewResponse;
+use ImageKit\Folders\FolderRenameResponse;
+use ImageKit\RequestOptions;
 
 /**
- * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ * @phpstan-import-type RequestOpts from \ImageKit\RequestOptions
  */
 interface FoldersContract
 {

@@ -2,31 +2,31 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Accounts\Origins;
+namespace ImageKit\Accounts\Origins;
 
-use Imagekit\Accounts\Origins\OriginRequest\AkeneoPim;
-use Imagekit\Accounts\Origins\OriginRequest\AzureBlobStorage;
-use Imagekit\Accounts\Origins\OriginRequest\CloudinaryBackup;
-use Imagekit\Accounts\Origins\OriginRequest\GoogleCloudStorageGcs;
-use Imagekit\Accounts\Origins\OriginRequest\S3;
-use Imagekit\Accounts\Origins\OriginRequest\S3Compatible;
-use Imagekit\Accounts\Origins\OriginRequest\WebFolder;
-use Imagekit\Accounts\Origins\OriginRequest\WebProxy;
-use Imagekit\Core\Concerns\SdkUnion;
-use Imagekit\Core\Conversion\Contracts\Converter;
-use Imagekit\Core\Conversion\Contracts\ConverterSource;
+use ImageKit\Accounts\Origins\OriginRequest\AkeneoPim;
+use ImageKit\Accounts\Origins\OriginRequest\AzureBlobStorage;
+use ImageKit\Accounts\Origins\OriginRequest\CloudinaryBackup;
+use ImageKit\Accounts\Origins\OriginRequest\GoogleCloudStorageGcs;
+use ImageKit\Accounts\Origins\OriginRequest\S3;
+use ImageKit\Accounts\Origins\OriginRequest\S3Compatible;
+use ImageKit\Accounts\Origins\OriginRequest\WebFolder;
+use ImageKit\Accounts\Origins\OriginRequest\WebProxy;
+use ImageKit\Core\Concerns\SdkUnion;
+use ImageKit\Core\Conversion\Contracts\Converter;
+use ImageKit\Core\Conversion\Contracts\ConverterSource;
 
 /**
  * Schema for origin request resources.
  *
- * @phpstan-import-type S3Shape from \Imagekit\Accounts\Origins\OriginRequest\S3
- * @phpstan-import-type S3CompatibleShape from \Imagekit\Accounts\Origins\OriginRequest\S3Compatible
- * @phpstan-import-type CloudinaryBackupShape from \Imagekit\Accounts\Origins\OriginRequest\CloudinaryBackup
- * @phpstan-import-type WebFolderShape from \Imagekit\Accounts\Origins\OriginRequest\WebFolder
- * @phpstan-import-type WebProxyShape from \Imagekit\Accounts\Origins\OriginRequest\WebProxy
- * @phpstan-import-type GoogleCloudStorageGcsShape from \Imagekit\Accounts\Origins\OriginRequest\GoogleCloudStorageGcs
- * @phpstan-import-type AzureBlobStorageShape from \Imagekit\Accounts\Origins\OriginRequest\AzureBlobStorage
- * @phpstan-import-type AkeneoPimShape from \Imagekit\Accounts\Origins\OriginRequest\AkeneoPim
+ * @phpstan-import-type S3Shape from \ImageKit\Accounts\Origins\OriginRequest\S3
+ * @phpstan-import-type S3CompatibleShape from \ImageKit\Accounts\Origins\OriginRequest\S3Compatible
+ * @phpstan-import-type CloudinaryBackupShape from \ImageKit\Accounts\Origins\OriginRequest\CloudinaryBackup
+ * @phpstan-import-type WebFolderShape from \ImageKit\Accounts\Origins\OriginRequest\WebFolder
+ * @phpstan-import-type WebProxyShape from \ImageKit\Accounts\Origins\OriginRequest\WebProxy
+ * @phpstan-import-type GoogleCloudStorageGcsShape from \ImageKit\Accounts\Origins\OriginRequest\GoogleCloudStorageGcs
+ * @phpstan-import-type AzureBlobStorageShape from \ImageKit\Accounts\Origins\OriginRequest\AzureBlobStorage
+ * @phpstan-import-type AkeneoPimShape from \ImageKit\Accounts\Origins\OriginRequest\AkeneoPim
  *
  * @phpstan-type OriginRequestVariants = S3|S3Compatible|CloudinaryBackup|WebFolder|WebProxy|GoogleCloudStorageGcs|AzureBlobStorage|AkeneoPim
  * @phpstan-type OriginRequestShape = OriginRequestVariants|S3Shape|S3CompatibleShape|CloudinaryBackupShape|WebFolderShape|WebProxyShape|GoogleCloudStorageGcsShape|AzureBlobStorageShape|AkeneoPimShape

@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Services;
+namespace ImageKit\Services;
 
-use Imagekit\Client;
-use Imagekit\Core\Contracts\BaseResponse;
-use Imagekit\Core\Conversion\ListOf;
-use Imagekit\Core\Exceptions\APIException;
-use Imagekit\RequestOptions;
-use Imagekit\SavedExtension;
-use Imagekit\SavedExtensions\SavedExtensionCreateParams;
-use Imagekit\SavedExtensions\SavedExtensionUpdateParams;
-use Imagekit\ServiceContracts\SavedExtensionsRawContract;
+use ImageKit\Client;
+use ImageKit\Core\Contracts\BaseResponse;
+use ImageKit\Core\Conversion\ListOf;
+use ImageKit\Core\Exceptions\APIException;
+use ImageKit\RequestOptions;
+use ImageKit\SavedExtension;
+use ImageKit\SavedExtensions\SavedExtensionCreateParams;
+use ImageKit\SavedExtensions\SavedExtensionUpdateParams;
+use ImageKit\ServiceContracts\SavedExtensionsRawContract;
 
 /**
- * @phpstan-import-type ExtensionConfigShape from \Imagekit\ExtensionConfig
- * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ * @phpstan-import-type ExtensionConfigShape from \ImageKit\ExtensionConfig
+ * @phpstan-import-type RequestOpts from \ImageKit\RequestOptions
  */
 final class SavedExtensionsRawService implements SavedExtensionsRawContract
 {

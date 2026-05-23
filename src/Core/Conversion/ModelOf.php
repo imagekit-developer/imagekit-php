@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Core\Conversion;
+namespace ImageKit\Core\Conversion;
 
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Core\Conversion;
-use Imagekit\Core\Conversion\Contracts\Converter;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Core\Conversion;
+use ImageKit\Core\Conversion\Contracts\Converter;
 
 /**
  * @internal

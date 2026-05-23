@@ -4,8 +4,8 @@ namespace Tests;
 
 use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Mock\Client;
-use Imagekit\Core\FileParam;
-use Imagekit\Core\Util;
+use ImageKit\Core\FileParam;
+use ImageKit\Core\Util;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -27,7 +27,7 @@ class ClientTest extends TestCase
 
         $transporter->setDefaultResponse($mockRsp);
 
-        $client = new \Imagekit\Client(
+        $client = new \ImageKit\Client(
             baseUrl: 'http://localhost',
             privateKey: 'My Private Key',
             password: 'My Password',

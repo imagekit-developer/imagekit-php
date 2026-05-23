@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Beta\V2\Files;
+namespace ImageKit\Beta\V2\Files;
 
-use Imagekit\Beta\V2\Files\FileUploadParams\ResponseField;
-use Imagekit\Beta\V2\Files\FileUploadParams\Transformation;
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Concerns\SdkParams;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Core\FileParam;
-use Imagekit\ExtensionItem;
+use ImageKit\Beta\V2\Files\FileUploadParams\ResponseField;
+use ImageKit\Beta\V2\Files\FileUploadParams\Transformation;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Concerns\SdkParams;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Core\FileParam;
+use ImageKit\ExtensionItem;
 
 /**
  * The V2 API enhances security by verifying the entire payload using JWT. This API is in beta.
@@ -30,11 +30,11 @@ use Imagekit\ExtensionItem;
  * - A full-fledged [upload widget using Uppy](https://github.com/imagekit-samples/uppy-uploader), supporting file selections from local storage, URL, Dropbox, Google Drive, Instagram, and more.
  * - [Quick start guides](/docs/quick-start-guides) for various frameworks and technologies.
  *
- * @see Imagekit\Services\Beta\V2\FilesService::upload()
+ * @see ImageKit\Services\Beta\V2\FilesService::upload()
  *
- * @phpstan-import-type ExtensionItemVariants from \Imagekit\ExtensionItem
- * @phpstan-import-type ExtensionItemShape from \Imagekit\ExtensionItem
- * @phpstan-import-type TransformationShape from \Imagekit\Beta\V2\Files\FileUploadParams\Transformation
+ * @phpstan-import-type ExtensionItemVariants from \ImageKit\ExtensionItem
+ * @phpstan-import-type ExtensionItemShape from \ImageKit\ExtensionItem
+ * @phpstan-import-type TransformationShape from \ImageKit\Beta\V2\Files\FileUploadParams\Transformation
  *
  * @phpstan-type FileUploadParamsShape = array{
  *   file: string|FileParam,

@@ -2,15 +2,15 @@
 
 namespace Tests\Services;
 
-use Imagekit\Client;
-use Imagekit\Core\FileParam;
-use Imagekit\Core\Util;
-use Imagekit\Files\File;
-use Imagekit\Files\FileCopyResponse;
-use Imagekit\Files\FileMoveResponse;
-use Imagekit\Files\FileRenameResponse;
-use Imagekit\Files\FileUpdateResponse;
-use Imagekit\Files\FileUploadResponse;
+use ImageKit\Client;
+use ImageKit\Core\FileParam;
+use ImageKit\Core\Util;
+use ImageKit\Files\File;
+use ImageKit\Files\FileCopyResponse;
+use ImageKit\Files\FileMoveResponse;
+use ImageKit\Files\FileRenameResponse;
+use ImageKit\Files\FileUpdateResponse;
+use ImageKit\Files\FileUploadResponse;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;

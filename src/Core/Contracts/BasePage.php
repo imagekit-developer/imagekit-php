@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Core\Contracts;
+namespace ImageKit\Core\Contracts;
 
 /**
- * @phpstan-import-type NormalizedRequest from \Imagekit\Core\BaseClient
+ * @phpstan-import-type NormalizedRequest from \ImageKit\Core\BaseClient
  *
  * @internal
  *

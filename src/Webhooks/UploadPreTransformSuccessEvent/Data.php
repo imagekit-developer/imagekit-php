@@ -2,25 +2,25 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Webhooks\UploadPreTransformSuccessEvent;
+namespace ImageKit\Webhooks\UploadPreTransformSuccessEvent;
 
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Files\Metadata;
-use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\AITag;
-use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\ExtensionStatus;
-use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema;
-use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\VersionInfo;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Files\Metadata;
+use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\AITag;
+use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\ExtensionStatus;
+use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema;
+use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\VersionInfo;
 
 /**
  * Object containing details of a successful upload.
  *
- * @phpstan-import-type AITagShape from \Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\AITag
- * @phpstan-import-type ExtensionStatusShape from \Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\ExtensionStatus
- * @phpstan-import-type MetadataShape from \Imagekit\Files\Metadata
- * @phpstan-import-type SelectedFieldsSchemaShape from \Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema
- * @phpstan-import-type VersionInfoShape from \Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\VersionInfo
+ * @phpstan-import-type AITagShape from \ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\AITag
+ * @phpstan-import-type ExtensionStatusShape from \ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\ExtensionStatus
+ * @phpstan-import-type MetadataShape from \ImageKit\Files\Metadata
+ * @phpstan-import-type SelectedFieldsSchemaShape from \ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema
+ * @phpstan-import-type VersionInfoShape from \ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\VersionInfo
  *
  * @phpstan-type DataShape = array{
  *   aiTags?: list<AITag|AITagShape>|null,

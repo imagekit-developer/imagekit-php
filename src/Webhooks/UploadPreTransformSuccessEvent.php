@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Webhooks;
+namespace ImageKit\Webhooks;
 
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data;
-use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Request;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data;
+use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Request;
 
 /**
  * Triggered when a pre-transformation completes successfully. The file has been processed with the requested transformation and is now available in the Media Library.
  *
- * @phpstan-import-type DataShape from \Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data
- * @phpstan-import-type RequestShape from \Imagekit\Webhooks\UploadPreTransformSuccessEvent\Request
+ * @phpstan-import-type DataShape from \ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data
+ * @phpstan-import-type RequestShape from \ImageKit\Webhooks\UploadPreTransformSuccessEvent\Request
  *
  * @phpstan-type UploadPreTransformSuccessEventShape = array{
  *   id: string,

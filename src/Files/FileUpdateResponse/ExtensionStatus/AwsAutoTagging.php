@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Files\FileUpdateResponse\ExtensionStatus;
+namespace ImageKit\Files\FileUpdateResponse\ExtensionStatus;
 
 enum AwsAutoTagging: string
 {

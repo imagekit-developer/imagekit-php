@@ -2,25 +2,25 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\ServiceContracts;
+namespace ImageKit\ServiceContracts;
 
-use Imagekit\Core\Contracts\BaseResponse;
-use Imagekit\Core\Exceptions\APIException;
-use Imagekit\Files\File;
-use Imagekit\Files\FileCopyParams;
-use Imagekit\Files\FileCopyResponse;
-use Imagekit\Files\FileMoveParams;
-use Imagekit\Files\FileMoveResponse;
-use Imagekit\Files\FileRenameParams;
-use Imagekit\Files\FileRenameResponse;
-use Imagekit\Files\FileUpdateParams;
-use Imagekit\Files\FileUpdateResponse;
-use Imagekit\Files\FileUploadParams;
-use Imagekit\Files\FileUploadResponse;
-use Imagekit\RequestOptions;
+use ImageKit\Core\Contracts\BaseResponse;
+use ImageKit\Core\Exceptions\APIException;
+use ImageKit\Files\File;
+use ImageKit\Files\FileCopyParams;
+use ImageKit\Files\FileCopyResponse;
+use ImageKit\Files\FileMoveParams;
+use ImageKit\Files\FileMoveResponse;
+use ImageKit\Files\FileRenameParams;
+use ImageKit\Files\FileRenameResponse;
+use ImageKit\Files\FileUpdateParams;
+use ImageKit\Files\FileUpdateResponse;
+use ImageKit\Files\FileUploadParams;
+use ImageKit\Files\FileUploadResponse;
+use ImageKit\RequestOptions;
 
 /**
- * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ * @phpstan-import-type RequestOpts from \ImageKit\RequestOptions
  */
 interface FilesRawContract
 {

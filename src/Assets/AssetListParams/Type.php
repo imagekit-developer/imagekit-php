@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Assets\AssetListParams;
+namespace ImageKit\Assets\AssetListParams;
 
 /**
  * Filter results by asset type.

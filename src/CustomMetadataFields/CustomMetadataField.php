@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\CustomMetadataFields;
+namespace ImageKit\CustomMetadataFields;
 
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\CustomMetadataFields\CustomMetadataField\Schema;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\CustomMetadataFields\CustomMetadataField\Schema;
 
 /**
  * Object containing details of a custom metadata field.
  *
- * @phpstan-import-type SchemaShape from \Imagekit\CustomMetadataFields\CustomMetadataField\Schema
+ * @phpstan-import-type SchemaShape from \ImageKit\CustomMetadataFields\CustomMetadataField\Schema
  *
  * @phpstan-type CustomMetadataFieldShape = array{
  *   id: string, label: string, name: string, schema: Schema|SchemaShape

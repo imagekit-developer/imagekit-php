@@ -2,9 +2,9 @@
 
 namespace Tests\Services\Folders;
 
-use Imagekit\Client;
-use Imagekit\Core\Util;
-use Imagekit\Folders\Job\JobGetResponse;
+use ImageKit\Client;
+use ImageKit\Core\Util;
+use ImageKit\Folders\Job\JobGetResponse;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;

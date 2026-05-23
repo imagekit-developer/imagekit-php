@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Accounts\URLEndpoints;
+namespace ImageKit\Accounts\URLEndpoints;
 
-use Imagekit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriter;
-use Imagekit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriter\AkamaiURLRewriter;
-use Imagekit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriter\CloudinaryURLRewriter;
-use Imagekit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriter\ImgixURLRewriter;
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
+use ImageKit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriter;
+use ImageKit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriter\AkamaiURLRewriter;
+use ImageKit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriter\CloudinaryURLRewriter;
+use ImageKit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriter\ImgixURLRewriter;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * URL‑endpoint object as returned by the API.
  *
- * @phpstan-import-type URLRewriterVariants from \Imagekit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriter
- * @phpstan-import-type URLRewriterShape from \Imagekit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriter
+ * @phpstan-import-type URLRewriterVariants from \ImageKit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriter
+ * @phpstan-import-type URLRewriterShape from \ImageKit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriter
  *
  * @phpstan-type URLEndpointResponseShape = array{
  *   id: string,

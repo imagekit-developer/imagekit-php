@@ -2,26 +2,26 @@
 
 declare(strict_types=1);
 
-namespace Imagekit;
+namespace ImageKit;
 
 use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Discovery\Psr18ClientDiscovery;
-use Imagekit\Core\BaseClient;
-use Imagekit\Core\Implementation\StreamingHttpClient;
-use Imagekit\Core\Util;
-use Imagekit\Services\AccountsService;
-use Imagekit\Services\AssetsService;
-use Imagekit\Services\BetaService;
-use Imagekit\Services\CacheService;
-use Imagekit\Services\CustomMetadataFieldsService;
-use Imagekit\Services\FilesService;
-use Imagekit\Services\FoldersService;
-use Imagekit\Services\SavedExtensionsService;
-use Imagekit\Services\WebhooksService;
+use ImageKit\Core\BaseClient;
+use ImageKit\Core\Implementation\StreamingHttpClient;
+use ImageKit\Core\Util;
+use ImageKit\Services\AccountsService;
+use ImageKit\Services\AssetsService;
+use ImageKit\Services\BetaService;
+use ImageKit\Services\CacheService;
+use ImageKit\Services\CustomMetadataFieldsService;
+use ImageKit\Services\FilesService;
+use ImageKit\Services\FoldersService;
+use ImageKit\Services\SavedExtensionsService;
+use ImageKit\Services\WebhooksService;
 
 /**
- * @phpstan-import-type NormalizedRequest from \Imagekit\Core\BaseClient
- * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ * @phpstan-import-type NormalizedRequest from \ImageKit\Core\BaseClient
+ * @phpstan-import-type RequestOpts from \ImageKit\RequestOptions
  */
 class Client extends BaseClient
 {

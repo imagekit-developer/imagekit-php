@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\ExtensionConfig\AITasksExtension\Task;
+namespace ImageKit\ExtensionConfig\AITasksExtension\Task;
 
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\ExtensionConfig\AITasksExtension\Task\AITaskSelectMetadata\Vocabulary;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\ExtensionConfig\AITasksExtension\Task\AITaskSelectMetadata\Vocabulary;
 
 /**
- * @phpstan-import-type VocabularyVariants from \Imagekit\ExtensionConfig\AITasksExtension\Task\AITaskSelectMetadata\Vocabulary
- * @phpstan-import-type VocabularyShape from \Imagekit\ExtensionConfig\AITasksExtension\Task\AITaskSelectMetadata\Vocabulary
+ * @phpstan-import-type VocabularyVariants from \ImageKit\ExtensionConfig\AITasksExtension\Task\AITaskSelectMetadata\Vocabulary
+ * @phpstan-import-type VocabularyShape from \ImageKit\ExtensionConfig\AITasksExtension\Task\AITaskSelectMetadata\Vocabulary
  *
  * @phpstan-type AITaskSelectMetadataShape = array{
  *   field: string,

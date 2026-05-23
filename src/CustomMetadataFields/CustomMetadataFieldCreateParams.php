@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\CustomMetadataFields;
+namespace ImageKit\CustomMetadataFields;
 
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Concerns\SdkParams;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Concerns\SdkParams;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema;
 
 /**
  * This API creates a new custom metadata field. Once a custom metadata field is created either through this API or using the dashboard UI, its value can be set on the assets. The value of a field for an asset can be set using the media library UI or programmatically through upload or update assets API.
  *
- * @see Imagekit\Services\CustomMetadataFieldsService::create()
+ * @see ImageKit\Services\CustomMetadataFieldsService::create()
  *
- * @phpstan-import-type SchemaShape from \Imagekit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema
+ * @phpstan-import-type SchemaShape from \ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema
  *
  * @phpstan-type CustomMetadataFieldCreateParamsShape = array{
  *   label: string, name: string, schema: Schema|SchemaShape

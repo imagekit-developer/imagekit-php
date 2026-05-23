@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Files;
+namespace ImageKit\Files;
 
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Files\File\AITag;
-use Imagekit\Files\File\SelectedFieldsSchema;
-use Imagekit\Files\File\Type;
-use Imagekit\Files\File\VersionInfo;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Files\File\AITag;
+use ImageKit\Files\File\SelectedFieldsSchema;
+use ImageKit\Files\File\Type;
+use ImageKit\Files\File\VersionInfo;
 
 /**
  * Object containing details of a file or file version.
  *
- * @phpstan-import-type AITagShape from \Imagekit\Files\File\AITag
- * @phpstan-import-type SelectedFieldsSchemaShape from \Imagekit\Files\File\SelectedFieldsSchema
- * @phpstan-import-type VersionInfoShape from \Imagekit\Files\File\VersionInfo
+ * @phpstan-import-type AITagShape from \ImageKit\Files\File\AITag
+ * @phpstan-import-type SelectedFieldsSchemaShape from \ImageKit\Files\File\SelectedFieldsSchema
+ * @phpstan-import-type VersionInfoShape from \ImageKit\Files\File\VersionInfo
  *
  * @phpstan-type FileShape = array{
  *   aiTags?: list<AITag|AITagShape>|null,

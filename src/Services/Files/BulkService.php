@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Services\Files;
+namespace ImageKit\Services\Files;
 
-use Imagekit\Client;
-use Imagekit\Core\Exceptions\APIException;
-use Imagekit\Core\Util;
-use Imagekit\Files\Bulk\BulkAddTagsResponse;
-use Imagekit\Files\Bulk\BulkDeleteResponse;
-use Imagekit\Files\Bulk\BulkRemoveAITagsResponse;
-use Imagekit\Files\Bulk\BulkRemoveTagsResponse;
-use Imagekit\RequestOptions;
-use Imagekit\ServiceContracts\Files\BulkContract;
+use ImageKit\Client;
+use ImageKit\Core\Exceptions\APIException;
+use ImageKit\Core\Util;
+use ImageKit\Files\Bulk\BulkAddTagsResponse;
+use ImageKit\Files\Bulk\BulkDeleteResponse;
+use ImageKit\Files\Bulk\BulkRemoveAITagsResponse;
+use ImageKit\Files\Bulk\BulkRemoveTagsResponse;
+use ImageKit\RequestOptions;
+use ImageKit\ServiceContracts\Files\BulkContract;
 
 /**
- * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ * @phpstan-import-type RequestOpts from \ImageKit\RequestOptions
  */
 final class BulkService implements BulkContract
 {

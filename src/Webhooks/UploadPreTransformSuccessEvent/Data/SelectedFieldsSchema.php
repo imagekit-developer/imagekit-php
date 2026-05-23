@@ -2,25 +2,25 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data;
+namespace ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data;
 
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema\DefaultValue;
-use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema\SelectOption;
-use Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema\Type;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema\DefaultValue;
+use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema\SelectOption;
+use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema\Type;
 
 /**
- * @phpstan-import-type DefaultValueVariants from \Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema\DefaultValue
- * @phpstan-import-type MaxValueVariants from \Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema\MaxValue
- * @phpstan-import-type MinValueVariants from \Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema\MinValue
- * @phpstan-import-type SelectOptionVariants from \Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema\SelectOption
- * @phpstan-import-type DefaultValueShape from \Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema\DefaultValue
- * @phpstan-import-type MaxValueShape from \Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema\MaxValue
- * @phpstan-import-type MinValueShape from \Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema\MinValue
- * @phpstan-import-type SelectOptionShape from \Imagekit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema\SelectOption
+ * @phpstan-import-type DefaultValueVariants from \ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema\DefaultValue
+ * @phpstan-import-type MaxValueVariants from \ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema\MaxValue
+ * @phpstan-import-type MinValueVariants from \ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema\MinValue
+ * @phpstan-import-type SelectOptionVariants from \ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema\SelectOption
+ * @phpstan-import-type DefaultValueShape from \ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema\DefaultValue
+ * @phpstan-import-type MaxValueShape from \ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema\MaxValue
+ * @phpstan-import-type MinValueShape from \ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema\MinValue
+ * @phpstan-import-type SelectOptionShape from \ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema\SelectOption
  *
  * @phpstan-type SelectedFieldsSchemaShape = array{
  *   type: Type|value-of<Type>,

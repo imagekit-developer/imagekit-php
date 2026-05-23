@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\ExtensionItem\AutoTaggingExtension;
+namespace ImageKit\ExtensionItem\AutoTaggingExtension;
 
 /**
  * Specifies the auto-tagging extension used.

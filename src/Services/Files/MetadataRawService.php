@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Services\Files;
+namespace ImageKit\Services\Files;
 
-use Imagekit\Client;
-use Imagekit\Core\Contracts\BaseResponse;
-use Imagekit\Core\Exceptions\APIException;
-use Imagekit\Files\Metadata;
-use Imagekit\Files\Metadata\MetadataGetFromURLParams;
-use Imagekit\RequestOptions;
-use Imagekit\ServiceContracts\Files\MetadataRawContract;
+use ImageKit\Client;
+use ImageKit\Core\Contracts\BaseResponse;
+use ImageKit\Core\Exceptions\APIException;
+use ImageKit\Files\Metadata;
+use ImageKit\Files\Metadata\MetadataGetFromURLParams;
+use ImageKit\RequestOptions;
+use ImageKit\ServiceContracts\Files\MetadataRawContract;
 
 /**
- * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ * @phpstan-import-type RequestOpts from \ImageKit\RequestOptions
  */
 final class MetadataRawService implements MetadataRawContract
 {

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Services;
+namespace ImageKit\Services;
 
-use Imagekit\Client;
-use Imagekit\ServiceContracts\CacheRawContract;
+use ImageKit\Client;
+use ImageKit\ServiceContracts\CacheRawContract;
 
 final class CacheRawService implements CacheRawContract
 {

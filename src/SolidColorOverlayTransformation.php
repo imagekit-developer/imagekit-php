@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Imagekit;
+namespace ImageKit;
 
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-import-type GradientVariants from \Imagekit\SolidColorOverlayTransformation\Gradient
- * @phpstan-import-type HeightVariants from \Imagekit\SolidColorOverlayTransformation\Height
- * @phpstan-import-type RadiusVariants from \Imagekit\SolidColorOverlayTransformation\Radius
- * @phpstan-import-type WidthVariants from \Imagekit\SolidColorOverlayTransformation\Width
- * @phpstan-import-type GradientShape from \Imagekit\SolidColorOverlayTransformation\Gradient
- * @phpstan-import-type HeightShape from \Imagekit\SolidColorOverlayTransformation\Height
- * @phpstan-import-type RadiusShape from \Imagekit\SolidColorOverlayTransformation\Radius
- * @phpstan-import-type WidthShape from \Imagekit\SolidColorOverlayTransformation\Width
+ * @phpstan-import-type GradientVariants from \ImageKit\SolidColorOverlayTransformation\Gradient
+ * @phpstan-import-type HeightVariants from \ImageKit\SolidColorOverlayTransformation\Height
+ * @phpstan-import-type RadiusVariants from \ImageKit\SolidColorOverlayTransformation\Radius
+ * @phpstan-import-type WidthVariants from \ImageKit\SolidColorOverlayTransformation\Width
+ * @phpstan-import-type GradientShape from \ImageKit\SolidColorOverlayTransformation\Gradient
+ * @phpstan-import-type HeightShape from \ImageKit\SolidColorOverlayTransformation\Height
+ * @phpstan-import-type RadiusShape from \ImageKit\SolidColorOverlayTransformation\Radius
+ * @phpstan-import-type WidthShape from \ImageKit\SolidColorOverlayTransformation\Width
  *
  * @phpstan-type SolidColorOverlayTransformationShape = array{
  *   alpha?: float|null,

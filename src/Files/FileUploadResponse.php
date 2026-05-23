@@ -2,24 +2,24 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Files;
+namespace ImageKit\Files;
 
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Files\FileUploadResponse\AITag;
-use Imagekit\Files\FileUploadResponse\ExtensionStatus;
-use Imagekit\Files\FileUploadResponse\SelectedFieldsSchema;
-use Imagekit\Files\FileUploadResponse\VersionInfo;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Files\FileUploadResponse\AITag;
+use ImageKit\Files\FileUploadResponse\ExtensionStatus;
+use ImageKit\Files\FileUploadResponse\SelectedFieldsSchema;
+use ImageKit\Files\FileUploadResponse\VersionInfo;
 
 /**
  * Object containing details of a successful upload.
  *
- * @phpstan-import-type AITagShape from \Imagekit\Files\FileUploadResponse\AITag
- * @phpstan-import-type ExtensionStatusShape from \Imagekit\Files\FileUploadResponse\ExtensionStatus
- * @phpstan-import-type MetadataShape from \Imagekit\Files\Metadata
- * @phpstan-import-type SelectedFieldsSchemaShape from \Imagekit\Files\FileUploadResponse\SelectedFieldsSchema
- * @phpstan-import-type VersionInfoShape from \Imagekit\Files\FileUploadResponse\VersionInfo
+ * @phpstan-import-type AITagShape from \ImageKit\Files\FileUploadResponse\AITag
+ * @phpstan-import-type ExtensionStatusShape from \ImageKit\Files\FileUploadResponse\ExtensionStatus
+ * @phpstan-import-type MetadataShape from \ImageKit\Files\Metadata
+ * @phpstan-import-type SelectedFieldsSchemaShape from \ImageKit\Files\FileUploadResponse\SelectedFieldsSchema
+ * @phpstan-import-type VersionInfoShape from \ImageKit\Files\FileUploadResponse\VersionInfo
  *
  * @phpstan-type FileUploadResponseShape = array{
  *   aiTags?: list<AITag|AITagShape>|null,

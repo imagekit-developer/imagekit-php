@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\ServiceContracts;
+namespace ImageKit\ServiceContracts;
 
-use Imagekit\Core\Exceptions\APIException;
-use Imagekit\ExtensionConfig\AITasksExtension;
-use Imagekit\ExtensionConfig\AutoDescriptionExtension;
-use Imagekit\ExtensionConfig\AutoTaggingExtension;
-use Imagekit\ExtensionConfig\RemovedotBgExtension;
-use Imagekit\RequestOptions;
-use Imagekit\SavedExtension;
+use ImageKit\Core\Exceptions\APIException;
+use ImageKit\ExtensionConfig\AITasksExtension;
+use ImageKit\ExtensionConfig\AutoDescriptionExtension;
+use ImageKit\ExtensionConfig\AutoTaggingExtension;
+use ImageKit\ExtensionConfig\RemovedotBgExtension;
+use ImageKit\RequestOptions;
+use ImageKit\SavedExtension;
 
 /**
- * @phpstan-import-type ExtensionConfigShape from \Imagekit\ExtensionConfig
- * @phpstan-import-type RequestOpts from \Imagekit\RequestOptions
+ * @phpstan-import-type ExtensionConfigShape from \ImageKit\ExtensionConfig
+ * @phpstan-import-type RequestOpts from \ImageKit\RequestOptions
  */
 interface SavedExtensionsContract
 {

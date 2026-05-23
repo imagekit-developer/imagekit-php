@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Files\File\SelectedFieldsSchema;
+namespace ImageKit\Files\File\SelectedFieldsSchema;
 
 /**
  * Type of the custom metadata field.

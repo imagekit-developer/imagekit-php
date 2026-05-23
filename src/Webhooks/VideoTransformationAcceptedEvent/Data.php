@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Webhooks\VideoTransformationAcceptedEvent;
+namespace ImageKit\Webhooks\VideoTransformationAcceptedEvent;
 
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Webhooks\VideoTransformationAcceptedEvent\Data\Asset;
-use Imagekit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data\Asset;
+use ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation;
 
 /**
- * @phpstan-import-type AssetShape from \Imagekit\Webhooks\VideoTransformationAcceptedEvent\Data\Asset
- * @phpstan-import-type TransformationShape from \Imagekit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation
+ * @phpstan-import-type AssetShape from \ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data\Asset
+ * @phpstan-import-type TransformationShape from \ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation
  *
  * @phpstan-type DataShape = array{
  *   asset: Asset|AssetShape, transformation: Transformation|TransformationShape

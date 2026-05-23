@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Webhooks;
+namespace ImageKit\Webhooks;
 
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Webhooks\VideoTransformationReadyEvent\Data;
-use Imagekit\Webhooks\VideoTransformationReadyEvent\Request;
-use Imagekit\Webhooks\VideoTransformationReadyEvent\Timings;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Webhooks\VideoTransformationReadyEvent\Data;
+use ImageKit\Webhooks\VideoTransformationReadyEvent\Request;
+use ImageKit\Webhooks\VideoTransformationReadyEvent\Timings;
 
 /**
  * Triggered when video encoding is finished and the transformed resource is ready to be served. This is the key event to listen for - update your database or CMS flags when you receive this so your application can start showing the transformed video to users.
  *
- * @phpstan-import-type DataShape from \Imagekit\Webhooks\VideoTransformationReadyEvent\Data
- * @phpstan-import-type RequestShape from \Imagekit\Webhooks\VideoTransformationReadyEvent\Request
- * @phpstan-import-type TimingsShape from \Imagekit\Webhooks\VideoTransformationReadyEvent\Timings
+ * @phpstan-import-type DataShape from \ImageKit\Webhooks\VideoTransformationReadyEvent\Data
+ * @phpstan-import-type RequestShape from \ImageKit\Webhooks\VideoTransformationReadyEvent\Request
+ * @phpstan-import-type TimingsShape from \ImageKit\Webhooks\VideoTransformationReadyEvent\Timings
  *
  * @phpstan-type VideoTransformationReadyEventShape = array{
  *   id: string,

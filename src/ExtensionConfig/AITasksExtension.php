@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\ExtensionConfig;
+namespace ImageKit\ExtensionConfig;
 
-use Imagekit\Core\Attributes\Required;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\ExtensionConfig\AITasksExtension\Task;
+use ImageKit\Core\Attributes\Required;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\ExtensionConfig\AITasksExtension\Task;
 
 /**
- * @phpstan-import-type TaskVariants from \Imagekit\ExtensionConfig\AITasksExtension\Task
- * @phpstan-import-type TaskShape from \Imagekit\ExtensionConfig\AITasksExtension\Task
+ * @phpstan-import-type TaskVariants from \ImageKit\ExtensionConfig\AITasksExtension\Task
+ * @phpstan-import-type TaskShape from \ImageKit\ExtensionConfig\AITasksExtension\Task
  *
  * @phpstan-type AITasksExtensionShape = array{
  *   name: 'ai-tasks', tasks: list<TaskShape>

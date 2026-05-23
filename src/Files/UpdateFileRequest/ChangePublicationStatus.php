@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Files\UpdateFileRequest;
+namespace ImageKit\Files\UpdateFileRequest;
 
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\Files\UpdateFileRequest\ChangePublicationStatus\Publish;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\Files\UpdateFileRequest\ChangePublicationStatus\Publish;
 
 /**
- * @phpstan-import-type PublishShape from \Imagekit\Files\UpdateFileRequest\ChangePublicationStatus\Publish
+ * @phpstan-import-type PublishShape from \ImageKit\Files\UpdateFileRequest\ChangePublicationStatus\Publish
  *
  * @phpstan-type ChangePublicationStatusShape = array{
  *   publish?: null|Publish|PublishShape

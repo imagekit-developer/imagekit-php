@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\ExtensionItem\AITasksExtension\Task\AITaskYesNo;
+namespace ImageKit\ExtensionItem\AITasksExtension\Task\AITaskYesNo;
 
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
-use Imagekit\ExtensionItem\AITasksExtension\Task\AITaskYesNo\OnNo\SetMetadata;
-use Imagekit\ExtensionItem\AITasksExtension\Task\AITaskYesNo\OnNo\UnsetMetadata;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
+use ImageKit\ExtensionItem\AITasksExtension\Task\AITaskYesNo\OnNo\SetMetadata;
+use ImageKit\ExtensionItem\AITasksExtension\Task\AITaskYesNo\OnNo\UnsetMetadata;
 
 /**
  * Actions to execute if the AI answers no.
  *
- * @phpstan-import-type SetMetadataShape from \Imagekit\ExtensionItem\AITasksExtension\Task\AITaskYesNo\OnNo\SetMetadata
- * @phpstan-import-type UnsetMetadataShape from \Imagekit\ExtensionItem\AITasksExtension\Task\AITaskYesNo\OnNo\UnsetMetadata
+ * @phpstan-import-type SetMetadataShape from \ImageKit\ExtensionItem\AITasksExtension\Task\AITaskYesNo\OnNo\SetMetadata
+ * @phpstan-import-type UnsetMetadataShape from \ImageKit\ExtensionItem\AITasksExtension\Task\AITaskYesNo\OnNo\UnsetMetadata
  *
  * @phpstan-type OnNoShape = array{
  *   addTags?: list<string>|null,

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Accounts\Usage;
+namespace ImageKit\Accounts\Usage;
 
-use Imagekit\Core\Attributes\Optional;
-use Imagekit\Core\Concerns\SdkModel;
-use Imagekit\Core\Contracts\BaseModel;
+use ImageKit\Core\Attributes\Optional;
+use ImageKit\Core\Concerns\SdkModel;
+use ImageKit\Core\Contracts\BaseModel;
 
 /**
  * @phpstan-type UsageGetResponseShape = array{

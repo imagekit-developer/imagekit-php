@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Imagekit\Core\Attributes;
+namespace ImageKit\Core\Attributes;
 
-use Imagekit\Core\Conversion\Contracts\Converter;
-use Imagekit\Core\Conversion\Contracts\ConverterSource;
-use Imagekit\Core\Conversion\EnumOf;
-use Imagekit\Core\Conversion\ListOf;
-use Imagekit\Core\Conversion\MapOf;
+use ImageKit\Core\Conversion\Contracts\Converter;
+use ImageKit\Core\Conversion\Contracts\ConverterSource;
+use ImageKit\Core\Conversion\EnumOf;
+use ImageKit\Core\Conversion\ListOf;
+use ImageKit\Core\Conversion\MapOf;
 
 /**
  * @internal

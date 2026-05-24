@@ -1,0 +1,18 @@
+name: Publish Packagist
+on:
+  workflow_dispatch:
+
+jobs:
+  publish:
+    name: publish
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Publish to Packagist
+        run: |-
+          curl --fail-with-body -X POST -H 'Content-Type: application/json' "https://packagist.org/api/update-package?username=${PACKAGIST_USERNAME}&apiToken=${PACKAGIST_SAFE_KEY}" -d '{"repository":"https://github.com/imagekit-developer/imagekit-php"}'
+        env:
+          PACKAGIST_USERNAME: ${{ secrets.IMAGE_KIT_PACKAGIST_USERNAME || secrets.PACKAGIST_USERNAME }}
+          PACKAGIST_SAFE_KEY: ${{ secrets.IMAGE_KIT_PACKAGIST_SAFE_KEY || secrets.PACKAGIST_SAFE_KEY }}

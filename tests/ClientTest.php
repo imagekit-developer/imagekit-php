@@ -4,7 +4,6 @@ namespace Tests;
 
 use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Mock\Client;
-use ImageKit\Core\FileParam;
 use ImageKit\Core\Util;
 use PHPUnit\Framework\TestCase;
 
@@ -34,10 +33,7 @@ class ClientTest extends TestCase
             requestOptions: ['transporter' => $transporter],
         );
 
-        $client->files->upload(
-            file: FileParam::fromString('Example data', filename: uniqid('file-upload-', true)),
-            fileName: 'fileName',
-        );
+        $client->STAINLESS_FIXME_dummy->STAINLESS_FIXME_create();
 
         $this->assertNotFalse($requested = $transporter->getRequests()[0] ?? false);
 

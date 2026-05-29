@@ -11,11 +11,11 @@ use ImageKit\Files\Folder\Type;
 
 /**
  * @phpstan-type FolderShape = array{
+ *   id?: string|null,
  *   createdAt?: \DateTimeInterface|null,
  *   customMetadata?: array<string,mixed>|null,
- *   folderID?: string|null,
- *   folderPath?: string|null,
  *   name?: string|null,
+ *   path?: string|null,
  *   type?: null|Type|value-of<Type>,
  *   updatedAt?: \DateTimeInterface|null,
  * }
@@ -26,9 +26,15 @@ final class Folder implements BaseModel
     use SdkModel;
 
     /**
-     * Date and time when the folder was created. The date and time is in ISO8601 format.
+     * Unique identifier of the asset.
      */
     #[Optional]
+    public ?string $id;
+
+    /**
+     * Date and time when the folder was created. The date and time is in ISO8601 format.
+     */
+    #[Optional('created_at')]
     public ?\DateTimeInterface $createdAt;
 
     /**
@@ -36,26 +42,20 @@ final class Folder implements BaseModel
      *
      * @var array<string,mixed>|null $customMetadata
      */
-    #[Optional(map: 'mixed')]
+    #[Optional('custom_metadata', map: 'mixed')]
     public ?array $customMetadata;
-
-    /**
-     * Unique identifier of the asset.
-     */
-    #[Optional('folderId')]
-    public ?string $folderID;
-
-    /**
-     * Path of the folder. This is the path you would use in the URL to access the folder. For example, if the folder is at the root of the media library, the path will be /folder. If the folder is inside another folder named images, the path will be /images/folder.
-     */
-    #[Optional]
-    public ?string $folderPath;
 
     /**
      * Name of the asset.
      */
     #[Optional]
     public ?string $name;
+
+    /**
+     * Path of the folder. This is the path you would use in the URL to access the folder. For example, if the folder is at the root of the media library, the path will be `/folder`. If the folder is inside another folder named `images`, the path will be `/images/folder`.
+     */
+    #[Optional]
+    public ?string $path;
 
     /**
      * Type of the asset.
@@ -68,7 +68,7 @@ final class Folder implements BaseModel
     /**
      * Date and time when the folder was last updated. The date and time is in ISO8601 format.
      */
-    #[Optional]
+    #[Optional('updated_at')]
     public ?\DateTimeInterface $updatedAt;
 
     public function __construct()
@@ -85,23 +85,34 @@ final class Folder implements BaseModel
      * @param Type|value-of<Type>|null $type
      */
     public static function with(
+        ?string $id = null,
         ?\DateTimeInterface $createdAt = null,
         ?array $customMetadata = null,
-        ?string $folderID = null,
-        ?string $folderPath = null,
         ?string $name = null,
+        ?string $path = null,
         Type|string|null $type = null,
         ?\DateTimeInterface $updatedAt = null,
     ): self {
         $self = new self;
 
+        null !== $id && $self['id'] = $id;
         null !== $createdAt && $self['createdAt'] = $createdAt;
         null !== $customMetadata && $self['customMetadata'] = $customMetadata;
-        null !== $folderID && $self['folderID'] = $folderID;
-        null !== $folderPath && $self['folderPath'] = $folderPath;
         null !== $name && $self['name'] = $name;
+        null !== $path && $self['path'] = $path;
         null !== $type && $self['type'] = $type;
         null !== $updatedAt && $self['updatedAt'] = $updatedAt;
+
+        return $self;
+    }
+
+    /**
+     * Unique identifier of the asset.
+     */
+    public function withID(string $id): self
+    {
+        $self = clone $this;
+        $self['id'] = $id;
 
         return $self;
     }
@@ -131,34 +142,23 @@ final class Folder implements BaseModel
     }
 
     /**
-     * Unique identifier of the asset.
-     */
-    public function withFolderID(string $folderID): self
-    {
-        $self = clone $this;
-        $self['folderID'] = $folderID;
-
-        return $self;
-    }
-
-    /**
-     * Path of the folder. This is the path you would use in the URL to access the folder. For example, if the folder is at the root of the media library, the path will be /folder. If the folder is inside another folder named images, the path will be /images/folder.
-     */
-    public function withFolderPath(string $folderPath): self
-    {
-        $self = clone $this;
-        $self['folderPath'] = $folderPath;
-
-        return $self;
-    }
-
-    /**
      * Name of the asset.
      */
     public function withName(string $name): self
     {
         $self = clone $this;
         $self['name'] = $name;
+
+        return $self;
+    }
+
+    /**
+     * Path of the folder. This is the path you would use in the URL to access the folder. For example, if the folder is at the root of the media library, the path will be `/folder`. If the folder is inside another folder named `images`, the path will be `/images/folder`.
+     */
+    public function withPath(string $path): self
+    {
+        $self = clone $this;
+        $self['path'] = $path;
 
         return $self;
     }

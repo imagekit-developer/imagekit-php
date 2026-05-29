@@ -10,6 +10,4 @@ namespace ImageKit\Files\File;
 enum Type: string
 {
     case FILE = 'file';
-
-    case FILE_VERSION = 'file-version';
 }

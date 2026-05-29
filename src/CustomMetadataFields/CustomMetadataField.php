@@ -42,7 +42,7 @@ final class CustomMetadataField implements BaseModel
     public string $name;
 
     /**
-     * An object that describes the rules for the custom metadata field value.
+     * Schema rules for a custom metadata field value.
      */
     #[Required]
     public Schema $schema;
@@ -127,7 +127,7 @@ final class CustomMetadataField implements BaseModel
     }
 
     /**
-     * An object that describes the rules for the custom metadata field value.
+     * Schema rules for a custom metadata field value.
      *
      * @param Schema|SchemaShape $schema
      */

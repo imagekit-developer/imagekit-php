@@ -7,26 +7,23 @@ namespace ImageKit\Files;
 use ImageKit\Core\Attributes\Optional;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Files\Metadata\Exif;
 
 /**
  * JSON object containing metadata.
- *
- * @phpstan-import-type ExifShape from \ImageKit\Files\Metadata\Exif
  *
  * @phpstan-type MetadataShape = array{
  *   audioCodec?: string|null,
  *   bitRate?: int|null,
  *   density?: int|null,
  *   duration?: int|null,
- *   exif?: null|Exif|ExifShape,
  *   format?: string|null,
+ *   hasAlpha?: bool|null,
  *   hasColorProfile?: bool|null,
  *   hasTransparency?: bool|null,
  *   height?: int|null,
+ *   mime?: string|null,
  *   pHash?: string|null,
  *   quality?: int|null,
- *   size?: int|null,
  *   videoCodec?: string|null,
  *   width?: int|null,
  * }
@@ -39,13 +36,13 @@ final class Metadata implements BaseModel
     /**
      * The audio codec used in the video (only for video).
      */
-    #[Optional]
+    #[Optional('audio_codec')]
     public ?string $audioCodec;
 
     /**
      * The bit rate of the video in kbps (only for video).
      */
-    #[Optional]
+    #[Optional('bit_rate')]
     public ?int $bitRate;
 
     /**
@@ -60,9 +57,6 @@ final class Metadata implements BaseModel
     #[Optional]
     public ?int $duration;
 
-    #[Optional]
-    public ?Exif $exif;
-
     /**
      * The format of the file (e.g., 'jpg', 'mp4').
      */
@@ -70,15 +64,21 @@ final class Metadata implements BaseModel
     public ?string $format;
 
     /**
+     * Specifies if the image has an alpha channel.
+     */
+    #[Optional('has_alpha')]
+    public ?bool $hasAlpha;
+
+    /**
      * Indicates if the image has a color profile.
      */
-    #[Optional]
+    #[Optional('has_color_profile')]
     public ?bool $hasColorProfile;
 
     /**
      * Indicates if the image contains transparent areas.
      */
-    #[Optional]
+    #[Optional('has_transparency')]
     public ?bool $hasTransparency;
 
     /**
@@ -88,9 +88,15 @@ final class Metadata implements BaseModel
     public ?int $height;
 
     /**
-     * Perceptual hash of the image.
+     * MIME type of the file.
      */
     #[Optional]
+    public ?string $mime;
+
+    /**
+     * Perceptual hash of the image.
+     */
+    #[Optional('p_hash')]
     public ?string $pHash;
 
     /**
@@ -100,15 +106,9 @@ final class Metadata implements BaseModel
     public ?int $quality;
 
     /**
-     * The file size in bytes.
-     */
-    #[Optional]
-    public ?int $size;
-
-    /**
      * The video codec used in the video (only for video).
      */
-    #[Optional]
+    #[Optional('video_codec')]
     public ?string $videoCodec;
 
     /**
@@ -126,22 +126,20 @@ final class Metadata implements BaseModel
      * Construct an instance from the required parameters.
      *
      * You must use named parameters to construct any parameters with a default value.
-     *
-     * @param Exif|ExifShape|null $exif
      */
     public static function with(
         ?string $audioCodec = null,
         ?int $bitRate = null,
         ?int $density = null,
         ?int $duration = null,
-        Exif|array|null $exif = null,
         ?string $format = null,
+        ?bool $hasAlpha = null,
         ?bool $hasColorProfile = null,
         ?bool $hasTransparency = null,
         ?int $height = null,
+        ?string $mime = null,
         ?string $pHash = null,
         ?int $quality = null,
-        ?int $size = null,
         ?string $videoCodec = null,
         ?int $width = null,
     ): self {
@@ -151,14 +149,14 @@ final class Metadata implements BaseModel
         null !== $bitRate && $self['bitRate'] = $bitRate;
         null !== $density && $self['density'] = $density;
         null !== $duration && $self['duration'] = $duration;
-        null !== $exif && $self['exif'] = $exif;
         null !== $format && $self['format'] = $format;
+        null !== $hasAlpha && $self['hasAlpha'] = $hasAlpha;
         null !== $hasColorProfile && $self['hasColorProfile'] = $hasColorProfile;
         null !== $hasTransparency && $self['hasTransparency'] = $hasTransparency;
         null !== $height && $self['height'] = $height;
+        null !== $mime && $self['mime'] = $mime;
         null !== $pHash && $self['pHash'] = $pHash;
         null !== $quality && $self['quality'] = $quality;
-        null !== $size && $self['size'] = $size;
         null !== $videoCodec && $self['videoCodec'] = $videoCodec;
         null !== $width && $self['width'] = $width;
 
@@ -210,23 +208,23 @@ final class Metadata implements BaseModel
     }
 
     /**
-     * @param Exif|ExifShape $exif
-     */
-    public function withExif(Exif|array $exif): self
-    {
-        $self = clone $this;
-        $self['exif'] = $exif;
-
-        return $self;
-    }
-
-    /**
      * The format of the file (e.g., 'jpg', 'mp4').
      */
     public function withFormat(string $format): self
     {
         $self = clone $this;
         $self['format'] = $format;
+
+        return $self;
+    }
+
+    /**
+     * Specifies if the image has an alpha channel.
+     */
+    public function withHasAlpha(bool $hasAlpha): self
+    {
+        $self = clone $this;
+        $self['hasAlpha'] = $hasAlpha;
 
         return $self;
     }
@@ -265,6 +263,17 @@ final class Metadata implements BaseModel
     }
 
     /**
+     * MIME type of the file.
+     */
+    public function withMime(string $mime): self
+    {
+        $self = clone $this;
+        $self['mime'] = $mime;
+
+        return $self;
+    }
+
+    /**
      * Perceptual hash of the image.
      */
     public function withPHash(string $pHash): self
@@ -282,17 +291,6 @@ final class Metadata implements BaseModel
     {
         $self = clone $this;
         $self['quality'] = $quality;
-
-        return $self;
-    }
-
-    /**
-     * The file size in bytes.
-     */
-    public function withSize(int $size): self
-    {
-        $self = clone $this;
-        $self['size'] = $size;
 
         return $self;
     }

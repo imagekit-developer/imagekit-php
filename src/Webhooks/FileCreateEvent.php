@@ -42,7 +42,7 @@ final class FileCreateEvent implements BaseModel
     public \DateTimeInterface $createdAt;
 
     /**
-     * Object containing details of a file or file version.
+     * Object containing details of a file.
      */
     #[Required]
     public File $data;
@@ -127,7 +127,7 @@ final class FileCreateEvent implements BaseModel
     }
 
     /**
-     * Object containing details of a file or file version.
+     * Object containing details of a file.
      *
      * @param File|FileShape $data
      */

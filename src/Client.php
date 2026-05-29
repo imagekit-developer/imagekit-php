@@ -31,8 +31,6 @@ class Client extends BaseClient
 
     public string $webhookSecret;
 
-    public bool $baseUrlOverridden;
-
     /**
      * @api
      */
@@ -97,8 +95,6 @@ class Client extends BaseClient
         $this->webhookSecret = (string) ($webhookSecret ?? Util::getenv(
             'IMAGEKIT_WEBHOOK_SECRET'
         ));
-
-        $this->baseUrlOverridden = !is_null($baseUrl);
 
         $baseUrl ??= Util::getenv(
             'IMAGE_KIT_BASE_URL'

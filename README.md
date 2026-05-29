@@ -25,19 +25,15 @@ Parameters with a default value must be set by name.
 <?php
 
 use ImageKit\Client;
-use ImageKit\Core\FileParam;
 
 $client = new Client(
   privateKey: getenv('IMAGEKIT_PRIVATE_KEY') ?: 'My Private Key',
   password: getenv('OPTIONAL_IMAGEKIT_IGNORES_THIS') ?: 'do_not_set',
 );
 
-$response = $client->files->upload(
-  file: FileParam::fromString('https://www.example.com/public-url.jpg', filename: uniqid('file-upload-', true)),
-  fileName: 'file-name.jpg',
-);
+$result = $client->STAINLESS_FIXME_dummy->STAINLESS_FIXME_create();
 
-var_dump($response->videoCodec);
+var_dump($result);
 ```
 
 ### Value Objects
@@ -54,16 +50,12 @@ When the library is unable to connect to the API, or if the API returns a non-su
 ```php
 <?php
 
-use ImageKit\Core\FileParam;
 use ImageKit\Core\Exceptions\APIConnectionException;
 use ImageKit\Core\Exceptions\RateLimitException;
 use ImageKit\Core\Exceptions\APIStatusException;
 
 try {
-  $response = $client->files->upload(
-    file: FileParam::fromString('https://www.example.com/public-url.jpg', filename: uniqid('file-upload-', true)),
-    fileName: 'file-name.jpg',
-  );
+  $result = $client->STAINLESS_FIXME_dummy->STAINLESS_FIXME_create();
 } catch (APIConnectionException $e) {
   echo "The server could not be reached", PHP_EOL;
   var_dump($e->getPrevious());
@@ -103,47 +95,14 @@ You can use the `maxRetries` option to configure or disable this:
 <?php
 
 use ImageKit\Client;
-use ImageKit\Core\FileParam;
 
 // Configure the default for all requests:
 $client = new Client(requestOptions: ['maxRetries' => 0]);
 
 // Or, configure per-request:
-$result = $client->files->upload(
-  file: FileParam::fromString('https://www.example.com/public-url.jpg', filename: uniqid('file-upload-', true)),
-  fileName: 'file-name.jpg',
-  requestOptions: ['maxRetries' => 5],
+$result = $client->STAINLESS_FIXME_dummy->STAINLESS_FIXME_create(
+  requestOptions: ['maxRetries' => 5]
 );
-```
-
-### File uploads
-
-Request parameters that correspond to file uploads can be passed as a resource returned by `fopen()`, a string of file contents, or a `FileParam` instance.
-
-```php
-<?php
-
-use ImageKit\Core\FileParam;
-
-// Pass a string with filename and content type:
-$contents = file_get_contents('/path/to/file');
-// Pass a string with filename and content type:
-$response = $client->files->upload(
-  file: FileParam::fromString($contents, filename: '/path/to/file', contentType: '…'),
-);
-
-// Pass in only a string (where applicable)
-$response = $client->files->upload(file: '…');
-
-// Pass an open resource:
-$fd = fopen('/path/to/file', 'r');
-try {
-  $response = $client->files->upload(
-    file: FileParam::fromResource($fd, filename: '/path/to/file', contentType: '…'),
-  );
-} finally {
-  fclose($fd);
-}
 ```
 
 ## Advanced concepts
@@ -159,11 +118,7 @@ Note: the `extra*` parameters of the same name overrides the documented paramete
 ```php
 <?php
 
-use ImageKit\Core\FileParam;
-
-$response = $client->files->upload(
-  file: FileParam::fromString('https://www.example.com/public-url.jpg', filename: uniqid('file-upload-', true)),
-  fileName: 'file-name.jpg',
+$result = $client->STAINLESS_FIXME_dummy->STAINLESS_FIXME_create(
   requestOptions: [
     'extraQueryParams' => ['my_query_parameter' => 'value'],
     'extraBodyParams' => ['my_body_parameter' => 'value'],

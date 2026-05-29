@@ -8,46 +8,37 @@ use ImageKit\Core\Attributes\Optional;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\Files\File\AITag;
-use ImageKit\Files\File\SelectedFieldsSchema;
 use ImageKit\Files\File\Type;
 use ImageKit\Files\File\VersionInfo;
 
 /**
- * Object containing details of a file or file version.
+ * Object containing details of a file.
  *
  * @phpstan-import-type AITagShape from \ImageKit\Files\File\AITag
- * @phpstan-import-type SelectedFieldsSchemaShape from \ImageKit\Files\File\SelectedFieldsSchema
+ * @phpstan-import-type MetadataShape from \ImageKit\Files\Metadata
  * @phpstan-import-type VersionInfoShape from \ImageKit\Files\File\VersionInfo
  *
  * @phpstan-type FileShape = array{
+ *   id?: string|null,
  *   aiTags?: list<AITag|AITagShape>|null,
- *   audioCodec?: string|null,
- *   bitRate?: int|null,
+ *   assetType?: string|null,
+ *   assetURL?: string|null,
  *   createdAt?: \DateTimeInterface|null,
  *   customCoordinates?: string|null,
  *   customMetadata?: array<string,mixed>|null,
  *   description?: string|null,
- *   duration?: int|null,
  *   embeddedMetadata?: array<string,mixed>|null,
- *   fileID?: string|null,
- *   filePath?: string|null,
- *   fileType?: string|null,
- *   hasAlpha?: bool|null,
- *   height?: float|null,
  *   isPrivateFile?: bool|null,
  *   isPublished?: bool|null,
- *   mime?: string|null,
+ *   metadata?: null|Metadata|MetadataShape,
  *   name?: string|null,
- *   selectedFieldsSchema?: array<string,SelectedFieldsSchema|SelectedFieldsSchemaShape>|null,
+ *   path?: string|null,
  *   size?: float|null,
  *   tags?: list<string>|null,
- *   thumbnail?: string|null,
+ *   thumbnailURL?: string|null,
  *   type?: null|Type|value-of<Type>,
  *   updatedAt?: \DateTimeInterface|null,
- *   url?: string|null,
  *   versionInfo?: null|VersionInfo|VersionInfoShape,
- *   videoCodec?: string|null,
- *   width?: float|null,
  * }
  */
 final class File implements BaseModel
@@ -56,43 +47,45 @@ final class File implements BaseModel
     use SdkModel;
 
     /**
-     * Array of AI-generated tags associated with the image. If no AITags are set, it will be null.
-     *
-     * @var list<AITag>|null $aiTags
+     * Unique identifier of the asset.
      */
-    #[Optional('AITags', list: AITag::class, nullable: true)]
+    #[Optional]
+    public ?string $id;
+
+    /** @var list<AITag>|null $aiTags */
+    #[Optional('ai_tags', list: AITag::class)]
     public ?array $aiTags;
 
     /**
-     * The audio codec used in the video (only for video/audio).
+     * Type of the uploaded asset. Possible values are `image`, `video`, `audio` or `static`.
      */
-    #[Optional]
-    public ?string $audioCodec;
+    #[Optional('asset_type')]
+    public ?string $assetType;
 
     /**
-     * The bit rate of the video in kbps (only for video).
+     * A publicly accessible URL of the asset.
      */
-    #[Optional]
-    public ?int $bitRate;
+    #[Optional('asset_url')]
+    public ?string $assetURL;
 
     /**
      * Date and time when the file was uploaded. The date and time is in ISO8601 format.
      */
-    #[Optional]
+    #[Optional('created_at')]
     public ?\DateTimeInterface $createdAt;
 
     /**
-     * An string with custom coordinates of the file.
+     * A string with custom coordinates of the file in the format `x,y,width,height`. If `custom_coordinates` are not defined, then it is `null`.
      */
-    #[Optional(nullable: true)]
+    #[Optional('custom_coordinates', nullable: true)]
     public ?string $customCoordinates;
 
     /**
-     * An object with custom metadata for the file.
+     * A key-value data associated with the asset.
      *
      * @var array<string,mixed>|null $customMetadata
      */
-    #[Optional(map: 'mixed')]
+    #[Optional('custom_metadata', map: 'mixed')]
     public ?array $customMetadata;
 
     /**
@@ -102,66 +95,30 @@ final class File implements BaseModel
     public ?string $description;
 
     /**
-     * The duration of the video in seconds (only for video).
-     */
-    #[Optional]
-    public ?int $duration;
-
-    /**
      * Consolidated embedded metadata associated with the file. It includes exif, iptc, and xmp data.
      *
      * @var array<string,mixed>|null $embeddedMetadata
      */
-    #[Optional(map: 'mixed')]
+    #[Optional('embedded_metadata', map: 'mixed')]
     public ?array $embeddedMetadata;
-
-    /**
-     * Unique identifier of the asset.
-     */
-    #[Optional('fileId')]
-    public ?string $fileID;
-
-    /**
-     * Path of the file. This is the path you would use in the URL to access the file. For example, if the file is at the root of the media library, the path will be `/file.jpg`. If the file is inside a folder named `images`, the path will be `/images/file.jpg`.
-     */
-    #[Optional]
-    public ?string $filePath;
-
-    /**
-     * Type of the file. Possible values are `image`, `non-image`.
-     */
-    #[Optional]
-    public ?string $fileType;
-
-    /**
-     * Specifies if the image has an alpha channel.
-     */
-    #[Optional]
-    public ?bool $hasAlpha;
-
-    /**
-     * Height of the file.
-     */
-    #[Optional]
-    public ?float $height;
 
     /**
      * Specifies if the file is private or not.
      */
-    #[Optional]
+    #[Optional('is_private_file')]
     public ?bool $isPrivateFile;
 
     /**
      * Specifies if the file is published or not.
      */
-    #[Optional]
+    #[Optional('is_published')]
     public ?bool $isPublished;
 
     /**
-     * MIME type of the file.
+     * Basic metadata associated with the asset.
      */
     #[Optional]
-    public ?string $mime;
+    public ?Metadata $metadata;
 
     /**
      * Name of the asset.
@@ -170,16 +127,10 @@ final class File implements BaseModel
     public ?string $name;
 
     /**
-     * This field is included in the response only if the Path policy feature is available in the plan.
-     * It contains schema definitions for the custom metadata fields selected for the specified file path.
-     * Field selection can only be done when the Path policy feature is enabled.
-     *
-     * Keys are the names of the custom metadata fields; the value object has details about the custom metadata schema.
-     *
-     * @var array<string,SelectedFieldsSchema>|null $selectedFieldsSchema
+     * Path of the file. This is the path you would use in the URL to access the file. For example, if the file is at the root of the media library, the path will be `/file.jpg`. If the file is inside a folder named `images`, the path will be `/images/file.jpg`.
      */
-    #[Optional(map: SelectedFieldsSchema::class)]
-    public ?array $selectedFieldsSchema;
+    #[Optional]
+    public ?string $path;
 
     /**
      * Size of the file in bytes.
@@ -188,18 +139,18 @@ final class File implements BaseModel
     public ?float $size;
 
     /**
-     * An array of tags assigned to the file. Tags are used to search files in the media library.
+     * The array of tags associated with the asset. If no tags are set, it will be `null`. Send `tags` in `responseFields` in API request to get the value of this field.
      *
      * @var list<string>|null $tags
      */
-    #[Optional(list: 'string', nullable: true)]
+    #[Optional(list: 'string')]
     public ?array $tags;
 
     /**
-     * URL of the thumbnail image. This URL is used to access the thumbnail image of the file in the media library.
+     * In the case of an image, a small thumbnail URL.
      */
-    #[Optional]
-    public ?string $thumbnail;
+    #[Optional('thumbnail_url')]
+    public ?string $thumbnailURL;
 
     /**
      * Type of the asset.
@@ -212,32 +163,14 @@ final class File implements BaseModel
     /**
      * Date and time when the file was last updated. The date and time is in ISO8601 format.
      */
-    #[Optional]
+    #[Optional('updated_at')]
     public ?\DateTimeInterface $updatedAt;
-
-    /**
-     * URL of the file.
-     */
-    #[Optional]
-    public ?string $url;
 
     /**
      * An object with details of the file version.
      */
-    #[Optional]
+    #[Optional('version_info')]
     public ?VersionInfo $versionInfo;
-
-    /**
-     * The video codec used in the video (only for video).
-     */
-    #[Optional]
-    public ?string $videoCodec;
-
-    /**
-     * Width of the file.
-     */
-    #[Optional]
-    public ?float $width;
 
     public function __construct()
     {
@@ -252,81 +185,74 @@ final class File implements BaseModel
      * @param list<AITag|AITagShape>|null $aiTags
      * @param array<string,mixed>|null $customMetadata
      * @param array<string,mixed>|null $embeddedMetadata
-     * @param array<string,SelectedFieldsSchema|SelectedFieldsSchemaShape>|null $selectedFieldsSchema
+     * @param Metadata|MetadataShape|null $metadata
      * @param list<string>|null $tags
      * @param Type|value-of<Type>|null $type
      * @param VersionInfo|VersionInfoShape|null $versionInfo
      */
     public static function with(
+        ?string $id = null,
         ?array $aiTags = null,
-        ?string $audioCodec = null,
-        ?int $bitRate = null,
+        ?string $assetType = null,
+        ?string $assetURL = null,
         ?\DateTimeInterface $createdAt = null,
         ?string $customCoordinates = null,
         ?array $customMetadata = null,
         ?string $description = null,
-        ?int $duration = null,
         ?array $embeddedMetadata = null,
-        ?string $fileID = null,
-        ?string $filePath = null,
-        ?string $fileType = null,
-        ?bool $hasAlpha = null,
-        ?float $height = null,
         ?bool $isPrivateFile = null,
         ?bool $isPublished = null,
-        ?string $mime = null,
+        Metadata|array|null $metadata = null,
         ?string $name = null,
-        ?array $selectedFieldsSchema = null,
+        ?string $path = null,
         ?float $size = null,
         ?array $tags = null,
-        ?string $thumbnail = null,
+        ?string $thumbnailURL = null,
         Type|string|null $type = null,
         ?\DateTimeInterface $updatedAt = null,
-        ?string $url = null,
         VersionInfo|array|null $versionInfo = null,
-        ?string $videoCodec = null,
-        ?float $width = null,
     ): self {
         $self = new self;
 
+        null !== $id && $self['id'] = $id;
         null !== $aiTags && $self['aiTags'] = $aiTags;
-        null !== $audioCodec && $self['audioCodec'] = $audioCodec;
-        null !== $bitRate && $self['bitRate'] = $bitRate;
+        null !== $assetType && $self['assetType'] = $assetType;
+        null !== $assetURL && $self['assetURL'] = $assetURL;
         null !== $createdAt && $self['createdAt'] = $createdAt;
         null !== $customCoordinates && $self['customCoordinates'] = $customCoordinates;
         null !== $customMetadata && $self['customMetadata'] = $customMetadata;
         null !== $description && $self['description'] = $description;
-        null !== $duration && $self['duration'] = $duration;
         null !== $embeddedMetadata && $self['embeddedMetadata'] = $embeddedMetadata;
-        null !== $fileID && $self['fileID'] = $fileID;
-        null !== $filePath && $self['filePath'] = $filePath;
-        null !== $fileType && $self['fileType'] = $fileType;
-        null !== $hasAlpha && $self['hasAlpha'] = $hasAlpha;
-        null !== $height && $self['height'] = $height;
         null !== $isPrivateFile && $self['isPrivateFile'] = $isPrivateFile;
         null !== $isPublished && $self['isPublished'] = $isPublished;
-        null !== $mime && $self['mime'] = $mime;
+        null !== $metadata && $self['metadata'] = $metadata;
         null !== $name && $self['name'] = $name;
-        null !== $selectedFieldsSchema && $self['selectedFieldsSchema'] = $selectedFieldsSchema;
+        null !== $path && $self['path'] = $path;
         null !== $size && $self['size'] = $size;
         null !== $tags && $self['tags'] = $tags;
-        null !== $thumbnail && $self['thumbnail'] = $thumbnail;
+        null !== $thumbnailURL && $self['thumbnailURL'] = $thumbnailURL;
         null !== $type && $self['type'] = $type;
         null !== $updatedAt && $self['updatedAt'] = $updatedAt;
-        null !== $url && $self['url'] = $url;
         null !== $versionInfo && $self['versionInfo'] = $versionInfo;
-        null !== $videoCodec && $self['videoCodec'] = $videoCodec;
-        null !== $width && $self['width'] = $width;
 
         return $self;
     }
 
     /**
-     * Array of AI-generated tags associated with the image. If no AITags are set, it will be null.
-     *
-     * @param list<AITag|AITagShape>|null $aiTags
+     * Unique identifier of the asset.
      */
-    public function withAITags(?array $aiTags): self
+    public function withID(string $id): self
+    {
+        $self = clone $this;
+        $self['id'] = $id;
+
+        return $self;
+    }
+
+    /**
+     * @param list<AITag|AITagShape> $aiTags
+     */
+    public function withAITags(array $aiTags): self
     {
         $self = clone $this;
         $self['aiTags'] = $aiTags;
@@ -335,23 +261,23 @@ final class File implements BaseModel
     }
 
     /**
-     * The audio codec used in the video (only for video/audio).
+     * Type of the uploaded asset. Possible values are `image`, `video`, `audio` or `static`.
      */
-    public function withAudioCodec(string $audioCodec): self
+    public function withAssetType(string $assetType): self
     {
         $self = clone $this;
-        $self['audioCodec'] = $audioCodec;
+        $self['assetType'] = $assetType;
 
         return $self;
     }
 
     /**
-     * The bit rate of the video in kbps (only for video).
+     * A publicly accessible URL of the asset.
      */
-    public function withBitRate(int $bitRate): self
+    public function withAssetURL(string $assetURL): self
     {
         $self = clone $this;
-        $self['bitRate'] = $bitRate;
+        $self['assetURL'] = $assetURL;
 
         return $self;
     }
@@ -368,7 +294,7 @@ final class File implements BaseModel
     }
 
     /**
-     * An string with custom coordinates of the file.
+     * A string with custom coordinates of the file in the format `x,y,width,height`. If `custom_coordinates` are not defined, then it is `null`.
      */
     public function withCustomCoordinates(?string $customCoordinates): self
     {
@@ -379,7 +305,7 @@ final class File implements BaseModel
     }
 
     /**
-     * An object with custom metadata for the file.
+     * A key-value data associated with the asset.
      *
      * @param array<string,mixed> $customMetadata
      */
@@ -403,17 +329,6 @@ final class File implements BaseModel
     }
 
     /**
-     * The duration of the video in seconds (only for video).
-     */
-    public function withDuration(int $duration): self
-    {
-        $self = clone $this;
-        $self['duration'] = $duration;
-
-        return $self;
-    }
-
-    /**
      * Consolidated embedded metadata associated with the file. It includes exif, iptc, and xmp data.
      *
      * @param array<string,mixed> $embeddedMetadata
@@ -422,61 +337,6 @@ final class File implements BaseModel
     {
         $self = clone $this;
         $self['embeddedMetadata'] = $embeddedMetadata;
-
-        return $self;
-    }
-
-    /**
-     * Unique identifier of the asset.
-     */
-    public function withFileID(string $fileID): self
-    {
-        $self = clone $this;
-        $self['fileID'] = $fileID;
-
-        return $self;
-    }
-
-    /**
-     * Path of the file. This is the path you would use in the URL to access the file. For example, if the file is at the root of the media library, the path will be `/file.jpg`. If the file is inside a folder named `images`, the path will be `/images/file.jpg`.
-     */
-    public function withFilePath(string $filePath): self
-    {
-        $self = clone $this;
-        $self['filePath'] = $filePath;
-
-        return $self;
-    }
-
-    /**
-     * Type of the file. Possible values are `image`, `non-image`.
-     */
-    public function withFileType(string $fileType): self
-    {
-        $self = clone $this;
-        $self['fileType'] = $fileType;
-
-        return $self;
-    }
-
-    /**
-     * Specifies if the image has an alpha channel.
-     */
-    public function withHasAlpha(bool $hasAlpha): self
-    {
-        $self = clone $this;
-        $self['hasAlpha'] = $hasAlpha;
-
-        return $self;
-    }
-
-    /**
-     * Height of the file.
-     */
-    public function withHeight(float $height): self
-    {
-        $self = clone $this;
-        $self['height'] = $height;
 
         return $self;
     }
@@ -504,12 +364,14 @@ final class File implements BaseModel
     }
 
     /**
-     * MIME type of the file.
+     * Basic metadata associated with the asset.
+     *
+     * @param Metadata|MetadataShape $metadata
      */
-    public function withMime(string $mime): self
+    public function withMetadata(Metadata|array $metadata): self
     {
         $self = clone $this;
-        $self['mime'] = $mime;
+        $self['metadata'] = $metadata;
 
         return $self;
     }
@@ -526,18 +388,12 @@ final class File implements BaseModel
     }
 
     /**
-     * This field is included in the response only if the Path policy feature is available in the plan.
-     * It contains schema definitions for the custom metadata fields selected for the specified file path.
-     * Field selection can only be done when the Path policy feature is enabled.
-     *
-     * Keys are the names of the custom metadata fields; the value object has details about the custom metadata schema.
-     *
-     * @param array<string,SelectedFieldsSchema|SelectedFieldsSchemaShape> $selectedFieldsSchema
+     * Path of the file. This is the path you would use in the URL to access the file. For example, if the file is at the root of the media library, the path will be `/file.jpg`. If the file is inside a folder named `images`, the path will be `/images/file.jpg`.
      */
-    public function withSelectedFieldsSchema(array $selectedFieldsSchema): self
+    public function withPath(string $path): self
     {
         $self = clone $this;
-        $self['selectedFieldsSchema'] = $selectedFieldsSchema;
+        $self['path'] = $path;
 
         return $self;
     }
@@ -554,11 +410,11 @@ final class File implements BaseModel
     }
 
     /**
-     * An array of tags assigned to the file. Tags are used to search files in the media library.
+     * The array of tags associated with the asset. If no tags are set, it will be `null`. Send `tags` in `responseFields` in API request to get the value of this field.
      *
-     * @param list<string>|null $tags
+     * @param list<string> $tags
      */
-    public function withTags(?array $tags): self
+    public function withTags(array $tags): self
     {
         $self = clone $this;
         $self['tags'] = $tags;
@@ -567,12 +423,12 @@ final class File implements BaseModel
     }
 
     /**
-     * URL of the thumbnail image. This URL is used to access the thumbnail image of the file in the media library.
+     * In the case of an image, a small thumbnail URL.
      */
-    public function withThumbnail(string $thumbnail): self
+    public function withThumbnailURL(string $thumbnailURL): self
     {
         $self = clone $this;
-        $self['thumbnail'] = $thumbnail;
+        $self['thumbnailURL'] = $thumbnailURL;
 
         return $self;
     }
@@ -602,17 +458,6 @@ final class File implements BaseModel
     }
 
     /**
-     * URL of the file.
-     */
-    public function withURL(string $url): self
-    {
-        $self = clone $this;
-        $self['url'] = $url;
-
-        return $self;
-    }
-
-    /**
      * An object with details of the file version.
      *
      * @param VersionInfo|VersionInfoShape $versionInfo
@@ -621,28 +466,6 @@ final class File implements BaseModel
     {
         $self = clone $this;
         $self['versionInfo'] = $versionInfo;
-
-        return $self;
-    }
-
-    /**
-     * The video codec used in the video (only for video).
-     */
-    public function withVideoCodec(string $videoCodec): self
-    {
-        $self = clone $this;
-        $self['videoCodec'] = $videoCodec;
-
-        return $self;
-    }
-
-    /**
-     * Width of the file.
-     */
-    public function withWidth(float $width): self
-    {
-        $self = clone $this;
-        $self['width'] = $width;
 
         return $self;
     }

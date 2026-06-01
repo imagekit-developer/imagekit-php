@@ -19,7 +19,7 @@ final class InvalidationNewResponse implements BaseModel
     /**
      * Unique identifier of the purge request. This can be used to check the status of the purge request.
      */
-    #[Optional('requestId')]
+    #[Optional('request_id')]
     public ?string $requestID;
 
     public function __construct()

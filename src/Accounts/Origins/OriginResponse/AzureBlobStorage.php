@@ -36,7 +36,7 @@ final class AzureBlobStorage implements BaseModel
     #[Required]
     public string $id;
 
-    #[Required]
+    #[Required('account_name')]
     public string $accountName;
 
     #[Required]
@@ -45,7 +45,7 @@ final class AzureBlobStorage implements BaseModel
     /**
      * Whether to send a Canonical header.
      */
-    #[Required]
+    #[Required('include_canonical_header')]
     public bool $includeCanonicalHeader;
 
     /**
@@ -60,7 +60,7 @@ final class AzureBlobStorage implements BaseModel
     /**
      * URL used in the Canonical header (if enabled).
      */
-    #[Optional('baseUrlForCanonicalHeader')]
+    #[Optional('base_url_for_canonical_header')]
     public ?string $baseURLForCanonicalHeader;
 
     /**

@@ -13,7 +13,7 @@ use ImageKit\CustomMetadataFields\CustomMetadataField\Schema\SelectOption;
 use ImageKit\CustomMetadataFields\CustomMetadataField\Schema\Type;
 
 /**
- * An object that describes the rules for the custom metadata field value.
+ * Schema rules for a custom metadata field value.
  *
  * @phpstan-import-type DefaultValueVariants from \ImageKit\CustomMetadataFields\CustomMetadataField\Schema\DefaultValue
  * @phpstan-import-type MaxValueVariants from \ImageKit\CustomMetadataFields\CustomMetadataField\Schema\MaxValue
@@ -53,19 +53,19 @@ final class Schema implements BaseModel
      *
      * @var DefaultValueVariants|null $defaultValue
      */
-    #[Optional(union: DefaultValue::class)]
+    #[Optional('default_value', union: DefaultValue::class)]
     public string|float|bool|array|null $defaultValue;
 
     /**
-     * Specifies if the this custom metadata field is required or not.
+     * Specifies if the custom metadata field is required or not.
      */
-    #[Optional]
+    #[Optional('is_value_required')]
     public ?bool $isValueRequired;
 
     /**
      * Maximum length of string. Only set if `type` is set to `Text` or `Textarea`.
      */
-    #[Optional]
+    #[Optional('max_length')]
     public ?float $maxLength;
 
     /**
@@ -73,13 +73,13 @@ final class Schema implements BaseModel
      *
      * @var MaxValueVariants|null $maxValue
      */
-    #[Optional]
+    #[Optional('max_value')]
     public string|float|null $maxValue;
 
     /**
      * Minimum length of string. Only set if `type` is set to `Text` or `Textarea`.
      */
-    #[Optional]
+    #[Optional('min_length')]
     public ?float $minLength;
 
     /**
@@ -87,7 +87,7 @@ final class Schema implements BaseModel
      *
      * @var MinValueVariants|null $minValue
      */
-    #[Optional]
+    #[Optional('min_value')]
     public string|float|null $minValue;
 
     /**
@@ -95,7 +95,7 @@ final class Schema implements BaseModel
      *
      * @var list<SelectOptionVariants>|null $selectOptions
      */
-    #[Optional(list: SelectOption::class)]
+    #[Optional('select_options', list: SelectOption::class)]
     public ?array $selectOptions;
 
     /**
@@ -181,7 +181,7 @@ final class Schema implements BaseModel
     }
 
     /**
-     * Specifies if the this custom metadata field is required or not.
+     * Specifies if the custom metadata field is required or not.
      */
     public function withIsValueRequired(bool $isValueRequired): self
     {

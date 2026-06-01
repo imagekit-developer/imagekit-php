@@ -13,7 +13,7 @@ use ImageKit\Core\Contracts\BaseModel;
  *   addShadow?: bool|null,
  *   bgColor?: string|null,
  *   bgImageURL?: string|null,
- *   semitransparency?: bool|null,
+ *   semiTransparency?: bool|null,
  * }
  */
 final class Options implements BaseModel
@@ -42,8 +42,8 @@ final class Options implements BaseModel
     /**
      * Allows semi-transparent regions in the result. Default is true. Note: Semitransparency is currently only supported for car windows.
      */
-    #[Optional]
-    public ?bool $semitransparency;
+    #[Optional('semi_transparency')]
+    public ?bool $semiTransparency;
 
     public function __construct()
     {
@@ -59,14 +59,14 @@ final class Options implements BaseModel
         ?bool $addShadow = null,
         ?string $bgColor = null,
         ?string $bgImageURL = null,
-        ?bool $semitransparency = null,
+        ?bool $semiTransparency = null,
     ): self {
         $self = new self;
 
         null !== $addShadow && $self['addShadow'] = $addShadow;
         null !== $bgColor && $self['bgColor'] = $bgColor;
         null !== $bgImageURL && $self['bgImageURL'] = $bgImageURL;
-        null !== $semitransparency && $self['semitransparency'] = $semitransparency;
+        null !== $semiTransparency && $self['semiTransparency'] = $semiTransparency;
 
         return $self;
     }
@@ -107,10 +107,10 @@ final class Options implements BaseModel
     /**
      * Allows semi-transparent regions in the result. Default is true. Note: Semitransparency is currently only supported for car windows.
      */
-    public function withSemitransparency(bool $semitransparency): self
+    public function withSemiTransparency(bool $semiTransparency): self
     {
         $self = clone $this;
-        $self['semitransparency'] = $semitransparency;
+        $self['semiTransparency'] = $semiTransparency;
 
         return $self;
     }

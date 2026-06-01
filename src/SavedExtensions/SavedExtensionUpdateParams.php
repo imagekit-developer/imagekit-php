@@ -43,13 +43,13 @@ final class SavedExtensionUpdateParams implements BaseModel
     public RemovedotBgExtension|AutoTaggingExtension|AutoDescriptionExtension|AITasksExtension|null $config;
 
     /**
-     * Updated description of the saved extension.
+     * Description of the saved extension.
      */
     #[Optional]
     public ?string $description;
 
     /**
-     * Updated name of the saved extension.
+     * Name of the saved extension.
      */
     #[Optional]
     public ?string $name;
@@ -95,7 +95,7 @@ final class SavedExtensionUpdateParams implements BaseModel
     }
 
     /**
-     * Updated description of the saved extension.
+     * Description of the saved extension.
      */
     public function withDescription(string $description): self
     {
@@ -106,7 +106,7 @@ final class SavedExtensionUpdateParams implements BaseModel
     }
 
     /**
-     * Updated name of the saved extension.
+     * Name of the saved extension.
      */
     public function withName(string $name): self
     {

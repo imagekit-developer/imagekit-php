@@ -10,11 +10,13 @@ use ImageKit\Core\Conversion\ListOf;
 use ImageKit\Core\Exceptions\APIException;
 use ImageKit\RequestOptions;
 use ImageKit\SavedExtension;
+use ImageKit\SavedExtensions\CreateSavedExtension;
 use ImageKit\SavedExtensions\SavedExtensionCreateParams;
 use ImageKit\SavedExtensions\SavedExtensionUpdateParams;
 use ImageKit\ServiceContracts\SavedExtensionsRawContract;
 
 /**
+ * @phpstan-import-type CreateSavedExtensionShape from \ImageKit\SavedExtensions\CreateSavedExtension
  * @phpstan-import-type ExtensionConfigShape from \ImageKit\ExtensionConfig
  * @phpstan-import-type RequestOpts from \ImageKit\RequestOptions
  */
@@ -35,7 +37,7 @@ final class SavedExtensionsRawService implements SavedExtensionsRawContract
      * You can create a maximum of 100 saved extensions per account.
      *
      * @param array{
-     *   config: ExtensionConfigShape, description: string, name: string
+     *   createSavedExtension: CreateSavedExtension|CreateSavedExtensionShape
      * }|SavedExtensionCreateParams $params
      * @param RequestOpts|null $requestOptions
      *
@@ -55,8 +57,8 @@ final class SavedExtensionsRawService implements SavedExtensionsRawContract
         // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'post',
-            path: 'v1/saved-extensions',
-            body: (object) $parsed,
+            path: 'v2/saved-extensions',
+            body: (object) $parsed['createSavedExtension'],
             options: $options,
             convert: SavedExtension::class,
         );
@@ -90,7 +92,7 @@ final class SavedExtensionsRawService implements SavedExtensionsRawContract
         // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'patch',
-            path: ['v1/saved-extensions/%1$s', $id],
+            path: ['v2/saved-extensions/%1$s', $id],
             body: (object) $parsed,
             options: $options,
             convert: SavedExtension::class,
@@ -114,7 +116,7 @@ final class SavedExtensionsRawService implements SavedExtensionsRawContract
         // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'get',
-            path: 'v1/saved-extensions',
+            path: 'v2/saved-extensions',
             options: $requestOptions,
             convert: new ListOf(SavedExtension::class),
         );
@@ -139,7 +141,7 @@ final class SavedExtensionsRawService implements SavedExtensionsRawContract
         // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'delete',
-            path: ['v1/saved-extensions/%1$s', $id],
+            path: ['v2/saved-extensions/%1$s', $id],
             options: $requestOptions,
             convert: null,
         );
@@ -164,7 +166,7 @@ final class SavedExtensionsRawService implements SavedExtensionsRawContract
         // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'get',
-            path: ['v1/saved-extensions/%1$s', $id],
+            path: ['v2/saved-extensions/%1$s', $id],
             options: $requestOptions,
             convert: SavedExtension::class,
         );

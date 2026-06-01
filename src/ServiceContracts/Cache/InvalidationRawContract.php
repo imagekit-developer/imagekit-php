@@ -34,7 +34,6 @@ interface InvalidationRawContract
     /**
      * @api
      *
-     * @param string $requestID should be a valid requestId
      * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<InvalidationGetResponse>

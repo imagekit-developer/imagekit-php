@@ -8,11 +8,6 @@ use ImageKit\Core\Attributes\Required;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Concerns\SdkParams;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\ExtensionConfig;
-use ImageKit\ExtensionConfig\AITasksExtension;
-use ImageKit\ExtensionConfig\AutoDescriptionExtension;
-use ImageKit\ExtensionConfig\AutoTaggingExtension;
-use ImageKit\ExtensionConfig\RemovedotBgExtension;
 
 /**
  * This API creates a new saved extension. Saved extensions allow you to save complex extension configurations (like AI tasks) and reuse them by referencing the ID in upload or update file APIs.
@@ -22,11 +17,10 @@ use ImageKit\ExtensionConfig\RemovedotBgExtension;
  *
  * @see ImageKit\Services\SavedExtensionsService::create()
  *
- * @phpstan-import-type ExtensionConfigVariants from \ImageKit\ExtensionConfig
- * @phpstan-import-type ExtensionConfigShape from \ImageKit\ExtensionConfig
+ * @phpstan-import-type CreateSavedExtensionShape from \ImageKit\SavedExtensions\CreateSavedExtension
  *
  * @phpstan-type SavedExtensionCreateParamsShape = array{
- *   config: ExtensionConfigShape, description: string, name: string
+ *   createSavedExtension: CreateSavedExtension|CreateSavedExtensionShape
  * }
  */
 final class SavedExtensionCreateParams implements BaseModel
@@ -35,41 +29,21 @@ final class SavedExtensionCreateParams implements BaseModel
     use SdkModel;
     use SdkParams;
 
-    /**
-     * Configuration object for an extension (base extensions only, not saved extension references).
-     *
-     * @var ExtensionConfigVariants $config
-     */
-    #[Required(union: ExtensionConfig::class)]
-    public RemovedotBgExtension|AutoTaggingExtension|AutoDescriptionExtension|AITasksExtension $config;
-
-    /**
-     * Description of what the saved extension does.
-     */
     #[Required]
-    public string $description;
-
-    /**
-     * Name of the saved extension.
-     */
-    #[Required]
-    public string $name;
+    public CreateSavedExtension $createSavedExtension;
 
     /**
      * `new SavedExtensionCreateParams()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * SavedExtensionCreateParams::with(config: ..., description: ..., name: ...)
+     * SavedExtensionCreateParams::with(createSavedExtension: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
      *
      * ```
-     * (new SavedExtensionCreateParams)
-     *   ->withConfig(...)
-     *   ->withDescription(...)
-     *   ->withName(...)
+     * (new SavedExtensionCreateParams)->withCreateSavedExtension(...)
      * ```
      */
     public function __construct()
@@ -82,54 +56,26 @@ final class SavedExtensionCreateParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param ExtensionConfigShape $config
+     * @param CreateSavedExtension|CreateSavedExtensionShape $createSavedExtension
      */
     public static function with(
-        RemovedotBgExtension|array|AutoTaggingExtension|AutoDescriptionExtension|AITasksExtension $config,
-        string $description,
-        string $name,
+        CreateSavedExtension|array $createSavedExtension
     ): self {
         $self = new self;
 
-        $self['config'] = $config;
-        $self['description'] = $description;
-        $self['name'] = $name;
+        $self['createSavedExtension'] = $createSavedExtension;
 
         return $self;
     }
 
     /**
-     * Configuration object for an extension (base extensions only, not saved extension references).
-     *
-     * @param ExtensionConfigShape $config
+     * @param CreateSavedExtension|CreateSavedExtensionShape $createSavedExtension
      */
-    public function withConfig(
-        RemovedotBgExtension|array|AutoTaggingExtension|AutoDescriptionExtension|AITasksExtension $config,
+    public function withCreateSavedExtension(
+        CreateSavedExtension|array $createSavedExtension
     ): self {
         $self = clone $this;
-        $self['config'] = $config;
-
-        return $self;
-    }
-
-    /**
-     * Description of what the saved extension does.
-     */
-    public function withDescription(string $description): self
-    {
-        $self = clone $this;
-        $self['description'] = $description;
-
-        return $self;
-    }
-
-    /**
-     * Name of the saved extension.
-     */
-    public function withName(string $name): self
-    {
-        $self = clone $this;
-        $self['name'] = $name;
+        $self['createSavedExtension'] = $createSavedExtension;
 
         return $self;
     }

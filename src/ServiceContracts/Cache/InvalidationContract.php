@@ -30,7 +30,6 @@ interface InvalidationContract
     /**
      * @api
      *
-     * @param string $requestID should be a valid requestId
      * @param RequestOpts|null $requestOptions
      *
      * @throws APIException

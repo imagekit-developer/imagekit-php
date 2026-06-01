@@ -57,7 +57,7 @@ final class URLEndpointsRawService implements URLEndpointsRawContract
         // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'post',
-            path: 'v1/accounts/url-endpoints',
+            path: 'v2/accounts/url-endpoints',
             body: (object) $parsed,
             options: $options,
             convert: URLEndpointResponse::class,
@@ -96,7 +96,7 @@ final class URLEndpointsRawService implements URLEndpointsRawContract
         // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'put',
-            path: ['v1/accounts/url-endpoints/%1$s', $id],
+            path: ['v2/accounts/url-endpoints/%1$s', $id],
             body: (object) $parsed,
             options: $options,
             convert: URLEndpointResponse::class,
@@ -121,7 +121,7 @@ final class URLEndpointsRawService implements URLEndpointsRawContract
         // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'get',
-            path: 'v1/accounts/url-endpoints',
+            path: 'v2/accounts/url-endpoints',
             options: $requestOptions,
             convert: new ListOf(URLEndpointResponse::class),
         );
@@ -147,7 +147,7 @@ final class URLEndpointsRawService implements URLEndpointsRawContract
         // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'delete',
-            path: ['v1/accounts/url-endpoints/%1$s', $id],
+            path: ['v2/accounts/url-endpoints/%1$s', $id],
             options: $requestOptions,
             convert: null,
         );
@@ -173,7 +173,7 @@ final class URLEndpointsRawService implements URLEndpointsRawContract
         // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'get',
-            path: ['v1/accounts/url-endpoints/%1$s', $id],
+            path: ['v2/accounts/url-endpoints/%1$s', $id],
             options: $requestOptions,
             convert: URLEndpointResponse::class,
         );

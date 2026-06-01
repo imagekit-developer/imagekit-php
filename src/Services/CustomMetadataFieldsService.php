@@ -9,7 +9,6 @@ use ImageKit\Core\Exceptions\APIException;
 use ImageKit\Core\Util;
 use ImageKit\CustomMetadataFields\CustomMetadataField;
 use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema;
-use ImageKit\CustomMetadataFields\CustomMetadataFieldDeleteResponse;
 use ImageKit\RequestOptions;
 use ImageKit\ServiceContracts\CustomMetadataFieldsContract;
 
@@ -130,7 +129,7 @@ final class CustomMetadataFieldsService implements CustomMetadataFieldsContract
     public function delete(
         string $id,
         RequestOptions|array|null $requestOptions = null
-    ): CustomMetadataFieldDeleteResponse {
+    ): mixed {
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->delete($id, requestOptions: $requestOptions);
 

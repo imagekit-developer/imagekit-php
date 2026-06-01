@@ -70,7 +70,7 @@ final class InvalidationTest extends TestCase
             $this->markTestSkipped('Mock server tests are disabled');
         }
 
-        $result = $this->client->cache->invalidation->get('requestId');
+        $result = $this->client->cache->invalidation->get('request_id');
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(InvalidationGetResponse::class, $result);

@@ -13,7 +13,6 @@ use ImageKit\Core\Contracts\BaseModel;
  *
  * @phpstan-type ExifShape = array{
  *   apertureValue?: float|null,
- *   brightnessValue?: float|null,
  *   colorSpace?: int|null,
  *   createDate?: string|null,
  *   customRendered?: int|null,
@@ -28,23 +27,16 @@ use ImageKit\Core\Contracts\BaseModel;
  *   flash?: int|null,
  *   flashpixVersion?: string|null,
  *   fNumber?: float|null,
- *   focalLength?: float|null,
- *   focalLengthIn35mmFormat?: int|null,
+ *   focalLength?: int|null,
  *   focalPlaneResolutionUnit?: int|null,
  *   focalPlaneXResolution?: float|null,
  *   focalPlaneYResolution?: float|null,
  *   interopOffset?: int|null,
  *   iso?: int|null,
- *   lensModel?: string|null,
- *   lightSource?: int|null,
- *   maxApertureValue?: float|null,
  *   meteringMode?: int|null,
  *   sceneCaptureType?: int|null,
- *   sceneType?: string|null,
- *   sensingMethod?: int|null,
  *   shutterSpeedValue?: float|null,
  *   subSecTime?: string|null,
- *   userComment?: string|null,
  *   whiteBalance?: int|null,
  * }
  */
@@ -55,9 +47,6 @@ final class Exif implements BaseModel
 
     #[Optional('ApertureValue')]
     public ?float $apertureValue;
-
-    #[Optional('BrightnessValue')]
-    public ?float $brightnessValue;
 
     #[Optional('ColorSpace')]
     public ?int $colorSpace;
@@ -102,10 +91,7 @@ final class Exif implements BaseModel
     public ?float $fNumber;
 
     #[Optional('FocalLength')]
-    public ?float $focalLength;
-
-    #[Optional('FocalLengthIn35mmFormat')]
-    public ?int $focalLengthIn35mmFormat;
+    public ?int $focalLength;
 
     #[Optional('FocalPlaneResolutionUnit')]
     public ?int $focalPlaneResolutionUnit;
@@ -122,35 +108,17 @@ final class Exif implements BaseModel
     #[Optional('ISO')]
     public ?int $iso;
 
-    #[Optional('LensModel')]
-    public ?string $lensModel;
-
-    #[Optional('LightSource')]
-    public ?int $lightSource;
-
-    #[Optional('MaxApertureValue')]
-    public ?float $maxApertureValue;
-
     #[Optional('MeteringMode')]
     public ?int $meteringMode;
 
     #[Optional('SceneCaptureType')]
     public ?int $sceneCaptureType;
 
-    #[Optional('SceneType')]
-    public ?string $sceneType;
-
-    #[Optional('SensingMethod')]
-    public ?int $sensingMethod;
-
     #[Optional('ShutterSpeedValue')]
     public ?float $shutterSpeedValue;
 
     #[Optional('SubSecTime')]
     public ?string $subSecTime;
-
-    #[Optional('UserComment')]
-    public ?string $userComment;
 
     #[Optional('WhiteBalance')]
     public ?int $whiteBalance;
@@ -167,7 +135,6 @@ final class Exif implements BaseModel
      */
     public static function with(
         ?float $apertureValue = null,
-        ?float $brightnessValue = null,
         ?int $colorSpace = null,
         ?string $createDate = null,
         ?int $customRendered = null,
@@ -182,29 +149,21 @@ final class Exif implements BaseModel
         ?int $flash = null,
         ?string $flashpixVersion = null,
         ?float $fNumber = null,
-        ?float $focalLength = null,
-        ?int $focalLengthIn35mmFormat = null,
+        ?int $focalLength = null,
         ?int $focalPlaneResolutionUnit = null,
         ?float $focalPlaneXResolution = null,
         ?float $focalPlaneYResolution = null,
         ?int $interopOffset = null,
         ?int $iso = null,
-        ?string $lensModel = null,
-        ?int $lightSource = null,
-        ?float $maxApertureValue = null,
         ?int $meteringMode = null,
         ?int $sceneCaptureType = null,
-        ?string $sceneType = null,
-        ?int $sensingMethod = null,
         ?float $shutterSpeedValue = null,
         ?string $subSecTime = null,
-        ?string $userComment = null,
         ?int $whiteBalance = null,
     ): self {
         $self = new self;
 
         null !== $apertureValue && $self['apertureValue'] = $apertureValue;
-        null !== $brightnessValue && $self['brightnessValue'] = $brightnessValue;
         null !== $colorSpace && $self['colorSpace'] = $colorSpace;
         null !== $createDate && $self['createDate'] = $createDate;
         null !== $customRendered && $self['customRendered'] = $customRendered;
@@ -220,22 +179,15 @@ final class Exif implements BaseModel
         null !== $flashpixVersion && $self['flashpixVersion'] = $flashpixVersion;
         null !== $fNumber && $self['fNumber'] = $fNumber;
         null !== $focalLength && $self['focalLength'] = $focalLength;
-        null !== $focalLengthIn35mmFormat && $self['focalLengthIn35mmFormat'] = $focalLengthIn35mmFormat;
         null !== $focalPlaneResolutionUnit && $self['focalPlaneResolutionUnit'] = $focalPlaneResolutionUnit;
         null !== $focalPlaneXResolution && $self['focalPlaneXResolution'] = $focalPlaneXResolution;
         null !== $focalPlaneYResolution && $self['focalPlaneYResolution'] = $focalPlaneYResolution;
         null !== $interopOffset && $self['interopOffset'] = $interopOffset;
         null !== $iso && $self['iso'] = $iso;
-        null !== $lensModel && $self['lensModel'] = $lensModel;
-        null !== $lightSource && $self['lightSource'] = $lightSource;
-        null !== $maxApertureValue && $self['maxApertureValue'] = $maxApertureValue;
         null !== $meteringMode && $self['meteringMode'] = $meteringMode;
         null !== $sceneCaptureType && $self['sceneCaptureType'] = $sceneCaptureType;
-        null !== $sceneType && $self['sceneType'] = $sceneType;
-        null !== $sensingMethod && $self['sensingMethod'] = $sensingMethod;
         null !== $shutterSpeedValue && $self['shutterSpeedValue'] = $shutterSpeedValue;
         null !== $subSecTime && $self['subSecTime'] = $subSecTime;
-        null !== $userComment && $self['userComment'] = $userComment;
         null !== $whiteBalance && $self['whiteBalance'] = $whiteBalance;
 
         return $self;
@@ -245,14 +197,6 @@ final class Exif implements BaseModel
     {
         $self = clone $this;
         $self['apertureValue'] = $apertureValue;
-
-        return $self;
-    }
-
-    public function withBrightnessValue(float $brightnessValue): self
-    {
-        $self = clone $this;
-        $self['brightnessValue'] = $brightnessValue;
 
         return $self;
     }
@@ -369,19 +313,10 @@ final class Exif implements BaseModel
         return $self;
     }
 
-    public function withFocalLength(float $focalLength): self
+    public function withFocalLength(int $focalLength): self
     {
         $self = clone $this;
         $self['focalLength'] = $focalLength;
-
-        return $self;
-    }
-
-    public function withFocalLengthIn35mmFormat(
-        int $focalLengthIn35mmFormat
-    ): self {
-        $self = clone $this;
-        $self['focalLengthIn35mmFormat'] = $focalLengthIn35mmFormat;
 
         return $self;
     }
@@ -429,30 +364,6 @@ final class Exif implements BaseModel
         return $self;
     }
 
-    public function withLensModel(string $lensModel): self
-    {
-        $self = clone $this;
-        $self['lensModel'] = $lensModel;
-
-        return $self;
-    }
-
-    public function withLightSource(int $lightSource): self
-    {
-        $self = clone $this;
-        $self['lightSource'] = $lightSource;
-
-        return $self;
-    }
-
-    public function withMaxApertureValue(float $maxApertureValue): self
-    {
-        $self = clone $this;
-        $self['maxApertureValue'] = $maxApertureValue;
-
-        return $self;
-    }
-
     public function withMeteringMode(int $meteringMode): self
     {
         $self = clone $this;
@@ -469,22 +380,6 @@ final class Exif implements BaseModel
         return $self;
     }
 
-    public function withSceneType(string $sceneType): self
-    {
-        $self = clone $this;
-        $self['sceneType'] = $sceneType;
-
-        return $self;
-    }
-
-    public function withSensingMethod(int $sensingMethod): self
-    {
-        $self = clone $this;
-        $self['sensingMethod'] = $sensingMethod;
-
-        return $self;
-    }
-
     public function withShutterSpeedValue(float $shutterSpeedValue): self
     {
         $self = clone $this;
@@ -497,14 +392,6 @@ final class Exif implements BaseModel
     {
         $self = clone $this;
         $self['subSecTime'] = $subSecTime;
-
-        return $self;
-    }
-
-    public function withUserComment(string $userComment): self
-    {
-        $self = clone $this;
-        $self['userComment'] = $userComment;
 
         return $self;
     }

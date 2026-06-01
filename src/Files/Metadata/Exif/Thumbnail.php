@@ -16,8 +16,8 @@ use ImageKit\Core\Contracts\BaseModel;
  *   resolutionUnit?: int|null,
  *   thumbnailLength?: int|null,
  *   thumbnailOffset?: int|null,
- *   xResolution?: float|null,
- *   yResolution?: float|null,
+ *   xResolution?: int|null,
+ *   yResolution?: int|null,
  * }
  */
 final class Thumbnail implements BaseModel
@@ -38,10 +38,10 @@ final class Thumbnail implements BaseModel
     public ?int $thumbnailOffset;
 
     #[Optional('XResolution')]
-    public ?float $xResolution;
+    public ?int $xResolution;
 
     #[Optional('YResolution')]
-    public ?float $yResolution;
+    public ?int $yResolution;
 
     public function __construct()
     {
@@ -58,8 +58,8 @@ final class Thumbnail implements BaseModel
         ?int $resolutionUnit = null,
         ?int $thumbnailLength = null,
         ?int $thumbnailOffset = null,
-        ?float $xResolution = null,
-        ?float $yResolution = null,
+        ?int $xResolution = null,
+        ?int $yResolution = null,
     ): self {
         $self = new self;
 
@@ -105,7 +105,7 @@ final class Thumbnail implements BaseModel
         return $self;
     }
 
-    public function withXResolution(float $xResolution): self
+    public function withXResolution(int $xResolution): self
     {
         $self = clone $this;
         $self['xResolution'] = $xResolution;
@@ -113,7 +113,7 @@ final class Thumbnail implements BaseModel
         return $self;
     }
 
-    public function withYResolution(float $yResolution): self
+    public function withYResolution(int $yResolution): self
     {
         $self = clone $this;
         $self['yResolution'] = $yResolution;

@@ -34,19 +34,19 @@ final class AkeneoPim implements BaseModel
     /**
      * Akeneo instance base URL.
      */
-    #[Required('baseUrl')]
+    #[Required('base_url')]
     public string $baseURL;
 
     /**
      * Akeneo API client ID.
      */
-    #[Required('clientId')]
+    #[Required('client_id')]
     public string $clientID;
 
     /**
      * Akeneo API client secret.
      */
-    #[Required]
+    #[Required('client_secret')]
     public string $clientSecret;
 
     /**
@@ -70,13 +70,13 @@ final class AkeneoPim implements BaseModel
     /**
      * URL used in the Canonical header (if enabled).
      */
-    #[Optional('baseUrlForCanonicalHeader')]
+    #[Optional('base_url_for_canonical_header')]
     public ?string $baseURLForCanonicalHeader;
 
     /**
      * Whether to send a Canonical header.
      */
-    #[Optional]
+    #[Optional('include_canonical_header')]
     public ?bool $includeCanonicalHeader;
 
     /**

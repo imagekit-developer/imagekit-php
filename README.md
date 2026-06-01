@@ -32,20 +32,50 @@ $client = new Client(
   password: getenv('OPTIONAL_IMAGEKIT_IGNORES_THIS') ?: 'do_not_set',
 );
 
-$response = $client->files->upload(
+$uploadResponse = $client->assets->upload(
   file: FileParam::fromString('https://www.example.com/public-url.jpg', filename: uniqid('file-upload-', true)),
-  fileName: 'file-name.jpg',
+  fileName: 'file_name',
 );
 
-var_dump($response->videoCodec);
+var_dump($uploadResponse);
 ```
 
 ### Value Objects
 
-It is recommended to use the static `with` constructor `Dog::with(name: "Joey")`
+It is recommended to use the static `with` constructor `SavedExtensionReference::with(id: 'ext_abc123', ...)`
 and named parameters to initialize value objects.
 
-However, builders are also provided `(new Dog)->withName("Joey")`.
+However, builders are also provided `(new SavedExtensionReference)->withID('ext_abc123')`.
+
+### Pagination
+
+List methods in the Image Kit API are paginated.
+
+This library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:
+
+```php
+<?php
+
+use ImageKit\Client;
+
+$client = new Client(
+  privateKey: getenv('IMAGEKIT_PRIVATE_KEY') ?: 'My Private Key',
+  password: getenv('OPTIONAL_IMAGEKIT_IGNORES_THIS') ?: 'do_not_set',
+);
+
+$page = $client->assets->list();
+
+var_dump($page);
+
+// fetch items from the current page
+foreach ($page->getItems() as $item) {
+  var_dump($item);
+}
+// make additional network requests to fetch items from all pages, including and after the current page
+foreach ($page->pagingEachItem() as $item) {
+  var_dump($item);
+}
+```
 
 ### Handling errors
 
@@ -60,9 +90,9 @@ use ImageKit\Core\Exceptions\RateLimitException;
 use ImageKit\Core\Exceptions\APIStatusException;
 
 try {
-  $response = $client->files->upload(
+  $uploadResponse = $client->assets->upload(
     file: FileParam::fromString('https://www.example.com/public-url.jpg', filename: uniqid('file-upload-', true)),
-    fileName: 'file-name.jpg',
+    fileName: 'file_name',
   );
 } catch (APIConnectionException $e) {
   echo "The server could not be reached", PHP_EOL;
@@ -109,9 +139,9 @@ use ImageKit\Core\FileParam;
 $client = new Client(requestOptions: ['maxRetries' => 0]);
 
 // Or, configure per-request:
-$result = $client->files->upload(
+$result = $client->assets->upload(
   file: FileParam::fromString('https://www.example.com/public-url.jpg', filename: uniqid('file-upload-', true)),
-  fileName: 'file-name.jpg',
+  fileName: 'file_name',
   requestOptions: ['maxRetries' => 5],
 );
 ```
@@ -128,17 +158,17 @@ use ImageKit\Core\FileParam;
 // Pass a string with filename and content type:
 $contents = file_get_contents('/path/to/file');
 // Pass a string with filename and content type:
-$response = $client->files->upload(
+$uploadResponse = $client->assets->upload(
   file: FileParam::fromString($contents, filename: '/path/to/file', contentType: '…'),
 );
 
 // Pass in only a string (where applicable)
-$response = $client->files->upload(file: '…');
+$uploadResponse = $client->assets->upload(file: '…');
 
 // Pass an open resource:
 $fd = fopen('/path/to/file', 'r');
 try {
-  $response = $client->files->upload(
+  $uploadResponse = $client->assets->upload(
     file: FileParam::fromResource($fd, filename: '/path/to/file', contentType: '…'),
   );
 } finally {
@@ -161,9 +191,9 @@ Note: the `extra*` parameters of the same name overrides the documented paramete
 
 use ImageKit\Core\FileParam;
 
-$response = $client->files->upload(
+$uploadResponse = $client->assets->upload(
   file: FileParam::fromString('https://www.example.com/public-url.jpg', filename: uniqid('file-upload-', true)),
-  fileName: 'file-name.jpg',
+  fileName: 'file_name',
   requestOptions: [
     'extraQueryParams' => ['my_query_parameter' => 'value'],
     'extraBodyParams' => ['my_body_parameter' => 'value'],

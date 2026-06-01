@@ -22,13 +22,13 @@ final class AutoTaggingExtension implements BaseModel
     /**
      * Maximum number of tags to attach to the asset.
      */
-    #[Required]
+    #[Required('max_tags')]
     public int $maxTags;
 
     /**
      * Minimum confidence level for tags to be considered valid.
      */
-    #[Required]
+    #[Required('min_confidence')]
     public int $minConfidence;
 
     /**

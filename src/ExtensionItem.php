@@ -11,14 +11,14 @@ use ImageKit\ExtensionItem\AITasksExtension;
 use ImageKit\ExtensionItem\AutoDescriptionExtension;
 use ImageKit\ExtensionItem\AutoTaggingExtension;
 use ImageKit\ExtensionItem\RemovedotBgExtension;
-use ImageKit\ExtensionItem\SavedExtensionReference;
+use ImageKit\SavedExtensions\SavedExtensionReference;
 
 /**
  * @phpstan-import-type RemovedotBgExtensionShape from \ImageKit\ExtensionItem\RemovedotBgExtension
  * @phpstan-import-type AutoTaggingExtensionShape from \ImageKit\ExtensionItem\AutoTaggingExtension
  * @phpstan-import-type AutoDescriptionExtensionShape from \ImageKit\ExtensionItem\AutoDescriptionExtension
  * @phpstan-import-type AITasksExtensionShape from \ImageKit\ExtensionItem\AITasksExtension
- * @phpstan-import-type SavedExtensionReferenceShape from \ImageKit\ExtensionItem\SavedExtensionReference
+ * @phpstan-import-type SavedExtensionReferenceShape from \ImageKit\SavedExtensions\SavedExtensionReference
  *
  * @phpstan-type ExtensionItemVariants = RemovedotBgExtension|AutoTaggingExtension|AutoDescriptionExtension|AITasksExtension|SavedExtensionReference
  * @phpstan-type ExtensionItemShape = ExtensionItemVariants|RemovedotBgExtensionShape|AutoTaggingExtensionShape|AutoDescriptionExtensionShape|AITasksExtensionShape|SavedExtensionReferenceShape

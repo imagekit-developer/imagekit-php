@@ -33,7 +33,7 @@ final class S3 implements BaseModel
     /**
      * Access key for the bucket.
      */
-    #[Required]
+    #[Required('access_key')]
     public string $accessKey;
 
     /**
@@ -51,19 +51,19 @@ final class S3 implements BaseModel
     /**
      * Secret key for the bucket.
      */
-    #[Required]
+    #[Required('secret_key')]
     public string $secretKey;
 
     /**
      * URL used in the Canonical header (if enabled).
      */
-    #[Optional('baseUrlForCanonicalHeader')]
+    #[Optional('base_url_for_canonical_header')]
     public ?string $baseURLForCanonicalHeader;
 
     /**
      * Whether to send a Canonical header.
      */
-    #[Optional]
+    #[Optional('include_canonical_header')]
     public ?bool $includeCanonicalHeader;
 
     /**

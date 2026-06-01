@@ -39,11 +39,7 @@ final class SavedExtensionsTest extends TestCase
             $this->markTestSkipped('Mock server tests are disabled');
         }
 
-        $result = $this->client->savedExtensions->create(
-            config: ['name' => 'remove-bg'],
-            description: 'Analyzes vehicle images for type, condition, and quality assessment',
-            name: 'Car Quality Analysis',
-        );
+        $result = $this->client->savedExtensions->create(createSavedExtension: []);
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(SavedExtension::class, $result);
@@ -57,17 +53,19 @@ final class SavedExtensionsTest extends TestCase
         }
 
         $result = $this->client->savedExtensions->create(
-            config: [
-                'name' => 'remove-bg',
-                'options' => [
-                    'addShadow' => true,
-                    'bgColor' => 'bg_color',
-                    'bgImageURL' => 'bg_image_url',
-                    'semitransparency' => true,
+            createSavedExtension: [
+                'config' => [
+                    'name' => 'remove-bg',
+                    'options' => [
+                        'addShadow' => true,
+                        'bgColor' => 'bg_color',
+                        'bgImageURL' => 'bg_image_url',
+                        'semiTransparency' => true,
+                    ],
                 ],
+                'description' => 'Analyzes vehicle images for type, condition, and quality assessment',
+                'name' => 'Car Quality Analysis',
             ],
-            description: 'Analyzes vehicle images for type, condition, and quality assessment',
-            name: 'Car Quality Analysis',
         );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType

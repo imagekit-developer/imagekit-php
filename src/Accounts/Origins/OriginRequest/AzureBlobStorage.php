@@ -30,7 +30,7 @@ final class AzureBlobStorage implements BaseModel
     #[Required]
     public string $type = 'AZURE_BLOB';
 
-    #[Required]
+    #[Required('account_name')]
     public string $accountName;
 
     #[Required]
@@ -42,19 +42,19 @@ final class AzureBlobStorage implements BaseModel
     #[Required]
     public string $name;
 
-    #[Required]
+    #[Required('sas_token')]
     public string $sasToken;
 
     /**
      * URL used in the Canonical header (if enabled).
      */
-    #[Optional('baseUrlForCanonicalHeader')]
+    #[Optional('base_url_for_canonical_header')]
     public ?string $baseURLForCanonicalHeader;
 
     /**
      * Whether to send a Canonical header.
      */
-    #[Optional]
+    #[Optional('include_canonical_header')]
     public ?bool $includeCanonicalHeader;
 
     #[Optional]

@@ -1,0 +1,44 @@
+<?php
+
+declare(strict_types=1);
+
+namespace ImageKit\Accounts\URLEndpoints\URLEndpointResponse;
+
+use ImageKit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriters\AkamaiURLRewriter;
+use ImageKit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriters\CloudinaryURLRewriter;
+use ImageKit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriters\ImgixURLRewriter;
+use ImageKit\Core\Concerns\SdkUnion;
+use ImageKit\Core\Conversion\Contracts\Converter;
+use ImageKit\Core\Conversion\Contracts\ConverterSource;
+
+/**
+ * Configuration for third-party URL rewriting.
+ *
+ * @phpstan-import-type CloudinaryURLRewriterShape from \ImageKit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriters\CloudinaryURLRewriter
+ * @phpstan-import-type ImgixURLRewriterShape from \ImageKit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriters\ImgixURLRewriter
+ * @phpstan-import-type AkamaiURLRewriterShape from \ImageKit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriters\AkamaiURLRewriter
+ *
+ * @phpstan-type URLRewritersVariants = CloudinaryURLRewriter|ImgixURLRewriter|AkamaiURLRewriter
+ * @phpstan-type URLRewritersShape = URLRewritersVariants|CloudinaryURLRewriterShape|ImgixURLRewriterShape|AkamaiURLRewriterShape
+ */
+final class URLRewriters implements ConverterSource
+{
+    use SdkUnion;
+
+    public static function discriminator(): string
+    {
+        return 'type';
+    }
+
+    /**
+     * @return list<string|Converter|ConverterSource>|array<string,string|Converter|ConverterSource>
+     */
+    public static function variants(): array
+    {
+        return [
+            'CLOUDINARY' => CloudinaryURLRewriter::class,
+            'IMGIX' => ImgixURLRewriter::class,
+            'AKAMAI' => AkamaiURLRewriter::class,
+        ];
+    }
+}

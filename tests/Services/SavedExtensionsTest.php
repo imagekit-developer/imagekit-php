@@ -63,7 +63,7 @@ final class SavedExtensionsTest extends TestCase
                     'addShadow' => true,
                     'bgColor' => 'bg_color',
                     'bgImageURL' => 'bg_image_url',
-                    'semitransparency' => true,
+                    'semiTransparency' => true,
                 ],
             ],
             description: 'Analyzes vehicle images for type, condition, and quality assessment',

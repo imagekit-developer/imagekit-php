@@ -39,13 +39,13 @@ final class GoogleCloudStorageGcs implements BaseModel
     #[Required]
     public string $bucket;
 
-    #[Required]
+    #[Required('client_email')]
     public string $clientEmail;
 
     /**
      * Whether to send a Canonical header.
      */
-    #[Required]
+    #[Required('include_canonical_header')]
     public bool $includeCanonicalHeader;
 
     /**
@@ -60,7 +60,7 @@ final class GoogleCloudStorageGcs implements BaseModel
     /**
      * URL used in the Canonical header (if enabled).
      */
-    #[Optional('baseUrlForCanonicalHeader')]
+    #[Optional('base_url_for_canonical_header')]
     public ?string $baseURLForCanonicalHeader;
 
     /**

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace ImageKit\Services\Cache;
 
-use ImageKit\Cache\Invalidation\InvalidationGetResponse;
 use ImageKit\Cache\Invalidation\InvalidationNewResponse;
 use ImageKit\Client;
 use ImageKit\Core\Exceptions\APIException;
@@ -33,7 +32,7 @@ final class InvalidationService implements InvalidationContract
     /**
      * @api
      *
-     * This API will purge CDN cache and ImageKit.io's internal cache for a file.  Note: Purge cache is an asynchronous process and it may take some time to reflect the changes.
+     * This API will invalidate CDN cache and ImageKit.io's internal cache for an asset.  Note: Purge cache is an asynchronous process and it may take some time to reflect the changes.
      *
      * @param string $url the full URL of the file to be purged
      * @param RequestOpts|null $requestOptions
@@ -48,26 +47,6 @@ final class InvalidationService implements InvalidationContract
 
         // @phpstan-ignore-next-line argument.type
         $response = $this->raw->create(params: $params, requestOptions: $requestOptions);
-
-        return $response->parse();
-    }
-
-    /**
-     * @api
-     *
-     * This API returns the status of a purge cache request.
-     *
-     * @param string $requestID should be a valid requestId
-     * @param RequestOpts|null $requestOptions
-     *
-     * @throws APIException
-     */
-    public function get(
-        string $requestID,
-        RequestOptions|array|null $requestOptions = null
-    ): InvalidationGetResponse {
-        // @phpstan-ignore-next-line argument.type
-        $response = $this->raw->get($requestID, requestOptions: $requestOptions);
 
         return $response->parse();
     }

@@ -25,31 +25,31 @@ final class UsageGetResponse implements BaseModel
     /**
      * Amount of bandwidth used in bytes.
      */
-    #[Optional]
+    #[Optional('bandwidth_bytes')]
     public ?int $bandwidthBytes;
 
     /**
      * Number of extension units used.
      */
-    #[Optional]
+    #[Optional('extension_units_count')]
     public ?int $extensionUnitsCount;
 
     /**
      * Storage used by media library in bytes.
      */
-    #[Optional]
+    #[Optional('media_library_storage_bytes')]
     public ?int $mediaLibraryStorageBytes;
 
     /**
      * Storage used by the original cache in bytes.
      */
-    #[Optional]
+    #[Optional('original_cache_storage_bytes')]
     public ?int $originalCacheStorageBytes;
 
     /**
      * Number of video processing units used.
      */
-    #[Optional]
+    #[Optional('video_processing_units_count')]
     public ?int $videoProcessingUnitsCount;
 
     public function __construct()

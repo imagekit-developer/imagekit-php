@@ -11,8 +11,7 @@ use ImageKit\Core\Concerns\SdkParams;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * **Note:** This API is currently in beta.
- * Creates a new origin and returns the origin object.
+ * **Note:** This API is currently in beta.   Creates a new origin and returns the origin object.
  *
  * @see ImageKit\Services\Accounts\OriginsService::create()
  *
@@ -53,7 +52,7 @@ final class OriginCreateParams implements BaseModel
     /**
      * Access key for the bucket.
      */
-    #[Required]
+    #[Required('access_key')]
     public string $accessKey;
 
     #[Required]
@@ -68,19 +67,19 @@ final class OriginCreateParams implements BaseModel
     /**
      * Secret key for the bucket.
      */
-    #[Required]
+    #[Required('secret_key')]
     public string $secretKey;
 
     /**
      * URL used in the Canonical header (if enabled).
      */
-    #[Optional('baseUrlForCanonicalHeader')]
+    #[Optional('base_url_for_canonical_header')]
     public ?string $baseURLForCanonicalHeader;
 
     /**
      * Whether to send a Canonical header.
      */
-    #[Optional]
+    #[Optional('include_canonical_header')]
     public ?bool $includeCanonicalHeader;
 
     #[Optional]
@@ -95,46 +94,46 @@ final class OriginCreateParams implements BaseModel
     /**
      * Use path-style S3 URLs?
      */
-    #[Optional]
+    #[Optional('s3_force_path_style')]
     public ?bool $s3ForcePathStyle;
 
     /**
      * Akeneo instance base URL.
      */
-    #[Required('baseUrl')]
+    #[Required('base_url')]
     public string $baseURL;
 
     /**
      * Forward the Host header to origin?
      */
-    #[Optional]
+    #[Optional('forward_host_header_to_origin')]
     public ?bool $forwardHostHeaderToOrigin;
 
-    #[Required]
+    #[Required('client_email')]
     public string $clientEmail;
 
-    #[Required]
+    #[Required('private_key')]
     public string $privateKey;
 
-    #[Required]
+    #[Required('account_name')]
     public string $accountName;
 
     #[Required]
     public string $container;
 
-    #[Required]
+    #[Required('sas_token')]
     public string $sasToken;
 
     /**
      * Akeneo API client ID.
      */
-    #[Required('clientId')]
+    #[Required('client_id')]
     public string $clientID;
 
     /**
      * Akeneo API client secret.
      */
-    #[Required]
+    #[Required('client_secret')]
     public string $clientSecret;
 
     /**

@@ -7,7 +7,6 @@ namespace ImageKit\ServiceContracts;
 use ImageKit\Core\Exceptions\APIException;
 use ImageKit\CustomMetadataFields\CustomMetadataField;
 use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema;
-use ImageKit\CustomMetadataFields\CustomMetadataFieldDeleteResponse;
 use ImageKit\RequestOptions;
 
 /**
@@ -79,5 +78,5 @@ interface CustomMetadataFieldsContract
     public function delete(
         string $id,
         RequestOptions|array|null $requestOptions = null
-    ): CustomMetadataFieldDeleteResponse;
+    ): mixed;
 }

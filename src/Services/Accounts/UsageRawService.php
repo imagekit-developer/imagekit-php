@@ -47,7 +47,7 @@ final class UsageRawService implements UsageRawContract
         // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'get',
-            path: 'v1/accounts/usage',
+            path: 'v2/accounts/usage',
             query: $parsed,
             options: $options,
             convert: UsageGetResponse::class,

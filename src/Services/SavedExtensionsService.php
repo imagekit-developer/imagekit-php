@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace ImageKit\Services;
 
+use ImageKit\AITasksExtension;
+use ImageKit\AutoDescriptionExtension;
+use ImageKit\AutoTaggingExtension;
 use ImageKit\Client;
 use ImageKit\Core\Exceptions\APIException;
 use ImageKit\Core\Util;
-use ImageKit\ExtensionConfig\AITasksExtension;
-use ImageKit\ExtensionConfig\AutoDescriptionExtension;
-use ImageKit\ExtensionConfig\AutoTaggingExtension;
-use ImageKit\ExtensionConfig\RemovedotBgExtension;
+use ImageKit\RemovedotBgExtension;
 use ImageKit\RequestOptions;
 use ImageKit\SavedExtension;
 use ImageKit\ServiceContracts\SavedExtensionsContract;
@@ -43,7 +43,7 @@ final class SavedExtensionsService implements SavedExtensionsContract
      * You can create a maximum of 100 saved extensions per account.
      *
      * @param ExtensionConfigShape $config configuration object for an extension (base extensions only, not saved extension references)
-     * @param string $description description of what the saved extension does
+     * @param string $description description of the saved extension
      * @param string $name name of the saved extension
      * @param RequestOpts|null $requestOptions
      *
@@ -72,8 +72,8 @@ final class SavedExtensionsService implements SavedExtensionsContract
      *
      * @param string $id the unique ID of the saved extension
      * @param ExtensionConfigShape $config configuration object for an extension (base extensions only, not saved extension references)
-     * @param string $description updated description of the saved extension
-     * @param string $name updated name of the saved extension
+     * @param string $description description of the saved extension
+     * @param string $name name of the saved extension
      * @param RequestOpts|null $requestOptions
      *
      * @throws APIException

@@ -39,8 +39,7 @@ final class OriginsService implements OriginsContract
     /**
      * @api
      *
-     * **Note:** This API is currently in beta.
-     * Creates a new origin and returns the origin object.
+     * **Note:** This API is currently in beta.   Creates a new origin and returns the origin object.
      *
      * @param string $accessKey access key for the bucket
      * @param string $name display name of the origin

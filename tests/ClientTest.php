@@ -34,9 +34,9 @@ class ClientTest extends TestCase
             requestOptions: ['transporter' => $transporter],
         );
 
-        $client->files->upload(
+        $client->assets->upload(
             file: FileParam::fromString('Example data', filename: uniqid('file-upload-', true)),
-            fileName: 'fileName',
+            fileName: 'file_name',
         );
 
         $this->assertNotFalse($requested = $transporter->getRequests()[0] ?? false);

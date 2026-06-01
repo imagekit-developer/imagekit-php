@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace ImageKit\Webhooks\UploadPreTransformSuccessEvent;
 
+use ImageKit\Assets\Metadata;
 use ImageKit\Core\Attributes\Optional;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Files\Metadata;
 use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\AITag;
 use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\ExtensionStatus;
 use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema;
@@ -18,7 +18,7 @@ use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\VersionInfo;
  *
  * @phpstan-import-type AITagShape from \ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\AITag
  * @phpstan-import-type ExtensionStatusShape from \ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\ExtensionStatus
- * @phpstan-import-type MetadataShape from \ImageKit\Files\Metadata
+ * @phpstan-import-type MetadataShape from \ImageKit\Assets\Metadata
  * @phpstan-import-type SelectedFieldsSchemaShape from \ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema
  * @phpstan-import-type VersionInfoShape from \ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\VersionInfo
  *

@@ -2,7 +2,6 @@
 
 namespace Tests\Services\Cache;
 
-use ImageKit\Cache\Invalidation\InvalidationGetResponse;
 use ImageKit\Cache\Invalidation\InvalidationNewResponse;
 use ImageKit\Client;
 use ImageKit\Core\Util;
@@ -61,18 +60,5 @@ final class InvalidationTest extends TestCase
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(InvalidationNewResponse::class, $result);
-    }
-
-    #[Test]
-    public function testGet(): void
-    {
-        if (UnsupportedMockTests::$skip) {
-            $this->markTestSkipped('Mock server tests are disabled');
-        }
-
-        $result = $this->client->cache->invalidation->get('requestId');
-
-        // @phpstan-ignore-next-line method.alreadyNarrowedType
-        $this->assertInstanceOf(InvalidationGetResponse::class, $result);
     }
 }

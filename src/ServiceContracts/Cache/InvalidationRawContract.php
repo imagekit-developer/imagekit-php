@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace ImageKit\ServiceContracts\Cache;
 
 use ImageKit\Cache\Invalidation\InvalidationCreateParams;
-use ImageKit\Cache\Invalidation\InvalidationGetResponse;
 use ImageKit\Cache\Invalidation\InvalidationNewResponse;
 use ImageKit\Core\Contracts\BaseResponse;
 use ImageKit\Core\Exceptions\APIException;
@@ -29,20 +28,5 @@ interface InvalidationRawContract
     public function create(
         array|InvalidationCreateParams $params,
         RequestOptions|array|null $requestOptions = null,
-    ): BaseResponse;
-
-    /**
-     * @api
-     *
-     * @param string $requestID should be a valid requestId
-     * @param RequestOpts|null $requestOptions
-     *
-     * @return BaseResponse<InvalidationGetResponse>
-     *
-     * @throws APIException
-     */
-    public function get(
-        string $requestID,
-        RequestOptions|array|null $requestOptions = null
     ): BaseResponse;
 }

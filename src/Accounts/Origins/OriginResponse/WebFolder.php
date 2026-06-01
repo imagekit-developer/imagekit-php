@@ -38,19 +38,19 @@ final class WebFolder implements BaseModel
     /**
      * Root URL for the web folder origin.
      */
-    #[Required('baseUrl')]
+    #[Required('base_url')]
     public string $baseURL;
 
     /**
      * Forward the Host header to origin?
      */
-    #[Required]
+    #[Required('forward_host_header_to_origin')]
     public bool $forwardHostHeaderToOrigin;
 
     /**
      * Whether to send a Canonical header.
      */
-    #[Required]
+    #[Required('include_canonical_header')]
     public bool $includeCanonicalHeader;
 
     /**
@@ -62,7 +62,7 @@ final class WebFolder implements BaseModel
     /**
      * URL used in the Canonical header (if enabled).
      */
-    #[Optional('baseUrlForCanonicalHeader')]
+    #[Optional('base_url_for_canonical_header')]
     public ?string $baseURLForCanonicalHeader;
 
     /**

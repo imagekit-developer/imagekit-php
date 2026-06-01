@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace ImageKit\ServiceContracts\Cache;
 
-use ImageKit\Cache\Invalidation\InvalidationGetResponse;
 use ImageKit\Cache\Invalidation\InvalidationNewResponse;
 use ImageKit\Core\Exceptions\APIException;
 use ImageKit\RequestOptions;
@@ -26,17 +25,4 @@ interface InvalidationContract
         string $url,
         RequestOptions|array|null $requestOptions = null
     ): InvalidationNewResponse;
-
-    /**
-     * @api
-     *
-     * @param string $requestID should be a valid requestId
-     * @param RequestOpts|null $requestOptions
-     *
-     * @throws APIException
-     */
-    public function get(
-        string $requestID,
-        RequestOptions|array|null $requestOptions = null
-    ): InvalidationGetResponse;
 }

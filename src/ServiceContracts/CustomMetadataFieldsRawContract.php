@@ -8,7 +8,6 @@ use ImageKit\Core\Contracts\BaseResponse;
 use ImageKit\Core\Exceptions\APIException;
 use ImageKit\CustomMetadataFields\CustomMetadataField;
 use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams;
-use ImageKit\CustomMetadataFields\CustomMetadataFieldDeleteResponse;
 use ImageKit\CustomMetadataFields\CustomMetadataFieldListParams;
 use ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams;
 use ImageKit\RequestOptions;
@@ -71,7 +70,7 @@ interface CustomMetadataFieldsRawContract
      * @param string $id should be a valid custom metadata field id
      * @param RequestOpts|null $requestOptions
      *
-     * @return BaseResponse<CustomMetadataFieldDeleteResponse>
+     * @return BaseResponse<mixed>
      *
      * @throws APIException
      */

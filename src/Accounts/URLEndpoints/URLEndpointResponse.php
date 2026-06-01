@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace ImageKit\Accounts\URLEndpoints;
 
-use ImageKit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriter;
-use ImageKit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriter\AkamaiURLRewriter;
-use ImageKit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriter\CloudinaryURLRewriter;
-use ImageKit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriter\ImgixURLRewriter;
+use ImageKit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriters;
+use ImageKit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriters\AkamaiURLRewriter;
+use ImageKit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriters\CloudinaryURLRewriter;
+use ImageKit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriters\ImgixURLRewriter;
 use ImageKit\Core\Attributes\Optional;
 use ImageKit\Core\Attributes\Required;
 use ImageKit\Core\Concerns\SdkModel;
@@ -16,15 +16,15 @@ use ImageKit\Core\Contracts\BaseModel;
 /**
  * URL‑endpoint object as returned by the API.
  *
- * @phpstan-import-type URLRewriterVariants from \ImageKit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriter
- * @phpstan-import-type URLRewriterShape from \ImageKit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriter
+ * @phpstan-import-type URLRewritersVariants from \ImageKit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriters
+ * @phpstan-import-type URLRewritersShape from \ImageKit\Accounts\URLEndpoints\URLEndpointResponse\URLRewriters
  *
  * @phpstan-type URLEndpointResponseShape = array{
  *   id: string,
  *   description: string,
  *   origins: list<string>,
  *   urlPrefix: string,
- *   urlRewriter?: URLRewriterShape|null,
+ *   urlRewriters?: URLRewritersShape|null,
  * }
  */
 final class URLEndpointResponse implements BaseModel
@@ -55,16 +55,16 @@ final class URLEndpointResponse implements BaseModel
     /**
      * Path segment appended to your base URL to form the endpoint (letters, digits, and hyphens only — or empty for the default endpoint).
      */
-    #[Required]
+    #[Required('url_prefix')]
     public string $urlPrefix;
 
     /**
      * Configuration for third-party URL rewriting.
      *
-     * @var URLRewriterVariants|null $urlRewriter
+     * @var URLRewritersVariants|null $urlRewriters
      */
-    #[Optional(union: URLRewriter::class)]
-    public CloudinaryURLRewriter|ImgixURLRewriter|AkamaiURLRewriter|null $urlRewriter;
+    #[Optional('url_rewriters', union: URLRewriters::class)]
+    public CloudinaryURLRewriter|ImgixURLRewriter|AkamaiURLRewriter|null $urlRewriters;
 
     /**
      * `new URLEndpointResponse()` is missing required properties by the API.
@@ -97,14 +97,14 @@ final class URLEndpointResponse implements BaseModel
      * You must use named parameters to construct any parameters with a default value.
      *
      * @param list<string> $origins
-     * @param URLRewriterShape|null $urlRewriter
+     * @param URLRewritersShape|null $urlRewriters
      */
     public static function with(
         string $id,
         string $description,
         array $origins = [],
         string $urlPrefix = '',
-        CloudinaryURLRewriter|array|ImgixURLRewriter|AkamaiURLRewriter|null $urlRewriter = null,
+        CloudinaryURLRewriter|array|ImgixURLRewriter|AkamaiURLRewriter|null $urlRewriters = null,
     ): self {
         $self = new self;
 
@@ -113,7 +113,7 @@ final class URLEndpointResponse implements BaseModel
         $self['origins'] = $origins;
         $self['urlPrefix'] = $urlPrefix;
 
-        null !== $urlRewriter && $self['urlRewriter'] = $urlRewriter;
+        null !== $urlRewriters && $self['urlRewriters'] = $urlRewriters;
 
         return $self;
     }
@@ -167,13 +167,13 @@ final class URLEndpointResponse implements BaseModel
     /**
      * Configuration for third-party URL rewriting.
      *
-     * @param URLRewriterShape $urlRewriter
+     * @param URLRewritersShape $urlRewriters
      */
-    public function withURLRewriter(
-        CloudinaryURLRewriter|array|ImgixURLRewriter|AkamaiURLRewriter $urlRewriter
+    public function withURLRewriters(
+        CloudinaryURLRewriter|array|ImgixURLRewriter|AkamaiURLRewriter $urlRewriters
     ): self {
         $self = clone $this;
-        $self['urlRewriter'] = $urlRewriter;
+        $self['urlRewriters'] = $urlRewriters;
 
         return $self;
     }

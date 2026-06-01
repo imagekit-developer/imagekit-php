@@ -5,7 +5,6 @@ namespace Tests\Services;
 use ImageKit\Client;
 use ImageKit\Core\Util;
 use ImageKit\CustomMetadataFields\CustomMetadataField;
-use ImageKit\CustomMetadataFields\CustomMetadataFieldDeleteResponse;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
@@ -112,6 +111,6 @@ final class CustomMetadataFieldsTest extends TestCase
         $result = $this->client->customMetadataFields->delete('id');
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
-        $this->assertInstanceOf(CustomMetadataFieldDeleteResponse::class, $result);
+        $this->assertNull($result);
     }
 }

@@ -4,18 +4,21 @@ declare(strict_types=1);
 
 namespace ImageKit\Webhooks;
 
+use ImageKit\Assets\FileDetails;
 use ImageKit\Core\Attributes\Required;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Files\File;
 
 /**
  * Triggered when a file is updated.
  *
- * @phpstan-import-type FileShape from \ImageKit\Files\File
+ * @phpstan-import-type FileDetailsShape from \ImageKit\Assets\FileDetails
  *
  * @phpstan-type FileUpdateEventShape = array{
- *   id: string, type: string, createdAt: \DateTimeInterface, data: File|FileShape
+ *   id: string,
+ *   type: string,
+ *   createdAt: \DateTimeInterface,
+ *   data: FileDetails|FileDetailsShape,
  * }
  */
 final class FileUpdateEvent implements BaseModel
@@ -42,10 +45,10 @@ final class FileUpdateEvent implements BaseModel
     public \DateTimeInterface $createdAt;
 
     /**
-     * Object containing details of a file or file version.
+     * Object containing details of a file.
      */
     #[Required]
-    public File $data;
+    public FileDetails $data;
 
     /**
      * `new FileUpdateEvent()` is missing required properties by the API.
@@ -75,13 +78,13 @@ final class FileUpdateEvent implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param File|FileShape $data
+     * @param FileDetails|FileDetailsShape $data
      */
     public static function with(
         string $id,
         string $type,
         \DateTimeInterface $createdAt,
-        File|array $data
+        FileDetails|array $data,
     ): self {
         $self = new self;
 
@@ -127,11 +130,11 @@ final class FileUpdateEvent implements BaseModel
     }
 
     /**
-     * Object containing details of a file or file version.
+     * Object containing details of a file.
      *
-     * @param File|FileShape $data
+     * @param FileDetails|FileDetailsShape $data
      */
-    public function withData(File|array $data): self
+    public function withData(FileDetails|array $data): self
     {
         $self = clone $this;
         $self['data'] = $data;

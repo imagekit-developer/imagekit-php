@@ -26,7 +26,7 @@ final class CloudinaryURLRewriter implements BaseModel
     /**
      * Whether to preserve `<asset_type>/<delivery_type>` in the rewritten URL.
      */
-    #[Optional]
+    #[Optional('preserve_asset_delivery_types')]
     public ?bool $preserveAssetDeliveryTypes;
 
     public function __construct()

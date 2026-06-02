@@ -35,13 +35,13 @@ final class WebProxy implements BaseModel
     /**
      * URL used in the Canonical header (if enabled).
      */
-    #[Optional('baseUrlForCanonicalHeader')]
+    #[Optional('base_url_for_canonical_header')]
     public ?string $baseURLForCanonicalHeader;
 
     /**
      * Whether to send a Canonical header.
      */
-    #[Optional]
+    #[Optional('include_canonical_header')]
     public ?bool $includeCanonicalHeader;
 
     /**

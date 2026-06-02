@@ -11,11 +11,8 @@ use ImageKit\Core\Implementation\StreamingHttpClient;
 use ImageKit\Core\Util;
 use ImageKit\Services\AccountsService;
 use ImageKit\Services\AssetsService;
-use ImageKit\Services\BetaService;
 use ImageKit\Services\CacheService;
 use ImageKit\Services\CustomMetadataFieldsService;
-use ImageKit\Services\FilesService;
-use ImageKit\Services\FoldersService;
 use ImageKit\Services\SavedExtensionsService;
 use ImageKit\Services\WebhooksService;
 
@@ -41,7 +38,7 @@ class Client extends BaseClient
     /**
      * @api
      */
-    public FilesService $files;
+    public AssetsService $assets;
 
     /**
      * @api
@@ -51,27 +48,12 @@ class Client extends BaseClient
     /**
      * @api
      */
-    public AssetsService $assets;
-
-    /**
-     * @api
-     */
     public CacheService $cache;
 
     /**
      * @api
      */
-    public FoldersService $folders;
-
-    /**
-     * @api
-     */
     public AccountsService $accounts;
-
-    /**
-     * @api
-     */
-    public BetaService $beta;
 
     /**
      * @api
@@ -149,13 +131,10 @@ class Client extends BaseClient
         );
 
         $this->customMetadataFields = new CustomMetadataFieldsService($this);
-        $this->files = new FilesService($this);
-        $this->savedExtensions = new SavedExtensionsService($this);
         $this->assets = new AssetsService($this);
+        $this->savedExtensions = new SavedExtensionsService($this);
         $this->cache = new CacheService($this);
-        $this->folders = new FoldersService($this);
         $this->accounts = new AccountsService($this);
-        $this->beta = new BetaService($this);
         $this->webhooks = new WebhooksService($this);
     }
 

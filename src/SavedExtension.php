@@ -7,10 +7,6 @@ namespace ImageKit;
 use ImageKit\Core\Attributes\Optional;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\ExtensionConfig\AITasksExtension;
-use ImageKit\ExtensionConfig\AutoDescriptionExtension;
-use ImageKit\ExtensionConfig\AutoTaggingExtension;
-use ImageKit\ExtensionConfig\RemovedotBgExtension;
 
 /**
  * Saved extension object containing extension configuration.
@@ -19,11 +15,11 @@ use ImageKit\ExtensionConfig\RemovedotBgExtension;
  * @phpstan-import-type ExtensionConfigShape from \ImageKit\ExtensionConfig
  *
  * @phpstan-type SavedExtensionShape = array{
- *   id?: string|null,
  *   config?: ExtensionConfigShape|null,
- *   createdAt?: \DateTimeInterface|null,
  *   description?: string|null,
  *   name?: string|null,
+ *   id?: string|null,
+ *   createdAt?: \DateTimeInterface|null,
  *   updatedAt?: \DateTimeInterface|null,
  * }
  */
@@ -33,24 +29,12 @@ final class SavedExtension implements BaseModel
     use SdkModel;
 
     /**
-     * Unique identifier of the saved extension.
-     */
-    #[Optional]
-    public ?string $id;
-
-    /**
      * Configuration object for an extension (base extensions only, not saved extension references).
      *
      * @var ExtensionConfigVariants|null $config
      */
     #[Optional(union: ExtensionConfig::class)]
     public RemovedotBgExtension|AutoTaggingExtension|AutoDescriptionExtension|AITasksExtension|null $config;
-
-    /**
-     * Timestamp when the saved extension was created.
-     */
-    #[Optional]
-    public ?\DateTimeInterface $createdAt;
 
     /**
      * Description of the saved extension.
@@ -65,9 +49,21 @@ final class SavedExtension implements BaseModel
     public ?string $name;
 
     /**
-     * Timestamp when the saved extension was last updated.
+     * Unique identifier of the saved extension.
      */
     #[Optional]
+    public ?string $id;
+
+    /**
+     * Timestamp when the saved extension was created.
+     */
+    #[Optional('created_at')]
+    public ?\DateTimeInterface $createdAt;
+
+    /**
+     * Timestamp when the saved extension was last updated.
+     */
+    #[Optional('updated_at')]
     public ?\DateTimeInterface $updatedAt;
 
     public function __construct()
@@ -83,32 +79,21 @@ final class SavedExtension implements BaseModel
      * @param ExtensionConfigShape|null $config
      */
     public static function with(
-        ?string $id = null,
         RemovedotBgExtension|array|AutoTaggingExtension|AutoDescriptionExtension|AITasksExtension|null $config = null,
-        ?\DateTimeInterface $createdAt = null,
         ?string $description = null,
         ?string $name = null,
+        ?string $id = null,
+        ?\DateTimeInterface $createdAt = null,
         ?\DateTimeInterface $updatedAt = null,
     ): self {
         $self = new self;
 
-        null !== $id && $self['id'] = $id;
         null !== $config && $self['config'] = $config;
-        null !== $createdAt && $self['createdAt'] = $createdAt;
         null !== $description && $self['description'] = $description;
         null !== $name && $self['name'] = $name;
+        null !== $id && $self['id'] = $id;
+        null !== $createdAt && $self['createdAt'] = $createdAt;
         null !== $updatedAt && $self['updatedAt'] = $updatedAt;
-
-        return $self;
-    }
-
-    /**
-     * Unique identifier of the saved extension.
-     */
-    public function withID(string $id): self
-    {
-        $self = clone $this;
-        $self['id'] = $id;
 
         return $self;
     }
@@ -123,17 +108,6 @@ final class SavedExtension implements BaseModel
     ): self {
         $self = clone $this;
         $self['config'] = $config;
-
-        return $self;
-    }
-
-    /**
-     * Timestamp when the saved extension was created.
-     */
-    public function withCreatedAt(\DateTimeInterface $createdAt): self
-    {
-        $self = clone $this;
-        $self['createdAt'] = $createdAt;
 
         return $self;
     }
@@ -156,6 +130,28 @@ final class SavedExtension implements BaseModel
     {
         $self = clone $this;
         $self['name'] = $name;
+
+        return $self;
+    }
+
+    /**
+     * Unique identifier of the saved extension.
+     */
+    public function withID(string $id): self
+    {
+        $self = clone $this;
+        $self['id'] = $id;
+
+        return $self;
+    }
+
+    /**
+     * Timestamp when the saved extension was created.
+     */
+    public function withCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $self = clone $this;
+        $self['createdAt'] = $createdAt;
 
         return $self;
     }

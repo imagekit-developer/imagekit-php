@@ -52,7 +52,7 @@ final class S3Compatible implements BaseModel
     /**
      * Whether to send a Canonical header.
      */
-    #[Required]
+    #[Required('include_canonical_header')]
     public bool $includeCanonicalHeader;
 
     /**
@@ -70,13 +70,13 @@ final class S3Compatible implements BaseModel
     /**
      * Use path-style S3 URLs?
      */
-    #[Required]
+    #[Required('s3_force_path_style')]
     public bool $s3ForcePathStyle;
 
     /**
      * URL used in the Canonical header (if enabled).
      */
-    #[Optional('baseUrlForCanonicalHeader')]
+    #[Optional('base_url_for_canonical_header')]
     public ?string $baseURLForCanonicalHeader;
 
     /**

@@ -8,10 +8,10 @@ use ImageKit\Client;
 use ImageKit\Core\Contracts\BaseResponse;
 use ImageKit\Core\Conversion\ListOf;
 use ImageKit\Core\Exceptions\APIException;
+use ImageKit\Core\Util;
 use ImageKit\CustomMetadataFields\CustomMetadataField;
 use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams;
 use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema;
-use ImageKit\CustomMetadataFields\CustomMetadataFieldDeleteResponse;
 use ImageKit\CustomMetadataFields\CustomMetadataFieldListParams;
 use ImageKit\CustomMetadataFields\CustomMetadataFieldUpdateParams;
 use ImageKit\RequestOptions;
@@ -56,7 +56,7 @@ final class CustomMetadataFieldsRawService implements CustomMetadataFieldsRawCon
         // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'post',
-            path: 'v1/customMetadataFields',
+            path: 'v2/custom-metadata-fields',
             body: (object) $parsed,
             options: $options,
             convert: CustomMetadataField::class,
@@ -92,7 +92,7 @@ final class CustomMetadataFieldsRawService implements CustomMetadataFieldsRawCon
         // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'patch',
-            path: ['v1/customMetadataFields/%1$s', $id],
+            path: ['v2/custom-metadata-fields/%1$s', $id],
             body: (object) $parsed,
             options: $options,
             convert: CustomMetadataField::class,
@@ -127,8 +127,11 @@ final class CustomMetadataFieldsRawService implements CustomMetadataFieldsRawCon
         // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'get',
-            path: 'v1/customMetadataFields',
-            query: $parsed,
+            path: 'v2/custom-metadata-fields',
+            query: Util::array_transform_keys(
+                $parsed,
+                ['folderPath' => 'folder_path', 'includeDeleted' => 'include_deleted'],
+            ),
             options: $options,
             convert: new ListOf(CustomMetadataField::class),
         );
@@ -142,7 +145,7 @@ final class CustomMetadataFieldsRawService implements CustomMetadataFieldsRawCon
      * @param string $id should be a valid custom metadata field id
      * @param RequestOpts|null $requestOptions
      *
-     * @return BaseResponse<CustomMetadataFieldDeleteResponse>
+     * @return BaseResponse<mixed>
      *
      * @throws APIException
      */
@@ -153,9 +156,9 @@ final class CustomMetadataFieldsRawService implements CustomMetadataFieldsRawCon
         // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'delete',
-            path: ['v1/customMetadataFields/%1$s', $id],
+            path: ['v2/custom-metadata-fields/%1$s', $id],
             options: $requestOptions,
-            convert: CustomMetadataFieldDeleteResponse::class,
+            convert: null,
         );
     }
 }

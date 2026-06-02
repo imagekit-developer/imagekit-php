@@ -55,7 +55,7 @@ final class SavedExtensionsRawService implements SavedExtensionsRawContract
         // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'post',
-            path: 'v1/saved-extensions',
+            path: 'v2/saved-extensions',
             body: (object) $parsed,
             options: $options,
             convert: SavedExtension::class,
@@ -90,7 +90,7 @@ final class SavedExtensionsRawService implements SavedExtensionsRawContract
         // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'patch',
-            path: ['v1/saved-extensions/%1$s', $id],
+            path: ['v2/saved-extensions/%1$s', $id],
             body: (object) $parsed,
             options: $options,
             convert: SavedExtension::class,
@@ -114,7 +114,7 @@ final class SavedExtensionsRawService implements SavedExtensionsRawContract
         // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'get',
-            path: 'v1/saved-extensions',
+            path: 'v2/saved-extensions',
             options: $requestOptions,
             convert: new ListOf(SavedExtension::class),
         );
@@ -139,7 +139,7 @@ final class SavedExtensionsRawService implements SavedExtensionsRawContract
         // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'delete',
-            path: ['v1/saved-extensions/%1$s', $id],
+            path: ['v2/saved-extensions/%1$s', $id],
             options: $requestOptions,
             convert: null,
         );
@@ -164,7 +164,7 @@ final class SavedExtensionsRawService implements SavedExtensionsRawContract
         // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'get',
-            path: ['v1/saved-extensions/%1$s', $id],
+            path: ['v2/saved-extensions/%1$s', $id],
             options: $requestOptions,
             convert: SavedExtension::class,
         );

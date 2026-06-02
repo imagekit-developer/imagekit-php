@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace ImageKit\SavedExtensions;
 
+use ImageKit\AITasksExtension;
+use ImageKit\AutoDescriptionExtension;
+use ImageKit\AutoTaggingExtension;
 use ImageKit\Core\Attributes\Required;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Concerns\SdkParams;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\ExtensionConfig;
-use ImageKit\ExtensionConfig\AITasksExtension;
-use ImageKit\ExtensionConfig\AutoDescriptionExtension;
-use ImageKit\ExtensionConfig\AutoTaggingExtension;
-use ImageKit\ExtensionConfig\RemovedotBgExtension;
+use ImageKit\RemovedotBgExtension;
 
 /**
  * This API creates a new saved extension. Saved extensions allow you to save complex extension configurations (like AI tasks) and reuse them by referencing the ID in upload or update file APIs.
@@ -44,7 +44,7 @@ final class SavedExtensionCreateParams implements BaseModel
     public RemovedotBgExtension|AutoTaggingExtension|AutoDescriptionExtension|AITasksExtension $config;
 
     /**
-     * Description of what the saved extension does.
+     * Description of the saved extension.
      */
     #[Required]
     public string $description;
@@ -113,7 +113,7 @@ final class SavedExtensionCreateParams implements BaseModel
     }
 
     /**
-     * Description of what the saved extension does.
+     * Description of the saved extension.
      */
     public function withDescription(string $description): self
     {

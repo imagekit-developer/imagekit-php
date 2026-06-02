@@ -9,11 +9,9 @@ use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-import-type GradientVariants from \ImageKit\SolidColorOverlayTransformation\Gradient
  * @phpstan-import-type HeightVariants from \ImageKit\SolidColorOverlayTransformation\Height
  * @phpstan-import-type RadiusVariants from \ImageKit\SolidColorOverlayTransformation\Radius
  * @phpstan-import-type WidthVariants from \ImageKit\SolidColorOverlayTransformation\Width
- * @phpstan-import-type GradientShape from \ImageKit\SolidColorOverlayTransformation\Gradient
  * @phpstan-import-type HeightShape from \ImageKit\SolidColorOverlayTransformation\Height
  * @phpstan-import-type RadiusShape from \ImageKit\SolidColorOverlayTransformation\Radius
  * @phpstan-import-type WidthShape from \ImageKit\SolidColorOverlayTransformation\Width
@@ -21,7 +19,7 @@ use ImageKit\Core\Contracts\BaseModel;
  * @phpstan-type SolidColorOverlayTransformationShape = array{
  *   alpha?: float|null,
  *   background?: string|null,
- *   gradient?: GradientShape|null,
+ *   gradient?: 'boolean'|null,
  *   height?: HeightShape|null,
  *   radius?: RadiusShape|null,
  *   width?: WidthShape|null,
@@ -48,10 +46,10 @@ final class SolidColorOverlayTransformation implements BaseModel
      * Creates a linear gradient with two colors. Pass `true` for a default gradient, or provide a string for a custom gradient.
      * Only works if the base asset is an image. See [gradient](https://imagekit.io/docs/effects-and-enhancements#gradient---e-gradient).
      *
-     * @var GradientVariants|null $gradient
+     * @var 'boolean'|null $gradient
      */
     #[Optional]
-    public string|bool|null $gradient;
+    public ?string $gradient;
 
     /**
      * Controls the height of the solid color overlay. Accepts a numeric value or an arithmetic expression.
@@ -93,7 +91,7 @@ final class SolidColorOverlayTransformation implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param GradientShape|null $gradient
+     * @param 'boolean'|null $gradient
      * @param HeightShape|null $height
      * @param RadiusShape|null $radius
      * @param WidthShape|null $width
@@ -101,7 +99,7 @@ final class SolidColorOverlayTransformation implements BaseModel
     public static function with(
         ?float $alpha = null,
         ?string $background = null,
-        string|bool|null $gradient = null,
+        ?string $gradient = null,
         float|string|null $height = null,
         float|string|null $radius = null,
         float|string|null $width = null,
@@ -144,9 +142,9 @@ final class SolidColorOverlayTransformation implements BaseModel
      * Creates a linear gradient with two colors. Pass `true` for a default gradient, or provide a string for a custom gradient.
      * Only works if the base asset is an image. See [gradient](https://imagekit.io/docs/effects-and-enhancements#gradient---e-gradient).
      *
-     * @param GradientShape $gradient
+     * @param 'boolean' $gradient
      */
-    public function withGradient(string|bool $gradient): self
+    public function withGradient(string $gradient): self
     {
         $self = clone $this;
         $self['gradient'] = $gradient;

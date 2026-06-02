@@ -36,8 +36,7 @@ final class OriginsRawService implements OriginsRawContract
     /**
      * @api
      *
-     * **Note:** This API is currently in beta.
-     * Creates a new origin and returns the origin object.
+     * **Note:** This API is currently in beta.   Creates a new origin and returns the origin object.
      *
      * @param array{
      *   accessKey: string,
@@ -80,7 +79,7 @@ final class OriginsRawService implements OriginsRawContract
         // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'post',
-            path: 'v1/accounts/origins',
+            path: 'v2/accounts/origins',
             body: (object) $parsed,
             options: $options,
             convert: OriginResponse::class,
@@ -135,8 +134,8 @@ final class OriginsRawService implements OriginsRawContract
 
         // @phpstan-ignore-next-line return.type
         return $this->client->request(
-            method: 'put',
-            path: ['v1/accounts/origins/%1$s', $id],
+            method: 'patch',
+            path: ['v2/accounts/origins/%1$s', $id],
             body: (object) $parsed,
             options: $options,
             convert: OriginResponse::class,
@@ -161,7 +160,7 @@ final class OriginsRawService implements OriginsRawContract
         // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'get',
-            path: 'v1/accounts/origins',
+            path: 'v2/accounts/origins',
             options: $requestOptions,
             convert: new ListOf(OriginResponse::class),
         );
@@ -187,7 +186,7 @@ final class OriginsRawService implements OriginsRawContract
         // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'delete',
-            path: ['v1/accounts/origins/%1$s', $id],
+            path: ['v2/accounts/origins/%1$s', $id],
             options: $requestOptions,
             convert: null,
         );
@@ -213,7 +212,7 @@ final class OriginsRawService implements OriginsRawContract
         // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'get',
-            path: ['v1/accounts/origins/%1$s', $id],
+            path: ['v2/accounts/origins/%1$s', $id],
             options: $requestOptions,
             convert: OriginResponse::class,
         );

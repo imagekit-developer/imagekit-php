@@ -38,23 +38,23 @@ final class Schema implements BaseModel
     use SdkModel;
 
     /**
-     * The default value for this custom metadata field. This property is only required if `isValueRequired` property is set to `true`. The value should match the `type` of custom metadata field.
+     * The default value for this custom metadata field. This property is only required if `is_value_required` property is set to `true`. The value should match the `type` of custom metadata field.
      *
      * @var DefaultValueVariants|null $defaultValue
      */
-    #[Optional(union: DefaultValue::class)]
+    #[Optional('default_value', union: DefaultValue::class)]
     public string|float|bool|array|null $defaultValue;
 
     /**
      * Sets this custom metadata field as required. Setting custom metadata fields on an asset will throw error if the value for all required fields are not present in upload or update asset API request body.
      */
-    #[Optional]
+    #[Optional('is_value_required')]
     public ?bool $isValueRequired;
 
     /**
      * Maximum length of string. Only set this property if `type` is set to `Text` or `Textarea`.
      */
-    #[Optional]
+    #[Optional('max_length')]
     public ?float $maxLength;
 
     /**
@@ -62,13 +62,13 @@ final class Schema implements BaseModel
      *
      * @var MaxValueVariants|null $maxValue
      */
-    #[Optional]
+    #[Optional('max_value')]
     public string|float|null $maxValue;
 
     /**
      * Minimum length of string. Only set this property if `type` is set to `Text` or `Textarea`.
      */
-    #[Optional]
+    #[Optional('min_length')]
     public ?float $minLength;
 
     /**
@@ -76,7 +76,7 @@ final class Schema implements BaseModel
      *
      * @var MinValueVariants|null $minValue
      */
-    #[Optional]
+    #[Optional('min_value')]
     public string|float|null $minValue;
 
     /**
@@ -84,7 +84,7 @@ final class Schema implements BaseModel
      *
      * @var list<SelectOptionVariants>|null $selectOptions
      */
-    #[Optional(list: SelectOption::class)]
+    #[Optional('select_options', list: SelectOption::class)]
     public ?array $selectOptions;
 
     public function __construct()
@@ -125,7 +125,7 @@ final class Schema implements BaseModel
     }
 
     /**
-     * The default value for this custom metadata field. This property is only required if `isValueRequired` property is set to `true`. The value should match the `type` of custom metadata field.
+     * The default value for this custom metadata field. This property is only required if `is_value_required` property is set to `true`. The value should match the `type` of custom metadata field.
      *
      * @param DefaultValueShape $defaultValue
      */

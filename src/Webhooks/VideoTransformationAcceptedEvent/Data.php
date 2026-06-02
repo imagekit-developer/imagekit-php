@@ -4,18 +4,19 @@ declare(strict_types=1);
 
 namespace ImageKit\Webhooks\VideoTransformationAcceptedEvent;
 
+use ImageKit\Assets\VideoAsset;
 use ImageKit\Core\Attributes\Required;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data\Asset;
 use ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation;
 
 /**
- * @phpstan-import-type AssetShape from \ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data\Asset
+ * @phpstan-import-type VideoAssetShape from \ImageKit\Assets\VideoAsset
  * @phpstan-import-type TransformationShape from \ImageKit\Webhooks\VideoTransformationAcceptedEvent\Data\Transformation
  *
  * @phpstan-type DataShape = array{
- *   asset: Asset|AssetShape, transformation: Transformation|TransformationShape
+ *   asset: VideoAsset|VideoAssetShape,
+ *   transformation: Transformation|TransformationShape,
  * }
  */
 final class Data implements BaseModel
@@ -27,7 +28,7 @@ final class Data implements BaseModel
      * Information about the source video asset being transformed.
      */
     #[Required]
-    public Asset $asset;
+    public VideoAsset $asset;
 
     /**
      * Base information about a video transformation request.
@@ -59,11 +60,11 @@ final class Data implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Asset|AssetShape $asset
+     * @param VideoAsset|VideoAssetShape $asset
      * @param Transformation|TransformationShape $transformation
      */
     public static function with(
-        Asset|array $asset,
+        VideoAsset|array $asset,
         Transformation|array $transformation
     ): self {
         $self = new self;
@@ -77,9 +78,9 @@ final class Data implements BaseModel
     /**
      * Information about the source video asset being transformed.
      *
-     * @param Asset|AssetShape $asset
+     * @param VideoAsset|VideoAssetShape $asset
      */
-    public function withAsset(Asset|array $asset): self
+    public function withAsset(VideoAsset|array $asset): self
     {
         $self = clone $this;
         $self['asset'] = $asset;

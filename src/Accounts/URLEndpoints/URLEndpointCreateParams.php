@@ -53,7 +53,7 @@ final class URLEndpointCreateParams implements BaseModel
     /**
      * Path segment appended to your base URL to form the endpoint (letters, digits, and hyphens only — or empty for the default endpoint).
      */
-    #[Optional]
+    #[Optional('url_prefix')]
     public ?string $urlPrefix;
 
     /**
@@ -61,7 +61,7 @@ final class URLEndpointCreateParams implements BaseModel
      *
      * @var URLRewriterVariants|null $urlRewriter
      */
-    #[Optional(union: URLRewriter::class)]
+    #[Optional('url_rewriter', union: URLRewriter::class)]
     public CloudinaryURLRewriter|ImgixURLRewriter|AkamaiURLRewriter|null $urlRewriter;
 
     /**

@@ -17,20 +17,20 @@ interface InvalidationContract
     /**
      * @api
      *
-     * @param string $url the full URL of the file to be purged
+     * @param string $assetURL the full URL of the file to be purged
      * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
      */
     public function create(
-        string $url,
+        string $assetURL,
         RequestOptions|array|null $requestOptions = null
     ): InvalidationNewResponse;
 
     /**
      * @api
      *
-     * @param string $requestID should be a valid requestId
+     * @param string $requestID should be a valid request_id
      * @param RequestOpts|null $requestOptions
      *
      * @throws APIException

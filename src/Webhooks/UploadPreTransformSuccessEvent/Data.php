@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace ImageKit\Webhooks\UploadPreTransformSuccessEvent;
 
+use ImageKit\Assets\Metadata;
 use ImageKit\Core\Attributes\Optional;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\Files\Metadata;
 use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\AITag;
 use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\ExtensionStatus;
 use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema;
@@ -18,7 +18,7 @@ use ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\VersionInfo;
  *
  * @phpstan-import-type AITagShape from \ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\AITag
  * @phpstan-import-type ExtensionStatusShape from \ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\ExtensionStatus
- * @phpstan-import-type MetadataShape from \ImageKit\Files\Metadata
+ * @phpstan-import-type MetadataShape from \ImageKit\Assets\Metadata
  * @phpstan-import-type SelectedFieldsSchemaShape from \ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\SelectedFieldsSchema
  * @phpstan-import-type VersionInfoShape from \ImageKit\Webhooks\UploadPreTransformSuccessEvent\Data\VersionInfo
  *
@@ -76,13 +76,13 @@ final class Data implements BaseModel
     public ?int $bitRate;
 
     /**
-     * Value of custom coordinates associated with the image in the format `x,y,width,height`. If `customCoordinates` are not defined, then it is `null`. Send `customCoordinates` in `responseFields` in API request to get the value of this field.
+     * Value of custom coordinates associated with the image in the format `x,y,width,height`. If `customCoordinates` are not defined, then it is `null`.
      */
     #[Optional(nullable: true)]
     public ?string $customCoordinates;
 
     /**
-     * A key-value data associated with the asset. Use `responseField` in API request to get `customMetadata` in the upload API response. Before setting any custom metadata on an asset, you have to create the field using custom metadata fields API. Send `customMetadata` in `responseFields` in API request to get the value of this field.
+     * A key-value data associated with the asset. Before setting any custom metadata on an asset, you have to create the field using custom metadata fields API.
      *
      * @var array<string,mixed>|null $customMetadata
      */
@@ -102,7 +102,7 @@ final class Data implements BaseModel
     public ?int $duration;
 
     /**
-     * Consolidated embedded metadata associated with the file. It includes exif, iptc, and xmp data. Send `embeddedMetadata` in `responseFields` in API request to get embeddedMetadata in the upload API response.
+     * Consolidated embedded metadata associated with the file. It includes exif, iptc, and xmp data.
      *
      * @var array<string,mixed>|null $embeddedMetadata
      */
@@ -146,19 +146,19 @@ final class Data implements BaseModel
     public ?float $height;
 
     /**
-     * Is the file marked as private. It can be either `true` or `false`. Send `isPrivateFile` in `responseFields` in API request to get the value of this field.
+     * Is the file marked as private. It can be either `true` or `false`.
      */
     #[Optional]
     public ?bool $isPrivateFile;
 
     /**
-     * Is the file published or in draft state. It can be either `true` or `false`. Send `isPublished` in `responseFields` in API request to get the value of this field.
+     * Is the file published or in draft state. It can be either `true` or `false`.
      */
     #[Optional]
     public ?bool $isPublished;
 
     /**
-     * Legacy metadata. Send `metadata` in `responseFields` in API request to get metadata in the upload API response.
+     * Legacy metadata.
      */
     #[Optional]
     public ?Metadata $metadata;
@@ -188,7 +188,7 @@ final class Data implements BaseModel
     public ?float $size;
 
     /**
-     * The array of tags associated with the asset. If no tags are set, it will be `null`. Send `tags` in `responseFields` in API request to get the value of this field.
+     * The array of tags associated with the asset. If no tags are set, it will be `null`.
      *
      * @var list<string>|null $tags
      */
@@ -338,7 +338,7 @@ final class Data implements BaseModel
     }
 
     /**
-     * Value of custom coordinates associated with the image in the format `x,y,width,height`. If `customCoordinates` are not defined, then it is `null`. Send `customCoordinates` in `responseFields` in API request to get the value of this field.
+     * Value of custom coordinates associated with the image in the format `x,y,width,height`. If `customCoordinates` are not defined, then it is `null`.
      */
     public function withCustomCoordinates(?string $customCoordinates): self
     {
@@ -349,7 +349,7 @@ final class Data implements BaseModel
     }
 
     /**
-     * A key-value data associated with the asset. Use `responseField` in API request to get `customMetadata` in the upload API response. Before setting any custom metadata on an asset, you have to create the field using custom metadata fields API. Send `customMetadata` in `responseFields` in API request to get the value of this field.
+     * A key-value data associated with the asset. Before setting any custom metadata on an asset, you have to create the field using custom metadata fields API.
      *
      * @param array<string,mixed> $customMetadata
      */
@@ -384,7 +384,7 @@ final class Data implements BaseModel
     }
 
     /**
-     * Consolidated embedded metadata associated with the file. It includes exif, iptc, and xmp data. Send `embeddedMetadata` in `responseFields` in API request to get embeddedMetadata in the upload API response.
+     * Consolidated embedded metadata associated with the file. It includes exif, iptc, and xmp data.
      *
      * @param array<string,mixed> $embeddedMetadata
      */
@@ -461,7 +461,7 @@ final class Data implements BaseModel
     }
 
     /**
-     * Is the file marked as private. It can be either `true` or `false`. Send `isPrivateFile` in `responseFields` in API request to get the value of this field.
+     * Is the file marked as private. It can be either `true` or `false`.
      */
     public function withIsPrivateFile(bool $isPrivateFile): self
     {
@@ -472,7 +472,7 @@ final class Data implements BaseModel
     }
 
     /**
-     * Is the file published or in draft state. It can be either `true` or `false`. Send `isPublished` in `responseFields` in API request to get the value of this field.
+     * Is the file published or in draft state. It can be either `true` or `false`.
      */
     public function withIsPublished(bool $isPublished): self
     {
@@ -483,7 +483,7 @@ final class Data implements BaseModel
     }
 
     /**
-     * Legacy metadata. Send `metadata` in `responseFields` in API request to get metadata in the upload API response.
+     * Legacy metadata.
      *
      * @param Metadata|MetadataShape $metadata
      */
@@ -535,7 +535,7 @@ final class Data implements BaseModel
     }
 
     /**
-     * The array of tags associated with the asset. If no tags are set, it will be `null`. Send `tags` in `responseFields` in API request to get the value of this field.
+     * The array of tags associated with the asset. If no tags are set, it will be `null`.
      *
      * @param list<string>|null $tags
      */

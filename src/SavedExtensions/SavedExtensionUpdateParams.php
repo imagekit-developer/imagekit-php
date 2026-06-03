@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace ImageKit\SavedExtensions;
 
+use ImageKit\AITasksExtension;
+use ImageKit\AutoTaggingExtension;
 use ImageKit\Core\Attributes\Optional;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Concerns\SdkParams;
 use ImageKit\Core\Contracts\BaseModel;
 use ImageKit\ExtensionConfig;
-use ImageKit\ExtensionConfig\AITasksExtension;
 use ImageKit\ExtensionConfig\AutoDescriptionExtension;
-use ImageKit\ExtensionConfig\AutoTaggingExtension;
-use ImageKit\ExtensionConfig\RemovedotBgExtension;
+use ImageKit\RemovedotBgextension;
 
 /**
  * This API updates an existing saved extension. You can update the name, description, or config.
@@ -40,16 +40,16 @@ final class SavedExtensionUpdateParams implements BaseModel
      * @var ExtensionConfigVariants|null $config
      */
     #[Optional(union: ExtensionConfig::class)]
-    public RemovedotBgExtension|AutoTaggingExtension|AutoDescriptionExtension|AITasksExtension|null $config;
+    public RemovedotBgextension|AutoTaggingExtension|AutoDescriptionExtension|AITasksExtension|null $config;
 
     /**
-     * Updated description of the saved extension.
+     * Description of the saved extension.
      */
     #[Optional]
     public ?string $description;
 
     /**
-     * Updated name of the saved extension.
+     * Name of the saved extension.
      */
     #[Optional]
     public ?string $name;
@@ -67,7 +67,7 @@ final class SavedExtensionUpdateParams implements BaseModel
      * @param ExtensionConfigShape|null $config
      */
     public static function with(
-        RemovedotBgExtension|array|AutoTaggingExtension|AutoDescriptionExtension|AITasksExtension|null $config = null,
+        RemovedotBgextension|array|AutoTaggingExtension|AutoDescriptionExtension|AITasksExtension|null $config = null,
         ?string $description = null,
         ?string $name = null,
     ): self {
@@ -86,7 +86,7 @@ final class SavedExtensionUpdateParams implements BaseModel
      * @param ExtensionConfigShape $config
      */
     public function withConfig(
-        RemovedotBgExtension|array|AutoTaggingExtension|AutoDescriptionExtension|AITasksExtension $config,
+        RemovedotBgextension|array|AutoTaggingExtension|AutoDescriptionExtension|AITasksExtension $config,
     ): self {
         $self = clone $this;
         $self['config'] = $config;
@@ -95,7 +95,7 @@ final class SavedExtensionUpdateParams implements BaseModel
     }
 
     /**
-     * Updated description of the saved extension.
+     * Description of the saved extension.
      */
     public function withDescription(string $description): self
     {
@@ -106,7 +106,7 @@ final class SavedExtensionUpdateParams implements BaseModel
     }
 
     /**
-     * Updated name of the saved extension.
+     * Name of the saved extension.
      */
     public function withName(string $name): self
     {

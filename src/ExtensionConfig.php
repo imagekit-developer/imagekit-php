@@ -7,21 +7,18 @@ namespace ImageKit;
 use ImageKit\Core\Concerns\SdkUnion;
 use ImageKit\Core\Conversion\Contracts\Converter;
 use ImageKit\Core\Conversion\Contracts\ConverterSource;
-use ImageKit\ExtensionConfig\AITasksExtension;
 use ImageKit\ExtensionConfig\AutoDescriptionExtension;
-use ImageKit\ExtensionConfig\AutoTaggingExtension;
-use ImageKit\ExtensionConfig\RemovedotBgExtension;
 
 /**
  * Configuration object for an extension (base extensions only, not saved extension references).
  *
- * @phpstan-import-type RemovedotBgExtensionShape from \ImageKit\ExtensionConfig\RemovedotBgExtension
- * @phpstan-import-type AutoTaggingExtensionShape from \ImageKit\ExtensionConfig\AutoTaggingExtension
+ * @phpstan-import-type RemovedotBgextensionShape from \ImageKit\RemovedotBgextension
+ * @phpstan-import-type AutoTaggingExtensionShape from \ImageKit\AutoTaggingExtension
  * @phpstan-import-type AutoDescriptionExtensionShape from \ImageKit\ExtensionConfig\AutoDescriptionExtension
- * @phpstan-import-type AITasksExtensionShape from \ImageKit\ExtensionConfig\AITasksExtension
+ * @phpstan-import-type AITasksExtensionShape from \ImageKit\AITasksExtension
  *
- * @phpstan-type ExtensionConfigVariants = RemovedotBgExtension|AutoTaggingExtension|AutoDescriptionExtension|AITasksExtension
- * @phpstan-type ExtensionConfigShape = ExtensionConfigVariants|RemovedotBgExtensionShape|AutoTaggingExtensionShape|AutoDescriptionExtensionShape|AITasksExtensionShape
+ * @phpstan-type ExtensionConfigVariants = RemovedotBgextension|AutoTaggingExtension|AutoDescriptionExtension|AITasksExtension
+ * @phpstan-type ExtensionConfigShape = ExtensionConfigVariants|RemovedotBgextensionShape|AutoTaggingExtensionShape|AutoDescriptionExtensionShape|AITasksExtensionShape
  */
 final class ExtensionConfig implements ConverterSource
 {
@@ -39,7 +36,7 @@ final class ExtensionConfig implements ConverterSource
     {
         return [
             AutoTaggingExtension::class,
-            'remove-bg' => RemovedotBgExtension::class,
+            'remove-bg' => RemovedotBgextension::class,
             'ai-auto-description' => AutoDescriptionExtension::class,
             'ai-tasks' => AITasksExtension::class,
         ];

@@ -11,7 +11,7 @@ use ImageKit\Core\Conversion\ListOf;
 use ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\DefaultValue\Mixed_;
 
 /**
- * The default value for this custom metadata field. This property is only required if `isValueRequired` property is set to `true`. The value should match the `type` of custom metadata field.
+ * The default value for this custom metadata field. This property is only required if `is_value_required` property is set to `true`. The value should match the `type` of custom metadata field.
  *
  * @phpstan-import-type MixedShape from \ImageKit\CustomMetadataFields\CustomMetadataFieldCreateParams\Schema\DefaultValue\Mixed_
  *

@@ -10,11 +10,11 @@ use ImageKit\Core\Concerns\SdkParams;
 use ImageKit\Core\Contracts\BaseModel;
 
 /**
- * This API will purge CDN cache and ImageKit.io's internal cache for a file.  Note: Purge cache is an asynchronous process and it may take some time to reflect the changes.
+ * This API will invalidate CDN cache and ImageKit.io's internal cache for an asset.  Note: Purge cache is an asynchronous process and it may take some time to reflect the changes.
  *
  * @see ImageKit\Services\Cache\InvalidationService::create()
  *
- * @phpstan-type InvalidationCreateParamsShape = array{url: string}
+ * @phpstan-type InvalidationCreateParamsShape = array{assetURL: string}
  */
 final class InvalidationCreateParams implements BaseModel
 {
@@ -25,21 +25,21 @@ final class InvalidationCreateParams implements BaseModel
     /**
      * The full URL of the file to be purged.
      */
-    #[Required]
-    public string $url;
+    #[Required('asset_url')]
+    public string $assetURL;
 
     /**
      * `new InvalidationCreateParams()` is missing required properties by the API.
      *
      * To enforce required parameters use
      * ```
-     * InvalidationCreateParams::with(url: ...)
+     * InvalidationCreateParams::with(assetURL: ...)
      * ```
      *
      * Otherwise ensure the following setters are called
      *
      * ```
-     * (new InvalidationCreateParams)->withURL(...)
+     * (new InvalidationCreateParams)->withAssetURL(...)
      * ```
      */
     public function __construct()
@@ -52,11 +52,11 @@ final class InvalidationCreateParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function with(string $url): self
+    public static function with(string $assetURL): self
     {
         $self = new self;
 
-        $self['url'] = $url;
+        $self['assetURL'] = $assetURL;
 
         return $self;
     }
@@ -64,10 +64,10 @@ final class InvalidationCreateParams implements BaseModel
     /**
      * The full URL of the file to be purged.
      */
-    public function withURL(string $url): self
+    public function withAssetURL(string $assetURL): self
     {
         $self = clone $this;
-        $self['url'] = $url;
+        $self['assetURL'] = $assetURL;
 
         return $self;
     }

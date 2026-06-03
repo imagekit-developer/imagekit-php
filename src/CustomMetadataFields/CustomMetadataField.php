@@ -7,15 +7,17 @@ namespace ImageKit\CustomMetadataFields;
 use ImageKit\Core\Attributes\Required;
 use ImageKit\Core\Concerns\SdkModel;
 use ImageKit\Core\Contracts\BaseModel;
-use ImageKit\CustomMetadataFields\CustomMetadataField\Schema;
 
 /**
  * Object containing details of a custom metadata field.
  *
- * @phpstan-import-type SchemaShape from \ImageKit\CustomMetadataFields\CustomMetadataField\Schema
+ * @phpstan-import-type CustomMetadataFieldSchemaShape from \ImageKit\CustomMetadataFields\CustomMetadataFieldSchema
  *
  * @phpstan-type CustomMetadataFieldShape = array{
- *   id: string, label: string, name: string, schema: Schema|SchemaShape
+ *   id: string,
+ *   label: string,
+ *   name: string,
+ *   schema: CustomMetadataFieldSchema|CustomMetadataFieldSchemaShape,
  * }
  */
 final class CustomMetadataField implements BaseModel
@@ -42,10 +44,10 @@ final class CustomMetadataField implements BaseModel
     public string $name;
 
     /**
-     * An object that describes the rules for the custom metadata field value.
+     * Schema rules for a custom metadata field value.
      */
     #[Required]
-    public Schema $schema;
+    public CustomMetadataFieldSchema $schema;
 
     /**
      * `new CustomMetadataField()` is missing required properties by the API.
@@ -75,13 +77,13 @@ final class CustomMetadataField implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param Schema|SchemaShape $schema
+     * @param CustomMetadataFieldSchema|CustomMetadataFieldSchemaShape $schema
      */
     public static function with(
         string $id,
         string $label,
         string $name,
-        Schema|array $schema
+        CustomMetadataFieldSchema|array $schema,
     ): self {
         $self = new self;
 
@@ -127,11 +129,11 @@ final class CustomMetadataField implements BaseModel
     }
 
     /**
-     * An object that describes the rules for the custom metadata field value.
+     * Schema rules for a custom metadata field value.
      *
-     * @param Schema|SchemaShape $schema
+     * @param CustomMetadataFieldSchema|CustomMetadataFieldSchemaShape $schema
      */
-    public function withSchema(Schema|array $schema): self
+    public function withSchema(CustomMetadataFieldSchema|array $schema): self
     {
         $self = clone $this;
         $self['schema'] = $schema;

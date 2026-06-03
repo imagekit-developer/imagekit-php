@@ -41,7 +41,7 @@ final class InvalidationTest extends TestCase
         }
 
         $result = $this->client->cache->invalidation->create(
-            url: 'https://ik.imagekit.io/your_imagekit_id/default-image.jpg'
+            assetURL: 'https://ik.imagekit.io/your_imagekit_id/default-image.jpg'
         );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
@@ -56,7 +56,7 @@ final class InvalidationTest extends TestCase
         }
 
         $result = $this->client->cache->invalidation->create(
-            url: 'https://ik.imagekit.io/your_imagekit_id/default-image.jpg'
+            assetURL: 'https://ik.imagekit.io/your_imagekit_id/default-image.jpg'
         );
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
@@ -70,7 +70,7 @@ final class InvalidationTest extends TestCase
             $this->markTestSkipped('Mock server tests are disabled');
         }
 
-        $result = $this->client->cache->invalidation->get('requestId');
+        $result = $this->client->cache->invalidation->get('request_id');
 
         // @phpstan-ignore-next-line method.alreadyNarrowedType
         $this->assertInstanceOf(InvalidationGetResponse::class, $result);

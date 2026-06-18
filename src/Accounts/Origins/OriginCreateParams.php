@@ -25,6 +25,7 @@ use ImageKit\Core\Contracts\BaseModel;
  *   baseURLForCanonicalHeader?: string|null,
  *   includeCanonicalHeader?: bool|null,
  *   prefix?: string|null,
+ *   useIamRole?: bool|null,
  *   endpoint: string,
  *   s3ForcePathStyle?: bool|null,
  *   baseURL: string,
@@ -51,7 +52,7 @@ final class OriginCreateParams implements BaseModel
     public string $type = 'AKENEO_PIM';
 
     /**
-     * Access key for the bucket.
+     * Access key for the bucket. When `useIAMRole` is `true`, send an empty string.
      */
     #[Required]
     public string $accessKey;
@@ -66,7 +67,7 @@ final class OriginCreateParams implements BaseModel
     public string $name;
 
     /**
-     * Secret key for the bucket.
+     * Secret key for the bucket. When `useIAMRole` is `true`, send an empty string.
      */
     #[Required]
     public string $secretKey;
@@ -85,6 +86,12 @@ final class OriginCreateParams implements BaseModel
 
     #[Optional]
     public ?string $prefix;
+
+    /**
+     * Use IAM role for authentication instead of access/secret keys. When set to `true`, send an empty string for both `accessKey` and `secretKey`.
+     */
+    #[Optional('useIAMRole')]
+    public ?bool $useIamRole;
 
     /**
      * Custom S3-compatible endpoint.
@@ -223,6 +230,7 @@ final class OriginCreateParams implements BaseModel
         ?string $baseURLForCanonicalHeader = null,
         ?bool $includeCanonicalHeader = null,
         ?string $prefix = null,
+        ?bool $useIamRole = null,
         ?bool $s3ForcePathStyle = null,
         ?bool $forwardHostHeaderToOrigin = null,
     ): self {
@@ -247,6 +255,7 @@ final class OriginCreateParams implements BaseModel
         null !== $baseURLForCanonicalHeader && $self['baseURLForCanonicalHeader'] = $baseURLForCanonicalHeader;
         null !== $includeCanonicalHeader && $self['includeCanonicalHeader'] = $includeCanonicalHeader;
         null !== $prefix && $self['prefix'] = $prefix;
+        null !== $useIamRole && $self['useIamRole'] = $useIamRole;
         null !== $s3ForcePathStyle && $self['s3ForcePathStyle'] = $s3ForcePathStyle;
         null !== $forwardHostHeaderToOrigin && $self['forwardHostHeaderToOrigin'] = $forwardHostHeaderToOrigin;
 
@@ -265,7 +274,7 @@ final class OriginCreateParams implements BaseModel
     }
 
     /**
-     * Access key for the bucket.
+     * Access key for the bucket. When `useIAMRole` is `true`, send an empty string.
      */
     public function withAccessKey(string $accessKey): self
     {
@@ -295,7 +304,7 @@ final class OriginCreateParams implements BaseModel
     }
 
     /**
-     * Secret key for the bucket.
+     * Secret key for the bucket. When `useIAMRole` is `true`, send an empty string.
      */
     public function withSecretKey(string $secretKey): self
     {
@@ -333,6 +342,17 @@ final class OriginCreateParams implements BaseModel
     {
         $self = clone $this;
         $self['prefix'] = $prefix;
+
+        return $self;
+    }
+
+    /**
+     * Use IAM role for authentication instead of access/secret keys. When set to `true`, send an empty string for both `accessKey` and `secretKey`.
+     */
+    public function withUseIamRole(bool $useIamRole): self
+    {
+        $self = clone $this;
+        $self['useIamRole'] = $useIamRole;
 
         return $self;
     }

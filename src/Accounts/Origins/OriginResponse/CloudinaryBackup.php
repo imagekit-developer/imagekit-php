@@ -18,6 +18,7 @@ use ImageKit\Core\Contracts\BaseModel;
  *   prefix: string,
  *   type: 'CLOUDINARY_BACKUP',
  *   baseURLForCanonicalHeader?: string|null,
+ *   useIamRole?: bool|null,
  * }
  */
 final class CloudinaryBackup implements BaseModel
@@ -66,6 +67,12 @@ final class CloudinaryBackup implements BaseModel
     public ?string $baseURLForCanonicalHeader;
 
     /**
+     * Whether the origin authenticates using an IAM role instead of access/secret keys.
+     */
+    #[Optional('useIAMRole')]
+    public ?bool $useIamRole;
+
+    /**
      * `new CloudinaryBackup()` is missing required properties by the API.
      *
      * To enforce required parameters use
@@ -103,6 +110,7 @@ final class CloudinaryBackup implements BaseModel
         string $prefix,
         bool $includeCanonicalHeader = false,
         ?string $baseURLForCanonicalHeader = null,
+        ?bool $useIamRole = null,
     ): self {
         $self = new self;
 
@@ -113,6 +121,7 @@ final class CloudinaryBackup implements BaseModel
         $self['prefix'] = $prefix;
 
         null !== $baseURLForCanonicalHeader && $self['baseURLForCanonicalHeader'] = $baseURLForCanonicalHeader;
+        null !== $useIamRole && $self['useIamRole'] = $useIamRole;
 
         return $self;
     }
@@ -192,6 +201,17 @@ final class CloudinaryBackup implements BaseModel
     ): self {
         $self = clone $this;
         $self['baseURLForCanonicalHeader'] = $baseURLForCanonicalHeader;
+
+        return $self;
+    }
+
+    /**
+     * Whether the origin authenticates using an IAM role instead of access/secret keys.
+     */
+    public function withUseIamRole(bool $useIamRole): self
+    {
+        $self = clone $this;
+        $self['useIamRole'] = $useIamRole;
 
         return $self;
     }

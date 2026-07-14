@@ -8,6 +8,7 @@ use ImageKit\Client;
 use ImageKit\ServiceContracts\AccountsContract;
 use ImageKit\Services\Accounts\OriginsService;
 use ImageKit\Services\Accounts\URLEndpointsService;
+use ImageKit\Services\Accounts\UsageAnalyticsService;
 use ImageKit\Services\Accounts\UsageService;
 
 final class AccountsService implements AccountsContract
@@ -21,6 +22,11 @@ final class AccountsService implements AccountsContract
      * @api
      */
     public UsageService $usage;
+
+    /**
+     * @api
+     */
+    public UsageAnalyticsService $usageAnalytics;
 
     /**
      * @api
@@ -39,6 +45,7 @@ final class AccountsService implements AccountsContract
     {
         $this->raw = new AccountsRawService($client);
         $this->usage = new UsageService($client);
+        $this->usageAnalytics = new UsageAnalyticsService($client);
         $this->origins = new OriginsService($client);
         $this->urlEndpoints = new URLEndpointsService($client);
     }

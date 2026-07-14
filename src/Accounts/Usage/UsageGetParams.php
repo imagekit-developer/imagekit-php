@@ -12,6 +12,10 @@ use ImageKit\Core\Contracts\BaseModel;
 /**
  * Get the account usage information between two dates. Note that the API response includes data from the start date while excluding data from the end date. In other words, the data covers the period starting from the specified start date up to, but not including, the end date.
  *
+ * For an agency account, the returned usage is aggregated across the agency and all of its child accounts that are billed to it.
+ *
+ * The response is cached for 6 hours per account, date range and requested metrics.
+ *
  * @see ImageKit\Services\Accounts\UsageService::get()
  *
  * @phpstan-type UsageGetParamsShape = array{endDate: string, startDate: string}

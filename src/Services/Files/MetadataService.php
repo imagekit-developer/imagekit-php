@@ -1,0 +1,75 @@
+<?php
+
+declare(strict_types=1);
+
+namespace ImageKit\Services\Files;
+
+use ImageKit\Client;
+use ImageKit\Core\Exceptions\APIException;
+use ImageKit\Core\Util;
+use ImageKit\Files\Metadata;
+use ImageKit\RequestOptions;
+use ImageKit\ServiceContracts\Files\MetadataContract;
+
+/**
+ * @phpstan-import-type RequestOpts from \ImageKit\RequestOptions
+ */
+final class MetadataService implements MetadataContract
+{
+    /**
+     * @api
+     */
+    public MetadataRawService $raw;
+
+    /**
+     * @internal
+     */
+    public function __construct(private Client $client)
+    {
+        $this->raw = new MetadataRawService($client);
+    }
+
+    /**
+     * @api
+     *
+     * You can programmatically get image EXIF, pHash, and other metadata for uploaded files in the ImageKit.io media library using this API.
+     *
+     * You can also get the metadata in upload API response by passing `metadata` in `responseFields` parameter.
+     *
+     * @param string $fileID The unique `fileId` of the uploaded file. `fileId` is returned in the list and search assets API and upload API.
+     * @param RequestOpts|null $requestOptions
+     *
+     * @throws APIException
+     */
+    public function get(
+        string $fileID,
+        RequestOptions|array|null $requestOptions = null
+    ): Metadata {
+        // @phpstan-ignore-next-line argument.type
+        $response = $this->raw->get($fileID, requestOptions: $requestOptions);
+
+        return $response->parse();
+    }
+
+    /**
+     * @api
+     *
+     * Get image EXIF, pHash, and other metadata from ImageKit.io powered remote URL using this API.
+     *
+     * @param string $url Should be a valid file URL. It should be accessible using your ImageKit.io account.
+     * @param RequestOpts|null $requestOptions
+     *
+     * @throws APIException
+     */
+    public function getFromURL(
+        string $url,
+        RequestOptions|array|null $requestOptions = null
+    ): Metadata {
+        $params = Util::removeNulls(['url' => $url]);
+
+        // @phpstan-ignore-next-line argument.type
+        $response = $this->raw->getFromURL(params: $params, requestOptions: $requestOptions);
+
+        return $response->parse();
+    }
+}

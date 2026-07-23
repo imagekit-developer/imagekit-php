@@ -1,0 +1,31 @@
+name: PHP Test CI
+
+on: [ push, pull_request ]
+
+jobs:
+    build:
+        runs-on: ${{ matrix.operating-system }}
+        strategy:
+            matrix:
+                operating-system: [ 'ubuntu-latest', 'windows-latest', 'macos-latest' ]
+                php-versions: [ '5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0' ]
+                phpunit-versions: [ 'latest' ]
+        steps:
+            -   uses: actions/checkout@v1
+
+            -   name: Setup PHP
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: '${{ matrix.php-versions }}'
+
+            -   name: Validate composer.json and composer.lock
+                run: composer validate
+
+            -   name: Install dependencies
+                run: composer install --prefer-dist --no-progress --no-suggest
+
+            # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
+            # Docs: https://getcomposer.org/doc/articles/scripts.md
+
+            -   name: Run test suite
+                run: ./vendor/bin/phpunit

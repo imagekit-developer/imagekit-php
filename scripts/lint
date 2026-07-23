@@ -4,5 +4,15 @@ set -e
 
 cd -- "$(dirname -- "$0")/.."
 
-echo "==> Running PHPStan"
-exec -- ./vendor/bin/phpstan analyse --memory-limit=12G
+# CI=true → phpstan.dist.neon (parallel, fast)
+# unset    → phpstan.local.neon (1 process; stable on Docker bind mounts)
+if [ -n "${CI:-}" ]; then
+  CONFIG=phpstan.dist.neon
+else
+  CONFIG=phpstan.local.neon
+fi
+
+echo "==> Running PHPStan (config: ${CONFIG})"
+exec -- ./vendor/bin/phpstan analyse \
+  --configuration="$CONFIG" \
+  --memory-limit=12G

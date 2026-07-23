@@ -1,0 +1,9 @@
+# Used by scripts/lint when CI is unset (local / Docker on macOS).
+# Parallel workers + virtiofs bind mounts flake with "Could not read file".
+# CI uses phpstan.dist.neon instead (see scripts/lint).
+includes:
+  - phpstan.dist.neon
+
+parameters:
+  parallel:
+    maximumNumberOfProcesses: 1

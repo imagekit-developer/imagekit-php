@@ -1,42 +1,13 @@
-# IntelliJ - PhpStorm and PyCharm
-.idea
-*.iml
-*.ipr
-*.iws
-
-# Netbeans
-nbproject
-.nbproject
-.nbproject/*
-nbproject/*
-nbproject/private/
-build/
-nbbuild/
-dist/
-nbdist/
-nbactions.xml
-nb-configuration.xml
-
-# Mac OSX
-.DS_Store
-# Thumbnails
-._*
-# Files that might appear on external disk
-.Spotlight-V100
-.Trashes
-
-# SublimeText project files
-/*.sublime-project
-*.sublime-workspace
-
-build
-docs
-vendor
-composer.phar
+docs/
+.idea/
+.php-cs-fixer.cache
+.php-cs-fixer.php
+.phpunit.cache
 phpunit.xml
-.vscode
-.phpunit*
-sample/vendor
-sample/composer.lock
+playground/
+*.swo
+*.swp
+vendor/
 
-*.phar
+# do not edit! excludes generated files used internally
+.artifacts/
